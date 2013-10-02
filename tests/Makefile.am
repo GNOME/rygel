@@ -206,6 +206,7 @@ test_librygel_renderer_gst_libs = \
 	
 rygel_playbin_renderer_test_SOURCES = rygel-playbin-renderer-test.vala
 rygel_playbin_renderer_test_VALAFLAGS = \
+	--enable-experimental \
 	$(test_librygel_renderer_gst_valaflags)
 rygel_playbin_renderer_test_CFLAGS = \
 	$(test_librygel_renderer_gst_cflags)
@@ -214,6 +215,7 @@ rygel_playbin_renderer_test_LDADD = \
 
 rygel_environment_test_SOURCES = rygel-environment-test.vala
 rygel_environment_test_VALAFLAGS = \
+	--enable-experimental \
 	$(test_librygel_renderer_gst_valaflags)
 rygel_environment_test_CFLAGS = \
 	$(test_librygel_renderer_gst_cflags)
