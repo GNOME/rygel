@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel rygel-0-14\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-18 09:09+0000\n"
-"PO-Revision-Date: 2013-09-20 14:57+0530\n"
+"POT-Creation-Date: 2013-10-02 22:14+0000\n"
+"PO-Revision-Date: 2013-10-03 16:04+0530\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: Assamese <kde-i18n-doc@kde.org>\n"
 "Language: as\n"
@@ -49,7 +49,6 @@ msgid "_Share media through DLNA"
 msgstr "DLNA ৰে মাধ্যম অংশীদাৰী কৰক (_S)"
 
 #: ../data/rygel-preferences.ui.h:8
-#| msgid "_Network:"
 msgid "Networks:"
 msgstr "নেটৱাৰ্কসমূহ:"
 
@@ -76,8 +75,10 @@ msgstr "mediaserver;mediarenderer;share;audio;video;pictures;"
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "মডিউল '%s' এ D-Bus অধিবেশন বাচৰ সৈতে সংযোগ কৰিবলে ব্যৰ্থ হল।"
+#| msgid "Module '%s' could not connect to D-Bus session bus. "
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr ""
+"মডিউল '%s' এ D-Bus অধিবেশন বাচৰ সৈতে সংযোগ কৰিবলে ব্যৰ্থ হল। উপেক্ষা কৰা হৈছে…"
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -116,31 +117,26 @@ msgstr "ডাটাবেইচৰ পৰা অবজেক্ট আতৰা
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:114
 #, c-format
-#| msgid "Failed to move dotfile %s: %s"
 msgid "Failed to harvest file %s: %s"
 msgstr "ফাইল %s আহৰণ কৰিবলৈ ব্যৰ্থ: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:164
 #, c-format
-#| msgid "Failed to query info of a file %s: %s"
 msgid "Failed to query database: %s"
 msgstr "ডাটাবেইচক প্ৰশ্ন কৰিবলৈ ব্যৰ্থ: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "failed to enumerate folder: %s"
 msgstr "ফোল্ডাৰ ইনুমাৰেইট কৰিবলৈ ব্যৰ্থ: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
 #, c-format
-#| msgid "Failed to query info of a file %s: %s"
 msgid "Failed to get children of container %s: %s"
 msgstr "বৈয়াম %s ৰ সন্তান প্ৰাপ্ত কৰিবলৈ ব্যৰ্থ: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
-#| msgid "Failed to get Tracker connection: %s"
 msgid "Failed to get child count of query container: %s"
 msgstr "কোনো প্ৰশ্ন বৈয়ামৰ সন্তান গণনা প্ৰাপ্ত কৰিবলৈ ব্যৰ্থ: %s"
 
@@ -150,7 +146,6 @@ msgid "Failed to add item with ID %s: %s"
 msgstr "ID %s ৰ সৈতে বস্তু যোগ কৰিবলে ব্যৰ্থ: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:564
-#| msgid "Failed to create preferences dialog: %s"
 msgid "Cannot create references to containers"
 msgstr "বৈয়ামসমূহলৈ প্ৰসংগ সৃষ্টি কৰিব নোৱাৰি"
 
@@ -167,14 +162,12 @@ msgstr "সকলো"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
-#| msgid "Failed to get Tracker connection: %s"
 msgid "Failed to get child count: %s"
 msgstr "সন্তান গণনা প্ৰাপ্ত কৰিবলৈ ব্যৰ্থ: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Can't create items in %s"
 msgstr "%s ত বস্তুবোৰ সৃষ্টি কৰিব নোৱাৰি"
 
@@ -195,13 +188,11 @@ msgstr "প্লেলিস্টসমূহ"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Can't remove items in %s"
 msgstr "%s ত বস্তুবোৰ আতৰাব নোৱাৰি"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
 #, c-format
-#| msgid "Play speed not supported"
 msgid "upnp:class not supported in %s"
 msgstr "%s ত upnp:class সমৰ্থিত নহয়"
 
@@ -214,11 +205,15 @@ msgstr "নথিপত্ৰ পৰিবৰ্তনসমূহ পৰ্য�
 msgid "Failed to get file info for %s"
 msgstr "%s ৰ বাবে নথিপত্ৰ তথ্য প্ৰাপ্ত কৰিবলে ব্যৰ্থ"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "বছৰ"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "শিল্পী"
@@ -262,7 +257,6 @@ msgstr "ভিডিঅ'সমূহ"
 
 #: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
 #, c-format
-#| msgid "Failed to move dotfile %s: %s"
 msgid "Failed to remove file %s: %s"
 msgstr "ফাইল %s আতৰাবলৈ ব্যৰ্থ: %s"
 
@@ -295,18 +289,15 @@ msgstr "ফোল্ডাৰ '%s' ৰ বাবে URl নিৰ্মাণ �
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:77
 #, c-format
-#| msgid "Could not subscribe to tracker signals: %s"
 msgid "Could not subscribe to Tracker signals: %s"
 msgstr "ট্ৰেকাৰ সংকেতসমূহলৈ স্বাক্ষৰ কৰিব নোৱাৰি: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:95
-#| msgid "Seek mode not supported"
 msgid "Not supported"
 msgstr "সমৰ্থিত নহয়"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-container.vala:58
 #, c-format
-#| msgid "Failed to create a Tracker connection: %s"
 msgid "Failed to create Tracker connection: %s"
 msgstr "ট্ৰেকাৰ সংযোগ সৃষ্টি কৰিবলৈ ব্যৰ্থ: %s"
 
@@ -381,7 +372,6 @@ msgstr "অবৈধ সংযোগ প্ৰসংগ"
 
 #: ../src/librygel-core/rygel-description-file.vala:339
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Failed to write modified description to %s"
 msgstr "%s লৈ পৰিবৰ্তিত বিৱৰণ লিখিবলৈ ব্যৰ্থ"
 
@@ -557,7 +547,6 @@ msgid "No such file transfer"
 msgstr "এনে কোনো নথিপত্ৰ স্থানান্তৰ নাই"
 
 #: ../src/librygel-server/rygel-dbus-thumbnailer.vala:115
-#| msgid "No D-Bus thumbnailer available"
 msgid "No D-Bus thumbnailer service available"
 msgstr "কোনো D-Bus থাম্বনেইলাৰ সেৱা উপলব্ধ নাই"
 
@@ -591,12 +580,10 @@ msgid "Not Found"
 msgstr "পোৱা নগল"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:50
-#| msgid "Seek mode not supported"
 msgid "Seeking not supported"
 msgstr "সন্ধান অৱস্থা সমৰ্থিত নহয়"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:97
-#| msgid "Failed to create pipeline"
 msgid "Failed to generate playlist"
 msgstr "প্লেলিস্ট সৃজন কৰিবলৈ ব্যৰ্থ"
 
@@ -642,6 +629,7 @@ msgstr "'%s' ৰ বাবে প্ৰকৃত URl প্ৰাপ্ত ক�
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URl '%s' সমলসমূহ ইমপোৰ্ট কৰাৰ বাবে অবৈধ"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "ContainerID সন্ধানহিন"
@@ -674,6 +662,7 @@ msgstr "অবজেক্ট %s আতৰোৱাৰ অনুমতি না
 msgid "Object removal from %s not allowed"
 msgstr "%s ৰ পৰা অবজেক্ট আতৰোৱাৰ অনুমতি নাই"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "অবজেক্ট আইডি সন্ধানহিন"
@@ -727,7 +716,6 @@ msgstr ""
 
 #: ../src/librygel-server/rygel-m3u-playlist.vala:67
 #: ../src/librygel-server/rygel-m3u-playlist.vala:70
-#| msgid "Unknown error."
 msgid "Unknown"
 msgstr "অজ্ঞাত"
 
@@ -751,12 +739,11 @@ msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "URl %s ৰ বাবে প্ৰটোকল বিশ্লেষণ কৰিবলে ব্যৰ্থ। অনুমান কৰা হৈছে '%s'"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:100
-#| msgid "Invalid argument"
 msgid "Invalid number of arguments"
 msgstr "তৰ্কবোৰৰ অবৈধ সংখ্যা"
 
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
-#| msgid "'Elements' argument missing."
 msgid "ObjectID argument missing"
 msgstr "ObjectID তৰ্ক সন্ধানহিন"
 
@@ -770,12 +757,10 @@ msgstr "ফিল্টাৰ সন্ধানহিন"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:197
 #: ../src/librygel-server/rygel-object-creator.vala:407
-#| msgid "No such file transfer"
 msgid "No such container"
 msgstr "এই ধৰণৰ কোনো বৈয়াম নাই"
 
 #: ../src/librygel-server/rygel-object-creator.vala:151
-#| msgid "Seek mode not supported"
 msgid "upnp:createClass value not supported"
 msgstr "upnp:createClass মান সমৰ্থিত নহয়"
 
@@ -787,13 +772,13 @@ msgstr "'Elements' তৰ্ক সন্ধানহিন।"
 msgid "Comments not allowed in XML"
 msgstr "XML ত মন্তব্যৰ অনুমতি নাই"
 
+#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "ContainerID তৰ্ক সন্ধানহিন"
 
 #: ../src/librygel-server/rygel-object-creator.vala:225
 #, c-format
-#| msgid "No items in DIDL-Lite from client: '%s'"
 msgid "No objects in DIDL-Lite from client: '%s'"
 msgstr "ক্লাএন্টৰ পৰা DIDL-Lite ত কোনো বস্তু নাই: '%s'"
 
@@ -819,12 +804,10 @@ msgstr "প্ৰতিৰোধিত বস্তু সৃষ্টি কৰ
 
 #: ../src/librygel-server/rygel-object-creator.vala:378
 #, c-format
-#| msgid "Play speed not supported"
 msgid "UPnP class '%s' not supported"
 msgstr "UPnP শ্ৰেণী '%s' সমৰ্থিত নহয়"
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
-#| msgid "Object creation in %s not allowed"
 msgid " %%% Object creation in %s not allowed"
 msgstr "%s ত %%% অবজেক্ট সৃষ্টিৰ অনুমতি নাই"
 
@@ -842,19 +825,16 @@ msgstr "'%s' ৰ অন্তৰ্গত বস্তু সৃষ্টি ক
 
 #: ../src/librygel-server/rygel-object-creator.vala:543
 #, c-format
-#| msgid "Seek mode not supported"
 msgid "DLNA profile '%s' not supported"
 msgstr "DLNA আলেখ্য '%s' সমৰ্থিত নহয়"
 
 #: ../src/librygel-server/rygel-object-creator.vala:601
 #, c-format
-#| msgid "Invalid Range '%s'"
 msgid "Invalid date format: %s"
 msgstr "অবৈধ তাৰিখ বিন্যাস: %s"
 
 #: ../src/librygel-server/rygel-object-creator.vala:610
 #, c-format
-#| msgid "Invalid Range '%s'"
 msgid "Invalid date: %s"
 msgstr "অবৈধ তাৰিখ: %s"
 
@@ -873,18 +853,15 @@ msgstr ""
 "ত্ৰুটি: %s"
 
 #: ../src/librygel-server/rygel-reference-creator.vala:50
-#| msgid "'Elements' argument missing."
 msgid "'ContainerID' agument missing."
 msgstr "'ContainerID' তৰ্ক সন্ধানহিন।"
 
 #: ../src/librygel-server/rygel-reference-creator.vala:55
-#| msgid "'Elements' argument missing."
 msgid "'ObjectID' argument missing."
 msgstr "'ObjectID' তৰ্ক সন্ধানহিন।"
 
 #: ../src/librygel-server/rygel-reference-creator.vala:84
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to create object under '%s': %s"
 msgstr "'%s' ৰ অন্তৰ্গত বস্তু সৃষ্টি কৰিবলৈ ব্যৰ্থ: %s"
 
@@ -910,6 +887,8 @@ msgstr "কোনো থাম্বনেইলাৰ উপলব্ধ না
 msgid "Thumbnailing not supported"
 msgstr "থাম্বনেইলিং সমৰ্থিত নহয়"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -935,6 +914,7 @@ msgstr "URI %s ৰ বাবে GstElement সৃষ্টি কৰিব প�
 msgid "Failed to create pipeline"
 msgstr "পাইপলাইন সৃষ্টি কৰিবলে ব্যৰ্থ"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
@@ -967,7 +947,6 @@ msgstr "সন্ধান কৰিবলে ব্যৰ্থ"
 
 #: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:123
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "%s ৰ বাবে GStreamer তথ্য উৎস সৃষ্টি কৰিবলৈ ব্যৰ্থ: %s"
 
@@ -1034,12 +1013,10 @@ msgid "Disable UPnP (streaming-only)"
 msgstr "UPnP অসামৰ্থবান কৰক (কেৱল-স্ট্ৰিমিং)"
 
 #: ../src/rygel/rygel-cmdline-config.vala:102
-#| msgid "Failed to load user configuration: %s"
 msgid "Use configuration file instead of user configuration"
 msgstr "ব্যৱহাৰকাৰী সংৰূপৰ পৰিৱৰ্তে সংৰূপ ফাইল ব্যৱহাৰ কৰক"
 
 #: ../src/rygel/rygel-cmdline-config.vala:104
-#| msgid "Rygel Preferences"
 msgid "Shutdown remote Rygel reference"
 msgstr "দূৰৱৰ্তী Rygel পছন্দসমূহ বন্ধ কৰক"
 
@@ -1049,7 +1026,6 @@ msgstr "দূৰৱৰ্তী Rygel উদাহৰণ বন্ধ কৰা
 
 #: ../src/rygel/rygel-cmdline-config.vala:149
 #, c-format
-#| msgid "Failed to stop Rygel service: %s"
 msgid "Failed to shut-down other rygel instance: %s"
 msgstr "অন্য rygel উদাহৰণ বন্ধ কৰিবলৈ ব্যৰ্থ: %s"
 
@@ -1059,8 +1035,6 @@ msgstr "Rygel কেৱল-স্ট্ৰিমিং অৱস্থাত চ
 
 #: ../src/rygel/rygel-main.vala:109
 #, c-format
-#| msgid "No plugins found in %d second; giving up.."
-#| msgid_plural "No plugins found in %d seconds; giving up.."
 msgid "No plugins found in %d second; giving up..."
 msgid_plural "No plugins found in %d seconds; giving up..."
 msgstr[0] "%d ছেকেণ্ডত কোনো প্লাগিন পোৱা নগল; বাদ দিয়া হৈছে..."
@@ -1085,7 +1059,6 @@ msgstr "ব্যৱহাৰকাৰী সংৰূপ ল'ড কৰিব�
 #: ../src/rygel/rygel-user-config.vala:252
 #: ../src/ui/rygel-user-config.vala:252
 #, c-format
-#| msgid "Failed to load user configuration: %s"
 msgid "Failed to load user configuration from file '%s': %s"
 msgstr "ফাইল '%s' ৰ পৰা ব্যৱহাৰকাৰী সংৰূপ ল'ড কৰিবলৈ ব্যৰ্থ: %s"
 
