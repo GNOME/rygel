@@ -92,6 +92,8 @@ internal class Rygel.RenderingControl : Service {
         action_invoked["GetVolume"].connect (this.get_volume_cb);
         action_invoked["SetVolume"].connect (this.set_volume_cb);
 
+        this.player.notify["volume"].connect (this.notify_volume_cb);
+
         this._mute = this.player.volume == 0;
         this._volume = Volume.to_percentage (this.player.volume);
     }
@@ -272,5 +274,21 @@ internal class Rygel.RenderingControl : Service {
         this.volume = volume;
 
         action.return ();
+    }
+
+    private void notify_volume_cb (Object player, ParamSpec p) {
+        this._volume = Volume.to_percentage (this.player.volume);
+
+        if (this._mute && this.player.volume > 0) {
+            // We are not muted anymore...
+            this._mute = false;
+            this.changelog.log_with_channel ("Mute",
+                                             "0",
+                                             "Master");
+        }
+
+        this.changelog.log_with_channel ("Volume",
+                                         this.volume.to_string (),
+                                         "Master");
     }
 }
