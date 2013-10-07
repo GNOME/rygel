@@ -120,7 +120,11 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
     public string? metadata { owned get; set; }
     public string? content_features { owned get; set; }
 
-    public bool can_seek { get { return true; } }
+    public bool can_seek {
+        get {
+            return this.actual_player.can_seek;
+        }
+    }
 
     public double volume {
         get {
