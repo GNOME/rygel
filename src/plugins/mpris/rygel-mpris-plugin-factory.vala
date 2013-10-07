@@ -127,6 +127,13 @@ public class Rygel.MPRIS.PluginFactory {
                                                              service_name,
                                                              MEDIA_PLAYER_PATH);
 
+        if (!player.can_control) {
+            message (_("MPRIS interface at %s is read-only. Ignoring."),
+                     service_name);
+
+            return;
+        }
+
         var plugin = new MPRIS.Plugin (service_name, player);
 
         this.loader.add_plugin (plugin);
