@@ -27,6 +27,8 @@ dnl Disable generation of static libraries
 LT_PREREQ([2.2.6])
 LT_INIT([dlopen disable-static])
 
+AC_SYS_LARGEFILE
+
 dnl Required versions of library packages
 dnl Not all of these are actually used, depending on the configure options.
 GLIB_REQUIRED=2.31.13
