@@ -8,6 +8,7 @@ librygel_media_engine_simple_la_SOURCES = \
 	rygel-simple-data-source.vala
 
 librygel_media_engine_simple_la_VALAFLAGS = \
+	--pkg posix \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_VALAFLAGS) \
 	$(RYGEL_COMMON_VALAFLAGS)
 
