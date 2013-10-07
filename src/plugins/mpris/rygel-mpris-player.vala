@@ -163,7 +163,7 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
         var ret = false;
 
         try {
-            this.actual_player.seek (time);
+            this.actual_player.seek (time - this.position);
             ret = true;
         } catch (Error error) {}
 
