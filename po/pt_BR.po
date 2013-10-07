@@ -11,9 +11,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-09 16:44+0000\n"
-"PO-Revision-Date: 2013-08-10 11:49-0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-10-05 13:54+0000\n"
+"PO-Revision-Date: 2013-10-07 13:43-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -34,7 +35,9 @@ msgstr "_Compartilhar mídia por meio do DLNA"
 
 #: ../data/rygel-preferences.ui.h:3
 msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
-msgstr "Permite o compartilhamento de mídia, como fotos, vídeos e músicas, através do DLNA"
+msgstr ""
+"Permite o compartilhamento de mídia, como fotos, vídeos e músicas, através "
+"do DLNA"
 
 #: ../data/rygel-preferences.ui.h:4
 msgid "Add a directory to the list of shared directories"
@@ -58,8 +61,12 @@ msgid "_Network:"
 msgstr "_Rede:"
 
 #: ../data/rygel-preferences.ui.h:10
-msgid "Select the network interface that DLNA media will be shared on, or share media on all interfaces"
-msgstr "Escolha a placa de rede onde a mídia será compartilhada, ou compartilhe em todas as placas"
+msgid ""
+"Select the network interface that DLNA media will be shared on, or share "
+"media on all interfaces"
+msgstr ""
+"Escolha a placa de rede onde a mídia será compartilhada, ou compartilhe em "
+"todas as placas"
 
 #: ../data/rygel-preferences.ui.h:11
 msgid "Any"
@@ -83,13 +90,17 @@ msgstr "Serviços UPnP/DLNA"
 
 #: ../data/rygel.desktop.in.in.h:3
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
-msgstr "servidor de mídia;renderizador de mídia;compartilhar;compartilhamento;áudio;vídeo;imagens;"
+msgstr ""
+"servidor de mídia;renderizador de mídia;compartilhar;compartilhamento;áudio;"
+"vídeo;imagens;"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:42
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:42
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "O módulo \"%s\" não conseguiu conectar-se ao barramento de sessão D-Bus. "
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr ""
+"O módulo \"%s\" não conseguiu conectar-se ao barramento de sessão D-Bus. "
+"Ignorando…"
 
 #: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
@@ -136,6 +147,8 @@ msgstr "Não irá monitorar alterações em arquivos"
 msgid "Failed to get file info for %s"
 msgstr "Erro ao obter informações do arquivo %s"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
@@ -145,6 +158,8 @@ msgstr "Ano"
 msgid "All"
 msgstr "Todos"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Artista"
@@ -162,6 +177,8 @@ msgstr "Gênero"
 msgid "Files & Folders"
 msgstr "Arquivos e pastas"
 
+#. @REALNAME@ is substituted for user's real name and it
+#. doesn't need translation.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
@@ -515,6 +532,8 @@ msgstr "Argumentos de \"elementos\" faltando."
 msgid "Comments not allowed in XML"
 msgstr "Comentários não permitidos em XML"
 
+#. Sorry we can't do anything without ContainerID
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-object-creator.vala:195
 #: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
@@ -544,6 +563,7 @@ msgstr "Criação de objeto em %s não permitida"
 msgid "Failed to create item under '%s': %s"
 msgstr "Erro ao criar item sob \"%s\": %s"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Está faltando o ID do contêiner"
@@ -568,6 +588,7 @@ msgstr "Remoção do objeto %s não permitida"
 msgid "Object removal from %s not allowed"
 msgstr "Remoção do objeto \"%s\" não permitida"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Está faltando o ID do objeto"
@@ -613,8 +634,12 @@ msgstr "Não é permitido modificação dos metadados do objeto %s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:196
 #, c-format
-msgid "Metadata modification of object %s being a child of restricted object %s not allowed"
-msgstr "Não é permitido modificação dos metadados do objeto %s sendo um filho do objeto restrito %s"
+msgid ""
+"Metadata modification of object %s being a child of restricted object %s not "
+"allowed"
+msgstr ""
+"Não é permitido modificação dos metadados do objeto %s sendo um filho do "
+"objeto restrito %s"
 
 #: ../src/librygel-server/rygel-media-engine.vala:69
 msgid "No media engine found."
@@ -665,6 +690,8 @@ msgstr "Nenhum criador de miniaturas disponível: %s"
 msgid "Thubmnailing not supported"
 msgstr "Sem suporte à miniaturização"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -690,6 +717,7 @@ msgstr "Não foi possível criar GstElement para URI %s"
 msgid "Failed to create pipeline"
 msgstr "Ocorreu falha ao criar linha de processamento"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
