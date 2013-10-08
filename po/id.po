@@ -6,11 +6,11 @@
 # Andika Triwidada <andika@gmail.com>, 2012, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: rygel master\n"
+"Project-Id-Version: rygel rygel-0-20\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-07 17:32+0000\n"
-"PO-Revision-Date: 2013-09-09 22:53+0700\n"
+"POT-Creation-Date: 2013-10-07 18:52+0000\n"
+"PO-Revision-Date: 2013-10-09 02:26+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id\n"
@@ -76,8 +76,8 @@ msgstr "mediaserver;mediarenderer;berbagi;audio;video;gambar;"
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "Modul '%s' tak bisa menyambung ke bus sesi D-Bus."
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr "Modul '%s' tak bisa menyambung ke bus sesi D-Bus. Mengabaikan..."
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -181,7 +181,7 @@ msgid "Can't remove containers in %s"
 msgstr "Tak bisa menghapus wadah dalam %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:590
 msgid "Playlists"
 msgstr "Daftar putar"
 
@@ -204,11 +204,15 @@ msgstr "Tak akan memantau perubahan berkas"
 msgid "Failed to get file info for %s"
 msgstr "Gagal memperoleh informasi berkas untuk %s"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Tahun"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Artis"
@@ -232,21 +236,21 @@ msgstr "Berkas & Folder"
 msgid "@REALNAME@'s media"
 msgstr "Media @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:433
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:500
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:437
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:504
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Gagal menghapus entri: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:579
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:583
 msgid "Music"
 msgstr "Musik"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:582
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
 msgid "Pictures"
 msgstr "Gambar"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:584
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:588
 msgid "Videos"
 msgstr "Video"
 
@@ -348,7 +352,7 @@ msgstr "Tak diimplementasikan"
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:128
+#: ../src/librygel-renderer/rygel-rendering-control.vala:129
 #: ../src/librygel-server/rygel-content-directory.vala:270
 #: ../src/librygel-server/rygel-content-directory.vala:298
 #: ../src/librygel-server/rygel-content-directory.vala:317
@@ -472,7 +476,7 @@ msgid "Could not load plugin: %s"
 msgstr "Tak bisa memuat pengaya: %s"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:134
+#: ../src/librygel-renderer/rygel-rendering-control.vala:135
 msgid "Invalid InstanceID"
 msgstr "InstanceID Tidak Sah"
 
@@ -506,17 +510,17 @@ msgstr "Mode pelompatan tidak didukung"
 msgid "Illegal seek target"
 msgstr "Target seek ilegal"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:165
+#: ../src/librygel-renderer/rygel-rendering-control.vala:166
 msgid "Invalid Name"
 msgstr "Nama Tak Valid"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:179
+#: ../src/librygel-renderer/rygel-rendering-control.vala:180
 msgid "Invalid Channel"
 msgstr "Kanal Tak Valid"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:215
-#: ../src/librygel-renderer/rygel-rendering-control.vala:257
-#: ../src/librygel-renderer/rygel-rendering-control.vala:266
+#: ../src/librygel-renderer/rygel-rendering-control.vala:216
+#: ../src/librygel-renderer/rygel-rendering-control.vala:258
+#: ../src/librygel-renderer/rygel-rendering-control.vala:267
 msgid "Action Failed"
 msgstr "Aksi Gagal"
 
@@ -624,6 +628,7 @@ msgstr "Gagal memperoleh URI asli untuk '%s': %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URI '%s' tidak sah sebagai tujuan impor"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Kurang ContainerID"
@@ -656,6 +661,7 @@ msgstr "Penghapusan objek %s tidak diperbolehkan"
 msgid "Object removal from %s not allowed"
 msgstr "Penghapusan objek dari %s tidak diperbolehkan"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Kurang id objek"
@@ -736,6 +742,7 @@ msgstr "Gagal menduga protokol untuk URI %s. Diandaikan '%s'"
 msgid "Invalid number of arguments"
 msgstr "Cacah argumen tak valid"
 
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "Kurang argumen ObjectID"
@@ -765,6 +772,7 @@ msgstr "Kehilangan argumen 'Elements'."
 msgid "Comments not allowed in XML"
 msgstr "Komentar tidak diperbolehkan pada format XML"
 
+#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "Kurang argumen ContainerID"
@@ -879,6 +887,8 @@ msgstr "Tidak tersedia pembuat miniatur: %s"
 msgid "Thumbnailing not supported"
 msgstr "Pembuatan gambar mini tidak didukung"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -904,6 +914,7 @@ msgstr "Tak bisa membuat GstElement bagi URI %s"
 msgid "Failed to create pipeline"
 msgstr "Tak bisa membuat jalur pipa"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
@@ -1023,23 +1034,23 @@ msgstr "Gagal mematikan instansi Rygel lain: %s"
 msgid "Rygel is running in streaming-only mode."
 msgstr "Rygel berjalan dalam mode hanya-streaming."
 
-#: ../src/rygel/rygel-main.vala:107
+#: ../src/rygel/rygel-main.vala:109
 #, c-format
 msgid "No plugins found in %d second; giving up..."
 msgid_plural "No plugins found in %d seconds; giving up..."
 msgstr[0] "Tidak menemukan pengaya dalam %d detik; menyerah.."
 
-#: ../src/rygel/rygel-main.vala:168
+#: ../src/rygel/rygel-main.vala:170
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Gagal membuat faktori root perangkat: %s"
 
-#: ../src/rygel/rygel-main.vala:226
+#: ../src/rygel/rygel-main.vala:228
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Gagal membuat RootDevice untuk %s. Alasan: %s"
 
-#: ../src/rygel/rygel-main.vala:263
+#: ../src/rygel/rygel-main.vala:265
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Gagal memuat konfigurasi pengguna: %s"
