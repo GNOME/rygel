@@ -54,6 +54,25 @@ public class Rygel.Example.PlayerVala : GLib.Object, Rygel.MediaPlayer {
 
         set {
             this._playback_state = value;
+            if (this._playback_state == "PLAYING") {
+                Idle.add (() => {
+                    uint8[] data;
+                    try {
+                        var f = File.new_for_uri (this.uri);
+                        f.load_contents (null, out data, null);
+                    } catch (Error err) {
+                        warning ("Failed: %s", err.message);
+                    }
+
+                    Timeout.add_seconds (60, () => {
+                        this.playback_state = "EOS";
+
+                        return false;
+                    });
+
+                    return false;
+                });
+            }
         }
     }
 
@@ -92,6 +111,9 @@ public class Rygel.Example.PlayerVala : GLib.Object, Rygel.MediaPlayer {
              * rygel -g 5
              */
             debug ("URI set to %s.", value);
+            if (this._playback_state == "EOS") {
+                this.playback_state = "PLAYING";
+            }
         }
     }
 
