@@ -66,7 +66,7 @@ internal class Rygel.ChangeLog : Object {
         // Make sure we have a notification timeout
         if (this.service != null && this.timeout_id == 0) {
             debug ("Setting up timeout for LastChange");
-            this.timeout_id = Timeout.add (200, this.timeout);
+            this.timeout_id = Timeout.add (150, this.timeout);
         }
     }
 
