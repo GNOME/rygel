@@ -58,7 +58,14 @@ public abstract class Rygel.MediaDevice : Object {
     public override void constructed () {
         base.constructed ();
 
-        this.manager = ContextManager.create (0);
+        var port = 0;
+        try {
+            port = MetaConfig.get_default ().get_port ();
+        } catch (Error error) {
+            debug ("No listening port specified, using random TCP port");
+        }
+
+        this.manager = ContextManager.create (port);
         this.manager.context_available.connect (this.on_context_available);
         this.manager.context_unavailable.connect (this.on_context_unavailable);
         this.interfaces = new ArrayList<string> ();
