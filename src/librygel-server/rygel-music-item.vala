@@ -32,9 +32,6 @@ using GUPnP;
 public class Rygel.MusicItem : AudioItem {
     public new const string UPNP_CLASS = "object.item.audioItem.musicTrack";
 
-    public string artist { get; set; }
-    public string album { get; set; }
-    public string genre { get; set; }
     public int track_number { get; set; default = -1; }
 
     public Thumbnail album_art { get; set; }
@@ -85,10 +82,6 @@ public class Rygel.MusicItem : AudioItem {
         var item = media_object as MusicItem;
 
         switch (property) {
-        case "dc:artist":
-            return this.compare_string_props (this.artist, item.artist);
-        case "upnp:album":
-            return this.compare_string_props (this.album, item.album);
         case "upnp:originalTrackNumber":
              return this.compare_int_props (this.track_number,
                                             item.track_number);
@@ -100,10 +93,7 @@ public class Rygel.MusicItem : AudioItem {
     internal override void apply_didl_lite (DIDLLiteObject didl_object) {
         base.apply_didl_lite (didl_object);
 
-        this.artist = this.get_first (didl_object.get_artists ());
         this.track_number = didl_object.track_number;
-        this.album = didl_object.album;
-        this.genre = didl_object.genre;
         // TODO: Not sure about it.
         //this.album_art.uri = didl_object.album_art
     }
@@ -113,21 +103,8 @@ public class Rygel.MusicItem : AudioItem {
                                                  throws Error {
         var didl_item = base.serialize (serializer, http_server);
 
-        if (this.artist != null && this.artist != "") {
-            var contributor = didl_item.add_artist ();
-            contributor.name = this.artist;
-        }
-
         if (this.track_number >= 0) {
             didl_item.track_number = this.track_number;
-        }
-
-        if (this.album != null && this.album != "") {
-            didl_item.album = this.album;
-        }
-
-        if (this.genre != null && this.genre != "") {
-            didl_item.genre = this.genre;
         }
 
         if (didl_item.album_art != null) {
@@ -157,13 +134,4 @@ public class Rygel.MusicItem : AudioItem {
                                                               null);
         }
     }
-
-    private string get_first (GLib.List<DIDLLiteContributor>? contributors) {
-        if (contributors != null) {
-            return contributors.data.name;
-        }
-
-        return "";
-    }
-
 }

@@ -234,6 +234,15 @@ public abstract class Rygel.MediaItem : MediaObject {
             didl_item.update_id = this.object_update_id;
         }
 
+        if (this.artist != null && this.artist != "") {
+            var contributor = didl_item.add_artist ();
+            contributor.name = this.artist;
+        }
+
+        if (this.genre != null && this.genre != "") {
+            didl_item.genre = this.genre;
+        }
+
         /* We list proxy/transcoding resources first instead of original URIs
          * because some crappy MediaRenderer/ControlPoint implemenation out
          * there just choose the first one in the list instead of the one they
