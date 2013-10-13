@@ -8,11 +8,11 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-01 17:00+0000\n"
-"PO-Revision-Date: 2013-10-01 20:13+0100\n"
-"Last-Translator: Josep Sànchez Mesegué <papapep@gmx.com>\n"
+"POT-Creation-Date: 2013-10-13 22:05+0000\n"
+"PO-Revision-Date: 2013-10-14 00:07+0200\n"
+"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
-"Language: ca\n"
+"Language: ca-XV\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,7 +33,7 @@ msgstr "Afegiu un directori a la llista de directoris compartits"
 
 #: ../data/rygel-preferences.ui.h:4
 msgid "Add shared directory"
-msgstr "Afegeix un directori compartit"
+msgstr "Afig un directori compartit"
 
 #: ../data/rygel-preferences.ui.h:5
 msgid "Remove a directory from the list of shared directories"
@@ -76,8 +76,7 @@ msgstr ""
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
 msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
-msgstr ""
-"El mòdul «%s» no s'ha pogut connectar al D-Bus de sessió. S'ignora…"
+msgstr "El mòdul «%s» no s'ha pogut connectar al D-Bus de sessió. S'ignora…"
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -134,13 +133,13 @@ msgstr "No s'ha pogut enumerar la carpeta: %s"
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
 #, c-format
 msgid "Failed to get children of container %s: %s"
-msgstr "No s'ha pogut obtenir el fill del contenidor %s: %s"
+msgstr "No s'ha pogut obtindre el fill del contenidor %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
 msgid "Failed to get child count of query container: %s"
 msgstr ""
-"No s'ha pogut obtenir el recompte de fills del contenidor consultat: %s"
+"No s'ha pogut obtindre el recompte de fills del contenidor consultat: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:130
 #, c-format
@@ -165,7 +164,7 @@ msgstr "Totes"
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
 msgid "Failed to get child count: %s"
-msgstr "No s'ha pogut obtenir el recompte de fills: %s"
+msgstr "No s'ha pogut obtindre el recompte de fills: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
@@ -205,7 +204,7 @@ msgstr "No es farà un seguiment per si hi ha canvis en els fitxers"
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:95
 #, c-format
 msgid "Failed to get file info for %s"
-msgstr "No s'ha pogut obtenir el fitxer d'informació per a %s"
+msgstr "No s'ha pogut obtindre el fitxer d'informació per a %s"
 
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
@@ -306,7 +305,7 @@ msgstr "No s'ha pogut crear la connexió al Tracker: %s"
 #: ../src/plugins/tracker/rygel-tracker-metadata-container.vala:110
 #, c-format
 msgid "Error getting all values for '%s': %s"
-msgstr "S'ha produït un error en obtenir tots els valors de «%s»: %s"
+msgstr "S'ha produït un error en obtindre tots els valors de «%s»: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
 #, c-format
@@ -317,13 +316,13 @@ msgstr ""
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:104
 #, c-format
 msgid "Failed to get Tracker connection: %s"
-msgstr "No s'ha pogut obtenir la connexió al Tracker: %s"
+msgstr "No s'ha pogut obtindre la connexió al Tracker: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category '%s': %s"
 msgstr ""
-"S'ha produït un error en obtenir el nombre d'elements en la categoria «%s»: "
+"S'ha produït un error en obtindre el nombre d'elements en la categoria «%s»: "
 "%s"
 
 #: ../src/plugins/tracker/rygel-tracker-titles.vala:58
@@ -383,7 +382,7 @@ msgstr "No s'ha pogut escriure la descripció modificada a %s"
 #: ../src/librygel-core/rygel-log-handler.vala:68
 #, c-format
 msgid "Failed to get log level from configuration: %s"
-msgstr "No s'ha pogut obtenir el nivell de registre de la configuració: %s"
+msgstr "No s'ha pogut obtindre el nivell de registre de la configuració: %s"
 
 #: ../src/librygel-core/rygel-meta-config.vala:89
 #: ../src/librygel-core/rygel-meta-config.vala:108
@@ -425,13 +424,13 @@ msgstr "No hi ha cap valor disponible"
 #: ../src/librygel-core/rygel-meta-config.vala:344
 #, c-format
 msgid "No value set for '%s/enabled'"
-msgstr "No s'ha establert cap valor per a «%s/habilitat»"
+msgstr "No s'ha establit cap valor per a «%s/habilitat»"
 
 #. translators: "title" is part of the config key and must not be translated
 #: ../src/librygel-core/rygel-meta-config.vala:363
 #, c-format
 msgid "No value set for '%s/title'"
-msgstr "No s'ha establert cap valor per a «%s/title»"
+msgstr "No s'ha establit cap valor per a «%s/title»"
 
 #: ../src/librygel-core/rygel-meta-config.vala:383
 #: ../src/librygel-core/rygel-meta-config.vala:405
@@ -627,7 +626,7 @@ msgstr "Fi del fora de rang «%ld»"
 #: ../src/librygel-server/rygel-import-resource.vala:124
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
-msgstr "No s'ha pogut obtenir l'URI original per a «%s»: %s"
+msgstr "No s'ha pogut obtindre l'URI original per a «%s»: %s"
 
 #: ../src/librygel-server/rygel-import-resource.vala:185
 #, c-format
@@ -768,7 +767,7 @@ msgstr "No s'ha trobat el contenidor"
 
 #: ../src/librygel-server/rygel-object-creator.vala:151
 msgid "upnp:createClass value not supported"
-msgstr "No s'ha implementat aquest valor d'upnp:createClass"
+msgstr "No s'ha implementat este valor d'upnp:createClass"
 
 #: ../src/librygel-server/rygel-object-creator.vala:192
 msgid "'Elements' argument missing."
@@ -962,8 +961,8 @@ msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation "
 "might be missing a plug-in"
 msgstr ""
-"No s'ha pogut crear la configuració del transcodificador. Pot ser que us "
-"manqui algun connector de la GStreamer"
+"No s'ha pogut crear la configuració del transcodificador. Pot ser que vos "
+"manque algun connector de la GStreamer"
 
 #: ../src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
@@ -1026,7 +1025,7 @@ msgstr "Empra el fitxer de configuració en lloc de la configuració d'usuari"
 
 #: ../src/rygel/rygel-cmdline-config.vala:104
 msgid "Shutdown remote Rygel reference"
-msgstr "Atura la referència remota del Rygel"
+msgstr "Para la referència remota del Rygel"
 
 #: ../src/rygel/rygel-cmdline-config.vala:141
 msgid "Shutting down remote Rygel instance\n"
@@ -1035,7 +1034,7 @@ msgstr "S'està tancant la instància remota del Rygel\n"
 #: ../src/rygel/rygel-cmdline-config.vala:149
 #, c-format
 msgid "Failed to shut-down other rygel instance: %s"
-msgstr "No s'ha pogut aturar l'altra instància Rygel: %s"
+msgstr "No s'ha pogut parar l'altra instància Rygel: %s"
 
 #: ../src/rygel/rygel-main.vala:83
 msgid "Rygel is running in streaming-only mode."
@@ -1090,7 +1089,7 @@ msgstr "No s'ha pogut crear el diàleg de preferències: %s"
 #: ../src/ui/rygel-writable-user-config.vala:122
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
-msgstr "No s'han pogut desar les dades de configuració al fitxer «%s»: %s"
+msgstr "No s'han pogut guardar les dades de configuració al fitxer «%s»: %s"
 
 #: ../src/ui/rygel-writable-user-config.vala:221
 #, c-format
@@ -1100,4 +1099,4 @@ msgstr "No s'ha pogut iniciar el servei Rygel: %s"
 #: ../src/ui/rygel-writable-user-config.vala:223
 #, c-format
 msgid "Failed to stop Rygel service: %s"
-msgstr "No s'ha pogut aturar el servei Rygel: %s"
+msgstr "No s'ha pogut parar el servei Rygel: %s"
