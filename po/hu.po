@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-20 16:49+0000\n"
-"PO-Revision-Date: 2013-09-21 19:56+0200\n"
+"POT-Creation-Date: 2013-10-11 09:44+0000\n"
+"PO-Revision-Date: 2013-10-13 13:53+0200\n"
 "Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -50,10 +50,29 @@ msgid "_Share media through DLNA"
 msgstr "Mé_dia megosztása DLNA-n"
 
 #: ../data/rygel-preferences.ui.h:8
+msgid "Add a network interface Rygel should serve files on"
+msgstr "Hálózati csatoló hozzáadása, amelyen a Rygel fájlokat szolgálhat ki"
+
+#: ../data/rygel-preferences.ui.h:9
+#| msgid "Network Interfaces"
+msgid "Add network interface"
+msgstr "Hálózati csatoló hozzáadása"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid "Remove a network interface Rygel should no longer serve files on"
+msgstr ""
+"Hálózati csatoló eltávolítása, amelyen a Rygel többé nem szolgál ki fájlokat"
+
+#: ../data/rygel-preferences.ui.h:11
+#| msgid "Network Interfaces"
+msgid "Remove network interface"
+msgstr "Hálózati csatoló eltávolítása"
+
+#: ../data/rygel-preferences.ui.h:12
 msgid "Networks:"
 msgstr "Hálózatok:"
 
-#: ../data/rygel-preferences.ui.h:9
+#: ../data/rygel-preferences.ui.h:13
 msgid "Select folders"
 msgstr "Válasszon mappákat"
 
@@ -76,8 +95,10 @@ msgstr "média-kiszolgáló;média-renderelő;megosztás;hang;videó;képek;"
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "A(z) „%s” modul nem tud csatlakozni a D-Bus munkamenetbuszhoz. "
+#| msgid "Module '%s' could not connect to D-Bus session bus. "
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr ""
+"A(z) „%s” modul nem tud csatlakozni a D-Bus munkamenetbuszhoz. Mellőzés…"
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -148,7 +169,7 @@ msgstr "A(z) %s azonosítójú elem hozzáadása meghiúsult: %s"
 msgid "Cannot create references to containers"
 msgstr "Nem hozhatók létre hivatkozások a tárolókra"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -204,11 +225,15 @@ msgstr "A fájlváltozások nem kerülnek megfigyelésre"
 msgid "Failed to get file info for %s"
 msgstr "Nem sikerült a(z) %s fájlinformációinak lekérése"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Év"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Előadó"
@@ -259,6 +284,11 @@ msgstr "Nem sikerült a(z) %s fájl eltávolítása: %s"
 #, c-format
 msgid "Could not find object %d in cache"
 msgstr "Nem található a(z) %d. objektum a gyorsítótárban"
+
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
+#, c-format
+msgid "MPRIS interface at %s is read-only. Ignoring."
+msgstr "A MPRIS csatoló a(z) %s helyen csak olvasható. Mellőzés."
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
@@ -349,7 +379,7 @@ msgstr "Nincs megvalósítva"
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:129
+#: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:270
 #: ../src/librygel-server/rygel-content-directory.vala:298
 #: ../src/librygel-server/rygel-content-directory.vala:317
@@ -473,14 +503,14 @@ msgid "Could not load plugin: %s"
 msgstr "Nem tölthető be a bővítmény: %s"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:135
+#: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Érvénytelen példányazonosító"
 
 #. FIXME: Return a more sensible error here.
 #: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:695
-#: ../src/librygel-renderer/rygel-av-transport.vala:705
+#: ../src/librygel-renderer/rygel-av-transport.vala:713
+#: ../src/librygel-renderer/rygel-av-transport.vala:723
 msgid "Resource not found"
 msgstr "Az erőforrás nem található"
 
@@ -488,36 +518,37 @@ msgstr "Az erőforrás nem található"
 msgid "Illegal MIME-type"
 msgstr "Szabálytalan MIME-típus"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:553
+#: ../src/librygel-renderer/rygel-av-transport.vala:557
 msgid "Play speed not supported"
 msgstr "A lejátszás sebessége nem támogatott"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:570
+#: ../src/librygel-renderer/rygel-av-transport.vala:574
 msgid "Transition not available"
 msgstr "Az átmenet nem támogatott"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:599
-#: ../src/librygel-renderer/rygel-av-transport.vala:623
-msgid "Seek mode not supported"
-msgstr "A tekerési mód nem támogatott"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:612
-#: ../src/librygel-renderer/rygel-av-transport.vala:633
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
+#: ../src/librygel-renderer/rygel-av-transport.vala:617
+#: ../src/librygel-renderer/rygel-av-transport.vala:630
+#: ../src/librygel-renderer/rygel-av-transport.vala:651
+#: ../src/librygel-renderer/rygel-av-transport.vala:659
 msgid "Illegal seek target"
 msgstr "Szabálytalan tekerési cél"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:166
+#: ../src/librygel-renderer/rygel-av-transport.vala:641
+msgid "Seek mode not supported"
+msgstr "A tekerési mód nem támogatott"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
 msgstr "Érvénytelen név"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:180
+#: ../src/librygel-renderer/rygel-rendering-control.vala:182
 msgid "Invalid Channel"
 msgstr "Érvénytelen csatorna"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:216
-#: ../src/librygel-renderer/rygel-rendering-control.vala:258
-#: ../src/librygel-renderer/rygel-rendering-control.vala:267
+#: ../src/librygel-renderer/rygel-rendering-control.vala:218
+#: ../src/librygel-renderer/rygel-rendering-control.vala:260
+#: ../src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "A művelet meghiúsult"
 
@@ -625,6 +656,7 @@ msgstr "A(z) „%s” eredeti URI-címének lekérése meghiúsult: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "A(z) „%s” URI érvénytelen a tartalom importálásához"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "A ContainerID hiányzik"
@@ -657,6 +689,7 @@ msgstr "A(z) %s objektum eltávolítása nem engedélyezett"
 msgid "Object removal from %s not allowed"
 msgstr "Az objektumok eltávolítása nem engedélyezett innen: %s"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Az objektumazonosító hiányzik"
@@ -738,6 +771,7 @@ msgstr ""
 msgid "Invalid number of arguments"
 msgstr "Érvénytelen számú paraméter"
 
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "Az ObjectID argumentum hiányzik"
@@ -767,6 +801,7 @@ msgstr "Az „Elements” argumentum hiányzik."
 msgid "Comments not allowed in XML"
 msgstr "A megjegyzések nem engedélyezettek az XML-ben"
 
+#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "Hiányzó ContainerID argumentum"
@@ -881,6 +916,8 @@ msgstr "Nem érhető el bélyegképkészítő: %s"
 msgid "Thumbnailing not supported"
 msgstr "A bélyegképkészítés nem támogatott"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -906,6 +943,7 @@ msgstr "Nem hozható létre GstElement a(z) %s URI-hoz"
 msgid "Failed to create pipeline"
 msgstr "Nem sikerült adatcsatornát létrehozni"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
@@ -1024,6 +1062,11 @@ msgstr "A másik Rygel példány leállítása meghiúsult: %s"
 #: ../src/rygel/rygel-main.vala:83
 msgid "Rygel is running in streaming-only mode."
 msgstr "A Rygel csak műsorszórás módban fut."
+
+#: ../src/rygel/rygel-main.vala:87
+#, c-format
+msgid "Rygel v%s starting…"
+msgstr "Rygel v%s indítása…"
 
 #: ../src/rygel/rygel-main.vala:109
 #, c-format
