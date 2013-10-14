@@ -40,6 +40,65 @@ Simple Media Engine:
  - Fix issue when streaming a file > 4GB on platforms that don't support MMAP
    calls on files this large.
 
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=677405
+ - https://bugzilla.gnome.org/show_bug.cgi?id=686628
+ - https://bugzilla.gnome.org/show_bug.cgi?id=704317
+ - https://bugzilla.gnome.org/show_bug.cgi?id=707054
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709077
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709170
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709190
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709287
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709551
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709627
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709887
+
+All contributors to this release:
+ - Jens Georg <jensg@openismus.com>
+ - Carles Ferrando <carles.ferrando@gmail.com>
+ - Gil Forcada <gforcada@gnome.org>
+ - Мирослав Николић <miroslavnikolic@rocketmail.com>
+ - Yuri Myasoedov <ymyasoedov@yandex.ru>
+ - Wolfgang Stöggl <c72578@yahoo.de>
+ - Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+ - Richard Röjfors <richard.rojfors@gmail.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Nilamdyuti Goswami <ngoswami@redhat.com>
+ - Milo Casagrande <milo@ubuntu.com>
+ - Milan Plzik <milan.plzik@gmail.com>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Marek Černocký <marek@manet.cz>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Jean-Baptiste Dubois <jean-baptiste.dubois@parrot.com>
+ - Gabor Kelemen <kelemeng@gnome.hu>
+ - Fran Diéguez <fran.dieguez@mabishu.com>
+ - Fionn Cleary <fcleary@netsoc.tcd.ie>
+ - Enrico Nicoletto <liverig@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Andika Triwidada <andika@gmail.com>
+
+Added/updated translations:
+ - as, courtesy of Nilamdyuti Goswami
+ - ca, courtesy of Gil Forcada
+ - ca@valencia, courtesy of Gil Forcada
+ - cs, courtesy of Marek Černocký
+ - de, courtesy of Wolfgang Stoeggl
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - hu, courtesy of Gabor Kelemen
+ - id, courtesy of Andika Triwidada
+ - it, courtesy of Milo Casagrande
+ - lt, courtesy of Aurimas Černius
+ - lv, courtesy of Rūdolfs Mazurs
+ - nb, courtesy of Kjartan Maraas
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Enrico Nicoletto
+ - ru, courtesy of Yuri Myasoedov
+ - sl, courtesy of Matej Urbančič
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+
 0.20.0
 ======
 
