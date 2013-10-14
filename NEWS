@@ -1,3 +1,45 @@
+0.20.1
+======
+
+A new stable release of Rygel!
+
+Changes compared to 0.20.0:
+
+Core:
+ - Make it possible to set a fixed TCP port in Rygel.MediaDevice.
+
+Renderer:
+ - Implement REL_TIME seeking.
+ - Fix UPnP error codes on illegal seek targets.
+ - Fix PossiblePlaybackStorageMedia values.
+ - Set track information for non-HTTP URIs.
+ - Fix AbsoluteCounterPosition value type.
+ - Reflect volume information from player on UPnP.
+ - Don't do looped playback for image playlists.
+ - Lower changelog aggregation timeout.
+
+Server:
+ - Return proper contentFeatures header for generated playlists.
+
+Preferences:
+ - Fix c&p tooltips.
+
+GStreamer Renderer:
+ - Check seek target before actually seeking.
+ - Remove invalid MPEG_TS_HD_EU_ISO profile.
+
+MediaExport:
+ - Fix an issue with disappearing files and having non-accessible files in the
+   index.
+
+MPRIS:
+ - Fix seeking.
+ - Only allow seeking on peers that actually support it.
+
+Simple Media Engine:
+ - Fix issue when streaming a file > 4GB on platforms that don't support MMAP
+   calls on files this large.
+
 0.20.0
 ======
 
