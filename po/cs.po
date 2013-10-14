@@ -7,11 +7,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: rygel master\n"
+"Project-Id-Version: rygel rygel-0.20\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-01 15:23+0000\n"
-"PO-Revision-Date: 2013-10-02 08:05+0200\n"
+"POT-Creation-Date: 2013-10-14 10:11+0000\n"
+"PO-Revision-Date: 2013-10-14 15:37+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -51,10 +51,27 @@ msgid "_Share media through DLNA"
 msgstr "S_dílet média přes DLNA"
 
 #: ../data/rygel-preferences.ui.h:8
+msgid "Add a network interface Rygel should serve files on"
+msgstr "Přidat síťové rozhraní, přes které by měl Rygel dodávat soubory"
+
+#: ../data/rygel-preferences.ui.h:9
+msgid "Add network interface"
+msgstr "Přidat síťové rozhraní"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid "Remove a network interface Rygel should no longer serve files on"
+msgstr ""
+"Odebrat síťové rozhraní, přes které by neměl Rygel nadále dodávat soubory"
+
+#: ../data/rygel-preferences.ui.h:11
+msgid "Remove network interface"
+msgstr "Odebrat síťové rozhraní"
+
+#: ../data/rygel-preferences.ui.h:12
 msgid "Networks:"
 msgstr "Sítě:"
 
-#: ../data/rygel-preferences.ui.h:9
+#: ../data/rygel-preferences.ui.h:13
 msgid "Select folders"
 msgstr "Výběr složek"
 
@@ -151,7 +168,7 @@ msgstr "Selhalo přidání položky s ID %s: %s"
 msgid "Cannot create references to containers"
 msgstr "Nelze vytvořit odkazy na kontejnery"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -355,7 +372,7 @@ msgstr "Není implementováno"
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:129
+#: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:270
 #: ../src/librygel-server/rygel-content-directory.vala:298
 #: ../src/librygel-server/rygel-content-directory.vala:317
@@ -479,14 +496,14 @@ msgid "Could not load plugin: %s"
 msgstr "Nelze načíst zásuvný modul: %s"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:135
+#: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Neplatné InstanceID"
 
 #. FIXME: Return a more sensible error here.
 #: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:695
-#: ../src/librygel-renderer/rygel-av-transport.vala:705
+#: ../src/librygel-renderer/rygel-av-transport.vala:713
+#: ../src/librygel-renderer/rygel-av-transport.vala:723
 msgid "Resource not found"
 msgstr "Prostředek nebyl nalezen"
 
@@ -494,36 +511,37 @@ msgstr "Prostředek nebyl nalezen"
 msgid "Illegal MIME-type"
 msgstr "Neplatný typ MIME"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:553
+#: ../src/librygel-renderer/rygel-av-transport.vala:557
 msgid "Play speed not supported"
 msgstr "Rychlost přehrávání není podporována"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:570
+#: ../src/librygel-renderer/rygel-av-transport.vala:574
 msgid "Transition not available"
 msgstr "Přechod není k dispozici"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:599
-#: ../src/librygel-renderer/rygel-av-transport.vala:623
-msgid "Seek mode not supported"
-msgstr "Režim posunu není podporován"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:612
-#: ../src/librygel-renderer/rygel-av-transport.vala:633
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
+#: ../src/librygel-renderer/rygel-av-transport.vala:617
+#: ../src/librygel-renderer/rygel-av-transport.vala:630
+#: ../src/librygel-renderer/rygel-av-transport.vala:651
+#: ../src/librygel-renderer/rygel-av-transport.vala:659
 msgid "Illegal seek target"
 msgstr "Neplatný cíl posunu"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:166
+#: ../src/librygel-renderer/rygel-av-transport.vala:641
+msgid "Seek mode not supported"
+msgstr "Režim posunu není podporován"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
 msgstr "Neplatný název"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:180
+#: ../src/librygel-renderer/rygel-rendering-control.vala:182
 msgid "Invalid Channel"
 msgstr "Neplatný kanál"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:216
-#: ../src/librygel-renderer/rygel-rendering-control.vala:258
-#: ../src/librygel-renderer/rygel-rendering-control.vala:267
+#: ../src/librygel-renderer/rygel-rendering-control.vala:218
+#: ../src/librygel-renderer/rygel-rendering-control.vala:260
+#: ../src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Akce selhala"
 
