@@ -5,11 +5,11 @@
 # Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011—2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: rygel master\n"
+"Project-Id-Version: rygel-0-20\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&"
 "keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-03 10:33+0000\n"
-"PO-Revision-Date: 2013-10-03 22:11+0200\n"
+"POT-Creation-Date: 2013-10-15 11:47+0000\n"
+"PO-Revision-Date: 2013-10-15 19:03+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -50,10 +50,29 @@ msgid "_Share media through DLNA"
 msgstr "_Дели медије кроз ДЛНА"
 
 #: ../data/rygel-preferences.ui.h:8
+msgid "Add a network interface Rygel should serve files on"
+msgstr "Додајте мрежни уређај на коме Ригел треба да послужује датотеке"
+
+#: ../data/rygel-preferences.ui.h:9
+#| msgid "Network Interfaces"
+msgid "Add network interface"
+msgstr "Додај мрежни уређај"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid "Remove a network interface Rygel should no longer serve files on"
+msgstr ""
+"Уклоните мрежни уређај на коме Ригел не треба више да послужује датотеке"
+
+#: ../data/rygel-preferences.ui.h:11
+#| msgid "Network Interfaces"
+msgid "Remove network interface"
+msgstr "Уклони мрежни уређај"
+
+#: ../data/rygel-preferences.ui.h:12
 msgid "Networks:"
 msgstr "Мреже:"
 
-#: ../data/rygel-preferences.ui.h:9
+#: ../data/rygel-preferences.ui.h:13
 msgid "Select folders"
 msgstr "Изаберите фасцикле"
 
@@ -76,11 +95,9 @@ msgstr "медијскисервер;медијскиисцртавач;дели
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-#| msgid "Module '%s' could not connect to D-Bus session bus. "
 msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
 msgstr ""
-"Модул „%s“ не може да се повеже на сабирницу сесије Д-сабирнице. "
-"Занемарујем…"
+"Модул „%s“ не може да се повеже на сабирницу сесије Д-сабирнице. Занемарујем…"
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -151,7 +168,7 @@ msgstr "Нисам успео да додам ставку са ИБ-ом %s: %s
 msgid "Cannot create references to containers"
 msgstr "Не могу да направим упуте до садржалаца"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -355,7 +372,7 @@ msgstr "Није примењено"
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:129
+#: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:270
 #: ../src/librygel-server/rygel-content-directory.vala:298
 #: ../src/librygel-server/rygel-content-directory.vala:317
@@ -479,14 +496,14 @@ msgid "Could not load plugin: %s"
 msgstr "Не могу да учитам прикључак: %s"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:135
+#: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Неисправан ИБ примерка"
 
 #. FIXME: Return a more sensible error here.
 #: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:695
-#: ../src/librygel-renderer/rygel-av-transport.vala:705
+#: ../src/librygel-renderer/rygel-av-transport.vala:713
+#: ../src/librygel-renderer/rygel-av-transport.vala:723
 msgid "Resource not found"
 msgstr "Извориште није нађено"
 
@@ -494,36 +511,37 @@ msgstr "Извориште није нађено"
 msgid "Illegal MIME-type"
 msgstr "Неисправна МИМЕ врста"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:553
+#: ../src/librygel-renderer/rygel-av-transport.vala:557
 msgid "Play speed not supported"
 msgstr "Брзина пуштања није подржана"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:570
+#: ../src/librygel-renderer/rygel-av-transport.vala:574
 msgid "Transition not available"
 msgstr "Пренос није доступан"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:599
-#: ../src/librygel-renderer/rygel-av-transport.vala:623
-msgid "Seek mode not supported"
-msgstr "Начин премотавања није подржан"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:612
-#: ../src/librygel-renderer/rygel-av-transport.vala:633
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
+#: ../src/librygel-renderer/rygel-av-transport.vala:617
+#: ../src/librygel-renderer/rygel-av-transport.vala:630
+#: ../src/librygel-renderer/rygel-av-transport.vala:651
+#: ../src/librygel-renderer/rygel-av-transport.vala:659
 msgid "Illegal seek target"
 msgstr "Неисправна мета премотавања"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:166
+#: ../src/librygel-renderer/rygel-av-transport.vala:641
+msgid "Seek mode not supported"
+msgstr "Начин премотавања није подржан"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
 msgstr "Неисправан назив"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:180
+#: ../src/librygel-renderer/rygel-rendering-control.vala:182
 msgid "Invalid Channel"
 msgstr "Неисправан канал"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:216
-#: ../src/librygel-renderer/rygel-rendering-control.vala:258
-#: ../src/librygel-renderer/rygel-rendering-control.vala:267
+#: ../src/librygel-renderer/rygel-rendering-control.vala:218
+#: ../src/librygel-renderer/rygel-rendering-control.vala:260
+#: ../src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Радња није успела"
 
