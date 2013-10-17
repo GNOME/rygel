@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-09 15:56+0000\n"
-"PO-Revision-Date: 2013-09-12 10:16+0300\n"
+"POT-Creation-Date: 2013-10-15 11:47+0000\n"
+"PO-Revision-Date: 2013-10-17 10:51+0300\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -51,11 +51,29 @@ msgid "_Share media through DLNA"
 msgstr "Koplietot multimediju_s izmantojot DLNA"
 
 #: ../data/rygel-preferences.ui.h:8
-#| msgid "_Network:"
+msgid "Add a network interface Rygel should serve files on"
+msgstr "Pievienot tīkla saskarni, uz kuras Rygel vajadzētu pasniegt datnes"
+
+#: ../data/rygel-preferences.ui.h:9
+#| msgid "Network Interfaces"
+msgid "Add network interface"
+msgstr "Pievienot tīkla saskarni"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid "Remove a network interface Rygel should no longer serve files on"
+msgstr ""
+"Izņemt tīkla saskarni, uz kuras Rygel vairs nevajadzētu pasniegt datnes"
+
+#: ../data/rygel-preferences.ui.h:11
+#| msgid "Network Interfaces"
+msgid "Remove network interface"
+msgstr "Izņemt tīkla saskarni"
+
+#: ../data/rygel-preferences.ui.h:12
 msgid "Networks:"
 msgstr "Tīkli:"
 
-#: ../data/rygel-preferences.ui.h:9
+#: ../data/rygel-preferences.ui.h:13
 msgid "Select folders"
 msgstr "Izvēlieties mapi"
 
@@ -80,8 +98,8 @@ msgstr ""
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "Modulis “%s” nevarēja savienoties ar sesijas kopni."
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr "Modulis “%s” nevarēja savienoties ar D-Bus sesijas kopni. Ignorē…"
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -120,31 +138,26 @@ msgstr "Kļūda, izņemto objektu no datu bāzes: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:114
 #, c-format
-#| msgid "Failed to move dotfile %s: %s"
 msgid "Failed to harvest file %s: %s"
 msgstr "Neizdevās ievākt datni %s — %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:164
 #, c-format
-#| msgid "Failed to open database: %d (%s)"
 msgid "Failed to query database: %s"
 msgstr "Neizdevās vaicāt datubāzi: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "failed to enumerate folder: %s"
 msgstr "neizdevās uzskaitīt mapi: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
 #, c-format
-#| msgid "Failed to query info of a file %s: %s"
 msgid "Failed to get children of container %s: %s"
 msgstr "Neizdevās saņemt konteinera bērnus %s — %s"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
-#| msgid "Failed to get Tracker connection: %s"
 msgid "Failed to get child count of query container: %s"
 msgstr "Neizdevās saņemt vaicājuma konteinera bērnu skaitu — %s"
 
@@ -154,11 +167,10 @@ msgid "Failed to add item with ID %s: %s"
 msgstr "Neizdevās pievienot vienību ar ID %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:564
-#| msgid "Failed to create preferences dialog: %s"
 msgid "Cannot create references to containers"
 msgstr "Neizdevās izveidot atsauces uz konteineriem"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -171,14 +183,12 @@ msgstr "Visi"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
-#| msgid "Failed to get Tracker connection: %s"
 msgid "Failed to get child count: %s"
 msgstr "Neizdevās saņemt bērnu skaitu — %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Can't create items in %s"
 msgstr "Nevar izveidot %s vienumus"
 
@@ -193,19 +203,17 @@ msgid "Can't remove containers in %s"
 msgstr "%s nevar izņemt konteinerus"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:590
 msgid "Playlists"
 msgstr "Repertuāri"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Can't remove items in %s"
 msgstr "Nevar izņemt %s vienumus"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
 #, c-format
-#| msgid "Play speed not supported"
 msgid "upnp:class not supported in %s"
 msgstr "%s neatbalsta upnp:class"
 
@@ -218,11 +226,15 @@ msgstr "Neuzraudzītas datņu izmaiņas"
 msgid "Failed to get file info for %s"
 msgstr "Neizdevās saņemt %s datnes informāciju"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Gads"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Izpildītājs"
@@ -246,27 +258,26 @@ msgstr "Datnes un mapes"
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@'s medijs"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:433
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:500
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:437
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:504
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Neizdevās izņemt ierakstu: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:579
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:583
 msgid "Music"
 msgstr "Mūzika"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:582
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
 msgid "Pictures"
 msgstr "Attēli"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:584
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:588
 msgid "Videos"
 msgstr "Video"
 
 #: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
 #, c-format
-#| msgid "Failed to move dotfile %s: %s"
 msgid "Failed to remove file %s: %s"
 msgstr "Neizdevās izņemt datni %s — %s"
 
@@ -299,18 +310,15 @@ msgstr "Neizdevās izveidot URI mapei '%s': %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:77
 #, c-format
-#| msgid "Could not subscribe to tracker signals: %s"
 msgid "Could not subscribe to Tracker signals: %s"
 msgstr "Nevarēja pierakstīties pie Tracker signāliem — %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:95
-#| msgid "Seek mode not supported"
 msgid "Not supported"
 msgstr "Nav atbalstīts"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-container.vala:58
 #, c-format
-#| msgid "Failed to create a Tracker connection: %s"
 msgid "Failed to create Tracker connection: %s"
 msgstr "Neizdevās izveidot Tracker savienojumu — %s"
 
@@ -366,7 +374,7 @@ msgstr "Nav ieviests"
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:128
+#: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:270
 #: ../src/librygel-server/rygel-content-directory.vala:298
 #: ../src/librygel-server/rygel-content-directory.vala:317
@@ -490,14 +498,14 @@ msgid "Could not load plugin: %s"
 msgstr "Nevarēja ielādēt spraudni — %s"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:134
+#: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Nederīgs InstanceID"
 
 #. FIXME: Return a more sensible error here.
 #: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:695
-#: ../src/librygel-renderer/rygel-av-transport.vala:705
+#: ../src/librygel-renderer/rygel-av-transport.vala:713
+#: ../src/librygel-renderer/rygel-av-transport.vala:723
 msgid "Resource not found"
 msgstr "Resurss nav atrasts"
 
@@ -505,36 +513,37 @@ msgstr "Resurss nav atrasts"
 msgid "Illegal MIME-type"
 msgstr "Neatļauts MIME tips"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:553
+#: ../src/librygel-renderer/rygel-av-transport.vala:557
 msgid "Play speed not supported"
 msgstr "Atskaņošanas ātrums nav atbalstīts"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:570
+#: ../src/librygel-renderer/rygel-av-transport.vala:574
 msgid "Transition not available"
 msgstr "Pāreja nav pieejama"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:599
-#: ../src/librygel-renderer/rygel-av-transport.vala:623
-msgid "Seek mode not supported"
-msgstr "Meklēšanas režīms nav atbalstīts"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:612
-#: ../src/librygel-renderer/rygel-av-transport.vala:633
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
+#: ../src/librygel-renderer/rygel-av-transport.vala:617
+#: ../src/librygel-renderer/rygel-av-transport.vala:630
+#: ../src/librygel-renderer/rygel-av-transport.vala:651
+#: ../src/librygel-renderer/rygel-av-transport.vala:659
 msgid "Illegal seek target"
 msgstr "Neatļauts meklēšanas mērķis"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:165
+#: ../src/librygel-renderer/rygel-av-transport.vala:641
+msgid "Seek mode not supported"
+msgstr "Meklēšanas režīms nav atbalstīts"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
 msgstr "Nederīgs nosaukums"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:179
+#: ../src/librygel-renderer/rygel-rendering-control.vala:182
 msgid "Invalid Channel"
 msgstr "Nederīgs kanāls"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:215
-#: ../src/librygel-renderer/rygel-rendering-control.vala:257
-#: ../src/librygel-renderer/rygel-rendering-control.vala:266
+#: ../src/librygel-renderer/rygel-rendering-control.vala:218
+#: ../src/librygel-renderer/rygel-rendering-control.vala:260
+#: ../src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Darbība neizdevās"
 
@@ -560,7 +569,6 @@ msgid "No such file transfer"
 msgstr "Nav tāda datnes pārraide"
 
 #: ../src/librygel-server/rygel-dbus-thumbnailer.vala:115
-#| msgid "No D-Bus thumbnailer available"
 msgid "No D-Bus thumbnailer service available"
 msgstr "Nav pieejama D-Bus sīktēla veidotāja serviss"
 
@@ -594,12 +602,10 @@ msgid "Not Found"
 msgstr "Nav atrasts"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:50
-#| msgid "Seek mode not supported"
 msgid "Seeking not supported"
 msgstr "Meklēšana nav atbalstīta"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:97
-#| msgid "Failed to create pipeline"
 msgid "Failed to generate playlist"
 msgstr "Neizdevās izveidot repertuāru"
 
@@ -645,6 +651,7 @@ msgstr "Neizdevās iegūt %s' sākotnējo URI: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URI '%s' nav derīgi, lai tajos importētu saturu"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Trūkst ContainerID"
@@ -677,6 +684,7 @@ msgstr "Objekta %s izņemšana nav atļauta"
 msgid "Object removal from %s not allowed"
 msgstr "Objekta izņemšana no %s nav atļauta"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Trūkst objekta id"
@@ -731,7 +739,6 @@ msgstr ""
 
 #: ../src/librygel-server/rygel-m3u-playlist.vala:67
 #: ../src/librygel-server/rygel-m3u-playlist.vala:70
-#| msgid "Unknown error."
 msgid "Unknown"
 msgstr "Nezināms"
 
@@ -755,12 +762,11 @@ msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Neizdevās zondēt URI %s protokolu. Pieņem '%s'"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:100
-#| msgid "Invalid argument"
 msgid "Invalid number of arguments"
 msgstr "Nederīgs parametru skaits"
 
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
-#| msgid "'Elements' argument missing."
 msgid "ObjectID argument missing"
 msgstr "Trūkst ObjectID parametra"
 
@@ -774,12 +780,10 @@ msgstr "Trūkst filtra"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:197
 #: ../src/librygel-server/rygel-object-creator.vala:407
-#| msgid "No such file transfer"
 msgid "No such container"
 msgstr "Nav tāda konteinera"
 
 #: ../src/librygel-server/rygel-object-creator.vala:151
-#| msgid "Seek mode not supported"
 msgid "upnp:createClass value not supported"
 msgstr "nav atbalstīta upnp:createClass vērtība"
 
@@ -791,13 +795,13 @@ msgstr "Trūkst “Elements” parametra."
 msgid "Comments not allowed in XML"
 msgstr "XML nav atļauti komentāri"
 
+#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "Trūkst ContainerID parametra"
 
 #: ../src/librygel-server/rygel-object-creator.vala:225
 #, c-format
-#| msgid "No items in DIDL-Lite from client: '%s'"
 msgid "No objects in DIDL-Lite from client: '%s'"
 msgstr "Nav DIDL-Lite objektu no klienta — “%s”"
 
@@ -823,12 +827,10 @@ msgstr "Nevar izveidot ierobežotu vienumu"
 
 #: ../src/librygel-server/rygel-object-creator.vala:378
 #, c-format
-#| msgid "Play speed not supported"
 msgid "UPnP class '%s' not supported"
 msgstr "Nav atbalstīta UPnP klase “%s”"
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
-#| msgid "Object creation in %s not allowed"
 msgid " %%% Object creation in %s not allowed"
 msgstr " %%% Objekta izveidošana iekš %s nav atļauta"
 
@@ -846,19 +848,16 @@ msgstr "Neizdevās izveidot vienību zem '%s': %s"
 
 #: ../src/librygel-server/rygel-object-creator.vala:543
 #, c-format
-#| msgid "Seek mode not supported"
 msgid "DLNA profile '%s' not supported"
 msgstr "Nav atbalstīts DLNA profils “%s”"
 
 #: ../src/librygel-server/rygel-object-creator.vala:601
 #, c-format
-#| msgid "Invalid Range '%s'"
 msgid "Invalid date format: %s"
 msgstr "Nederīgs datuma formāts — %s"
 
 #: ../src/librygel-server/rygel-object-creator.vala:610
 #, c-format
-#| msgid "Invalid Range '%s'"
 msgid "Invalid date: %s"
 msgstr "Nederīgs datums — %s"
 
@@ -877,18 +876,15 @@ msgstr ""
 "“%s” — %s"
 
 #: ../src/librygel-server/rygel-reference-creator.vala:50
-#| msgid "'Elements' argument missing."
 msgid "'ContainerID' agument missing."
 msgstr "Trūkst “ContainerID” parametra."
 
 #: ../src/librygel-server/rygel-reference-creator.vala:55
-#| msgid "'Elements' argument missing."
 msgid "'ObjectID' argument missing."
 msgstr "Trūkst “ObjectID” parametra."
 
 #: ../src/librygel-server/rygel-reference-creator.vala:84
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to create object under '%s': %s"
 msgstr "Neizdevās izveidot objektu zem “%s” — %s"
 
@@ -914,6 +910,8 @@ msgstr "Nav pieejams sīktēls: %s"
 msgid "Thumbnailing not supported"
 msgstr "Sīktēlu veidošana nav atbalstīta"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -939,6 +937,7 @@ msgstr "Nevarēja izveidot GstElement priekš URI %s"
 msgid "Failed to create pipeline"
 msgstr "Neizdevās izveidot konveijeru"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
@@ -971,7 +970,6 @@ msgstr "Neizdevās meklēt"
 
 #: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:123
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Neizdevās izveidot “%s” GStreamer datu avotu — %s"
 
@@ -1011,8 +1009,8 @@ msgstr "Neļaut dzēst"
 #: ../src/rygel/rygel-cmdline-config.vala:87
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr ""
-"Ar komatiem atdalīts domain:level pāru saraksts. Lai uzzinātu vairāk, skatiet "
-"rygel(1)"
+"Ar komatiem atdalīts domain:level pāru saraksts. Lai uzzinātu vairāk, "
+"skatiet rygel(1)"
 
 #: ../src/rygel/rygel-cmdline-config.vala:89
 msgid "Plugin Path"
@@ -1039,12 +1037,10 @@ msgid "Disable UPnP (streaming-only)"
 msgstr "Deaktivēt UPnP (tikai straumēšana)"
 
 #: ../src/rygel/rygel-cmdline-config.vala:102
-#| msgid "Failed to load user configuration: %s"
 msgid "Use configuration file instead of user configuration"
 msgstr "Lietot konfigurācijas datni, nevis lietotāja konfigurāciju"
 
 #: ../src/rygel/rygel-cmdline-config.vala:104
-#| msgid "Rygel Preferences"
 msgid "Shutdown remote Rygel reference"
 msgstr "Izslēgt attālināto Rygel norādi"
 
@@ -1054,7 +1050,6 @@ msgstr "Izslēdz attālināto Rygel instanci\n"
 
 #: ../src/rygel/rygel-cmdline-config.vala:149
 #, c-format
-#| msgid "Failed to stop Rygel service: %s"
 msgid "Failed to shut-down other rygel instance: %s"
 msgstr "Neizdevās izslēgt citas rygel instances — %s"
 
@@ -1062,27 +1057,25 @@ msgstr "Neizdevās izslēgt citas rygel instances — %s"
 msgid "Rygel is running in streaming-only mode."
 msgstr "Rygel darbojas tikai straumēšanas režīmā."
 
-#: ../src/rygel/rygel-main.vala:107
+#: ../src/rygel/rygel-main.vala:109
 #, c-format
-#| msgid "No plugins found in %d second; giving up.."
-#| msgid_plural "No plugins found in %d seconds; giving up.."
 msgid "No plugins found in %d second; giving up..."
 msgid_plural "No plugins found in %d seconds; giving up..."
 msgstr[0] "Neizdevās atrast spraudni %d sekundē; padodos..."
 msgstr[1] "Neizdevās atrast spraudni %d sekundēs; padodos..."
 msgstr[2] "Neizdevās atrast spraudni %d sekundēs; padodos..."
 
-#: ../src/rygel/rygel-main.vala:168
+#: ../src/rygel/rygel-main.vala:170
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Neizdevās izveidot saknes ierīci ražotnei: %s"
 
-#: ../src/rygel/rygel-main.vala:226
+#: ../src/rygel/rygel-main.vala:228
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Neizdevās izveidot %s RootDevice. Iemesls: %s"
 
-#: ../src/rygel/rygel-main.vala:263
+#: ../src/rygel/rygel-main.vala:265
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Neizdevās ielādēt lietotāja konfigurāciju: %s"
@@ -1091,7 +1084,6 @@ msgstr "Neizdevās ielādēt lietotāja konfigurāciju: %s"
 #: ../src/rygel/rygel-user-config.vala:252
 #: ../src/ui/rygel-user-config.vala:252
 #, c-format
-#| msgid "Failed to load user configuration: %s"
 msgid "Failed to load user configuration from file '%s': %s"
 msgstr "Neizdevās ielādēt lietotāja konfigurāciju no datnes “%s” — %s"
 
