@@ -596,34 +596,19 @@ internal class Rygel.AVTransport : Service {
                         out target);
         switch (unit) {
         case "ABS_TIME":
-            debug ("Seeking to %s.", target);
-
-            if (!this.player.can_seek) {
-                action.return_error (710, _("Seek mode not supported"));
-
-                return;
-            }
-
-            if (!this.player.seek (TimeUtils.time_from_string (target))) {
-                action.return_error (711, _("Illegal seek target"));
-
-                return;
-            }
-
-            action.return ();
-
-            return;
         case "REL_TIME":
-            debug ("Relative seek to %s.", target);
+            debug ("Seeking %s to %s.", unit, target);
+
+            var seek_target = TimeUtils.time_from_string (target);
+            if (unit == "REL_TIME") {
+                seek_target += this.player.position;
+            }
 
             if (!this.player.can_seek) {
                 action.return_error (710, _("Seek mode not supported"));
 
                 return;
             }
-
-            var seek_target = this.player.position +
-                              TimeUtils.time_from_string (target);
 
             if (!this.player.seek (seek_target)) {
                 action.return_error (711, _("Illegal seek target"));
