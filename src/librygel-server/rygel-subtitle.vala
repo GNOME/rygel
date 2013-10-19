@@ -62,6 +62,6 @@ public class Rygel.Subtitle {
                                                    "CaptionInfoEx",
                                                    this.uri);
 
-        sec_node->new_prop ("sec:type", this.caption_type);
+        sec_node->new_ns_prop (sec_ns, "type", this.caption_type);
     }
 }
