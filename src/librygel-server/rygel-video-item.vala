@@ -174,10 +174,15 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
     internal override void add_proxy_resources (HTTPServer   server,
                                                 DIDLLiteItem didl_item)
                                                 throws Error {
+        var main_subtitle = null as Subtitle;
         if (!this.place_holder) {
             // Subtitles first
             foreach (var subtitle in this.subtitles) {
                 if (!server.need_proxy (subtitle.uri)) {
+                    if (main_subtitle == null) {
+                        main_subtitle = subtitle;
+                    }
+
                     continue;
                 }
 
@@ -191,12 +196,27 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
                                                            null);
                 subtitle.add_didl_node (didl_item);
 
+                if (main_subtitle == null) {
+                    main_subtitle = new Subtitle (subtitle.mime_type,
+                                                  subtitle.caption_type);
+                    main_subtitle.uri = subtitle.uri;
+                }
+
                 // Now restore the original URI
                 subtitle.uri = uri;
             }
         }
 
         base.add_proxy_resources (server, didl_item);
+
+        if (main_subtitle != null) {
+            var resources = didl_item.get_resources ();
+            foreach (var resource in resources) {
+                resource.subtitle_file_type =
+                    main_subtitle.caption_type.up ();
+                resource.subtitle_file_uri = main_subtitle.uri;
+            }
+        }
 
         if (!this.place_holder) {
             // Thumbnails comes in the end
