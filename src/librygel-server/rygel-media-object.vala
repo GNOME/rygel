@@ -37,6 +37,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
     private static Regex real_name_regex;
     private static Regex user_name_regex;
     private static Regex host_name_regex;
+    private static Regex pretty_name_regex;
 
     public string id { get; set construct; }
     public string ref_id { get; set; }
@@ -96,6 +97,8 @@ public abstract class Rygel.MediaObject : GLib.Object {
      *  - @@USERNAME@ will be substituted by the users's login ID.
      *  - @@HOSTNAME@ will be substituted by the name of the machine.
      *  - @@ADDRESS@ will be substituted by the IP address of network interface used for the UpNP communication.
+     *  - @@PRETTY_HOSTNAME@ will be substituted by the human readable name of the machine
+     *    (PRETTY_HOSTNAME field of /etc/machine-info)
      */
     public string title {
         get {
@@ -119,6 +122,11 @@ public abstract class Rygel.MediaObject : GLib.Object {
                                          -1,
                                          0,
                                          Environment.get_host_name ());
+                this._title = pretty_name_regex.replace_literal
+                                        (this._title,
+                                         -1,
+                                         0,
+                                         get_pretty_host_name ());
             } catch (GLib.RegexError err) {
                 assert_not_reached ();
             }
@@ -138,6 +146,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
             real_name_regex = new Regex (Regex.escape_string ("@REALNAME@"));
             user_name_regex = new Regex (Regex.escape_string ("@USERNAME@"));
             host_name_regex = new Regex (Regex.escape_string ("@HOSTNAME@"));
+            pretty_name_regex = new Regex (Regex.escape_string ("@PRETTY_HOSTNAME@"));
         } catch (GLib.RegexError err) {
             assert_not_reached ();
         }

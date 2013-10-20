@@ -32,6 +32,30 @@ public errordomain RootDeviceFactoryError {
     XML_PARSE,
 }
 
+namespace Rygel {
+    public string get_pretty_host_name () {
+        string machine_info;
+
+        try {
+            FileUtils.get_contents ("/etc/machine-info", out machine_info);
+
+            var lines = machine_info.split ("\n");
+
+            foreach (var line in lines) {
+                var parts = line.split ("=");
+
+                if (parts[0] == "PRETTY_HOSTNAME") {
+                    return string.joinv("=", parts[1:parts.length]);
+                }
+            }
+        } catch (GLib.Error e) {
+            debug("Failed to parse /etc/machine-info: %s", e.message);
+        }
+
+        return Environment.get_host_name ();
+    }
+}
+
 /**
  * This is a factory to create #RygelRootDevice objects for
  * a given UPnP context.
@@ -125,6 +149,7 @@ public class Rygel.RootDeviceFactory : Object,
         title = title.replace ("@REALNAME@", Environment.get_real_name ());
         title = title.replace ("@USERNAME@", Environment.get_user_name ());
         title = title.replace ("@HOSTNAME@", Environment.get_host_name ());
+        title = title.replace ("@PRETTY_HOSTNAME@", get_pretty_host_name ());
 
         return title;
     }
