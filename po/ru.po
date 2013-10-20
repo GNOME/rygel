@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-01 21:19+0000\n"
-"PO-Revision-Date: 2013-10-06 12:33+0300\n"
+"POT-Creation-Date: 2013-10-17 07:53+0000\n"
+"PO-Revision-Date: 2013-10-20 19:16+0300\n"
 "Last-Translator: Yuri Myasoedov <ymyasoedov@yandex.ru>\n"
 "Language-Team: русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
-msgstr "Настройки Rygel"
+msgstr "Параметры Rygel"
 
 #: ../data/rygel-preferences.ui.h:2
 msgid "column"
@@ -51,10 +51,30 @@ msgid "_Share media through DLNA"
 msgstr "_Открыть общий доступ через DLNA"
 
 #: ../data/rygel-preferences.ui.h:8
+msgid "Add a network interface Rygel should serve files on"
+msgstr "Добавить сетевой интерфейс, по которому Rygel будет обслуживать файлы"
+
+#: ../data/rygel-preferences.ui.h:9
+#| msgid "Network Interfaces"
+msgid "Add network interface"
+msgstr "Добавить сетевой интерфейс"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid "Remove a network interface Rygel should no longer serve files on"
+msgstr ""
+"Удалить сетевой интерфейс, по которому Rygel больше не будет обслуживать "
+"файлы"
+
+#: ../data/rygel-preferences.ui.h:11
+#| msgid "Network Interfaces"
+msgid "Remove network interface"
+msgstr "Удалить сетевой интерфейс"
+
+#: ../data/rygel-preferences.ui.h:12
 msgid "Networks:"
 msgstr "Сети:"
 
-#: ../data/rygel-preferences.ui.h:9
+#: ../data/rygel-preferences.ui.h:13
 msgid "Select folders"
 msgstr "Выберите папки"
 
@@ -150,7 +170,7 @@ msgstr "Не удалось добавить элемент с ID %s: %s"
 msgid "Cannot create references to containers"
 msgstr "Невозможно создать ссылки на контейнеры"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -266,6 +286,11 @@ msgstr "Не удалось удалить файл %s: %s"
 msgid "Could not find object %d in cache"
 msgstr "Не удалось найти объект %d в кэше"
 
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
+#, c-format
+msgid "MPRIS interface at %s is read-only. Ignoring."
+msgstr "Интерфейс MPRIS %s доступен только для чтения. Игнорирование."
+
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
 msgstr "Проигрыватель GStreamer"
@@ -354,7 +379,7 @@ msgstr "Не реализовано"
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:129
+#: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:270
 #: ../src/librygel-server/rygel-content-directory.vala:298
 #: ../src/librygel-server/rygel-content-directory.vala:317
@@ -379,7 +404,7 @@ msgstr "Не удалось записать изменённое описани
 #: ../src/librygel-core/rygel-log-handler.vala:68
 #, c-format
 msgid "Failed to get log level from configuration: %s"
-msgstr "Не удалось получить уровень журналирования из настроек: %s"
+msgstr "Не удалось получить уровень журналирования из конфигурации: %s"
 
 #: ../src/librygel-core/rygel-meta-config.vala:89
 #: ../src/librygel-core/rygel-meta-config.vala:108
@@ -478,14 +503,14 @@ msgid "Could not load plugin: %s"
 msgstr "Не удалось загрузить модуль: %s"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:135
+#: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Недопустимый InstanceID"
 
 #. FIXME: Return a more sensible error here.
 #: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:695
-#: ../src/librygel-renderer/rygel-av-transport.vala:705
+#: ../src/librygel-renderer/rygel-av-transport.vala:713
+#: ../src/librygel-renderer/rygel-av-transport.vala:723
 msgid "Resource not found"
 msgstr "Ресурс не найден"
 
@@ -493,36 +518,37 @@ msgstr "Ресурс не найден"
 msgid "Illegal MIME-type"
 msgstr "Недопустимый тип MIME"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:553
+#: ../src/librygel-renderer/rygel-av-transport.vala:557
 msgid "Play speed not supported"
 msgstr "Скорость воспроизведения не поддерживается"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:570
+#: ../src/librygel-renderer/rygel-av-transport.vala:574
 msgid "Transition not available"
 msgstr "Перемещение недоступно"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:599
-#: ../src/librygel-renderer/rygel-av-transport.vala:623
-msgid "Seek mode not supported"
-msgstr "Режим перемещения не поддерживается"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:612
-#: ../src/librygel-renderer/rygel-av-transport.vala:633
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
+#: ../src/librygel-renderer/rygel-av-transport.vala:617
+#: ../src/librygel-renderer/rygel-av-transport.vala:630
+#: ../src/librygel-renderer/rygel-av-transport.vala:651
+#: ../src/librygel-renderer/rygel-av-transport.vala:659
 msgid "Illegal seek target"
 msgstr "Недопустимый запрос перемещения"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:166
+#: ../src/librygel-renderer/rygel-av-transport.vala:641
+msgid "Seek mode not supported"
+msgstr "Режим перемещения не поддерживается"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
 msgstr "Недопустимое имя"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:180
+#: ../src/librygel-renderer/rygel-rendering-control.vala:182
 msgid "Invalid Channel"
 msgstr "Неверный канал"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:216
-#: ../src/librygel-renderer/rygel-rendering-control.vala:258
-#: ../src/librygel-renderer/rygel-rendering-control.vala:267
+#: ../src/librygel-renderer/rygel-rendering-control.vala:218
+#: ../src/librygel-renderer/rygel-rendering-control.vala:260
+#: ../src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Сбой выполнения действия"
 
@@ -1036,6 +1062,11 @@ msgstr "Не удалось завершить работу другого эк�
 msgid "Rygel is running in streaming-only mode."
 msgstr "Rygel работает в режиме только потоковое воспроизведение."
 
+#: ../src/rygel/rygel-main.vala:87
+#, c-format
+msgid "Rygel v%s starting…"
+msgstr "Запуск Rygel v%s…"
+
 #: ../src/rygel/rygel-main.vala:109
 #, c-format
 msgid "No plugins found in %d second; giving up..."
@@ -1057,14 +1088,14 @@ msgstr "Не удалось создать RootDevice для %s. Причина:
 #: ../src/rygel/rygel-main.vala:265
 #, c-format
 msgid "Failed to load user configuration: %s"
-msgstr "Не удалось загрузить настройки пользователя: %s"
+msgstr "Не удалось загрузить конфигурацию пользователя: %s"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
 #: ../src/rygel/rygel-user-config.vala:252
 #: ../src/ui/rygel-user-config.vala:252
 #, c-format
 msgid "Failed to load user configuration from file '%s': %s"
-msgstr "Не удалось загрузить настройки пользователя из файла «%s»: %s"
+msgstr "Не удалось загрузить конфигурацию пользователя из файла «%s»: %s"
 
 #: ../src/rygel/rygel-user-config.vala:305
 #: ../src/ui/rygel-user-config.vala:305
@@ -1081,12 +1112,12 @@ msgstr "Значение «%s» вышло за пределы диапазон�
 #: ../src/ui/rygel-preferences-dialog.vala:93
 #, c-format
 msgid "Failed to create preferences dialog: %s"
-msgstr "Не удалось создать диалоговое окно настроек: %s"
+msgstr "Не удалось создать диалоговое окно параметров: %s"
 
 #: ../src/ui/rygel-writable-user-config.vala:122
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
-msgstr "Не удалось сохранить настройки в файл «%s»: %s"
+msgstr "Не удалось сохранить конфигурацию в файл «%s»: %s"
 
 #: ../src/ui/rygel-writable-user-config.vala:221
 #, c-format
