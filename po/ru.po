@@ -7,17 +7,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-09 08:10+0000\n"
-"PO-Revision-Date: 2013-09-07 10:45+0300\n"
-"Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-10-15 17:45+0000\n"
+"PO-Revision-Date: 2013-10-20 19:05+0300\n"
+"Last-Translator: Yuri Myasoedov <ymyasoedov@yandex.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.5.7\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -30,7 +32,8 @@ msgstr "_Открыть общий доступ через DLNA"
 
 #: ../data/rygel-preferences.ui.h:3
 msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
-msgstr "Открыть общий доступ по DLNA к мультимедиа: изображениям, видео и музыке"
+msgstr ""
+"Открыть общий доступ по DLNA к мультимедиа: изображениям, видео и музыке"
 
 #: ../data/rygel-preferences.ui.h:4
 msgid "Add a directory to the list of shared directories"
@@ -54,8 +57,12 @@ msgid "_Network:"
 msgstr "_Сеть:"
 
 #: ../data/rygel-preferences.ui.h:10
-msgid "Select the network interface that DLNA media will be shared on, or share media on all interfaces"
-msgstr "Выберите сетевой интерфейс, используемый для предоставления общего доступа к мультимедиа, или предоставьте доступ для всех интерфейсов"
+msgid ""
+"Select the network interface that DLNA media will be shared on, or share "
+"media on all interfaces"
+msgstr ""
+"Выберите сетевой интерфейс, используемый для предоставления общего доступа к "
+"мультимедиа, или предоставьте доступ для всех интерфейсов"
 
 #: ../data/rygel-preferences.ui.h:11
 msgid "Any"
@@ -84,8 +91,9 @@ msgstr "медиасервер;медиаплеер;доступ;аудио;ви
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:42
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:42
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "Модуль «%s» не смог подключиться к сессионной шине D-Bus."
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr ""
+"Модуль «%s» не смог подключиться к сессионной шине D-Bus. Игнорируется…"
 
 #: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
@@ -132,6 +140,8 @@ msgstr "Не будет следить за изменениями файлов"
 msgid "Failed to get file info for %s"
 msgstr "Не удалось получить информацию о файле для %s"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
@@ -141,6 +151,8 @@ msgstr "Год"
 msgid "All"
 msgstr "Все"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Исполнитель"
@@ -158,6 +170,8 @@ msgstr "Жанр"
 msgid "Files & Folders"
 msgstr "Файлы и папки"
 
+#. @REALNAME@ is substituted for user's real name and it
+#. doesn't need translation.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
@@ -511,6 +525,8 @@ msgstr "Отсутствует аргумент «Elements»."
 msgid "Comments not allowed in XML"
 msgstr "Комментарии XML запрещены"
 
+#. Sorry we can't do anything without ContainerID
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-object-creator.vala:195
 #: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
@@ -540,6 +556,7 @@ msgstr "Создание объекта в %s запрещено"
 msgid "Failed to create item under '%s': %s"
 msgstr "Не удалось создать элемент под «%s»: %s"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Отсутствует ContainerID"
@@ -564,6 +581,7 @@ msgstr "Удаление объекта %s запрещено"
 msgid "Object removal from %s not allowed"
 msgstr "Удаление объекта из %s запрещено"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Отсутствует идентификатор объекта"
@@ -609,8 +627,12 @@ msgstr "Изменение метаданных объекта %s запреще
 
 #: ../src/librygel-server/rygel-item-updater.vala:196
 #, c-format
-msgid "Metadata modification of object %s being a child of restricted object %s not allowed"
-msgstr "Изменение метаданных объекта %s, являющегося дочерним для закрытого объекта %s, запрещено"
+msgid ""
+"Metadata modification of object %s being a child of restricted object %s not "
+"allowed"
+msgstr ""
+"Изменение метаданных объекта %s, являющегося дочерним для закрытого объекта "
+"%s, запрещено"
 
 #: ../src/librygel-server/rygel-media-engine.vala:69
 msgid "No media engine found."
@@ -661,6 +683,8 @@ msgstr "Нет доступного компонента для создания
 msgid "Thubmnailing not supported"
 msgstr "Создание миниатюр не поддерживается"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -686,6 +710,7 @@ msgstr "Не удалось создать GstElement для URI %s"
 msgid "Failed to create pipeline"
 msgstr "Не удалось создать конвейер"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
@@ -779,6 +804,3 @@ msgstr "Не удалось запустить службу Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Не удалось остановить службу Rygel: %s"
-
-#~ msgid "No metadata extractor available. Will not crawl."
-#~ msgstr "Нет доступного компонента для извлечения метаданных. Не проверяем."
