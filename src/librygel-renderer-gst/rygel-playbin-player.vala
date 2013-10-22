@@ -3,11 +3,14 @@
  * Copyright (C) 2009,2010,2011,2012 Nokia Corporation.
  * Copyright (C) 2012 Openismus GmbH
  * Copyright (C) 2012,2013 Intel Corporation.
+ * Copyright (C) 2013  Cable Television Laboratories, Inc.
  *
  * Author: Jorn Baayen <jorn@openedhand.com>
  *         Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Jens Georg <jensg@openismus.com>
+ *         Neha Shanbhag <N.Shanbhag@cablelabs.com>
+ *         Sivakumar Mani <siva@orexel.com>
  *
  * Rygel is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -233,6 +236,13 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    public bool can_seek_bytes {
+        get {
+            return this.transfer_mode != TRANSFER_MODE_INTERACTIVE &&
+                   ! this.mime_type.has_prefix ("image/");
+        }
+    }
+
     private string _content_features = "";
     private ProtocolInfo protocol_info;
     public string? content_features {
@@ -284,12 +294,36 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    public int64 size {
+        get {
+            int64 dur;
+
+            if (this.playbin.source.query_duration (Format.BYTES, out dur)) {
+                return dur;
+            } else {
+                return 0;
+            }
+        }
+    }
+
     public int64 position {
         get {
             int64 pos;
 
             if (this.playbin.query_position (Format.TIME, out pos)) {
                 return pos / Gst.USECOND;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    public int64 byte_position {
+       get {
+            int64 pos;
+
+            if (this.playbin.source.query_position (Format.BYTES, out pos)) {
+                return pos;
             } else {
                 return 0;
             }
@@ -320,20 +354,52 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         return player;
     }
 
+    private bool seek_with_format (Format format, int64 target) {
+        bool seeked;
+
+        var speed = this.play_speed_to_double (this._playback_speed);
+        if (speed > 0) {
+            seeked = this.playbin.seek (speed,
+                                        format,
+                                        SeekFlags.FLUSH | SeekFlags.SKIP | SeekFlags.ACCURATE,
+                                        Gst.SeekType.SET,
+                                        target,
+                                        Gst.SeekType.NONE,
+                                        -1);
+        } else {
+            seeked = this.playbin.seek (speed,
+                                        format,
+                                        SeekFlags.FLUSH | SeekFlags.SKIP | SeekFlags.ACCURATE,
+                                        Gst.SeekType.SET,
+                                        0,
+                                        Gst.SeekType.SET,
+                                        target);
+        }
+
+        return seeked;
+    }
+
     public bool seek (int64 time) {
+        debug ("Seeking %lld usec, play speed %s", time, this._new_playback_speed);
+
         // Playbin doesn't return false when seeking beyond the end of the
         // file
         if (time > this.duration) {
             return false;
         }
 
-        return this.playbin.seek (1.0,
-                                  Format.TIME,
-                                  SeekFlags.FLUSH,
-                                  Gst.SeekType.SET,
-                                  time * Gst.USECOND,
-                                  Gst.SeekType.NONE,
-                                  -1);
+        return this.seek_with_format (Format.TIME, time * Gst.USECOND);
+    }
+
+    public bool seek_bytes (int64 bytes) {
+        debug ("Seeking %lld bytes, play speed %s", bytes, this._new_playback_speed);
+
+        int64 size = this.size;
+        if (size > 0 && bytes > size) {
+            return false;
+        }
+
+        return this.seek_with_format (Format.BYTES, bytes);
     }
 
     public string[] get_protocols () {

@@ -1,10 +1,12 @@
 /*
  * Copyright (C) 2008 OpenedHand Ltd.
  * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2013  Cable Television Laboratories, Inc.
  *
  * Author: Jorn Baayen <jorn@openedhand.com>
  *         Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Sivakumar Mani <siva@orexel.com>
  *
  * Rygel is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -128,6 +130,12 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    public bool can_seek_bytes {
+        get {
+            return false;
+        }
+    }
+
     public double volume {
         get {
             return this.actual_player.volume;
@@ -151,11 +159,24 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    public int64 size {
+        get {
+            return 0;
+        }
+    }
+
     public int64 position {
         get {
             return this.actual_player.position;
         }
     }
+
+    public int64 byte_position {
+        get {
+            return 0;
+        }
+    }
+
 
     public Player (Plugin plugin) {
         this.actual_player = plugin.actual_player;
@@ -174,6 +195,10 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
         } catch (Error error) {}
 
         return ret;
+    }
+
+    public bool seek_bytes (int64 bytes) {
+        return false;
     }
 
     public string[] get_protocols () {

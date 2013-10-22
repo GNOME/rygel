@@ -2,11 +2,14 @@
  * Copyright (C) 2008 OpenedHand Ltd.
  * Copyright (C) 2009,2010 Nokia Corporation.
  * Copyright (C) 2012 Openismus GmbH.
+ * Copyright (C) 2013  Cable Television Laboratories, Inc.
  *
  * Author: Jorn Baayen <jorn@openedhand.com>
  *         Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Jens Georg <jensg@openismus.com>
+ *         Neha Shanbhag <N.Shanbhag@cablelabs.com>
+ *         Sivakumar Mani <siva@orexel.com>
  *
  * Rygel is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -135,6 +138,8 @@ internal class Rygel.AVTransport : Service {
         action_invoked["Seek"].connect (this.seek_cb);
         action_invoked["Next"].connect (this.next_cb);
         action_invoked["Previous"].connect (this.previous_cb);
+        action_invoked["X_DLNA_GetBytePositionInfo"].connect
+                                        (this.x_dlna_get_byte_position_info_cb);
 
         this.controller.notify["playback-state"].connect (this.notify_state_cb);
         this.controller.notify["n-tracks"].connect (this.notify_n_tracks_cb);
@@ -558,8 +563,9 @@ internal class Rygel.AVTransport : Service {
             return;
         }
 
-        this.player.playback_state = "PLAYING";
+        // Speed change will take effect when playback state is changed
         this.player.playback_speed = speed;
+        this.player.playback_state = "PLAYING";
 
         action.return ();
     }
@@ -596,12 +602,11 @@ internal class Rygel.AVTransport : Service {
         switch (unit) {
         case "ABS_TIME":
         case "REL_TIME":
-            debug ("Seeking %s to %s.", unit, target);
-
             var seek_target = TimeUtils.time_from_string (target);
-            if (unit == "REL_TIME") {
+            if (unit != "ABS_TIME") {
                 seek_target += this.player.position;
             }
+            debug ("Seeking to %lld sec", seek_target / TimeSpan.SECOND);
 
             if (!this.player.can_seek) {
                 action.return_error (710, _("Seek mode not supported"));
@@ -610,6 +615,31 @@ internal class Rygel.AVTransport : Service {
             }
 
             if (!this.player.seek (seek_target)) {
+                action.return_error (711, _("Illegal seek target"));
+
+                return;
+            }
+
+            action.return ();
+
+            return;
+        case "REL_COUNT":
+        case "X_DLNA_REL_BYTE":
+        case "ABS_COUNT":
+            var seek_target = int64.parse (target);
+
+            if (unit != "ABS_COUNT") {
+                seek_target += this.player.byte_position;
+            }
+            debug ("Seeking to %lld bytes.", seek_target);
+
+            if (!this.player.can_seek_bytes) {
+                action.return_error (710, _("Seek mode not supported"));
+
+                return;
+            }
+
+            if (!this.player.seek_bytes (seek_target)) {
                 action.return_error (711, _("Illegal seek target"));
 
                 return;
@@ -654,6 +684,38 @@ internal class Rygel.AVTransport : Service {
         } else {
             action.return_error (711, _("Illegal seek target"));
         }
+    }
+
+    private void x_dlna_get_byte_position_info_cb (Service       service,
+                                                   ServiceAction action) {
+        if (!this.check_instance_id (action)) {
+            return;
+        }
+
+        if (this.controller.uri == "") {
+            action.set ("TrackSize",
+                            typeof (string),
+                            "",
+                        "RelByte",
+                            typeof (string),
+                            "",
+                        "AbsByte",
+                            typeof (string),
+                            "");
+        } else {
+            var position = this.player.byte_position.to_string ();
+            action.set ("TrackSize",
+                            typeof (string),
+                            this.player.size.to_string (),
+                        "RelByte",
+                            typeof (string),
+                            position,
+                        "AbsByte",
+                            typeof (string),
+                            position);
+        }
+
+        action.return ();
     }
 
     private void notify_state_cb (Object player, ParamSpec p) {

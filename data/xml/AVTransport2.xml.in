@@ -364,6 +364,32 @@
             </argument>
          </argumentList>
       </action>
+
+      <action>
+         <name>X_DLNA_GetBytePositionInfo</name>
+         <argumentList>
+            <argument>
+               <name>InstanceID</name>
+               <direction>in</direction>
+               <relatedStateVariable>A_ARG_TYPE_InstanceID</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>TrackSize</name>
+               <direction>out</direction>
+               <relatedStateVariable>X_DLNA_CurrentTrackSize</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>RelByte</name>
+               <direction>out</direction>
+               <relatedStateVariable>X_DLNA_RelativeBytePosition</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>AbsByte</name>
+               <direction>out</direction>
+               <relatedStateVariable>X_DLNA_AbsoluteBytePosition</relatedStateVariable>
+            </argument>
+         </argumentList>
+      </action>
    </actionList>
 
    <serviceStateTable>
@@ -650,6 +676,9 @@
             <allowedValue>ABS_TIME</allowedValue>
             <allowedValue>REL_TIME</allowedValue>
             <allowedValue>TRACK_NR</allowedValue>
+            <allowedValue>ABS_COUNT</allowedValue>
+            <allowedValue>REL_COUNT</allowedValue>
+            <allowedValue>X_DLNA_REL_BYTE</allowedValue>
          </allowedValueList>
       </stateVariable>
 
@@ -661,6 +690,21 @@
       <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_InstanceID</name>
          <dataType>ui4</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>X_DLNA_RelativeBytePosition</name>
+         <dataType>string</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>X_DLNA_AbsoluteBytePosition</name>
+         <dataType>string</dataType>
+      </stateVariable>
+
+      <stateVariable sendEvents="no">
+         <name>X_DLNA_CurrentTrackSize</name>
+         <dataType>string</dataType>
       </stateVariable>
    </serviceStateTable>
 </scpd>

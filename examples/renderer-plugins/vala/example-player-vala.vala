@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 Intel Corporation
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * This file is part of Rygel.
  *
@@ -140,6 +141,7 @@ public class Rygel.Example.PlayerVala : GLib.Object, Rygel.MediaPlayer {
     }
 
     public bool can_seek { get { return false; } }
+    public bool can_seek_bytes { get { return false; } }
 
     private string _content_features = "";
     public string? content_features {
@@ -171,6 +173,12 @@ public class Rygel.Example.PlayerVala : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    public int64 size {
+        get {
+            return 0;
+        }
+    }
+
     private int64 _position = 0;
     public int64 position {
         get {
@@ -178,7 +186,17 @@ public class Rygel.Example.PlayerVala : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    public int64 byte_position {
+        get {
+            return 0;
+        }
+    }
+
     public bool seek (int64 time) {
+        return false;
+    }
+
+    public bool seek_bytes (int64 bytes) {
         return false;
     }
 
