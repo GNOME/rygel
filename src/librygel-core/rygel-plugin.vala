@@ -49,9 +49,12 @@ public enum Rygel.PluginCapabilities {
     TRACK_CHANGES,
 
     /// Server supports container creation
-    CREATE_CONTAINERS
+    CREATE_CONTAINERS,
 
     /* Renderer caps */
+
+    /* Diagnostics (DIAGE) support */
+    DIAGNOSTICS,
 }
 
 /**
@@ -146,6 +149,21 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
         }
 
         this.resource_infos = new ArrayList<ResourceInfo> ();
+
+        /* Enable BasicManagement service on this device if needed */
+        var config = MetaConfig.get_default ();
+        try {
+            if (config.get_bool (this.name, "diagnostics")) {
+                var resource = new ResourceInfo (BasicManagement.UPNP_ID,
+                                                 BasicManagement.UPNP_TYPE,
+                                                 BasicManagement.DESCRIPTION_PATH,
+                                                 typeof (BasicManagement));
+                this.add_resource (resource);
+
+                this.capabilities |= PluginCapabilities.DIAGNOSTICS;
+            }
+        } catch (GLib.Error error) {}
+
         this.icon_infos = new ArrayList<IconInfo> ();
         this.default_icons = new ArrayList<IconInfo> ();
 

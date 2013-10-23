@@ -274,6 +274,16 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           </para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <option>diagnostics</option>
+        </term>
+        <listitem>
+          <para>
+            Set to <userinput>true</userinput> if you would like the UPnP device to contain a BasicManagement:2 service that allows running tools like ping, nslookup and traceroute remotely.
+          </para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsect1>
   <refsect1>

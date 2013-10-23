@@ -1,0 +1,24 @@
+UPnP BasicManagement / DLNA +DIAGE+
+===================================
+
+Rygel includes an optional BasicManagement:2[1] service implementation.
+The implementation allows running diagnostic tools (Ping, NSLookup and
+Traceroute) and querying their results remotely. Typically this service
+would be running on a mediarenderer or mediaserver device that wants to
+be compliant with the DLNA Diagnostics Guidelines[2].
+
+The BasicManagement service is not started by default. To enable it for
+a plugin add "diagnostics=true" in the configuration section for that
+plugin in rygel.conf:
+  [Playbin]
+  diagnostics=true
+
+The service implementation is portable in the sense of compiling on any
+Posix platform but it does use system tools (ping, nslookup, traceroute)
+and parses their output. It has only been tested with standard linux
+implementations but is likely to not produce good results on other OSes,
+even busybox may require additional work.
+
+[1] http://upnp.org/specs/dm/UPnP-dm-BasicManagement-v2-Service.pdf
+[2] https://members.dlna.org/apps/org/workgroup/mcac/download.php/28678/latest
+    (unfortunately only available to DLNA members)

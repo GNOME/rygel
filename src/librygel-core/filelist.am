@@ -1,5 +1,10 @@
 LIBRYGEL_CORE_VAPI_SOURCE_FILES = \
 	rygel-connection-manager.vala \
+	rygel-basic-management.vala \
+	rygel-basic-management-test.vala \
+	rygel-basic-management-test-ping.vala \
+	rygel-basic-management-test-nslookup.vala \
+	rygel-basic-management-test-traceroute.vala \
 	rygel-description-file.vala \
 	rygel-root-device.vala \
 	rygel-root-device-factory.vala \
