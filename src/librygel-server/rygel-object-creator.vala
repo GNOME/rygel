@@ -409,7 +409,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
 
         if (!(media_object is WritableContainer)) {
             throw new ContentDirectoryError.RESTRICTED_PARENT
-                                        (_(" %%% Object creation in %s not allowed"),
+                                        (_("Object creation in %s not allowed"),
                                          media_object.id);
         }
 
