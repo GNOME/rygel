@@ -119,6 +119,22 @@ internal class Rygel.HTTPItemURI : Object {
         }
     }
 
+    // Base 64 Encoding with URL and Filename Safe Alphabet
+    // http://tools.ietf.org/html/rfc4648#section-5
+    private string base64_urlencode (string data) {
+        var enc64 = Base64.encode ((uchar[]) data.to_utf8 ());
+        enc64 = enc64.replace ("/", "_");
+
+        return enc64.replace ("+", "-");
+    }
+
+    private uchar[] base64_urldecode (string data) {
+       var dec64 = data.replace ("_", "/");
+       dec64 = dec64.replace ("-", "+");
+
+       return Base64.decode (dec64);
+    }
+
     public HTTPItemURI.from_string (string     uri,
                                     HTTPServer http_server)
                                     throws HTTPRequestError {
@@ -148,7 +164,8 @@ internal class Rygel.HTTPItemURI : Object {
         for (int i = 1; i < parts.length - 1; i += 2) {
             switch (parts[i]) {
                 case "i":
-                    var data = Base64.decode (Soup.URI.decode (parts[i + 1]));
+                    var data = this.base64_urldecode
+                                        (Soup.URI.decode (parts[i + 1]));
                     StringBuilder builder = new StringBuilder ();
                     builder.append ((string) data);
                     this.item_id = builder.str;
@@ -184,10 +201,9 @@ internal class Rygel.HTTPItemURI : Object {
         // there seems to be a problem converting strings properly to arrays
         // you need to call to_utf8() and assign it to a variable to make it
         // work properly
-        var data = this.item_id.to_utf8 ();
-        var escaped = Uri.escape_string (Base64.encode ((uchar[]) data),
-                                         "",
-                                         true);
+
+        var data = this.base64_urlencode (this.item_id);
+        var escaped = Uri.escape_string (data, "", true);
         string path = "/i/" + escaped;
 
         if (this.transcode_target != null) {
