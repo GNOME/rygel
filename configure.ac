@@ -31,7 +31,7 @@ AC_SYS_LARGEFILE
 
 dnl Required versions of library packages
 dnl Not all of these are actually used, depending on the configure options.
-GLIB_REQUIRED=2.31.13
+GLIB_REQUIRED=2.34.0
 LIBXML_REQUIRED=2.7
 VALA_REQUIRED=0.22.0
 VALADOC_REQUIRED=0.2
