@@ -5,22 +5,22 @@
 # Christian Kirbach <Christian.Kirbach@googlemail.com>, 2010, 2012.
 # Wolfgang Stöggl <c72578@yahoo.de>, 2013.
 # Benjamin Steinwender <b@stbe.at>, 2013.
+# Tobias Endrigkeit <tobiasendrigkeit@outlook.com>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-03 20:16+0000\n"
-"PO-Revision-Date: 2013-10-04 08:56+0100\n"
-"Last-Translator: Wolfgang Stoeggl <c72578@yahoo.de>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-27 02:00+0200\n"
+"PO-Revision-Date: 2013-10-27 02:01+0100\n"
+"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -52,10 +52,30 @@ msgid "_Share media through DLNA"
 msgstr "Medien über DLNA _freigeben"
 
 #: ../data/rygel-preferences.ui.h:8
+msgid "Add a network interface Rygel should serve files on"
+msgstr ""
+"Eine Netzwerkschnittstelle hinzufügen, auf der Rygel Dateien bereitstellen "
+"soll"
+
+#: ../data/rygel-preferences.ui.h:9
+msgid "Add network interface"
+msgstr "Eine Netzwerkschnittstelle hinzufügen"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid "Remove a network interface Rygel should no longer serve files on"
+msgstr ""
+"Eine Netzwerkschnittstelle entfernen, auf der Rygel Dateien nicht mehr "
+"bereitstellen soll"
+
+#: ../data/rygel-preferences.ui.h:11
+msgid "Remove network interface"
+msgstr "Eine Netzwerkschnittstelle entfernen"
+
+#: ../data/rygel-preferences.ui.h:12
 msgid "Networks:"
 msgstr "Netzwerke:"
 
-#: ../data/rygel-preferences.ui.h:9
+#: ../data/rygel-preferences.ui.h:13
 msgid "Select folders"
 msgstr "Ordner wählen"
 
@@ -78,10 +98,8 @@ msgstr "Medien-Server;Freigabe;Audio;Video;Bilder;Fotos;"
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
-msgstr ""
-"Modul »%s« konnte keine Verbindung zum D-Bus Sitzungsbus herstellen. Wird "
-"ignoriert …"
+msgid "Module '%s' could not connect to D-Bus session bus. "
+msgstr "Modul »%s« konnte keine Verbindung zum D-Bus Sitzungsbus herstellen."
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -156,7 +174,7 @@ msgstr "Hinzufügen des Objekts mit Kennung %s ist fehlgeschlagen: %s"
 msgid "Cannot create references to containers"
 msgstr "Referenzen zu den Containern konnten nicht erstellt werden"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -212,15 +230,11 @@ msgstr "Dateiänderungen werden nicht überwacht"
 msgid "Failed to get file info for %s"
 msgstr "Dateiinformation für %s konnte nicht erhalten werden"
 
-#. Titles and definitions of some virtual folders,
-#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Jahr"
 
-#. Titles and definitions of virtual folders for Music,
-#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Künstler"
@@ -361,7 +375,7 @@ msgstr "Nicht implementiert"
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:129
+#: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:270
 #: ../src/librygel-server/rygel-content-directory.vala:298
 #: ../src/librygel-server/rygel-content-directory.vala:317
@@ -485,14 +499,14 @@ msgid "Could not load plugin: %s"
 msgstr "Plugin konnte nicht geladen werden: %s"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:135
+#: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Ungültige InstanceID"
 
 #. FIXME: Return a more sensible error here.
 #: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:695
-#: ../src/librygel-renderer/rygel-av-transport.vala:705
+#: ../src/librygel-renderer/rygel-av-transport.vala:713
+#: ../src/librygel-renderer/rygel-av-transport.vala:723
 msgid "Resource not found"
 msgstr "Ressource nicht gefunden"
 
@@ -500,36 +514,37 @@ msgstr "Ressource nicht gefunden"
 msgid "Illegal MIME-type"
 msgstr "Ungültiger MIME-Typ"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:553
+#: ../src/librygel-renderer/rygel-av-transport.vala:557
 msgid "Play speed not supported"
 msgstr "Wiedergabegeschwindigkeit wird nicht unterstützt"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:570
+#: ../src/librygel-renderer/rygel-av-transport.vala:574
 msgid "Transition not available"
 msgstr "Übergang nicht verfügbar"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:599
-#: ../src/librygel-renderer/rygel-av-transport.vala:623
-msgid "Seek mode not supported"
-msgstr "Suchmodus wird nicht unterstützt"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:612
-#: ../src/librygel-renderer/rygel-av-transport.vala:633
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
+#: ../src/librygel-renderer/rygel-av-transport.vala:617
+#: ../src/librygel-renderer/rygel-av-transport.vala:630
+#: ../src/librygel-renderer/rygel-av-transport.vala:651
+#: ../src/librygel-renderer/rygel-av-transport.vala:659
 msgid "Illegal seek target"
 msgstr "Ungültige Suchposition"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:166
+#: ../src/librygel-renderer/rygel-av-transport.vala:641
+msgid "Seek mode not supported"
+msgstr "Suchmodus wird nicht unterstützt"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
 msgstr "Ungültiger Name"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:180
+#: ../src/librygel-renderer/rygel-rendering-control.vala:182
 msgid "Invalid Channel"
 msgstr "Ungültiger Kanal"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:216
-#: ../src/librygel-renderer/rygel-rendering-control.vala:258
-#: ../src/librygel-renderer/rygel-rendering-control.vala:267
+#: ../src/librygel-renderer/rygel-rendering-control.vala:218
+#: ../src/librygel-renderer/rygel-rendering-control.vala:260
+#: ../src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Vorgang ist fehlgeschlagen"
 
@@ -637,7 +652,6 @@ msgstr "Originaladresse für »%s« konnte nicht erhalten werden: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Ungültige Adresse »%s« zum Importieren von Inhalten"
 
-#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "»ContainerID« fehlt"
@@ -670,7 +684,6 @@ msgstr "Entfernung des Objekts %s ist nicht erlaubt"
 msgid "Object removal from %s not allowed"
 msgstr "Entfernung eines Objekts aus %s ist nicht erlaubt"
 
-#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Objekt-ID fehlt"
@@ -752,7 +765,6 @@ msgstr ""
 msgid "Invalid number of arguments"
 msgstr "Ungültige Anzahl Argument"
 
-#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "Argument »ObjectID« fehlt"
@@ -782,7 +794,6 @@ msgstr "Argument »Elements« fehlt."
 msgid "Comments not allowed in XML"
 msgstr "Kommentare sind in XML nicht zulässig"
 
-#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "Argument »ContainerID« fehlt"
@@ -898,8 +909,6 @@ msgstr "Kein Vorschauprogramm verfügbar: %s"
 msgid "Thumbnailing not supported"
 msgstr "Vorschaubilder werden nicht unterstützt"
 
-#. Thumbnailing failed previously, so there's no current thumbnail
-#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -925,7 +934,6 @@ msgstr "GstElement für Adresse %s konnte nicht angelegt werden"
 msgid "Failed to create pipeline"
 msgstr "Weiterleitung konnte nicht erstellt werden"
 
-#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
