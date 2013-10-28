@@ -176,7 +176,7 @@ internal class Rygel.HTTPItemURI : Object {
         }
 
         if (this.item_id == null) {
-            throw new HTTPRequestError.NOT_FOUND (_("Not Found"));
+            throw new HTTPRequestError.NOT_FOUND (_("Not found"));
         }
     }
 
