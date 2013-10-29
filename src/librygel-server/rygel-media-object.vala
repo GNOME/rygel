@@ -186,9 +186,9 @@ public abstract class Rygel.MediaObject : GLib.Object {
         return writables;
     }
 
-    internal abstract DIDLLiteObject? serialize (Serializer serializer,
-                                                 HTTPServer http_server)
-                                                 throws Error;
+    public abstract DIDLLiteObject? serialize (Serializer serializer,
+                                               HTTPServer http_server)
+                                               throws Error;
 
     internal virtual void apply_didl_lite (DIDLLiteObject didl_object) {
         this.title = didl_object.title;

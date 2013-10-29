@@ -22,7 +22,7 @@
 
 using GUPnP;
 
-internal enum SerializerType {
+public enum SerializerType {
     /// Normal serialization of container/item using DIDL-Lite
     GENERIC_DIDL,
 
@@ -37,7 +37,7 @@ internal enum SerializerType {
  * Proxy class hiding the different serializers (DIDL, DIDL_S, M3U) behind a
  * single implementation.
  */
-internal class Rygel.Serializer : Object {
+public class Rygel.Serializer : Object {
     private DIDLLiteWriter writer;
     private MediaCollection collection;
     private M3UPlayList playlist;

@@ -26,7 +26,7 @@
 using GUPnP;
 using Gee;
 
-internal class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
+public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     public string path_root { get; private set; }
 
     // Reference to root container of associated ContentDirectory
