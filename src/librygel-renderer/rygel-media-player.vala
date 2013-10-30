@@ -104,4 +104,23 @@ public interface Rygel.MediaPlayer : GLib.Object {
     /// Return the MIME types supported by this renderer.
     /// The mime types in this list should be all lowercase.
     public abstract string[] get_mime_types ();
+
+    /**
+     * Transform a fractional playspeed (e.g. "-1/4") to double.
+     * Input values are expected to be valid rational numbers.
+     */
+    protected double play_speed_to_double (string speed)
+    {
+         string[] rational = speed.split ("/", 2);
+
+         assert (rational[0] != "0");
+
+         if (rational[1] == null) {
+             return double.parse (rational[0]);
+         }
+
+         assert (rational[1] != "0");
+
+         return double.parse (rational[0]) / double.parse (rational[1]);
+    }
 }
