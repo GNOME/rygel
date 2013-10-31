@@ -33,15 +33,15 @@ DEFAULT_ARGS="--enable-vala --enable-valadoc --enable-maintainer-mode  --enable-
 
 mkdir -p m4
 
-if [ $1 = "devel" ]; then
+if [ "x$1" = "xdevel" ]; then
     DEFAULT_ARGS="$DEFAULT_ARGS --enable-uninstalled --enable-debug --disable-apidocs"
     shift
-elif [$1 = "release" ]; then
+elif [ "x$1" = "xrelease" ]; then
     DEFAULT_ARGS="$DEFAULT_ARGS --enable-apidocs --disable-debug"
     shift
 fi
 
-# require automak 1.11 for vala support
+# require automake 1.11 for vala support
 REQUIRED_AUTOMAKE_VERSION=1.11 \
 REQUIRED_AUTOCONF_VERSION=2.64 \
 REQUIRED_LIBTOOL_VERSION=2.2.6 \
