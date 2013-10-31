@@ -8,9 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-20 15:17+0000\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-10-31 13:48+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
@@ -18,8 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.4\n"
 
@@ -54,7 +52,7 @@ msgstr "Souporaba preko _DLNA"
 
 #: ../data/rygel-preferences.ui.h:8
 msgid "Add a network interface Rygel should serve files on"
-msgstr ""
+msgstr "Dodaj omrežni vmesnik, na katerem naj program Rygel hrani datoteke."
 
 #: ../data/rygel-preferences.ui.h:9
 msgid "Add network interface"
@@ -62,7 +60,7 @@ msgstr "Dodaj omrežni vmesnik"
 
 #: ../data/rygel-preferences.ui.h:10
 msgid "Remove a network interface Rygel should no longer serve files on"
-msgstr ""
+msgstr "Odstrani omrežni vmesnik, na katerem je program Rygel hranil datoteke."
 
 #: ../data/rygel-preferences.ui.h:11
 msgid "Remove network interface"
@@ -594,18 +592,15 @@ msgid "Invalid Request"
 msgstr "Neveljavna zahteva"
 
 #: ../src/librygel-server/rygel-http-identity-handler.vala:106
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 #: ../src/librygel-server/rygel-http-transcode-handler.vala:58
 msgid "Not found"
 msgstr "Ni najden"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Neveljaven naslov URI '%s'"
-
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
-msgid "Not Found"
-msgstr "Ni najden"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:50
 msgid "Seeking not supported"
@@ -838,9 +833,6 @@ msgid "UPnP class '%s' not supported"
 msgstr "Razred UPnP '%s' ni podprt."
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
-msgid " %%% Object creation in %s not allowed"
-msgstr "%%% Ustvarjanje predmeta v %s ni dovoljeno"
-
 #: ../src/librygel-server/rygel-object-creator.vala:424
 #: ../src/librygel-server/rygel-object-creator.vala:710
 #: ../src/librygel-server/rygel-reference-creator.vala:116
@@ -1137,6 +1129,12 @@ msgstr "Začenjanje storitve Rygel je spodletelo: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Zaustavljanje storitve Rygel je spodletelo: %s"
+
+#~ msgid "Not Found"
+#~ msgstr "Ni najden"
+
+#~ msgid " %%% Object creation in %s not allowed"
+#~ msgstr "%%% Ustvarjanje predmeta v %s ni dovoljeno"
 
 #~ msgid ""
 #~ "Select the network interface that DLNA media will be shared on, or share "
