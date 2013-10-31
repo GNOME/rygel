@@ -1,3 +1,128 @@
+0.21.0
+======
+
+A new unstable release of Rygel.
+
+Changes compared to 0.19.7:
+
+- Port to new libsoup vapi.
+- Several i18n fixes.
+- Make missing gtk-doc non fatal and just don't build api docs then unless
+  explicitly requested.
+- Rename --enable-valadoc to --enable-apidocs.
+- Several style fixes.
+- Add "devel" and "release" shortcuts to autogen.
+- Drop strict vala compiler because of deprecations.
+
+Core:
+ - Get MediaDevice port from MetaConfig.
+
+Server:
+ - Generate proper contentFeatures.dlna.org header for DIDL_S resources.
+ - Use xmlNs instead of specifying the namespace in string form in Samsung
+   subtitle support.
+ - Make MediaObject.serialize public to enable custom XML modifications.
+ - Use URL-aware base64 encoding to prevent issues with "/".
+
+Renderer:
+ - Fix REL_TIME seeking.
+ - Fix error codes when seeking beyond the file.
+ - Fix error codes when time-seek is not available.
+ - Add PossiblePlaybackStorageMedia values.
+ - Set track info for empty or non-http uris.
+ - Fix AbsoluteCounterPosition type.
+ - Listen to MediaPlayer.volume changes.
+ - Don't loop on image-only playlists.
+ - Lower LastChange accumulation timeout.
+
+GStreamer renderer:
+ - Handle seeking beyond end of file.
+ - Remove invalid DLNA profile MPEG_TS_HD_EU_ISO.
+ - Fix GStreamer dependency to use 1.0 instead of 0.10.
+
+MediaExport:
+ - Fix GstDiscoverer error handling.
+
+MPRIS:
+ - Fix seeking.
+ - Query seeking ability from DBus.
+ - Ignore read-only MPRIS peers.
+
+Simple media engine:
+ - Support files > 4GB on 32bit systems.
+
+Examples:
+ - Simplify C renderer example a bit.
+ - Simulate image rendering in vala renderer example.
+
+Changes in dependencies:
+ GLib >= 2.34 due to g_file_delete_async
+ Vala >= 0.22 for new libsoup-2.4 vapi
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=677405
+ - https://bugzilla.gnome.org/show_bug.cgi?id=686628
+ - https://bugzilla.gnome.org/show_bug.cgi?id=692509
+ - https://bugzilla.gnome.org/show_bug.cgi?id=704317
+ - https://bugzilla.gnome.org/show_bug.cgi?id=707054
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709077
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709170
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709190
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709287
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709551
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709627
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709723
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709887
+ - https://bugzilla.gnome.org/show_bug.cgi?id=710377
+ - https://bugzilla.gnome.org/show_bug.cgi?id=710781
+ - https://bugzilla.gnome.org/show_bug.cgi?id=710877
+ - https://bugzilla.gnome.org/show_bug.cgi?id=710999
+
+All contributors to this release:
+ - Jens Georg <jensg@openismus.com>
+ - Inaki Larranaga Murgoitio <dooteo@zundan.com>
+ - Yuri Myasoedov <ymyasoedov@yandex.ru>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Marek Černocký <marek@manet.cz>
+ - Jean-Baptiste Dubois <jean-baptiste.dubois@parrot.com>
+ - Balázs Úr <urbalazs@src.gnome.org>
+ - victory <victory.deb@gmail.com>
+ - Tobias Endrigkeit <tobiasendrigkeit@outlook.com>
+ - Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+ - Richard Röjfors <richard.rojfors@gmail.com>
+ - Milo Casagrande <milo@ubuntu.com>
+ - Milan Plzik <milan.plzik@gmail.com>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Josep Sànchez <papapep@gmx.com>
+ - Gil Forcada <gforcada@gnome.org>
+ - Gabor Kelemen <kelemeng@gnome.hu>
+ - Fionn Cleary <fcleary@netsoc.tcd.ie>
+ - Enrico Nicoletto <liverig@gmail.com>
+ - Dimitis Spingos <dmtrs32@gmail.com>
+ - Claudio Arseni <claudio.arseni@ubuntu.com>
+ - Carles Ferrando <carles.ferrando@gmail.com>
+ - Benjamin Steinwender <b@stbe.at>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Andika Triwidada <andika@gmail.com>
+
+Added/updated translations
+ - ca, courtesy of Josep Sànchez Mesegué
+ - ca@valencia, courtesy of Josep Sànchez Mesegué
+ - cs, courtesy of Marek Černocký
+ - de, courtesy of Tobias Endrigkeit
+ - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+ - eu, courtesy of Iñaki Larrañaga Murgoitio
+ - hu, courtesy of Balázs Úr
+ - id, courtesy of Andika Triwidada
+ - it, courtesy of Claudio Arseni
+ - ja, courtesy of Jiro Matsuzawa
+ - lt, courtesy of Aurimas Černius
+ - lv, courtesy of Rūdolfs Mazurs
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Enrico Nicoletto
+ - ru, courtesy of Yuri Myasoedov
+ - sl, courtesy of Matej Urbančič
+
 0.19.7
 ======
 
