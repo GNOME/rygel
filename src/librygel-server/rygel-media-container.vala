@@ -267,9 +267,9 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                 sub_tree_update);
     }
 
-    internal override DIDLLiteObject? serialize (Serializer serializer,
-                                                 HTTPServer http_server)
-                                                 throws Error {
+    public override DIDLLiteObject? serialize (Serializer serializer,
+                                               HTTPServer http_server)
+                                               throws Error {
         var didl_container = serializer.add_container ();
         if (didl_container == null) {
             return null;
