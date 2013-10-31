@@ -49,7 +49,7 @@ RYGEL_COMMON_LIBRYGEL_CORE_LIBS = \
 
 
 RYGEL_COMMON_LIBRYGEL_RENDERER_VALAFLAGS = \
-	--vapidir=$(top_builddir)/src/librygel-renderer \
+	--vapidir=$(top_srcdir)/src/librygel-renderer \
 	--pkg rygel-renderer-2.0 \
 	$(RYGEL_COMMON_LIBRYGEL_CORE_VALAFLAGS)
 
@@ -64,7 +64,7 @@ RYGEL_COMMON_LIBRYGEL_RENDERER_LIBS = \
 
 
 RYGEL_COMMON_LIBRYGEL_RENDERER_GST_VALAFLAGS = \
-	--vapidir=$(top_builddir)/src/librygel-renderer-gst \
+	--vapidir=$(top_srcdir)/src/librygel-renderer-gst \
 	--pkg rygel-renderer-gst-2.0 \
 	$(RYGEL_COMMON_LIBRYGEL_RENDERER_VALAFLAGS)
 
