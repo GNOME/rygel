@@ -28,7 +28,7 @@ AC_DEFUN([_VALA_CHECK_COMPILE_WITH_ARGS],
 void main(){}
 _ACEOF
 
-  AS_IF([vala_error=`$VALAC $1 -q -o conftest$ac_exeext conftest.vala 2>&1`],
+  AS_IF([vala_error=`$VALAC $1 -C -q -o conftest$ac_exeext conftest.vala 2>&1`],
         [$2], [$3])
 ])
 
