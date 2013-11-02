@@ -25,9 +25,6 @@
   * rygel copies config file to user's home dir if not already there.
     * Copy code from UI.
 
-  * Transcoding:
-    * Use h264 instead of mpeg2 video?
-
   * UI:
     * Kill preferences UI
       * Move UI components to gnome-user-share (bastien will do this, really?)
