@@ -29,7 +29,7 @@ which gnome-autogen.sh || {
     exit 1
 }
 
-DEFAULT_ARGS="--enable-vala --enable-valadoc --enable-maintainer-mode  --enable-debug  --enable-example-plugins --enable-mediathek-plugin --enable-gst-launch-plugin"
+DEFAULT_ARGS="--enable-vala --enable-valadoc --enable-maintainer-mode  --enable-debug  --enable-example-plugins --enable-mediathek-plugin --enable-gst-launch-plugin --enable-strict-valac"
 
 mkdir -p m4
 
