@@ -25,7 +25,7 @@ using Soup;
 
 public class Rygel.Mediathek.RootContainer : Rygel.TrackableContainer,
                                              Rygel.SimpleContainer {
-    private SessionAsync session;
+    private Session session;
     private static RootContainer instance;
     private static int DEFAULT_UPDATE_INTERVAL = 1800;
 
@@ -38,13 +38,13 @@ public class Rygel.Mediathek.RootContainer : Rygel.TrackableContainer,
         return instance;
     }
 
-    public static SessionAsync get_default_session () {
+    public static Session get_default_session () {
         return get_instance ().session;
     }
 
     private RootContainer () {
         base.root ("ZDF Mediathek");
-        this.session = new Soup.SessionAsync ();
+        this.session = new Soup.Session ();
     }
 
     private async void init () {

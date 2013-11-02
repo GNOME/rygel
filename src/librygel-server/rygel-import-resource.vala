@@ -89,7 +89,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         this.bytes_total = 0;
 
         this.status = TransferStatus.IN_PROGRESS;
-        this.session = new SessionAsync ();
+        this.session = new Session ();
 
         content_dir.cancellable.cancelled.connect (() => {
             this.cancellable.cancel ();

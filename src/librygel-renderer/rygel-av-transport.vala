@@ -152,12 +152,11 @@ internal class Rygel.AVTransport : Service {
                 !proxy.has_prefix ("https://")) {
                 proxy = "http://" + proxy;
             }
-            this.session = new SessionAsync.with_options (Soup.SESSION_PROXY_URI,
-                                                          new Soup.URI (proxy));
+            this.session = new Session.with_options (Soup.SESSION_PROXY_URI,
+                                                     new Soup.URI (proxy));
         } else {
-            this.session = new SessionAsync ();
+            this.session = new Session ();
         }
-        this.session.add_feature_by_type (typeof (Soup.ProxyResolverDefault));
         this.protocol_info = plugin.get_protocol_info ();
     }
 
