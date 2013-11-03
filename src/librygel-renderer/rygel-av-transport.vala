@@ -261,67 +261,9 @@ internal class Rygel.AVTransport : Service {
             message.request_headers.append ("getContentFeatures.dlna.org",
                                             "1");
             message.finished.connect ((msg) => {
-                if ((msg.status_code == Status.MALFORMED ||
-                     msg.status_code == Status.BAD_REQUEST ||
-                     msg.status_code == Status.METHOD_NOT_ALLOWED ||
-                     msg.status_code == Status.NOT_IMPLEMENTED) &&
-                    msg.method == "HEAD") {
-                    debug ("Peer does not support HEAD, trying GET");
-                    msg.method = "GET";
-                    msg.got_headers.connect ((msg) => {
-                        this.session.cancel_message (msg, msg.status_code);
-                    });
-
-                    this.session.queue_message (msg, null);
-
-                    return;
-                }
-
-                if (msg.status_code != Status.OK) {
-                    warning ("Failed to access %s: %s",
-                             _uri,
-                             msg.reason_phrase);
-
-                    action.return_error (716, _("Resource not found"));
-
-                    return;
-                } else {
-                    var mime = msg.response_headers.get_one ("Content-Type");
-                    var features = msg.response_headers.get_one
-                                        ("contentFeatures.dlna.org");
-
-                    if (!this.is_valid_mime_type (mime) &&
-                        !this.is_playlist (mime, features)) {
-                        action.return_error (714, _("Illegal MIME-type"));
-
-                        return;
-                    }
-
-                    this.controller.metadata = _metadata;
-                    this.controller.uri = _uri;
-
-                    if (this.is_playlist (mime, features)) {
-                        // Delay returning the action until we got some
-                        this.handle_playlist.begin (action);
-                    } else {
-                        // some other track
-                        this.player.mime_type = mime;
-                        if (features != null) {
-                            this.player.content_features = features;
-                        } else {
-                            this.player.content_features = "*";
-                        }
-
-                        // Track == Media
-                        this.track_metadata = _metadata;
-                        this.track_uri = _uri;
-                        this.controller.n_tracks = 1;
-                        this.controller.track = 1;
-
-                        action.return ();
-                    }
-                }
+                this.check_resource (msg, _uri, _metadata, action);
             });
+
             this.session.queue_message (message, null);
         } else {
             this.controller.metadata = _metadata;
@@ -811,5 +753,81 @@ internal class Rygel.AVTransport : Service {
     private bool is_playlist (string? mime, string? features) {
         return mime == "text/xml" && features != null &&
                features.has_prefix ("DLNA.ORG_PN=DIDL_S");
+    }
+
+    private void check_resource (Soup.Message msg,
+                                 string       _uri,
+                                 string       _metadata,
+                                 ServiceAction action) {
+        // Error codes gotten by experience from several web services or web
+        // radio stations that don't support HEAD but return a variety of
+        // errors.
+        if ((msg.status_code == Status.MALFORMED ||
+             msg.status_code == Status.BAD_REQUEST ||
+             msg.status_code == Status.METHOD_NOT_ALLOWED ||
+             msg.status_code == Status.NOT_IMPLEMENTED) &&
+            msg.method == "HEAD") {
+            debug ("Peer does not support HEAD, trying GET");
+            msg.method = "GET";
+
+            // Fake HEAD request by cancelling the message after the headers
+            // were received, then restart the message
+            msg.got_headers.connect ((msg) => {
+                this.session.cancel_message (msg, msg.status_code);
+            });
+
+            this.session.queue_message (msg, null);
+
+            return;
+        }
+
+        if (msg.status_code != Status.OK) {
+            // TRANSLATORS: first %s is a URI, the second an explanaition of
+            // the error
+            warning (_("Failed to access resource at %s: %s"),
+                     _uri,
+                     msg.reason_phrase);
+
+            action.return_error (716, _("Resource not found"));
+
+            return;
+        }
+
+        var mime = msg.response_headers.get_one ("Content-Type");
+        var features = msg.response_headers.get_one
+                            ("contentFeatures.dlna.org");
+
+        if (!this.is_valid_mime_type (mime) &&
+            !this.is_playlist (mime, features)) {
+            action.return_error (714, _("Illegal MIME-type"));
+
+            return;
+        }
+
+        this.controller.metadata = _metadata;
+        this.controller.uri = _uri;
+
+        if (this.is_playlist (mime, features)) {
+            // Delay returning the action until we got some
+            this.handle_playlist.begin (action);
+
+            return;
+        }
+
+        // some other track
+        this.player.mime_type = mime;
+        if (features != null) {
+            this.player.content_features = features;
+        } else {
+            this.player.content_features = "*";
+        }
+
+        // Track == Media
+        this.track_metadata = _metadata;
+        this.track_uri = _uri;
+        this.controller.n_tracks = 1;
+        this.controller.track = 1;
+
+        action.return ();
     }
 }
