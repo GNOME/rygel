@@ -25,7 +25,7 @@
 
 internal abstract class Rygel.TimeUtils {
     public static int64 time_from_string (string str) {
-        uint64 hours, minutes, seconds;
+        uint64 hours, minutes, seconds, msecs;
         string time_str = str;
         int sign = 1;
 
@@ -43,17 +43,18 @@ internal abstract class Rygel.TimeUtils {
                 break;
         }
 
-        time_str.scanf ("%llu:%2llu:%2llu%*s",
+        time_str.scanf ("%llu:%2llu:%2llu.%3llu",
                         out hours,
                         out minutes,
-                        out seconds);
+                        out seconds,
+                        out msecs);
 
-        return sign * (int64)(hours * 3600 + minutes * 60 + seconds) *
-               TimeSpan.SECOND;
+        return sign * ((int64)(hours * 3600 + minutes * 60 + seconds) *
+               TimeSpan.SECOND + (int64)msecs * TimeSpan.MILLISECOND);
     }
 
     public static string time_to_string (int64 time) {
-        uint64 hours, minutes, seconds;
+        uint64 hours, minutes, seconds, totsecs, msecs;
         string sign = "";
 
         if (time < 0) {
@@ -66,6 +67,10 @@ internal abstract class Rygel.TimeUtils {
         minutes = seconds / 60;
         seconds = seconds % 60;
 
-        return "%s%llu:%.2llu:%.2llu".printf (sign, hours, minutes, seconds);
+        totsecs = (hours * 3600 + minutes * 60 + seconds) * TimeSpan.SECOND;
+        msecs = (time - totsecs) / TimeSpan.MILLISECOND;
+
+        return "%s%llu:%.2llu:%.2llu.%.3llu".printf (sign, hours, minutes,
+                                                     seconds, msecs);
     }
 }
