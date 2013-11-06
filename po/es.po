@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-24 19:16+0000\n"
-"PO-Revision-Date: 2013-10-31 14:28+0100\n"
+"POT-Creation-Date: 2013-11-02 19:12+0000\n"
+"PO-Revision-Date: 2013-11-06 17:48+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -54,7 +54,6 @@ msgid "Add a network interface Rygel should serve files on"
 msgstr "Añadir una interfaz de red en la que Rygel debe servir archivos"
 
 #: ../data/rygel-preferences.ui.h:9
-#| msgid "Network Interfaces"
 msgid "Add network interface"
 msgstr "Añadir interfaz de red"
 
@@ -64,7 +63,6 @@ msgstr ""
 "Quitar una interfaz de red para que Rygel no vuelva a servir archivos en ella"
 
 #: ../data/rygel-preferences.ui.h:11
-#| msgid "Network Interfaces"
 msgid "Remove network interface"
 msgstr "Quitar interfaz de red"
 
@@ -95,7 +93,6 @@ msgstr "servidor;medios;renderizado;compartir;sonido;vídeo;imágenes;fotos;"
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-#| msgid "Module '%s' could not connect to D-Bus session bus. "
 msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
 msgstr ""
 "El módulo «%s» no se pudo conectar a una sesión del bus de D-Bus. Ignorando…"
@@ -374,6 +371,53 @@ msgstr "Títulos"
 msgid "Not implemented"
 msgstr "No implementado"
 
+#: ../src/librygel-core/rygel-basic-management-test.vala:197
+#, c-format
+#| msgid "Failed to extract metadata from %s: %s"
+msgid "Failed to read standard output from %s: %s"
+msgstr "Falló al leer de la salida estándar de %s: %s"
+
+#: ../src/librygel-core/rygel-basic-management-test.vala:225
+#, c-format
+#| msgid "Failed to read contents from URI: %s: %s"
+msgid "Failed to read error output from %s: %s"
+msgstr "Falló al leer el error de salida de %s: %s"
+
+#. / No test with the specified TestID was found
+#: ../src/librygel-core/rygel-basic-management.vala:159
+#| msgid "No such object"
+msgid "No Such Test"
+msgstr "No existe la prueba"
+
+#. / TestID is valid but refers to the wrong test type
+#: ../src/librygel-core/rygel-basic-management.vala:167
+msgid "Wrong Test Type"
+msgstr "Tipo de prueba incorrecto"
+
+#. / TestID is valid but the test Results are not available
+#: ../src/librygel-core/rygel-basic-management.vala:175
+#, c-format
+#| msgid "Invalid Range '%s'"
+msgid "Invalid Test State '%s'"
+msgstr "Estado de la prueba «%s» no válido"
+
+#. / TestID is valid but the test can't be canceled
+#: ../src/librygel-core/rygel-basic-management.vala:181
+#, c-format
+msgid "State '%s' Precludes Cancel"
+msgstr "El estado «%s» impide la cancelación"
+
+#: ../src/librygel-core/rygel-basic-management.vala:214
+#: ../src/librygel-core/rygel-basic-management.vala:229
+#: ../src/librygel-core/rygel-basic-management.vala:265
+#: ../src/librygel-core/rygel-basic-management.vala:317
+#: ../src/librygel-core/rygel-basic-management.vala:351
+#: ../src/librygel-core/rygel-basic-management.vala:390
+#: ../src/librygel-core/rygel-basic-management.vala:427
+#: ../src/librygel-core/rygel-basic-management.vala:466
+#: ../src/librygel-core/rygel-basic-management.vala:481
+#: ../src/librygel-core/rygel-basic-management.vala:496
+#: ../src/librygel-core/rygel-basic-management.vala:520
 #: ../src/librygel-core/rygel-connection-manager.vala:91
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:122
@@ -395,7 +439,7 @@ msgstr "Argumento no válido"
 msgid "Invalid connection reference"
 msgstr "Referencia de conexión no válida"
 
-#: ../src/librygel-core/rygel-description-file.vala:339
+#: ../src/librygel-core/rygel-description-file.vala:343
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Falló al escribir la descripción modificada en %s"
@@ -592,18 +636,15 @@ msgid "Invalid Request"
 msgstr "Petición no válida"
 
 #: ../src/librygel-server/rygel-http-identity-handler.vala:106
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 #: ../src/librygel-server/rygel-http-transcode-handler.vala:58
 msgid "Not found"
 msgstr "No se encontró"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "URI «%s» no válido"
-
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
-msgid "Not Found"
-msgstr "No se encontró"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:50
 msgid "Seeking not supported"
@@ -836,9 +877,6 @@ msgid "UPnP class '%s' not supported"
 msgstr "Clase UPnP «%s» no soportada"
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
-msgid " %%% Object creation in %s not allowed"
-msgstr " %%% No se permite la creación de objetos en %s"
-
 #: ../src/librygel-server/rygel-object-creator.vala:424
 #: ../src/librygel-server/rygel-object-creator.vala:710
 #: ../src/librygel-server/rygel-reference-creator.vala:116
@@ -1129,6 +1167,12 @@ msgstr "Falló al iniciar el servicio Rygel: %s"
 msgid "Failed to stop Rygel service: %s"
 msgstr "Falló al parar el servicio Rygel: %s"
 
+#~ msgid "Not Found"
+#~ msgstr "No se encontró"
+
+#~ msgid " %%% Object creation in %s not allowed"
+#~ msgstr " %%% No se permite la creación de objetos en %s"
+
 #~ msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
 #~ msgstr ""
 #~ "Activar la compartición de medios, tales como fotos, vídeos y música, con "
@@ -1210,9 +1254,6 @@ msgstr "Falló al parar el servicio Rygel: %s"
 #~ msgid "Failed to seek to %s-%s on URI %s: %s"
 #~ msgstr "Falló al buscar hasta %s-%s en el URI %s: %s"
 
-#~ msgid "Failed to read contents from URI: %s: %s"
-#~ msgstr "Falló al leer el contenido del URI: %s: %s"
-
 #~ msgid "Failed to close stream to URI %s: %s"
 #~ msgstr "Falló al cerrar el flujo en el URI %s: %s"
 
@@ -1282,9 +1323,6 @@ msgstr "Falló al parar el servicio Rygel: %s"
 
 #~ msgid "Using database file %s"
 #~ msgstr "Usando el archivo de la base de datos %s"
-
-#~ msgid "Failed to extract metadata from %s: %s"
-#~ msgstr "Falló al extraer los metadatos de %s: %s"
 
 #~ msgid "Original search: %s"
 #~ msgstr "Búsqueda original: %s"
