@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&"
 "keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-28 15:08+0000\n"
-"PO-Revision-Date: 2013-10-29 08:37+0300\n"
+"POT-Creation-Date: 2013-11-02 19:12+0000\n"
+"PO-Revision-Date: 2013-11-06 16:48+0300\n"
 "Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
-"Language-Team: team@lists.gnome.gr\n"
+"Language-Team: team@gnome.gr\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.0\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/rygel-preferences.ui.h:1
@@ -55,7 +55,6 @@ msgid "Add a network interface Rygel should serve files on"
 msgstr "Η προσθήκη διεπαφής δικτύου Rygel πρέπει να εξυπηρετεί αρχεία"
 
 #: ../data/rygel-preferences.ui.h:9
-#| msgid "Network Interfaces"
 msgid "Add network interface"
 msgstr "Προσθήκη διεπαφής δικτύου"
 
@@ -64,7 +63,6 @@ msgid "Remove a network interface Rygel should no longer serve files on"
 msgstr "Η αφαίρεση διεπαφής δικτύου Rygel δεν πρέπει να εξυπηρετεί πια αρχεία"
 
 #: ../data/rygel-preferences.ui.h:11
-#| msgid "Network Interfaces"
 msgid "Remove network interface"
 msgstr "Αφαίρεση διεπαφής δικτύου"
 
@@ -95,7 +93,6 @@ msgstr "εξυπηρετητής μέσων;αποτυπωτής μέσων;κο
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-#| msgid "Module '%s' could not connect to D-Bus session bus. "
 msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
 msgstr ""
 "Το άρθρωμα '%s' δεν μπόρεσε να συνδεθεί με τον δίαυλο συνεδρίας διαύλου "
@@ -103,7 +100,6 @@ msgstr ""
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
-#| msgid "External provider %s did not provide mandatory "
 msgid "External provider %s did not provide mandatory property \"%s\""
 msgstr "Ο εξωτερικός πάροχος %s δεν έδωσε υποχρεωτική ιδιότητα \"%s\""
 
@@ -160,7 +156,6 @@ msgstr "Αποτυχία λήψης παιδιών του περιέκτη %s: %
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
-#| msgid "Failed to get children of container %s: %s"
 msgid "Failed to get child count of query container: %s"
 msgstr "Αποτυχία λήψης αριθμού θυγατρικών του περιέκτη ερωτήματος: %s"
 
@@ -186,7 +181,6 @@ msgstr "Όλα"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
-#| msgid "Failed to get children of container %s: %s"
 msgid "Failed to get child count: %s"
 msgstr "Αποτυχία λήψης αριθμού θυγατρικών: %s"
 
@@ -282,7 +276,6 @@ msgstr "Βίντεο"
 
 #: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
 #, c-format
-#| msgid "Failed to move dotfile %s: %s"
 msgid "Failed to remove file %s: %s"
 msgstr "Αποτυχία μετακίνησης του αρχείου %s: %s"
 
@@ -384,6 +377,53 @@ msgstr "Τίτλοι"
 msgid "Not implemented"
 msgstr "Δεν έχει υλοποιηθεί"
 
+#: ../src/librygel-core/rygel-basic-management-test.vala:197
+#, c-format
+#| msgid "Failed to create GStreamer data source for %s: %s"
+msgid "Failed to read standard output from %s: %s"
+msgstr "Αποτυχία ανάγνωσης τυπικής εξόδου από %s: %s"
+
+#: ../src/librygel-core/rygel-basic-management-test.vala:225
+#, c-format
+#| msgid "Failed to load module from path '%s': %s"
+msgid "Failed to read error output from %s: %s"
+msgstr "Αποτυχία ανάγνωσης εξόδου σφάλματος από %s: %s"
+
+#. / No test with the specified TestID was found
+#: ../src/librygel-core/rygel-basic-management.vala:159
+#| msgid "No such object"
+msgid "No Such Test"
+msgstr "Δεν υπάρχει τέτοια δοκιμή"
+
+#. / TestID is valid but refers to the wrong test type
+#: ../src/librygel-core/rygel-basic-management.vala:167
+msgid "Wrong Test Type"
+msgstr "Εσφαλμένος τύπος δοκιμής"
+
+#. / TestID is valid but the test Results are not available
+#: ../src/librygel-core/rygel-basic-management.vala:175
+#, c-format
+#| msgid "Invalid Range '%s'"
+msgid "Invalid Test State '%s'"
+msgstr "Άκυρη κατάσταση δοκιμής '%s'"
+
+#. / TestID is valid but the test can't be canceled
+#: ../src/librygel-core/rygel-basic-management.vala:181
+#, c-format
+msgid "State '%s' Precludes Cancel"
+msgstr "Η κατάσταση '%s' αποκλείει ακύρωση"
+
+#: ../src/librygel-core/rygel-basic-management.vala:214
+#: ../src/librygel-core/rygel-basic-management.vala:229
+#: ../src/librygel-core/rygel-basic-management.vala:265
+#: ../src/librygel-core/rygel-basic-management.vala:317
+#: ../src/librygel-core/rygel-basic-management.vala:351
+#: ../src/librygel-core/rygel-basic-management.vala:390
+#: ../src/librygel-core/rygel-basic-management.vala:427
+#: ../src/librygel-core/rygel-basic-management.vala:466
+#: ../src/librygel-core/rygel-basic-management.vala:481
+#: ../src/librygel-core/rygel-basic-management.vala:496
+#: ../src/librygel-core/rygel-basic-management.vala:520
 #: ../src/librygel-core/rygel-connection-manager.vala:91
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:122
@@ -405,7 +445,7 @@ msgstr "Μη έγκυρο όρισμα"
 msgid "Invalid connection reference"
 msgstr "Μη έγκυρη αναφορά σύνδεσης"
 
-#: ../src/librygel-core/rygel-description-file.vala:339
+#: ../src/librygel-core/rygel-description-file.vala:343
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Αποτυχία εγγραφής τροποποιημένης περιγραφής στο %s"
@@ -602,12 +642,12 @@ msgid "Invalid Request"
 msgstr "Μη έγκυρο αίτημα"
 
 #: ../src/librygel-server/rygel-http-identity-handler.vala:106
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 #: ../src/librygel-server/rygel-http-transcode-handler.vala:58
 msgid "Not found"
 msgstr "Δε βρέθηκε"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Μη έγκυρη τοποθεσία '%s'"
@@ -775,13 +815,11 @@ msgstr ""
 "'%s'"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:100
-#| msgid "Invalid argument"
 msgid "Invalid number of arguments"
 msgstr "Άκυρος αριθμός ορισμάτων"
 
 #. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
-#| msgid "'ObjectID' argument missing."
 msgid "ObjectID argument missing"
 msgstr "Λείπει το όρισμα ObjectID"
 
@@ -799,7 +837,6 @@ msgid "No such container"
 msgstr "Χωρίς τέτοιο περιέκτη"
 
 #: ../src/librygel-server/rygel-object-creator.vala:151
-#| msgid "upnp:class not supported in %s"
 msgid "upnp:createClass value not supported"
 msgstr "upnp:η τιμή createClass δεν υποστηρίζεται"
 
@@ -813,7 +850,6 @@ msgstr "Δεν επιτρέπονται σχόλια στην XML"
 
 #. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
-#| msgid "'ContainerID' agument missing."
 msgid "Missing ContainerID argument"
 msgstr "Λείπει το όρισμα ContainerID"
 
