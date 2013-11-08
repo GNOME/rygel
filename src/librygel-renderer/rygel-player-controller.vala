@@ -92,7 +92,19 @@ internal class Rygel.PlayerController : Object {
                 default:
                     break;
             }
-            if (actions != null && this.player.can_seek) {
+
+            if (actions == null) {
+                return "";
+            }
+
+            if (this.track < this.n_tracks) {
+                actions += ",Next";
+            }
+            if (this.track > 1) {
+                actions += ",Previous";
+            }
+
+            if (this.player.can_seek) {
                 actions += ",X_DLNA_SeekTime";
 
                 string play_speeds = "";
@@ -106,10 +118,6 @@ internal class Rygel.PlayerController : Object {
                     }
                 }
                 actions += play_speeds;
-            }
-
-            if (actions == null) {
-                return "";
             }
 
             return actions;
