@@ -1,3 +1,67 @@
+0.20.2
+======
+
+A new stable release of Rygel!
+
+Changes compared to 0.20.1:
+
+Renderer:
+ - Return proper error if media is not seekable.
+ - Prevent a critical on missing MIME-types.
+ - Add Next/Prev to CurrentTransportActions.
+ - Support milliseconds in renderer.
+
+Server:
+ - Fix XML generation.
+ - Fix base64 escaping of URLs.
+
+MPRIS:
+ - Ignore read-only peers.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=710377
+ - https://bugzilla.gnome.org/show_bug.cgi?id=710877
+ - https://bugzilla.gnome.org/show_bug.cgi?id=711399
+ - https://bugzilla.gnome.org/show_bug.cgi?id=711661
+
+All contributors to this release:
+ - Jens Georg <jensg@openismus.com>
+ - Jussi Kukkonen <jussi.kukkonen@intel.com>
+ - Jean-Baptiste Dubois <jean-baptiste.dubois@parrot.com>
+ - Мирослав Николић <miroslavnikolic@rocketmail.com>
+ - Yuri Myasoedov <ymyasoedov@yandex.ru>
+ - Tobias Endrigkeit <tobiasendrigkeit@outlook.com>
+ - Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+ - Rafael Ferreira <rafael.f.f1@gmail.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Milo Casagrande <milo@ubuntu.com>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Marek Černocký <marek@manet.cz>
+ - Fran Diéguez <fran.dieguez@mabishu.com>
+ - Dimitis Spingos <dmtrs32@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Balázs Úr <urbalazs@src.gnome.org>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Andika Triwidada <andika@gmail.com>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - de, courtesy of Christian Kirbach
+ - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - hu, courtesy of Balázs Úr
+ - id, courtesy of Andika Triwidada
+ - it, courtesy of Milo Casagrande
+ - lt, courtesy of Aurimas Černius
+ - lv, courtesy of Rūdolfs Mazurs
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Rafael Ferreira
+ - ru, courtesy of Yuri Myasoedov
+ - sl, courtesy of Matej Urbančič
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+
 0.20.1
 ======
 
