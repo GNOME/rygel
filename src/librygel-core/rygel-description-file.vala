@@ -57,6 +57,19 @@ public class Rygel.DescriptionFile : Object {
      */
     private const string SERVICE_TYPE_TEMPLATE = "//*[.='%s']";
 
+    private const string X_DLNADOC_NODE = "X_DLNADOC";
+
+    // Get the local name of X_DLNADOC that does not contain +DIAGE+
+    private const string X_DLNADOC_NODE_XPATH = "//*[local-name()='X_DLNADOC'"+
+                                                " and not(contains("+
+                                                ".,\"DIAGE\"))]";
+
+    // Get the local name of X_DLNADOC that does contain +DIAGE+
+    private const string X_DLNADOC_DIAGE_XPATH = "//*[local-name()='X_DLNADOC'"+
+                                                 " and contains(.,\"DIAGE\")]";
+
+    private const string DIAGE_DEV_CAP = "+DIAGE+";
+
     /**
      * Constructor to load a description file from disk
      *
@@ -232,7 +245,11 @@ public class Rygel.DescriptionFile : Object {
         }
 
         if (PluginCapabilities.DIAGNOSTICS in capabilities) {
-            flags += "+DIAGE+";
+            flags += DIAGE_DEV_CAP;
+
+            // Add X_DLNADOC element that holds DIAGE capability
+            // in the device template
+            add_dlna_doc_diage_element ();
         }
 
         if (PluginCapabilities.ENERGY_MANAGEMENT in capabilities) {
@@ -251,6 +268,64 @@ public class Rygel.DescriptionFile : Object {
 
     public void clear_service_list () {
         this.remove_device_element ("serviceList");
+    }
+
+    // Add the X_DLNADOC element with +DIAGE+ if not added already.
+    public void add_dlna_doc_diage_element () {
+        Xml.XPath.Object* dlna_doc_object = null;
+
+        // Check if the X_DLNADOC node has already +DIAGE+ dev cap
+        if (is_diag_node_present (X_DLNADOC_DIAGE_XPATH)) {
+            // Get all X_DLNADOC node and extract the 'capability host & version'
+            if (get_dlna_doc_nodes (X_DLNADOC_NODE_XPATH, ref dlna_doc_object)) {
+                for (int i=0; i < dlna_doc_object->nodesetval->length(); i++) {
+                    Xml.Node* node = dlna_doc_object->nodesetval->item (i);
+                    string node_content = node->get_content ();
+                    int doc_index = node_content.last_index_of ("/");
+                    string diage_content;
+
+                    // Add X_DLNADOC sibbling element for
+                    // each unique capability-host
+                    var diag_element = get_device_element ()
+                                        ->new_child (node->ns, X_DLNADOC_NODE);
+                    if (doc_index != -1) {
+                        diage_content = (string)node_content
+                                                [doc_index+1:node_content.length];
+                    } else {
+                        diage_content = node_content;
+                    }
+                    message (diage_content);
+                    diag_element->set_content (DIAGE_DEV_CAP +
+                                               "/" +
+                                               diage_content);
+                    node->add_next_sibling (diag_element);
+                }
+            }
+        }
+    }
+
+    private Xml.Node* get_device_element () {
+        return Rygel.XMLUtils.get_element
+                              ((Xml.Node *) this.doc.doc,
+                               "root",
+                               "device");
+    }
+
+    private bool is_diag_node_present (string diage_node_xpath) {
+        var context = new XPath.Context (this.doc.doc);
+        var diage_node = context.eval_expression (diage_node_xpath);
+        return (diage_node != null &&
+                diage_node->type == XPath.ObjectType.NODESET &&
+                diage_node->nodesetval->is_empty ());
+    }
+
+    private bool get_dlna_doc_nodes (string dlna_doc_xpath,
+                                     ref Xml.XPath.Object* dlna_doc_object) {
+        var context = new XPath.Context (this.doc.doc);
+        dlna_doc_object = context.eval_expression (dlna_doc_xpath);
+        return (dlna_doc_object != null &&
+                dlna_doc_object->type == XPath.ObjectType.NODESET &&
+                !dlna_doc_object->nodesetval->is_empty ());
     }
 
     public void add_service (string device_name, ResourceInfo resource_info) {
