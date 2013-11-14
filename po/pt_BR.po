@@ -14,9 +14,9 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-14 10:11+0000\n"
-"PO-Revision-Date: 2013-10-14 07:21-0300\n"
-"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
+"POT-Creation-Date: 2013-11-11 20:15+0000\n"
+"PO-Revision-Date: 2013-11-12 17:22-0300\n"
+"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,6 @@ msgid "Add a network interface Rygel should serve files on"
 msgstr "Adiciona uma interface de rede na qual Rygel deve servir arquivos"
 
 #: ../data/rygel-preferences.ui.h:9
-#| msgid "Network Interfaces"
 msgid "Add network interface"
 msgstr "Adicionar interface de rede"
 
@@ -68,7 +67,6 @@ msgid "Remove a network interface Rygel should no longer serve files on"
 msgstr "Remove uma interface de rede na qual Rygel não deve servir arquivos"
 
 #: ../data/rygel-preferences.ui.h:11
-#| msgid "Network Interfaces"
 msgid "Remove network interface"
 msgstr "Remover interface de rede"
 
@@ -291,6 +289,11 @@ msgstr "Falha ao remover o arquivo %s: %s"
 msgid "Could not find object %d in cache"
 msgstr "Não foi possível localizar o objeto %d no cache"
 
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
+#, c-format
+msgid "MPRIS interface at %s is read-only. Ignoring."
+msgstr "A interface MPRIS em %s é somente-leitura. Ignorando."
+
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
 msgstr "Reprodutor GStreamer"
@@ -509,8 +512,8 @@ msgstr "ID da instância inválidos"
 
 #. FIXME: Return a more sensible error here.
 #: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:713
-#: ../src/librygel-renderer/rygel-av-transport.vala:723
+#: ../src/librygel-renderer/rygel-av-transport.vala:725
+#: ../src/librygel-renderer/rygel-av-transport.vala:735
 msgid "Resource not found"
 msgstr "Recurso não encontrado"
 
@@ -527,16 +530,18 @@ msgid "Transition not available"
 msgstr "Transição não disponível"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:602
-#: ../src/librygel-renderer/rygel-av-transport.vala:617
-#: ../src/librygel-renderer/rygel-av-transport.vala:630
-#: ../src/librygel-renderer/rygel-av-transport.vala:651
-#: ../src/librygel-renderer/rygel-av-transport.vala:659
-msgid "Illegal seek target"
-msgstr "Destino de busca ilegal"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:620
+#: ../src/librygel-renderer/rygel-av-transport.vala:653
 msgid "Seek mode not supported"
 msgstr "Sem suporte ao modo de busca"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:608
+#: ../src/librygel-renderer/rygel-av-transport.vala:629
+#: ../src/librygel-renderer/rygel-av-transport.vala:642
+#: ../src/librygel-renderer/rygel-av-transport.vala:663
+#: ../src/librygel-renderer/rygel-av-transport.vala:671
+msgid "Illegal seek target"
+msgstr "Destino de busca ilegal"
 
 #: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
@@ -597,12 +602,12 @@ msgstr "Requisição inválida"
 msgid "Not found"
 msgstr "Não encontrado"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "URI \"%s\" inválida"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 msgid "Not Found"
 msgstr "Não encontrado"
 
