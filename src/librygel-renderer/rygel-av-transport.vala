@@ -81,6 +81,16 @@ internal class Rygel.AVTransport : Service {
         }
     }
 
+    public string playback_medium {
+        get {
+            if (this.controller.uri == "") {
+                return "None";
+            } else {
+                return "Network";
+            }
+        }
+    }
+
     public string speed {
         owned get {
             return this.player.playback_speed;
@@ -181,9 +191,9 @@ internal class Rygel.AVTransport : Service {
         log.log ("CurrentTransportActions",
                  this.controller.current_transport_actions);
         log.log ("TransportStatus",              this.status);
-        log.log ("PlaybackStorageMedium",        "NOT_IMPLEMENTED");
+        log.log ("PlaybackStorageMedium",        this.playback_medium);
         log.log ("RecordStorageMedium",          "NOT_IMPLEMENTED");
-        log.log ("PossiblePlaybackStorageMedia", "NOT_IMPLEMENTED");
+        log.log ("PossiblePlaybackStorageMedia", "None,Network");
         log.log ("PossibleRecordStorageMedia",   "NOT_IMPLEMENTED");
         log.log ("CurrentPlayMode",              this.mode);
         log.log ("TransportPlaySpeed",           this.player.playback_speed);
@@ -377,7 +387,7 @@ internal class Rygel.AVTransport : Service {
                         "NOT_IMPLEMENTED",
                     "PlayMedium",
                         typeof (string),
-                        "NOT_IMPLEMENTED",
+                        this.playback_medium,
                     "RecordMedium",
                         typeof (string),
                         "NOT_IMPLEMENTED",
@@ -426,7 +436,7 @@ internal class Rygel.AVTransport : Service {
                         "NOT_IMPLEMENTED",
                     "PlayMedium",
                         typeof (string),
-                        "NOT_IMPLEMENTED",
+                        this.playback_medium,
                     "RecordMedium",
                         typeof (string),
                         "NOT_IMPLEMENTED",
