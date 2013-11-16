@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-14 10:11+0000\n"
-"PO-Revision-Date: 2013-10-14 22:26+0300\n"
+"POT-Creation-Date: 2013-11-13 01:24+0000\n"
+"PO-Revision-Date: 2013-11-16 17:10+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -55,7 +55,6 @@ msgid "Add a network interface Rygel should serve files on"
 msgstr "Pridėti tinklo sąsają, kurioje Rygel turėtų teikti failus"
 
 #: ../data/rygel-preferences.ui.h:9
-#| msgid "Network Interfaces"
 msgid "Add network interface"
 msgstr "Pridėti tinklo sąsają"
 
@@ -64,7 +63,6 @@ msgid "Remove a network interface Rygel should no longer serve files on"
 msgstr "Pašalinti tinklo sąsają, kurioje Rygel turėti teikti failus"
 
 #: ../data/rygel-preferences.ui.h:11
-#| msgid "Network Interfaces"
 msgid "Remove network interface"
 msgstr "Pašalinti tinklo sąsają"
 
@@ -286,6 +284,11 @@ msgstr "Nepavyko pašalinti failo %s: %s"
 msgid "Could not find object %d in cache"
 msgstr "Nepavyko rasti objekto %d podėlyje"
 
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
+#, c-format
+msgid "MPRIS interface at %s is read-only. Ignoring."
+msgstr "MPRIS sąsaja %s yra tik skaitymui. Nepaisoma."
+
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
 msgstr "GStreamer grotuvas"
@@ -504,8 +507,8 @@ msgstr "Netinkamas InstanceID"
 
 #. FIXME: Return a more sensible error here.
 #: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:713
-#: ../src/librygel-renderer/rygel-av-transport.vala:723
+#: ../src/librygel-renderer/rygel-av-transport.vala:725
+#: ../src/librygel-renderer/rygel-av-transport.vala:735
 msgid "Resource not found"
 msgstr "Resursas nerastas"
 
@@ -522,16 +525,18 @@ msgid "Transition not available"
 msgstr "Perėjimas neprieinamas"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:602
-#: ../src/librygel-renderer/rygel-av-transport.vala:617
-#: ../src/librygel-renderer/rygel-av-transport.vala:630
-#: ../src/librygel-renderer/rygel-av-transport.vala:651
-#: ../src/librygel-renderer/rygel-av-transport.vala:659
-msgid "Illegal seek target"
-msgstr "Neteisingas paieškos tikslas"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:620
+#: ../src/librygel-renderer/rygel-av-transport.vala:653
 msgid "Seek mode not supported"
 msgstr "Nepalaikoma paieškos veiksena"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:608
+#: ../src/librygel-renderer/rygel-av-transport.vala:629
+#: ../src/librygel-renderer/rygel-av-transport.vala:642
+#: ../src/librygel-renderer/rygel-av-transport.vala:663
+#: ../src/librygel-renderer/rygel-av-transport.vala:671
+msgid "Illegal seek target"
+msgstr "Neteisingas paieškos tikslas"
 
 #: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
@@ -592,12 +597,12 @@ msgstr "Netinkama užklausa"
 msgid "Not found"
 msgstr "Nerasta"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Netinkamas URI „%s“"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 msgid "Not Found"
 msgstr "Nerasta"
 
