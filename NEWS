@@ -1,3 +1,70 @@
+0.21.1
+======
+
+A new unstable release of Rygel.
+
+Changes compared to 0.21.0:
+
+- Fix vala check to only compile, not link to avoid issues with
+  gst-uninstalled.
+- Some documentation fixes.
+- Port to new libsoup session API.
+
+Basic Management:
+ - Add initial support.
+
+Server:
+ - Support serving subtitles using the PV method. Fixes external subtitles for
+   a variety of devices such as WD TV Live or Panasonic TVs.
+
+Renderer:
+ - Accept missing mime-types in playlist check.
+ - Fix CurrentTransportActions to include Next and Prev.
+ - Support milliseconds in time-stamps.
+ - Drop allowed value list from TransportPlaySpeed.
+ - Unify playspeed parsing.
+ - Implement DLNA bye seeking.
+ - Fix and implement PlaybackStorageMedium variable.
+
+MPRIS:
+ - Fix for new renderer API.
+
+GStreamer renderer:
+ - Implement DLNA byte seeking.
+ - Enable more playspeeds.
+
+Changes in dependencies:
+ - libsoup >= 2.42.0
+ - GUPnP-AV >= 0.12.4
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=661228
+ - https://bugzilla.gnome.org/show_bug.cgi?id=707058
+ - https://bugzilla.gnome.org/show_bug.cgi?id=707059
+ - https://bugzilla.gnome.org/show_bug.cgi?id=707541
+ - https://bugzilla.gnome.org/show_bug.cgi?id=707831
+ - https://bugzilla.gnome.org/show_bug.cgi?id=710368
+ - https://bugzilla.gnome.org/show_bug.cgi?id=711399
+ - https://bugzilla.gnome.org/show_bug.cgi?id=711661
+ - https://bugzilla.gnome.org/show_bug.cgi?id=712336
+ - https://bugzilla.gnome.org/show_bug.cgi?id=712517
+
+All contributors to this release:
+ - Jussi Kukkonen <jussi.kukkonen@intel.com>
+ - Jens Georg <mail@jensge.org>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Richard Röjfors <richard.rojfors@gmail.com>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Jean-Baptiste Dubois <jean-baptiste.dubois@parrot.com>
+ - Dimitris Spingos <dmtrs32@gmail.com>
+
+Added/updated translations
+ - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+ - es, courtesy of Daniel Mustieles
+ - pl, courtesy of Piotr Drąg
+ - sl, courtesy of Matej Urbančič
+
 0.21.0
 ======
 
