@@ -40,6 +40,30 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
 
     public MediaContainer root_container { get; construct; }
 
+    private string _search_caps;
+
+    /**
+     * The SearchCapabilities this MediaServer plugin supports.
+     *
+     * Implementations can override this to match their capabilities. If they do,
+     * they should take care to include the change tracking capabilities
+     * (upnp:objectUpdateID, upnp:containerUpdateID) based on
+     * PluginCapabilities.TRACK_CHANGES.
+     */
+    public virtual string search_caps {
+        get {
+            if (this._search_caps == null) {
+                this._search_caps = RelationalExpression.CAPS;
+
+                if (PluginCapabilities.TRACK_CHANGES in this.capabilities) {
+                    this._search_caps += ",upnp:objectUpdateID,upnp:containerUpdateID";
+                }
+            }
+
+            return this._search_caps;
+        }
+    }
+
     private GLib.List<DLNAProfile> _upload_profiles;
 
     /**
