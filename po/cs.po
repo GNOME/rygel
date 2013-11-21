@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-11 09:44+0000\n"
-"PO-Revision-Date: 2013-10-14 15:39+0200\n"
+"POT-Creation-Date: 2013-11-18 19:40+0000\n"
+"PO-Revision-Date: 2013-11-21 21:56+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -373,10 +373,53 @@ msgstr "Názvy"
 msgid "Not implemented"
 msgstr "Není implementováno"
 
+#: ../src/librygel-core/rygel-basic-management-test.vala:197
+#, c-format
+msgid "Failed to read standard output from %s: %s"
+msgstr "Selhalo čtení standardního výstupu z %s: %s"
+
+#: ../src/librygel-core/rygel-basic-management-test.vala:225
+#, c-format
+msgid "Failed to read error output from %s: %s"
+msgstr "Selhalo čtení chybového výstupu z %s: %s"
+
+#. / No test with the specified TestID was found
+#: ../src/librygel-core/rygel-basic-management.vala:159
+msgid "No Such Test"
+msgstr "Žádný takový test neexistuje"
+
+#. / TestID is valid but refers to the wrong test type
+#: ../src/librygel-core/rygel-basic-management.vala:167
+msgid "Wrong Test Type"
+msgstr "Nesprávný typ testu"
+
+#. / TestID is valid but the test Results are not available
+#: ../src/librygel-core/rygel-basic-management.vala:175
+#, c-format
+msgid "Invalid Test State '%s'"
+msgstr "Neplatný stav testu „%s“"
+
+#. / TestID is valid but the test can't be canceled
+#: ../src/librygel-core/rygel-basic-management.vala:181
+#, c-format
+msgid "State '%s' Precludes Cancel"
+msgstr "Stav „%s“ zabraňuje zrušení"
+
+#: ../src/librygel-core/rygel-basic-management.vala:214
+#: ../src/librygel-core/rygel-basic-management.vala:229
+#: ../src/librygel-core/rygel-basic-management.vala:265
+#: ../src/librygel-core/rygel-basic-management.vala:317
+#: ../src/librygel-core/rygel-basic-management.vala:351
+#: ../src/librygel-core/rygel-basic-management.vala:390
+#: ../src/librygel-core/rygel-basic-management.vala:427
+#: ../src/librygel-core/rygel-basic-management.vala:466
+#: ../src/librygel-core/rygel-basic-management.vala:481
+#: ../src/librygel-core/rygel-basic-management.vala:496
+#: ../src/librygel-core/rygel-basic-management.vala:520
 #: ../src/librygel-core/rygel-connection-manager.vala:91
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:122
-#: ../src/librygel-renderer/rygel-av-transport.vala:214
+#: ../src/librygel-renderer/rygel-av-transport.vala:228
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:270
 #: ../src/librygel-server/rygel-content-directory.vala:298
@@ -394,7 +437,7 @@ msgstr "Neplatný argument"
 msgid "Invalid connection reference"
 msgstr "Neplatný odkaz na připojení"
 
-#: ../src/librygel-core/rygel-description-file.vala:339
+#: ../src/librygel-core/rygel-description-file.vala:343
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Selhal zápis upraveného popisu do %s"
@@ -500,41 +543,43 @@ msgstr "Chyba při výpisu obsahu složky „%s“: %s"
 msgid "Could not load plugin: %s"
 msgstr "Nelze načíst zásuvný modul: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:220
+#: ../src/librygel-renderer/rygel-av-transport.vala:234
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Neplatné InstanceID"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:713
-#: ../src/librygel-renderer/rygel-av-transport.vala:723
+#: ../src/librygel-renderer/rygel-av-transport.vala:285
+#: ../src/librygel-renderer/rygel-av-transport.vala:781
+#: ../src/librygel-renderer/rygel-av-transport.vala:791
 msgid "Resource not found"
 msgstr "Prostředek nebyl nalezen"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:281
+#: ../src/librygel-renderer/rygel-av-transport.vala:295
 msgid "Illegal MIME-type"
 msgstr "Neplatný typ MIME"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:557
+#: ../src/librygel-renderer/rygel-av-transport.vala:571
 msgid "Play speed not supported"
 msgstr "Rychlost přehrávání není podporována"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:574
+#: ../src/librygel-renderer/rygel-av-transport.vala:589
 msgid "Transition not available"
 msgstr "Přechod není k dispozici"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:602
-#: ../src/librygel-renderer/rygel-av-transport.vala:617
-#: ../src/librygel-renderer/rygel-av-transport.vala:630
-#: ../src/librygel-renderer/rygel-av-transport.vala:651
-#: ../src/librygel-renderer/rygel-av-transport.vala:659
-msgid "Illegal seek target"
-msgstr "Neplatný cíl posunu"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:622
+#: ../src/librygel-renderer/rygel-av-transport.vala:647
+#: ../src/librygel-renderer/rygel-av-transport.vala:677
 msgid "Seek mode not supported"
 msgstr "Režim posunu není podporován"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:628
+#: ../src/librygel-renderer/rygel-av-transport.vala:653
+#: ../src/librygel-renderer/rygel-av-transport.vala:666
+#: ../src/librygel-renderer/rygel-av-transport.vala:687
+#: ../src/librygel-renderer/rygel-av-transport.vala:695
+msgid "Illegal seek target"
+msgstr "Neplatný cíl posunu"
 
 #: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
@@ -591,18 +636,15 @@ msgid "Invalid Request"
 msgstr "Neplatný požadavek"
 
 #: ../src/librygel-server/rygel-http-identity-handler.vala:106
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 #: ../src/librygel-server/rygel-http-transcode-handler.vala:58
 msgid "Not found"
 msgstr "Nenalezeno"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Neplatná adresa URI „%s“"
-
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
-msgid "Not Found"
-msgstr "Nenalezeno"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:50
 msgid "Seeking not supported"
@@ -835,9 +877,6 @@ msgid "UPnP class '%s' not supported"
 msgstr "Třída UPnP „%s“ není podporována"
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
-msgid " %%% Object creation in %s not allowed"
-msgstr " %%% Vytváření objektů v %s není dovoleno"
-
 #: ../src/librygel-server/rygel-object-creator.vala:424
 #: ../src/librygel-server/rygel-object-creator.vala:710
 #: ../src/librygel-server/rygel-reference-creator.vala:116
