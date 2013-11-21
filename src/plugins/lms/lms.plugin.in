@@ -1,0 +1,7 @@
+[Plugin]
+Version = @VERSION@
+Module = lms
+Name = LMS
+License = LGPL
+Description = LMS DMS plugin for Rygel
+Copyright = Copyright © Intel

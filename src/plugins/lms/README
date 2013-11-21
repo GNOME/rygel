@@ -1,0 +1,17 @@
+rygel-lms
+=========
+
+A rygel mediaserver plugin that exposes a lightmediascanner database
+as a Mediaserver.
+
+Configuration in rygel.conf:
+
+    [LightMediaScanner]
+    db-path=/path/to/lightmediascannerd.sqlite3
+    title=My Media
+
+* Supports browsing and searching (but in many cases searches will
+  still fall back to the inefficient simple_search()).
+* UpdateIDs are not yet supported as lightmediascanner seems to have
+  not change signal support yet
+* No real DLNA CTT testing has been done so far
