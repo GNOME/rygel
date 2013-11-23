@@ -327,6 +327,13 @@ AS_IF([test "x$enable_tracker_plugin" = "xyes"],
                               [tracker_api_version="0.16"],
                               [])
           ])
+    AS_IF([test "x$[]tracker_api_version" = "x"],
+          [
+            PKG_CHECK_MODULES(TRACKER_SPARQL,
+                              tracker-sparql-0.18 >=  $TRACKER_SPARQL_REQUIRED_MIN,
+                              [tracker_api_version="0.18"],
+                              [])
+          ])
     AS_IF([test "x$enable_vala" = "xyes"],
           [VALA_CHECK_PACKAGES([tracker-sparql-$tracker_api_version])])
 
