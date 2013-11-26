@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel rygel-0-20\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-14 19:27+0000\n"
-"PO-Revision-Date: 2013-10-15 12:03+0700\n"
+"POT-Creation-Date: 2013-11-20 12:12+0000\n"
+"PO-Revision-Date: 2013-11-26 10:07+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id\n"
@@ -284,6 +284,11 @@ msgstr "Gagal membuang berkas %s: %s"
 msgid "Could not find object %d in cache"
 msgstr "Tak bisa temukan objek %d dalam singgahan"
 
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
+#, c-format
+msgid "MPRIS interface at %s is read-only. Ignoring."
+msgstr "Antar muka MPRIS pada %s hanya baca. Mengabaikan."
+
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
 msgstr "Pemutar GStreamer"
@@ -502,8 +507,8 @@ msgstr "InstanceID Tidak Sah"
 
 #. FIXME: Return a more sensible error here.
 #: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:713
-#: ../src/librygel-renderer/rygel-av-transport.vala:723
+#: ../src/librygel-renderer/rygel-av-transport.vala:725
+#: ../src/librygel-renderer/rygel-av-transport.vala:735
 msgid "Resource not found"
 msgstr "Sumber daya tak ditemukan"
 
@@ -520,16 +525,18 @@ msgid "Transition not available"
 msgstr "Transisi tidak tersedia"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:602
-#: ../src/librygel-renderer/rygel-av-transport.vala:617
-#: ../src/librygel-renderer/rygel-av-transport.vala:630
-#: ../src/librygel-renderer/rygel-av-transport.vala:651
-#: ../src/librygel-renderer/rygel-av-transport.vala:659
-msgid "Illegal seek target"
-msgstr "Target seek ilegal"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:620
+#: ../src/librygel-renderer/rygel-av-transport.vala:653
 msgid "Seek mode not supported"
 msgstr "Mode pelompatan tidak didukung"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:608
+#: ../src/librygel-renderer/rygel-av-transport.vala:629
+#: ../src/librygel-renderer/rygel-av-transport.vala:642
+#: ../src/librygel-renderer/rygel-av-transport.vala:663
+#: ../src/librygel-renderer/rygel-av-transport.vala:671
+msgid "Illegal seek target"
+msgstr "Target seek ilegal"
 
 #: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
@@ -590,12 +597,12 @@ msgstr "Permintaan Tidak Sah"
 msgid "Not found"
 msgstr "Tidak ditemukan"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "URI '%s' Tidak Sah"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 msgid "Not Found"
 msgstr "Tidak Ditemukan"
 
