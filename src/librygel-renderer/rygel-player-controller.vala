@@ -58,20 +58,44 @@ internal class Rygel.PlayerController : Object {
     public string playback_state {
         get { return this._playback_state; }
         set { this.player.playback_state = value; }
-        default = "NO_MEDIA_PRESENT";
     }
 
-    public uint n_tracks { get; set; default = 0; }
+    public uint n_tracks { get; private set; default = 0; }
     public uint track {
         get { return this._track; }
         set { this._track = value; this.apply_track (); }
         default = 0;
     }
-    public string uri { get; set; default = ""; }
-    public string metadata {
-        owned get { return this._metadata ?? ""; }
-        set { this._metadata = this.unescape (value); }
-        default = "";
+
+    public string uri { get; private set; default = ""; }
+    public string metadata { get; private set; default = ""; }
+
+    [CCode (notify = false)]
+    public string track_uri {
+        owned get {
+            if (this.player.uri != null) {
+                return Markup.escape_text (this.player.uri);
+            } else {
+                return "";
+            }
+        }
+
+        private set {
+            this.player.uri = value;
+        }
+    }
+
+    [CCode (notify = false)]
+    public string track_metadata {
+        owned get { return this.player.metadata ?? ""; }
+
+        private set {
+            if (value.has_prefix ("&lt;")) {
+                this.player.metadata = this.unescape (value);
+            } else {
+                this.player.metadata = value;
+            }
+        }
     }
 
     public string current_transport_actions {
@@ -130,16 +154,14 @@ internal class Rygel.PlayerController : Object {
     }
 
     // Private members
-    private MediaCollection collection;
-    private List<DIDLLiteItem> collection_items;
+    private List<DIDLLiteItem> playlist;
     private uint timeout_id;
     private uint default_image_timeout;
     private Configuration config;
 
     // Private property variables
-    private string _metadata;
     private uint _track;
-    private string _playback_state;
+    private string _playback_state = "NO_MEDIA_PRESENT";
 
     public PlayerController (MediaPlayer player, string protocol_info) {
         Object (player : player, protocol_info : protocol_info);
@@ -149,6 +171,8 @@ internal class Rygel.PlayerController : Object {
         base.constructed ();
 
         this.player.notify["playback-state"].connect (this.notify_state_cb);
+        this.player.notify["uri"].connect (this.notify_uri_cb);
+        this.player.notify["metadata"].connect (this.notify_metadata_cb);
 
         this.config = MetaConfig.get_default ();
         this.config.setting_changed.connect (this.on_setting_changed);
@@ -176,26 +200,60 @@ internal class Rygel.PlayerController : Object {
         return true;
     }
 
-    public void set_playlist (MediaCollection? collection) {
-        this.collection = collection;
+    public void set_single_play_uri (string uri,
+                                     string metadata,
+                                     string? mime,
+                                     string? features)
+    {
         if (this.timeout_id != 0) {
             this.timeout_id = 0;
             Source.remove (this.timeout_id);
         }
 
-        if (this.collection != null) {
-            this.collection_items = collection.get_items ();
-            this.n_tracks = this.collection_items.length ();
-            this.track = 1;
+        this.metadata = this.unescape (metadata);
+        this.uri = uri;
+
+        this.player.mime_type = mime ?? "";
+        this.player.content_features = features ?? "*";
+
+        this.track_metadata = this.metadata;
+        this.track_uri = this.uri;
+
+        this.playlist = null;
+
+        if (this.uri == "") {
+            this.n_tracks = 0;
+            this.track = 0;
         } else {
-            this.collection_items = null;
+            this.n_tracks = 1;
+            this.track = 1;
         }
+    }
+
+    public void set_playlist_uri (string uri,
+                                  string metadata,
+                                  MediaCollection collection) {
+        if (this.timeout_id != 0) {
+            this.timeout_id = 0;
+            Source.remove (this.timeout_id);
+        }
+
+        this.metadata = this.unescape (metadata);
+        this.uri = uri;
+
+        this.playlist = collection.get_items ();
+
+        this.n_tracks = this.playlist.length ();
+        // Track setter will set track_metadata and
+        // track_uri
+        this.track = 1;
     }
 
     private void notify_state_cb (Object player, ParamSpec p) {
         var state = this.player.playback_state;
         if (state == "EOS") {
-            if (this.collection == null) {
+            if (this.playlist == null) {
+                // Just move to stop
                 Idle.add (() => {
                     this.playback_state = "STOPPED";
 
@@ -218,17 +276,25 @@ internal class Rygel.PlayerController : Object {
         }
     }
 
+    private void notify_uri_cb (Object player, ParamSpec p) {
+        notify_property ("track-uri");
+    }
+
+    private void notify_metadata_cb (Object player, ParamSpec p) {
+        notify_property ("track-metadata");
+    }
+
     private void apply_track () {
-        // We only have something to do here if we have collection items
-        if (this.collection_items != null) {
-            var item = this.collection_items.nth (this.track - 1).data;
+        // We only have something to do here if we have playlist items
+        if (this.playlist != null) {
+            var item = this.playlist.nth (this.track - 1).data;
 
             var res = item.get_compat_resource (this.protocol_info, true);
-            this.player.metadata = DIDL_FRAME_TEMPLATE.printf
+            this.track_metadata = DIDL_FRAME_TEMPLATE.printf
                                         (item.get_xml_string ());
-            this.player.uri = res.get_uri ();
+            this.track_uri = res.get_uri ();
+
             if (item.upnp_class.has_prefix ("object.item.image") &&
-                this.collection != null &&
                 this.playback_state != "STOPPED") {
                 this.setup_image_timeouts (item.lifetime);
             }

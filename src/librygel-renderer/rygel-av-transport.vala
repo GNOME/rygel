@@ -42,32 +42,6 @@ internal class Rygel.AVTransport : Service {
     private Session session;
     private string protocol_info;
 
-    public string track_metadata {
-        owned get { return this.player.metadata ?? ""; }
-
-        set {
-            if (value.has_prefix ("&lt;")) {
-                this.player.metadata = this.unescape (value);
-            } else {
-                this.player.metadata = value;
-            }
-        }
-    }
-
-    public string track_uri {
-        owned get {
-            if (this.player.uri != null) {
-                return Markup.escape_text (this.player.uri);
-            } else {
-                return "";
-            }
-        }
-
-        set {
-            this.player.uri = value;
-        }
-    }
-
     private string _status = "OK";
     public string status {
         get {
@@ -156,10 +130,10 @@ internal class Rygel.AVTransport : Service {
         this.controller.notify["track"].connect (this.notify_track_cb);
         this.controller.notify["uri"].connect (this.notify_uri_cb);
         this.controller.notify["metadata"].connect (this.notify_meta_data_cb);
+        this.controller.notify["track-uri"].connect (this.notify_track_uri_cb);
+        this.controller.notify["track-metadata"].connect (this.notify_track_meta_data_cb);
 
         this.player.notify["duration"].connect (this.notify_duration_cb);
-        this.player.notify["uri"].connect (this.notify_track_uri_cb);
-        this.player.notify["metadata"].connect (this.notify_track_meta_data_cb);
 
         var proxy = Environment.get_variable ("http_proxy");
         if (proxy != null) {
@@ -205,10 +179,10 @@ internal class Rygel.AVTransport : Service {
         log.log ("CurrentTrackDuration",         this.player.duration_as_str);
         log.log ("CurrentMediaDuration",         this.player.duration_as_str);
         log.log ("CurrentTrackMetaData",
-                 Markup.escape_text (this.track_metadata));
+                 Markup.escape_text (this.controller.track_metadata));
         log.log ("AVTransportURIMetaData",
                  Markup.escape_text (this.controller.metadata));
-        log.log ("CurrentTrackURI",              this.track_uri);
+        log.log ("CurrentTrackURI",              this.controller.track_uri);
         log.log ("AVTransportURI",               this.controller.uri);
         log.log ("NextAVTransportURI",           "NOT_IMPLEMENTED");
         log.log ("NextAVTransportURIMetaData",   "NOT_IMPLEMENTED");
@@ -254,8 +228,6 @@ internal class Rygel.AVTransport : Service {
                         typeof (string),
                         out _metadata);
 
-        // remove current playlist handler
-        this.controller.set_playlist (null);
         if (_uri.has_prefix ("http://") || _uri.has_prefix ("https://")) {
             var message = new Message ("HEAD", _uri);
             message.request_headers.append ("getContentFeatures.dlna.org",
@@ -266,19 +238,7 @@ internal class Rygel.AVTransport : Service {
 
             this.session.queue_message (message, null);
         } else {
-            this.controller.metadata = _metadata;
-            this.controller.uri = _uri;
-
-            this.track_metadata = _metadata;
-            this.track_uri = _uri;
-
-            if (_uri == "") {
-                this.controller.n_tracks = 0;
-                this.controller.track = 0;
-            } else {
-                this.controller.n_tracks = 1;
-                this.controller.track = 1;
-            }
+            this.controller.set_single_play_uri (_uri, _metadata, null, null);
 
             action.return ();
         }
@@ -436,10 +396,10 @@ internal class Rygel.AVTransport : Service {
                         this.player.duration_as_str,
                     "TrackMetaData",
                         typeof (string),
-                        this.track_metadata,
+                        this.controller.track_metadata,
                     "TrackURI",
                         typeof (string),
-                        this.track_uri,
+                        this.controller.track_uri,
                     "RelTime",
                         typeof (string),
                         this.player.position_as_str,
@@ -695,7 +655,7 @@ internal class Rygel.AVTransport : Service {
     }
 
     private void notify_track_uri_cb (Object player, ParamSpec p) {
-        this.changelog.log ("CurrentTrackURI", this.track_uri);
+        this.changelog.log ("CurrentTrackURI", this.controller.track_uri);
     }
 
     private void notify_uri_cb (Object controller, ParamSpec p) {
@@ -704,7 +664,7 @@ internal class Rygel.AVTransport : Service {
 
     private void notify_track_meta_data_cb (Object player, ParamSpec p) {
         this.changelog.log ("CurrentTrackMetaData",
-                            Markup.escape_text (this.track_metadata));
+                            Markup.escape_text (this.controller.track_metadata));
     }
 
     private void notify_meta_data_cb (Object player, ParamSpec p) {
@@ -712,7 +672,11 @@ internal class Rygel.AVTransport : Service {
                             Markup.escape_text (this.controller.metadata));
     }
 
-    private async void handle_playlist (ServiceAction action) {
+    private async void handle_playlist (ServiceAction action,
+                                        string uri,
+                                        string metadata,
+                                        string mime,
+                                        string features) {
         var message = new Message ("GET", this.controller.uri);
         this.session.queue_message (message, () => {
             handle_playlist.callback ();
@@ -735,19 +699,9 @@ internal class Rygel.AVTransport : Service {
             return;
         }
 
-        this.controller.set_playlist (collection);
+        this.controller.set_playlist_uri (uri, metadata, collection);
 
         action.return ();
-    }
-
-    private string unescape (string input) {
-        var result = input.replace ("&quot;", "\"");
-        result = result.replace ("&lt;", "<");
-        result = result.replace ("&gt;", ">");
-        result = result.replace ("&apos;", "'");
-        result = result.replace ("&amp;", "&");
-
-        return result;
     }
 
     private bool is_playlist (string? mime, string? features) {
@@ -804,29 +758,18 @@ internal class Rygel.AVTransport : Service {
             return;
         }
 
-        this.controller.metadata = _metadata;
-        this.controller.uri = _uri;
-
         if (this.is_playlist (mime, features)) {
-            // Delay returning the action until we got some
-            this.handle_playlist.begin (action);
+            // Delay returning the action
+            this.handle_playlist.begin (action,
+                                        _uri,
+                                        _metadata,
+                                        mime,
+                                        features);
 
             return;
         }
 
-        // some other track
-        this.player.mime_type = mime;
-        if (features != null) {
-            this.player.content_features = features;
-        } else {
-            this.player.content_features = "*";
-        }
-
-        // Track == Media
-        this.track_metadata = _metadata;
-        this.track_uri = _uri;
-        this.controller.n_tracks = 1;
-        this.controller.track = 1;
+        this.controller.set_single_play_uri (_uri, _metadata, mime, features);
 
         action.return ();
     }
