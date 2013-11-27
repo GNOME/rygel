@@ -60,10 +60,28 @@ internal class Rygel.PlayerController : Object {
         set { this.player.playback_state = value; }
     }
 
-    public uint n_tracks { get; private set; default = 0; }
+    [CCode (notify = false)]
+    public uint n_tracks {
+        get { return this._n_tracks; }
+        private set {
+            if (value != this._n_tracks) {
+                this._n_tracks = value;
+                this.notify_property ("n-tracks");
+            }
+        }
+        default = 0;
+    }
+
+    [CCode (notify = false)]
     public uint track {
         get { return this._track; }
-        set { this._track = value; this.apply_track (); }
+        set {
+            if (value != this._track) {
+                this._track = value;
+                this.apply_track ();
+                this.notify_property ("track");
+            }
+        }
         default = 0;
     }
 
@@ -160,6 +178,7 @@ internal class Rygel.PlayerController : Object {
     private Configuration config;
 
     // Private property variables
+    private uint _n_tracks;
     private uint _track;
     private string _playback_state = "NO_MEDIA_PRESENT";
 
@@ -242,11 +261,16 @@ internal class Rygel.PlayerController : Object {
         this.uri = uri;
 
         this.playlist = collection.get_items ();
-
         this.n_tracks = this.playlist.length ();
-        // Track setter will set track_metadata and
-        // track_uri
-        this.track = 1;
+
+        // bypass track setter: we want to run apply_track()
+        // even if track value does not change
+        var need_notify = (this.track != 1);
+        this._track = 1;
+        this.apply_track ();
+        if (need_notify) {
+            this.notify_property ("track");
+        }
     }
 
     private void notify_state_cb (Object player, ParamSpec p) {
