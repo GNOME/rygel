@@ -187,7 +187,7 @@ internal class Rygel.AVTransport : Service {
         // Send current state
         ChangeLog log = new ChangeLog (null, LAST_CHANGE_NS);
 
-        log.log ("TransportState",               this.player.playback_state);
+        log.log ("TransportState",               this.controller.playback_state);
         log.log ("CurrentTransportActions",
                  this.controller.current_transport_actions);
         log.log ("TransportStatus",              this.status);
@@ -398,7 +398,7 @@ internal class Rygel.AVTransport : Service {
 
         action.set ("CurrentTransportState",
                         typeof (string),
-                        this.player.playback_state,
+                        this.controller.playback_state,
                     "CurrentTransportStatus",
                         typeof (string),
                         this.status,
@@ -496,7 +496,7 @@ internal class Rygel.AVTransport : Service {
             return;
         }
 
-        this.player.playback_state = "STOPPED";
+        this.controller.playback_state = "STOPPED";
 
         action.return ();
     }
@@ -517,7 +517,7 @@ internal class Rygel.AVTransport : Service {
 
         // Speed change will take effect when playback state is changed
         this.player.playback_speed = speed;
-        this.player.playback_state = "PLAYING";
+        this.controller.playback_state = "PLAYING";
 
         action.return ();
     }
@@ -527,13 +527,13 @@ internal class Rygel.AVTransport : Service {
             return;
         }
 
-        if (this.player.playback_state != "PLAYING") {
+        if (this.controller.playback_state != "PLAYING") {
             action.return_error (701, _("Transition not available"));
 
             return;
         }
 
-        this.player.playback_state = "PAUSED_PLAYBACK";
+        this.controller.playback_state = "PAUSED_PLAYBACK";
 
         action.return ();
     }
@@ -670,19 +670,19 @@ internal class Rygel.AVTransport : Service {
         action.return ();
     }
 
-    private void notify_state_cb (Object player, ParamSpec p) {
-        var state = this.player.playback_state;
+    private void notify_state_cb (Object controller, ParamSpec p) {
+        var state = this.controller.playback_state;
         this.changelog.log ("TransportState", state);
         this.changelog.log ("CurrentTransportActions",
                             this.controller.current_transport_actions);
     }
 
-    private void notify_n_tracks_cb (Object player, ParamSpec p) {
+    private void notify_n_tracks_cb (Object controller, ParamSpec p) {
         this.changelog.log ("NumberOfTracks",
                             this.controller.n_tracks.to_string ());
     }
 
-    private void notify_track_cb (Object player, ParamSpec p) {
+    private void notify_track_cb (Object controller, ParamSpec p) {
         this.changelog.log ("CurrentTrack",
                             this.controller.track.to_string ());
     }
@@ -698,7 +698,7 @@ internal class Rygel.AVTransport : Service {
         this.changelog.log ("CurrentTrackURI", this.track_uri);
     }
 
-    private void notify_uri_cb (Object player, ParamSpec p) {
+    private void notify_uri_cb (Object controller, ParamSpec p) {
         this.changelog.log ("AVTransportURI", this.controller.uri);
     }
 

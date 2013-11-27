@@ -51,17 +51,16 @@ internal class Rygel.PlayerController : Object {
     public string protocol_info { construct; private get; }
 
     /* public properties */
+
+    /* this._playback_state mirrors player.playback_state without including
+     * non-UPnP "EOS" value. It is updated from notify_state_cb */
     [CCode (notify = false)]
     public string playback_state {
         get { return this._playback_state; }
-        set {
-            if (this._playback_state != value) {
-                this._playback_state = value;
-                this.notify_property ("playback-state");
-            }
-        }
+        set { this.player.playback_state = value; }
         default = "NO_MEDIA_PRESENT";
     }
+
     public uint n_tracks { get; set; default = 0; }
     public uint track {
         get { return this._track; }
@@ -78,7 +77,7 @@ internal class Rygel.PlayerController : Object {
     public string current_transport_actions {
         owned get {
             string actions = null;
-            switch (this._playback_state) {
+            switch (this.playback_state) {
                 case "PLAYING":
                 case "TRANSITIONING":
                     actions = "Stop,Seek,Pause";
@@ -197,9 +196,8 @@ internal class Rygel.PlayerController : Object {
         var state = this.player.playback_state;
         if (state == "EOS") {
             if (this.collection == null) {
-                // Just move to stop
                 Idle.add (() => {
-                    this.player.playback_state = "STOPPED";
+                    this.playback_state = "STOPPED";
 
                     return false;
                 });
@@ -213,9 +211,10 @@ internal class Rygel.PlayerController : Object {
                     this.reset ();
                 }
             }
-        } else {
-            // just forward
-            this.playback_state = state;
+        } else if (this._playback_state != state) {
+            // mirror player value in _playback_state and notify
+            this._playback_state = state;
+            this.notify_property ("playback-state");
         }
     }
 
@@ -230,14 +229,14 @@ internal class Rygel.PlayerController : Object {
             this.player.uri = res.get_uri ();
             if (item.upnp_class.has_prefix ("object.item.image") &&
                 this.collection != null &&
-                this.player.playback_state != "STOPPED") {
+                this.playback_state != "STOPPED") {
                 this.setup_image_timeouts (item.lifetime);
             }
         }
     }
 
     private void reset () {
-        this.player.playback_state = "STOPPED";
+        this.playback_state = "STOPPED";
         this.track = 1;
     }
 
