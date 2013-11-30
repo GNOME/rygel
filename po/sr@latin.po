@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: rygel-0-20\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&"
 "keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-15 11:47+0000\n"
-"PO-Revision-Date: 2013-10-15 19:03+0200\n"
+"POT-Creation-Date: 2013-11-26 03:09+0000\n"
+"PO-Revision-Date: 2013-11-30 10:24+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
-"Language-Team: Serbian <gnom@prevod.org>\n"
+"Language-Team: Serbian <(nothing)>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,7 +54,6 @@ msgid "Add a network interface Rygel should serve files on"
 msgstr "Dodajte mrežni uređaj na kome Rigel treba da poslužuje datoteke"
 
 #: ../data/rygel-preferences.ui.h:9
-#| msgid "Network Interfaces"
 msgid "Add network interface"
 msgstr "Dodaj mrežni uređaj"
 
@@ -64,7 +63,6 @@ msgstr ""
 "Uklonite mrežni uređaj na kome Rigel ne treba više da poslužuje datoteke"
 
 #: ../data/rygel-preferences.ui.h:11
-#| msgid "Network Interfaces"
 msgid "Remove network interface"
 msgstr "Ukloni mrežni uređaj"
 
@@ -284,6 +282,11 @@ msgstr "Nisam uspeo da uklonim datoteku „%s“: %s"
 msgid "Could not find object %d in cache"
 msgstr "Ne mogu da pronađem predmet %d u ostavi"
 
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
+#, c-format
+msgid "MPRIS interface at %s is read-only. Ignoring."
+msgstr "MPRIS sučelje na „%s“ je samo za čitanje. Zanemarujem."
+
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
 msgstr "Gstrimerov plejer"
@@ -502,8 +505,8 @@ msgstr "Neispravan IB primerka"
 
 #. FIXME: Return a more sensible error here.
 #: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:713
-#: ../src/librygel-renderer/rygel-av-transport.vala:723
+#: ../src/librygel-renderer/rygel-av-transport.vala:725
+#: ../src/librygel-renderer/rygel-av-transport.vala:735
 msgid "Resource not found"
 msgstr "Izvorište nije nađeno"
 
@@ -520,16 +523,18 @@ msgid "Transition not available"
 msgstr "Prenos nije dostupan"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:602
-#: ../src/librygel-renderer/rygel-av-transport.vala:617
-#: ../src/librygel-renderer/rygel-av-transport.vala:630
-#: ../src/librygel-renderer/rygel-av-transport.vala:651
-#: ../src/librygel-renderer/rygel-av-transport.vala:659
-msgid "Illegal seek target"
-msgstr "Neispravna meta premotavanja"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:620
+#: ../src/librygel-renderer/rygel-av-transport.vala:653
 msgid "Seek mode not supported"
 msgstr "Način premotavanja nije podržan"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:608
+#: ../src/librygel-renderer/rygel-av-transport.vala:629
+#: ../src/librygel-renderer/rygel-av-transport.vala:642
+#: ../src/librygel-renderer/rygel-av-transport.vala:663
+#: ../src/librygel-renderer/rygel-av-transport.vala:671
+msgid "Illegal seek target"
+msgstr "Neispravna meta premotavanja"
 
 #: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
@@ -590,12 +595,12 @@ msgstr "Neispravan zahtev"
 msgid "Not found"
 msgstr "Nisam pronašao"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Neispravna putanja „%s“"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 msgid "Not Found"
 msgstr "Nisam našao"
 
