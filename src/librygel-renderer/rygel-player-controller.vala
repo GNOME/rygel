@@ -116,6 +116,9 @@ internal class Rygel.PlayerController : Object {
         }
     }
 
+    public string next_uri { get; private set; default = ""; }
+    public string next_metadata { get; private set; default = ""; }
+
     public string current_transport_actions {
         owned get {
             string actions = null;
@@ -177,6 +180,10 @@ internal class Rygel.PlayerController : Object {
     private uint default_image_timeout;
     private Configuration config;
 
+    private string next_features;
+    private string next_mime;
+    private MediaCollection next_collection;
+
     // Private property variables
     private uint _n_tracks;
     private uint _track;
@@ -203,6 +210,28 @@ internal class Rygel.PlayerController : Object {
         // Try advancing in playlist
         if (this.track < this.n_tracks) {
             this.track++;
+
+            return true;
+        }
+
+        // Try playing next_uri
+        if (this.next_uri != "") {
+            if (this.next_collection != null) {
+                this.set_playlist_uri (this.next_uri,
+                                       this.next_metadata,
+                                       this.next_collection);
+            } else {
+                this.set_single_play_uri (this.next_uri,
+                                          this.next_metadata,
+                                          this.next_mime,
+                                          this.next_features);
+            }
+
+            this.next_uri = "";
+            this.next_metadata = "";
+            this.next_mime = null;
+            this.next_features = null;
+            this.next_collection = null;
 
             return true;
         }
@@ -274,10 +303,31 @@ internal class Rygel.PlayerController : Object {
         }
     }
 
+    public void set_next_single_play_uri (string uri,
+                                          string metadata,
+                                          string? mime,
+                                          string? features) {
+        this.next_uri = uri;
+        this.next_metadata = metadata;
+        this.next_mime = mime;
+        this.next_features = features;
+        this.next_collection = null;
+    }
+
+    public void set_next_playlist_uri (string uri,
+                                       string metadata,
+                                       MediaCollection collection) {
+        this.next_uri = uri;
+        this.next_metadata = metadata;
+        this.next_mime = null;
+        this.next_features = null;
+        this.next_collection = collection;
+    }
+
     private void notify_state_cb (Object player, ParamSpec p) {
         var state = this.player.playback_state;
         if (state == "EOS") {
-            // Play next item in playlist or move to STOPPED
+            // Play next item in playlist, play next_uri, or move to STOPPED
             Idle.add (() => {
                 if (!this.next ()) {
                     this.reset ();

@@ -106,6 +106,8 @@ internal class Rygel.AVTransport : Service {
 
         action_invoked["SetAVTransportURI"].connect
                                         (this.set_av_transport_uri_cb);
+        action_invoked["SetNextAVTransportURI"].connect
+                                        (this.set_next_av_transport_uri_cb);
         action_invoked["GetMediaInfo"].connect (this.get_media_info_cb);
         action_invoked["GetMediaInfo_Ext"].connect (this.get_media_info_ex_cb);
         action_invoked["GetTransportInfo"].connect (this.get_transport_info_cb);
@@ -132,6 +134,8 @@ internal class Rygel.AVTransport : Service {
         this.controller.notify["metadata"].connect (this.notify_meta_data_cb);
         this.controller.notify["track-uri"].connect (this.notify_track_uri_cb);
         this.controller.notify["track-metadata"].connect (this.notify_track_meta_data_cb);
+        this.controller.notify["next-uri"].connect (this.notify_next_uri_cb);
+        this.controller.notify["next-metadata"].connect (this.notify_next_meta_data_cb);
 
         this.player.notify["duration"].connect (this.notify_duration_cb);
 
@@ -178,14 +182,15 @@ internal class Rygel.AVTransport : Service {
         log.log ("CurrentTrack",                 this.controller.track.to_string ());
         log.log ("CurrentTrackDuration",         this.player.duration_as_str);
         log.log ("CurrentMediaDuration",         this.player.duration_as_str);
-        log.log ("CurrentTrackMetaData",
-                 Markup.escape_text (this.controller.track_metadata));
+        log.log ("AVTransportURI",               this.controller.uri);
         log.log ("AVTransportURIMetaData",
                  Markup.escape_text (this.controller.metadata));
         log.log ("CurrentTrackURI",              this.controller.track_uri);
-        log.log ("AVTransportURI",               this.controller.uri);
-        log.log ("NextAVTransportURI",           "NOT_IMPLEMENTED");
-        log.log ("NextAVTransportURIMetaData",   "NOT_IMPLEMENTED");
+        log.log ("CurrentTrackMetaData",
+                 Markup.escape_text (this.controller.track_metadata));
+        log.log ("NextAVTransportURI",           this.controller.next_uri);
+        log.log ("NextAVTransportURIMetaData",
+                 Markup.escape_text (this.controller.next_metadata));
 
         value.init (typeof (string));
         value.set_string (log.finish ());
@@ -228,20 +233,25 @@ internal class Rygel.AVTransport : Service {
                         typeof (string),
                         out _metadata);
 
-        if (_uri.has_prefix ("http://") || _uri.has_prefix ("https://")) {
-            var message = new Message ("HEAD", _uri);
-            message.request_headers.append ("getContentFeatures.dlna.org",
-                                            "1");
-            message.finished.connect ((msg) => {
-                this.check_resource (msg, _uri, _metadata, action);
-            });
+        this.handle_new_transport_uri (action, _uri, _metadata);
+    }
 
-            this.session.queue_message (message, null);
-        } else {
-            this.controller.set_single_play_uri (_uri, _metadata, null, null);
-
-            action.return ();
+    private void set_next_av_transport_uri_cb (Service       service,
+                                               ServiceAction action) {
+        if (!this.check_instance_id (action)) {
+            return;
         }
+
+        string _uri, _metadata;
+
+        action.get ("NextURI",
+                        typeof (string),
+                        out _uri,
+                    "NextURIMetaData",
+                        typeof (string),
+                        out _metadata);
+
+        this.handle_new_transport_uri (action, _uri, _metadata);
     }
 
     private bool is_valid_mime_type (string? mime) {
@@ -654,12 +664,17 @@ internal class Rygel.AVTransport : Service {
                             this.player.duration_as_str);
     }
 
-    private void notify_track_uri_cb (Object player, ParamSpec p) {
-        this.changelog.log ("CurrentTrackURI", this.controller.track_uri);
-    }
-
     private void notify_uri_cb (Object controller, ParamSpec p) {
         this.changelog.log ("AVTransportURI", this.controller.uri);
+    }
+
+    private void notify_meta_data_cb (Object player, ParamSpec p) {
+        this.changelog.log ("AVTransportURIMetaData",
+                            Markup.escape_text (this.controller.metadata));
+    }
+
+    private void notify_track_uri_cb (Object player, ParamSpec p) {
+        this.changelog.log ("CurrentTrackURI", this.controller.track_uri);
     }
 
     private void notify_track_meta_data_cb (Object player, ParamSpec p) {
@@ -667,9 +682,13 @@ internal class Rygel.AVTransport : Service {
                             Markup.escape_text (this.controller.track_metadata));
     }
 
-    private void notify_meta_data_cb (Object player, ParamSpec p) {
-        this.changelog.log ("AVTransportURIMetaData",
-                            Markup.escape_text (this.controller.metadata));
+    private void notify_next_uri_cb (Object controller, ParamSpec p) {
+        this.changelog.log ("NextAVTransportURI", this.controller.next_uri);
+    }
+
+    private void notify_next_meta_data_cb (Object player, ParamSpec p) {
+        this.changelog.log ("NextAVTransportURIMetaData",
+                            Markup.escape_text (this.controller.next_metadata));
     }
 
     private async void handle_playlist (ServiceAction action,
@@ -699,7 +718,16 @@ internal class Rygel.AVTransport : Service {
             return;
         }
 
-        this.controller.set_playlist_uri (uri, metadata, collection);
+        switch (action.get_name ()) {
+        case "SetAVTransportURI":
+            this.controller.set_playlist_uri (uri, metadata, collection);
+            break;
+        case "SetNextAVTransportURI":
+            this.controller.set_next_playlist_uri (uri, metadata, collection);
+            break;
+        default:
+            assert_not_reached ();
+        }
 
         action.return ();
     }
@@ -765,12 +793,44 @@ internal class Rygel.AVTransport : Service {
                                         _metadata,
                                         mime,
                                         features);
-
-            return;
+        } else {
+            this.set_single_play_uri (action, _uri, _metadata, mime, features);
         }
+    }
 
-        this.controller.set_single_play_uri (_uri, _metadata, mime, features);
+    private void handle_new_transport_uri (ServiceAction action,
+                                           string        uri,
+                                           string        metadata) {
+        if (uri.has_prefix ("http://") || uri.has_prefix ("https://")) {
+            var message = new Message ("HEAD", uri);
+            message.request_headers.append ("getContentFeatures.dlna.org",
+                                            "1");
+            message.finished.connect ((msg) => {
+                this.check_resource (msg, uri, metadata, action);
+            });
 
-        action.return ();
+            this.session.queue_message (message, null);
+        } else {
+            this.set_single_play_uri (action, uri, metadata, null, null);
+        }
+    }
+
+    private void set_single_play_uri (ServiceAction    action,
+                                      string           uri,
+                                      string           metadata,
+                                      string?          mime,
+                                      string?          features) {
+            switch (action.get_name ()) {
+            case "SetAVTransportURI":
+                this.controller.set_single_play_uri (uri, metadata, mime, features);
+                break;
+            case "SetNextAVTransportURI":
+                this.controller.set_next_single_play_uri (uri, metadata, mime, features);
+                break;
+            default:
+                assert_not_reached ();
+            }
+
+            action.return ();
     }
 }
