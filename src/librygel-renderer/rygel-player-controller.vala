@@ -200,13 +200,14 @@ internal class Rygel.PlayerController : Object {
     }
 
     public bool next () {
-        if (this.track + 1 > this.n_tracks) {
-            return false;
+        // Try advancing in playlist
+        if (this.track < this.n_tracks) {
+            this.track++;
+
+            return true;
         }
 
-        this.track++;
-
-        return true;
+        return false;
     }
 
     public bool previous () {
@@ -276,23 +277,14 @@ internal class Rygel.PlayerController : Object {
     private void notify_state_cb (Object player, ParamSpec p) {
         var state = this.player.playback_state;
         if (state == "EOS") {
-            if (this.playlist == null) {
-                // Just move to stop
-                Idle.add (() => {
-                    this.playback_state = "STOPPED";
-
-                    return false;
-                });
-
-                return;
-            } else {
-                // Set next playlist item
+            // Play next item in playlist or move to STOPPED
+            Idle.add (() => {
                 if (!this.next ()) {
-                    // We were at the end of the list; as per DLNA, move to
-                    // STOPPED and let current track be 1.
                     this.reset ();
                 }
-            }
+
+                return false;
+            });
         } else if (this._playback_state != state) {
             // mirror player value in _playback_state and notify
             this._playback_state = state;
