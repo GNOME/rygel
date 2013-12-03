@@ -152,6 +152,16 @@ AS_IF([test "x$enable_mediathek_plugin" = "xyes"],
                        libxml-2.0 >= $LIBXML_REQUIRED])
   ])
 
+RYGEL_ADD_PLUGIN([ruih],[Ruih],[yes])
+AS_IF([test "x$enable_ruih_plugin" = "xyes"],
+  [
+    PKG_CHECK_MODULES([RYGEL_PLUGIN_RUIH_DEPS],
+                      [$RYGEL_COMMON_MODULES
+                       gio-2.0 >= $GIO_REQUIRED
+                       libsoup-2.4 >= $LIBSOUP_REQUIRED
+                       libxml-2.0 >= $LIBXML_REQUIRED])
+  ])
+
 AS_IF([test "x$with_media_engine" = "xgstreamer"],
       [
         RYGEL_ADD_PLUGIN([playbin],[GStreamer playbin],[yes])
@@ -205,6 +215,7 @@ dnl Explicitly add stamp files for targets that are not plugins
 RYGEL_ADD_STAMP([src/librygel-core/librygel_core_2_4_la_vala.stamp])
 RYGEL_ADD_STAMP([src/librygel-server/librygel_server_2_4_la_vala.stamp])
 RYGEL_ADD_STAMP([src/librygel-renderer/librygel_renderer_2_4_la_vala.stamp])
+RYGEL_ADD_STAMP([src/librygel-ruih/librygel_ruih_2_0_la_vala.stamp])
 RYGEL_ADD_STAMP([src/rygel/rygel_vala.stamp])
 RYGEL_ADD_STAMP([src/ui/rygel_preferences_vala.stamp])
 RYGEL_ADD_STAMP([src/media-engines/simple/librygel_media_engine_simple_la_vala.stamp])
@@ -423,6 +434,7 @@ src/librygel-core/Makefile
 src/librygel-renderer/Makefile
 src/librygel-renderer-gst/Makefile
 src/librygel-server/Makefile
+src/librygel-ruih/Makefile
 src/rygel/Makefile
 src/ui/Makefile
 src/media-engines/Makefile
@@ -434,6 +446,7 @@ src/plugins/Makefile
 data/Makefile
 data/xml/Makefile
 data/xml/MediaServer3.xml.in
+data/xml/RuihServer2.xml.in
 data/xml/MediaRenderer2.xml.in
 data/icons/Makefile
 data/icons/32x32/Makefile
@@ -454,6 +467,7 @@ rygel-core-2.4.pc
 rygel-renderer-2.4.pc
 rygel-server-2.4.pc
 rygel-renderer-gst-2.4.pc
+rygel-ruih-1.0.pc
 tests/Makefile
 examples/Makefile
 examples/renderer-plugins/Makefile

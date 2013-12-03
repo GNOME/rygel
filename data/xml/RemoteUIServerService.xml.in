@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scpd xmlns="urn:schemas-upnp-org:service-1-0">
+   <specVersion>
+      <major>1</major>
+      <minor>0</minor>
+   </specVersion>
+   <actionList>
+      <action>
+         <name>GetCompatibleUIs</name>
+         <argumentList>
+            <argument>
+               <name>InputDeviceProfile</name>
+               <direction>in</direction>
+               <relatedStateVariable>A_ARG_TYPE_DeviceProfile</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>UIFilter</name>
+               <direction>in</direction>
+               <relatedStateVariable>A_ARG_TYPE_String</relatedStateVariable>
+            </argument>
+            <argument>
+               <name>UIListing</name>
+               <direction>out</direction>
+               <relatedStateVariable>A_ARG_TYPE_CompatibleUIs</relatedStateVariable>
+            </argument>
+         </argumentList>
+      </action>
+   </actionList>
+   <serviceStateTable>
+      <stateVariable sendEvents="yes">
+         <name>UIListingUpdate</name>
+         <dataType>string</dataType>
+      </stateVariable>
+      <stateVariable sendEvents="no">
+         <name>A_ARG_TYPE_DeviceProfile</name>
+         <dataType>string</dataType>
+      </stateVariable>
+      <stateVariable sendEvents="no">
+         <name>A_ARG_TYPE_CompatibleUIs</name>
+         <dataType>string</dataType>
+      </stateVariable>
+      <stateVariable sendEvents="no">
+          <name>A_ARG_TYPE_String</name>
+          <dataType>string</dataType>
+      </stateVariable>
+   </serviceStateTable>
+</scpd>

@@ -26,13 +26,18 @@ if BUILD_PLAYBIN_PLUGIN
 PLAYBIN = playbin
 endif
 
+if BUILD_RUIH_PLUGIN
+RUIH = ruih
+endif
+
 SUBDIRS = $(TRACKER_PLUGIN) \
 	  $(MEDIATHEK_PLUGIN) \
 	  $(MEDIA_EXPORT_PLUGIN) \
 	  $(EXTERNAL_PLUGIN) \
 	  $(MPRIS_PLUGIN) \
 	  $(GST_LAUNCH_PLUGIN) \
-          $(PLAYBIN)
+          $(PLAYBIN) \
+          $(RUIH)
 
 MAINTAINERCLEANFILES = Makefile.in
 

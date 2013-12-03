@@ -1,0 +1,15 @@
+
+LIBRYGEL_RUIH_VAPI_SOURCE_FILES = \
+    rygel-ruih-filter-entry.vala \
+    rygel-ruih-icon-elem.vala \
+    rygel-ruih-protocol-elem.vala \
+    rygel-ruih-server-plugin.vala \
+    rygel-ruih-server.vala  \
+    rygel-ruih-service.vala \
+    rygel-ruih-service-error.vala \
+    rygel-ruih-servicemanager.vala \
+    rygel-ruih-ui-elem.vala \
+    rygel-ruih-ui-listing.vala \
+    rygel-ruih-wildcard-filter-entry.vala
+
+LIBRYGEL_RUIH_NONVAPI_SOURCE_FILES =

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uilist xmlns="urn:schemas-upnp-org:remoteui:uilist-1-0"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:schemas-upnp-org:remoteui:uilist-1-0 CompatibleUIs.xsd">
+  <ui>
+   <uiID>1234-9876-1265-8758</uiID>
+   <name>CableLabs Program Guide</name>
+   <description>CableLabs Program Guide application</description>
+   <fork>true</fork>
+   <lifetime>-1</lifetime>
+   <protocol shortName="DLNA-HTML5-1.0">
+     <uri>http://192.168.0.100:4004/index.html</uri>
+   </protocol>
+ </ui>
+</uilist>

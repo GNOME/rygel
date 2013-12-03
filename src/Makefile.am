@@ -1,4 +1,4 @@
-SUBDIRS = librygel-core librygel-renderer librygel-server
+SUBDIRS = librygel-core librygel-renderer librygel-server librygel-ruih
 
 if HAVE_GSTREAMER
 SUBDIRS += librygel-renderer-gst

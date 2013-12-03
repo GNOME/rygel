@@ -21,6 +21,15 @@ standalone_server_LDADD = \
 	$(EXAMPLE_DEPS_LIBS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
 
+noinst_PROGRAMS += standalone-ruih
+standalone_ruih_SOURCES = standalone-ruih.c
+standalone_ruih_CFLAGS = \
+        $(EXAMPLE_DEPS_CFLAGS) \
+        $(RYGEL_COMMON_LIBRYGEL_RUIH_CFLAGS)
+standalone_ruih_LDADD = \
+        $(EXAMPLE_DEPS_LIBS) \
+        $(RYGEL_COMMON_LIBRYGEL_RUIH_LIBS)
+
 if HAVE_GSTREAMER
 
 noinst_PROGRAMS += standalone-renderer-gst

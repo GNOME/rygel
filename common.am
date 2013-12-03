@@ -26,6 +26,7 @@ bigicondir = $(shareddir)/icons/120x120
 librygelcoredir = $(top_srcdir)/src/librygel-core
 librygelserverdir = $(top_srcdir)/src/librygel-server
 librygelrendererdir = $(top_srcdir)/src/librygel-renderer
+librygelruihdir = $(top_srcdir)/src/librygel-ruih
 
 MAINTAINERCLEANFILES = Makefile.in
 
@@ -91,6 +92,20 @@ RYGEL_COMMON_LIBRYGEL_SERVER_CFLAGS = \
 RYGEL_COMMON_LIBRYGEL_SERVER_LIBS = \
 	$(RYGEL_COMMON_LIBRYGEL_CORE_LIBS) \
 	$(top_builddir)/src/librygel-server/librygel-server-2.4.la
+
+RYGEL_COMMON_LIBRYGEL_RUIH_VALAFLAGS = \
+        --vapidir=$(top_builddir)/src/librygel-ruih \
+        --pkg rygel-ruih-2.0 \
+        $(RYGEL_COMMON_LIBRYGEL_CORE_VALAFLAGS)
+
+RYGEL_COMMON_LIBRYGEL_RUIH_CFLAGS = \
+        $(RYGEL_COMMON_LIBRYGEL_CORE_CFLAGS) \
+        -I$(top_builddir)/src/librygel-ruih \
+        -I$(top_srcdir)/src/librygel-ruih
+
+RYGEL_COMMON_LIBRYGEL_RUIH_LIBS = \
+        $(RYGEL_COMMON_LIBRYGEL_CORE_LIBS) \
+        $(top_builddir)/src/librygel-ruih/librygel-ruih-2.0.la
 
 RYGEL_COMMON_BUILD_CONFIG_VALAFLAGS = \
 	--vapidir=$(librygelcoredir) \
