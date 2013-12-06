@@ -317,11 +317,6 @@
       </stateVariable>
 
       <stateVariable sendEvents="no">
-         <name>A_ARG_TYPE_DateTime</name>
-         <dataType>dateTime.tz</dataType>
-      </stateVariable>
-
-      <stateVariable sendEvents="no">
          <name>A_ARG_TYPE_MSecs</name>
          <dataType>ui4</dataType>
       </stateVariable>
