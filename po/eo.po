@@ -124,7 +124,7 @@ msgstr ""
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:186
 #, c-format
 msgid "Failed to query info of a file %s: %s"
-msgstr "Malsukcesis informpeti informon pri dosiero: %s"
+msgstr "Malsukcesis informpeti informon pri dosiero %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:216
 #, c-format
@@ -879,7 +879,7 @@ msgstr ""
 #: ../src/librygel-server/rygel-object-creator.vala:378
 #, c-format
 msgid "UPnP class '%s' not supported"
-msgstr "UPnP-klaso ne estas subtenata"
+msgstr "UPnP-klaso '%s' ne estas subtenata"
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
 #: ../src/librygel-server/rygel-object-creator.vala:424
