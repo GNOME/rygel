@@ -565,11 +565,11 @@ msgstr "Ne trovis risurcon"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:281
 msgid "Illegal MIME-type"
-msgstr "Nevalida MIME-tipo\n"
+msgstr "Nevalida MIME-tipo"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:557
 msgid "Play speed not supported"
-msgstr "Lud-rapido ne estas subtenata\n"
+msgstr "Lud-rapido ne estas subtenata"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:574
 msgid "Transition not available"
@@ -585,7 +585,7 @@ msgstr "Serĉ-reĝimo ne estas subtenata"
 #: ../src/librygel-renderer/rygel-av-transport.vala:648
 #: ../src/librygel-renderer/rygel-av-transport.vala:656
 msgid "Illegal seek target"
-msgstr "Nevalida serĉ-celo\n"
+msgstr "Nevalida serĉ-celo"
 
 #: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
