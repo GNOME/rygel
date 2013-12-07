@@ -552,9 +552,7 @@ msgstr ""
 #: ../src/librygel-renderer/rygel-av-transport.vala:220
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
-msgstr ""
-"Nevalida Instanco\n"
-"ID"
+msgstr "Nevalida Instanco-ID"
 
 #. FIXME: Return a more sensible error here.
 #: ../src/librygel-renderer/rygel-av-transport.vala:271
