@@ -37,6 +37,16 @@ internal class Rygel.SamsungTVHacks : ClientHacks {
         if (item.mime_type == "video/x-matroska") {
             item.mime_type = "video/x-mkv";
         }
+        else if (item.mime_type == "video/mp2t") {
+            // Required to play Panasonic TZ-7 AVCHD-Lite movies. Verified on D+E-Series TV
+            // Example: http://s3.amazonaws.com/movies.dpreview.com/panasonic_dmcfz150/00015.MTS
+            item.mime_type = "video/vnd.dlna.mpeg-tts";
+        }
+        else if (item.mime_type == "video/quicktime") {
+            // Required to play Canon EOS camera movies. Verfied on D-Series TV (E-Series still don't work)
+            // Example: http://s3.amazonaws.com/movies.dpreview.com/canon_eos60d/MVI_1326.MOV
+            item.mime_type = "video/mp4";
+        }
     }
 
     public override bool force_seek () {
