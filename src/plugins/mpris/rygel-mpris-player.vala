@@ -74,7 +74,7 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
-    private string _playback_speed;
+    private string _playback_speed = "1";
     public string playback_speed {
         owned get {
             return this._playback_speed;
