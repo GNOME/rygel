@@ -55,6 +55,10 @@ public class Rygel.External.Container : Rygel.MediaContainer,
         this.containers = new ArrayList<Container> ();
         this.search_classes = new ArrayList<string> ();
 
+        // default: use sort order of external container, no additional
+        // sort criteria
+        this.sort_criteria = "";
+
         // Create proxy to MediaContainer iface
         this.actual_container = Bus.get_proxy_sync
                                         (BusType.SESSION,
