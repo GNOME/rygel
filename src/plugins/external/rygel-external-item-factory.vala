@@ -86,8 +86,8 @@ public class Rygel.External.ItemFactory {
         if (value != null) {
             var cover_factory = new AlbumArtFactory ();
 
-            music.album_art = yield cover_factory.create ((string) value,
-                                                          service_name);
+            music.album_art = yield cover_factory.create (service_name,
+                                                          (string) value);
         }
 
         this.set_audio_metadata (music, props, service_name);
