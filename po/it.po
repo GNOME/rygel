@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-07 19:41+0000\n"
-"PO-Revision-Date: 2013-12-11 10:38+0100\n"
+"POT-Creation-Date: 2013-12-14 16:16+0000\n"
+"PO-Revision-Date: 2013-12-18 09:43+0100\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -385,19 +385,16 @@ msgstr "Non implementato"
 
 #: ../src/librygel-core/rygel-basic-management-test.vala:197
 #, c-format
-#| msgid "Failed to create GStreamer data source for %s: %s"
 msgid "Failed to read standard output from %s: %s"
 msgstr "Lettura dello standard output da %s non riuscita: %s"
 
 #: ../src/librygel-core/rygel-basic-management-test.vala:225
 #, c-format
-#| msgid "Failed to load module from path '%s': %s"
 msgid "Failed to read error output from %s: %s"
 msgstr "Lettura dell'output di errore da %s non riuscita: %s"
 
 #. / No test with the specified TestID was found
 #: ../src/librygel-core/rygel-basic-management.vala:159
-#| msgid "No such object"
 msgid "No Such Test"
 msgstr "Test non presente"
 
@@ -409,7 +406,6 @@ msgstr "Tipo di test errato"
 #. / TestID is valid but the test Results are not available
 #: ../src/librygel-core/rygel-basic-management.vala:175
 #, c-format
-#| msgid "Invalid Range '%s'"
 msgid "Invalid Test State '%s'"
 msgstr "Stato «%s» del test non valido"
 
@@ -433,7 +429,7 @@ msgstr "Lo stato «%s» non permette l'annullazione"
 #: ../src/librygel-core/rygel-connection-manager.vala:95
 #: ../src/librygel-core/rygel-connection-manager.vala:109
 #: ../src/librygel-core/rygel-connection-manager.vala:126
-#: ../src/librygel-renderer/rygel-av-transport.vala:228
+#: ../src/librygel-renderer/rygel-av-transport.vala:207
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:262
 #: ../src/librygel-server/rygel-content-directory.vala:290
@@ -559,43 +555,51 @@ msgstr "Errore nell'elencare il contenuto della cartella «%s»: %s"
 msgid "Could not load plugin: %s"
 msgstr "Impossibile caricare il plugin: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:234
+#: ../src/librygel-renderer/rygel-av-transport.vala:213
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "InstanceID non valido"
 
-#. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:285
-#: ../src/librygel-renderer/rygel-av-transport.vala:781
-#: ../src/librygel-renderer/rygel-av-transport.vala:791
-msgid "Resource not found"
-msgstr "Risorsa non trovata"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:295
-msgid "Illegal MIME-type"
-msgstr "Tipo MIME non consentito"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:571
+#: ../src/librygel-renderer/rygel-av-transport.vala:483
 msgid "Play speed not supported"
 msgstr "Velocità di riproduzione non supportata"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:589
+#: ../src/librygel-renderer/rygel-av-transport.vala:501
 msgid "Transition not available"
 msgstr "Transizione non disponibile"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:622
-#: ../src/librygel-renderer/rygel-av-transport.vala:647
-#: ../src/librygel-renderer/rygel-av-transport.vala:677
+#: ../src/librygel-renderer/rygel-av-transport.vala:534
+#: ../src/librygel-renderer/rygel-av-transport.vala:559
+#: ../src/librygel-renderer/rygel-av-transport.vala:589
 msgid "Seek mode not supported"
 msgstr "Modalità di posizionamento non supportata"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:628
-#: ../src/librygel-renderer/rygel-av-transport.vala:653
-#: ../src/librygel-renderer/rygel-av-transport.vala:666
-#: ../src/librygel-renderer/rygel-av-transport.vala:687
-#: ../src/librygel-renderer/rygel-av-transport.vala:695
+#: ../src/librygel-renderer/rygel-av-transport.vala:540
+#: ../src/librygel-renderer/rygel-av-transport.vala:565
+#: ../src/librygel-renderer/rygel-av-transport.vala:578
+#: ../src/librygel-renderer/rygel-av-transport.vala:599
+#: ../src/librygel-renderer/rygel-av-transport.vala:607
 msgid "Illegal seek target"
 msgstr "Obiettivo di posizionamento non consentito"
+
+#. FIXME: Return a more sensible error here.
+#: ../src/librygel-renderer/rygel-av-transport.vala:706
+#: ../src/librygel-renderer/rygel-av-transport.vala:716
+#: ../src/librygel-renderer/rygel-av-transport.vala:773
+msgid "Resource not found"
+msgstr "Risorsa non trovata"
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: ../src/librygel-renderer/rygel-av-transport.vala:769
+#, c-format
+#| msgid "Failed to remove file %s: %s"
+msgid "Failed to access resource at %s: %s"
+msgstr "Accesso della risorsa %s non riuscito: %s"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:784
+msgid "Illegal MIME-type"
+msgstr "Tipo MIME non consentito"
 
 #: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
