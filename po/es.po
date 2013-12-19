@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-14 16:16+0000\n"
-"PO-Revision-Date: 2013-12-16 14:58+0100\n"
+"POT-Creation-Date: 2013-12-19 00:50+0000\n"
+"PO-Revision-Date: 2013-12-19 11:28+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -93,9 +93,9 @@ msgstr "servidor;medios;renderizado;compartir;sonido;vídeo;imágenes;fotos;"
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
-msgstr ""
-"El módulo «%s» no se pudo conectar a una sesión del bus de D-Bus. Ignorando…"
+#| msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgid "Module '%s' could not connect to D-Bus session bus. "
+msgstr "El módulo «%s» no se pudo conectar a una sesión del bus de D-Bus."
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -222,15 +222,11 @@ msgstr "No se monitorizarán cambios en archivos"
 msgid "Failed to get file info for %s"
 msgstr "Falló al obtener el archivo de información para %s"
 
-#. Titles and definitions of some virtual folders,
-#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Año"
 
-#. Titles and definitions of virtual folders for Music,
-#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Artista"
@@ -579,7 +575,6 @@ msgstr "Recurso no encontrado"
 #. the error
 #: ../src/librygel-renderer/rygel-av-transport.vala:769
 #, c-format
-#| msgid "Failed to access media cache: %s"
 msgid "Failed to access resource at %s: %s"
 msgstr "Falló al acceder al recurso en %s: %s"
 
@@ -702,7 +697,6 @@ msgstr "Falló al obtener el URI original para «%s»: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "El URI «%s» no es válido para importar contenido de él"
 
-#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Falta el «ContainerID»"
@@ -735,7 +729,6 @@ msgstr "No se permite quitar el objeto %s"
 msgid "Object removal from %s not allowed"
 msgstr "No se permite quitar objetos de %s"
 
-#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Falta el ID del objeto"
@@ -816,7 +809,6 @@ msgstr "Falló al probar el protocolo para el URI %s. Asumiendo «%s»."
 msgid "Invalid number of arguments"
 msgstr "Número de argumentos no válido"
 
-#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "Falta el argumento «ObjectID»"
@@ -846,7 +838,6 @@ msgstr "Falta el argumento «elements»."
 msgid "Comments not allowed in XML"
 msgstr "No se permiten comentarios en XML"
 
-#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "Falta el argumento «ContainerID»"
@@ -959,8 +950,6 @@ msgstr "No hay ningún generador de miniaturas disponible: %s"
 msgid "Thumbnailing not supported"
 msgstr "No se soportan las miniaturas"
 
-#. Thumbnailing failed previously, so there's no current thumbnail
-#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -987,7 +976,6 @@ msgstr "No se pudo crear el GstElement para el URI %s"
 msgid "Failed to create pipeline"
 msgstr "Falló al crear la tubería"
 
-#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
