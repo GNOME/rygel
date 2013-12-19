@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-11 10:44+0100\n"
-"PO-Revision-Date: 2013-12-11 10:47+0200\n"
+"POT-Creation-Date: 2013-12-19 01:49+0100\n"
+"PO-Revision-Date: 2013-12-19 01:50+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -417,7 +417,7 @@ msgstr "O estado «%s» exclúe cancelar"
 #: ../src/librygel-core/rygel-connection-manager.vala:95
 #: ../src/librygel-core/rygel-connection-manager.vala:109
 #: ../src/librygel-core/rygel-connection-manager.vala:126
-#: ../src/librygel-renderer/rygel-av-transport.vala:228
+#: ../src/librygel-renderer/rygel-av-transport.vala:207
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:262
 #: ../src/librygel-server/rygel-content-directory.vala:290
@@ -543,43 +543,50 @@ msgstr "Produciuse un erro ao listar os contidos do cartafol «%s»: %s"
 msgid "Could not load plugin: %s"
 msgstr "Non foi posíbel cargar o engadido: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:234
+#: ../src/librygel-renderer/rygel-av-transport.vala:213
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "InstanceID non válido"
 
-#. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:285
-#: ../src/librygel-renderer/rygel-av-transport.vala:781
-#: ../src/librygel-renderer/rygel-av-transport.vala:791
-msgid "Resource not found"
-msgstr "Recurso non atopado"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:295
-msgid "Illegal MIME-type"
-msgstr "Tipo MIME ilegal"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:571
+#: ../src/librygel-renderer/rygel-av-transport.vala:483
 msgid "Play speed not supported"
 msgstr "Velocidade de reprodución non admitida"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:589
+#: ../src/librygel-renderer/rygel-av-transport.vala:501
 msgid "Transition not available"
 msgstr "Transición non dispoñíbel"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:622
-#: ../src/librygel-renderer/rygel-av-transport.vala:647
-#: ../src/librygel-renderer/rygel-av-transport.vala:677
+#: ../src/librygel-renderer/rygel-av-transport.vala:534
+#: ../src/librygel-renderer/rygel-av-transport.vala:559
+#: ../src/librygel-renderer/rygel-av-transport.vala:589
 msgid "Seek mode not supported"
 msgstr "Non se admite o modo de busca"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:628
-#: ../src/librygel-renderer/rygel-av-transport.vala:653
-#: ../src/librygel-renderer/rygel-av-transport.vala:666
-#: ../src/librygel-renderer/rygel-av-transport.vala:687
-#: ../src/librygel-renderer/rygel-av-transport.vala:695
+#: ../src/librygel-renderer/rygel-av-transport.vala:540
+#: ../src/librygel-renderer/rygel-av-transport.vala:565
+#: ../src/librygel-renderer/rygel-av-transport.vala:578
+#: ../src/librygel-renderer/rygel-av-transport.vala:599
+#: ../src/librygel-renderer/rygel-av-transport.vala:607
 msgid "Illegal seek target"
 msgstr "Obxectivo de busca ilegal"
+
+#. FIXME: Return a more sensible error here.
+#: ../src/librygel-renderer/rygel-av-transport.vala:706
+#: ../src/librygel-renderer/rygel-av-transport.vala:716
+#: ../src/librygel-renderer/rygel-av-transport.vala:773
+msgid "Resource not found"
+msgstr "Recurso non atopado"
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: ../src/librygel-renderer/rygel-av-transport.vala:769
+#, c-format
+msgid "Failed to access resource at %s: %s"
+msgstr "Produciuse un fallo ao acceder ao recurso en %s: %s"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:784
+msgid "Illegal MIME-type"
+msgstr "Tipo MIME ilegal"
 
 #: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
@@ -1194,9 +1201,6 @@ msgstr "Produciuse un erro ao deter o servizo Rygel: %s"
 
 #~ msgid "LibRygelServer"
 #~ msgstr "LibRygelServer"
-
-#~ msgid "Failed to access media cache: %s"
-#~ msgstr "Produciuse un erro ao acceder á caché multimedia: %s"
 
 #~ msgid "Failed to attach to D-Bus session bus: %s"
 #~ msgstr "Produciuse un erro ao anexarse ao bus de sesión D-Bus: %s"
