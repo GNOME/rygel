@@ -58,9 +58,9 @@ internal class Rygel.AVTransport : Service {
     public string playback_medium {
         get {
             if (this.controller.uri == "") {
-                return "None";
+                return "NONE";
             } else {
-                return "Network";
+                return "NETWORK";
             }
         }
     }
