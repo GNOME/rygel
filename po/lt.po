@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-03 20:04+0000\n"
-"PO-Revision-Date: 2013-10-05 16:53+0300\n"
+"POT-Creation-Date: 2013-12-20 16:06+0000\n"
+"PO-Revision-Date: 2013-12-21 16:41+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -94,10 +94,9 @@ msgstr ""
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:42
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:42
 #, c-format
-#| msgid "Module '%s' could not connect to D-Bus session bus. "
-msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
-msgstr ""
-"Moduliui „%s“ nepavyko prisijungti prie D-Bus seanso magistralės. Nepaisoma…"
+#| msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgid "Module '%s' could not connect to D-Bus session bus. "
+msgstr "Moduliui „%s“ nepavyko prisijungti prie D-Bus seanso magistralės. "
 
 #: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
@@ -144,8 +143,6 @@ msgstr "Nestebės failo pasikeitimų"
 msgid "Failed to get file info for %s"
 msgstr "Nepavyko gauti %s failo informacijos"
 
-#. Titles and definitions of some virtual folders,
-#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
@@ -155,8 +152,6 @@ msgstr "Metai"
 msgid "All"
 msgstr "Visi"
 
-#. Titles and definitions of virtual folders for Music,
-#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Atlikėjas"
@@ -174,8 +169,6 @@ msgstr "Žanras"
 msgid "Files & Folders"
 msgstr "Failai ir aplankai"
 
-#. @REALNAME@ is substituted for user's real name and it
-#. doesn't need translation.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
@@ -529,8 +522,6 @@ msgstr "Trūksta „Elements“ argumento."
 msgid "Comments not allowed in XML"
 msgstr "XML faile komentarai neleidžiami"
 
-#. Sorry we can't do anything without ContainerID
-#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-object-creator.vala:195
 #: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
@@ -560,7 +551,6 @@ msgstr "Negalima %s kurti objektų"
 msgid "Failed to create item under '%s': %s"
 msgstr "Nepavyko „%s“ sukurti elemento: %s"
 
-#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Trūksta ContainerID"
@@ -585,7 +575,6 @@ msgstr "Objekto %s pašalinimas neleidžiamas"
 msgid "Object removal from %s not allowed"
 msgstr "Objekto pašalinimas iš %s neleidžiamas"
 
-#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Trūksta objekto id"
@@ -687,8 +676,6 @@ msgstr "Neprieinama miniatiūrų kūrimo programa: %s"
 msgid "Thubmnailing not supported"
 msgstr "Miniatiūros nepalaikomos"
 
-#. Thumbnailing failed previously, so there's no current thumbnail
-#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -714,7 +701,6 @@ msgstr "Nepavyko sukurti GstElement URI %s"
 msgid "Failed to create pipeline"
 msgstr "Nepavyko sukurti konvejerio"
 
-#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
