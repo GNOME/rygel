@@ -33,6 +33,7 @@ using GUPnP;
  *  - PS3
  *  - Sharp TVs
  *  - WD TV Live (alphanetworks)
+ *  - Musical Fidelity/Marantz devices (KnOS/3.2)
  *
  * Samsung devices are also affected but they need other hacks as well to
  * that's handled in the Samsung-specific class.
@@ -41,7 +42,8 @@ internal class Rygel.SeekHacks : ClientHacks {
     private const string AGENT = ".*Mediabolic-IMHTTP.*|" +
                                  ".*PLAYSTATION 3.*|" +
                                  ".*SHARP-AQUOS-DMP.*|" +
-                                 ".*alphanetworks.*";
+                                 ".*alphanetworks.*|" +
+                                 ".*KnOS/3.2.*";
 
     public SeekHacks (Message? message = null) throws ClientHacksError {
         base (AGENT, message);
