@@ -325,7 +325,7 @@ AS_IF([test "x$enable_tracker_plugin" = "xyes"],
             PKG_CHECK_MODULES(TRACKER_SPARQL,
                               tracker-sparql-0.16 >=  $TRACKER_SPARQL_REQUIRED_MIN,
                               [tracker_api_version="0.16"],
-                              [])
+                              [tracker_api_version=""])
           ])
     AS_IF([test "x$[]tracker_api_version" = "x"],
           [
