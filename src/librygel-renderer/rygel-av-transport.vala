@@ -525,9 +525,6 @@ internal class Rygel.AVTransport : Service {
         case "ABS_TIME":
         case "REL_TIME":
             var seek_target = TimeUtils.time_from_string (target);
-            if (unit != "ABS_TIME") {
-                seek_target += this.player.position;
-            }
             debug ("Seeking to %lld sec", seek_target / TimeSpan.SECOND);
 
             if (!this.player.can_seek) {
