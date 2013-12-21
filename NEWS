@@ -1,3 +1,69 @@
+0.21.2
+======
+
+A new unstable release of Rygel.
+
+Changes compared to 0.21.1:
+
+ATTENTION: API and ABI bump!
+
+Tracker:
+ - Add build support for 0.18.
+
+Server:
+ - Allow server plugins to override search capabilities.
+ - Add more Samsung hacks.
+ - Add seeking hacks for some UPnP music receivers.
+
+Renderer:
+ - Return protocol info of current media in GetCurrentConnectionInfo call.
+ - Implement SetNextAVTransportURI.
+ - Treat REL_TIME/ABS_TIME the same again. This is less broken than the
+   original fix.
+ - Use correct PlaybackStorageMedium values.
+
+BasicManagement:
+ - Remove unused state variable.
+
+MPRIS:
+ - Set default playspeed to prevent a critical.
+
+External:
+ - Fix wrong parameter order in AlbumArtFactory.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=706986
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709165
+ - https://bugzilla.gnome.org/show_bug.cgi?id=712181
+ - https://bugzilla.gnome.org/show_bug.cgi?id=712660
+ - https://bugzilla.gnome.org/show_bug.cgi?id=715089
+ - https://bugzilla.gnome.org/show_bug.cgi?id=719721
+ - https://bugzilla.gnome.org/show_bug.cgi?id=719998
+ - https://bugzilla.gnome.org/show_bug.cgi?id=720669
+ - https://bugzilla.gnome.org/show_bug.cgi?id=720837
+
+All contributors to this release:
+ - Jussi Kukkonen <jussi.kukkonen@intel.com>
+ - Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>
+ - Jens Georg <mail@jensge.org>
+ - Parthiban Balasubramanian <p.balasubramanian@cablelabs.com>
+ - Milo Casagrande <milo@ubuntu.com>
+ - Fran Diéguez <fran.dieguez@mabishu.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - 甘 露 <rhythm.gan@gmail.com>
+ - Reiner Merk <lotan_rm@gmx.de>
+ - Marek Černocký <marek@manet.cz>
+ - John Obaterspok <john.obaterspok@gmail.com>
+ - Dominique Leuenberger <dimstar@opensuse.org>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - eo, courtesy of Kristjan SCHMIDT
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - it, courtesy of Milo Casagrande
+ - zh_CN, courtesy of 甘露(Gan Lu)
+
 0.21.1
 ======
 
