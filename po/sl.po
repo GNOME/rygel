@@ -2,14 +2,15 @@
 # Copyright (C) 2002-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the rygel package.
 #
-# Andrej Žnidaršič <andrej.znidarsic@gmail.com>, 2010 - 2011.
+# Andrej Žnidaršič <andrej.znidarsic@gmail.com>, 2010-2011.
+# Matej Urbančič <mateju@svn.gnome.org>, 2012-2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-03 04:52+0000\n"
+"POT-Creation-Date: 2013-12-21 14:44+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
@@ -95,9 +96,8 @@ msgstr ""
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:42
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:42
 #, c-format
-#| msgid "Module '%s' could not connect to D-Bus session bus. "
-msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
-msgstr "Povezovanje modula '%s' z vodilom seje D-Bus je spodletelo ..."
+msgid "Module '%s' could not connect to D-Bus session bus. "
+msgstr "Povezovanje modula '%s' z vodilom seje D-Bus je spodletelo."
 
 #: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
@@ -144,8 +144,6 @@ msgstr "Ne bo nadziral sprememb datoteke"
 msgid "Failed to get file info for %s"
 msgstr "Pridobivanje podatkov datoteke za %s je spodletelo"
 
-#. Titles and definitions of some virtual folders,
-#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
@@ -155,8 +153,6 @@ msgstr "Leto"
 msgid "All"
 msgstr "Vse"
 
-#. Titles and definitions of virtual folders for Music,
-#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Izvajalec"
@@ -174,8 +170,6 @@ msgstr "Zvrst"
 msgid "Files & Folders"
 msgstr "Datoteke in mape"
 
-#. @REALNAME@ is substituted for user's real name and it
-#. doesn't need translation.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
@@ -529,8 +523,6 @@ msgstr "Manjka argument 'predmetov'"
 msgid "Comments not allowed in XML"
 msgstr "Opombe v XML niso dovoljene"
 
-#. Sorry we can't do anything without ContainerID
-#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-object-creator.vala:195
 #: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
@@ -543,7 +535,7 @@ msgstr "Ni takšnega predmeta"
 #: ../src/librygel-server/rygel-object-creator.vala:220
 #, c-format
 msgid "No items in DIDL-Lite from client: '%s'"
-msgstr "Ni predmetov v DIDL-Lite od odjemalca: %s"
+msgstr "Ni predmetov v DIDL-Lite od odjemalca: '%s'"
 
 #: ../src/librygel-server/rygel-object-creator.vala:363
 msgid "No such container"
@@ -560,7 +552,6 @@ msgstr "Ustvarjanje predmeta v %s ni dovoljeno"
 msgid "Failed to create item under '%s': %s"
 msgstr "Ustvarjanje predmeta pod '%s' je spodletelo: %s"
 
-#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Manjka ID vsebnika"
@@ -585,7 +576,6 @@ msgstr "Odstranjevanje predmeta %s ni dovoljeno"
 msgid "Object removal from %s not allowed"
 msgstr "Odstranjevanje predmeta iz %s ni dovoljeno"
 
-#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Manjka ID predmeta"
@@ -663,7 +653,7 @@ msgstr "Neveljaven obseg"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:124
 msgid "Missing filter"
-msgstr "Manjkajoči filter"
+msgstr "Manjka filter"
 
 #: ../src/librygel-server/rygel-media-server.vala:25
 msgid "LibRygelServer"
@@ -687,8 +677,6 @@ msgstr "Ustvarjalnik sličic ni na voljo: %s"
 msgid "Thubmnailing not supported"
 msgstr "Ustvarjanje sličic ni podprto!"
 
-#. Thumbnailing failed previously, so there's no current thumbnail
-#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -714,7 +702,6 @@ msgstr "Ni mogoče ustvariti predmeta GstElement za naslov URI %s"
 msgid "Failed to create pipeline"
 msgstr "Ustvarjanje cevovoda je spodletelo"
 
-#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
@@ -759,13 +746,13 @@ msgstr "Iskanje po času ni podprto"
 msgid "No plugins found in %d second; giving up.."
 msgid_plural "No plugins found in %d seconds; giving up.."
 msgstr[0] ""
-"V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
+"V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo prekinjeno ..."
 msgstr[1] ""
-"V %d sekundi ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
+"V %d sekundi ni bilo mogoče najti vstavkov, iskanje bo prekinjeno ..."
 msgstr[2] ""
-"V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
+"V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo prekinjeno ..."
 msgstr[3] ""
-"V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo zaustavljeno ..."
+"V %d sekundah ni bilo mogoče najti vstavkov, iskanje bo prekinjeno ..."
 
 #: ../src/rygel/rygel-main.vala:162
 #, c-format
@@ -813,3 +800,238 @@ msgstr "Začenjanje storitve Rygel je spodletelo: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Zaustavljanje storitve Rygel je spodletelo: %s"
+
+#~ msgid "column"
+#~ msgstr "stolpec"
+
+#~ msgid "Add a network interface Rygel should serve files on"
+#~ msgstr "Dodaj omrežni vmesnik, na katerem naj program Rygel hrani datoteke."
+
+#~ msgid "Add network interface"
+#~ msgstr "Dodaj omrežni vmesnik"
+
+#~ msgid "Remove a network interface Rygel should no longer serve files on"
+#~ msgstr ""
+#~ "Odstrani omrežni vmesnik, na katerem je program Rygel hranil datoteke."
+
+#~ msgid "Remove network interface"
+#~ msgstr "Odstrani omrežni vmesnik"
+
+#~ msgid "External provider %s did not provide mandatory property \"%s\""
+#~ msgstr "Zunanji ponudnik %s je brez nastavitve obvezne lastnosti \"%s\""
+
+#~ msgid "Unsupported type %s"
+#~ msgstr "Nepodprta vrsta %s"
+
+#~ msgid "Failed to harvest file %s: %s"
+#~ msgstr "Pridobivanje datoteke %s je spodletelo: %s"
+
+#~ msgid "Failed to query database: %s"
+#~ msgstr "Poizvedovanje podatkovne zbirke je spodletelo: %s"
+
+#~ msgid "failed to enumerate folder: %s"
+#~ msgstr "oštevilčenje mape je spodletelo: %s"
+
+#~ msgid "Failed to get children of container %s: %s"
+#~ msgstr "Štetje podrejenih predmetov vsebnika %s je spodletelo: %s"
+
+#~ msgid "Failed to get child count of query container: %s"
+#~ msgstr "Štetje podrejenih predmetov vsebnika poizvedbe je spodletelo: %s"
+
+#~ msgid "Cannot create references to containers"
+#~ msgstr "Ni mogoče ustvariti sklicev na vsebnike"
+
+#~ msgid "Failed to get child count: %s"
+#~ msgstr "Štetje podrejenih predmetov je spodletelo: %s"
+
+#~ msgid "Can't create items in %s"
+#~ msgstr "Ni mogoče ustvariti predmeta v %s"
+
+#~ msgid "Can't add containers in %s"
+#~ msgstr "Ni mogoče dodajanje vsebnikov v %s"
+
+#~ msgid "Can't remove containers in %s"
+#~ msgstr "Ni mogoče odstraniti vsebnikov iz %s"
+
+#~ msgid "Can't remove items in %s"
+#~ msgstr "Ni mogoče odstraniti predmetov iz %s"
+
+#~ msgid "upnp:class not supported in %s"
+#~ msgstr "upnp: razred ni podprt v %s"
+
+#~ msgid "Failed to remove file %s: %s"
+#~ msgstr "Odstranjevanje datoteke %s je spodletelo: %s"
+
+#~ msgid "Could not find object %d in cache"
+#~ msgstr "V predpomnilniku ni mogoče najti predmeta %d"
+
+#~ msgid "MPRIS interface at %s is read-only. Ignoring."
+#~ msgstr ""
+#~ "Vmesnik MPRIS pri %s je nastavljen le za branje. Opravilo bo prezrto."
+
+#~ msgid "Not supported"
+#~ msgstr "Ni podprto"
+
+#~ msgid "Failed to create Tracker connection: %s"
+#~ msgstr "Ustvarjanje povezave s programom Tracker je spodletelo: %s"
+
+#~ msgid "Error getting all values for '%s': %s"
+#~ msgstr "Napaka pridobivanja vseh vrednosti za '%s': %s"
+
+#~ msgid "Failed to write modified description to %s"
+#~ msgstr "Zapisovanje spremenjenega zapisa v %s je spodletelo"
+
+#~ msgid "[Plugin] group not found"
+#~ msgstr "Skupine [vstavka ]ni mogoče najti"
+
+#~ msgid "Plugin module %s does not exist"
+#~ msgstr "Modul vstavka %s ne obstaja."
+
+#~ msgid "Could not load plugin: %s"
+#~ msgstr "Vstavka ni mogoče naložiti: %s"
+
+#~ msgid "Not Applicable"
+#~ msgstr "Ni primerno"
+
+#~ msgid "No D-Bus thumbnailer service available"
+#~ msgstr "Ustvarjalnik sličic vodila D-Bus ni na voljo"
+
+#~ msgid "Seeking not supported"
+#~ msgstr "Iskanje ni podprto"
+
+#~ msgid "Failed to generate playlist"
+#~ msgstr "Ustvarjanje seznama predvajanja je spodletelo"
+
+#~ msgid "Unknown"
+#~ msgstr "Neznano"
+
+#~ msgid "Invalid number of arguments"
+#~ msgstr "Neveljavno število argumentov"
+
+#~ msgid "ObjectID argument missing"
+#~ msgstr "Manjka argument ID predmeta"
+
+#~ msgid "upnp:createClass value not supported"
+#~ msgstr "upnp: vrednost createClass ni podprta."
+
+#~ msgid "Missing ContainerID argument"
+#~ msgstr "Manjka argument za ID vsebnika"
+
+#~ msgid "@id must be set to \"\" in CreateObject call"
+#~ msgstr "@id mora biti nastavljen na \"\" pri klicu ustvarjanja predmeta"
+
+#~ msgid "dc:title must not be empty in CreateObject call"
+#~ msgstr "dc:naslov ne sme biti prazno polje pri klicu ustvarjanja predmeta"
+
+#~ msgid "Flags that must not be set were found in 'dlnaManaged'"
+#~ msgstr ""
+#~ "Zastavic ni mogoče nastaviti na mestih, ki so že označena z 'dlnaManaged'"
+
+#~ msgid "Invalid upnp:class given in CreateObject"
+#~ msgstr "Neveljavna vrednost uPnP: razred je podan v predmetu CreateObject"
+
+#~ msgid "Cannot create restricted item"
+#~ msgstr "Ni mogoče ustvari omejenega predmeta"
+
+#~ msgid "UPnP class '%s' not supported"
+#~ msgstr "Razred UPnP '%s' ni podprt."
+
+#~ msgid "DLNA profile '%s' not supported"
+#~ msgstr "Profil DLNA '%s' ni podprt"
+
+#~ msgid "Invalid date format: %s"
+#~ msgstr "Neveljaven zapis datuma: %s"
+
+#~ msgid "Invalid date: %s"
+#~ msgstr "Neveljaven datum: %s"
+
+#~ msgid "Cannot create object of class '%s': Not supported"
+#~ msgstr "Ni mogoče ustvariti predmeta razreda '%s': možnost ni podprta"
+
+#~ msgid ""
+#~ "Error from container '%s' on trying to find the newly added child object "
+#~ "'%s' in it: %s"
+#~ msgstr ""
+#~ "Napaka vsebnika '%s' med poskusom iskanja na novo dodanih predmetov '%s': "
+#~ "%s"
+
+#~ msgid "'ContainerID' agument missing."
+#~ msgstr "Manjka argument 'ID vsebnika'"
+
+#~ msgid "'ObjectID' argument missing."
+#~ msgstr "Manjka argument 'ID predmeta '"
+
+#~ msgid "Failed to create object under '%s': %s"
+#~ msgstr "Predmeta ni mogoče ustvariti pod '%s': %s."
+
+#~ msgid "Invalid search criteria given"
+#~ msgstr "Podani kriteriji niso veljaveni"
+
+#~ msgid "Failed to create GStreamer data source for %s: %s"
+#~ msgstr "Ustvarjanje podatkovnega vira GStreamer za %s je spodletelo: %s"
+
+#~ msgid ""
+#~ "Could not create a transcoder configuration. Your GStreamer installation "
+#~ "might be missing a plug-in"
+#~ msgstr ""
+#~ "Ni mogoče ustvariti nastavitev prekodirnika. Nastavitvi GStrimer morda "
+#~ "manjkajo vstavki."
+
+#~ msgid "Network Interfaces"
+#~ msgstr "Omrežni vmesniki"
+
+#~ msgid "Disable transcoding"
+#~ msgstr "Ne dovoli prekodiranja"
+
+#~ msgid "Disallow upload"
+#~ msgstr "Ne dovoli pošiljanja"
+
+#~ msgid "Disallow deletion"
+#~ msgstr "Ne dovoli brisanja"
+
+#~ msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
+#~ msgstr ""
+#~ "Z vejico ločen seznam parov domena:raven. Za več podrobnosti si oglejte "
+#~ "rygel(1) ..."
+
+#~ msgid "Plugin Path"
+#~ msgstr "Pot vstavka"
+
+#~ msgid "Engine Path"
+#~ msgstr "Pot programnika"
+
+#~ msgid "Disable plugin"
+#~ msgstr "Onemogoči vstavek"
+
+#~ msgid "Set plugin titles"
+#~ msgstr "Nastavi naslove vstavkov"
+
+#~ msgid "Set plugin options"
+#~ msgstr "Nastavi možnosti vstavka"
+
+#~ msgid "Disable UPnP (streaming-only)"
+#~ msgstr "Onemogoči UPnP (le pri pretakanju)"
+
+#~ msgid "Use configuration file instead of user configuration"
+#~ msgstr "Uporabi nastavitveno datoteko namesto uporabniških nastavitev"
+
+#~ msgid "Shutdown remote Rygel reference"
+#~ msgstr "Izklopi oddaljen sklic do datoteke"
+
+#~ msgid "Shutting down remote Rygel instance\n"
+#~ msgstr "Izklapljanje oddaljenega primerka Rygel.\n"
+
+#~ msgid "Failed to shut-down other rygel instance: %s"
+#~ msgstr "Zaustavljanje drugih storitev rygel je spodletelo: %s"
+
+#~ msgid "Rygel is running in streaming-only mode."
+#~ msgstr "Program Rygel teče v načinu izključno pretoka."
+
+#~ msgid "Rygel v%s starting…"
+#~ msgstr "Začenjanje programa Rygel v%s ..."
+
+#~ msgid "Failed to load user configuration from file '%s': %s"
+#~ msgstr "Nalaganje nastavitev iz datoteke '%s' je spodletelo: %s"
+
+#~ msgid " %%% Object creation in %s not allowed"
+#~ msgstr "%%% Ustvarjanje predmeta v %s ni dovoljeno"
