@@ -1,3 +1,49 @@
+0.20.3
+======
+
+A new stable release of Rygel!
+
+Changes compared to 0.20.2:
+
+- Allow building against Tracker 0.18
+
+Server:
+ - Add more work-arounds for Samsung TVs.
+ - Add more hacks for devices doing full seek requests.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=715089
+
+All contributors to this release:
+ - Milo Casagrande <milo@ubuntu.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Andika Triwidada <andika@gmail.com>
+ - Мирослав Николић <miroslavnikolic@rocketmail.com>
+ - Rafael Ferreira <rafael.f.f1@gmail.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Marek Černocký <marek@manet.cz>
+ - John Obaterspok <john.obaterspok@gmail.com>
+ - Jens Georg <mail@jensge.org>
+ - Frédéric Péters <fpeters@0d.be>
+ - Fran Diéguez <fran.dieguez@mabishu.com>
+ - Enrico Nicoletto <liverig@gmail.com>
+ - Dominique Leuenberger <dimstar@opensuse.org>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - id, courtesy of Andika Triwidada
+ - it, courtesy of Milo Casagrande
+ - lt, courtesy of Aurimas Černius
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Rafael Ferreira
+ - sl, courtesy of Matej Urbančič
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+
 0.20.2
 ======
 
