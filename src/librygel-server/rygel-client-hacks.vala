@@ -79,6 +79,9 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
             return new SeekHacks (message);
         } catch (Error error) { }
 
+        try {
+            return new LGTVHacks (message);
+        } catch (Error error) { }
 
         return new XBMCHacks (message);
     }
