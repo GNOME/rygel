@@ -187,10 +187,10 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                 var searchable = (bool) props.lookup ("Searchable");
                 props = yield props_iface.get_all (MediaObjectProxy.IFACE);
                 var path = (string) props.lookup ("Path");
-                title = get_mandatory_string_value (props,
-                                                    "DisplayName",
-                                                    path,
-                                                    this.service_name);
+                var title = get_mandatory_string_value (props,
+                                                        "DisplayName",
+                                                        path,
+                                                        this.service_name);
 
                 media_object = new Container (path,
                                               title,
@@ -256,10 +256,10 @@ public class Rygel.External.Container : Rygel.MediaContainer,
             }
 
             if (media_object == null) {
-                title = get_mandatory_string_value (props,
-                                                    "DisplayName",
-                                                    id,
-                                                    this.service_name);
+                var title = get_mandatory_string_value (props,
+                                                        "DisplayName",
+                                                        id,
+                                                        this.service_name);
 
                 if (type == "container") {
                     var child_count = (uint) props.lookup ("ChildCount");
