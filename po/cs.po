@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the rygel package.
 #
 # Lucas Lommer <llommer@svn.gnome.org>, 2012.
-# Marek Černocký <marek@manet.cz>, 2010, 2011, 2012, 2013.
+# Marek Černocký <marek@manet.cz>, 2010, 2011, 2012, 2013, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel rygel-0.20\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-26 19:13+0000\n"
-"PO-Revision-Date: 2013-12-27 15:52+0100\n"
+"POT-Creation-Date: 2013-12-29 19:10+0000\n"
+"PO-Revision-Date: 2014-01-01 13:46+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -96,8 +96,8 @@ msgstr ""
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "Modul „%s“ nelze připojit ke sběrnici sezení D-Bus. "
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr "Modul „%s“ nelze připojit ke sběrnici sezení D-Bus. Ignoruje se…"
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -224,11 +224,15 @@ msgstr "Nebudou sledovány změny souborů"
 msgid "Failed to get file info for %s"
 msgstr "Selhalo získání informací pro %s"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Rok"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Umělec"
@@ -652,6 +656,7 @@ msgstr "Selhalo získání původní adresy URI pro „%s“: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Adresa URI „%s“ je neplatná pro import obsahu do ní"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Schází ContainerID"
@@ -684,6 +689,7 @@ msgstr "Odstranění objektu %s není dovoleno"
 msgid "Object removal from %s not allowed"
 msgstr "Odstranění objektu v %s není dovoleno"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Schází identifikátor objektu"
@@ -765,6 +771,7 @@ msgstr ""
 msgid "Invalid number of arguments"
 msgstr "Neplatný počet argumentů"
 
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "Schází argument ObjectID"
@@ -794,6 +801,7 @@ msgstr "Schází argument „Elements“."
 msgid "Comments not allowed in XML"
 msgstr "V XML nejsou dovoleny komentáře"
 
+#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "Schází argument ContainerID"
@@ -908,6 +916,8 @@ msgstr "Žádný generátor náhledů není k dispozici: %s"
 msgid "Thumbnailing not supported"
 msgstr "Generování náhledů není podporováno"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -933,6 +943,7 @@ msgstr "Nelze vytvořit GstElement pro adresu URI %s"
 msgid "Failed to create pipeline"
 msgstr "Selhalo vytvoření roury"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
