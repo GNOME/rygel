@@ -8,9 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-14 22:50+0200\n"
-"PO-Revision-Date: 2013-08-14 22:50+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-01-01 19:07+0000\n"
+"PO-Revision-Date: 2014-01-02 14:51+0100\n"
 "Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
@@ -89,8 +90,11 @@ msgstr "Medien-Server;Freigabe;Audio;Video;Bilder;Fotos;"
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:42
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:42
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "Modul »%s« konnte keine Verbindung zum D-Bus Sitzungsbus herstellen."
+#| msgid "Module '%s' could not connect to D-Bus session bus. "
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr ""
+"Modul »%s« konnte keine Verbindung zum D-Bus-Sitzungsbus herstellen. Wird "
+"ignoriert."
 
 #: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
@@ -137,6 +141,8 @@ msgstr "Dateiänderungen werden nicht überwacht"
 msgid "Failed to get file info for %s"
 msgstr "Dateiinformation für %s konnte nicht erhalten werden"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
@@ -146,6 +152,8 @@ msgstr "Jahr"
 msgid "All"
 msgstr "Alle"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Künstler"
@@ -163,6 +171,8 @@ msgstr "Genre"
 msgid "Files & Folders"
 msgstr "Dateien und Ordner"
 
+#. @REALNAME@ is substituted for user's real name and it
+#. doesn't need translation.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
@@ -517,6 +527,8 @@ msgstr "Argument »Elements« fehlt."
 msgid "Comments not allowed in XML"
 msgstr "Kommentare sind in XML nicht zulässig"
 
+#. Sorry we can't do anything without ContainerID
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-object-creator.vala:195
 #: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
@@ -546,6 +558,7 @@ msgstr "Erstellung eines Objekts in %s ist nicht erlaubt"
 msgid "Failed to create item under '%s': %s"
 msgstr "Objekt unter »%s« konnte nicht erstellt werden: %s"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "»ContainerID« fehlt"
@@ -570,6 +583,7 @@ msgstr "Entfernung des Objekts %s ist nicht erlaubt"
 msgid "Object removal from %s not allowed"
 msgstr "Entfernung eines Objekts aus %s ist nicht erlaubt"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Objekt-ID fehlt"
@@ -672,6 +686,8 @@ msgstr "Kein Vorschauprogramm verfügbar: %s"
 msgid "Thubmnailing not supported"
 msgstr "Vorschaubilder werden nicht unterstützt"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -697,6 +713,7 @@ msgstr "GstElement für Adresse %s konnte nicht angelegt werden"
 msgid "Failed to create pipeline"
 msgstr "Weiterleitung konnte nicht erstellt werden"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
