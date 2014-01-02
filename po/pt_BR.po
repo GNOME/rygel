@@ -8,15 +8,16 @@
 # Rafael Ferreira <rafael.f.f1@gmail.com>, 2012, 2013.
 # Enrico Nicoletto <liverig@gmail.com>, 2013.
 # Edson Silva <edsonlead@gmail.com>, 2013.
+# Adorilson Bezerra <adorilson@gmail.com>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-21 21:33+0000\n"
-"PO-Revision-Date: 2013-12-21 23:24-0300\n"
-"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
+"POT-Creation-Date: 2014-01-01 12:47+0000\n"
+"PO-Revision-Date: 2014-01-01 14:58-0300\n"
+"Last-Translator: Adorilson Bezerra <adorilson@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -99,9 +100,10 @@ msgstr ""
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
 msgstr ""
-"O módulo \"%s\" não conseguiu conectar-se ao barramento de sessão D-Bus."
+"O módulo \"%s\" não conseguiu conectar-se ao barramento de sessão D-Bus. "
+"Ignorando…"
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -228,11 +230,15 @@ msgstr "Não irá monitorar alterações em arquivos"
 msgid "Failed to get file info for %s"
 msgstr "Erro ao obter informações do arquivo %s"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Ano"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Artista"
@@ -656,6 +662,7 @@ msgstr "Falha ao obter URI original para \"%s\": %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URL \"%s\" inválida para onde importar conteúdos"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Faltando o ID do contêiner"
@@ -688,6 +695,7 @@ msgstr "Remoção do objeto %s não permitida"
 msgid "Object removal from %s not allowed"
 msgstr "Remoção do objeto \"%s\" não permitida"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Faltando o ID do objeto"
@@ -768,6 +776,7 @@ msgstr "Erro ao descobrir um protocolo para a URI %s. Assumindo \"%s\""
 msgid "Invalid number of arguments"
 msgstr "Número inválido de argumentos"
 
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "Faltando argumento de ObjectID"
@@ -797,6 +806,7 @@ msgstr "Argumentos de \"elementos\" faltando."
 msgid "Comments not allowed in XML"
 msgstr "Comentários não permitidos em XML"
 
+#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "Faltando argumento de ContainerID"
@@ -912,6 +922,8 @@ msgstr "Nenhum miniaturizador disponível: %s"
 msgid "Thumbnailing not supported"
 msgstr "Sem suporte à miniaturização"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -937,6 +949,7 @@ msgstr "Não foi possível criar GstElement para URI %s"
 msgid "Failed to create pipeline"
 msgstr "Ocorreu falha ao criar linha de processamento"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
