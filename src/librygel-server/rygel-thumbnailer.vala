@@ -44,7 +44,7 @@ internal class Rygel.Thumbnailer : GLib.Object {
         this.template = new Thumbnail ("image/png", "PNG_TN", "png");
         this.template.width = 128;
         this.template.height = 128;
-        this.template.depth = 32;
+        this.template.depth = 24;
         this.extension = "." + this.template.file_extension;
 
         try {
