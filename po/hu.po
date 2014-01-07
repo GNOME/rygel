@@ -1,24 +1,23 @@
 # Hungarian translation of Rygel
-# Copyright (C) 2010, 2011, 2012, 2013. Free Software Foundation, Inc.
+# Copyright (C) 2010, 2011, 2012, 2013, 2014. Free Software Foundation, Inc.
 # This file is distributed under the same license as the Rygel package.
 #
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2010, 2011, 2012, 2013.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2010, 2011, 2012, 2013, 2014.
 # Balázs Úr <urbalazs at gmail dot com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: Rygel master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-17 07:53+0000\n"
-"PO-Revision-Date: 2013-10-20 11:37+0200\n"
-"Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
-"Language-Team: Hungarian <openscope at googlegroups dot com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-01-04 16:47+0000\n"
+"PO-Revision-Date: 2014-01-07 18:41+0100\n"
+"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -54,17 +53,14 @@ msgid "Add a network interface Rygel should serve files on"
 msgstr "Hálózati csatoló hozzáadása, amelyen a Rygel fájlokat szolgálhat ki"
 
 #: ../data/rygel-preferences.ui.h:9
-#| msgid "Network Interfaces"
 msgid "Add network interface"
 msgstr "Hálózati csatoló hozzáadása"
 
 #: ../data/rygel-preferences.ui.h:10
 msgid "Remove a network interface Rygel should no longer serve files on"
-msgstr ""
-"Hálózati csatoló eltávolítása, amelyen a Rygel többé nem szolgál ki fájlokat"
+msgstr "Hálózati csatoló eltávolítása, amelyen a Rygel többé nem szolgál ki fájlokat"
 
 #: ../data/rygel-preferences.ui.h:11
-#| msgid "Network Interfaces"
 msgid "Remove network interface"
 msgstr "Hálózati csatoló eltávolítása"
 
@@ -96,8 +92,7 @@ msgstr "média-kiszolgáló;média-renderelő;megosztás;hang;videó;képek;"
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
 msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
-msgstr ""
-"A(z) „%s” modul nem csatlakoztatható a D-Bus munkamenetbuszhoz. Mellőzés…"
+msgstr "A(z) „%s” modul nem csatlakoztatható a D-Bus munkamenetbuszhoz. Mellőzés…"
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -284,6 +279,11 @@ msgstr "Nem sikerült a(z) %s fájl eltávolítása: %s"
 msgid "Could not find object %d in cache"
 msgstr "Nem található a(z) %d. objektum a gyorsítótárban"
 
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
+#, c-format
+msgid "MPRIS interface at %s is read-only. Ignoring."
+msgstr "Az MPRIS felület csak olvasható itt: %s. Mellőzés."
+
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
 msgstr "GStreamer lejátszó"
@@ -328,8 +328,7 @@ msgstr "Hiba a(z) „%s” összes értékének lekérésekor: %s"
 #: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr ""
-"A Tracker szolgáltatás elindítása meghiúsult: %s. A bővítmény letiltva."
+msgstr "A Tracker szolgáltatás elindítása meghiúsult: %s. A bővítmény letiltva."
 
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:104
 #, c-format
@@ -503,8 +502,8 @@ msgstr "Érvénytelen példányazonosító"
 
 #. FIXME: Return a more sensible error here.
 #: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:713
-#: ../src/librygel-renderer/rygel-av-transport.vala:723
+#: ../src/librygel-renderer/rygel-av-transport.vala:725
+#: ../src/librygel-renderer/rygel-av-transport.vala:735
 msgid "Resource not found"
 msgstr "Az erőforrás nem található"
 
@@ -521,16 +520,18 @@ msgid "Transition not available"
 msgstr "Az átmenet nem támogatott"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:602
-#: ../src/librygel-renderer/rygel-av-transport.vala:617
-#: ../src/librygel-renderer/rygel-av-transport.vala:630
-#: ../src/librygel-renderer/rygel-av-transport.vala:651
-#: ../src/librygel-renderer/rygel-av-transport.vala:659
-msgid "Illegal seek target"
-msgstr "Szabálytalan tekerési cél"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:620
+#: ../src/librygel-renderer/rygel-av-transport.vala:653
 msgid "Seek mode not supported"
 msgstr "A tekerési mód nem támogatott"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:608
+#: ../src/librygel-renderer/rygel-av-transport.vala:629
+#: ../src/librygel-renderer/rygel-av-transport.vala:642
+#: ../src/librygel-renderer/rygel-av-transport.vala:663
+#: ../src/librygel-renderer/rygel-av-transport.vala:671
+msgid "Illegal seek target"
+msgstr "Szabálytalan tekerési cél"
 
 #: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
@@ -591,12 +592,12 @@ msgstr "Érvénytelen kérés"
 msgid "Not found"
 msgstr "Nem található"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Érvénytelen URI: „%s”"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 msgid "Not Found"
 msgstr "Nem található"
 
@@ -758,8 +759,7 @@ msgstr "Hibás URI: %s"
 #: ../src/librygel-server/rygel-media-item.vala:334
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr ""
-"A protokollvizsgálat meghiúsult a(z) %s URI-címhez. „%s” lesz feltételezve."
+msgstr "A protokollvizsgálat meghiúsult a(z) %s URI-címhez. „%s” lesz feltételezve."
 
 #: ../src/librygel-server/rygel-media-query-action.vala:100
 msgid "Invalid number of arguments"
@@ -1118,75 +1118,3 @@ msgstr "A Rygel szolgáltatás indítása meghiúsult: %s"
 msgid "Failed to stop Rygel service: %s"
 msgstr "A Rygel szolgáltatás leállítása meghiúsult: %s"
 
-#~ msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
-#~ msgstr "Médiamegosztás (fényképek, videók és zene) engedélyezése DLNA-val"
-
-#~ msgid ""
-#~ "Select the network interface that DLNA media will be shared on, or share "
-#~ "media on all interfaces"
-#~ msgstr ""
-#~ "Válassza ki azt a hálózati csatolót, amelyen a DLNA média megosztásra "
-#~ "kerül, vagy az összes csatolót"
-
-#~ msgid "Any"
-#~ msgstr "Bármely"
-
-#~ msgid "XML node '%s' not found."
-#~ msgstr "A(z) „%s” XML csomópont nem található."
-
-#~ msgid "LibRygelRenderer"
-#~ msgstr "LibRygelRenderer"
-
-#~ msgid "LibRygelServer"
-#~ msgstr "LibRygelServer"
-
-#~ msgid "Failed to attach to D-Bus session bus: %s"
-#~ msgstr "A D-Bus munkamenetbuszhoz csatlakozás meghiúsult: %s"
-
-#~ msgid "No metadata extractor available. Will not crawl."
-#~ msgstr "Nem érhető el metaadat-kinyerő. Nem történik bejárás."
-
-#~ msgid "Failed to access media cache: %s"
-#~ msgstr "A média-gyorsítótár elérése meghiúsult: %s"
-
-#~ msgid "Failed to remove URI: %s"
-#~ msgstr "Az URI eltávolítása meghiúsult: %s"
-
-#~ msgid "Failed to create MediaExport D-Bus service: %s"
-#~ msgstr "A MediaExport D-Bus szolgáltatás létrehozása meghiúsult: %s"
-
-#~ msgid "Failed to create D-Bus proxies: %s"
-#~ msgstr "A D-Bus proxyk létrehozása meghiúsult: %s"
-
-#~ msgid "Seek failed"
-#~ msgstr "A pozicionálás meghiúsult"
-
-#~ msgid "Failed to find thumbnails folder."
-#~ msgstr "Nem található a bélyegképek mappája."
-
-#~ msgid "Object %s is not an item"
-#~ msgstr "Az objektum (%s) nem elem"
-
-#~ msgid "Item '%s' didn't provide a URI"
-#~ msgstr "A(z) „%s” elem nem adott meg URI-címet"
-
-#~ msgid "Plugin 'fakesink' missing"
-#~ msgstr "A „fakesink” bővítmény hiányzik"
-
-#~ msgid "Failed to start D-Bus service: %s"
-#~ msgstr "A D-Bus szolgáltatás indítása meghiúsult: %s"
-
-#~ msgid "Failed to read from URI: %s: %s"
-#~ msgstr "Az olvasás meghiúsult a(z) %s URI-címről: %s"
-
-#~ msgid "Failed to seek to %s-%s on URI %s: %s"
-#~ msgstr "A tekerés meghiúsult ide: %s-%s a(z) %s URI-címen: %s"
-
-#~ msgid "Failed to read contents from URI: %s: %s"
-#~ msgstr "A tartalom olvasása meghiúsult a(z) %s URI-címről: %s"
-
-#~ msgid "Failed to close stream to URI %s: %s"
-#~ msgstr "Az adatfolyam lezárása meghiúsult a(z) %s URI-címnek: %s"
-
-#~ msgid "Failed to write modified description to %s."
-#~ msgstr "A módosított leírás kiírása meghiúsult a következőbe: %s"
