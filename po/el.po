@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the rygel package.
 # Giannis Katsampirhs <juankatsampirhs@gmail.com>, 2010.
 # Marios Zindilis <m.zindilis@dmajor.org>, 2011.
-# Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>, 2013.
+# Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>, 2013, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&"
-"keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-11-02 19:12+0000\n"
-"PO-Revision-Date: 2013-11-06 16:48+0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-01-06 08:28+0000\n"
+"PO-Revision-Date: 2014-01-11 17:22+0300\n"
 "Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
-"Language-Team: team@gnome.gr\n"
+"Language-Team: www.gnome.gr\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -379,19 +379,16 @@ msgstr "Δεν έχει υλοποιηθεί"
 
 #: ../src/librygel-core/rygel-basic-management-test.vala:197
 #, c-format
-#| msgid "Failed to create GStreamer data source for %s: %s"
 msgid "Failed to read standard output from %s: %s"
 msgstr "Αποτυχία ανάγνωσης τυπικής εξόδου από %s: %s"
 
 #: ../src/librygel-core/rygel-basic-management-test.vala:225
 #, c-format
-#| msgid "Failed to load module from path '%s': %s"
 msgid "Failed to read error output from %s: %s"
 msgstr "Αποτυχία ανάγνωσης εξόδου σφάλματος από %s: %s"
 
 #. / No test with the specified TestID was found
 #: ../src/librygel-core/rygel-basic-management.vala:159
-#| msgid "No such object"
 msgid "No Such Test"
 msgstr "Δεν υπάρχει τέτοια δοκιμή"
 
@@ -403,7 +400,6 @@ msgstr "Εσφαλμένος τύπος δοκιμής"
 #. / TestID is valid but the test Results are not available
 #: ../src/librygel-core/rygel-basic-management.vala:175
 #, c-format
-#| msgid "Invalid Range '%s'"
 msgid "Invalid Test State '%s'"
 msgstr "Άκυρη κατάσταση δοκιμής '%s'"
 
@@ -424,24 +420,24 @@ msgstr "Η κατάσταση '%s' αποκλείει ακύρωση"
 #: ../src/librygel-core/rygel-basic-management.vala:481
 #: ../src/librygel-core/rygel-basic-management.vala:496
 #: ../src/librygel-core/rygel-basic-management.vala:520
-#: ../src/librygel-core/rygel-connection-manager.vala:91
-#: ../src/librygel-core/rygel-connection-manager.vala:105
-#: ../src/librygel-core/rygel-connection-manager.vala:122
-#: ../src/librygel-renderer/rygel-av-transport.vala:214
+#: ../src/librygel-core/rygel-connection-manager.vala:95
+#: ../src/librygel-core/rygel-connection-manager.vala:109
+#: ../src/librygel-core/rygel-connection-manager.vala:126
+#: ../src/librygel-renderer/rygel-av-transport.vala:207
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
-#: ../src/librygel-server/rygel-content-directory.vala:270
-#: ../src/librygel-server/rygel-content-directory.vala:298
-#: ../src/librygel-server/rygel-content-directory.vala:317
-#: ../src/librygel-server/rygel-content-directory.vala:352
-#: ../src/librygel-server/rygel-content-directory.vala:377
-#: ../src/librygel-server/rygel-content-directory.vala:402
-#: ../src/librygel-server/rygel-content-directory.vala:621
-#: ../src/librygel-server/rygel-content-directory.vala:772
+#: ../src/librygel-server/rygel-content-directory.vala:262
+#: ../src/librygel-server/rygel-content-directory.vala:290
+#: ../src/librygel-server/rygel-content-directory.vala:309
+#: ../src/librygel-server/rygel-content-directory.vala:344
+#: ../src/librygel-server/rygel-content-directory.vala:373
+#: ../src/librygel-server/rygel-content-directory.vala:398
+#: ../src/librygel-server/rygel-content-directory.vala:617
+#: ../src/librygel-server/rygel-content-directory.vala:768
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Μη έγκυρο όρισμα"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:128
+#: ../src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "Μη έγκυρη αναφορά σύνδεσης"
 
@@ -551,41 +547,50 @@ msgstr "Σφάλμα κατά την εμφάνιση της λίστας περ
 msgid "Could not load plugin: %s"
 msgstr "Αδύνατη η φόρτωση του προσθέτου: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:220
+#: ../src/librygel-renderer/rygel-av-transport.vala:213
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Μη έγκυρο ID υπόδειξης"
 
-#. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:710
-#: ../src/librygel-renderer/rygel-av-transport.vala:720
-msgid "Resource not found"
-msgstr "Ο πόρος δεν βρέθηκε"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:281
-msgid "Illegal MIME-type"
-msgstr "Απαράδεκτος τύπος MIME"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:557
+#: ../src/librygel-renderer/rygel-av-transport.vala:483
 msgid "Play speed not supported"
 msgstr "Η ταχύτητα αναπαραγωγής δεν υποστηρίζεται"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:574
+#: ../src/librygel-renderer/rygel-av-transport.vala:501
 msgid "Transition not available"
 msgstr "Μη διαθέσιμη μετάβαση"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:608
-#: ../src/librygel-renderer/rygel-av-transport.vala:638
+#: ../src/librygel-renderer/rygel-av-transport.vala:531
+#: ../src/librygel-renderer/rygel-av-transport.vala:556
+#: ../src/librygel-renderer/rygel-av-transport.vala:586
 msgid "Seek mode not supported"
 msgstr "Δεν υποστηρίζεται η λειτουργία αναζήτησης"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:614
-#: ../src/librygel-renderer/rygel-av-transport.vala:627
-#: ../src/librygel-renderer/rygel-av-transport.vala:648
-#: ../src/librygel-renderer/rygel-av-transport.vala:656
+#: ../src/librygel-renderer/rygel-av-transport.vala:537
+#: ../src/librygel-renderer/rygel-av-transport.vala:562
+#: ../src/librygel-renderer/rygel-av-transport.vala:575
+#: ../src/librygel-renderer/rygel-av-transport.vala:596
+#: ../src/librygel-renderer/rygel-av-transport.vala:604
 msgid "Illegal seek target"
 msgstr "Απαράδεκτος στόχος αναζήτησης"
+
+#. FIXME: Return a more sensible error here.
+#: ../src/librygel-renderer/rygel-av-transport.vala:703
+#: ../src/librygel-renderer/rygel-av-transport.vala:713
+#: ../src/librygel-renderer/rygel-av-transport.vala:770
+msgid "Resource not found"
+msgstr "Ο πόρος δεν βρέθηκε"
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: ../src/librygel-renderer/rygel-av-transport.vala:766
+#, c-format
+msgid "Failed to access resource at %s: %s"
+msgstr "Αποτυχία πρόσβασης πόρου στο %s: %s"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:781
+msgid "Illegal MIME-type"
+msgstr "Απαράδεκτος τύπος MIME"
 
 #: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
@@ -618,7 +623,7 @@ msgstr "Αποτυχία κατά την περιήγηση στο '%s': %s\n"
 msgid "Not Applicable"
 msgstr "Ανεφάρμοστο"
 
-#: ../src/librygel-server/rygel-content-directory.vala:642
+#: ../src/librygel-server/rygel-content-directory.vala:638
 msgid "No such file transfer"
 msgstr "Καμία μεταφορά τέτοιου αρχείου"
 
@@ -1205,10 +1210,6 @@ msgstr "Αποτυχία τερματισμού της υπηρεσίας Rygel:
 
 #~ msgid "Failed to attach to D-Bus session bus: %s"
 #~ msgstr "Αποτυχία σύνδεσης στο δίαυλο της συνεδρίας D-Bus: %s"
-
-#~| msgid "Failed to remove entry: %s"
-#~ msgid "Failed to access media cache: %s"
-#~ msgstr "Αποτυχία πρόσβασης στη λανθάνουσα μνήμη πολυμέσων: %s"
 
 #~ msgid "Failed to remove URI: %s"
 #~ msgstr "Αποτυχία κατά τη διαγραφή της τοποθεσίας: %s"
