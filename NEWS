@@ -1,3 +1,57 @@
+0.21.3
+======
+
+A new unstable release of Rygel.
+
+Changes compared to 0.21.3:
+
+- Update FSF address.
+
+Server:
+ - Use correct depth for PNG thumbnails.
+ - Add hacks for LG SmartShare TVs.
+
+MediaExport:
+ - Work around an SQL error when browsing Artists.
+
+GStreamer Renderer:
+ - Query source element for duration and position.
+ - Remove BUFFERING/CLOCK_LOST handling.
+
+External:
+ - Don't corrupt container names.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=720671
+ - https://bugzilla.gnome.org/show_bug.cgi?id=720836
+ - https://bugzilla.gnome.org/show_bug.cgi?id=721270
+ - https://bugzilla.gnome.org/show_bug.cgi?id=721575
+ - https://bugzilla.gnome.org/show_bug.cgi?id=721824
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Rafael Ferreira <rafael.f.f1@gmail.com>
+ - Milo Casagrande <milo@ubuntu.com>
+ - Victor Ibragimov <victor.ibragimov@gmail.com>
+ - Tong Hui <tonghuix@gmmail.com>
+ - siva <siva@orexel.com>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Marek Černocký <marek@manet.cz>
+ - Dimitris Spingos <dmtrs32@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+ - es, courtesy of Daniel Mustieles
+ - it, courtesy of Milo Casagrande
+ - lt, courtesy of Aurimas Černius
+ - pt_BR, courtesy of Rafael Ferreira
+ - sl, courtesy of Matej Urbančič
+ - tg, courtesy of Victor Ibragimov
+ - zh_CN, courtesy of Tong Hui
+
 0.21.2
 ======
 
