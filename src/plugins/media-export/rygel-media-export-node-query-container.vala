@@ -97,7 +97,6 @@ internal class Rygel.MediaExport.NodeQueryContainer : QueryContainer {
     }
 
     private bool add_all_container () {
-        return this.attribute == "upnp:album" &&
-               "upnp:artist" in this.template;
+        return false;
     }
 }
