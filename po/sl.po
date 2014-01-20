@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the rygel package.
 #
 # Andrej Žnidaršič <andrej.znidarsic@gmail.com>, 2010-2011.
-# Matej Urbančič <mateju@svn.gnome.org>, 2012-2013.
+# Matej Urbančič <mateju@svn.gnome.org>, 2012-2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-21 17:49+0000\n"
+"POT-Creation-Date: 2014-01-17 06:57+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
@@ -18,8 +18,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.4\n"
 
@@ -97,8 +96,10 @@ msgstr ""
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "Povezovanje modula '%s' z vodilom seje D-Bus je spodletelo."
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr ""
+"Povezovanje modula '%s' z vodilom seje D-Bus je spodletelo. Opravilo bo "
+"prezrto ..."
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -225,11 +226,15 @@ msgstr "Ne bo nadziral sprememb datoteke"
 msgid "Failed to get file info for %s"
 msgstr "Pridobivanje podatkov datoteke za %s je spodletelo"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Leto"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Izvajalec"
@@ -612,7 +617,7 @@ msgstr "Ni mogoče brskati podrejenih predmetov"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Brskanje '%s' je spodletelo: %s\n"
 
-#: ../src/librygel-server/rygel-client-hacks.vala:131
+#: ../src/librygel-server/rygel-client-hacks.vala:134
 msgid "Not Applicable"
 msgstr "Ni primerno"
 
@@ -700,6 +705,7 @@ msgstr "Pridobivanje izvirnega URI za '%s' je spodletelo: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Naslov URI '%s' je neveljaven za uvažanje vsebine"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Manjka ID vsebnika"
@@ -732,6 +738,7 @@ msgstr "Odstranjevanje predmeta %s ni dovoljeno"
 msgid "Object removal from %s not allowed"
 msgstr "Odstranjevanje predmeta iz %s ni dovoljeno"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Manjka ID predmeta"
@@ -812,6 +819,7 @@ msgstr "Neuspešno preiskovanje protokola za naslov URI %s. Uporabljeno bo '%s'"
 msgid "Invalid number of arguments"
 msgstr "Neveljavno število argumentov"
 
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "Manjka argument ID predmeta"
@@ -841,6 +849,7 @@ msgstr "Manjka argument 'predmetov'"
 msgid "Comments not allowed in XML"
 msgstr "Opombe v XML niso dovoljene"
 
+#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "Manjka argument za ID vsebnika"
@@ -952,6 +961,8 @@ msgstr "Ustvarjalnik sličic ni na voljo: %s"
 msgid "Thumbnailing not supported"
 msgstr "Ustvarjanje sličic ni podprto!"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -977,6 +988,7 @@ msgstr "Ni mogoče ustvariti predmeta GstElement za naslov URI %s"
 msgid "Failed to create pipeline"
 msgstr "Ustvarjanje cevovoda je spodletelo"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
@@ -1048,8 +1060,8 @@ msgstr "Ne dovoli brisanja"
 #: ../src/rygel/rygel-cmdline-config.vala:87
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr ""
-"Z vejico ločen seznam parov domena:raven. Za več podrobnosti si oglejte rygel"
-"(1) ..."
+"Z vejico ločen seznam parov domena:raven. Za več podrobnosti si oglejte "
+"rygel(1) ..."
 
 #: ../src/rygel/rygel-cmdline-config.vala:89
 msgid "Plugin Path"
