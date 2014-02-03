@@ -29,7 +29,8 @@ librygel_core_2_2_la_CFLAGS = \
 	-DG_LOG_DOMAIN='"Rygel"'
 
 librygel_core_2_2_la_LIBADD = \
-	$(LIBRYGEL_CORE_DEPS_LIBS)
+	$(LIBRYGEL_CORE_DEPS_LIBS) \
+	-lm
 
 RYGEL_CORE_VERSION=2:2:0
 librygel_core_2_2_la_LDFLAGS = \
