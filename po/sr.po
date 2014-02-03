@@ -2,14 +2,14 @@
 # Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
 # Милош Поповић <gpopac@gmail.com>, 2010.
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011, 2012, 2013.
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011, 2012, 2013, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&"
 "keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-14 12:24+0000\n"
-"PO-Revision-Date: 2013-01-16 22:07+0200\n"
+"POT-Creation-Date: 2014-02-03 12:03+0000\n"
+"PO-Revision-Date: 2014-02-03 17:41+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -168,6 +168,8 @@ msgstr "Датотеке и фасцикле"
 msgid "Failed to remove URI: %s"
 msgstr "Нисам успео да уклоним путању: %s"
 
+#. @REALNAME@ is substituted for user's real name and it
+#. doesn't need translation.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:354
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
@@ -476,6 +478,7 @@ msgstr "Нисам успео да преместим скривену дато�
 msgid "Requested item '%s' not found"
 msgstr "Нисам пронашао захтевану ставку „%s“"
 
+#. static pads? easy!
 #: ../src/librygel-server/rygel-http-response.vala:156
 #: ../src/librygel-server/rygel-http-response.vala:177
 #, c-format
@@ -530,6 +533,9 @@ msgstr "Недостаје аргумент „елементи“."
 msgid "Comments not allowed in XML"
 msgstr "Напомене нису дозвољене унутар ИксМЛ-а"
 
+#. Sorry we can't do anything without ContainerID
+#. Sorry we can't do anything without the ID
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-item-creator.vala:127
 #: ../src/librygel-server/rygel-item-creator.vala:280
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
@@ -605,10 +611,11 @@ msgid "No thumbnailer available: %s"
 msgstr "Није доступан сличичар: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:73
-#| msgid "Seek mode not supported"
 msgid "Thubmnailing not supported"
 msgstr "Прављење сличица није подржано"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:87
 #: ../src/librygel-server/rygel-thumbnailer.vala:96
 #: ../src/librygel-server/rygel-thumbnailer.vala:101
@@ -626,9 +633,13 @@ msgid "No transcoder available for target format '%s'"
 msgstr "Није доступан програм за прекодирање циљног формата „%s“"
 
 #: ../src/librygel-server/rygel-transcoder.vala:84
-#| msgid "Failed to create a Tracker connection: %s"
-msgid "Could not create a transcoder configuration. "
-msgstr "Не могу да направим подешавање транскодера."
+#| msgid "Could not create a transcoder configuration. "
+msgid ""
+"Could not create a transcoder configuration. Your GStramer installation "
+"might be missing a plug-in"
+msgstr ""
+"Не могу да направим подешавање транскодера. Можда недостаје прикључак у "
+"инсталацији Гстримера"
 
 #: ../src/rygel/rygel-main.vala:105
 #, c-format
