@@ -1,3 +1,23 @@
+0.21.4
+======
+
+Core:
+ - Link against libm for "round" function.
+
+All contributors to this release:
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Marek Černocký <marek@manet.cz>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Jens Georg <mail@jensge.org>
+ - Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - nb, courtesy of Kjartan Maraas
+ - sl, courtesy of Matej Urbančič
+ - zh_HK, courtesy of Chao-Hsiung Liao
+ - zh_TW, courtesy of Chao-Hsiung Liao
+
 0.21.3
 ======
 
