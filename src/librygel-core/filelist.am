@@ -6,6 +6,7 @@ LIBRYGEL_CORE_VAPI_SOURCE_FILES = \
 	rygel-basic-management-test-nslookup.vala \
 	rygel-basic-management-test-traceroute.vala \
 	rygel-description-file.vala \
+	rygel-dlna-profile.vala \
 	rygel-root-device.vala \
 	rygel-root-device-factory.vala \
 	rygel-dbus-interface.vala \

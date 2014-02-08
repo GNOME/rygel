@@ -61,9 +61,9 @@ public class Rygel.Example.RendererPluginVala : Rygel.MediaRendererPlugin {
 
     public override void constructed () {
         base.constructed ();
-        var l = new List<Rygel.Renderer.DLNAProfile> ();
-        l.prepend (new Rygel.Renderer.DLNAProfile ("JPEG_SM", "image/jpeg"));
-        l.prepend (new Rygel.Renderer.DLNAProfile ("MP3", "audio/mpeg"));
+        var l = new List<DLNAProfile> ();
+        l.prepend (new DLNAProfile ("JPEG_SM", "image/jpeg"));
+        l.prepend (new DLNAProfile ("MP3", "audio/mpeg"));
 
         this.supported_profiles = l;
     }

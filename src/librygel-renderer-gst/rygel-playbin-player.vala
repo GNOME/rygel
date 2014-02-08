@@ -29,7 +29,6 @@
 
 using Gst;
 using GUPnP;
-using Rygel.Renderer;
 
 /**
  * Implementation of RygelMediaPlayer for GStreamer.
