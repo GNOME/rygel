@@ -82,5 +82,10 @@ RYGEL_GTKDOC_INSTALL_DIR = $(DESTDIR)$(datadir)/gtk-doc/html/lib$(RYGEL_DOCBUILD
 uninstall-hook:
 	rm -rf $(RYGEL_GTKDOC_INSTALL_DIR)
 
+distclean-local:
+	@if test "$(abs_srcdir)" != "$(abs_builddir)" ; then \
+		rm -f gtkdoc/lib$(RYGEL_DOCBUILD_MODULE)-docs.xml; \
+	fi
+
 EXTRA_DIST = $(RYGEL_GTKDOC_DOCS_XML) gtkdoc/html valadoc
 

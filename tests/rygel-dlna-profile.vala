@@ -1,1 +1,1 @@
-../src/librygel-server/rygel-dlna-profile.vala
+../src/librygel-core/rygel-dlna-profile.vala

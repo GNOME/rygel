@@ -103,7 +103,6 @@ src/librygel-core/rygel-configuration.vala
 src/librygel-core/rygel-connection-manager.vala
 src/librygel-core/rygel-dbus-interface.vala
 src/librygel-core/rygel-description-file.vala
-src/librygel-core/rygel-free-desktop-interfaces.vala
 src/librygel-core/rygel-icon-info.vala
 src/librygel-core/rygel-log-handler.vala
 src/librygel-core/rygel-media-device.vala
@@ -122,7 +121,6 @@ src/librygel-renderer-gst/rygel-playbin-player.vala
 src/librygel-renderer-gst/rygel-playbin-renderer.vala
 src/librygel-renderer/rygel-av-transport.vala
 src/librygel-renderer/rygel-changelog.vala
-src/librygel-renderer/rygel-dlna-profile.vala
 src/librygel-renderer/rygel-media-player.vala
 src/librygel-renderer/rygel-media-renderer-plugin.vala
 src/librygel-renderer/rygel-media-renderer.vala
@@ -138,7 +136,6 @@ src/librygel-server/rygel-content-directory.vala
 src/librygel-server/rygel-data-sink.vala
 src/librygel-server/rygel-data-source.vala
 src/librygel-server/rygel-dbus-thumbnailer.vala
-src/librygel-server/rygel-dlna-profile.vala
 src/librygel-server/rygel-engine-loader.vala
 src/librygel-server/rygel-http-byte-seek.vala
 src/librygel-server/rygel-http-get-handler.vala
