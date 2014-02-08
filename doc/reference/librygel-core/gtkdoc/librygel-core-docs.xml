@@ -30,6 +30,7 @@
     <xi:include href="xml/rygel-dbus-interface.xml"/>
     <xi:include href="xml/rygel-description-file.xml"/>
     <xi:include href="xml/rygel-plugin-loader.xml"/>
+    <xi:include href="xml/rygel-plugin-information.xml"/>
     <xi:include href="xml/rygel-icon-info.xml"/>
     <xi:include href="xml/rygel-recursive-module-loader.xml"/>
     <xi:include href="xml/rygel-root-device.xml"/>
@@ -41,8 +42,14 @@
     <xi:include href="xml/rygel-xml-utils.xml"/>
     <xi:include href="xml/rygel-state-machine.xml"/>
     <xi:include href="xml/rygel-dlna-profile.xml"/>
+    <xi:include href="xml/rygel-v1-hacks.xml"/>
   </chapter>
-  
+
+  <chapter id="api-main-list-upnp-services">
+    <title>librygel-core extra UPnP devices and services</title>
+    <xi:include href="xml/rygel-basic-management.xml"/>
+  </chapter>
+
   <chapter id="api-main-list-dbus">
     <title>librygel-core D-Bus API Reference</title>
     <xi:include href="xml/org-gnome-Rygel1.xml"/>
