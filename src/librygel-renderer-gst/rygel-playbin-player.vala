@@ -342,8 +342,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         this.setup_playbin ();
     }
 
+    [Deprecated (since="0.21.5")]
     public Player.wrap (Gst.Element playbin) {
-
         return_if_fail (playbin != null);
         return_if_fail (playbin.get_type ().name() == "GstPlayBin");
 
