@@ -2,14 +2,14 @@
 # Copyright (C) 2012 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
 #
-# Nilamdyuti Goswami <ngoswami@redhat.com>, 2012, 2013.
+# Nilamdyuti Goswami <ngoswami@redhat.com>, 2012, 2013, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel rygel-0-14\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-02 22:14+0000\n"
-"PO-Revision-Date: 2013-10-03 16:04+0530\n"
+"POT-Creation-Date: 2014-02-12 11:24+0000\n"
+"PO-Revision-Date: 2014-02-12 19:11+0630\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: Assamese <kde-i18n-doc@kde.org>\n"
 "Language: as\n"
@@ -49,10 +49,28 @@ msgid "_Share media through DLNA"
 msgstr "DLNA ৰে মাধ্যম অংশীদাৰী কৰক (_S)"
 
 #: ../data/rygel-preferences.ui.h:8
+msgid "Add a network interface Rygel should serve files on"
+msgstr "Rygel এ ফাইলসমূহ প্ৰদান কৰিবলৈ এটা নেটৱাৰ্ক আন্তঃপৃষ্ঠ যোগ কৰক"
+
+#: ../data/rygel-preferences.ui.h:9
+#| msgid "Network Interfaces"
+msgid "Add network interface"
+msgstr "এটা নেটৱাৰ্ক আন্তঃপৃষ্ঠ যোগ কৰক"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid "Remove a network interface Rygel should no longer serve files on"
+msgstr "Rygel এ ফাইলসমূহ প্ৰদান কৰিব নলগা এটা নেটৱাৰ্ক আন্তঃপৃষ্ঠ আতৰাওক"
+
+#: ../data/rygel-preferences.ui.h:11
+#| msgid "Network Interfaces"
+msgid "Remove network interface"
+msgstr "নেটৱাৰ্ক আন্তঃপৃষ্ঠ আতৰাওক"
+
+#: ../data/rygel-preferences.ui.h:12
 msgid "Networks:"
 msgstr "নেটৱাৰ্কসমূহ:"
 
-#: ../data/rygel-preferences.ui.h:9
+#: ../data/rygel-preferences.ui.h:13
 msgid "Select folders"
 msgstr "ফোল্ডাৰসমূহ বাছক"
 
@@ -75,7 +93,6 @@ msgstr "mediaserver;mediarenderer;share;audio;video;pictures;"
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-#| msgid "Module '%s' could not connect to D-Bus session bus. "
 msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
 msgstr ""
 "মডিউল '%s' এ D-Bus অধিবেশন বাচৰ সৈতে সংযোগ কৰিবলে ব্যৰ্থ হল। উপেক্ষা কৰা হৈছে…"
@@ -149,7 +166,7 @@ msgstr "ID %s ৰ সৈতে বস্তু যোগ কৰিবলে ব�
 msgid "Cannot create references to containers"
 msgstr "বৈয়ামসমূহলৈ প্ৰসংগ সৃষ্টি কৰিব নোৱাৰি"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -265,6 +282,11 @@ msgstr "ফাইল %s আতৰাবলৈ ব্যৰ্থ: %s"
 msgid "Could not find object %d in cache"
 msgstr "ক্যাশত অবজেক্ট %d পোৱা নগল"
 
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
+#, c-format
+msgid "MPRIS interface at %s is read-only. Ignoring."
+msgstr "%s ত MPRIS আন্তঃপৃষ্ঠ কেৱল-পঢ়িব পৰা। উপেক্ষা কৰা হৈছে।"
+
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
 msgstr "GStreamer প্লেয়াৰ"
@@ -353,7 +375,7 @@ msgstr "প্ৰণয়ন কৰা হোৱা নাই"
 #: ../src/librygel-core/rygel-connection-manager.vala:105
 #: ../src/librygel-core/rygel-connection-manager.vala:122
 #: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:129
+#: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:270
 #: ../src/librygel-server/rygel-content-directory.vala:298
 #: ../src/librygel-server/rygel-content-directory.vala:317
@@ -477,14 +499,14 @@ msgid "Could not load plugin: %s"
 msgstr "প্লাগিন ল'ড কৰিব পৰা নগল: %s"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:135
+#: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "অবৈধ InstanceID"
 
 #. FIXME: Return a more sensible error here.
 #: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:695
-#: ../src/librygel-renderer/rygel-av-transport.vala:705
+#: ../src/librygel-renderer/rygel-av-transport.vala:725
+#: ../src/librygel-renderer/rygel-av-transport.vala:735
 msgid "Resource not found"
 msgstr "সম্পদ পোৱা নগল"
 
@@ -492,36 +514,39 @@ msgstr "সম্পদ পোৱা নগল"
 msgid "Illegal MIME-type"
 msgstr "অবৈধ MIME-ধৰণ"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:553
+#: ../src/librygel-renderer/rygel-av-transport.vala:557
 msgid "Play speed not supported"
 msgstr "খেল গতি সমৰ্থিত নহয়"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:570
+#: ../src/librygel-renderer/rygel-av-transport.vala:574
 msgid "Transition not available"
 msgstr "স্থানান্তৰ উপলব্ধ নহয়"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:599
-#: ../src/librygel-renderer/rygel-av-transport.vala:623
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
+#: ../src/librygel-renderer/rygel-av-transport.vala:620
+#: ../src/librygel-renderer/rygel-av-transport.vala:653
 msgid "Seek mode not supported"
 msgstr "সন্ধান অৱস্থা সমৰ্থিত নহয়"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:612
-#: ../src/librygel-renderer/rygel-av-transport.vala:633
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:608
+#: ../src/librygel-renderer/rygel-av-transport.vala:629
+#: ../src/librygel-renderer/rygel-av-transport.vala:642
+#: ../src/librygel-renderer/rygel-av-transport.vala:663
+#: ../src/librygel-renderer/rygel-av-transport.vala:671
 msgid "Illegal seek target"
 msgstr "অবৈধ সন্ধান লক্ষ্য"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:166
+#: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
 msgstr "অবৈধ নাম"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:180
+#: ../src/librygel-renderer/rygel-rendering-control.vala:182
 msgid "Invalid Channel"
 msgstr "অবৈধ চেনেল"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:216
-#: ../src/librygel-renderer/rygel-rendering-control.vala:258
-#: ../src/librygel-renderer/rygel-rendering-control.vala:267
+#: ../src/librygel-renderer/rygel-rendering-control.vala:218
+#: ../src/librygel-renderer/rygel-rendering-control.vala:260
+#: ../src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "কাৰ্য্য ব্যৰ্থ হল"
 
@@ -570,12 +595,12 @@ msgstr "অবৈধ অনুৰোধ"
 msgid "Not found"
 msgstr "পোৱা নগল"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "অবৈধ URl '%s'"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 msgid "Not Found"
 msgstr "পোৱা নগল"
 
