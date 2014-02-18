@@ -181,6 +181,12 @@ internal class Rygel.HTTPGet : HTTPRequest {
             this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
         }
 
+        if (msg.get_http_version () == Soup.HTTPVersion.@1_0) {
+            // Set the response version to HTTP 1.1 (see DLNA 7.5.4.3.2.7.2)
+            msg.set_http_version (Soup.HTTPVersion.@1_1);
+            msg.response_headers.append ("Connection", "close");
+        }
+
         debug ("Following HTTP headers appended to response:");
         this.msg.response_headers.foreach ((name, value) => {
             debug ("%s : %s", name, value);
