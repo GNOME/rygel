@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel 3.11.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-22 22:10+0100\n"
-"PO-Revision-Date: 2014-01-25 11:19+0100\n"
+"POT-Creation-Date: 2014-02-19 23:15+0100\n"
+"PO-Revision-Date: 2014-02-19 23:16+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -50,7 +50,7 @@ msgstr "_Del medie via DLNA"
 
 #: ../data/rygel-preferences.ui.h:8
 msgid "Add a network interface Rygel should serve files on"
-msgstr ""
+msgstr "Legg til et nettverksgrensesnitt som Rygel skal tilby filer på"
 
 #: ../data/rygel-preferences.ui.h:9
 msgid "Add network interface"
@@ -58,7 +58,7 @@ msgstr "Legg til nettverksgrensesnitt"
 
 #: ../data/rygel-preferences.ui.h:10
 msgid "Remove a network interface Rygel should no longer serve files on"
-msgstr ""
+msgstr "Fjern et nettverksgrensesnitt Rygel ikke skal tilby filer på lenger"
 
 #: ../data/rygel-preferences.ui.h:11
 msgid "Remove network interface"
@@ -282,7 +282,7 @@ msgstr "Kan ikke finne objekt %d i buffer"
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
 #, c-format
 msgid "MPRIS interface at %s is read-only. Ignoring."
-msgstr ""
+msgstr "MPRIS-grensesnitt på %s er skrivebeskyttet. Overser."
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
@@ -374,9 +374,9 @@ msgid "Failed to read standard output from %s: %s"
 msgstr "Klarte ikke å lese standard utdata fra %s: %s"
 
 #: ../src/librygel-core/rygel-basic-management-test.vala:225
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to read error output from %s: %s"
-msgstr "Klarte ikke å laste modul fra sti «%s»: %s"
+msgstr "Klarte ikke å laste feilutskrift fra %s: %s"
 
 #. / No test with the specified TestID was found
 #: ../src/librygel-core/rygel-basic-management.vala:159
@@ -398,7 +398,7 @@ msgstr "Ugyldig tilstand for test «%s»"
 #: ../src/librygel-core/rygel-basic-management.vala:181
 #, c-format
 msgid "State '%s' Precludes Cancel"
-msgstr ""
+msgstr "Tilstand «%s» utelukker Avbryt"
 
 #: ../src/librygel-core/rygel-basic-management.vala:214
 #: ../src/librygel-core/rygel-basic-management.vala:229
@@ -575,9 +575,9 @@ msgstr "Ressurs ikke funnet"
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
 #: ../src/librygel-renderer/rygel-av-transport.vala:766
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to access resource at %s: %s"
-msgstr "Klarte ikke å fjerne fil %s: %s"
+msgstr "Klarte ikke å aksessere ressurs på %s: %s"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:781
 msgid "Illegal MIME-type"
