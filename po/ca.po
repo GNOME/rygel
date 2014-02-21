@@ -2,15 +2,16 @@
 # Copyright © 2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the rygel package.
 # Joan Duran <jodufi@gmail.com>, 2010-2012.
+# Gil Forcada <gilforcada@guifi.net>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-03-17 14:29+0000\n"
-"PO-Revision-Date: 2013-04-01 16:08+0200\n"
-"Last-Translator: Joan Duran <jodufi@gmail.com>\n"
+"POT-Creation-Date: 2014-02-21 11:21+0000\n"
+"PO-Revision-Date: 2014-02-21 23:23+0100\n"
+"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -168,6 +169,8 @@ msgstr "Fitxers i carpetes"
 msgid "Failed to remove URI: %s"
 msgstr "No s'ha pogut suprimir l'URI: %s"
 
+#. @REALNAME@ is substituted for user's real name and it
+#. doesn't need translation.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:354
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
@@ -479,6 +482,7 @@ msgstr "No s'ha pogut moure el fitxer amb punt %s: %s"
 msgid "Requested item '%s' not found"
 msgstr "No s'ha trobat l'element sol·licitat «%s»"
 
+#. static pads? easy!
 #: ../src/librygel-server/rygel-http-response.vala:156
 #: ../src/librygel-server/rygel-http-response.vala:177
 #, c-format
@@ -533,6 +537,9 @@ msgstr "Falta l'argument «Elements»."
 msgid "Comments not allowed in XML"
 msgstr "No es permeten comentaris en l'XML"
 
+#. Sorry we can't do anything without ContainerID
+#. Sorry we can't do anything without the ID
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-item-creator.vala:127
 #: ../src/librygel-server/rygel-item-creator.vala:280
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
@@ -611,6 +618,8 @@ msgstr "No hi ha cap generador de miniatures disponible: %s"
 msgid "Thubmnailing not supported"
 msgstr "No es poden fer miniatures"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:87
 #: ../src/librygel-server/rygel-thumbnailer.vala:96
 #: ../src/librygel-server/rygel-thumbnailer.vala:101
@@ -629,8 +638,13 @@ msgid "No transcoder available for target format '%s'"
 msgstr "No hi ha cap transcodificador disponible pel format objectiu «%s»"
 
 #: ../src/librygel-server/rygel-transcoder.vala:84
-msgid "Could not create a transcoder configuration. "
-msgstr "No s'ha pogut crear una configuració de transcodificació"
+#| msgid "Could not create a transcoder configuration. "
+msgid ""
+"Could not create a transcoder configuration. Your GStramer installation "
+"might be missing a plug-in"
+msgstr ""
+"No s'ha pogut crear una configuració de transcodificació. Potser manca un "
+"connector a la vostra instal·lació de la GStreamer"
 
 #: ../src/rygel/rygel-main.vala:105
 #, c-format
