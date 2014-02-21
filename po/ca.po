@@ -2,15 +2,16 @@
 # Copyright © 2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the rygel package.
 # Joan Duran <jodufi@gmail.com>, 2010-2013.
+# Gil Forcada <gilforcada@guifi.net>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-10 15:04+0000\n"
-"PO-Revision-Date: 2013-08-10 22:35+0200\n"
-"Last-Translator: Joan Duran <jodufi@gmail.com>\n"
+"POT-Creation-Date: 2014-02-21 11:22+0000\n"
+"PO-Revision-Date: 2014-02-21 23:31+0100\n"
+"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -90,8 +91,9 @@ msgstr ""
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:42
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:42
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "El mòdul «%s» no s'ha pogut connectar al D-Bus de sessió."
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr ""
+"El mòdul «%s» no s'ha pogut connectar al bus de sessió del D-Bus. S'ignora…"
 
 #: ../src/plugins/media-export/rygel-media-export-database.vala:207
 #, c-format
@@ -139,6 +141,8 @@ msgstr "No es farà un seguiment per si hi ha canvis en els fitxers"
 msgid "Failed to get file info for %s"
 msgstr "No s'ha pogut obtenir el fitxer d'informació per a %s"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
@@ -148,6 +152,8 @@ msgstr "Any"
 msgid "All"
 msgstr "Totes"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Artista"
@@ -165,6 +171,8 @@ msgstr "Gènere"
 msgid "Files & Folders"
 msgstr "Fitxers i carpetes"
 
+#. @REALNAME@ is substituted for user's real name and it
+#. doesn't need translation.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
@@ -521,6 +529,8 @@ msgstr "Falta l'argument «Elements»."
 msgid "Comments not allowed in XML"
 msgstr "No es permeten comentaris en l'XML"
 
+#. Sorry we can't do anything without ContainerID
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-object-creator.vala:195
 #: ../src/librygel-server/rygel-item-destroyer.vala:104
 #: ../src/librygel-server/rygel-item-updater.vala:189
@@ -550,6 +560,7 @@ msgstr "No es permet la creació d'objectes a %s"
 msgid "Failed to create item under '%s': %s"
 msgstr "No s'ha pogut crear l'element a «%s»: %s"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Manca l'identificador de contenidor"
@@ -574,6 +585,7 @@ msgstr "No es permet destruir l'objecte %s"
 msgid "Object removal from %s not allowed"
 msgstr "No es permet destruir l'objecte de %s"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Manca l'identificador de l'objecte"
@@ -675,6 +687,8 @@ msgstr "No hi ha cap generador de miniatures disponible: %s"
 msgid "Thubmnailing not supported"
 msgstr "No admet la miniaturització"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -700,6 +714,7 @@ msgstr "No s'ha pogut crear un GstElement per l'URI %s"
 msgid "Failed to create pipeline"
 msgstr "No s'ha pogut crear el conducte"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
