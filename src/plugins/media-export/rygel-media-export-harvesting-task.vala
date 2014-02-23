@@ -236,7 +236,9 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
             yield enumerator.close_async (Priority.DEFAULT, this.cancellable);
         } catch (Error err) {
-            warning (_("failed to enumerate folder: %s"), err.message);
+            warning (_("Failed to enumerate folder \"%s\": %s"),
+                     directory.get_path (),
+                     err.message);
         }
 
         this.cleanup_database ();
