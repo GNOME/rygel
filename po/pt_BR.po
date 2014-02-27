@@ -1,21 +1,21 @@
 # Brazilian Portuguese translation for rygel.
-# Copyright (C) 2013 rygel's COPYRIGHT HOLDER
+# Copyright (C) 2014 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
 # Albino Biasutti Neto  <biasuttin@gmail.com>, 2010.
 # Djavan Fagundes <djavan@comum.org>, 2010.
 # Gabriel F. Vilar <cogumm@gmail.com>, 2011.
 # Jonh Wendell <jwendell@gnome.org>, 2010, 2012.
-# Rafael Ferreira <rafael.f.f1@gmail.com>, 2012, 2013.
 # Enrico Nicoletto <liverig@gmail.com>, 2013.
 # Edson Silva <edsonlead@gmail.com>, 2013.
+# Rafael Ferreira <rafael.f.f1@gmail.com>, 2012, 2013, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-01-01 14:47+0000\n"
-"PO-Revision-Date: 2013-12-17 19:10-0300\n"
+"POT-Creation-Date: 2014-02-27 11:21+0000\n"
+"PO-Revision-Date: 2014-02-27 13:03-0300\n"
 "Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.4\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -152,10 +152,10 @@ msgstr "Falha ao consultar banco de dados: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
 #, c-format
-msgid "failed to enumerate folder: %s"
-msgstr "Falha ao enumerar pasta: %s"
+msgid "Failed to enumerate folder \"%s\": %s"
+msgstr "Falha ao enumerar a pasta \"%s\": %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:257
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Falha ao obter filho de contêiner %s: %s"
@@ -621,7 +621,7 @@ msgstr "Não foi possível navegar por filho no item"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Falha ao explorar \"%s\": %s\n"
 
-#: ../src/librygel-server/rygel-client-hacks.vala:131
+#: ../src/librygel-server/rygel-client-hacks.vala:134
 msgid "Not Applicable"
 msgstr "Não aplicável"
 
