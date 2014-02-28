@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the Rygel package.
 #
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2010, 2011, 2012, 2013.
-# Balázs Úr <urbalazs at gmail dot com>, 2013.
+# Balázs Úr <urbalazs at gmail dot com>, 2013, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: Rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-11 09:44+0000\n"
-"PO-Revision-Date: 2013-10-13 13:53+0200\n"
+"POT-Creation-Date: 2014-02-28 17:20+0000\n"
+"PO-Revision-Date: 2014-02-28 20:32+0100\n"
 "Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -54,7 +54,6 @@ msgid "Add a network interface Rygel should serve files on"
 msgstr "Hálózati csatoló hozzáadása, amelyen a Rygel fájlokat szolgálhat ki"
 
 #: ../data/rygel-preferences.ui.h:9
-#| msgid "Network Interfaces"
 msgid "Add network interface"
 msgstr "Hálózati csatoló hozzáadása"
 
@@ -64,7 +63,6 @@ msgstr ""
 "Hálózati csatoló eltávolítása, amelyen a Rygel többé nem szolgál ki fájlokat"
 
 #: ../data/rygel-preferences.ui.h:11
-#| msgid "Network Interfaces"
 msgid "Remove network interface"
 msgstr "Hálózati csatoló eltávolítása"
 
@@ -95,7 +93,6 @@ msgstr "média-kiszolgáló;média-renderelő;megosztás;hang;videó;képek;"
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-#| msgid "Module '%s' could not connect to D-Bus session bus. "
 msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
 msgstr ""
 "A(z) „%s” modul nem tud csatlakozni a D-Bus munkamenetbuszhoz. Mellőzés…"
@@ -147,10 +144,11 @@ msgstr "Az adatbázis lekérdezése meghiúsult: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
 #, c-format
-msgid "failed to enumerate folder: %s"
-msgstr "a mappa felsorolása meghiúsult: %s"
+#| msgid "failed to enumerate folder: %s"
+msgid "Failed to enumerate folder \"%s\": %s"
+msgstr "A(z) „%s” mappa felsorolása meghiúsult: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:257
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "A tároló (%s) információinak lekérdezése meghiúsult: %s"
@@ -375,28 +373,75 @@ msgstr "Címek"
 msgid "Not implemented"
 msgstr "Nincs megvalósítva"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:91
-#: ../src/librygel-core/rygel-connection-manager.vala:105
-#: ../src/librygel-core/rygel-connection-manager.vala:122
-#: ../src/librygel-renderer/rygel-av-transport.vala:214
+#: ../src/librygel-core/rygel-basic-management-test.vala:197
+#, c-format
+#| msgid "Failed to read contents from URI: %s: %s"
+msgid "Failed to read standard output from %s: %s"
+msgstr "A szabványos kimenet olvasása meghiúsult a(z) %s helyről: %s"
+
+#: ../src/librygel-core/rygel-basic-management-test.vala:225
+#, c-format
+#| msgid "Failed to read contents from URI: %s: %s"
+msgid "Failed to read error output from %s: %s"
+msgstr "A hibakimenet olvasása meghiúsult a(z) %s helyről: %s"
+
+#. / No test with the specified TestID was found
+#: ../src/librygel-core/rygel-basic-management.vala:159
+#| msgid "No such object"
+msgid "No Such Test"
+msgstr "Nincs ilyen teszt"
+
+#. / TestID is valid but refers to the wrong test type
+#: ../src/librygel-core/rygel-basic-management.vala:167
+msgid "Wrong Test Type"
+msgstr "Rossz teszttípus"
+
+#. / TestID is valid but the test Results are not available
+#: ../src/librygel-core/rygel-basic-management.vala:175
+#, c-format
+#| msgid "Invalid Range '%s'"
+msgid "Invalid Test State '%s'"
+msgstr "Érvénytelen tesztállapot: „%s”"
+
+#. / TestID is valid but the test can't be canceled
+#: ../src/librygel-core/rygel-basic-management.vala:181
+#, c-format
+msgid "State '%s' Precludes Cancel"
+msgstr "A(z) „%s” állapot kizárja a megszakítást"
+
+#: ../src/librygel-core/rygel-basic-management.vala:214
+#: ../src/librygel-core/rygel-basic-management.vala:229
+#: ../src/librygel-core/rygel-basic-management.vala:265
+#: ../src/librygel-core/rygel-basic-management.vala:317
+#: ../src/librygel-core/rygel-basic-management.vala:351
+#: ../src/librygel-core/rygel-basic-management.vala:390
+#: ../src/librygel-core/rygel-basic-management.vala:427
+#: ../src/librygel-core/rygel-basic-management.vala:466
+#: ../src/librygel-core/rygel-basic-management.vala:481
+#: ../src/librygel-core/rygel-basic-management.vala:496
+#: ../src/librygel-core/rygel-basic-management.vala:520
+#: ../src/librygel-core/rygel-connection-manager.vala:95
+#: ../src/librygel-core/rygel-connection-manager.vala:109
+#: ../src/librygel-core/rygel-connection-manager.vala:126
+#: ../src/librygel-renderer/rygel-av-transport.vala:207
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
-#: ../src/librygel-server/rygel-content-directory.vala:270
-#: ../src/librygel-server/rygel-content-directory.vala:298
-#: ../src/librygel-server/rygel-content-directory.vala:317
-#: ../src/librygel-server/rygel-content-directory.vala:352
-#: ../src/librygel-server/rygel-content-directory.vala:377
-#: ../src/librygel-server/rygel-content-directory.vala:402
-#: ../src/librygel-server/rygel-content-directory.vala:621
-#: ../src/librygel-server/rygel-content-directory.vala:772
+#: ../src/librygel-server/rygel-content-directory.vala:262
+#: ../src/librygel-server/rygel-content-directory.vala:290
+#: ../src/librygel-server/rygel-content-directory.vala:309
+#: ../src/librygel-server/rygel-content-directory.vala:344
+#: ../src/librygel-server/rygel-content-directory.vala:373
+#: ../src/librygel-server/rygel-content-directory.vala:398
+#: ../src/librygel-server/rygel-content-directory.vala:617
+#: ../src/librygel-server/rygel-content-directory.vala:768
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Érvénytelen argumentum"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:128
+#: ../src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "Érvénytelen kapcsolathivatkozás"
 
-#: ../src/librygel-core/rygel-description-file.vala:339
+#: ../src/librygel-core/rygel-description-file.vala:343
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "A módosított leírás kiírása meghiúsult ide: %s"
@@ -502,41 +547,51 @@ msgstr "Hiba a mappa („%s”) tartalmának felsorolásakor: %s"
 msgid "Could not load plugin: %s"
 msgstr "Nem tölthető be a bővítmény: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:220
+#: ../src/librygel-renderer/rygel-av-transport.vala:213
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Érvénytelen példányazonosító"
 
-#. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:713
-#: ../src/librygel-renderer/rygel-av-transport.vala:723
-msgid "Resource not found"
-msgstr "Az erőforrás nem található"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:281
-msgid "Illegal MIME-type"
-msgstr "Szabálytalan MIME-típus"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:557
+#: ../src/librygel-renderer/rygel-av-transport.vala:483
 msgid "Play speed not supported"
 msgstr "A lejátszás sebessége nem támogatott"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:574
+#: ../src/librygel-renderer/rygel-av-transport.vala:501
 msgid "Transition not available"
 msgstr "Az átmenet nem támogatott"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:602
-#: ../src/librygel-renderer/rygel-av-transport.vala:617
-#: ../src/librygel-renderer/rygel-av-transport.vala:630
-#: ../src/librygel-renderer/rygel-av-transport.vala:651
-#: ../src/librygel-renderer/rygel-av-transport.vala:659
+#: ../src/librygel-renderer/rygel-av-transport.vala:531
+#: ../src/librygel-renderer/rygel-av-transport.vala:556
+#: ../src/librygel-renderer/rygel-av-transport.vala:586
+msgid "Seek mode not supported"
+msgstr "A tekerési mód nem támogatott"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:537
+#: ../src/librygel-renderer/rygel-av-transport.vala:562
+#: ../src/librygel-renderer/rygel-av-transport.vala:575
+#: ../src/librygel-renderer/rygel-av-transport.vala:596
+#: ../src/librygel-renderer/rygel-av-transport.vala:604
 msgid "Illegal seek target"
 msgstr "Szabálytalan tekerési cél"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
-msgid "Seek mode not supported"
-msgstr "A tekerési mód nem támogatott"
+#. FIXME: Return a more sensible error here.
+#: ../src/librygel-renderer/rygel-av-transport.vala:703
+#: ../src/librygel-renderer/rygel-av-transport.vala:713
+#: ../src/librygel-renderer/rygel-av-transport.vala:770
+msgid "Resource not found"
+msgstr "Az erőforrás nem található"
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: ../src/librygel-renderer/rygel-av-transport.vala:766
+#, c-format
+#| msgid "Failed to access media cache: %s"
+msgid "Failed to access resource at %s: %s"
+msgstr "Az erőforráshoz való hozzáférés meghiúsult a(z) %s címen: %s"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:781
+msgid "Illegal MIME-type"
+msgstr "Szabálytalan MIME-típus"
 
 #: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
@@ -565,11 +620,11 @@ msgstr "Nem tallózhatók az elem gyermekei"
 msgid "Failed to browse '%s': %s\n"
 msgstr "„%s” tallózása sikertelen: %s\n"
 
-#: ../src/librygel-server/rygel-client-hacks.vala:131
+#: ../src/librygel-server/rygel-client-hacks.vala:134
 msgid "Not Applicable"
 msgstr "Nem alkalmazható"
 
-#: ../src/librygel-server/rygel-content-directory.vala:642
+#: ../src/librygel-server/rygel-content-directory.vala:638
 msgid "No such file transfer"
 msgstr "Nincs ilyen fájlátvitel"
 
@@ -593,18 +648,15 @@ msgid "Invalid Request"
 msgstr "Érvénytelen kérés"
 
 #: ../src/librygel-server/rygel-http-identity-handler.vala:106
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 #: ../src/librygel-server/rygel-http-transcode-handler.vala:58
 msgid "Not found"
 msgstr "Nem található"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Érvénytelen URI: „%s”"
-
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
-msgid "Not Found"
-msgstr "Nem található"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:50
 msgid "Seeking not supported"
@@ -837,9 +889,6 @@ msgid "UPnP class '%s' not supported"
 msgstr "Az UPnP osztály („%s”) nem támogatott"
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
-msgid " %%% Object creation in %s not allowed"
-msgstr " %%% Az objektumok létrehozása nem engedélyezett itt: %s"
-
 #: ../src/librygel-server/rygel-object-creator.vala:424
 #: ../src/librygel-server/rygel-object-creator.vala:710
 #: ../src/librygel-server/rygel-reference-creator.vala:116
@@ -1129,6 +1178,12 @@ msgstr "A Rygel szolgáltatás indítása meghiúsult: %s"
 msgid "Failed to stop Rygel service: %s"
 msgstr "A Rygel szolgáltatás leállítása meghiúsult: %s"
 
+#~ msgid "Not Found"
+#~ msgstr "Nem található"
+
+#~ msgid " %%% Object creation in %s not allowed"
+#~ msgstr " %%% Az objektumok létrehozása nem engedélyezett itt: %s"
+
 #~ msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
 #~ msgstr "Médiamegosztás (fényképek, videók és zene) engedélyezése DLNA-val"
 
@@ -1156,9 +1211,6 @@ msgstr "A Rygel szolgáltatás leállítása meghiúsult: %s"
 
 #~ msgid "No metadata extractor available. Will not crawl."
 #~ msgstr "Nem érhető el metaadat-kinyerő. Nem történik bejárás."
-
-#~ msgid "Failed to access media cache: %s"
-#~ msgstr "A média-gyorsítótár elérése meghiúsult: %s"
 
 #~ msgid "Failed to remove URI: %s"
 #~ msgstr "Az URI eltávolítása meghiúsult: %s"
@@ -1192,9 +1244,6 @@ msgstr "A Rygel szolgáltatás leállítása meghiúsult: %s"
 
 #~ msgid "Failed to seek to %s-%s on URI %s: %s"
 #~ msgstr "A tekerés meghiúsult ide: %s-%s a(z) %s URI-címen: %s"
-
-#~ msgid "Failed to read contents from URI: %s: %s"
-#~ msgstr "A tartalom olvasása meghiúsult a(z) %s URI-címről: %s"
 
 #~ msgid "Failed to close stream to URI %s: %s"
 #~ msgstr "Az adatfolyam lezárása meghiúsult a(z) %s URI-címnek: %s"
