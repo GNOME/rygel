@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-01-03 21:05+0000\n"
-"PO-Revision-Date: 2014-01-06 09:27+0100\n"
-"Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
+"POT-Creation-Date: 2014-02-28 11:21+0000\n"
+"PO-Revision-Date: 2014-02-28 18:19+0100\n"
+"Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8-bit\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Poedit 1.6.4\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -100,7 +100,6 @@ msgstr ""
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-#| msgid "Module '%s' could not connect to D-Bus session bus. "
 msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
 msgstr ""
 "Impossibile connettere il modulo «%s» al bus D-Bus di sessione. Ignorato…"
@@ -152,10 +151,11 @@ msgstr "Interrogazione del database non riuscita: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
 #, c-format
-msgid "failed to enumerate folder: %s"
-msgstr "Enumerazione della cartella non riuscita: %s"
+#| msgid "failed to enumerate folder: %s"
+msgid "Failed to enumerate folder \"%s\": %s"
+msgstr "Enumerazione della cartella \"%s\" non riuscita: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:257
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Recupero dei figli del contenitore non riuscito %s: %s"
@@ -627,7 +627,7 @@ msgstr "Impossibile esplorare i figli dell'elemento"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Esplorazione di «%s» non riuscita: %s\n"
 
-#: ../src/librygel-server/rygel-client-hacks.vala:131
+#: ../src/librygel-server/rygel-client-hacks.vala:134
 msgid "Not Applicable"
 msgstr "Non applicabile"
 
