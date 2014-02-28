@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the Rygel package.
 #
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2010, 2011, 2012.
-# Balázs Úr <urbalazs at gmail dot com>, 2013.
+# Balázs Úr <urbalazs at gmail dot com>, 2013, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: Rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-14 12:24+0000\n"
-"PO-Revision-Date: 2013-03-17 15:28+0100\n"
+"POT-Creation-Date: 2014-02-28 11:21+0000\n"
+"PO-Revision-Date: 2014-02-28 20:39+0100\n"
 "Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -167,6 +167,8 @@ msgstr "Fájlok és mappák"
 msgid "Failed to remove URI: %s"
 msgstr "Az URI eltávolítása meghiúsult: %s"
 
+#. @REALNAME@ is substituted for user's real name and it
+#. doesn't need translation.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:354
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@'s media"
@@ -476,6 +478,7 @@ msgstr "A rejtett fájl (%s) áthelyezése meghiúsult: %s"
 msgid "Requested item '%s' not found"
 msgstr "A kért „%s” elem nem található"
 
+#. static pads? easy!
 #: ../src/librygel-server/rygel-http-response.vala:156
 #: ../src/librygel-server/rygel-http-response.vala:177
 #, c-format
@@ -530,6 +533,9 @@ msgstr "Az „Elements” argumentum hiányzik."
 msgid "Comments not allowed in XML"
 msgstr "A megjegyzések nem engedélyezettek az XML-ben"
 
+#. Sorry we can't do anything without ContainerID
+#. Sorry we can't do anything without the ID
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-item-creator.vala:127
 #: ../src/librygel-server/rygel-item-creator.vala:280
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
@@ -606,10 +612,11 @@ msgid "No thumbnailer available: %s"
 msgstr "Nem érhető el bélyegképkészítő: %s"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:73
-#| msgid "Seek mode not supported"
 msgid "Thubmnailing not supported"
 msgstr "A bélyegképkészítés nem támogatott"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:87
 #: ../src/librygel-server/rygel-thumbnailer.vala:96
 #: ../src/librygel-server/rygel-thumbnailer.vala:101
@@ -627,9 +634,13 @@ msgid "No transcoder available for target format '%s'"
 msgstr "Nem érhető el átkódoló a(z) „%s” célformátumhoz"
 
 #: ../src/librygel-server/rygel-transcoder.vala:84
-#| msgid "Failed to create a Tracker connection: %s"
-msgid "Could not create a transcoder configuration. "
-msgstr "Az átkódoló beállítások létrehozása nem sikerült. "
+#| msgid "Could not create a transcoder configuration. "
+msgid ""
+"Could not create a transcoder configuration. Your GStramer installation "
+"might be missing a plug-in"
+msgstr ""
+"Az átkódoló beállítások létrehozása nem sikerült. A GStramer telepítéséből "
+"hiányozhat egy bővítmény."
 
 #: ../src/rygel/rygel-main.vala:105
 #, c-format
