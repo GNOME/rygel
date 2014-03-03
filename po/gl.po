@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-03 21:23+0100\n"
-"PO-Revision-Date: 2014-03-03 21:23+0200\n"
+"POT-Creation-Date: 2014-03-03 21:55+0100\n"
+"PO-Revision-Date: 2014-03-03 21:56+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -145,10 +145,10 @@ msgstr "Produciuse un fallo ao consultar a base de datos: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
 #, c-format
-msgid "failed to enumerate folder: %s"
-msgstr "Produciuse un fallo ao enumerar o cartafol: %s"
+msgid "Failed to enumerate folder \"%s\": %s"
+msgstr "Produciuse un fallo ao enumerar o cartafol «%s»: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:257
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Produciuse un fallo ao obter o fillo do contedor %s: %s"
