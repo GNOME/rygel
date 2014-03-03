@@ -5,13 +5,13 @@
 # colaborar connosco, podes atopar máis información en http://www.trasno.net
 # Fran Diéguez <frandieguez@gnome.org>, 2010, 2011, 2012.
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2012.
-# Fran Dieguez <frandieguez@gnome.org>, 2012, 2013.
+# Fran Dieguez <frandieguez@gnome.org>, 2012, 2013, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-19 01:49+0100\n"
-"PO-Revision-Date: 2013-12-19 01:50+0200\n"
+"POT-Creation-Date: 2014-03-03 21:23+0100\n"
+"PO-Revision-Date: 2014-03-03 21:23+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -95,8 +95,8 @@ msgstr ""
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "O módulo «%s» non puido conectarse ao bus de sesión D-Bus."
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr "O módulo «%s» non puido conectarse ao bus de sesión D-Bus. Ignorando…"
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -224,11 +224,15 @@ msgstr "Non se monitorizarán cambios en ficheiros"
 msgid "Failed to get file info for %s"
 msgstr "Produciuse un erro ao obter o ficheiro de información para %s"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Ano"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Artista"
@@ -556,35 +560,35 @@ msgstr "Velocidade de reprodución non admitida"
 msgid "Transition not available"
 msgstr "Transición non dispoñíbel"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:534
-#: ../src/librygel-renderer/rygel-av-transport.vala:559
-#: ../src/librygel-renderer/rygel-av-transport.vala:589
+#: ../src/librygel-renderer/rygel-av-transport.vala:531
+#: ../src/librygel-renderer/rygel-av-transport.vala:556
+#: ../src/librygel-renderer/rygel-av-transport.vala:586
 msgid "Seek mode not supported"
 msgstr "Non se admite o modo de busca"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:540
-#: ../src/librygel-renderer/rygel-av-transport.vala:565
-#: ../src/librygel-renderer/rygel-av-transport.vala:578
-#: ../src/librygel-renderer/rygel-av-transport.vala:599
-#: ../src/librygel-renderer/rygel-av-transport.vala:607
+#: ../src/librygel-renderer/rygel-av-transport.vala:537
+#: ../src/librygel-renderer/rygel-av-transport.vala:562
+#: ../src/librygel-renderer/rygel-av-transport.vala:575
+#: ../src/librygel-renderer/rygel-av-transport.vala:596
+#: ../src/librygel-renderer/rygel-av-transport.vala:604
 msgid "Illegal seek target"
 msgstr "Obxectivo de busca ilegal"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:706
-#: ../src/librygel-renderer/rygel-av-transport.vala:716
-#: ../src/librygel-renderer/rygel-av-transport.vala:773
+#: ../src/librygel-renderer/rygel-av-transport.vala:703
+#: ../src/librygel-renderer/rygel-av-transport.vala:713
+#: ../src/librygel-renderer/rygel-av-transport.vala:770
 msgid "Resource not found"
 msgstr "Recurso non atopado"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: ../src/librygel-renderer/rygel-av-transport.vala:769
+#: ../src/librygel-renderer/rygel-av-transport.vala:766
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Produciuse un fallo ao acceder ao recurso en %s: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:784
+#: ../src/librygel-renderer/rygel-av-transport.vala:781
 msgid "Illegal MIME-type"
 msgstr "Tipo MIME ilegal"
 
@@ -615,7 +619,7 @@ msgstr "Non é posíbel examinar no elemento fillo"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Produciuse un erro ao explorar «%s»: %s\n"
 
-#: ../src/librygel-server/rygel-client-hacks.vala:131
+#: ../src/librygel-server/rygel-client-hacks.vala:134
 msgid "Not Applicable"
 msgstr "Non é aplicábel"
 
@@ -703,6 +707,7 @@ msgstr "Produciuse un erro ao obter o URI orixinal para «%s»: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "O URI «%s» non é válido para importar contido a el"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Falta o ContainerID"
@@ -735,6 +740,7 @@ msgstr "Non se permite quitar o obxecto %s"
 msgid "Object removal from %s not allowed"
 msgstr "Non se permite quitar obxectos de %s"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Falta o id do obxecto"
@@ -815,6 +821,7 @@ msgstr "Produciuse un erro ao probar o protocolo para o URI %s. Asumindo «%s»"
 msgid "Invalid number of arguments"
 msgstr "Número de argumentos non válido"
 
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "Falta o argumento ObjectID"
@@ -844,6 +851,7 @@ msgstr "Falta o argumento «Elements»"
 msgid "Comments not allowed in XML"
 msgstr "Non se permiten os comentarios no XML"
 
+#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "Falta o argumento ContainerID"
@@ -956,6 +964,8 @@ msgstr "Non está dispoñíbel o xerador de miniaturas: %s"
 msgid "Thumbnailing not supported"
 msgstr "Non se permite crear unha miniatura"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -981,6 +991,7 @@ msgstr "Non é posíbel crear CstElement para o URI %s"
 msgid "Failed to create pipeline"
 msgstr "Produciuse un fallo ao crear a canalización"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
