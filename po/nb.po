@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel 3.11.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-19 23:15+0100\n"
-"PO-Revision-Date: 2014-02-19 23:16+0100\n"
+"POT-Creation-Date: 2014-03-05 07:29+0100\n"
+"PO-Revision-Date: 2014-03-05 07:29+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -141,10 +141,10 @@ msgstr "Klarte ikke å spørre database: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
 #, c-format
-msgid "failed to enumerate folder: %s"
-msgstr "Klarte ikke å liste mappe: %s"
+msgid "Failed to enumerate folder \"%s\": %s"
+msgstr "Klarte ikke å liste mappe «%s»: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:257
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Klarte ikke å hente barn av kontainer %s: %s"
@@ -1050,7 +1050,7 @@ msgstr "Ikke tillat sletting"
 
 #: ../src/rygel/rygel-cmdline-config.vala:87
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
-msgstr ""
+msgstr "Kommaseparert liste med domene:nivå-par. Se rygel(1) for detaljer"
 
 #: ../src/rygel/rygel-cmdline-config.vala:89
 msgid "Plugin Path"
