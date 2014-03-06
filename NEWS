@@ -1,3 +1,64 @@
+0.21.5
+======
+
+- Some gtk-doc fixes.
+- Remove obsolete configure function from autogen.sh.
+- Fix "make distcheck".
+- Replace non-portable cp -d.
+- Fix GstLaunch examples in rygel.conf for GStreamer 1.0.
+- Add support for /etc/pretty-hostname.
+- Support building with tracker-1.0 API.
+
+Core:
+ - Remove Freedesktop.* DBus interfaces.
+ - Move the two copies of Rygel.DLNAProfile to Core.
+
+GStreamer Renderer:
+ - Deprecate .wrap constructor.
+ - Don't leak and return a value in the .wrap constructor on error.
+
+MediaExport:
+ - Be a bit more helpful and tell which folder we failed to enumerate.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=722021
+ - https://bugzilla.gnome.org/show_bug.cgi?id=722527
+ - https://bugzilla.gnome.org/show_bug.cgi?id=724138
+ - https://bugzilla.gnome.org/show_bug.cgi?id=724215
+ - https://bugzilla.gnome.org/show_bug.cgi?id=724820
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Fran Diéguez <fran.dieguez@mabishu.com>
+ - Rafael Ferreira <rafael.f.f1@gmail.com>
+ - Nilamdyuti Goswami <ngoswami@redhat.com>
+ - Milo Casagrande <milo@ubuntu.com>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Marek Černocký <marek@manet.cz>
+ - Giovanni Campagna <gcampagna@src.gnome.org>
+ - Debarshi Ray <debarshir@gnome.org>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Daniel Korostil <ted.korostiled@gmail.com>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Bjørn Lie <bjorn.lie@gmail.com>
+ - Balázs Úr <urbalazs@src.gnome.org>
+ - Aurimas Černius <aurisc4@gmail.com>
+
+Added/updated translations
+ - as, courtesy of Nilamdyuti Goswami
+ - cs, courtesy of Marek Černocký
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - hu, courtesy of Balázs Úr
+ - it, courtesy of Milo Casagrande
+ - ko, courtesy of Changwoo Ryu
+ - lt, courtesy of Aurimas Černius
+ - nb, courtesy of Kjartan Maraas
+ - pt_BR, courtesy of Rafael Ferreira
+ - sl, courtesy of Matej Urbančič
+ - uk, courtesy of Daniel Korostil
+
 0.21.4
 ======
 
