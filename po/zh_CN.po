@@ -13,9 +13,9 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-27 14:56+0000\n"
-"PO-Revision-Date: 2013-12-28 20:11+0800\n"
-"Last-Translator: Tong Hui <tonghuix@gmail.com>\n"
+"POT-Creation-Date: 2014-03-08 11:23+0000\n"
+"PO-Revision-Date: 2014-03-08 22:23+0800\n"
+"Last-Translator: Wylmer Wang <wantinghard@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -98,8 +98,9 @@ msgstr ""
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "模块“%s”无法连接到 D-Bus 会话总线。"
+#| msgid "Module '%s' could not connect to D-Bus session bus. "
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr "模块“%s”无法连接到 D-Bus 会话总线。将忽略..."
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -148,10 +149,11 @@ msgstr "查询数据库失败：%s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
 #, c-format
-msgid "failed to enumerate folder: %s"
-msgstr "列举文件夹失败：%s"
+#| msgid "failed to enumerate folder: %s"
+msgid "Failed to enumerate folder \"%s\": %s"
+msgstr "列举文件夹“%s”失败：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:257
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "无法得到容器 %s 的子容器：%s"
@@ -226,11 +228,15 @@ msgstr "将不会监视文件变化"
 msgid "Failed to get file info for %s"
 msgstr "获取 %s 的文件信息失败"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "年代"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "艺人"
@@ -613,7 +619,7 @@ msgstr "无法浏览项目的子项目"
 msgid "Failed to browse '%s': %s\n"
 msgstr "浏览 '%s' 失败：%s\n"
 
-#: ../src/librygel-server/rygel-client-hacks.vala:131
+#: ../src/librygel-server/rygel-client-hacks.vala:134
 msgid "Not Applicable"
 msgstr "不适用"
 
@@ -701,6 +707,7 @@ msgstr "获取“%s”的原始 URI 失败：%s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URI “%s”无效，不能导入内容"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "容器 ID 缺失"
@@ -733,6 +740,7 @@ msgstr "不允许移除 %s 对象"
 msgid "Object removal from %s not allowed"
 msgstr "不允许从 %s 中移除对象"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "目标 id 缺失"
@@ -811,6 +819,7 @@ msgstr "无法探测 URI %s 所用协议。假定为 '%s'"
 msgid "Invalid number of arguments"
 msgstr "参数的数目不正确"
 
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "缺少“ObjectID”参数"
@@ -840,6 +849,7 @@ msgstr "缺少 'Elements' 参数"
 msgid "Comments not allowed in XML"
 msgstr "XML 中不允许有注释"
 
+#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "缺少“ContainerID”参数"
@@ -949,6 +959,8 @@ msgstr "无可用的缩略图：%s"
 msgid "Thumbnailing not supported"
 msgstr "不支持缩略图"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -974,6 +986,7 @@ msgstr "无法为 URI %s 创建 GstElement"
 msgid "Failed to create pipeline"
 msgstr "创建管道失败"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
