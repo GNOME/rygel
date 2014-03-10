@@ -51,7 +51,7 @@ public class Rygel.LMS.RootContainer : Rygel.SimpleContainer {
         try {
             this.lms_db = new LMS.Database (db_path);
 
-            this.add_child_container (new Artists ("artists", this, _("Music"), this.lms_db));
+            this.add_child_container (new MusicRoot ("music", this, _("Music"), this.lms_db));
             this.add_child_container (new AllVideos ("all-videos", this, _("Videos"), this.lms_db));
             this.add_child_container (new ImageRoot ("images", this, _("Pictures"), this.lms_db));
 
