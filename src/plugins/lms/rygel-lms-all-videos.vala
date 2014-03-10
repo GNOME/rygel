@@ -49,20 +49,20 @@ public class Rygel.LMS.AllVideos : Rygel.LMS.CategoryContainer {
         /* TODO: Temporary code to extract the MIME TYPE.  LMS does not seem
            to compute the mime type of videos.  Don't know why. */
 
-        if (mime_type == null || mime_type.length == 0) {
+/*        if (mime_type == null || mime_type.length == 0) {
             try {
                 FileInfo info = file.query_info(FileAttribute.STANDARD_CONTENT_TYPE,
                                                 FileQueryInfoFlags.NONE, null);
                 mime_type = info.get_content_type();
             } catch {}
         }
+*/
 
         if (mime_type == null || mime_type.length == 0) {
             /* TODO is this correct? */
-            debug ("Skipping music item %d (%s) with no MIME type",
+            debug ("Video item %d (%s) has no MIME type",
                    id,
                    path);
-            return null;
             }
 
         var title = statement.column_text(1);

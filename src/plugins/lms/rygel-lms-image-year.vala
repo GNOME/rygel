@@ -47,10 +47,9 @@ public class Rygel.LMS.ImageYear : Rygel.LMS.CategoryContainer {
 
         if (mime_type == null || mime_type.length == 0){
             /* TODO is this correct? */
-            debug ("Skipping music item %d (%s) with no MIME type",
+            debug ("Image item %d (%s) has no MIME type",
                    id,
                    path);
-            return null;
         }
 
         var title = statement.column_text(1);
