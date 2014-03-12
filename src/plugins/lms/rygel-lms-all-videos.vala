@@ -25,7 +25,7 @@ using Sqlite;
 
 public class Rygel.LMS.AllVideos : Rygel.LMS.CategoryContainer {
     private static const string SQL_ALL =
-        "SELECT videos.id, title, artist, length, path, dtime, size, dlna_profile, dlna_mime " +
+        "SELECT videos.id, title, artist, length, path, mtime, size, dlna_profile, dlna_mime " +
         "FROM videos, files " +
         "WHERE videos.id = files.id " +
         "LIMIT ? OFFSET ?;";
@@ -36,7 +36,7 @@ public class Rygel.LMS.AllVideos : Rygel.LMS.CategoryContainer {
         "WHERE videos.id = files.id;";
 
     private static const string SQL_FIND_OBJECT =
-        "SELECT videos.id, title, artist, length, path, dtime, size, dlna_profile, dlna_mime " +
+        "SELECT videos.id, title, artist, length, path, mtime, size, dlna_profile, dlna_mime " +
         "FROM videos, files " +
         "WHERE files.id = ? AND videos.id = files.id;";
 
