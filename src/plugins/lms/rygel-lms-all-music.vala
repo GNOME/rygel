@@ -28,12 +28,16 @@ public class Rygel.LMS.AllMusic : Rygel.LMS.CategoryContainer {
         "SELECT files.id, files.path, files.size, " +
                "audios.title as title, audios.trackno, audios.length, audios.channels, audios.sampling_rate, audios.bitrate, audios.dlna_profile, audios.dlna_mime, " +
                "audio_artists.name as artist, " +
-               "audio_albums.name " +
+               "audio_albums.name, " +
+               "files.mtime, " +
+               "audio_genres.name " +
         "FROM audios, files " +
         "LEFT JOIN audio_artists " +
         "ON audios.artist_id = audio_artists.id " +
         "LEFT JOIN audio_albums " +
         "ON audios.album_id = audio_albums.id " +
+        "LEFT JOIN audio_genres " +
+        "ON audios.genre_id = audio_genres.id " +
         "WHERE audios.id = files.id %s " +
         "LIMIT ? OFFSET ?;";
 
@@ -54,12 +58,16 @@ public class Rygel.LMS.AllMusic : Rygel.LMS.CategoryContainer {
         "SELECT files.id, files.path, files.size, " +
                "audios.title, audios.trackno, audios.length, audios.channels, audios.sampling_rate, audios.bitrate, audios.dlna_profile, audios.dlna_mime, " +
                "audio_artists.name, " +
-               "audio_albums.name " +
+               "audio_albums.name, " +
+               "files.mtime, " +
+               "audio_genres.name " +
         "FROM audios, files " +
         "LEFT JOIN audio_artists " +
         "ON audios.artist_id = audio_artists.id " +
         "LEFT JOIN audio_albums " +
         "ON audios.album_id = audio_albums.id " +
+        "LEFT JOIN audio_genres " +
+        "ON audios.genre_id = audio_genres.id " +
         "WHERE files.id = ? AND audios.id = files.id;";
 
     protected override string get_sql_all_with_filter (string filter) {
@@ -103,6 +111,9 @@ public class Rygel.LMS.AllMusic : Rygel.LMS.CategoryContainer {
         song.mime_type = mime_type;
         song.artist = statement.column_text(11);
         song.album = statement.column_text(12);
+        TimeVal tv = { (long) statement.column_int(13), (long) 0 };
+        song.date = tv.to_iso8601 ();
+        song.genre = statement.column_text(14);
         File file = File.new_for_path (path);
         song.add_uri (file.get_uri ());
 
