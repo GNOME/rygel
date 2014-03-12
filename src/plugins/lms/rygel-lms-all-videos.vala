@@ -76,6 +76,23 @@ public class Rygel.LMS.AllVideos : Rygel.LMS.CategoryContainer {
         video.mime_type = mime_type;
         video.add_uri (file.get_uri ());
 
+        // Rygel does not support multiple video and audio tracks in a single file,
+        // so we just take the first one
+        var video_data = "select videos_videos.bitrate + videos_audios.bitrate, width, height, channels, sampling_rate " +
+            "from videos, videos_audios, videos_videos where videos.id = ? " +
+            "and videos.id = videos_audios.video_id and videos.id = videos_videos.video_id;";
+        try {
+            var stmt = this.lms_db.prepare(video_data);
+            Rygel.LMS.Database.find_object("%d".printf(id), stmt);
+            video.bitrate = stmt.column_int(0) / 8; //convert bits per second into bytes per second
+            video.width = stmt.column_int(1);
+            video.height = stmt.column_int(2);
+            video.channels = stmt.column_int(3);
+            video.sample_freq = stmt.column_int(4);
+        } catch (DatabaseError e) {
+            warning ("Query failed: %s", e.message);
+        }
+
         return video;
     }
 
