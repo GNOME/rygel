@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-12 22:43+0200\n"
-"PO-Revision-Date: 2014-02-12 22:44+0300\n"
+"POT-Creation-Date: 2014-03-16 00:11+0200\n"
+"PO-Revision-Date: 2014-03-16 00:11+0300\n"
 "Last-Translator: Daniel Korostil <ted.korostiled@gmail.com>\n"
 "Language-Team: linux.org.ua\n"
 "Language: uk\n"
@@ -144,10 +144,10 @@ msgstr "Не вдалося зробити запит до бази даних: 
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
 #, c-format
-msgid "failed to enumerate folder: %s"
-msgstr "не вдалося перерахувати теку: %s"
+msgid "Failed to enumerate folder \"%s\": %s"
+msgstr "не вдалося перелічити теку «%s»: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:257
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Не вдалось отримати нащадків у контейнері %s: %s"
