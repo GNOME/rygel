@@ -72,7 +72,7 @@ install-data-hook: gtkdoc/html/index.html
 else
 install-data-hook:
 	test -d $(srcdir)/gtkdoc/html && $(MKDIR_P) $(RYGEL_GTKDOC_INSTALL_DIR); true
-	test -d $(srcdir)/gtkdoc/html && cp -d -R $(srcdir)/gtkdoc/html/* $(RYGEL_GTKDOC_INSTALL_DIR); true
+	test -d $(srcdir)/gtkdoc/html && cp -p -R $(srcdir)/gtkdoc/html/* $(RYGEL_GTKDOC_INSTALL_DIR); true
 	test -d $(srcdir)/gtkdoc/html && chmod -R u+w $(RYGEL_GTKDOC_INSTALL_DIR); true
 
 endif
