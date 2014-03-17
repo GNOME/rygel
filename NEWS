@@ -1,3 +1,35 @@
+0.21.6
+======
+
+- More cp -d replacement.
+
+GStreamer Renderer:
+ - Fix two criticals on start-up.
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Yuri Myasoedov <ymyasoedov@yandex.ru>
+ - Wylmer Wang <wantinghard@gmail.com>
+ - Ville-Pekka Vainio <vpvainio@iki.fi>
+ - Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+ - Paweł Żołnowski <pawel@zolnowski.name>
+ - naybnet <naybnet@gmail.com>
+ - Daniel Korostil <ted.korostiled@gmail.com>
+ - Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+ - Andika Triwidada <andika@gmail.com>
+
+Added/updated translations
+ - fi, courtesy of Jiri Grönroos
+ - fr, courtesy of naybnet
+ - id, courtesy of Andika Triwidada
+ - lv, courtesy of Rūdolfs Mazurs
+ - pl, courtesy of Paweł Żołnowski
+ - ru, courtesy of Yuri Myasoedov
+ - uk, courtesy of Daniel Korostil
+ - zh_CN, courtesy of Wylmer Wang
+ - zh_HK, courtesy of Chao-Hsiung Liao
+ - zh_TW, courtesy of Chao-Hsiung Liao
+
 0.21.5
 ======
 
