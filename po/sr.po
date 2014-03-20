@@ -1,15 +1,14 @@
 # Serbian translation for rygel.
-# Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
 # Милош Поповић <gpopac@gmail.com>, 2010.
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011—2013.
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011 — 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&"
 "keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-09 15:56+0000\n"
-"PO-Revision-Date: 2013-09-10 21:57+0200\n"
+"POT-Creation-Date: 2014-03-20 01:07+0000\n"
+"PO-Revision-Date: 2014-03-20 05:45+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -27,7 +26,7 @@ msgstr "Поставке за Ригел"
 
 #: ../data/rygel-preferences.ui.h:2
 msgid "column"
-msgstr "ступац"
+msgstr "стубац"
 
 #: ../data/rygel-preferences.ui.h:3
 msgid "Add a directory to the list of shared directories"
@@ -50,11 +49,29 @@ msgid "_Share media through DLNA"
 msgstr "_Дели медије кроз ДЛНА"
 
 #: ../data/rygel-preferences.ui.h:8
-#| msgid "_Network:"
+msgid "Add a network interface Rygel should serve files on"
+msgstr "Додајте мрежни уређај на коме Ригел треба да послужује датотеке"
+
+#: ../data/rygel-preferences.ui.h:9
+#| msgid "Network Interfaces"
+msgid "Add network interface"
+msgstr "Додај мрежни уређај"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid "Remove a network interface Rygel should no longer serve files on"
+msgstr ""
+"Уклоните мрежни уређај на коме Ригел не треба више да послужује датотеке"
+
+#: ../data/rygel-preferences.ui.h:11
+#| msgid "Network Interfaces"
+msgid "Remove network interface"
+msgstr "Уклони мрежни уређај"
+
+#: ../data/rygel-preferences.ui.h:12
 msgid "Networks:"
 msgstr "Мреже:"
 
-#: ../data/rygel-preferences.ui.h:9
+#: ../data/rygel-preferences.ui.h:13
 msgid "Select folders"
 msgstr "Изаберите фасцикле"
 
@@ -77,8 +94,11 @@ msgstr "медијскисервер;медијскиисцртавач;дели
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "Модул „%s“ не може да се повеже на сабирницу сесије Д-сабирнице. "
+#| msgid "Module '%s' could not connect to D-Bus session bus. "
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr ""
+"Модул „%s“ не може да се повеже на сабирницу сесије Д-сабирнице. "
+"Занемарујем…"
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -117,31 +137,27 @@ msgstr "Нисам успео да уклоним објекат из базе �
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:114
 #, c-format
-#| msgid "Failed to move dotfile %s: %s"
 msgid "Failed to harvest file %s: %s"
 msgstr "Нисам успео да покупим датотеку %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:164
 #, c-format
-#| msgid "Failed to query info of a file %s: %s"
 msgid "Failed to query database: %s"
 msgstr "Нисам успео да пропитам базу података: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
 #, c-format
-#| msgid "Failed to remove entry: %s"
-msgid "failed to enumerate folder: %s"
-msgstr "Нисам успео да нумеришем фасциклу: %s"
+#| msgid "failed to enumerate folder: %s"
+msgid "Failed to enumerate folder \"%s\": %s"
+msgstr "Нисам успео да нумеришем фасциклу „%s“: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:257
 #, c-format
-#| msgid "Failed to query info of a file %s: %s"
 msgid "Failed to get children of container %s: %s"
 msgstr "Нисам успео да добавим пород садржаоца „%s“: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
-#| msgid "Failed to get Tracker connection: %s"
 msgid "Failed to get child count of query container: %s"
 msgstr "Нисам успео да добавим број порода пропитаног садржаоца: %s"
 
@@ -151,11 +167,10 @@ msgid "Failed to add item with ID %s: %s"
 msgstr "Нисам успео да додам ставку са ИБ-ом %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:564
-#| msgid "Failed to create preferences dialog: %s"
 msgid "Cannot create references to containers"
 msgstr "Не могу да направим упуте до садржалаца"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -168,14 +183,12 @@ msgstr "Све"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
-#| msgid "Failed to get Tracker connection: %s"
 msgid "Failed to get child count: %s"
 msgstr "Нисам успео да добавим број пратиоца: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Can't create items in %s"
 msgstr "Не могу да направим ставку у „%s“"
 
@@ -190,19 +203,17 @@ msgid "Can't remove containers in %s"
 msgstr "Не могу да уклоним садржаоце у „%s“"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:590
 msgid "Playlists"
 msgstr "Спискови нумера"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Can't remove items in %s"
 msgstr "Не могу да уклоним ставке у „%s“"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
 #, c-format
-#| msgid "Play speed not supported"
 msgid "upnp:class not supported in %s"
 msgstr "упнп:разред није подржан у „%s“"
 
@@ -215,11 +226,15 @@ msgstr "Неће надгледати измене датотеке"
 msgid "Failed to get file info for %s"
 msgstr "Нисам успео да добавим податке датотеке за „%s“"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Година"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Извођач"
@@ -243,27 +258,26 @@ msgstr "Датотеке и фасцикле"
 msgid "@REALNAME@'s media"
 msgstr "Медија корисника „@REALNAME@“"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:433
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:500
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:437
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:504
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Нисам успео да уклоним унос: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:579
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:583
 msgid "Music"
 msgstr "Музика"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:582
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
 msgid "Pictures"
 msgstr "Слике"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:584
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:588
 msgid "Videos"
 msgstr "Снимци"
 
 #: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
 #, c-format
-#| msgid "Failed to move dotfile %s: %s"
 msgid "Failed to remove file %s: %s"
 msgstr "Нисам успео да уклоним датотеку „%s“: %s"
 
@@ -271,6 +285,11 @@ msgstr "Нисам успео да уклоним датотеку „%s“: %s"
 #, c-format
 msgid "Could not find object %d in cache"
 msgstr "Не могу да пронађем предмет %d у остави"
+
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
+#, c-format
+msgid "MPRIS interface at %s is read-only. Ignoring."
+msgstr "ПМРИС уређај на „%s“ је само за читање. Занемарујем."
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
@@ -296,24 +315,20 @@ msgstr "Нисам успео да образујем путању за фасц
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:77
 #, c-format
-#| msgid "Could not subscribe to tracker signals: %s"
 msgid "Could not subscribe to Tracker signals: %s"
 msgstr "Не могу да се претплатим на сигнале Трагача: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:95
-#| msgid "Seek mode not supported"
 msgid "Not supported"
 msgstr "Није подржано"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-container.vala:58
 #, c-format
-#| msgid "Failed to create a Tracker connection: %s"
 msgid "Failed to create Tracker connection: %s"
 msgstr "Нисам успео да направим везу Трагача: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-metadata-container.vala:110
 #, c-format
-#| msgid "Error getting item count under category '%s': %s"
 msgid "Error getting all values for '%s': %s"
 msgstr "Грешка добављања свих вредности за „%s“: %s"
 
@@ -360,30 +375,76 @@ msgstr "Наслови"
 msgid "Not implemented"
 msgstr "Није примењено"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:91
-#: ../src/librygel-core/rygel-connection-manager.vala:105
-#: ../src/librygel-core/rygel-connection-manager.vala:122
-#: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:128
-#: ../src/librygel-server/rygel-content-directory.vala:270
-#: ../src/librygel-server/rygel-content-directory.vala:298
-#: ../src/librygel-server/rygel-content-directory.vala:317
-#: ../src/librygel-server/rygel-content-directory.vala:352
-#: ../src/librygel-server/rygel-content-directory.vala:377
-#: ../src/librygel-server/rygel-content-directory.vala:402
-#: ../src/librygel-server/rygel-content-directory.vala:621
-#: ../src/librygel-server/rygel-content-directory.vala:772
+#: ../src/librygel-core/rygel-basic-management-test.vala:197
+#, c-format
+#| msgid "Failed to create GStreamer data source for %s: %s"
+msgid "Failed to read standard output from %s: %s"
+msgstr "Нисам успео да прочитам стандардни излаз са „%s“: %s"
+
+#: ../src/librygel-core/rygel-basic-management-test.vala:225
+#, c-format
+#| msgid "Failed to load module from path '%s': %s"
+msgid "Failed to read error output from %s: %s"
+msgstr "Нисам успео да прочитам излаз грешке са „%s“: %s"
+
+#. / No test with the specified TestID was found
+#: ../src/librygel-core/rygel-basic-management.vala:159
+#| msgid "No such object"
+msgid "No Such Test"
+msgstr "Нема такве пробе"
+
+#. / TestID is valid but refers to the wrong test type
+#: ../src/librygel-core/rygel-basic-management.vala:167
+msgid "Wrong Test Type"
+msgstr "Погрешна врста пробе"
+
+#. / TestID is valid but the test Results are not available
+#: ../src/librygel-core/rygel-basic-management.vala:175
+#, c-format
+#| msgid "Invalid Range '%s'"
+msgid "Invalid Test State '%s'"
+msgstr "Неисправно стање пробе „%s“"
+
+#. / TestID is valid but the test can't be canceled
+#: ../src/librygel-core/rygel-basic-management.vala:181
+#, c-format
+msgid "State '%s' Precludes Cancel"
+msgstr "Стање „%s“ спречава отказивање"
+
+#: ../src/librygel-core/rygel-basic-management.vala:214
+#: ../src/librygel-core/rygel-basic-management.vala:229
+#: ../src/librygel-core/rygel-basic-management.vala:265
+#: ../src/librygel-core/rygel-basic-management.vala:317
+#: ../src/librygel-core/rygel-basic-management.vala:351
+#: ../src/librygel-core/rygel-basic-management.vala:390
+#: ../src/librygel-core/rygel-basic-management.vala:427
+#: ../src/librygel-core/rygel-basic-management.vala:466
+#: ../src/librygel-core/rygel-basic-management.vala:481
+#: ../src/librygel-core/rygel-basic-management.vala:496
+#: ../src/librygel-core/rygel-basic-management.vala:520
+#: ../src/librygel-core/rygel-connection-manager.vala:95
+#: ../src/librygel-core/rygel-connection-manager.vala:109
+#: ../src/librygel-core/rygel-connection-manager.vala:126
+#: ../src/librygel-renderer/rygel-av-transport.vala:207
+#: ../src/librygel-renderer/rygel-rendering-control.vala:131
+#: ../src/librygel-server/rygel-content-directory.vala:262
+#: ../src/librygel-server/rygel-content-directory.vala:290
+#: ../src/librygel-server/rygel-content-directory.vala:309
+#: ../src/librygel-server/rygel-content-directory.vala:344
+#: ../src/librygel-server/rygel-content-directory.vala:373
+#: ../src/librygel-server/rygel-content-directory.vala:398
+#: ../src/librygel-server/rygel-content-directory.vala:617
+#: ../src/librygel-server/rygel-content-directory.vala:768
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Неисправан аргумент"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:128
+#: ../src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
-msgstr "Неисправна референца на везу"
+msgstr "Неисправна упута на везу"
 
-#: ../src/librygel-core/rygel-description-file.vala:339
+#: ../src/librygel-core/rygel-description-file.vala:343
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Failed to write modified description to %s"
 msgstr "Нисам успео да запишем измењени опис у „%s“"
 
@@ -488,52 +549,63 @@ msgstr "Грешка преслушавања садржаја фасцикле 
 msgid "Could not load plugin: %s"
 msgstr "Не могу да учитам прикључак: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:134
+#: ../src/librygel-renderer/rygel-av-transport.vala:213
+#: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Неисправан ИБ примерка"
 
-#. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:695
-#: ../src/librygel-renderer/rygel-av-transport.vala:705
-msgid "Resource not found"
-msgstr "Извориште није нађено"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:281
-msgid "Illegal MIME-type"
-msgstr "Неисправна МИМЕ врста"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:553
+#: ../src/librygel-renderer/rygel-av-transport.vala:483
 msgid "Play speed not supported"
 msgstr "Брзина пуштања није подржана"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:570
+#: ../src/librygel-renderer/rygel-av-transport.vala:501
 msgid "Transition not available"
 msgstr "Пренос није доступан"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:599
-#: ../src/librygel-renderer/rygel-av-transport.vala:623
+#: ../src/librygel-renderer/rygel-av-transport.vala:531
+#: ../src/librygel-renderer/rygel-av-transport.vala:556
+#: ../src/librygel-renderer/rygel-av-transport.vala:586
 msgid "Seek mode not supported"
 msgstr "Начин премотавања није подржан"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:612
-#: ../src/librygel-renderer/rygel-av-transport.vala:633
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:537
+#: ../src/librygel-renderer/rygel-av-transport.vala:562
+#: ../src/librygel-renderer/rygel-av-transport.vala:575
+#: ../src/librygel-renderer/rygel-av-transport.vala:596
+#: ../src/librygel-renderer/rygel-av-transport.vala:604
 msgid "Illegal seek target"
 msgstr "Неисправна мета премотавања"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:165
+#. FIXME: Return a more sensible error here.
+#: ../src/librygel-renderer/rygel-av-transport.vala:703
+#: ../src/librygel-renderer/rygel-av-transport.vala:713
+#: ../src/librygel-renderer/rygel-av-transport.vala:770
+msgid "Resource not found"
+msgstr "Извориште није нађено"
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: ../src/librygel-renderer/rygel-av-transport.vala:766
+#, c-format
+#| msgid "Failed to remove file %s: %s"
+msgid "Failed to access resource at %s: %s"
+msgstr "Нисам успео да приступим изворишту на „%s“: %s"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:781
+msgid "Illegal MIME-type"
+msgstr "Неисправна МИМЕ врста"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
 msgstr "Неисправан назив"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:179
+#: ../src/librygel-renderer/rygel-rendering-control.vala:182
 msgid "Invalid Channel"
 msgstr "Неисправан канал"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:215
-#: ../src/librygel-renderer/rygel-rendering-control.vala:257
-#: ../src/librygel-renderer/rygel-rendering-control.vala:266
+#: ../src/librygel-renderer/rygel-rendering-control.vala:218
+#: ../src/librygel-renderer/rygel-rendering-control.vala:260
+#: ../src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Радња није успела"
 
@@ -550,16 +622,15 @@ msgstr "Нисам успео да прегледам пород на ставц
 msgid "Failed to browse '%s': %s\n"
 msgstr "Нисам успео да разгледам „%s“: %s\n"
 
-#: ../src/librygel-server/rygel-client-hacks.vala:131
+#: ../src/librygel-server/rygel-client-hacks.vala:134
 msgid "Not Applicable"
 msgstr "Није применљиво"
 
-#: ../src/librygel-server/rygel-content-directory.vala:642
+#: ../src/librygel-server/rygel-content-directory.vala:638
 msgid "No such file transfer"
 msgstr "Не постоји овај пренос"
 
 #: ../src/librygel-server/rygel-dbus-thumbnailer.vala:115
-#| msgid "No D-Bus thumbnailer available"
 msgid "No D-Bus thumbnailer service available"
 msgstr "Није доступна услуга сличичара Д-сабирнице"
 
@@ -579,26 +650,21 @@ msgid "Invalid Request"
 msgstr "Неисправан захтев"
 
 #: ../src/librygel-server/rygel-http-identity-handler.vala:106
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 #: ../src/librygel-server/rygel-http-transcode-handler.vala:58
 msgid "Not found"
 msgstr "Нисам пронашао"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Неисправна путања „%s“"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
-msgid "Not Found"
-msgstr "Нисам нашао"
-
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:50
-#| msgid "Seek mode not supported"
 msgid "Seeking not supported"
 msgstr "Премотавање није подржано"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:97
-#| msgid "Failed to create pipeline"
 msgid "Failed to generate playlist"
 msgstr "Нисам успео да створим списак за пуштање"
 
@@ -644,6 +710,7 @@ msgstr "Нисам успео да добијем првобитну путањ�
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Путања „%s“ за увоз садржаја није исправна"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Недостаје лб садржаоца"
@@ -676,6 +743,7 @@ msgstr "Уклањање објекта „%s“ није дозвољено"
 msgid "Object removal from %s not allowed"
 msgstr "Уклањање објекта са „%s“ није дозвољено"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Недостаје лб предмета"
@@ -730,7 +798,6 @@ msgstr ""
 
 #: ../src/librygel-server/rygel-m3u-playlist.vala:67
 #: ../src/librygel-server/rygel-m3u-playlist.vala:70
-#| msgid "Unknown error."
 msgid "Unknown"
 msgstr "Непознато"
 
@@ -754,12 +821,11 @@ msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Нисам успео да нађем протокол за путању „%s“. Претпоставићу да је „%s“"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:100
-#| msgid "Invalid argument"
 msgid "Invalid number of arguments"
 msgstr "Неисправан број аргумената"
 
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
-#| msgid "'Elements' argument missing."
 msgid "ObjectID argument missing"
 msgstr "Недостаје аргумент лб предмета"
 
@@ -773,12 +839,10 @@ msgstr "Недостаје пропусник"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:197
 #: ../src/librygel-server/rygel-object-creator.vala:407
-#| msgid "No such file transfer"
 msgid "No such container"
 msgstr "Нема таквог садржаоца"
 
 #: ../src/librygel-server/rygel-object-creator.vala:151
-#| msgid "Seek mode not supported"
 msgid "upnp:createClass value not supported"
 msgstr "упнп:вредност направи разред није подржана"
 
@@ -790,13 +854,13 @@ msgstr "Недостаје аргумент „елементи“."
 msgid "Comments not allowed in XML"
 msgstr "Напомене нису дозвољене унутар ИксМЛ-а"
 
+#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "Недостаје аргумент лб садржаоца"
 
 #: ../src/librygel-server/rygel-object-creator.vala:225
 #, c-format
-#| msgid "No items in DIDL-Lite from client: '%s'"
 msgid "No objects in DIDL-Lite from client: '%s'"
 msgstr "Нема предмета у ДИДЛ-Лајту са клијента: „%s“"
 
@@ -822,15 +886,10 @@ msgstr "Не могу да направим ограничену ставку"
 
 #: ../src/librygel-server/rygel-object-creator.vala:378
 #, c-format
-#| msgid "Play speed not supported"
 msgid "UPnP class '%s' not supported"
 msgstr "УПнП разред „%s“ није подржан"
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
-#| msgid "Object creation in %s not allowed"
-msgid " %%% Object creation in %s not allowed"
-msgstr " %%% Прављење објекта у „%s“ није дозвољено"
-
 #: ../src/librygel-server/rygel-object-creator.vala:424
 #: ../src/librygel-server/rygel-object-creator.vala:710
 #: ../src/librygel-server/rygel-reference-creator.vala:116
@@ -845,19 +904,16 @@ msgstr "Нисам успео да направим ставку унутар �
 
 #: ../src/librygel-server/rygel-object-creator.vala:543
 #, c-format
-#| msgid "Seek mode not supported"
 msgid "DLNA profile '%s' not supported"
 msgstr "ДЛНА профил „%s“ није подржан"
 
 #: ../src/librygel-server/rygel-object-creator.vala:601
 #, c-format
-#| msgid "Invalid Range '%s'"
 msgid "Invalid date format: %s"
 msgstr "Неисправан запис датума: %s"
 
 #: ../src/librygel-server/rygel-object-creator.vala:610
 #, c-format
-#| msgid "Invalid Range '%s'"
 msgid "Invalid date: %s"
 msgstr "Неисправан датум: %s"
 
@@ -876,18 +932,15 @@ msgstr ""
 "пратиоца „%s“ у њему: %s"
 
 #: ../src/librygel-server/rygel-reference-creator.vala:50
-#| msgid "'Elements' argument missing."
 msgid "'ContainerID' agument missing."
 msgstr "Недостаје аргумент „лб садржаоца“."
 
 #: ../src/librygel-server/rygel-reference-creator.vala:55
-#| msgid "'Elements' argument missing."
 msgid "'ObjectID' argument missing."
 msgstr "Недостаје аргумент „лб предмета“."
 
 #: ../src/librygel-server/rygel-reference-creator.vala:84
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to create object under '%s': %s"
 msgstr "Нисам успео да направим предмет унутар „%s“: %s"
 
@@ -913,6 +966,8 @@ msgstr "Није доступан сличичар: %s"
 msgid "Thumbnailing not supported"
 msgstr "Прављење сличица није подржано"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -938,6 +993,7 @@ msgstr "Не могу да направим елемент Гстримера з
 msgid "Failed to create pipeline"
 msgstr "Нисам успео да направим спојку"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
@@ -970,7 +1026,6 @@ msgstr "Нисам успео да премотам"
 
 #: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:123
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Нисам успео да направим извор података Гстримера за „%s“: %s"
 
@@ -1038,12 +1093,10 @@ msgid "Disable UPnP (streaming-only)"
 msgstr "Искључи УПнП (само токови)"
 
 #: ../src/rygel/rygel-cmdline-config.vala:102
-#| msgid "Failed to load user configuration: %s"
 msgid "Use configuration file instead of user configuration"
 msgstr "Користи датотеку подешавања уместо подешавања корисника"
 
 #: ../src/rygel/rygel-cmdline-config.vala:104
-#| msgid "Rygel Preferences"
 msgid "Shutdown remote Rygel reference"
 msgstr "Угаси упуте удаљеног Ригела"
 
@@ -1053,7 +1106,6 @@ msgstr "Гасим примерак удаљеног Ригела\n"
 
 #: ../src/rygel/rygel-cmdline-config.vala:149
 #, c-format
-#| msgid "Failed to stop Rygel service: %s"
 msgid "Failed to shut-down other rygel instance: %s"
 msgstr "Нисам успео да зауставим други примерак ригела: %s"
 
@@ -1061,10 +1113,13 @@ msgstr "Нисам успео да зауставим други примера�
 msgid "Rygel is running in streaming-only mode."
 msgstr "Ригел ради у режиму само токова"
 
-#: ../src/rygel/rygel-main.vala:107
+#: ../src/rygel/rygel-main.vala:87
 #, c-format
-#| msgid "No plugins found in %d second; giving up.."
-#| msgid_plural "No plugins found in %d seconds; giving up.."
+msgid "Rygel v%s starting…"
+msgstr "Ригел в%s се покреће…"
+
+#: ../src/rygel/rygel-main.vala:109
+#, c-format
 msgid "No plugins found in %d second; giving up..."
 msgid_plural "No plugins found in %d seconds; giving up..."
 msgstr[0] "Нисам нашао прикључке за %d секунду; одустајем..."
@@ -1072,17 +1127,17 @@ msgstr[1] "Нисам нашао прикључке за %d секунде; од
 msgstr[2] "Нисам нашао прикључке за %d секунди; одустајем..."
 msgstr[3] "Нисам нашао прикључке за једну секунду; одустајем..."
 
-#: ../src/rygel/rygel-main.vala:168
+#: ../src/rygel/rygel-main.vala:170
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Нисам успео да направим фабрику корених уређаја: %s"
 
-#: ../src/rygel/rygel-main.vala:226
+#: ../src/rygel/rygel-main.vala:228
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Нисам успео да направим корени уређај за „%s“. Разлог: %s"
 
-#: ../src/rygel/rygel-main.vala:263
+#: ../src/rygel/rygel-main.vala:265
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Нисам успео да учитам подешавања корисника: %s"
@@ -1091,7 +1146,6 @@ msgstr "Нисам успео да учитам подешавања корис�
 #: ../src/rygel/rygel-user-config.vala:252
 #: ../src/ui/rygel-user-config.vala:252
 #, c-format
-#| msgid "Failed to load user configuration: %s"
 msgid "Failed to load user configuration from file '%s': %s"
 msgstr "Нисам успео да учитам подешавања корисника из датотеке „%s“: %s"
 
@@ -1126,3 +1180,6 @@ msgstr "Нисам успео да покренем услугу Ригела: %
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Нисам успео да зауставим услугу Ригела: %s"
+
+#~ msgid "Not Found"
+#~ msgstr "Нисам нашао"
