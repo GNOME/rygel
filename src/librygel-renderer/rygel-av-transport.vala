@@ -693,7 +693,7 @@ internal class Rygel.AVTransport : Service {
                                         string metadata,
                                         string mime,
                                         string features) {
-        var message = new Message ("GET", this.controller.uri);
+        var message = new Message ("GET", uri);
         this.session.queue_message (message, () => {
             handle_playlist.callback ();
         });
