@@ -89,6 +89,12 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                         "video/x-xvid",
                                         "video/x-ms-wmv" };
     private static Player player;
+    private static bool has_dlna_src;
+
+    static construct {
+        Player.has_dlna_src = Gst.URI.protocol_is_supported (URIType.SRC,
+                                                             "dlna+http");
+    }
 
     public dynamic Element playbin { get; private set; }
 
@@ -191,7 +197,13 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         set {
             this._uri = value;
             this.playbin.set_state (State.READY);
-            this.playbin.uri = value;
+            if (Player.has_dlna_src && value.has_prefix ("http")) {
+                debug ("Trying to use DLNA src element");
+                this.playbin.uri = "dlna+" + value;
+            } else {
+                this.playbin.uri = value;
+            }
+
             if (value != "") {
                 this.guess_duration ();
                 switch (this._playback_state) {
