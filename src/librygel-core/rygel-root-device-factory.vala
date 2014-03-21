@@ -33,26 +33,33 @@ public errordomain RootDeviceFactoryError {
 }
 
 namespace Rygel {
+    private static string pretty_host_name = null;
+
     public string get_pretty_host_name () {
-        string machine_info;
 
-        try {
-            FileUtils.get_contents ("/etc/machine-info", out machine_info);
+        if (pretty_host_name == null) {
+            try {
+                string machine_info;
 
-            var lines = machine_info.split ("\n");
+                FileUtils.get_contents ("/etc/machine-info", out machine_info);
 
-            foreach (var line in lines) {
-                var parts = line.split ("=");
+                var lines = machine_info.split ("\n");
 
-                if (parts[0] == "PRETTY_HOSTNAME") {
-                    return string.joinv("=", parts[1:parts.length]);
+                foreach (var line in lines) {
+                    var parts = line.split ("=");
+
+                    if (parts[0] == "PRETTY_HOSTNAME") {
+                        pretty_host_name = string.joinv("=", parts[1:parts.length]);
+                    }
                 }
+            } catch (GLib.Error e) {
+                debug("Failed to parse /etc/machine-info: %s", e.message);
             }
-        } catch (GLib.Error e) {
-            debug("Failed to parse /etc/machine-info: %s", e.message);
+
+            pretty_host_name = Environment.get_host_name ();
         }
 
-        return Environment.get_host_name ();
+        return pretty_host_name;
     }
 }
 
