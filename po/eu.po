@@ -1,14 +1,15 @@
+# Basque translation for rygel.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 #
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2013.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2013, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-20 19:00+0200\n"
-"PO-Revision-Date: 2013-09-20 18:58+0200\n"
+"POT-Creation-Date: 2014-03-22 20:53+0100\n"
+"PO-Revision-Date: 2014-03-22 20:58+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
 "Language-Team: Basque <librezale@librezale.org>\n"
 "Language: eu\n"
@@ -48,10 +49,27 @@ msgid "_Share media through DLNA"
 msgstr "_Partekatu multimedia DLNA bidez"
 
 #: ../data/rygel-preferences.ui.h:8
+msgid "Add a network interface Rygel should serve files on"
+msgstr "Gehitu sareko interfaze bat Rygel-ek han fitxategiak zerbitzatzeko"
+
+#: ../data/rygel-preferences.ui.h:9
+msgid "Add network interface"
+msgstr "Gehitu sareko interfazea"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid "Remove a network interface Rygel should no longer serve files on"
+msgstr ""
+"Kendu sareko interfaze bat Rygel-ek han fitxategirik ez zerbitzatzeko gehiago"
+
+#: ../data/rygel-preferences.ui.h:11
+msgid "Remove network interface"
+msgstr "Kendu sareko interfazea"
+
+#: ../data/rygel-preferences.ui.h:12
 msgid "Networks:"
 msgstr "Sareak:"
 
-#: ../data/rygel-preferences.ui.h:9
+#: ../data/rygel-preferences.ui.h:13
 msgid "Select folders"
 msgstr "Hautatu karpetak"
 
@@ -76,10 +94,8 @@ msgstr ""
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
-msgstr ""
-"Ezin izan da '%s' modulua D-Bus saioaren bus-arekin konektatu. Ez ikusi "
-"egiten..."
+msgid "Module '%s' could not connect to D-Bus session bus. "
+msgstr "Ezin izan da '%s' modulua D-Bus saioaren bus-arekin konektatu. "
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -128,10 +144,10 @@ msgstr "Huts egin du datu-basea kontsultatzean: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
 #, c-format
-msgid "failed to enumerate folder: %s"
-msgstr "Huts egin du karpeta zerrendatzean: %s"
+msgid "Failed to enumerate folder \"%s\": %s"
+msgstr "Huts egin du '%s' karpeta zerrendatzean: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:257
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Huts egin du '%s' edukiontziaren umea lortzean: %s"
@@ -150,7 +166,7 @@ msgstr "Huts egin du '%s' IDa duen elementua gehitzean: %s"
 msgid "Cannot create references to containers"
 msgstr "Ezin da edukiontzietarako erreferentziarik sortu"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -206,15 +222,11 @@ msgstr "Ezin da fitxategiaren aldaketarik monitorizatu"
 msgid "Failed to get file info for %s"
 msgstr "Huts egin du '%s'(r)en fitxategi-informazioa eskuratzean"
 
-#. Titles and definitions of some virtual folders,
-#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Urtea"
 
-#. Titles and definitions of virtual folders for Music,
-#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Artista"
@@ -265,6 +277,11 @@ msgstr "Huts egin du '%s' fitxategia kentzean: %s"
 #, c-format
 msgid "Could not find object %d in cache"
 msgstr "Ezin izan da %d objektua aurkitu cachean"
+
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
+#, c-format
+msgid "MPRIS interface at %s is read-only. Ignoring."
+msgstr "'%s'(e)ko MPRIS interfazea irakurtzeko soilik da. Ez ikusi egiten."
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
@@ -350,28 +367,71 @@ msgstr "Tituluak"
 msgid "Not implemented"
 msgstr "Inplementatu gabe"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:91
-#: ../src/librygel-core/rygel-connection-manager.vala:105
-#: ../src/librygel-core/rygel-connection-manager.vala:122
-#: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:129
-#: ../src/librygel-server/rygel-content-directory.vala:270
-#: ../src/librygel-server/rygel-content-directory.vala:298
-#: ../src/librygel-server/rygel-content-directory.vala:317
-#: ../src/librygel-server/rygel-content-directory.vala:352
-#: ../src/librygel-server/rygel-content-directory.vala:377
-#: ../src/librygel-server/rygel-content-directory.vala:402
-#: ../src/librygel-server/rygel-content-directory.vala:621
-#: ../src/librygel-server/rygel-content-directory.vala:772
+#: ../src/librygel-core/rygel-basic-management-test.vala:197
+#, c-format
+msgid "Failed to read standard output from %s: %s"
+msgstr "Huts egin du '%s'(n)go irteera estandarretik irakurtzean: %s"
+
+#: ../src/librygel-core/rygel-basic-management-test.vala:225
+#, c-format
+msgid "Failed to read error output from %s: %s"
+msgstr "Huts egin du '%s'(n)go erroreen irteeratik irakurtzean: %s"
+
+#. / No test with the specified TestID was found
+#: ../src/librygel-core/rygel-basic-management.vala:159
+msgid "No Such Test"
+msgstr "Ez dago halako probarik"
+
+#. / TestID is valid but refers to the wrong test type
+#: ../src/librygel-core/rygel-basic-management.vala:167
+msgid "Wrong Test Type"
+msgstr "Okerreko proba mota"
+
+#. / TestID is valid but the test Results are not available
+#: ../src/librygel-core/rygel-basic-management.vala:175
+#, c-format
+msgid "Invalid Test State '%s'"
+msgstr "Baliogabeko '%s' probaren egoera"
+
+#. / TestID is valid but the test can't be canceled
+#: ../src/librygel-core/rygel-basic-management.vala:181
+#, c-format
+msgid "State '%s' Precludes Cancel"
+msgstr "'%s' egoerak bertan behera uztea saihesten du"
+
+#: ../src/librygel-core/rygel-basic-management.vala:214
+#: ../src/librygel-core/rygel-basic-management.vala:229
+#: ../src/librygel-core/rygel-basic-management.vala:265
+#: ../src/librygel-core/rygel-basic-management.vala:317
+#: ../src/librygel-core/rygel-basic-management.vala:351
+#: ../src/librygel-core/rygel-basic-management.vala:390
+#: ../src/librygel-core/rygel-basic-management.vala:427
+#: ../src/librygel-core/rygel-basic-management.vala:466
+#: ../src/librygel-core/rygel-basic-management.vala:481
+#: ../src/librygel-core/rygel-basic-management.vala:496
+#: ../src/librygel-core/rygel-basic-management.vala:520
+#: ../src/librygel-core/rygel-connection-manager.vala:95
+#: ../src/librygel-core/rygel-connection-manager.vala:109
+#: ../src/librygel-core/rygel-connection-manager.vala:126
+#: ../src/librygel-renderer/rygel-av-transport.vala:207
+#: ../src/librygel-renderer/rygel-rendering-control.vala:131
+#: ../src/librygel-server/rygel-content-directory.vala:262
+#: ../src/librygel-server/rygel-content-directory.vala:290
+#: ../src/librygel-server/rygel-content-directory.vala:309
+#: ../src/librygel-server/rygel-content-directory.vala:344
+#: ../src/librygel-server/rygel-content-directory.vala:373
+#: ../src/librygel-server/rygel-content-directory.vala:398
+#: ../src/librygel-server/rygel-content-directory.vala:617
+#: ../src/librygel-server/rygel-content-directory.vala:768
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Argumentu baliogabea"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:128
+#: ../src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "Konexioaren baliogabeko erreferentzia"
 
-#: ../src/librygel-core/rygel-description-file.vala:339
+#: ../src/librygel-core/rygel-description-file.vala:343
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Huts egin du eraldatutako azalpena '%s'(e)n idaztean"
@@ -477,52 +537,62 @@ msgstr "Errorea '%s' karpetaren edukia zerrendatzean: %s"
 msgid "Could not load plugin: %s"
 msgstr "Ezin izan da plugina kargatu: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:135
+#: ../src/librygel-renderer/rygel-av-transport.vala:213
+#: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Instantziaren IDa (InstanceID) baliogabea"
 
-#. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:695
-#: ../src/librygel-renderer/rygel-av-transport.vala:705
-msgid "Resource not found"
-msgstr "Ez da baliabiderik aurkitu"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:281
-msgid "Illegal MIME-type"
-msgstr "MIME mota ilegala"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:553
+#: ../src/librygel-renderer/rygel-av-transport.vala:483
 msgid "Play speed not supported"
 msgstr "Erreprodukzioaren abiadura ez dago onartuta"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:570
+#: ../src/librygel-renderer/rygel-av-transport.vala:501
 msgid "Transition not available"
 msgstr "Trantsizioa ez dago erabilgarri"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:599
-#: ../src/librygel-renderer/rygel-av-transport.vala:623
+#: ../src/librygel-renderer/rygel-av-transport.vala:531
+#: ../src/librygel-renderer/rygel-av-transport.vala:556
+#: ../src/librygel-renderer/rygel-av-transport.vala:586
 msgid "Seek mode not supported"
 msgstr "Bilaketa modua ez dago onartuta"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:612
-#: ../src/librygel-renderer/rygel-av-transport.vala:633
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:537
+#: ../src/librygel-renderer/rygel-av-transport.vala:562
+#: ../src/librygel-renderer/rygel-av-transport.vala:575
+#: ../src/librygel-renderer/rygel-av-transport.vala:596
+#: ../src/librygel-renderer/rygel-av-transport.vala:604
 msgid "Illegal seek target"
 msgstr "Bilaketaren helburua ilegala"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:166
+#. FIXME: Return a more sensible error here.
+#: ../src/librygel-renderer/rygel-av-transport.vala:703
+#: ../src/librygel-renderer/rygel-av-transport.vala:713
+#: ../src/librygel-renderer/rygel-av-transport.vala:770
+msgid "Resource not found"
+msgstr "Ez da baliabiderik aurkitu"
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: ../src/librygel-renderer/rygel-av-transport.vala:766
+#, c-format
+msgid "Failed to access resource at %s: %s"
+msgstr "Huts egin du '%s'(e)ko baliabideak atzitzean: %s"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:781
+msgid "Illegal MIME-type"
+msgstr "MIME mota ilegala"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
 msgstr "Izen baliogabea"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:180
+#: ../src/librygel-renderer/rygel-rendering-control.vala:182
 msgid "Invalid Channel"
 msgstr "Kanal baliogabea"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:216
-#: ../src/librygel-renderer/rygel-rendering-control.vala:258
-#: ../src/librygel-renderer/rygel-rendering-control.vala:267
+#: ../src/librygel-renderer/rygel-rendering-control.vala:218
+#: ../src/librygel-renderer/rygel-rendering-control.vala:260
+#: ../src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Ekintzak huts egin du"
 
@@ -539,11 +609,11 @@ msgstr "Ezin dira elementuaren umeak arakatu"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Huts egin du '%s' arakatzean: %s\n"
 
-#: ../src/librygel-server/rygel-client-hacks.vala:131
+#: ../src/librygel-server/rygel-client-hacks.vala:134
 msgid "Not Applicable"
 msgstr "Ez da aplikagarria"
 
-#: ../src/librygel-server/rygel-content-directory.vala:642
+#: ../src/librygel-server/rygel-content-directory.vala:638
 msgid "No such file transfer"
 msgstr "Ez dago hala fitxategi-transferentziarik"
 
@@ -567,18 +637,15 @@ msgid "Invalid Request"
 msgstr "Eskaera baliogabea"
 
 #: ../src/librygel-server/rygel-http-identity-handler.vala:106
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 #: ../src/librygel-server/rygel-http-transcode-handler.vala:58
 msgid "Not found"
 msgstr "Ez da aurkitu"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "'%s' URI baliogabea"
-
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
-msgid "Not Found"
-msgstr "Ez da aurkitu"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:50
 msgid "Seeking not supported"
@@ -630,7 +697,6 @@ msgstr "Huts egin du '%s'(r)en jatorrizko URIa eskuratzean %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "'%s' URI baliogabea horra edukiak inportatzeko"
 
-#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "ContainerID falta da"
@@ -663,7 +729,6 @@ msgstr "'%s' objektua kentzea ez dago baimenduta"
 msgid "Object removal from %s not allowed"
 msgstr "Objektua '%s'(e)ndik kentzea ez dago baimenduta"
 
-#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Objektuaren IDa falta da"
@@ -744,7 +809,6 @@ msgstr "Huts egin du '%s' URIaren protokoloa probatzean. '%s' suposatzen"
 msgid "Invalid number of arguments"
 msgstr "Argumentuen kopuru baliogabea"
 
-#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "'ObjectID' argumentua falta da"
@@ -774,7 +838,6 @@ msgstr "'Elements' argumentua falta da."
 msgid "Comments not allowed in XML"
 msgstr "Iruzkinak ez daude onartuta XMLan"
 
-#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "'ContainerID' argumentua falta da"
@@ -810,9 +873,6 @@ msgid "UPnP class '%s' not supported"
 msgstr "'%s' UPnP klasea ez dago onartuta"
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
-msgid " %%% Object creation in %s not allowed"
-msgstr " %%% '%s'(e)n objektuak sortzea ez dago baimenduta"
-
 #: ../src/librygel-server/rygel-object-creator.vala:424
 #: ../src/librygel-server/rygel-object-creator.vala:710
 #: ../src/librygel-server/rygel-reference-creator.vala:116
@@ -889,8 +949,6 @@ msgstr "Ez dago koadro txikitzailerik eskuragarri: %s"
 msgid "Thumbnailing not supported"
 msgstr "Koadroak txikiagotzea ez dago onartuta"
 
-#. Thumbnailing failed previously, so there's no current thumbnail
-#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -916,7 +974,6 @@ msgstr "Ezin izan da '%s' URIaren GstElement sortu"
 msgid "Failed to create pipeline"
 msgstr "Huts egin du kanalizazioa sortzean"
 
-#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
@@ -1038,6 +1095,11 @@ msgstr "Huts egin du Rygel-en beste instantzia itzaltzean: %s"
 msgid "Rygel is running in streaming-only mode."
 msgstr "Rygel korronte soileko moduan exekutatzen ari da."
 
+#: ../src/rygel/rygel-main.vala:87
+#, c-format
+msgid "Rygel v%s starting…"
+msgstr "Rygel %s abiarazten…"
+
 #: ../src/rygel/rygel-main.vala:109
 #, c-format
 msgid "No plugins found in %d second; giving up..."
@@ -1099,6 +1161,12 @@ msgstr "Huts egin du Rygel-en zerbitzua abiaraztean: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Huts egin du Rygel-en zerbitzua gelditzean: %s"
+
+#~ msgid "Not Found"
+#~ msgstr "Ez da aurkitu"
+
+#~ msgid " %%% Object creation in %s not allowed"
+#~ msgstr " %%% '%s'(e)n objektuak sortzea ez dago baimenduta"
 
 #~ msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
 #~ msgstr ""
