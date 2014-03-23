@@ -9,9 +9,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-23 19:29+0100\n"
-"PO-Revision-Date: 2014-03-23 23:41+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=Rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-03-23 22:42+0000\n"
+"PO-Revision-Date: 2014-03-23 23:54+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -92,8 +93,8 @@ msgstr "medieserver;medieoptegner;medierendering;del;lyd;video;billeder;"
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "Modulet \"%s\" kunne ikke forbinde til D-Bus-sessionsbussen. "
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr "Modulet \"%s\" kunne ikke forbinde til D-Bus-sessionsbussen. Ignorerer…"
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -225,11 +226,15 @@ msgstr "Vil ikke overvåge filændringer"
 msgid "Failed to get file info for %s"
 msgstr "Kunne ikke hente filinformation for %s"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "År"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Kunstner"
@@ -702,6 +707,7 @@ msgstr "Kunne ikke hente oprindelig URI for \"%s\": %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URI \"%s\" ugyldig for import af indhold til"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Mangler ContainerID"
@@ -734,6 +740,7 @@ msgstr "Fjernelse af objekt %s er ikke tilladt"
 msgid "Object removal from %s not allowed"
 msgstr "Objektfjernelse fra %s er ikke tilladt"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Mangler objekt-id"
@@ -815,6 +822,7 @@ msgstr "Kunne ikke forespørge protokol om URI %s. Antager \"%s\""
 msgid "Invalid number of arguments"
 msgstr "Ugyldigt antal argumenter"
 
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "Mangler ObjectID-argument"
@@ -844,6 +852,7 @@ msgstr "Argumentet \"Elements\" mangler."
 msgid "Comments not allowed in XML"
 msgstr "Kommentarer tillades ikke i XML"
 
+#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "Mangler ContainerID-argument"
@@ -955,6 +964,8 @@ msgstr "Ingen miniaturefunktion tilgængelig: %s"
 msgid "Thumbnailing not supported"
 msgstr "Miniaturefunktion understøttes ikke"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -980,6 +991,7 @@ msgstr "Kunne ikke oprette GstElement for URI %s"
 msgid "Failed to create pipeline"
 msgstr "Kunne ikke oprette datakanal"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
