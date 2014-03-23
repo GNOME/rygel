@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-20 21:11+0100\n"
-"PO-Revision-Date: 2014-03-16 00:29+0100\n"
+"PO-Revision-Date: 2014-03-23 23:14+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -91,10 +91,9 @@ msgstr "medieserver;medieoptegner;medierendering;del;lyd;video;billeder;"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
-#, fuzzy, c-format
+#, c-format
 msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr ""
-"Modulet \"%s\" kunne ikke forbinde til D-Bus-sessionsbussen. Ignorerer…"
+msgstr "Modulet \"%s\" kunne ikke forbinde til D-Bus-sessionsbussen. "
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
