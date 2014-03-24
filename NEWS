@@ -1,3 +1,25 @@
+0.22.0
+======
+
+A new stable release of Rygel!
+
+All contributors to this release:
+ - Inaki Larranaga Murgoitio <dooteo@zundan.com>
+ - Kenneth Nielsen <k.nielsen81@gmail.com>
+ - Мирослав Николић <miroslavnikolic@rocketmail.com>
+ - Pau Iranzo <paugnu@gmail.com>
+ - Jiro Matsuzawa <jmatsuzawa@gnome.org>
+ - Duarte Loreto <happyguy_pt@hotmail.com>
+ - Ask H. Larsen <asklarsen@gmail.com>
+
+Added/updated translations
+ - ca, courtesy of Pau Iranzo
+ - da, courtesy of Ask Hjorth Larsen
+ - eu, courtesy of Iñaki Larrañaga Murgoitio
+ - ja, courtesy of Jiro Matsuzawa
+ - pt, courtesy of Duarte Loreto
+ - sr, courtesy of Мирослав Николић
+
 0.21.6
 ======
 
