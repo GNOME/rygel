@@ -139,17 +139,8 @@ internal class Rygel.AVTransport : Service {
 
         this.player.notify["duration"].connect (this.notify_duration_cb);
 
-        var proxy = Environment.get_variable ("http_proxy");
-        if (proxy != null) {
-            if (!proxy.has_prefix ("http://") &&
-                !proxy.has_prefix ("https://")) {
-                proxy = "http://" + proxy;
-            }
-            this.session = new Session.with_options (Soup.SESSION_PROXY_URI,
-                                                     new Soup.URI (proxy));
-        } else {
-            this.session = new Session ();
-        }
+        this.session = new Session ();
+
         this.protocol_info = plugin.get_protocol_info ();
     }
 
