@@ -60,7 +60,7 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
         "FROM audios, files, audio_albums " +
         "LEFT JOIN audio_artists " +
         "ON audios.artist_id = audio_artists.id " +
-        "WHERE audios.id = files.id AND audios.album_id = audio_albums.id %s;";
+        "WHERE dtime = 0 AND audios.id = files.id AND audios.album_id = audio_albums.id %s;";
 
     /* select songs inside albums */
     private static const string SQL_CHILD_ALL_WITH_FILTER_TEMPLATE =
@@ -71,7 +71,7 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
         "FROM audios, files, audio_albums " +
         "LEFT JOIN audio_artists " +
         "ON audios.artist_id = audio_artists.id " +
-        "WHERE audios.id = files.id AND audios.album_id = audio_albums.id %s " +
+        "WHERE dtime = 0 AND audios.id = files.id AND audios.album_id = audio_albums.id %s " +
         "LIMIT ? OFFSET ?;";
 
 

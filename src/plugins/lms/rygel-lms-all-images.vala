@@ -27,18 +27,18 @@ public class Rygel.LMS.AllImages : Rygel.LMS.CategoryContainer {
     private static const string SQL_ALL =
         "SELECT images.id, title, artist, date, width, height, path, size, dlna_profile, dlna_mime " +
         "FROM images, files " +
-        "WHERE images.id = files.id " +
+        "WHERE dtime = 0 AND images.id = files.id " +
         "LIMIT ? OFFSET ?;";
 
     private static const string SQL_COUNT =
         "SELECT count(images.id) " +
         "FROM images, files " +
-        "WHERE images.id = files.id;";
+        "WHERE dtime = 0 AND images.id = files.id;";
 
     private static const string SQL_FIND_OBJECT =
         "SELECT images.id, title, artist, date, width, height, path, size, dlna_profile, dlna_mime " +
         "FROM images, files " +
-        "WHERE files.id = ? AND images.id = files.id;";
+        "WHERE dtime = 0 AND files.id = ? AND images.id = files.id;";
 
     protected override MediaObject? object_from_statement (Statement statement) {
         var id = statement.column_int(0);

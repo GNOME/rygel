@@ -38,13 +38,13 @@ public class Rygel.LMS.AllMusic : Rygel.LMS.CategoryContainer {
         "ON audios.album_id = audio_albums.id " +
         "LEFT JOIN audio_genres " +
         "ON audios.genre_id = audio_genres.id " +
-        "WHERE audios.id = files.id %s " +
+        "WHERE dtime = 0 AND audios.id = files.id %s " +
         "LIMIT ? OFFSET ?;";
 
     private static const string SQL_COUNT =
         "SELECT COUNT(audios.id) " +
         "FROM audios, files " +
-        "WHERE audios.id = files.id;";
+        "WHERE dtime = 0 AND audios.id = files.id;";
 
     private static const string SQL_COUNT_WITH_FILTER_TEMPLATE =
         "SELECT COUNT(audios.id), audios.title as title, " +
@@ -52,7 +52,7 @@ public class Rygel.LMS.AllMusic : Rygel.LMS.CategoryContainer {
         "FROM audios, files " +
         "LEFT JOIN audio_artists " +
         "ON audios.artist_id = audio_artists.id " +
-        "WHERE audios.id = files.id %s;";
+        "WHERE dtime = 0 AND audios.id = files.id %s;";
 
     private static const string SQL_FIND_OBJECT =
         "SELECT files.id, files.path, files.size, " +
@@ -68,7 +68,7 @@ public class Rygel.LMS.AllMusic : Rygel.LMS.CategoryContainer {
         "ON audios.album_id = audio_albums.id " +
         "LEFT JOIN audio_genres " +
         "ON audios.genre_id = audio_genres.id " +
-        "WHERE files.id = ? AND audios.id = files.id;";
+        "WHERE dtime = 0 AND files.id = ? AND audios.id = files.id;";
 
     protected override string get_sql_all_with_filter (string filter) {
         if (filter.length == 0) {
