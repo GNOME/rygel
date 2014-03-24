@@ -22,7 +22,8 @@ librygel_lms_la_SOURCES = \
 	rygel-lms-image-year.vala \
 	rygel-lms-sql-function.vala \
 	rygel-lms-sql-operator.vala \
-	rygel-lms-collate.c
+	rygel-lms-collate.c \
+	rygel-lms-dbus-interfaces.vala
 
 librygel_lms_la_VALAFLAGS = \
 	--enable-experimental \

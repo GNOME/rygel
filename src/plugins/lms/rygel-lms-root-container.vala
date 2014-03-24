@@ -38,11 +38,17 @@ public class Rygel.LMS.RootContainer : Rygel.SimpleContainer {
 
         base.root(title);
 
-        string db_path;
+        string db_path = null;
         try {
-            db_path = config.get_string ("LightMediaScanner", "db-path");
-            debug ("Using sqlite database location '%s'", db_path);
-        } catch (GLib.Error error) {
+            LMS.DBus lms_proxy = Bus.get_proxy_sync (BusType.SESSION,
+                                            "org.lightmediascanner",
+                                            "/org/lightmediascanner/Scanner1");
+            db_path = lms_proxy.data_base_path;
+            debug ("Got db path %s from LMS over dbus", db_path);
+        } catch (Error e) {
+            warning("Using dbus to get db location failed: %s", e.message);
+        }
+        if (db_path == null) {
             db_path = Environment.get_user_config_dir() +
                       "/lightmediascannerd/db.sqlite3";
             debug  ("Using default sqlite database location %s", db_path);
