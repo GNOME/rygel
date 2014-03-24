@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the rygel package.
 # Kentaro KAZUHAMA <kazken3@gmail.com>, 2010-2012.
 # Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2010.
-# Jiro Matsuzawa <jmatsuzawa@src.gnome.org>, 2011.
+# Jiro Matsuzawa <jmatsuzawa@src.gnome.org>, 2011, 2012, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-16 17:27+0000\n"
-"PO-Revision-Date: 2013-08-15 19:30+0900\n"
+"POT-Creation-Date: 2014-02-23 16:30+0000\n"
+"PO-Revision-Date: 2014-03-24 20:21+0900\n"
 "Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -30,7 +30,7 @@ msgstr ""
 
 #: ../data/rygel-preferences.ui.h:3
 msgid "Add a directory to the list of shared directories"
-msgstr "共有ディレクトリの一覧にディレクトリを追加"
+msgstr "共有ディレクトリの一覧にディレクトリを追加します"
 
 #: ../data/rygel-preferences.ui.h:4
 msgid "Add shared directory"
@@ -38,7 +38,7 @@ msgstr "共有ディレクトリを追加"
 
 #: ../data/rygel-preferences.ui.h:5
 msgid "Remove a directory from the list of shared directories"
-msgstr "共有ディレクトリの一覧からディレクトリを削除"
+msgstr "共有ディレクトリの一覧からディレクトリを削除します"
 
 #: ../data/rygel-preferences.ui.h:6
 msgid "Remove shared directory"
@@ -49,10 +49,26 @@ msgid "_Share media through DLNA"
 msgstr "DLNAでメディアを共有(_S)"
 
 #: ../data/rygel-preferences.ui.h:8
+msgid "Add a network interface Rygel should serve files on"
+msgstr "Rygelでファイルを共有するネットワークインターフェースを追加します"
+
+#: ../data/rygel-preferences.ui.h:9
+msgid "Add network interface"
+msgstr "ネットワークインターフェースを追加"
+
+#: ../data/rygel-preferences.ui.h:10
+msgid "Remove a network interface Rygel should no longer serve files on"
+msgstr "Rygelでファイルを共有するのに今後利用しないネットワークインターフェースを削除します"
+
+#: ../data/rygel-preferences.ui.h:11
+msgid "Remove network interface"
+msgstr "ネットワークインターフェースを削除"
+
+#: ../data/rygel-preferences.ui.h:12
 msgid "Networks:"
 msgstr "ネットワーク:"
 
-#: ../data/rygel-preferences.ui.h:9
+#: ../data/rygel-preferences.ui.h:13
 msgid "Select folders"
 msgstr "フォルダーの選択"
 
@@ -75,8 +91,8 @@ msgstr "mediaserver;mediarenderer;share;audio;video;pictures;メディアサー�
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "モジュール '%s' は D-Bus セッションバスに接続できませんでした。"
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr "モジュール '%s' は D-Bus セッションバスに接続できませんでした。無視します…"
 
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -124,11 +140,12 @@ msgid "Failed to query database: %s"
 msgstr "データベースへの問い合わせに失敗しました: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
-#, c-format
-msgid "failed to enumerate folder: %s"
+#, fuzzy, c-format
+#| msgid "failed to enumerate folder: %s"
+msgid "Failed to enumerate folder \"%s\": %s"
 msgstr "フォルダーの列挙に失敗しました: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:257
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "コンテナー %s の子の取得に失敗しました: %s"
@@ -147,7 +164,7 @@ msgstr "ID %s でアイテム追加に失敗しました: %s"
 msgid "Cannot create references to containers"
 msgstr "コンテナー参照の生成に失敗しました"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -203,11 +220,15 @@ msgstr "ファイル変更の監視は行いません"
 msgid "Failed to get file info for %s"
 msgstr "%s のファイル情報取得に失敗しました"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "年"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "アーティスト"
@@ -258,6 +279,11 @@ msgstr "ファイル%sの削除に失敗しました: %s"
 #, c-format
 msgid "Could not find object %d in cache"
 msgstr "キャッシュ中にオブジェクト %d を見つけることができませんでした"
+
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
+#, c-format
+msgid "MPRIS interface at %s is read-only. Ignoring."
+msgstr "%s の MPRIS インターフェースは読み込み専用です。無視します。"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
@@ -343,28 +369,76 @@ msgstr "タイトル"
 msgid "Not implemented"
 msgstr "実装していません"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:91
-#: ../src/librygel-core/rygel-connection-manager.vala:105
-#: ../src/librygel-core/rygel-connection-manager.vala:122
-#: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:129
-#: ../src/librygel-server/rygel-content-directory.vala:270
-#: ../src/librygel-server/rygel-content-directory.vala:298
-#: ../src/librygel-server/rygel-content-directory.vala:317
-#: ../src/librygel-server/rygel-content-directory.vala:352
-#: ../src/librygel-server/rygel-content-directory.vala:377
-#: ../src/librygel-server/rygel-content-directory.vala:402
-#: ../src/librygel-server/rygel-content-directory.vala:621
-#: ../src/librygel-server/rygel-content-directory.vala:772
+#: ../src/librygel-core/rygel-basic-management-test.vala:197
+#, fuzzy, c-format
+#| msgid "Failed to extract metadata from %s: %s"
+msgid "Failed to read standard output from %s: %s"
+msgstr "%s からのメタデータの展開に失敗しました: %s"
+
+#: ../src/librygel-core/rygel-basic-management-test.vala:225
+#, fuzzy, c-format
+#| msgid "Failed to read contents from URI: %s: %s"
+msgid "Failed to read error output from %s: %s"
+msgstr "URI: %s からのコンテンツ読み込みに失敗しました: %s"
+
+#. / No test with the specified TestID was found
+#: ../src/librygel-core/rygel-basic-management.vala:159
+#, fuzzy
+#| msgid "No such object"
+msgid "No Such Test"
+msgstr "そのようなオブジェクトはありません"
+
+#. / TestID is valid but refers to the wrong test type
+#: ../src/librygel-core/rygel-basic-management.vala:167
+msgid "Wrong Test Type"
+msgstr ""
+
+#. / TestID is valid but the test Results are not available
+#: ../src/librygel-core/rygel-basic-management.vala:175
+#, fuzzy, c-format
+#| msgid "Invalid Range '%s'"
+msgid "Invalid Test State '%s'"
+msgstr "無効な範囲'%s'"
+
+#. / TestID is valid but the test can't be canceled
+#: ../src/librygel-core/rygel-basic-management.vala:181
+#, c-format
+msgid "State '%s' Precludes Cancel"
+msgstr ""
+
+#: ../src/librygel-core/rygel-basic-management.vala:214
+#: ../src/librygel-core/rygel-basic-management.vala:229
+#: ../src/librygel-core/rygel-basic-management.vala:265
+#: ../src/librygel-core/rygel-basic-management.vala:317
+#: ../src/librygel-core/rygel-basic-management.vala:351
+#: ../src/librygel-core/rygel-basic-management.vala:390
+#: ../src/librygel-core/rygel-basic-management.vala:427
+#: ../src/librygel-core/rygel-basic-management.vala:466
+#: ../src/librygel-core/rygel-basic-management.vala:481
+#: ../src/librygel-core/rygel-basic-management.vala:496
+#: ../src/librygel-core/rygel-basic-management.vala:520
+#: ../src/librygel-core/rygel-connection-manager.vala:95
+#: ../src/librygel-core/rygel-connection-manager.vala:109
+#: ../src/librygel-core/rygel-connection-manager.vala:126
+#: ../src/librygel-renderer/rygel-av-transport.vala:207
+#: ../src/librygel-renderer/rygel-rendering-control.vala:131
+#: ../src/librygel-server/rygel-content-directory.vala:262
+#: ../src/librygel-server/rygel-content-directory.vala:290
+#: ../src/librygel-server/rygel-content-directory.vala:309
+#: ../src/librygel-server/rygel-content-directory.vala:344
+#: ../src/librygel-server/rygel-content-directory.vala:373
+#: ../src/librygel-server/rygel-content-directory.vala:398
+#: ../src/librygel-server/rygel-content-directory.vala:617
+#: ../src/librygel-server/rygel-content-directory.vala:768
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "無効な引数"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:128
+#: ../src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "無効な接続の参照"
 
-#: ../src/librygel-core/rygel-description-file.vala:339
+#: ../src/librygel-core/rygel-description-file.vala:343
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "%s へ修正した説明の書き込みに失敗しました"
@@ -470,52 +544,63 @@ msgstr "フォルダー'%s'のコンテンツの一覧表示エラー: %s"
 msgid "Could not load plugin: %s"
 msgstr "プラグインをロードできませんでした: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:135
+#: ../src/librygel-renderer/rygel-av-transport.vala:213
+#: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "無効なInstanceID"
 
-#. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:695
-#: ../src/librygel-renderer/rygel-av-transport.vala:705
-msgid "Resource not found"
-msgstr "リソースが見つかりませんでした"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:281
-msgid "Illegal MIME-type"
-msgstr "不当な MIME タイプ"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:553
+#: ../src/librygel-renderer/rygel-av-transport.vala:483
 msgid "Play speed not supported"
 msgstr "再生スピードはサポートしていません"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:570
+#: ../src/librygel-renderer/rygel-av-transport.vala:501
 msgid "Transition not available"
 msgstr "トランジションは利用できません"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:599
-#: ../src/librygel-renderer/rygel-av-transport.vala:623
+#: ../src/librygel-renderer/rygel-av-transport.vala:531
+#: ../src/librygel-renderer/rygel-av-transport.vala:556
+#: ../src/librygel-renderer/rygel-av-transport.vala:586
 msgid "Seek mode not supported"
 msgstr "シークモードをサポートしていません"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:612
-#: ../src/librygel-renderer/rygel-av-transport.vala:633
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:537
+#: ../src/librygel-renderer/rygel-av-transport.vala:562
+#: ../src/librygel-renderer/rygel-av-transport.vala:575
+#: ../src/librygel-renderer/rygel-av-transport.vala:596
+#: ../src/librygel-renderer/rygel-av-transport.vala:604
 msgid "Illegal seek target"
 msgstr "不当なシークターゲット"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:166
+#. FIXME: Return a more sensible error here.
+#: ../src/librygel-renderer/rygel-av-transport.vala:703
+#: ../src/librygel-renderer/rygel-av-transport.vala:713
+#: ../src/librygel-renderer/rygel-av-transport.vala:770
+msgid "Resource not found"
+msgstr "リソースが見つかりませんでした"
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: ../src/librygel-renderer/rygel-av-transport.vala:766
+#, fuzzy, c-format
+#| msgid "Failed to access media cache: %s"
+msgid "Failed to access resource at %s: %s"
+msgstr "メディアキャッシュのアクセスに失敗しました: %s"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:781
+msgid "Illegal MIME-type"
+msgstr "不当な MIME タイプ"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
 msgstr "無効な名前"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:180
+#: ../src/librygel-renderer/rygel-rendering-control.vala:182
 msgid "Invalid Channel"
 msgstr "無効なチャネル"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:216
-#: ../src/librygel-renderer/rygel-rendering-control.vala:258
-#: ../src/librygel-renderer/rygel-rendering-control.vala:267
+#: ../src/librygel-renderer/rygel-rendering-control.vala:218
+#: ../src/librygel-renderer/rygel-rendering-control.vala:260
+#: ../src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "アクションの失敗"
 
@@ -532,11 +617,11 @@ msgstr "アイテムの子要素が表示できません"
 msgid "Failed to browse '%s': %s\n"
 msgstr "'%s'のブラウズに失敗しました: %s\n"
 
-#: ../src/librygel-server/rygel-client-hacks.vala:131
+#: ../src/librygel-server/rygel-client-hacks.vala:134
 msgid "Not Applicable"
 msgstr "該当がありません"
 
-#: ../src/librygel-server/rygel-content-directory.vala:642
+#: ../src/librygel-server/rygel-content-directory.vala:638
 msgid "No such file transfer"
 msgstr "そのようなファイル転送はありません"
 
@@ -560,18 +645,15 @@ msgid "Invalid Request"
 msgstr "無効なリクエスト"
 
 #: ../src/librygel-server/rygel-http-identity-handler.vala:106
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 #: ../src/librygel-server/rygel-http-transcode-handler.vala:58
 msgid "Not found"
 msgstr "見つかりません"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "無効なURI'%s'"
-
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
-msgid "Not Found"
-msgstr "見つかりません"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:50
 msgid "Seeking not supported"
@@ -623,6 +705,7 @@ msgstr "'%s'のオリジナルURLの取得に失敗しました: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "コンテンツのインポートにURI'%s'は無効です"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "ContainerID がありません"
@@ -655,6 +738,7 @@ msgstr "オブジェクト %s の除去は許可されません"
 msgid "Object removal from %s not allowed"
 msgstr "%s からオブジェクトの除去は許可されません"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "オブジェクトIDがありません"
@@ -731,6 +815,7 @@ msgstr "URI %s のプロトコル精査に失敗しました。'%s'と仮定し�
 msgid "Invalid number of arguments"
 msgstr "引数の個数が不正です"
 
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "ObjectID 引数がありません"
@@ -760,6 +845,7 @@ msgstr "'エレメント' 引数が見つかりません。"
 msgid "Comments not allowed in XML"
 msgstr "XML内のコメントは許可されません"
 
+#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "ContainerID 引数がありません"
@@ -795,10 +881,6 @@ msgid "UPnP class '%s' not supported"
 msgstr "UPnP クラス '%s' はサポートしていません"
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
-#, fuzzy
-msgid " %%% Object creation in %s not allowed"
-msgstr "%s での %%% オブジェクトの生成は許可されません"
-
 #: ../src/librygel-server/rygel-object-creator.vala:424
 #: ../src/librygel-server/rygel-object-creator.vala:710
 #: ../src/librygel-server/rygel-reference-creator.vala:116
@@ -871,6 +953,8 @@ msgstr "利用できるサムネイルがありません: %s"
 msgid "Thumbnailing not supported"
 msgstr "サムネイルをサポートしていません"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -896,6 +980,7 @@ msgstr "URI %s の GstElement を作成できませんでした"
 msgid "Failed to create pipeline"
 msgstr "パイプラインの生成に失敗しました: %s"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
@@ -1009,6 +1094,11 @@ msgstr "他のRygelインスタンスの停止に失敗しました: %s"
 msgid "Rygel is running in streaming-only mode."
 msgstr "Rygelはストリーミング専用モードで動作しています。"
 
+#: ../src/rygel/rygel-main.vala:87
+#, c-format
+msgid "Rygel v%s starting…"
+msgstr "Rygel v%s を起動しています…"
+
 #: ../src/rygel/rygel-main.vala:109
 #, c-format
 msgid "No plugins found in %d second; giving up..."
@@ -1069,6 +1159,13 @@ msgstr "Rygelサービスの開始に失敗しました: %s"
 msgid "Failed to stop Rygel service: %s"
 msgstr "Rygelサービスの停止に失敗しました: %s"
 
+#~ msgid "Not Found"
+#~ msgstr "見つかりません"
+
+#, fuzzy
+#~ msgid " %%% Object creation in %s not allowed"
+#~ msgstr "%s での %%% オブジェクトの生成は許可されません"
+
 #~ msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
 #~ msgstr "DLNAで写真やビデオ、音楽などのメディア共有を有効にする"
 
@@ -1083,9 +1180,6 @@ msgstr "Rygelサービスの停止に失敗しました: %s"
 
 #~ msgid "No metadata extractor available. Will not crawl."
 #~ msgstr "利用可能なメタデータ・エクストラクターがありません。クロールは行ないません。"
-
-#~ msgid "Failed to access media cache: %s"
-#~ msgstr "メディアキャッシュのアクセスに失敗しました: %s"
 
 #~ msgid "Failed to remove URI: %s"
 #~ msgstr "URIの削除に失敗しました: %s"
@@ -1131,9 +1225,6 @@ msgstr "Rygelサービスの停止に失敗しました: %s"
 
 #~ msgid "Failed to seek to %s-%s on URI %s: %s"
 #~ msgstr "URI上の %s-%s シークに失敗しました。URI %s: %s"
-
-#~ msgid "Failed to read contents from URI: %s: %s"
-#~ msgstr "URI: %s からのコンテンツ読み込みに失敗しました: %s"
 
 #~ msgid "Failed to close stream to URI %s: %s"
 #~ msgstr "URI %s のストリームのクローズに失敗しました: %s"
@@ -1194,9 +1285,6 @@ msgstr "Rygelサービスの停止に失敗しました: %s"
 
 #~ msgid "Using database file %s"
 #~ msgstr "データベースファイル %s を利用します"
-
-#~ msgid "Failed to extract metadata from %s: %s"
-#~ msgstr "%s からのメタデータの展開に失敗しました: %s"
 
 #~ msgid "Original search: %s"
 #~ msgstr "元の検索: %s"
