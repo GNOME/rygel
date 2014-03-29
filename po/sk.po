@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2014-02-23 16:30+0000\n"
-"PO-Revision-Date: 2014-03-29 21:13+0100\n"
+"PO-Revision-Date: 2014-03-29 21:17+0100\n"
 "Last-Translator: Peter Mráz <etkinator@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -398,7 +398,6 @@ msgstr "Tituly"
 #: ../src/librygel-core/rygel-base-configuration.vala:111
 #: ../src/librygel-core/rygel-base-configuration.vala:117
 #: ../src/librygel-core/rygel-base-configuration.vala:123
-#, fuzzy
 msgid "Not implemented"
 msgstr "Nenaimplementované"
 
