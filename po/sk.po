@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-13 10:56+0000\n"
-"PO-Revision-Date: 2013-06-07 19:37+0100\n"
-"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"POT-Creation-Date: 2014-02-23 16:30+0000\n"
+"PO-Revision-Date: 2014-03-29 21:29+0100\n"
+"Last-Translator: Peter Mráz <etkinator@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -55,13 +55,34 @@ msgstr "Odstrániť sprístupnený adresár"
 msgid "_Share media through DLNA"
 msgstr "_Sprístupniť multimédiá cez DLNA"
 
-# GtkLabel label
+# tooltip
 #: ../data/rygel-preferences.ui.h:8
+msgid "Add a network interface Rygel should serve files on"
+msgstr "Pridá sieťové rozhranie, na ktorom má služba Rygel poskytovať súbory"
+
+# GtkToolButton label
+#: ../data/rygel-preferences.ui.h:9
+msgid "Add network interface"
+msgstr "Pridať sieťové rozhranie"
+
+# tooltip
+#: ../data/rygel-preferences.ui.h:10
+msgid "Remove a network interface Rygel should no longer serve files on"
+msgstr ""
+"Odstráni sieťové rozhranie, na ktorom služba Rygel už nemá poskytovať súbory"
+
+# GtkToolButton label
+#: ../data/rygel-preferences.ui.h:11
+msgid "Remove network interface"
+msgstr "Odstrániť sieťové rozhranie"
+
+# GtkLabel label
+#: ../data/rygel-preferences.ui.h:12
 msgid "Networks:"
 msgstr "Siete:"
 
 # dialog title
-#: ../data/rygel-preferences.ui.h:9
+#: ../data/rygel-preferences.ui.h:13
 msgid "Select folders"
 msgstr "Výber priečinkov"
 
@@ -88,22 +109,22 @@ msgstr ""
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. "
-msgstr "Modulu „%s“ sa nepodarilo pripojiť k zbernici relácie D-Bus."
+msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgstr ""
+"Modulu „%s“ sa nepodarilo pripojiť k zbernici relácie D-Bus. Ignoruje sa…"
 
 # https://bugzilla.gnome.org/show_bug.cgi?id=705899
-#: ../src/plugins/external/rygel-external-variant-util.vala:29
-#: ../src/plugins/external/rygel-external-variant-util.vala:47
+#: ../src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
-msgid "External provider %s did not provide mandatory "
-msgstr "Externý poskytovateľ %s neposkytuje povinnú "
+msgid "External provider %s did not provide mandatory property \"%s\""
+msgstr "Externý poskytovateľ %s neposkytuje povinnú vlastnosť „%s“"
 
 #: ../src/plugins/media-export/rygel-media-export-database-cursor.vala:81
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Nepodporovaný typ %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:214
+#: ../src/plugins/media-export/rygel-media-export-database.vala:215
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Zlyhalo vrátenie zmien transakcie: %s"
@@ -141,29 +162,30 @@ msgstr "Zlyhal dopyt k databáze: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
 #, c-format
-msgid "failed to enumerate folder: %s"
-msgstr "Zlyhalo vymenovanie priečinka: %s"
+#| msgid "failed to enumerate folder: %s"
+msgid "Failed to enumerate folder \"%s\": %s"
+msgstr "Zlyhalo vymenovanie priečinka „%s“: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:257
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Zlyhalo získanie potomka kontainera %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:61
+#: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
 msgid "Failed to get child count of query container: %s"
 msgstr "Zlyhalo získanie počtu potomkov kontajnera dopytu: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:129
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:130
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Zlyhalo pridanie položky s identifikátorom %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:563
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:564
 msgid "Cannot create references to containers"
 msgstr "Nedajú sa vytvoriť odkazy na kontajery"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
 #, c-format
 msgid "Failed to query content type for '%s'"
@@ -196,7 +218,7 @@ msgid "Can't remove containers in %s"
 msgstr "Nedajú sa odstrániť kontajnery v %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:590
 msgid "Playlists"
 msgstr "Zoznamy skladieb"
 
@@ -220,11 +242,15 @@ msgstr "Nebudú sa sledovať zmeny súborov"
 msgid "Failed to get file info for %s"
 msgstr "Zlyhalo získanie informácií o súbore %s"
 
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: ../src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Rok"
 
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
 msgstr "Autor"
@@ -248,21 +274,21 @@ msgstr "Súbory a priečinky"
 msgid "@REALNAME@'s media"
 msgstr "Multimédiá používateľa @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:433
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:500
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:437
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:504
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Zlyhalo odstránenie položky: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:579
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:583
 msgid "Music"
 msgstr "Hudba"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:582
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
 msgid "Pictures"
 msgstr "Obrázky"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:584
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:588
 msgid "Videos"
 msgstr "Videá"
 
@@ -276,6 +302,12 @@ msgstr "Zlyhalo odstránenie súboru %s: %s"
 #, c-format
 msgid "Could not find object %d in cache"
 msgstr "Nepodarilo sa nájsť objekt %d vo vyrovnávacej pamäti"
+
+# %s = nazov sluzby
+#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
+#, c-format
+msgid "MPRIS interface at %s is read-only. Ignoring."
+msgstr "Rozhranie MPRIS na službe %s je iba na čítanie. Ignoruje sa."
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
@@ -364,31 +396,78 @@ msgstr "Tituly"
 #: ../src/librygel-core/rygel-base-configuration.vala:111
 #: ../src/librygel-core/rygel-base-configuration.vala:117
 #: ../src/librygel-core/rygel-base-configuration.vala:123
-#, fuzzy
 msgid "Not implemented"
 msgstr "Nenaimplementované"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:91
-#: ../src/librygel-core/rygel-connection-manager.vala:105
-#: ../src/librygel-core/rygel-connection-manager.vala:122
-#: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:128
-#: ../src/librygel-server/rygel-content-directory.vala:267
-#: ../src/librygel-server/rygel-content-directory.vala:295
-#: ../src/librygel-server/rygel-content-directory.vala:314
-#: ../src/librygel-server/rygel-content-directory.vala:349
-#: ../src/librygel-server/rygel-content-directory.vala:374
-#: ../src/librygel-server/rygel-content-directory.vala:399
-#: ../src/librygel-server/rygel-content-directory.vala:618
+#: ../src/librygel-core/rygel-basic-management-test.vala:197
+#, c-format
+#| msgid "Failed to create GStreamer data source for %s: %s"
+msgid "Failed to read standard output from %s: %s"
+msgstr "Zlyhalo čítanie štandardného výstupu z %s: %s"
+
+#: ../src/librygel-core/rygel-basic-management-test.vala:225
+#, c-format
+#| msgid "Failed to load module from path '%s': %s"
+msgid "Failed to read error output from %s: %s"
+msgstr "Zlyhalo čítanie chybového výstupu z %s: %s"
+
+#. / No test with the specified TestID was found
+#: ../src/librygel-core/rygel-basic-management.vala:159
+#| msgid "No such object"
+msgid "No Such Test"
+msgstr "Taký test neexistuje"
+
+#. / TestID is valid but refers to the wrong test type
+#: ../src/librygel-core/rygel-basic-management.vala:167
+msgid "Wrong Test Type"
+msgstr "Chybný typ testu"
+
+#. / TestID is valid but the test Results are not available
+#: ../src/librygel-core/rygel-basic-management.vala:175
+#, c-format
+#| msgid "Invalid Range '%s'"
+msgid "Invalid Test State '%s'"
+msgstr "Neplatný stav testu „%s“"
+
+#. / TestID is valid but the test can't be canceled
+#: ../src/librygel-core/rygel-basic-management.vala:181
+#, c-format
+msgid "State '%s' Precludes Cancel"
+msgstr "Stav „%s“ znemožňuje zrušenie"
+
+#: ../src/librygel-core/rygel-basic-management.vala:214
+#: ../src/librygel-core/rygel-basic-management.vala:229
+#: ../src/librygel-core/rygel-basic-management.vala:265
+#: ../src/librygel-core/rygel-basic-management.vala:317
+#: ../src/librygel-core/rygel-basic-management.vala:351
+#: ../src/librygel-core/rygel-basic-management.vala:390
+#: ../src/librygel-core/rygel-basic-management.vala:427
+#: ../src/librygel-core/rygel-basic-management.vala:466
+#: ../src/librygel-core/rygel-basic-management.vala:481
+#: ../src/librygel-core/rygel-basic-management.vala:496
+#: ../src/librygel-core/rygel-basic-management.vala:520
+#: ../src/librygel-core/rygel-connection-manager.vala:95
+#: ../src/librygel-core/rygel-connection-manager.vala:109
+#: ../src/librygel-core/rygel-connection-manager.vala:126
+#: ../src/librygel-renderer/rygel-av-transport.vala:207
+#: ../src/librygel-renderer/rygel-rendering-control.vala:131
+#: ../src/librygel-server/rygel-content-directory.vala:262
+#: ../src/librygel-server/rygel-content-directory.vala:290
+#: ../src/librygel-server/rygel-content-directory.vala:309
+#: ../src/librygel-server/rygel-content-directory.vala:344
+#: ../src/librygel-server/rygel-content-directory.vala:373
+#: ../src/librygel-server/rygel-content-directory.vala:398
+#: ../src/librygel-server/rygel-content-directory.vala:617
+#: ../src/librygel-server/rygel-content-directory.vala:768
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Neplatný parameter"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:128
+#: ../src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "Neplatný odkaz na pripojenie"
 
-#: ../src/librygel-core/rygel-description-file.vala:339
+#: ../src/librygel-core/rygel-description-file.vala:343
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Zlyhal zápis upraveného popisu do %s"
@@ -495,53 +574,64 @@ msgstr "Vyskytla sa chyba pri prehľadávaní obsahu priečinka „%s“: %s"
 msgid "Could not load plugin: %s"
 msgstr "Nepodarilo sa načítať zásuvný modul: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:134
+#: ../src/librygel-renderer/rygel-av-transport.vala:213
+#: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Neplatný InstanceID"
 
-#. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:695
-#: ../src/librygel-renderer/rygel-av-transport.vala:705
-msgid "Resource not found"
-msgstr "Zdroj sa nenašiel"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:281
-msgid "Illegal MIME-type"
-msgstr "Neplatný typ MIME"
-
 # PK: co je toto? nemoze to byt Zmena rychlosti?
-#: ../src/librygel-renderer/rygel-av-transport.vala:553
+#: ../src/librygel-renderer/rygel-av-transport.vala:483
 msgid "Play speed not supported"
 msgstr "Rýchlosť prehrávania nie je podporovaná"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:570
+#: ../src/librygel-renderer/rygel-av-transport.vala:501
 msgid "Transition not available"
 msgstr "Prechod nie je dostupný"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:599
-#: ../src/librygel-renderer/rygel-av-transport.vala:623
+#: ../src/librygel-renderer/rygel-av-transport.vala:531
+#: ../src/librygel-renderer/rygel-av-transport.vala:556
+#: ../src/librygel-renderer/rygel-av-transport.vala:586
 msgid "Seek mode not supported"
 msgstr "Režim presúvania nie je podporovaný"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:612
-#: ../src/librygel-renderer/rygel-av-transport.vala:633
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:537
+#: ../src/librygel-renderer/rygel-av-transport.vala:562
+#: ../src/librygel-renderer/rygel-av-transport.vala:575
+#: ../src/librygel-renderer/rygel-av-transport.vala:596
+#: ../src/librygel-renderer/rygel-av-transport.vala:604
 msgid "Illegal seek target"
 msgstr "Neplatný cieľ presunu"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:165
+#. FIXME: Return a more sensible error here.
+#: ../src/librygel-renderer/rygel-av-transport.vala:703
+#: ../src/librygel-renderer/rygel-av-transport.vala:713
+#: ../src/librygel-renderer/rygel-av-transport.vala:770
+msgid "Resource not found"
+msgstr "Zdroj sa nenašiel"
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: ../src/librygel-renderer/rygel-av-transport.vala:766
+#, c-format
+#| msgid "Failed to remove file %s: %s"
+msgid "Failed to access resource at %s: %s"
+msgstr "Zlyhal prístup k zdroju %s: %s"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:781
+msgid "Illegal MIME-type"
+msgstr "Neplatný typ MIME"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
 msgstr "Neplatný názov"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:179
+#: ../src/librygel-renderer/rygel-rendering-control.vala:182
 msgid "Invalid Channel"
 msgstr "Neplatný kanál"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:215
-#: ../src/librygel-renderer/rygel-rendering-control.vala:257
-#: ../src/librygel-renderer/rygel-rendering-control.vala:266
+#: ../src/librygel-renderer/rygel-rendering-control.vala:218
+#: ../src/librygel-renderer/rygel-rendering-control.vala:260
+#: ../src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Akcia zlyhala"
 
@@ -558,13 +648,13 @@ msgstr "Nedá sa prehliadať potomok položky"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Zlyhalo prehliadanie „%s“: %s\n"
 
-#: ../src/librygel-server/rygel-client-hacks.vala:131
+#: ../src/librygel-server/rygel-client-hacks.vala:134
 msgid "Not Applicable"
-msgstr ""
+msgstr "Neaplikovateľné"
 
 # PK: takyto prenos suboru neexistuje
 # PM: suhlasim
-#: ../src/librygel-server/rygel-content-directory.vala:639
+#: ../src/librygel-server/rygel-content-directory.vala:638
 msgid "No such file transfer"
 msgstr "Takýto prenos súboru neexistuje"
 
@@ -588,20 +678,15 @@ msgid "Invalid Request"
 msgstr "Neplatná požiadavka"
 
 #: ../src/librygel-server/rygel-http-identity-handler.vala:106
+#: ../src/librygel-server/rygel-http-item-uri.vala:196
 #: ../src/librygel-server/rygel-http-transcode-handler.vala:58
 msgid "Not found"
 msgstr "Nenájdený"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:136
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Neplatný identifikátor URI „%s“"
-
-# PM: aj tu si vyžiadaj komentár a zisti aký je dôbod aby bolo Found s veľkým F
-#: ../src/librygel-server/rygel-http-item-uri.vala:179
-#, fuzzy
-msgid "Not Found"
-msgstr "Nenájdená"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:50
 msgid "Seeking not supported"
@@ -655,6 +740,7 @@ msgstr "Zlyhalo získavanie pôvodného identifikátora URI pre „%s“: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Identifikátor URI „%s“ je neplatný pre importovanie obsahu"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
 msgstr "Parameter „ContainerID“ chýba."
@@ -687,6 +773,7 @@ msgstr "Odstránenie objektu %s nie je povolené"
 msgid "Object removal from %s not allowed"
 msgstr "Odstránenie objektu z %s nie je povolené"
 
+#. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:70
 msgid "Object id missing"
 msgstr "Parameter „ObjectID“ chýba."
@@ -739,12 +826,11 @@ msgstr ""
 "Zmena metaúdajov objektu %s, ktorý je potomkom obmedzeného objektu %s nie je "
 "povolená"
 
+# DK: interpret, názov/titul
 #: ../src/librygel-server/rygel-m3u-playlist.vala:67
 #: ../src/librygel-server/rygel-m3u-playlist.vala:70
-#, fuzzy
-#| msgid "Unknown error."
 msgid "Unknown"
-msgstr "Neznáma"
+msgstr "Neznámy"
 
 #: ../src/librygel-server/rygel-media-engine.vala:69
 msgid "No media engine found."
@@ -771,6 +857,7 @@ msgstr ""
 msgid "Invalid number of arguments"
 msgstr "Neplatný počet parametrov"
 
+#. Sorry we can't do anything without ObjectID
 #: ../src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
 msgstr "Parameter „ObjectID“ chýba."
@@ -800,6 +887,7 @@ msgstr "Parameter „Elements“ chýba."
 msgid "Comments not allowed in XML"
 msgstr "Komentáre nie sú v kóde XML povolené"
 
+#. Sorry we can't do anything without ContainerID
 #: ../src/librygel-server/rygel-object-creator.vala:201
 msgid "Missing ContainerID argument"
 msgstr "Chýbajúci parameter „ContainerID“"
@@ -834,16 +922,10 @@ msgstr "Nedá sa vytvoriť obmedzená položka"
 msgid "UPnP class '%s' not supported"
 msgstr "Trieda UPnP „%s“ nie je podporovaná"
 
-# PM: Vyžiadaj komentár, čo znamenajú tie percentá
 #: ../src/librygel-server/rygel-object-creator.vala:412
-#, fuzzy
-#| msgid "Object creation in %s not allowed"
-msgid " %%% Object creation in %s not allowed"
-msgstr "Vytváranie objektu v %s nie je povolené"
-
 #: ../src/librygel-server/rygel-object-creator.vala:424
 #: ../src/librygel-server/rygel-object-creator.vala:710
-#: ../src/librygel-server/rygel-reference-creator.vala:117
+#: ../src/librygel-server/rygel-reference-creator.vala:116
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Vytváranie objektu v %s nie je povolené"
@@ -879,6 +961,8 @@ msgid ""
 "Error from container '%s' on trying to find the newly added child object "
 "'%s' in it: %s"
 msgstr ""
+"Chyba od kontajnera „%s“ pri pokuse o nájdenie svojho novo pridaného objektu "
+"potomka „%s“: %s"
 
 #: ../src/librygel-server/rygel-reference-creator.vala:50
 msgid "'ContainerID' agument missing."
@@ -915,6 +999,8 @@ msgstr "Nie je dostupný žiadny nástroj na tvorbu miniatúr: %s"
 msgid "Thumbnailing not supported"
 msgstr "Vytváranie miniatúr nie je podporované"
 
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
@@ -940,6 +1026,7 @@ msgstr "Nepodarilo sa vytvoriť prvok GstElement pre identifikátor URI %s"
 msgid "Failed to create pipeline"
 msgstr "Zlyhalo vytvorenie zreťazenia"
 
+#. static pads? easy!
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
 #, c-format
@@ -949,7 +1036,7 @@ msgstr "Zlyhalo spojenie %s s %s"
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:138
 #, c-format
 msgid "Failed to link pad %s to %s"
-msgstr ""
+msgstr "Zlyhalo spojenie vložky %s s %s"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:193
 #, c-format
@@ -1069,7 +1156,12 @@ msgstr "Zlyhalo vypnutie inej inštancie rygel: %s"
 msgid "Rygel is running in streaming-only mode."
 msgstr "Rygel je spustený v režime iba na streamovanie."
 
-#: ../src/rygel/rygel-main.vala:107
+#: ../src/rygel/rygel-main.vala:87
+#, c-format
+msgid "Rygel v%s starting…"
+msgstr "Spúšťa sa Rygel v%s…"
+
+#: ../src/rygel/rygel-main.vala:109
 #, c-format
 msgid "No plugins found in %d second; giving up..."
 msgid_plural "No plugins found in %d seconds; giving up..."
@@ -1080,17 +1172,17 @@ msgstr[1] ""
 msgstr[2] ""
 "V priebehu %d sekúnd sa nenašli žiadne zásuvné moduly; prerušuje sa…"
 
-#: ../src/rygel/rygel-main.vala:168
+#: ../src/rygel/rygel-main.vala:170
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Zlyhalo vytvorenie rozhrania na tvorbu koreňového zariadenia: %s"
 
-#: ../src/rygel/rygel-main.vala:226
+#: ../src/rygel/rygel-main.vala:228
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Zlyhalo vytvorenie koreňového zariadenia pre %s. Dôvod: %s"
 
-#: ../src/rygel/rygel-main.vala:263
+#: ../src/rygel/rygel-main.vala:265
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Zlyhalo načítanie konfigurácie používateľa: %s"
@@ -1133,17 +1225,3 @@ msgstr "Zlyhalo spustenie služby Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Zlyhalo zastavenie služby Rygel: %s"
-
-# GtkComboBoxText tooltip_text
-#~ msgid ""
-#~ "Select the network interface that DLNA media will be shared on, or share "
-#~ "media on all interfaces"
-#~ msgstr ""
-#~ "Vyberte sieťové rozhranie, cez ktoré sa majú sprístupniť multimédiá DLNA, "
-#~ "alebo sprístupnite multimédiá cez všetky rozhrania"
-
-#~ msgid "Any"
-#~ msgstr "Ktorákoľvek"
-
-#~ msgid "XML node '%s' not found."
-#~ msgstr "Uzol XML „%s“ sa nenašiel."
