@@ -5,7 +5,7 @@
          xmlns="http://usefulinc.com/ns/doap#">
 
   <name xml:lang="en">Rygel</name>
-  <shortdesc xml:lang="en">A UPnP AV media server and renderer.</shortdesc>
+  <shortdesc xml:lang="en">A UPnP AV media server and renderer</shortdesc>
   <description>Rygel is a home media solution that allows you to easily share audio, video and
 pictures, and control of media player on your home network. In technical terms
 it is both a UPnP AV MediaServer and MediaRenderer implemented through a plug-in
@@ -14,13 +14,13 @@ conformance to very strict requirements of DLNA and on the fly conversion of
 media to format that client devices are capable of handling.</description>
 
   <homepage
-  rdf:resource="http://live.gnome.org/Rygel" />
+  rdf:resource="https://wiki.gnome.org/Projects/Rygel" />
   <mailing-list
   rdf:resource="http://mail.gnome.org/mailman/listinfo/rygel-list" />
   <download-page
-  rdf:resource="http://download.gnome.org/sources/rygel/"/>
+  rdf:resource="http://download.gnome.org/sources/rygel/" />
   <bug-database
-  rdf:resource="http://bugzilla.gnome.org/browse.cgi?product=rygel"/>
+  rdf:resource="https://bugzilla.gnome.org/browse.cgi?product=rygel" />
 
   <maintainer>
     <foaf:Person>
