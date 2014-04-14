@@ -1,3 +1,28 @@
+0.22.1
+======
+
+A new stable release of Rygel!
+
+Core:
+ - Don't spam debug log.
+
+Renderer:
+ - Fix URI handling for playlists.
+
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=726776
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Peter Mráz <etkinator@gmail.com>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Christian Kirbach <christian.kirbach@gmail.com>
+
+Added/updated translations
+ - de, courtesy of Christian Kirbach
+ - sk, courtesy of Peter Mráz
+
 0.22.0
 ======
 
