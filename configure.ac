@@ -399,7 +399,7 @@ AS_IF([test "x$enable_apidocs" != "xno"], [
 AM_CONDITIONAL(ENABLE_VALADOC, test x$found_valadoc = xyes)
 
 AC_SUBST([RYGEL_PLUGIN_LINKER_FLAGS],
-         ["-module -avoid-version -Wl,-z,defs"])
+         ["-module -avoid-version"])
 AC_SUBST([RYGEL_PLUGIN_DIR],
          [${libdir}/rygel-2.2/plugins])
 AC_SUBST([RYGEL_MEDIA_ENGINE_DIR],
