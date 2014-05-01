@@ -53,7 +53,7 @@ public class Rygel.Tracker.UPnPPropertyMap : Object {
         this.add_key_chain ("fileName", "nfo:fileName");
         this.add_alternative ("dc:title", "nie:title", "nfo:fileName");
         this.add_key_chain ("dlnaProfile", "nmm:dlnaProfile");
-        this.add_key_chain ("mimeType", "nie:mimeType");
+        this.add_alternative ("mimeType", "nmm:dlnaMime", "nie:mimeType");
         this.add_alternative ("res@size", "nfo:fileSize", "nie:byteSize");
         this.add_alternative ("date",
                               "nie:contentCreated",
