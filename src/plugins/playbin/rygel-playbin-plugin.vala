@@ -31,16 +31,18 @@ using Gee;
 internal class Rygel.Playbin.Plugin : Rygel.MediaRendererPlugin {
     public const string NAME = "Playbin";
 
-    public Plugin () {
+    public Plugin () throws Error {
         base (Plugin.NAME, _("GStreamer Player"));
-    }
-
-    public override void constructed () {
-        base.constructed ();
-        this.supported_profiles = Player.get_default ().supported_profiles;
+        this.supported_profiles = Player.instance ().supported_profiles;
     }
 
     public override MediaPlayer? get_player () {
-        return Playbin.Player.get_default ();
+        try {
+            return Playbin.Player.instance ();
+        } catch (Error error) {
+            warning (_("Could not create GStreamer player"));
+
+            return null;
+        }
     }
 }

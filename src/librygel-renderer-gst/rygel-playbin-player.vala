@@ -30,6 +30,10 @@
 using Gst;
 using GUPnP;
 
+public errordomain Rygel.Playbin.PlayerError {
+    NO_ELEMENT
+}
+
 /**
  * Implementation of RygelMediaPlayer for GStreamer.
  *
@@ -339,8 +343,12 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
-    private Player () {
+    private Player () throws Error {
         this.playbin = ElementFactory.make ("playbin", null);
+        if (this.playbin == null) {
+            throw new PlayerError.NO_ELEMENT (
+                _("Your GStreamer installation seems to be missing the \"playbin\" element. The Rygel GStreamer renderer implementation cannot work without it"));
+        }
         this.setup_playbin ();
     }
 
@@ -351,7 +359,20 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         this.setup_playbin ();
     }
 
+    [Deprecated (since="0.23.1")]
     public static Player get_default () {
+        if (player == null) {
+            try {
+                player = new Player ();
+            } catch (Error error) {
+                assert_not_reached ();
+            }
+        }
+
+        return player;
+    }
+
+    public static Player instance () throws Error {
         if (player == null) {
             player = new Player ();
         }
@@ -607,7 +628,6 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         // Needed to get "Stop" events from the playbin.
         // We can do this because we have a bus watch
         this.playbin.auto_flush_bus = false;
-        assert (this.playbin != null);
 
         this.playbin.source_setup.connect (this.on_source_setup);
         this.playbin.notify["uri"].connect (this.on_uri_notify);

@@ -34,8 +34,11 @@ public void module_init (PluginLoader loader) {
     unowned string[] args = null;
 
     Gst.init (ref args);
+    try {
+        var plugin = new Playbin.Plugin ();
 
-    var plugin = new Playbin.Plugin ();
-
-    loader.add_plugin (plugin);
+        loader.add_plugin (plugin);
+    } catch (Error error) {
+        warning (error.message);
+    }
 }
