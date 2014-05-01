@@ -67,6 +67,7 @@ public class Rygel.Playbin.Renderer : Rygel.MediaRenderer {
      * @param pipeline Instance of GstPlayBin to wrap.
      * @param title Friendly name of the new UPnP renderer on the network.
      */
+    [Deprecated (since="0.23.1")]
     public Renderer.wrap (Gst.Element pipeline, string title) {
         return_val_if_fail (pipeline != null, null);
         return_val_if_fail (pipeline.get_type ().name() == "GstPlayBin", null);
