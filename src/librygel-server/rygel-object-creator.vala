@@ -532,9 +532,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
     private void extract_item_parameters () throws Error {
         var item = this.object as MediaItem;
 
-        var resources = this.didl_object.get_resources ();
-        if (resources != null && resources.length () > 0) {
-            var resource = resources.nth (0).data;
+        foreach (var resource in this.didl_object.get_resources ()) {
             var info = resource.protocol_info;
 
             if (info != null) {
