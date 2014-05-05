@@ -67,6 +67,9 @@ public class Rygel.LMS.Artist : Rygel.LMS.CategoryContainer {
               lms_db,
               get_sql_all (id),
               get_sql_find_object (id),
-              get_sql_count (id));
+              get_sql_count (id),
+              null, // LMS does not track adding or removing albums
+              null
+             );
     }
 }

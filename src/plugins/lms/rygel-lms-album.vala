@@ -65,6 +65,32 @@ public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
         "ON audios.album_id = audio_albums.id " +
         "WHERE dtime = 0 AND files.id = ? AND audios.id = files.id AND audios.album_id = %s;";
 
+    private static const string SQL_ADDED_TEMPLATE =
+        "SELECT files.id, files.path, files.size, " +
+               "audios.title as title, audios.trackno, audios.length, audios.channels, audios.sampling_rate, audios.bitrate, audios.dlna_profile, audios.dlna_mime, " +
+               "audio_artists.name as artist, " +
+               "audio_albums.name " +
+        "FROM audios, files " +
+        "LEFT JOIN audio_artists " +
+        "ON audios.artist_id = audio_artists.id " +
+        "LEFT JOIN audio_albums " +
+        "ON audios.album_id = audio_albums.id " +
+        "WHERE dtime = 0 AND audios.id = files.id AND audios.album_id = %s " +
+        "AND update_id > ? AND update_id <= ?;";
+
+    private static const string SQL_REMOVED_TEMPLATE =
+        "SELECT files.id, files.path, files.size, " +
+               "audios.title as title, audios.trackno, audios.length, audios.channels, audios.sampling_rate, audios.bitrate, audios.dlna_profile, audios.dlna_mime, " +
+               "audio_artists.name as artist, " +
+               "audio_albums.name " +
+        "FROM audios, files " +
+        "LEFT JOIN audio_artists " +
+        "ON audios.artist_id = audio_artists.id " +
+        "LEFT JOIN audio_albums " +
+        "ON audios.album_id = audio_albums.id " +
+        "WHERE dtime <> 0 AND audios.id = files.id AND audios.album_id = %s " +
+        "AND update_id > ? AND update_id <= ?;";
+
     protected override MediaObject? object_from_statement (Statement statement) {
         var id = statement.column_int (0);
         var path = statement.column_text (1);
@@ -106,6 +132,12 @@ public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
     private static string get_sql_count (string db_id) {
         return (SQL_COUNT_TEMPLATE.printf (db_id));
     }
+    private static string get_sql_added (string db_id) {
+        return (SQL_ADDED_TEMPLATE.printf (db_id));
+    }
+    private static string get_sql_removed (string db_id) {
+        return (SQL_REMOVED_TEMPLATE.printf (db_id));
+    }
 
     protected override string get_sql_all_with_filter (string filter) {
         if (filter.length == 0) {
@@ -133,6 +165,9 @@ public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
               lms_db,
               get_sql_all (db_id),
               get_sql_find_object (db_id),
-              get_sql_count (db_id));
+              get_sql_count (db_id),
+              get_sql_added (db_id),
+              get_sql_removed (db_id)
+             );
     }
 }

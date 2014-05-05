@@ -169,6 +169,7 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
               lms_db,
               Albums.SQL_ALL,
               Albums.SQL_FIND_OBJECT,
-              Albums.SQL_COUNT);
+              Albums.SQL_COUNT,
+              null, null);
     }
 }

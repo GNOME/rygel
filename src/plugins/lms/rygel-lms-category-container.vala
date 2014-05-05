@@ -33,6 +33,7 @@ public errordomain Rygel.LMS.CategoryContainerError {
 }
 
 public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
+                                                    Rygel.TrackableContainer,
                                                     Rygel.SearchableContainer {
     public ArrayList<string> search_classes { get; set; }
 
@@ -43,9 +44,13 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
     public string sql_all { get; construct; }
     public string sql_find_object { get; construct; }
     public string sql_count { get; construct; }
+    public string sql_added { get; construct; }
+    public string sql_removed { get; construct; }
 
     protected Statement stmt_all;
     protected Statement stmt_find_object;
+    protected Statement stmt_added;
+    protected Statement stmt_removed;
 
     protected string child_prefix;
     protected string ref_prefix;
@@ -335,13 +340,50 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
         return "%s%d".printf (this.ref_prefix, db_id);
     }
 
+    protected async void add_child (MediaObject object) {
+    }
+
+    protected async void remove_child (MediaObject object) {
+    }
+
+    private void on_db_updated(uint64 old_id, uint64 new_id) {
+        try {
+            var stmt_count = this.lms_db.prepare (this.sql_count);
+
+            if (stmt_count.step () == Sqlite.ROW) {
+                this.child_count = stmt_count.column_int (0);
+            }
+
+            Database.get_children_with_update_id_init (this.stmt_added,
+                                                       old_id,
+                                                       new_id);
+            while (Database.get_children_step (this.stmt_added)) {
+                this.add_child_tracked.begin(this.object_from_statement (this.stmt_added));
+            }
+
+            Database.get_children_with_update_id_init (this.stmt_removed,
+                                                       old_id,
+                                                       new_id);
+            while (Database.get_children_step (this.stmt_removed)) {
+                this.remove_child_tracked.begin(this.object_from_statement (this.stmt_removed));
+            }
+
+        } catch (DatabaseError e) {
+            warning ("Can't perform container update: %s", e.message);
+        }
+
+    }
+
     public CategoryContainer (string db_id,
                               MediaContainer parent,
                               string title,
                               LMS.Database lms_db,
                               string sql_all,
                               string sql_find_object,
-                              string sql_count) {
+                              string sql_count,
+                              string? sql_added,
+                              string? sql_removed
+                             ) {
         Object (id : "%s:%s".printf (parent.id, db_id),
                 db_id : db_id,
                 parent : parent,
@@ -349,7 +391,10 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
                 lms_db : lms_db,
                 sql_all : sql_all,
                 sql_find_object : sql_find_object,
-                sql_count : sql_count);
+                sql_count : sql_count,
+                sql_added : sql_added,
+                sql_removed: sql_removed
+               );
     }
 
     construct {
@@ -367,6 +412,13 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
 
             if (stmt_count.step () == Sqlite.ROW) {
                 this.child_count = stmt_count.column_int (0);
+            }
+            // some container implementations don't have a reasonable way to provide
+            // id-based statements to fetch added or removed items
+            if (this.sql_added != null && this.sql_removed != null) {
+                this.stmt_added = this.lms_db.prepare (this.sql_added);
+                this.stmt_removed = this.lms_db.prepare (this.sql_removed);
+                lms_db.db_updated.connect(this.on_db_updated);
             }
         } catch (DatabaseError e) {
             warning ("Container %s: %s", this.title, e.message);

@@ -40,6 +40,18 @@ public class Rygel.LMS.AllImages : Rygel.LMS.CategoryContainer {
         "FROM images, files " +
         "WHERE dtime = 0 AND files.id = ? AND images.id = files.id;";
 
+    private static const string SQL_ADDED =
+        "SELECT images.id, title, artist, date, width, height, path, size, dlna_profile, dlna_mime " +
+        "FROM images, files " +
+        "WHERE dtime = 0 AND images.id = files.id " +
+        "AND update_id > ? AND update_id <= ?;";
+
+    private static const string SQL_REMOVED =
+        "SELECT images.id, title, artist, date, width, height, path, size, dlna_profile, dlna_mime " +
+        "FROM images, files " +
+        "WHERE dtime <> 0 AND images.id = files.id " +
+        "AND update_id > ? AND update_id <= ?;";
+
     protected override MediaObject? object_from_statement (Statement statement) {
         var id = statement.column_int(0);
         var path = statement.column_text(6);
@@ -75,6 +87,9 @@ public class Rygel.LMS.AllImages : Rygel.LMS.CategoryContainer {
               lms_db,
               AllImages.SQL_ALL,
               AllImages.SQL_FIND_OBJECT,
-              AllImages.SQL_COUNT);
+              AllImages.SQL_COUNT,
+              AllImages.SQL_ADDED,
+              AllImages.SQL_REMOVED
+             );
     }
 }

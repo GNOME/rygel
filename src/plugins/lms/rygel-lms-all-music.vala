@@ -70,6 +70,40 @@ public class Rygel.LMS.AllMusic : Rygel.LMS.CategoryContainer {
         "ON audios.genre_id = audio_genres.id " +
         "WHERE dtime = 0 AND files.id = ? AND audios.id = files.id;";
 
+    private static const string SQL_ADDED =
+        "SELECT files.id, files.path, files.size, " +
+               "audios.title as title, audios.trackno, audios.length, audios.channels, audios.sampling_rate, audios.bitrate, audios.dlna_profile, audios.dlna_mime, " +
+               "audio_artists.name as artist, " +
+               "audio_albums.name, " +
+               "files.mtime, " +
+               "audio_genres.name " +
+        "FROM audios, files " +
+        "LEFT JOIN audio_artists " +
+        "ON audios.artist_id = audio_artists.id " +
+        "LEFT JOIN audio_albums " +
+        "ON audios.album_id = audio_albums.id " +
+        "LEFT JOIN audio_genres " +
+        "ON audios.genre_id = audio_genres.id " +
+        "WHERE dtime = 0 AND audios.id = files.id " +
+        "AND update_id > ? AND update_id <= ?;";
+
+    private static const string SQL_REMOVED =
+        "SELECT files.id, files.path, files.size, " +
+               "audios.title as title, audios.trackno, audios.length, audios.channels, audios.sampling_rate, audios.bitrate, audios.dlna_profile, audios.dlna_mime, " +
+               "audio_artists.name as artist, " +
+               "audio_albums.name, " +
+               "files.mtime, " +
+               "audio_genres.name " +
+        "FROM audios, files " +
+        "LEFT JOIN audio_artists " +
+        "ON audios.artist_id = audio_artists.id " +
+        "LEFT JOIN audio_albums " +
+        "ON audios.album_id = audio_albums.id " +
+        "LEFT JOIN audio_genres " +
+        "ON audios.genre_id = audio_genres.id " +
+        "WHERE dtime <> 0 AND audios.id = files.id " +
+        "AND update_id > ? AND update_id <= ?;";
+
     protected override string get_sql_all_with_filter (string filter) {
         if (filter.length == 0) {
             return this.sql_all;
@@ -127,6 +161,9 @@ public class Rygel.LMS.AllMusic : Rygel.LMS.CategoryContainer {
              lms_db,
              AllMusic.SQL_ALL_TEMPLATE.printf (""),
              AllMusic.SQL_FIND_OBJECT,
-             AllMusic.SQL_COUNT);
+             AllMusic.SQL_COUNT,
+             AllMusic.SQL_ADDED,
+             AllMusic.SQL_REMOVED
+            );
     }
 }

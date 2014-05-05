@@ -52,6 +52,8 @@ public class Rygel.LMS.ImageYears : Rygel.LMS.CategoryContainer {
               lms_db,
               ImageYears.SQL_ALL,
               ImageYears.SQL_FIND_OBJECT,
-              ImageYears.SQL_COUNT);
+              ImageYears.SQL_COUNT,
+              null, null
+             );
     }
 }

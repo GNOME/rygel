@@ -40,6 +40,18 @@ public class Rygel.LMS.AllVideos : Rygel.LMS.CategoryContainer {
         "FROM videos, files " +
         "WHERE dtime = 0 AND files.id = ? AND videos.id = files.id;";
 
+    private static const string SQL_ADDED =
+        "SELECT videos.id, title, artist, length, path, mtime, size, dlna_profile, dlna_mime " +
+        "FROM videos, files " +
+        "WHERE dtime = 0 AND videos.id = files.id " +
+        "AND update_id > ? AND update_id <= ?;";
+
+    private static const string SQL_REMOVED =
+        "SELECT videos.id, title, artist, length, path, mtime, size, dlna_profile, dlna_mime " +
+        "FROM videos, files " +
+        "WHERE dtime <> 0 AND videos.id = files.id " +
+        "AND update_id > ? AND update_id <= ?;";
+
     protected override MediaObject? object_from_statement (Statement statement) {
         var id = statement.column_int(0);
         var mime_type = statement.column_text(8);
@@ -103,6 +115,9 @@ public class Rygel.LMS.AllVideos : Rygel.LMS.CategoryContainer {
               lms_db,
               AllVideos.SQL_ALL,
               AllVideos.SQL_FIND_OBJECT,
-              AllVideos.SQL_COUNT);
+              AllVideos.SQL_COUNT,
+              AllVideos.SQL_ADDED,
+              AllVideos.SQL_REMOVED
+             );
     }
 }

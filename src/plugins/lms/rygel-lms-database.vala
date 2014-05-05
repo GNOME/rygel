@@ -38,7 +38,12 @@ namespace Rygel.LMS {
 }
 
 public class Rygel.LMS.Database {
+
+    public signal void db_updated(uint64 old_update_id, uint64 new_update_id);
+
     private Sqlite.Database db;
+    private LMS.DBus lms_proxy;
+    private uint64 update_id;
 
     /**
      * Function to implement the custom SQL function 'contains'
@@ -79,7 +84,25 @@ public class Rygel.LMS.Database {
         return LMS.utf8_collate_str (_a, _b);
     }
 
-    public Database (string db_path) throws DatabaseError {
+    public Database () throws DatabaseError {
+        string db_path;
+        try {
+            lms_proxy = Bus.get_proxy_sync (BusType.SESSION,
+                                            "org.lightmediascanner",
+                                            "/org/lightmediascanner/Scanner1");
+            db_path = lms_proxy.data_base_path;
+            debug ("Got db path %s from LMS over dbus", db_path);
+            update_id = lms_proxy.update_id;
+            debug ("Got updated id %lld from LMS over dbus", update_id);
+            lms_proxy.g_properties_changed.connect (this.on_lms_properties_changed);
+
+        } catch (IOError e) {
+            warning("Couldn't get LMS Dbus proxy: %s", e.message);
+            db_path = Environment.get_user_config_dir() +
+                      "/lightmediascannerd/db.sqlite3";
+            debug  ("Using default sqlite database location %s", db_path);
+        }
+
         Sqlite.Database.open (db_path, out this.db);
         if (this.db.errcode () != Sqlite.OK) {
             throw new DatabaseError.OPEN ("Failed to open '%s': %d",
@@ -98,7 +121,31 @@ public class Rygel.LMS.Database {
         this.db.create_collation ("CASEFOLD",
                                   Sqlite.UTF8,
                                   LMS.Database.utf8_collate);
+
     }
+
+    private void on_lms_properties_changed (DBusProxy lms_proxy,
+                                        Variant   changed,
+                                        string[]  invalidated) {
+        if (!changed.get_type().equal (VariantType.VARDICT)) {
+            return;
+        }
+
+        foreach (var changed_prop in changed) {
+            var key = (string) changed_prop.get_child_value (0);
+            var value = changed_prop.get_child_value (1).get_child_value (0);
+
+            debug ("LMS property %s changed value to %s", key, value.print(true));
+
+            switch (key) {
+                case "UpdateID":
+                    db_updated(update_id, (uint64)value);
+                    update_id = (uint64)value;
+                    break;
+            }
+        }
+    }
+
 
     public Statement prepare (string query_string) throws DatabaseError {
         Statement statement;
@@ -206,6 +253,27 @@ public class Rygel.LMS.Database {
         sqlite_err = stmt.bind_int(2, (int) offset);
         if (sqlite_err != Sqlite.OK)
             throw new DatabaseError.BIND("Unable to bind offset %d",
+                                         sqlite_err);
+    }
+
+    public static void get_children_with_update_id_init (Statement stmt,
+        uint64 old_id, uint64 new_id) throws DatabaseError {
+
+        int sqlite_err;
+
+        (void) stmt.reset();
+
+        if (new_id < old_id) // id value wrapped over
+            sqlite_err = stmt.bind_int64(1, 0);
+        else
+            sqlite_err = stmt.bind_int64(1, (int64)old_id);
+        if (sqlite_err != Sqlite.OK)
+            throw new DatabaseError.BIND("Unable to bind old_id %d",
+                                         sqlite_err);
+
+        sqlite_err = stmt.bind_int64(2, (int64)new_id);
+        if (sqlite_err != Sqlite.OK)
+            throw new DatabaseError.BIND("Unable to bind new_id %d",
                                          sqlite_err);
     }
 

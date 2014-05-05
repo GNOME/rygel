@@ -40,6 +40,18 @@ public class Rygel.LMS.ImageYear : Rygel.LMS.CategoryContainer {
         "FROM images, files " +
         "WHERE dtime = 0 AND files.id = ? AND images.id = files.id AND year = '%s';";
 
+    private static const string SQL_ADDED_TEMPLATE =
+        "SELECT images.id, title, artist, date, width, height, path, size, dlna_profile, dlna_mime, strftime('%Y', date, 'unixepoch') as year " +
+        "FROM images, files " +
+        "WHERE dtime = 0 AND images.id = files.id AND year = '%s' " +
+        "AND update_id > ? AND update_id <= ?;";
+
+    private static const string SQL_REMOVED_TEMPLATE =
+        "SELECT images.id, title, artist, date, width, height, path, size, dlna_profile, dlna_mime, strftime('%Y', date, 'unixepoch') as year " +
+        "FROM images, files " +
+        "WHERE dtime <> 0 AND images.id = files.id AND year = '%s' " +
+        "AND update_id > ? AND update_id <= ?;";
+
     protected override MediaObject? object_from_statement (Statement statement) {
         var id = statement.column_int(0);
         var path = statement.column_text(6);
@@ -78,6 +90,12 @@ public class Rygel.LMS.ImageYear : Rygel.LMS.CategoryContainer {
     private static string get_sql_count (string year) {
         return (SQL_COUNT_TEMPLATE.printf (year));
     }
+    private static string get_sql_added (string year) {
+        return (SQL_ADDED_TEMPLATE.printf (year));
+    }
+    private static string get_sql_removed (string year) {
+        return (SQL_REMOVED_TEMPLATE.printf (year));
+    }
 
     public ImageYear (MediaContainer parent,
                       string         year,
@@ -88,6 +106,9 @@ public class Rygel.LMS.ImageYear : Rygel.LMS.CategoryContainer {
               lms_db,
               get_sql_all (year),
               get_sql_find_object (year),
-              get_sql_count (year));
+              get_sql_count (year),
+              get_sql_added (year),
+              get_sql_removed (year)
+             );
     }
 }

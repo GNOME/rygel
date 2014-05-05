@@ -55,6 +55,8 @@ public class Rygel.LMS.Artists : Rygel.LMS.CategoryContainer {
               lms_db,
               Artists.SQL_ALL,
               Artists.SQL_FIND_OBJECT,
-              Artists.SQL_COUNT);
+              Artists.SQL_COUNT,
+              null, null
+             );
     }
 }
