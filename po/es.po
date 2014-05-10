@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-24 11:22+0000\n"
-"PO-Revision-Date: 2014-02-24 17:19+0100\n"
+"POT-Creation-Date: 2014-05-08 10:08+0000\n"
+"PO-Revision-Date: 2014-05-10 19:25+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Gtranslator 2.91.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -143,7 +143,6 @@ msgstr "Falló al consultar la base de datos: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
 #, c-format
-#| msgid "failed to enumerate folder: %s"
 msgid "Failed to enumerate folder \"%s\": %s"
 msgstr "Falló al enumerar la carpeta «%s»: %s"
 
@@ -162,7 +161,7 @@ msgstr "Falló al obtener el número de hijos del contenedor: %s"
 msgid "Failed to add item with ID %s: %s"
 msgstr "Falló al añadir el elemento con ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:564
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:563
 msgid "Cannot create references to containers"
 msgstr "No se pueden crear las referencias a los contenedores"
 
@@ -290,6 +289,11 @@ msgstr "La interfaz MPRIS en %s es de sólo lectura. Ignorando."
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
 msgstr "Reproductor GStreamer"
+
+#: ../src/plugins/playbin/rygel-playbin-plugin.vala:43
+#| msgid "Could not create GstElement for URI %s"
+msgid "Could not create GStreamer player"
+msgstr "No se pudo crear el reproductor GStreamer"
 
 #: ../src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
@@ -540,6 +544,15 @@ msgstr "Error al listar el contenido de la carpeta «%s»: %s"
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "No se pudo cargar el complemento: %s"
+
+#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:350
+msgid ""
+"Your GStreamer installation seems to be missing the \"playbin\" element. The "
+"Rygel GStreamer renderer implementation cannot work without it"
+msgstr ""
+"Parece que a su instalación de GStreamer le falta el elemento «playbin». La "
+"implementación del renderizador de GStreamer de Rygel no puede funcionar si "
+"él"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:213
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
@@ -883,7 +896,7 @@ msgstr "Clase UPnP «%s» no soportada"
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
 #: ../src/librygel-server/rygel-object-creator.vala:424
-#: ../src/librygel-server/rygel-object-creator.vala:710
+#: ../src/librygel-server/rygel-object-creator.vala:708
 #: ../src/librygel-server/rygel-reference-creator.vala:116
 #, c-format
 msgid "Object creation in %s not allowed"
@@ -894,27 +907,27 @@ msgstr "No se permite la creación de objetos en %s"
 msgid "Failed to create item under '%s': %s"
 msgstr "Falló al crear un elemento bajo «%s»: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:543
+#: ../src/librygel-server/rygel-object-creator.vala:541
 #, c-format
 msgid "DLNA profile '%s' not supported"
 msgstr "Perfil DLNA «%s» no soportado"
 
-#: ../src/librygel-server/rygel-object-creator.vala:601
+#: ../src/librygel-server/rygel-object-creator.vala:599
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "Formato de fecha no válido: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:610
+#: ../src/librygel-server/rygel-object-creator.vala:608
 #, c-format
 msgid "Invalid date: %s"
 msgstr "Fecha no válida: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:643
+#: ../src/librygel-server/rygel-object-creator.vala:641
 #, c-format
 msgid "Cannot create object of class '%s': Not supported"
 msgstr "No se puede crear el objeto de clase «%s»: no está soportado"
 
-#: ../src/librygel-server/rygel-object-creator.vala:741
+#: ../src/librygel-server/rygel-object-creator.vala:739
 #, c-format
 msgid ""
 "Error from container '%s' on trying to find the newly added child object "
