@@ -1,29 +1,29 @@
 # Brazilian Portuguese translation for rygel.
 # Copyright (C) 2014 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
-# Albino Biasutti Neto  <biasuttin@gmail.com>, 2010.
+# Albino Biasutti Neto <biasuttin@gmail.com>, 2010.
 # Djavan Fagundes <djavan@comum.org>, 2010.
 # Gabriel F. Vilar <cogumm@gmail.com>, 2011.
 # Jonh Wendell <jwendell@gnome.org>, 2010, 2012.
-# Enrico Nicoletto <liverig@gmail.com>, 2013.
 # Edson Silva <edsonlead@gmail.com>, 2013.
 # Rafael Ferreira <rafael.f.f1@gmail.com>, 2012, 2013, 2014.
+# Enrico Nicoletto <liverig@gmail.com>, 2013, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-27 11:21+0000\n"
-"PO-Revision-Date: 2014-02-27 13:03-0300\n"
-"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
+"POT-Creation-Date: 2014-05-21 09:54+0000\n"
+"PO-Revision-Date: 2014-05-21 13:53-0300\n"
+"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.5\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -170,7 +170,7 @@ msgstr "Falha ao obter quantidade de filhos do contêiner de consulta: %s"
 msgid "Failed to add item with ID %s: %s"
 msgstr "Erro ao adicionar item com ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:564
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:563
 msgid "Cannot create references to containers"
 msgstr "Não foi possível criar referências a contêiners"
 
@@ -298,6 +298,11 @@ msgstr "Interface MPRIS em %s é somente para leitura. Ignorando."
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
 msgstr "Reprodutor GStreamer"
+
+#: ../src/plugins/playbin/rygel-playbin-plugin.vala:43
+#| msgid "Could not create GstElement for URI %s"
+msgid "Could not create GStreamer player"
+msgstr "Não foi possível criar o reprodutor GStreamer"
 
 #: ../src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
@@ -548,6 +553,15 @@ msgstr "Erro ao listar o conteúdo da pasta \"%s\": %s"
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "Não foi possível carregar o plug-in: %s"
+
+#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:350
+msgid ""
+"Your GStreamer installation seems to be missing the \"playbin\" element. The "
+"Rygel GStreamer renderer implementation cannot work without it"
+msgstr ""
+"Aparentemente, em sua instalação do GStreamer, está faltando o elemento "
+"\"playbin\". A implementação do renderizador Rygel GStreamer não pode "
+"trabalhar sem o mesmo."
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:213
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
@@ -891,7 +905,7 @@ msgstr "Classe UPnP \"%s\" sem suporte"
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
 #: ../src/librygel-server/rygel-object-creator.vala:424
-#: ../src/librygel-server/rygel-object-creator.vala:710
+#: ../src/librygel-server/rygel-object-creator.vala:708
 #: ../src/librygel-server/rygel-reference-creator.vala:116
 #, c-format
 msgid "Object creation in %s not allowed"
@@ -902,27 +916,27 @@ msgstr "Criação de objeto em %s não permitida"
 msgid "Failed to create item under '%s': %s"
 msgstr "Falha ao criar item sob \"%s\": %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:543
+#: ../src/librygel-server/rygel-object-creator.vala:541
 #, c-format
 msgid "DLNA profile '%s' not supported"
 msgstr "Perfil DLNA \"%s\" sem suporte"
 
-#: ../src/librygel-server/rygel-object-creator.vala:601
+#: ../src/librygel-server/rygel-object-creator.vala:599
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "Formato de data inválido: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:610
+#: ../src/librygel-server/rygel-object-creator.vala:608
 #, c-format
 msgid "Invalid date: %s"
 msgstr "Data inválida: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:643
+#: ../src/librygel-server/rygel-object-creator.vala:641
 #, c-format
 msgid "Cannot create object of class '%s': Not supported"
 msgstr "Não foi possível criar objeto de classe \"%s\": sem suporte"
 
-#: ../src/librygel-server/rygel-object-creator.vala:741
+#: ../src/librygel-server/rygel-object-creator.vala:739
 #, c-format
 msgid ""
 "Error from container '%s' on trying to find the newly added child object "
