@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-03-16 23:23+0000\n"
-"PO-Revision-Date: 2014-03-17 12:47+0700\n"
+"POT-Creation-Date: 2014-05-22 22:10+0000\n"
+"PO-Revision-Date: 2014-05-23 10:55+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id\n"
@@ -164,7 +164,7 @@ msgstr "Gagal mendapat cacah anak dari wadah kuiri: %s"
 msgid "Failed to add item with ID %s: %s"
 msgstr "Gagal menambahkan item dengan ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:564
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:563
 msgid "Cannot create references to containers"
 msgstr "Tak bisa membuat acuan ke wadah"
 
@@ -292,6 +292,10 @@ msgstr "Antar muka MPRIS pada %s hanya baca. Mengabaikan."
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
 msgstr "Pemutar GStreamer"
+
+#: ../src/plugins/playbin/rygel-playbin-plugin.vala:43
+msgid "Could not create GStreamer player"
+msgstr "Tak dapat membuat pemutar GStreamer"
 
 #: ../src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
@@ -542,6 +546,14 @@ msgstr "Galat memperoleh daftar isi folder '%s': %s"
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "Tak bisa memuat pengaya: %s"
+
+#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:350
+msgid ""
+"Your GStreamer installation seems to be missing the \"playbin\" element. The "
+"Rygel GStreamer renderer implementation cannot work without it"
+msgstr ""
+"Instalasi GStreamer Anda nampaknya kekurangan elemen “playbin”. Implementasi "
+"perender GStreamer Rygel tak dapat bekerja tanpanya."
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:213
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
@@ -884,7 +896,7 @@ msgstr "Kelas UPnP '%s' tidak didukung"
 
 #: ../src/librygel-server/rygel-object-creator.vala:412
 #: ../src/librygel-server/rygel-object-creator.vala:424
-#: ../src/librygel-server/rygel-object-creator.vala:710
+#: ../src/librygel-server/rygel-object-creator.vala:708
 #: ../src/librygel-server/rygel-reference-creator.vala:116
 #, c-format
 msgid "Object creation in %s not allowed"
@@ -895,27 +907,27 @@ msgstr "Pembuatan objek pada %s tidak diperbolehkan"
 msgid "Failed to create item under '%s': %s"
 msgstr "Gagal membuat item pada '%s': %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:543
+#: ../src/librygel-server/rygel-object-creator.vala:541
 #, c-format
 msgid "DLNA profile '%s' not supported"
 msgstr "Profil DLNA '%s' tidak didukung"
 
-#: ../src/librygel-server/rygel-object-creator.vala:601
+#: ../src/librygel-server/rygel-object-creator.vala:599
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "Format tanggal tak valid: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:610
+#: ../src/librygel-server/rygel-object-creator.vala:608
 #, c-format
 msgid "Invalid date: %s"
 msgstr "Tanggal tak valid: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:643
+#: ../src/librygel-server/rygel-object-creator.vala:641
 #, c-format
 msgid "Cannot create object of class '%s': Not supported"
 msgstr "Tak bisa membuat objek dengan kelas '%s': Tak didukung"
 
-#: ../src/librygel-server/rygel-object-creator.vala:741
+#: ../src/librygel-server/rygel-object-creator.vala:739
 #, c-format
 msgid ""
 "Error from container '%s' on trying to find the newly added child object "
