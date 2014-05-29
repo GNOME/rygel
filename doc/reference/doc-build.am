@@ -59,6 +59,7 @@ clean-local:
 	rm -f gtkdoc/lib$(RYGEL_DOCBUILD_MODULE).signals
 	rm -f gtkdoc/lib$(RYGEL_DOCBUILD_MODULE).types
 	rm -f gtkdoc/lib$(RYGEL_DOCBUILD_MODULE)*.txt
+	rm -f gtkdoc/lib$(RYGEL_DOCBUILD_MODULE)*.bak
 	rm -f gtkdoc/lib$(RYGEL_DOCBUILD_MODULE).prerequisites
 
 all: valadoc-gen gtkdoc-gen
