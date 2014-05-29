@@ -687,7 +687,7 @@ public class Rygel.UserConfigTest : GLib.Object {
         foreach (var watch_data in watch_data_array) {
             this.current_watch_data = watch_data;
 
-            this.timeout_id = Timeout.add_seconds (2, () => {
+            this.timeout_id = Timeout.add_seconds (10, () => {
                 if (!this.current_watch_data.empty ()) {
                     this.current_watch_data.print_description ();
                     warning ("Test timed out and not all expected changes " +

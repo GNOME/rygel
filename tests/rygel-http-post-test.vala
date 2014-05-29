@@ -105,7 +105,7 @@ public class Rygel.HTTPPostTest : GLib.Object {
         var file = File.new_for_uri (MediaItem.URI);
         FileUtils.remove (file.get_path ());
 
-        Timeout.add_seconds (3, this.on_timeout);
+        Timeout.add_seconds (10, this.on_timeout);
         this.server.message_received.connect (this.on_message_received);
         this.client.completed.connect (this.on_client_completed);
 
