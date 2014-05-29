@@ -1,3 +1,30 @@
+0.22.2
+======
+
+A new stable release of Rygel!
+
+- Fix DBus plugins.
+- Bump libsoup requirement to 2.44.
+
+Tracker:
+ - Actually use nmm:dlnaMime property.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=730913
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Wolfgang Stöggl <c72578@yahoo.de>
+ - Tom Tryfonidis <tomtryf@gmail.com>
+ - Dirgita <dirgitadevina@gmail.com>
+ - Carles Ferrando <carles.ferrando@gmail.com>
+
+Added/updated translations
+ - ca@valencia, courtesy of Pau Iranzo
+ - de, courtesy of Wolfgang Stoeggl
+ - el, courtesy of Eva Fotopoulou
+ - id, courtesy of Dirgita
+
 0.22.1
 ======
 
