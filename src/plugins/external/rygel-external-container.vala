@@ -24,7 +24,7 @@
 
 using GUPnP;
 using Gee;
-using FreeDesktop;
+using Rygel.External.FreeDesktop;
 
 /**
  * Represents an external container.

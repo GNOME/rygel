@@ -21,7 +21,7 @@
 using Gee;
 
 [DBus (name = "org.freedesktop.thumbnails.Thumbnailer1")]
-interface Tumbler : GLib.Object {
+private interface Rygel.Tumbler : GLib.Object {
         public abstract async uint Queue (string[] uris,
                                           string[] mime_types,
                                           string flavor,

@@ -23,7 +23,6 @@
  */
 
 using GUPnP;
-using FreeDesktop;
 
 /**
  * Creates item for external plugins.

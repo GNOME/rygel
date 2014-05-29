@@ -21,12 +21,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-namespace FreeDesktop {
+namespace Rygel.FreeDesktop {
     internal const string DBUS_SERVICE = "org.freedesktop.DBus";
     internal const string DBUS_OBJECT_PATH = "/org/freedesktop/DBus";
 }
 
 [DBus (name = "org.freedesktop.DBus")]
-internal interface FreeDesktop.DBusObject: Object {
+internal interface Rygel.FreeDesktop.DBusObject: Object {
     internal abstract async string[] list_activatable_names () throws DBusError;
 }

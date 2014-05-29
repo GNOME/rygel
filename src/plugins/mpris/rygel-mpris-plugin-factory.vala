@@ -24,7 +24,7 @@
 
 using Rygel;
 using Gee;
-using FreeDesktop;
+using Rygel.MPRIS.FreeDesktop;
 
 private MPRIS.PluginFactory plugin_factory;
 
