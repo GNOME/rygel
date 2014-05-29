@@ -37,7 +37,7 @@ if [ "x$1" = "xdevel" ]; then
     DEFAULT_ARGS="$DEFAULT_ARGS --enable-uninstalled --enable-debug --disable-apidocs"
     shift
 elif [ "x$1" = "xrelease" ]; then
-    DEFAULT_ARGS="$DEFAULT_ARGS --enable-apidocs --disable-debug"
+    DEFAULT_ARGS="$DEFAULT_ARGS --enable-apidocs --disable-debug --disable-strict-valac"
     shift
 fi
 
