@@ -24,7 +24,7 @@
 
 using Rygel;
 using Gee;
-using FreeDesktop;
+using Rygel.External.FreeDesktop;
 
 private External.PluginFactory plugin_factory;
 

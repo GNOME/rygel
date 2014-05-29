@@ -21,13 +21,13 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-namespace FreeDesktop {
+namespace Rygel.MPRIS.FreeDesktop {
     internal const string DBUS_SERVICE = "org.freedesktop.DBus";
     internal const string DBUS_OBJECT_PATH = "/org/freedesktop/DBus";
 }
 
 [DBus (name = "org.freedesktop.DBus")]
-internal interface FreeDesktop.DBusObject: Object {
+internal interface Rygel.MPRIS.FreeDesktop.DBusObject: Object {
     internal abstract signal void name_owner_changed (string name,
                                                     string old_owner,
                                                     string new_owner);

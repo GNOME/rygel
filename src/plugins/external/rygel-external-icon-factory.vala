@@ -22,7 +22,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-using FreeDesktop;
+using Rygel.External.FreeDesktop;
 
 public class Rygel.External.IconFactory {
     private static string ITEM_IFACE = "org.gnome.UPnP.MediaItem2";
