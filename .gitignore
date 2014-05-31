@@ -128,3 +128,4 @@ src/plugins/media-export/rygel-media-export-internal.h
 src/plugins/media-export/rygel-media-export.h
 src/plugins/media-export/rygel-media-export.vapi
 tests/**/*.trs
+INSTALL
