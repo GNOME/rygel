@@ -30,12 +30,14 @@ public class Rygel.PreferencesDialog : GLib.Object {
     const string DIALOG = "preferences-dialog";
     const string ICON = BuildConfig.SMALL_ICON_DIR + "/rygel.png";
     const string UPNP_CHECKBUTTON = "upnp-checkbutton";
+    const string CLOSE_BUTTON = "close-button";
 
     private WritableUserConfig config;
     private Builder builder;
-    private Dialog dialog;
+    private Window dialog;
     private Switch upnp_check;
     private ArrayList<PreferencesSection> sections;
+    private MainLoop loop;
 
     public PreferencesDialog () throws Error {
         this.config = new WritableUserConfig ();
@@ -43,7 +45,7 @@ public class Rygel.PreferencesDialog : GLib.Object {
 
         this.builder.add_from_file (UI_FILE);
 
-        this.dialog = (Dialog) this.builder.get_object (DIALOG);
+        this.dialog = (Window) this.builder.get_object (DIALOG);
         assert (this.dialog != null);
         this.upnp_check = (Switch) builder.get_object (UPNP_CHECKBUTTON);
         assert (this.upnp_check != null);
@@ -61,10 +63,24 @@ public class Rygel.PreferencesDialog : GLib.Object {
         this.upnp_check.notify["active"].connect ( () => {
             this.on_upnp_switch_toggled ();
         });
+
+        this.dialog.delete_event.connect ( () => {
+            this.dialog.hide ();
+            this.loop.quit ();
+
+            return true;
+        });
+
+        (builder.get_object (CLOSE_BUTTON) as Button).clicked.connect ( () => {
+            this.dialog.hide ();
+            this.loop.quit ();
+        });
     }
 
     public void run () {
-        this.dialog.run ();
+        this.dialog.show ();
+        this.loop = new MainLoop (null, false);
+        this.loop.run ();
         this.dialog.hide ();
 
         this.config.set_upnp_enabled (this.upnp_check.active);
