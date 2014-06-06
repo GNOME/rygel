@@ -506,6 +506,8 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
                                           this.didl_object.title,
                                           this.didl_object.upnp_class);
 
+        this.object.apply_didl_lite (this.didl_object);
+
         if (this.object is MediaItem) {
             this.extract_item_parameters ();
         }
