@@ -516,6 +516,10 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                             this.metadata = this.generate_basic_didl ();
                         }
                     }
+
+                    if (this.playbin.query_duration (Format.TIME, null)) {
+                        this.notify_property ("duration");
+                    }
                 }
 
                 if (pending == State.VOID_PENDING) {
