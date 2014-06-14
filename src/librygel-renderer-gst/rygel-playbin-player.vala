@@ -193,6 +193,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
             this.playbin.set_state (State.READY);
             this.playbin.uri = value;
             if (value != "") {
+                this.guess_duration ();
                 switch (this._playback_state) {
                     case "NO_MEDIA_PRESENT":
                         this._playback_state = "STOPPED";
@@ -236,6 +237,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
 
         set {
+            this._parsed_duration = 0;
             this._metadata = value;
         }
     }
@@ -295,6 +297,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    private int64 _parsed_duration;
     public int64 duration {
         get {
             int64 dur = 0;
@@ -302,7 +305,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
             if (this.playbin.query_duration (Format.TIME, out dur)) {
                 return dur / Gst.USECOND;
             } else {
-                return 0;
+                return _parsed_duration;
             }
         }
     }
@@ -641,5 +644,26 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         var bus = this.playbin.get_bus ();
         bus.add_signal_watch ();
         bus.message.connect (this.bus_handler);
+    }
+
+    private void guess_duration () {
+        var reader = new DIDLLiteParser ();
+
+        // Try to guess duration from meta-data.
+        reader.object_available.connect ( (object) => {
+            var resources = object.get_resources ();
+            foreach (var resource in resources) {
+                if (this._uri == resource.uri && resource.duration > 0) {
+                    this._parsed_duration = resource.duration * TimeSpan.SECOND;
+                    this.notify_property ("duration");
+                }
+            }
+        });
+
+        try {
+            reader.parse_didl (this._metadata);
+        } catch (Error error) {
+            debug ("Failed to parse meta-data: %s", error.message);
+        }
     }
 }
