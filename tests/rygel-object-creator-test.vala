@@ -130,6 +130,9 @@ public class Rygel.MediaObject : GLib.Object {
     internal void serialize (Rygel.Serializer serializer, HTTPServer server) {
     }
 
+    public void apply_didl_lite (GUPnP.DIDLLiteObject object) {
+    }
+
     public virtual async MediaObjects? get_children
                                             (uint         offset,
                                              uint         max_count,
