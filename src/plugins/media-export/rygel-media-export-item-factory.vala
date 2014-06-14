@@ -268,9 +268,13 @@ namespace Rygel.MediaExport.ItemFactory {
         tags.get_uint (Tags.TRACK_NUMBER, out tmp);
         item.track_number = (int) tmp;
 
+
+        var store = MediaArtStore.get_default ();
+
         Sample sample;
         tags.get_sample (Tags.IMAGE, out sample);
         if (sample == null) {
+            store.add (item, file, null);
             return item;
         }
         unowned Structure structure = sample.get_caps ().get_structure (0);
@@ -282,7 +286,6 @@ namespace Rygel.MediaExport.ItemFactory {
         switch (image_type) {
             case Tag.ImageType.UNDEFINED:
             case Tag.ImageType.FRONT_COVER:
-                var store = MediaArtStore.get_default ();
                 Gst.MapInfo map_info;
                 sample.get_buffer ().map (out map_info, Gst.MapFlags.READ);
                 store.add (item, file, map_info.data);
