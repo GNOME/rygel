@@ -5,7 +5,6 @@ check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-http-byte-seek-test \
 		 rygel-http-time-seek-test \
 		 rygel-http-get-test \
-		 rygel-album-art-spec-test \
 		 rygel-http-post-test \
 		 rygel-searchable-container-test \
 		 rygel-object-creator-test \
@@ -111,17 +110,6 @@ rygel_http_post_test_VALAFLAGS = $(test_valaflags) \
 rygel_http_post_test_CFLAGS =  \
 	$(test_cflags)
 rygel_http_post_test_LDADD = \
-	$(test_libs)
-
-rygel_album_art_spec_test_SOURCES = rygel-album-art-spec-test.vala \
-			       rygel-media-art-store.vala \
-				   rygel-thumbnail.vala \
-				   rygel-icon-info.vala
-rygel_album_art_spec_test_VALAFLAGS = $(test_valaflags) \
-	--pkg gupnp-av-1.0
-rygel_album_art_spec_test_CFLAGS =  \
-	$(test_cflags)
-rygel_album_art_spec_test_LDADD = \
 	$(test_libs)
 
 rygel_searchable_container_test_SOURCES = \
