@@ -40,6 +40,7 @@ public class Rygel.MediaArtStore : GLib.Object {
     public static MediaArtStore? get_default () {
         if (first_time) {
             try {
+                MediaArt.init ();
                 media_art_store = new MediaArtStore ();
             } catch (MediaArtStoreError error) {
                 warning ("No media art available: %s", error.message);
@@ -103,6 +104,12 @@ public class Rygel.MediaArtStore : GLib.Object {
                            null);
 
         return file;
+    }
+
+    public void add (MusicItem item, File file, uint8[]? data) {
+        MediaArt.process_file (data, item.mime_type,
+                               MediaArt.Type.ALBUM, item.artist, item.album,
+                               file);
     }
 
     private MediaArtStore () throws MediaArtStoreError {

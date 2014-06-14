@@ -283,11 +283,10 @@ namespace Rygel.MediaExport.ItemFactory {
             case Tag.ImageType.UNDEFINED:
             case Tag.ImageType.FRONT_COVER:
                 var store = MediaArtStore.get_default ();
-                var thumb = store.get_media_art_file ("album", item, true);
-                try {
-                    var writer = new JPEGWriter ();
-                    writer.write (sample.get_buffer (), thumb);
-                } catch (Error error) {}
+                Gst.MapInfo map_info;
+                sample.get_buffer ().map (out map_info, Gst.MapFlags.READ);
+                store.add (item, file, map_info.data);
+                sample.get_buffer ().unmap (map_info);
                 break;
             default:
                 break;
