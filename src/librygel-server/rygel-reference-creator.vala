@@ -59,14 +59,16 @@ internal class Rygel.ReferenceCreator : GLib.Object, Rygel.StateMachine {
     public async void run () {
         try {
             this.parse_arguments ();
-            var container = yield this.fetch_container ();
             var root_container = this.content_directory.root_container;
+
             var object = yield root_container.find_object
                                         (this.object_id, this.cancellable);
             if (object == null) {
                 throw new ContentDirectoryError.NO_SUCH_OBJECT
                                         (_("No such object"));
             }
+
+            var container = yield this.fetch_container ();
 
             var new_id = yield container.add_reference (object,
                                                         this.cancellable);
