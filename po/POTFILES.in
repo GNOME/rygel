@@ -32,7 +32,6 @@ src/plugins/media-export/rygel-media-export-dummy-container.vala
 src/plugins/media-export/rygel-media-export-harvester.vala
 src/plugins/media-export/rygel-media-export-harvesting-task.vala
 src/plugins/media-export/rygel-media-export-item-factory.vala
-src/plugins/media-export/rygel-media-export-jpeg-writer.vala
 src/plugins/media-export/rygel-media-export-leaf-query-container.vala
 src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala
 src/plugins/media-export/rygel-media-export-media-cache.vala
