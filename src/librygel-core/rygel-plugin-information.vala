@@ -28,11 +28,9 @@
  *
  * A minimal file for the plugin librygel-sompelugin.so looks like this:
  *
- * {{{
  * [Plugin]
  * Name = SomeNameForThePlugin
  * Module = someplugin
- * }}}
  *
  * Name must not contain any whitespaces.
  */
