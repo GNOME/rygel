@@ -67,7 +67,7 @@ public class Rygel.MediaArtStore : GLib.Object {
 
         foreach (var type in types) {
             file = this.get_media_art_file (type, item, simple);
-            if (file.query_exists (null)) {
+            if (file != null && file.query_exists (null)) {
                 break;
             } else {
                 file = null;
@@ -102,9 +102,9 @@ public class Rygel.MediaArtStore : GLib.Object {
         return thumb;
     }
 
-    public File get_media_art_file (string    type,
-                                    MusicItem item,
-                                    bool      simple = false) {
+    public File? get_media_art_file (string    type,
+                                     MusicItem item,
+                                     bool      simple = false) {
         string hash;
         string suffix;
 
