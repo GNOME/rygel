@@ -372,6 +372,14 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
       </varlistentry>
       <varlistentry>
         <term>
+          <option>monitor-grace-timeout</option>
+        </term>
+        <listitem>
+          <para>Time in seconds to wait after a new file has  been detected before trying to extract meta-data from it. Useful if you&apos;re downloading to a directory watched by &dhpackage;. Default is 5 seconds.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <option>virtual-folders</option>
         </term>
         <listitem>
