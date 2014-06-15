@@ -275,8 +275,10 @@ namespace Rygel.MediaExport.ItemFactory {
         tags.get_sample (Tags.IMAGE, out sample);
         if (sample == null) {
             store.add (item, file, null);
+
             return item;
         }
+
         unowned Structure structure = sample.get_caps ().get_structure (0);
 
         int image_type;
