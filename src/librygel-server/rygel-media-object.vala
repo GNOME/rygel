@@ -42,6 +42,8 @@ public abstract class Rygel.MediaObject : GLib.Object {
     public string id { get; set construct; }
     public string ref_id { get; set; }
     public string upnp_class { get; construct set; }
+    public string date { get; set; }
+    public string creator { get; set; }
     public uint64 modified { get; set; }
     public uint object_update_id { get; set; }
 
@@ -270,6 +272,11 @@ public abstract class Rygel.MediaObject : GLib.Object {
         case "upnp:class":
             return this.compare_string_props (this.upnp_class,
                                               media_object.upnp_class);
+        case "dc:creator":
+            return this.compare_string_props (this.creator,
+                                              media_object.creator);
+        case "dc:date":
+            return this.compare_by_date (media_object);
         default:
             return 0;
         }
@@ -323,6 +330,48 @@ public abstract class Rygel.MediaObject : GLib.Object {
             return info.get_attribute_boolean (FileAttribute.ACCESS_CAN_WRITE);
         } catch (IOError.NOT_FOUND error) {
             return true;
+        }
+    }
+
+    private int compare_by_date (MediaObject object) {
+        if (this.date == null) {
+            return -1;
+        } else if (object.date == null) {
+            return 1;
+        } else {
+            var our_date = this.date;
+            var other_date = object.date;
+
+            if (!our_date.contains ("T")) {
+                our_date += "T00:00:00Z";
+            }
+
+            if (!other_date.contains ("T")) {
+                other_date += "T00:00:00Z";
+            }
+
+            var tv1 = TimeVal ();
+            assert (tv1.from_iso8601 (this.date));
+
+            var tv2 = TimeVal ();
+            assert (tv2.from_iso8601 (object.date));
+
+            var ret = this.compare_long (tv1.tv_sec, tv2.tv_sec);
+            if (ret == 0) {
+                ret = this.compare_long (tv1.tv_usec, tv2.tv_usec);
+            }
+
+            return ret;
+        }
+    }
+
+    private int compare_long (long a, long b) {
+        if (a < b) {
+            return -1;
+        } else if (a > b) {
+            return 1;
+        } else {
+            return 0;
         }
     }
 }

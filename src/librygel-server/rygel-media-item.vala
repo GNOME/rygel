@@ -35,10 +35,6 @@ private errordomain Rygel.MediaItemError {
  * These objects correspond to items in the UPnP ContentDirectory's DIDL-Lite XML.
  */
 public abstract class Rygel.MediaItem : MediaObject {
-    public string date { get; set; }
-
-    public string creator { get; set; }
-
     // Resource info
     public string mime_type { get; set; }
     public string dlna_profile { get; set; }
@@ -184,24 +180,6 @@ public abstract class Rygel.MediaItem : MediaObject {
         res.protocol_info = this.get_protocol_info (uri, protocol);
 
         return res;
-    }
-
-    internal override int compare_by_property (MediaObject media_object,
-                                               string      property) {
-        if (!(media_object is MediaItem)) {
-           return 1;
-        }
-
-        var item = media_object as MediaItem;
-
-        switch (property) {
-        case "dc:creator":
-            return this.compare_string_props (this.creator, item.creator);
-        case "dc:date":
-            return this.compare_by_date (item);
-        default:
-            return base.compare_by_property (item, property);
-        }
     }
 
     internal override void apply_didl_lite (DIDLLiteObject didl_object) {
@@ -351,45 +329,4 @@ public abstract class Rygel.MediaItem : MediaObject {
         }
     }
 
-    private int compare_by_date (MediaItem item) {
-        if (this.date == null) {
-            return -1;
-        } else if (item.date == null) {
-            return 1;
-        } else {
-            var our_date = this.date;
-            var other_date = item.date;
-
-            if (!our_date.contains ("T")) {
-                our_date += "T00:00:00Z";
-            }
-
-            if (!other_date.contains ("T")) {
-                other_date += "T00:00:00Z";
-            }
-
-            var tv1 = TimeVal ();
-            assert (tv1.from_iso8601 (this.date));
-
-            var tv2 = TimeVal ();
-            assert (tv2.from_iso8601 (item.date));
-
-            var ret = this.compare_long (tv1.tv_sec, tv2.tv_sec);
-            if (ret == 0) {
-                ret = this.compare_long (tv1.tv_usec, tv2.tv_usec);
-            }
-
-            return ret;
-        }
-    }
-
-    private int compare_long (long a, long b) {
-        if (a < b) {
-            return -1;
-        } else if (a > b) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
 }
