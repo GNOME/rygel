@@ -121,22 +121,6 @@ handling.</para>
       </varlistentry>
       <varlistentry>
         <term>
-          <option>--help-all</option>
-        </term>
-        <listitem>
-          <para>Show all help options.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>--help-gst</option>
-        </term>
-        <listitem>
-          <para>Show GStreamer related help options.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
           <option>--version</option>
         </term>
         <listitem>
@@ -224,6 +208,17 @@ handling.</para>
       </varlistentry>
       <varlistentry>
         <term>
+          <option>-e</option>
+        </term>
+        <term>
+          <option>--engine-path=<replaceable>ENGINE_PATH</replaceable></option>
+        </term>
+        <listitem>
+          <para>Set the media streaming and transcoding engine search path.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <option>-d</option>
         </term>
         <term>
@@ -270,6 +265,8 @@ handling.</para>
       <varlistentry>
         <term>
           <option>-c</option>
+        </term>
+        <term>
           <option>--config=<replaceable>CONFIG_FILE</replaceable></option>
         </term>
         <listitem>
@@ -388,6 +385,22 @@ handling.</para>
         </term>
         <listitem>
           <para>Set the plugin search path of <application>&dhpackage;</application>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_ENGINE_PATH</envar>
+        </term>
+        <listitem>
+          <para>Set the media streaming and transcoding engine search path for <application>&dhpackage;</application>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_MEDIA_ENGINE</envar>
+        </term>
+        <listitem>
+          <para>Set a specific media streaming engine to pick up from the media engine search path.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
