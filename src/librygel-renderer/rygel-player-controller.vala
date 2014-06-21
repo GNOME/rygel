@@ -255,8 +255,8 @@ internal class Rygel.PlayerController : Object {
                                      string? features)
     {
         if (this.timeout_id != 0) {
-            this.timeout_id = 0;
             Source.remove (this.timeout_id);
+            this.timeout_id = 0;
         }
 
         this.metadata = this.unescape (metadata);
@@ -283,8 +283,8 @@ internal class Rygel.PlayerController : Object {
                                   string metadata,
                                   MediaCollection collection) {
         if (this.timeout_id != 0) {
-            this.timeout_id = 0;
             Source.remove (this.timeout_id);
+            this.timeout_id = 0;
         }
 
         this.metadata = this.unescape (metadata);
