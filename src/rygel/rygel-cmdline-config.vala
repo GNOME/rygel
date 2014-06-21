@@ -2,10 +2,12 @@
  * Copyright (C) 2008,2009 Nokia Corporation.
  * Copyright (C) 2008,2009 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2014 Jens Georg <mail@jensge.org>
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Jens Georg <jensg@openismus.com>
+ *                    <mail@jensge.org>
  *
  * This file is part of Rygel.
  *
@@ -55,6 +57,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static string config_file;
 
     private static bool shutdown;
+    private static bool replace;
 
     [CCode (array_length = false, array_null_terminated = true)]
     [NoArrayLength]
@@ -102,6 +105,8 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
           N_ ("Use configuration file instead of user configuration"), "FILE" },
         { "shutdown", 's', 0, OptionArg.NONE, ref shutdown,
           N_ ("Shutdown remote Rygel reference"), null },
+        { "replace", 'r', 0, OptionArg.NONE, ref replace,
+          N_ ("Replace currently running instance of rygel"), null },
         { null }
     };
 
@@ -136,7 +141,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
             throw new CmdlineConfigError.VERSION_ONLY ("");
         }
 
-        if (shutdown) {
+        if (shutdown || replace) {
             try {
                 print (_("Shutting down remote Rygel instance\n"));
                 DBusInterface rygel = Bus.get_proxy_sync
@@ -150,7 +155,11 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
                          error.message);
 
             }
-            throw new CmdlineConfigError.VERSION_ONLY ("");
+
+            // If user wanted to shut down, just exit.
+            if (shutdown) {
+                throw new CmdlineConfigError.VERSION_ONLY ("");
+            }
         }
     }
 

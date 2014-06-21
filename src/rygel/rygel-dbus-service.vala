@@ -78,19 +78,8 @@ internal class Rygel.DBusService : Object, DBusInterface {
             return;
         }
 
-        // Cleanly shutdown other instance.
-        try {
-            DBusInterface rygel = Bus.get_proxy_sync (BusType.SESSION,
-                                                      DBusInterface.SERVICE_NAME,
-                                                      DBusInterface.OBJECT_PATH,
-                                                      DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
-            rygel.shutdown ();
-        } catch (Error error) {
-            warning ("Failed to shut-down other rygel instance: %s",
-                     error.message);
-
-            this.main.exit (-12);
-        }
+        message (_("Another instance of rygel is already running. Not starting."));
+        this.main.exit (-15);
     }
 }
 

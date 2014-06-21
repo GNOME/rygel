@@ -276,6 +276,28 @@ handling.</para>
           <para>Use <replaceable>CONFIG_FILE</replaceable> instead of <filename>${XDG_CONFIG_DIR}/rygel.conf</filename>.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-s</option>
+        </term>
+        <term>
+          <option>--shutdown</option>
+        </term>
+        <listitem>
+          <para>Shutdown a currently running instance of &dhpackage;</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
+          <option>-r</option>
+        </term>
+        <term>
+          <option>--replace</option>
+        </term>
+        <listitem>
+          <para>Replace the currently running instance of &dhpackage; with this instance. Short for <userinput>rygel -s &amp;&amp; rygel</userinput></para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsect1>
   <refsect1 id="files">
