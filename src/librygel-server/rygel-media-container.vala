@@ -3,9 +3,11 @@
  * Copyright (C) 2010 MediaNet Inh.
  * Copyright (C) 2010 Nokia Corporation.
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Authors: Zeeshan Ali <zeenix@gmail.com>
  *          Sunil Mohan Adapa <sunil@medhas.org>
+ *          Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
  *

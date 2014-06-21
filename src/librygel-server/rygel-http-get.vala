@@ -89,7 +89,8 @@ internal class Rygel.HTTPGet : HTTPRequest {
             return;
         }
 
-        if (unlikely ((this.object as MediaItem).place_holder)) {
+        if (unlikely ((this.object is MediaFileItem)
+                      && (this.object as MediaFileItem).place_holder)) {
             throw new HTTPRequestError.NOT_FOUND ("Item '%s' is empty",
                                                   this.object.id);
         }
@@ -214,15 +215,15 @@ internal class Rygel.HTTPGet : HTTPRequest {
         case "Streaming":
             correct = (!(this.handler is HTTPPlaylistHandler)) && (
                       (this.handler is HTTPTranscodeHandler ||
-                      ((this.object as MediaItem).streamable () &&
+                      ((this.object as MediaFileItem).streamable () &&
                        this.subtitle == null &&
                        this.thumbnail == null)));
 
             break;
         case "Interactive":
             correct = (this.handler is HTTPIdentityHandler &&
-                      ((!(this.object as MediaItem).is_live_stream () &&
-                       !(this.object as MediaItem).streamable ()) ||
+                      ((!(this.object as MediaFileItem).is_live_stream () &&
+                       !(this.object as MediaFileItem).streamable ()) ||
                        (this.subtitle != null ||
                         this.thumbnail != null))) ||
                       this.handler is HTTPPlaylistHandler;

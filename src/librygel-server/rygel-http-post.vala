@@ -58,13 +58,13 @@ internal class Rygel.HTTPPost : HTTPRequest {
     }
 
     private async void handle_real () throws Error {
-        if (!(this.object as MediaItem).place_holder) {
+        if (!(this.object as MediaFileItem).place_holder) {
             var msg = _("Pushing data to non-empty item '%s' not allowed");
 
             throw new ContentDirectoryError.INVALID_ARGS (msg, this.object.id);
         }
 
-        this.file = yield (this.object as MediaItem).get_writable
+        this.file = yield (this.object as MediaFileItem).get_writable
                                         (this.cancellable);
         if (this.file == null) {
             throw new HTTPRequestError.BAD_REQUEST
@@ -109,13 +109,13 @@ internal class Rygel.HTTPPost : HTTPRequest {
     private async void wait_for_item (MediaContainer container,
                                       string         id,
                                       uint           timeout) {
-        MediaItem item = null;
+        MediaFileItem item = null;
 
         while (item == null || item.place_holder) {
             try {
                 item = (yield container.find_object (id,
                                                      this.cancellable))
-                                                     as MediaItem;
+                                                     as MediaFileItem;
             } catch (Error error) {
                 // Handle
                 break;
@@ -218,7 +218,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
 
     private async void remove_item () {
         var queue = ObjectRemovalQueue.get_default ();
-        yield queue.remove_now (this.object as MediaItem, null);
+        yield queue.remove_now (this.object as MediaFileItem, null);
     }
 
     private void disconnect_message_signals () {

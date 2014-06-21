@@ -27,7 +27,7 @@ using GUPnP;
  *
  * These objects correspond to DLNA's DIDL_S items.
  */
-public class Rygel.PlaylistItem : MediaItem {
+public class Rygel.PlaylistItem : MediaFileItem {
     public new const string UPNP_CLASS = "object.item.playlistItem";
 
     public PlaylistItem (string         id,

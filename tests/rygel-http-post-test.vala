@@ -38,7 +38,7 @@ public class Rygel.ClientHacks {
         throw new ClientHacksError.NA ("");
     }
 
-    public void apply (MediaItem item) {
+    public void apply (MediaFileItem item) {
     }
 }
 
@@ -102,7 +102,7 @@ public class Rygel.HTTPPostTest : GLib.Object {
 
     public virtual void run () throws Error {
         // cleanup
-        var file = File.new_for_uri (MediaItem.URI);
+        var file = File.new_for_uri (MediaFileItem.URI);
         FileUtils.remove (file.get_path ());
 
         Timeout.add_seconds (10, this.on_timeout);
@@ -254,14 +254,14 @@ public class Rygel.HTTPServer : GLib.Object {
 
     public string uri {
         owned get {
-			var item = new MediaItem (MediaContainer.ITEM_ID, this.root_container);
+			var item = new MediaFileItem (MediaContainer.ITEM_ID, this.root_container);
 			var item_uri = new HTTPItemURI (item, this);
             return item_uri.to_string ();
         }
     }
 
     public string create_uri(string item_id) {
-        var item = new MediaItem (item_id, this.root_container);
+        var item = new MediaFileItem (item_id, this.root_container);
         var item_uri = new HTTPItemURI (item, this);
         return item_uri.to_string ();
     }
@@ -339,7 +339,7 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
 
     public signal void container_updated (MediaContainer container);
 
-    public MediaItem item;
+    public MediaFileItem item;
     private bool vanish;
     private bool error;
 
@@ -347,8 +347,8 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
     private FileMonitor monitor;
 
     public MediaContainer () {
-        this.file = File.new_for_uri (MediaItem.URI);
-        this.item = new MediaItem (ITEM_ID, this);
+        this.file = File.new_for_uri (MediaFileItem.URI);
+        this.item = new MediaFileItem (ITEM_ID, this);
         this.vanish = false;
         this.error = false;
         this.id = "TesContainer";
@@ -392,7 +392,7 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
         }
 
         if (item_id != this.item.id) {
-            this.item = new MediaItem (item_id, this);
+            this.item = new MediaFileItem (item_id, this);
         }
 
         return this.item;
@@ -416,7 +416,7 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
     }
 }
 
-public class Rygel.MediaItem : Rygel.MediaObject {
+public class Rygel.MediaFileItem : Rygel.MediaObject {
     public const string URI = "file:///tmp/rygel-upload-test.wav";
 
     public long size = 1024;
@@ -428,9 +428,9 @@ public class Rygel.MediaItem : Rygel.MediaObject {
 
     public File file;
 
-    public MediaItem.for_visual_item () {}
+    public MediaFileItem.for_visual_item () {}
 
-    public MediaItem (string id, MediaContainer parent) {
+    public MediaFileItem (string id, MediaContainer parent) {
         this.id = id;
         this.parent = parent;
 
@@ -514,7 +514,7 @@ public class Rygel.Thumbnail : GLib.Object {
     public string file_extension;
 }
 
-public class Rygel.VisualItem : Rygel.MediaItem {
+public class Rygel.VisualItem : Rygel.MediaFileItem {
     public ArrayList<Thumbnail> thumbnails = new ArrayList<Thumbnail> ();
 
     public VisualItem () {
@@ -530,7 +530,7 @@ private class Rygel.VideoItem : Rygel.VisualItem {
     public ArrayList<Subtitle> subtitles = new ArrayList<Subtitle> ();
 }
 
-private class Rygel.MusicItem : MediaItem {
+private class Rygel.MusicItem : MediaFileItem {
     public Thumbnail album_art;
 
     public MusicItem (string id, MediaContainer parent) {

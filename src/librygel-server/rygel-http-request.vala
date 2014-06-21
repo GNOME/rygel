@@ -1,10 +1,12 @@
 /*
  * Copyright (C) 2008-2010 Nokia Corporation.
  * Copyright (C) 2006, 2007, 2008 OpenedHand Ltd.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Jorn Baayen <jorn.baayen@gmail.com>
+ *         Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -88,7 +90,7 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         if (media_object == null ||
             !((media_object is MediaContainer &&
                this.uri.playlist_format != null) ||
-              (media_object is MediaItem && this.uri.playlist_format == null))) {
+              (media_object is MediaFileItem && this.uri.playlist_format == null))) {
             throw new HTTPRequestError.NOT_FOUND
                                         (_("Requested item '%s' not found"),
                                          this.uri.item_id);

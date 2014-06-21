@@ -53,7 +53,7 @@ public class Rygel.Tracker.InsertionQuery : Query {
 
     private string uri;
 
-    public InsertionQuery (MediaItem item, string category) {
+    public InsertionQuery (MediaFileItem item, string category) {
         var type = "nie:DataObject";
         var file = File.new_for_uri (item.get_primary_uri ());
 

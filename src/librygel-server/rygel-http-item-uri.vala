@@ -62,11 +62,11 @@ internal class Rygel.HTTPItemURI : Object {
         this.playlist_format = playlist_format;
         this.extension = "";
 
-        if (!(object is MediaItem)) {
+        if (!(object is MediaFileItem)) {
             return;
         }
 
-        var item = object as MediaItem;
+        var item = object as MediaFileItem;
         if (thumbnail_index > -1) {
             if (item is VisualItem) {
                 var thumbnails = (item as VisualItem).thumbnails;

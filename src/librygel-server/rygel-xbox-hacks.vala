@@ -121,7 +121,11 @@ internal class Rygel.XBoxHacks : ClientHacks {
             return;
         }
 
-        var item = object as MediaItem;
+        if (! (object is MediaFileItem)) {
+            return;
+        }
+
+        var item = object as MediaFileItem;
 
         if (item.mime_type == "video/x-msvideo") {
             item.mime_type = "video/avi";

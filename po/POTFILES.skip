@@ -92,6 +92,7 @@ src/librygel-server/rygel-media-art-store.c
 src/librygel-server/rygel-media-container.c
 src/librygel-server/rygel-media-engine.c
 src/librygel-server/rygel-media-item.c
+src/librygel-server/rygel-media-file-item.c
 src/librygel-server/rygel-media-object.c
 src/librygel-server/rygel-media-objects.c
 src/librygel-server/rygel-media-query-action.c

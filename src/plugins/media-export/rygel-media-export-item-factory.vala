@@ -31,11 +31,11 @@ using Gst.PbUtils;
  * Represents MediaExport item.
  */
 namespace Rygel.MediaExport.ItemFactory {
-    public static MediaItem? create_simple (MediaContainer parent,
-                                            File           file,
-                                            FileInfo       info) {
+    public static MediaFileItem? create_simple (MediaContainer parent,
+                                                File           file,
+                                                FileInfo       info) {
         var title = info.get_display_name ();
-        MediaItem item;
+        MediaFileItem item;
         var mime = ContentType.get_mime_type (info.get_content_type ());
 
         if (mime.has_prefix ("video/")) {
@@ -62,9 +62,9 @@ namespace Rygel.MediaExport.ItemFactory {
         return item;
     }
 
-    private static MediaItem? create_playlist_item (File file,
-                                                    MediaContainer parent,
-                                                    string fallback_title) {
+    private static MediaFileItem? create_playlist_item (File file,
+                                                        MediaContainer parent,
+                                                        string fallback_title) {
         try {
             uint8[] contents;
 
@@ -112,12 +112,12 @@ namespace Rygel.MediaExport.ItemFactory {
         }
     }
 
-    public static MediaItem? create_from_info (MediaContainer     parent,
-                                               File               file,
-                                               DiscovererInfo     info,
-                                               GUPnPDLNA.Profile? profile,
-                                               FileInfo           file_info) {
-        MediaItem item;
+    public static MediaFileItem? create_from_info (MediaContainer     parent,
+                                                   File               file,
+                                                   DiscovererInfo     info,
+                                                   GUPnPDLNA.Profile? profile,
+                                                   FileInfo           file_info) {
+        MediaFileItem item;
         string id = MediaCache.get_id (file);
         GLib.List<DiscovererAudioInfo> audio_streams;
         GLib.List<DiscovererVideoInfo> video_streams;
@@ -195,13 +195,13 @@ namespace Rygel.MediaExport.ItemFactory {
     }
 
 
-    private static MediaItem fill_video_item (VideoItem            item,
-                                              File                 file,
-                                              DiscovererInfo       info,
-                                              GUPnPDLNA.Profile?   profile,
-                                              DiscovererVideoInfo  video_info,
-                                              DiscovererAudioInfo? audio_info,
-                                              FileInfo             file_info) {
+    private static MediaFileItem fill_video_item (VideoItem            item,
+                                                  File                 file,
+                                                  DiscovererInfo       info,
+                                                  GUPnPDLNA.Profile?   profile,
+                                                  DiscovererVideoInfo  video_info,
+                                                  DiscovererAudioInfo? audio_info,
+                                                  FileInfo             file_info) {
         fill_audio_item (item as AudioItem, info, audio_info);
         fill_media_item (item, file, info, profile, file_info);
 
@@ -214,12 +214,12 @@ namespace Rygel.MediaExport.ItemFactory {
         return item;
     }
 
-    private static MediaItem fill_photo_item (PhotoItem           item,
-                                              File                file,
-                                              DiscovererInfo      info,
-                                              GUPnPDLNA.Profile?  profile,
-                                              DiscovererVideoInfo video_info,
-                                              FileInfo            file_info) {
+    private static MediaFileItem fill_photo_item (PhotoItem           item,
+                                                  File                file,
+                                                  DiscovererInfo      info,
+                                                  GUPnPDLNA.Profile?  profile,
+                                                  DiscovererVideoInfo video_info,
+                                                  FileInfo            file_info) {
         fill_media_item (item, file, info, profile, file_info);
 
         item.width = (int) video_info.get_width ();
@@ -231,12 +231,12 @@ namespace Rygel.MediaExport.ItemFactory {
         return item;
     }
 
-    private static MediaItem fill_music_item (MusicItem            item,
-                                              File                 file,
-                                              DiscovererInfo       info,
-                                              GUPnPDLNA.Profile?   profile,
-                                              DiscovererAudioInfo? audio_info,
-                                              FileInfo             file_info) {
+    private static MediaFileItem fill_music_item (MusicItem            item,
+                                                  File                 file,
+                                                  DiscovererInfo       info,
+                                                  GUPnPDLNA.Profile?   profile,
+                                                  DiscovererAudioInfo? audio_info,
+                                                  FileInfo             file_info) {
         fill_audio_item (item as AudioItem, info, audio_info);
         fill_media_item (item, file, info, profile, file_info);
 
@@ -309,7 +309,7 @@ namespace Rygel.MediaExport.ItemFactory {
         return item;
     }
 
-    private static void fill_media_item (MediaItem          item,
+    private static void fill_media_item (MediaFileItem      item,
                                          File               file,
                                          DiscovererInfo     info,
                                          GUPnPDLNA.Profile? profile,

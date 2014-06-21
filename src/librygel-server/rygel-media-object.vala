@@ -1,8 +1,11 @@
 /*
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Zeeshan Ali <zeenix@gmail.com>
+ *         Doug Galligan <doug@sentosatech.com>
+ *         Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -27,11 +30,8 @@ using Gee;
 /**
  * Represents a media object (container or item).
  *
- * The derived RygelMediaContainer class represents a container,
- * and the derived RygelMediaItem classes (RygelAudioItem,
- * RygelImageItem and RygelVideoItem) represent media items.
- *
- * These objects correspond to items and containers in the UPnP ContentDirectory's DIDL-Lite XML.
+ * The derived RygelMediaContainer class represents a container
+ * and the derived MediaItem classes represent media items.
  */
 public abstract class Rygel.MediaObject : GLib.Object {
     private static Regex real_name_regex;

@@ -34,7 +34,7 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
         } else if (request.subtitle != null) {
             total_length = request.subtitle.size;
         } else {
-            total_length = (request.object as MediaItem).size;
+            total_length = (request.object as MediaFileItem).size;
         }
         var stop = total_length - 1;
 
@@ -68,7 +68,8 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
             force_seek = hack.force_seek ();
         } catch (Error error) { }
 
-        return force_seek || (!(request.object is MediaContainer) && ((request.object as MediaItem).size > 0 &&
+        return force_seek || (!(request.object is MediaContainer) &&
+                ((request.object as MediaFileItem).size > 0 &&
                 request.handler is HTTPIdentityHandler) ||
                (request.thumbnail != null &&
                 request.thumbnail.size > 0) ||

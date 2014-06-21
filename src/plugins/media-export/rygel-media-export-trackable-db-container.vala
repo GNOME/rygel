@@ -45,7 +45,7 @@ public class Rygel.MediaExport.TrackableDbContainer : DBContainer,
             var cache = this.media_db;
 
             if (object is MediaItem) {
-                cache.save_item (object as MediaItem);
+                cache.save_item (object as MediaFileItem);
             } else if (object is MediaContainer) {
                  cache.save_container (object as MediaContainer);
             } else {
@@ -69,7 +69,7 @@ public class Rygel.MediaExport.TrackableDbContainer : DBContainer,
     protected async void add_child (MediaObject object) {
         try {
             if (object is MediaItem) {
-                this.media_db.save_item (object as MediaItem);
+                this.media_db.save_item (object as MediaFileItem);
             } else if (object is MediaContainer) {
                 this.media_db.save_container (object as MediaContainer);
             } else {

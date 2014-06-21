@@ -160,13 +160,16 @@ public interface Rygel.TrackableItem : Rygel.MediaItem {
 }
 
 public class Rygel.MediaItem : Rygel.MediaObject {
+}
+
+public class Rygel.MediaFileItem : Rygel.MediaItem {
     public string dlna_profile;
     public string mime_type;
     public long size;
     public bool place_holder;
     public string date;
 
-    public MediaItem (string id, MediaContainer parent, string title) {
+    public MediaFileItem (string id, MediaContainer parent, string title) {
         this.id = id;
         this.parent = parent;
         this.title = title;
@@ -182,7 +185,7 @@ public class Rygel.MusicItem : Rygel.AudioItem {
     }
 }
 
-public class Rygel.AudioItem : Rygel.MediaItem {
+public class Rygel.AudioItem : Rygel.MediaFileItem {
     public const string UPNP_CLASS = "object.item.audioItem";
     public string artist;
     public string album;
@@ -191,21 +194,21 @@ public class Rygel.AudioItem : Rygel.MediaItem {
         base (id, parent, title);
     }
 }
-public class Rygel.ImageItem : Rygel.MediaItem {
+public class Rygel.ImageItem : Rygel.MediaFileItem {
     public new const string UPNP_CLASS = "object.item.imageItem";
     public ImageItem (string id, MediaContainer parent, string title) {
         base (id, parent, title);
     }
 }
 
-public class Rygel.VideoItem : Rygel.MediaItem {
+public class Rygel.VideoItem : Rygel.MediaFileItem {
     public const string UPNP_CLASS = "object.item.videoItem";
     public VideoItem (string id, MediaContainer parent, string title) {
         base (id, parent, title);
     }
 }
 
-public class Rygel.PhotoItem : Rygel.MediaItem {
+public class Rygel.PhotoItem : Rygel.MediaFileItem {
     public const string UPNP_CLASS = "object.item.imageItem.photo";
     public string creator;
 
@@ -214,7 +217,7 @@ public class Rygel.PhotoItem : Rygel.MediaItem {
     }
 }
 
-public class Rygel.PlaylistItem : Rygel.MediaItem {
+public class Rygel.PlaylistItem : Rygel.MediaFileItem {
     public const string UPNP_CLASS = "object.item.playlistItem";
 
     public PlaylistItem (string id, MediaContainer parent, string title) {

@@ -70,7 +70,7 @@ public abstract class Rygel.Transcoder : GLib.Object {
      * @return The new resource.
      */
     public virtual DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
-                                                   MediaItem        item,
+                                                   MediaFileItem    item,
                                                    TranscodeManager manager)
                                                    throws Error {
         if (this.mime_type_is_a (item.mime_type, this.mime_type) &&

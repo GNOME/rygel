@@ -65,8 +65,8 @@ public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         }
     }
 
-    internal void add_proxy_resource (DIDLLiteItem didl_item,
-                                      MediaItem    item)
+    internal void add_proxy_resource (DIDLLiteItem  didl_item,
+                                      MediaFileItem item)
                                       throws Error {
         if (this.http_uri_present (item)) {
             return;
@@ -104,11 +104,11 @@ public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         this.completed ();
     }
 
-    internal override string create_uri_for_item (MediaItem item,
-                                                  int       thumbnail_index,
-                                                  int       subtitle_index,
-                                                  string?   transcode_target,
-                                                  string?   playlist_target) {
+    internal override string create_uri_for_item (MediaFileItem item,
+                                                  int           thumbnail_index,
+                                                  int           subtitle_index,
+                                                  string?       transcode_target,
+                                                  string?       playlist_target) {
         var uri = new HTTPItemURI (item,
                                    this,
                                    thumbnail_index,

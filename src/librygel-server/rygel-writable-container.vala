@@ -84,8 +84,8 @@ public interface Rygel.WritableContainer : MediaContainer {
      *
      * @return nothing.
      */
-    public async abstract void add_item (MediaItem    item,
-                                         Cancellable? cancellable) throws Error;
+    public async abstract void add_item (MediaFileItem item,
+                                         Cancellable?  cancellable) throws Error;
 
 
     /**

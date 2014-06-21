@@ -29,11 +29,11 @@ internal class Rygel.SamsungTVHacks : ClientHacks {
     }
 
     public override void apply (MediaObject object) {
-        if (!(object is MediaItem)) {
+        if (!(object is MediaFileItem)) {
             return;
         }
 
-        var item = object as MediaItem;
+        var item = object as MediaFileItem;
         if (item.mime_type == "video/x-matroska") {
             item.mime_type = "video/x-mkv";
         }

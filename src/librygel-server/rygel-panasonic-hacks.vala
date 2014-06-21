@@ -43,11 +43,11 @@ internal class Rygel.PanasonicHacks : ClientHacks {
     }
 
     public override void apply (MediaObject object) {
-        if (!(object is MediaItem)) {
+        if (!(object is MediaFileItem)) {
             return;
         }
 
-        var item = object as MediaItem;
+        var item = object as MediaFileItem;
 
         if (!(item is VisualItem)) {
             return;

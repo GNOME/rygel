@@ -77,10 +77,10 @@ internal class Rygel.ItemDestroyer: GLib.Object, Rygel.StateMachine {
         var media_object = yield this.fetch_object ();
         var parent = media_object.parent as WritableContainer;
 
-        if (media_object is MediaItem ) {
+        if (media_object is MediaFileItem ) {
             yield parent.remove_item (this.object_id, this.cancellable);
 
-            if (!(media_object as MediaItem).place_holder) {
+            if (!(media_object as MediaFileItem).place_holder) {
                 var writables = yield media_object.get_writables (this.cancellable);
                 foreach (var file in writables) {
                     if (file.query_exists (this.cancellable)) {

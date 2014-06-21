@@ -53,7 +53,7 @@ public class Rygel.GstLaunch.RootContainer : SimpleContainer {
             var launch_line = config.get_string (CONFIG_GROUP,
                                                  "%s-launch".printf (name));
             string dlna_profile = null;
-            MediaItem item;
+            MediaFileItem item;
             try {
                 dlna_profile = config.get_string (CONFIG_GROUP,
                                                   "%s-dlnaprofile".printf

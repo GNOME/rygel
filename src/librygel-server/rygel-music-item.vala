@@ -112,7 +112,7 @@ public class Rygel.MusicItem : AudioItem {
         }
 
         if (didl_item.album_art != null) {
-            didl_item.album_art = MediaItem.address_regex.replace_literal
+            didl_item.album_art = MediaFileItem.address_regex.replace_literal
                                         (didl_item.album_art,
                                          -1,
                                          0,

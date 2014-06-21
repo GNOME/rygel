@@ -59,11 +59,11 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
         this.properties.add ("res@duration");
     }
 
-    public override MediaItem create (string          id,
-                                      string          uri,
-                                      SearchContainer parent,
-                                      Sparql.Cursor   metadata)
-                                      throws GLib.Error {
+    public override MediaFileItem create (string          id,
+                                          string          uri,
+                                          SearchContainer parent,
+                                          Sparql.Cursor   metadata)
+                                          throws GLib.Error {
         var item = new VideoItem (id, parent, "");
 
         this.set_metadata (item, uri, metadata);
@@ -71,9 +71,9 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
         return item;
     }
 
-    protected override void set_metadata (MediaItem item,
-                                          string    uri,
-                                          Sparql.Cursor  metadata)
+    protected override void set_metadata (MediaFileItem item,
+                                          string        uri,
+                                          Sparql.Cursor metadata)
                                           throws GLib.Error {
         base.set_metadata (item, uri, metadata);
 

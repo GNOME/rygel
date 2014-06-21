@@ -166,6 +166,7 @@ src/librygel-server/rygel-media-art-store.vala
 src/librygel-server/rygel-media-container.vala
 src/librygel-server/rygel-media-engine.vala
 src/librygel-server/rygel-media-item.vala
+src/librygel-server/rygel-media-file-item.vala
 src/librygel-server/rygel-media-objects.vala
 src/librygel-server/rygel-media-object.vala
 src/librygel-server/rygel-media-query-action.vala

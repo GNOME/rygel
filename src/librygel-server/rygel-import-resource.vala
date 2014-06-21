@@ -48,7 +48,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
     public int64 bytes_copied;
     public int64 bytes_total;
 
-    private MediaItem item;
+    private MediaFileItem item;
     private Session session;
 
     public string status_as_string {
@@ -166,7 +166,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         this.completed ();
     }
 
-    private async MediaItem fetch_item () throws Error {
+    private async MediaFileItem fetch_item () throws Error {
         HTTPItemURI uri;
         try {
             uri = new HTTPItemURI.from_string (this.destination_uri,
@@ -180,11 +180,11 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         string msg = null;
 
         if (media_object == null ||
-            !(media_object is MediaItem) ||
+            !(media_object is MediaFileItem) ||
             !(media_object.parent is WritableContainer)) {
             msg = _("URI '%s' invalid for importing contents to").printf
                                         (this.destination_uri);
-        } else if (!(media_object as MediaItem).place_holder) {
+        } else if (!(media_object as MediaFileItem).place_holder) {
             msg = _("Pushing data to non-empty item '%s' not allowed").printf
                                         (media_object.id);
         } else if (media_object.get_uris ().is_empty) {
@@ -195,7 +195,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
             throw new ContentDirectoryError.INVALID_ARGS (msg);
         }
 
-        return media_object as MediaItem;
+        return media_object as MediaFileItem;
     }
 
     private void got_headers_cb (Message message) {

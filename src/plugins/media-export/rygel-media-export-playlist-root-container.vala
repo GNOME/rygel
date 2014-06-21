@@ -68,8 +68,8 @@ internal class Rygel.MediaExport.PlaylistRootContainer : Rygel.WritableContainer
         }
     }
 
-    public async void add_item (Rygel.MediaItem item,
-                                Cancellable?    cancellable)
+    public async void add_item (Rygel.MediaFileItem item,
+                                Cancellable?        cancellable)
                                 throws Error {
         throw new WritableContainerError.NOT_IMPLEMENTED
                                         (_("Can't create items in %s"),

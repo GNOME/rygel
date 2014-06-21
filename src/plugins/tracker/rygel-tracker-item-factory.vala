@@ -3,10 +3,12 @@
  * Copyright (C) 2008-2012 Nokia Corporation.
  * Copyright (C) 2010 MediaNet Inh.
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Authors: Zeeshan Ali <zeenix@gmail.com>
  *          Sunil Mohan Adapa <sunil@medhas.org>
  *          Jens Georg <jensg@openismus.com>
+ *          Doug Galligan <doug@sentosatech.com>
  *
  * This file is part of Rygel.
  *
@@ -80,13 +82,13 @@ public abstract class Rygel.Tracker.ItemFactory {
         this.properties.add ("date");
     }
 
-    public abstract MediaItem create (string          id,
-                                      string          uri,
-                                      SearchContainer parent,
-                                      Sparql.Cursor   metadata)
-                                      throws GLib.Error;
+    public abstract MediaFileItem create (string          id,
+                                          string          uri,
+                                          SearchContainer parent,
+                                          Sparql.Cursor   metadata)
+                                          throws GLib.Error;
 
-    protected void set_ref_id (MediaItem item, string prefix) {
+    protected void set_ref_id (MediaFileItem item, string prefix) {
         if (item.id.has_prefix (prefix)) {
             return;
         }
@@ -99,7 +101,7 @@ public abstract class Rygel.Tracker.ItemFactory {
         item.ref_id = prefix + "," + split_id[1];
     }
 
-    protected virtual void set_metadata (MediaItem     item,
+    protected virtual void set_metadata (MediaFileItem item,
                                          string        uri,
                                          Sparql.Cursor metadata)
                                          throws GLib.Error {
@@ -129,7 +131,9 @@ public abstract class Rygel.Tracker.ItemFactory {
             item.dlna_profile = metadata.get_string (Metadata.DLNA_PROFILE);
         }
 
-        item.mime_type = metadata.get_string (Metadata.MIME);
+        if (metadata.is_bound (Metadata.MIME)) {
+            item.mime_type = metadata.get_string (Metadata.MIME);
+        }
 
         item.add_uri (uri);
     }

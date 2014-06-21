@@ -82,7 +82,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         cleanup_query.execute.begin (this.resources);
     }
 
-    public async void add_item (MediaItem item, Cancellable? cancellable)
+    public async void add_item (MediaFileItem item, Cancellable? cancellable)
                                 throws Error {
         var urn = yield this.create_entry_in_store (item);
 
@@ -133,7 +133,8 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         this.get_children_count.begin ();
     }
 
-    private async string create_entry_in_store (MediaItem item) throws Error {
+    private async string create_entry_in_store (MediaFileItem item)
+                                                throws Error {
         var category = this.item_factory.category;
         var query = new InsertionQuery (item, category);
 

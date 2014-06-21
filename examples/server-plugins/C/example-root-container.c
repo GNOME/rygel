@@ -44,14 +44,14 @@ rygel_example_root_container_construct (GType object_type, const gchar *title) {
   self = (RygelExampleRootContainer*) rygel_simple_container_construct_root (object_type, title);
 
   item = rygel_music_item_new ("test 1", (RygelMediaContainer*) self, "Test 1", RYGEL_MUSIC_ITEM_UPNP_CLASS);
-  rygel_media_item_add_uri (item, "file:///home/murrayc/Music/Madness/05_Baggy_Trousers.mp3");
-  rygel_media_item_set_mime_type (item, "audio/mpeg");
+  rygel_media_file_item_add_uri (item, "file:///home/murrayc/Music/Madness/05_Baggy_Trousers.mp3");
+  rygel_media_file_item_set_mime_type (item, "audio/mpeg");
   rygel_simple_container_add_child_item ((RygelSimpleContainer*) self, item);
   g_object_unref (item);
   
   item = rygel_music_item_new ("test 2", (RygelMediaContainer*) self, "Test 1", RYGEL_MUSIC_ITEM_UPNP_CLASS);
-  rygel_media_item_add_uri (item, "file:///home/murrayc/Music/08%20Busload%20of%20Faith.mp3");
-  rygel_media_item_set_mime_type (item, "audio/mpeg");
+  rygel_media_file_item_add_uri (item, "file:///home/murrayc/Music/08%20Busload%20of%20Faith.mp3");
+  rygel_media_file_item_set_mime_type (item, "audio/mpeg");
   rygel_simple_container_add_child_item ((RygelSimpleContainer*) self, item);
   g_object_unref (item);
 

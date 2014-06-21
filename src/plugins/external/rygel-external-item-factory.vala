@@ -28,14 +28,14 @@ using GUPnP;
  * Creates item for external plugins.
  */
 public class Rygel.External.ItemFactory {
-    public async MediaItem create (string                    id,
-                                   string                    type,
-                                   string                    title,
-                                   HashTable<string,Variant> props,
-                                   string                    service_name,
-                                   MediaContainer            parent)
-                                   throws IOError, DBusError {
-        MediaItem item;
+    public async MediaFileItem create (string                    id,
+                                       string                    type,
+                                       string                    title,
+                                       HashTable<string,Variant> props,
+                                       string                    service_name,
+                                       MediaContainer            parent)
+                                       throws IOError, DBusError {
+        MediaFileItem item;
 
         if (type.has_prefix ("music") ||
             type.has_prefix ("audio.music")) {
@@ -129,7 +129,7 @@ public class Rygel.External.ItemFactory {
         this.set_audio_metadata (video, props, service_name);
     }
 
-    private void set_generic_metadata (MediaItem                 item,
+    private void set_generic_metadata (MediaFileItem             item,
                                        HashTable<string,Variant> props,
                                        string                    service_name) {
         item.mime_type = get_mandatory_string_value (props,

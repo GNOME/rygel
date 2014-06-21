@@ -57,7 +57,7 @@ internal class Rygel.VideoTranscoder : Rygel.AudioTranscoder {
     }
 
     public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
-                                                    MediaItem        item,
+                                                    MediaFileItem        item,
                                                     TranscodeManager manager)
                                                     throws Error {
         var resource = base.add_resource (didl_item, item, manager);

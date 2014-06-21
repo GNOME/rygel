@@ -388,7 +388,7 @@ internal class Rygel.HTTPPlaylistHandler : Rygel.HTTPGetHandler {
     public static bool is_supported (string? arg) { return true; }
 }
 
-public abstract class Rygel.MediaItem : Rygel.MediaObject {
+public abstract class Rygel.MediaFileItem : Rygel.MediaObject {
     public long size = 1024;
     public ArrayList<string> uris = new ArrayList<string> ();
 
@@ -408,7 +408,7 @@ public abstract class Rygel.MediaItem : Rygel.MediaObject {
     }
 }
 
-private class Rygel.AudioItem : MediaItem {
+private class Rygel.AudioItem : MediaFileItem {
     public int64 duration = 2048;
 
     public AudioItem () {
@@ -416,7 +416,7 @@ private class Rygel.AudioItem : MediaItem {
     }
 }
 
-private interface Rygel.VisualItem : MediaItem {
+private interface Rygel.VisualItem : MediaFileItem {
     public abstract int width { get; set; }
     public abstract int height { get; set; }
     public abstract int color_depth { get; set; }

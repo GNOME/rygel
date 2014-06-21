@@ -78,17 +78,17 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
     }
 
     /**
-     * Return a new instance of MediaItem
+     * Return a new instance of MediaFileItem
      *
      * @param media_db instance of MediaDB
      * @param id id of the item
      * @param title title of the item
      * @param upnp_class upnp_class of the item
      */
-    public virtual MediaItem get_item (MediaContainer parent,
-                                       string         id,
-                                       string         title,
-                                       string         upnp_class) {
+    public virtual MediaFileItem get_item (MediaContainer parent,
+                                           string         id,
+                                           string         title,
+                                           string         upnp_class) {
         switch (upnp_class) {
             case Rygel.MusicItem.UPNP_CLASS:
             case Rygel.AudioItem.UPNP_CLASS:

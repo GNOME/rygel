@@ -76,7 +76,7 @@ private class Rygel.MediaObject : GLib.Object {
     public string id;
 }
 
-private class Rygel.MediaItem : Rygel.MediaObject {
+private class Rygel.MediaFileItem : Rygel.MediaObject {
     public ArrayList<string> uris = new ArrayList<string> ();
     public string mime_type;
     public Gee.ArrayList<string> get_uris () { return this.uris; }
@@ -86,7 +86,7 @@ private class Rygel.Thumbnail {
     public string file_extension;
 }
 
-private class Rygel.VisualItem : MediaItem {
+private class Rygel.VisualItem : MediaFileItem {
     public ArrayList<Thumbnail> thumbnails = new ArrayList<Thumbnail> ();
 }
 
@@ -98,7 +98,7 @@ private class Rygel.VideoItem : VisualItem {
     public ArrayList<Subtitle> subtitles = new ArrayList<Subtitle> ();
 }
 
-private class Rygel.MusicItem : MediaItem {
+private class Rygel.MusicItem : MediaFileItem {
     public Thumbnail album_art;
 }
 

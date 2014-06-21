@@ -31,11 +31,11 @@ internal class Rygel.LGTVHacks : ClientHacks {
     }
 
     public override void apply (MediaObject object) {
-        if (!(object is MediaItem)) {
+        if (!(object is MediaFileItem)) {
             return;
         }
 
-        var item = object as MediaItem;
+        var item = object as MediaFileItem;
         if (item.mime_type == "audio/x-vorbis+ogg" ||
             item.mime_type == "audio/x-flac+ogg") {
             item.mime_type = "application/ogg";

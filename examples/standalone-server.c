@@ -121,7 +121,8 @@ int main (int argc, char *argv[])
         if (item != NULL) {
             GeeArrayList* uris;
 
-            rygel_media_item_set_mime_type (RYGEL_MEDIA_ITEM (item), content_type);
+            rygel_media_file_item_set_mime_type (RYGEL_MEDIA_FILE_ITEM (item),
+                                                 content_type);
 
             rygel_media_object_add_uri (RYGEL_MEDIA_OBJECT (item), uri);
 

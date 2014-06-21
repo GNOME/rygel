@@ -30,7 +30,7 @@ using GUPnP;
 /**
  * Represents an audio item contained in a file.
  */
-public class Rygel.AudioItem : MediaItem {
+public class Rygel.AudioItem : MediaFileItem {
     public new const string UPNP_CLASS = "object.item.audioItem";
 
     /**

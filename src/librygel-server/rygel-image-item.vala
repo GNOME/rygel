@@ -2,9 +2,12 @@
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2010 Nokia Corporation.
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Doug Galligan <doug@sentosatech.com>
+ *         Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -29,7 +32,7 @@ using Gee;
 /**
  * Represents an image item.
  */
-public class Rygel.ImageItem : MediaItem, VisualItem {
+public class Rygel.ImageItem : MediaFileItem, VisualItem {
     public new const string UPNP_CLASS = "object.item.imageItem";
 
     //TODO: This property documentation is not used.

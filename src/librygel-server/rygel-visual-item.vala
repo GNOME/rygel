@@ -2,10 +2,12 @@
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2010 Nokia Corporation.
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Jens Georg <jensg@openismus.com>
+ *         Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -28,25 +30,25 @@ using GUPnP;
 using Gee;
 
 /**
- * An interface that visual (video and image) items must implement.
+ * An interface representing visual properties of an item stored in a file.
  */
-public interface Rygel.VisualItem : MediaItem {
+public interface Rygel.VisualItem : MediaFileItem {
 
     /**
-     * The width of the item in pixels.
-     * A value of -1 means that the width is unknown and will not, or did not, appear in DIDL-Lite XML.
+     * The width of the source content (this.uri) in pixels.
+     * A value of -1 means that the width is unknown
      */
     public abstract int width { get; set; }
 
     /**
-     * The height of the item in pixels.
-     * A value of -1 means that the height is unknown and will not, or did not, appear in DIDL-Lite XML.
+     * The height of the source content (this.uri) in pixels.
+     * A value of -1 means that the height is unknown
      */
     public abstract int height { get; set; }
 
     /**
-     * The number of bits per pixel used to represent the video or image resource.
-     * A value of -1 means that the color depth is unknown and will not, or did not, appear in DIDL-Lite XML.
+     * The number of bits per pixel in the video or image resource (this.uri).
+     * A value of -1 means that the color depth is unknown
      */
     public abstract int color_depth { get; set; }
 
