@@ -30,7 +30,6 @@ private class Rygel.PlaybinRendererTest : GLib.Object {
 
         var test = new PlaybinRendererTest ();
         test.test_with_default_gstplaybin ();
-        test.test_with_existing_gstplaybin ();
 
         return 0;
     }
@@ -38,15 +37,11 @@ private class Rygel.PlaybinRendererTest : GLib.Object {
     public void test_with_default_gstplaybin() {
         var renderer = new Rygel.Playbin.Renderer ("test playbin renderer");
         assert (renderer != null);
-        var player = Rygel.Playbin.Player.get_default ();
-        assert (player.playbin != null);
-    }
-
-    public void test_with_existing_gstplaybin() {
-        var element = Gst.ElementFactory.make ("playbin", null);
-        var renderer = new Rygel.Playbin.Renderer.wrap (element, "test playbin renderer");
-        assert (renderer != null);
-        var player = Rygel.Playbin.Player.get_default ();
-        assert (player.playbin != null);
+        try {
+            var player = Rygel.Playbin.Player.instance ();
+            assert (player.playbin != null);
+        } catch (Error error) {
+            assert_not_reached ();
+        }
     }
 }
