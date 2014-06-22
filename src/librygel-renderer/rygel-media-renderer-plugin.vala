@@ -107,9 +107,9 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
         return null;
     }
 
-    internal PlayerController get_controller () {
+    internal virtual PlayerController get_controller () {
         if (this.controller == null) {
-            this.controller = new PlayerController (this.get_player (),
+            this.controller = new DefaultPlayerController (this.get_player (),
                                                     this.get_protocol_info ());
         }
 
