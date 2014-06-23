@@ -78,4 +78,5 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-wmp-hacks.vala \
 	rygel-xbmc-hacks.vala \
 	rygel-xbox-hacks.vala \
-	rygel-data-sink.vala
+	rygel-data-sink.vala \
+	libmediaart-1.0.vapi

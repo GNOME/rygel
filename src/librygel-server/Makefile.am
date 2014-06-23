@@ -16,8 +16,7 @@ librygel_server_2_4_la_VALAFLAGS = \
 	-H rygel-server.h --library=rygel-server-2.4 \
 	$(LIBRYGEL_SERVER_DEPS_VALAFLAGS) \
 	$(RYGEL_COMMON_LIBRYGEL_CORE_VALAFLAGS) \
-	$(RYGEL_COMMON_VALAFLAGS) \
-	$(srcdir)/libmediaart-1.0.vapi
+	$(RYGEL_COMMON_VALAFLAGS)
 
 librygel_server_2_4_la_CFLAGS = \
 	$(LIBRYGEL_SERVER_DEPS_CFLAGS) \
