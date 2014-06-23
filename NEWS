@@ -1,3 +1,170 @@
+0.23.1
+======
+
+A new unstable release of Rygel!
+
+- Remove -Wl,-z,defs.
+- Fix several criticals related to time-out sources.
+
+Rygel:
+ - Change single instance behavior; don't replace running instance by default,
+   add new "-r/--replace" option to go back to the old behavior.
+ - Several manpage fixes.
+
+Server:
+ - Pass on all resources on object creation.
+ - Pass more meta-data on object creation.
+ - Improve error handling in reference creation.
+ - Set HTTP version to 1.1 as late as possible.
+ - Port media art lookup to libmediaart.
+ - Add some documentation for AudioItem.
+ - Move some properties to base classes.
+ - Fix a potential null pointer dereference.
+
+Renderer:
+ - Report NextAVTransport* values in GetMediaInfo().
+ - Properly remove the playlist timeout.
+
+GStreamer Renderer:
+ - Don't exit if there is no playbin element.
+ - Deprecate Renderer.wrap.
+ - Use cubic volume.
+ - Fix duration and position.
+ - Use duration from meta-data until playbin does provide it.
+ - Rely on libsoup to determine the proxy.
+ - Use dlna+http virtual protocol if the dlnasrc element is available.
+
+Preferences:
+ - Use Gtk.Window instead of Gtk.Dialog.
+
+External:
+ - Let the peer decide on the sort order.
+
+MediaExport:
+ - Code style fixes.
+ - Use libmediaart for media art extraction.
+ - Handle external media art such as folder.jpg etc.
+ - Prevent a strange warning on media upload.
+ - Add a configuration option to disable/set the time to wait before
+   extracting meta-data after a file modification event has happened.
+ - Properly handle album art for m4a fies.
+
+Attention!
+==========
+ - API and ABI version have been bumped to 2.4 to prepare for the upcoming API
+   changes.
+ - New dependency: libmediaart >= 0.4.0.
+ - Due to a memory leak fix, the recommended Vala version is 0.24.0-108-g0edb05c
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=689632
+ - https://bugzilla.gnome.org/show_bug.cgi?id=694455
+ - https://bugzilla.gnome.org/show_bug.cgi?id=702555
+ - https://bugzilla.gnome.org/show_bug.cgi?id=709723
+ - https://bugzilla.gnome.org/show_bug.cgi?id=710387
+ - https://bugzilla.gnome.org/show_bug.cgi?id=710443
+ - https://bugzilla.gnome.org/show_bug.cgi?id=720672
+ - https://bugzilla.gnome.org/show_bug.cgi?id=721817
+ - https://bugzilla.gnome.org/show_bug.cgi?id=721824
+ - https://bugzilla.gnome.org/show_bug.cgi?id=723374
+ - https://bugzilla.gnome.org/show_bug.cgi?id=726982
+ - https://bugzilla.gnome.org/show_bug.cgi?id=727424
+ - https://bugzilla.gnome.org/show_bug.cgi?id=727479
+ - https://bugzilla.gnome.org/show_bug.cgi?id=729090
+ - https://bugzilla.gnome.org/show_bug.cgi?id=731348
+ - https://bugzilla.gnome.org/show_bug.cgi?id=731859
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Craig Pratt <craig@ecaspia.com>
+ - Richard Röjfors <richard.rojfors@gmail.com>
+ - Reiner Merk <lotan_rm@gmx.de>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Marek Černocký <marek@manet.cz>
+ - Jussi Kukkonen <jussi.kukkonen@intel.com>
+ - Enrico Nicoletto <liverig@gmail.com>
+ - Daniel Mustieles <dnaiel.mustieles@gmail.com>
+ - Alexander Kanavin <alex.kanavin@gmail.com>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - es, courtesy of Daniel Mustieles
+ - pt_BR, courtesy of Enrico Nicoletto
+
+0.22.2
+======
+
+a new stable release of rygel!
+
+- fix dbus plugins.
+- bump libsoup requirement to 2.44.
+
+tracker:
+ - actually use nmm:dlnamime property.
+
+bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=730913
+
+all contributors to this release:
+ - jens georg <mail@jensge.org>
+ - wolfgang stöggl <c72578@yahoo.de>
+ - tom tryfonidis <tomtryf@gmail.com>
+ - dirgita <dirgitadevina@gmail.com>
+ - carles ferrando <carles.ferrando@gmail.com>
+
+added/updated translations
+ - ca@valencia, courtesy of pau iranzo
+ - de, courtesy of wolfgang stoeggl
+ - el, courtesy of eva fotopoulou
+ - id, courtesy of dirgita
+
+0.22.1
+======
+
+a new stable release of rygel!
+
+core:
+ - don't spam debug log.
+
+renderer:
+ - fix uri handling for playlists.
+
+
+bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=726776
+
+all contributors to this release:
+ - jens georg <mail@jensge.org>
+ - peter mráz <etkinator@gmail.com>
+ - dušan kazik <prescott66@gmail.com>
+ - christian kirbach <christian.kirbach@gmail.com>
+
+added/updated translations
+ - de, courtesy of christian kirbach
+ - sk, courtesy of peter mráz
+
+0.22.0
+======
+
+a new stable release of rygel!
+
+all contributors to this release:
+ - inaki larranaga murgoitio <dooteo@zundan.com>
+ - kenneth nielsen <k.nielsen81@gmail.com>
+ - мирослав николић <miroslavnikolic@rocketmail.com>
+ - pau iranzo <paugnu@gmail.com>
+ - jiro matsuzawa <jmatsuzawa@gnome.org>
+ - duarte loreto <happyguy_pt@hotmail.com>
+ - ask h. larsen <asklarsen@gmail.com>
+
+added/updated translations
+ - ca, courtesy of pau iranzo
+ - da, courtesy of ask hjorth larsen
+ - eu, courtesy of iñaki larrañaga murgoitio
+ - ja, courtesy of jiro matsuzawa
+ - pt, courtesy of duarte loreto
+ - sr, courtesy of мирослав николић
+
 0.21.6
 ======
 
