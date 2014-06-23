@@ -59,7 +59,7 @@ GSTREAMER_AUDIO_REQUIRED=1.0
 dnl Additional requirements for tracker plugin
 TRACKER_SPARQL_REQUIRED_MIN=0.14.0
 
-VALAFLAGS="--target-glib=2.32 $VALAFLAGS"
+VALAFLAGS="--enable-deprecated --target-glib=2.32 $VALAFLAGS"
 
 RYGEL_BASE_MODULES="gupnp-1.0 >= $GUPNP_REQUIRED gee-0.8 >= $GEE_REQUIRED"
 PKG_CHECK_MODULES([LIBRYGEL_CORE_DEPS], [$RYGEL_BASE_MODULES uuid >= $UUID_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED gio-2.0 >= $GIO_REQUIRED gmodule-2.0 libxml-2.0 >= $LIBXML_REQUIRED])
