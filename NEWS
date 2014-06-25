@@ -1,3 +1,19 @@
+0.23.1.1
+========
+
+- Launch rygel directly from desktop file.
+
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=731858
+
+All contributors to this release:
+ - Yuri Myasoedov <ymyasoedov@yandex.ru>
+ - Bastien Nocera <hadess@hadess.net>
+
+Added/updated translations
+ - ru, courtesy of Yuri Myasoedov
+
 0.23.1
 ======
 
