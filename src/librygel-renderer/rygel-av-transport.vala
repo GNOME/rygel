@@ -408,11 +408,11 @@ internal class Rygel.AVTransport : Service {
                         typeof (string),
                         this.player.position_as_str,
                     "RelCount",
-                        typeof (int),
-                        int.MAX,
+                        typeof (int64),
+                        this.player.byte_position,
                     "AbsCount",
-                        typeof (int),
-                        int.MAX);
+                        typeof (int64),
+                        this.player.byte_position);
 
         action.return ();
     }
