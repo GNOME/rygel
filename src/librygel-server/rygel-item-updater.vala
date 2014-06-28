@@ -1,7 +1,9 @@
 /*
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Krzesimir Nowak <krnowak@openismus.com>
+ *         Doug Galligan <doug@sentosatech.com>
  *
  * This file is part of Rygel.
  *
@@ -98,6 +100,23 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
         }
     }
 
+    // Remove any leading or trailing spaces for the corresponding text node.
+    private static string format_tag_values (string tag_values) {
+        if (tag_values.length > 0 && tag_values.get_char (0) == '<') {
+            var init_split = tag_values.split ("</");
+            var tag_name = init_split[1].substring
+                                            (0, init_split[1].length - 1)
+                                            ._strip ();
+            var tag_value = init_split[0].split (">")[1]._strip ();
+            debug ("Tag Name formatted :%s", tag_name);
+            debug ("Tag Value formatted :%s", tag_value);
+
+            return "<%s>%s</%s>".printf (tag_name, tag_value, tag_name);
+        }
+
+        return tag_values;
+    }
+
     private static LinkedList<string> csv_split (string? tag_values) {
         var list = new LinkedList<string> ();
 
@@ -139,7 +158,10 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
             }
         }
 
-        list.add (ItemUpdater.unescape (tag_values.substring (token_start)));
+        var stripped_values = tag_values.substring (token_start).strip ();
+
+        list.add (ItemUpdater.format_tag_values (
+                                        ItemUpdater.unescape (stripped_values)));
 
         return list;
     }
