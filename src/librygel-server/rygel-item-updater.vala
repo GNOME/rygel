@@ -144,6 +144,14 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
                 case ',':
                     var value = tag_values.substring (token_start,
                                                       token_length);
+                    //  Check if the start character is "<"
+                    if (value.length > 0 && value[0] == '<') {
+                         // then the end character must be > before the split"
+                         if (!(value[value.length-1] == '>')) {
+                             // Continue the loop again.
+                             break;
+                         }
+                    }
 
                     list.add (ItemUpdater.unescape (value));
                     token_start += token_length + 1;
