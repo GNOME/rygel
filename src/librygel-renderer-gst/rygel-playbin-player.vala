@@ -623,6 +623,10 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     }
 
     private void guess_duration () {
+        if (this._metadata == null || this._metadata == "") {
+            return;
+        }
+
         var reader = new DIDLLiteParser ();
 
         // Try to guess duration from meta-data.
