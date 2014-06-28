@@ -581,6 +581,10 @@ internal class Rygel.AVTransport : Service {
     }
 
     private void next_cb (Service service, ServiceAction action) {
+        if (!this.check_instance_id (action)) {
+            return;
+        }
+
         if (this.controller.next ()) {
             action.return ();
         } else {
@@ -589,6 +593,10 @@ internal class Rygel.AVTransport : Service {
     }
 
     private void previous_cb (Service service, ServiceAction action) {
+        if (!this.check_instance_id (action)) {
+            return;
+        }
+
         if (this.controller.previous ()) {
             action.return ();
         } else {
