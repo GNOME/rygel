@@ -725,6 +725,8 @@ internal class Rygel.AVTransport : Service {
                features.has_prefix ("DLNA.ORG_PN=DIDL_S");
     }
 
+    bool head_faked;
+
     private void check_resource (Soup.Message msg,
                                  string       _uri,
                                  string       _metadata,
@@ -743,6 +745,7 @@ internal class Rygel.AVTransport : Service {
             // Fake HEAD request by cancelling the message after the headers
             // were received, then restart the message
             msg.got_headers.connect ((msg) => {
+                this.head_faked = true;
                 this.session.cancel_message (msg, msg.status_code);
             });
 
@@ -751,7 +754,7 @@ internal class Rygel.AVTransport : Service {
             return;
         }
 
-        if (msg.status_code != Status.OK) {
+        if (msg.status_code != Status.OK && !this.head_faked) {
             // TRANSLATORS: first %s is a URI, the second an explanaition of
             // the error
             warning (_("Failed to access resource at %s: %s"),
@@ -769,6 +772,7 @@ internal class Rygel.AVTransport : Service {
 
         if (!this.is_valid_mime_type (mime) &&
             !this.is_playlist (mime, features)) {
+            debug ("Unsupported mime type %s", mime);
             action.return_error (714, _("Illegal MIME-type"));
 
             return;
@@ -793,6 +797,7 @@ internal class Rygel.AVTransport : Service {
             var message = new Message ("HEAD", uri);
             message.request_headers.append ("getContentFeatures.dlna.org",
                                             "1");
+            this.head_faked = false;
             message.finished.connect ((msg) => {
                 this.check_resource (msg, uri, metadata, action);
             });
