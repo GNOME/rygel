@@ -104,7 +104,6 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
             switch (value) {
                 case "STOPPED":
                     if (state != State.NULL || pending != State.VOID_PENDING) {
-                        this._playback_state = "TRANSITIONING";
                         this.playbin.set_state (State.NULL);
                     } else {
                         this._playback_state = value;
@@ -112,7 +111,6 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                 break;
                 case "PAUSED_PLAYBACK":
                     if (state != State.PAUSED || pending != State.VOID_PENDING) {
-                        this._playback_state = "TRANSITIONING";
                         this.playbin.set_state (State.PAUSED);
                     } else {
                         this._playback_state = value;
