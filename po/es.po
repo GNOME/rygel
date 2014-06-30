@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-06-17 10:19+0000\n"
-"PO-Revision-Date: 2014-06-17 18:33+0200\n"
+"POT-Creation-Date: 2014-06-30 10:15+0000\n"
+"PO-Revision-Date: 2014-06-30 13:07+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -220,7 +220,6 @@ msgstr "No se monitorizarán cambios en archivos"
 #. upload case.
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
-#| msgid "Failed to get file info for %s"
 msgid "Failed to get file info for %s: %s"
 msgstr "Falló al obtener el archivo de información para %s: %s"
 
@@ -462,25 +461,25 @@ msgstr "Falló al obtener el nivel de registro de la configuración: %s"
 #: ../src/librygel-core/rygel-meta-config.vala:242
 #: ../src/librygel-core/rygel-meta-config.vala:261
 #: ../src/librygel-core/rygel-meta-config.vala:280
-#: ../src/rygel/rygel-cmdline-config.vala:159
-#: ../src/rygel/rygel-cmdline-config.vala:167
+#: ../src/rygel/rygel-cmdline-config.vala:168
 #: ../src/rygel/rygel-cmdline-config.vala:176
-#: ../src/rygel/rygel-cmdline-config.vala:184
-#: ../src/rygel/rygel-cmdline-config.vala:192
-#: ../src/rygel/rygel-cmdline-config.vala:200
-#: ../src/rygel/rygel-cmdline-config.vala:208
-#: ../src/rygel/rygel-cmdline-config.vala:216
-#: ../src/rygel/rygel-cmdline-config.vala:255
-#: ../src/rygel/rygel-cmdline-config.vala:274
-#: ../src/rygel/rygel-cmdline-config.vala:280
-#: ../src/rygel/rygel-cmdline-config.vala:287
-#: ../src/rygel/rygel-cmdline-config.vala:291
-#: ../src/rygel/rygel-cmdline-config.vala:295
-#: ../src/rygel/rygel-cmdline-config.vala:318
-#: ../src/rygel/rygel-cmdline-config.vala:344
-#: ../src/rygel/rygel-cmdline-config.vala:373
-#: ../src/rygel/rygel-cmdline-config.vala:399
-#: ../src/rygel/rygel-cmdline-config.vala:424
+#: ../src/rygel/rygel-cmdline-config.vala:185
+#: ../src/rygel/rygel-cmdline-config.vala:193
+#: ../src/rygel/rygel-cmdline-config.vala:201
+#: ../src/rygel/rygel-cmdline-config.vala:209
+#: ../src/rygel/rygel-cmdline-config.vala:217
+#: ../src/rygel/rygel-cmdline-config.vala:225
+#: ../src/rygel/rygel-cmdline-config.vala:264
+#: ../src/rygel/rygel-cmdline-config.vala:283
+#: ../src/rygel/rygel-cmdline-config.vala:289
+#: ../src/rygel/rygel-cmdline-config.vala:296
+#: ../src/rygel/rygel-cmdline-config.vala:300
+#: ../src/rygel/rygel-cmdline-config.vala:304
+#: ../src/rygel/rygel-cmdline-config.vala:327
+#: ../src/rygel/rygel-cmdline-config.vala:353
+#: ../src/rygel/rygel-cmdline-config.vala:382
+#: ../src/rygel/rygel-cmdline-config.vala:408
+#: ../src/rygel/rygel-cmdline-config.vala:433
 #: ../src/rygel/rygel-environment-config.vala:105
 #: ../src/rygel/rygel-environment-config.vala:109
 #: ../src/rygel/rygel-environment-config.vala:113
@@ -547,7 +546,7 @@ msgstr "Error al listar el contenido de la carpeta «%s»: %s"
 msgid "Could not load plugin: %s"
 msgstr "No se pudo cargar el complemento: %s"
 
-#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:366
+#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:364
 msgid ""
 "Your GStreamer installation seems to be missing the \"playbin\" element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
@@ -578,26 +577,32 @@ msgstr "No se soporta el modo de búsqueda"
 #: ../src/librygel-renderer/rygel-av-transport.vala:528
 #: ../src/librygel-renderer/rygel-av-transport.vala:553
 #: ../src/librygel-renderer/rygel-av-transport.vala:566
-#: ../src/librygel-renderer/rygel-av-transport.vala:587
-#: ../src/librygel-renderer/rygel-av-transport.vala:595
+#: ../src/librygel-renderer/rygel-av-transport.vala:591
+#: ../src/librygel-renderer/rygel-av-transport.vala:603
 msgid "Illegal seek target"
 msgstr "Objetivo de búsqueda ilegal"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:694
-#: ../src/librygel-renderer/rygel-av-transport.vala:704
-#: ../src/librygel-renderer/rygel-av-transport.vala:761
+#: ../src/librygel-renderer/rygel-av-transport.vala:702
+#: ../src/librygel-renderer/rygel-av-transport.vala:746
+#: ../src/librygel-renderer/rygel-av-transport.vala:755
+#: ../src/librygel-renderer/rygel-av-transport.vala:818
 msgid "Resource not found"
 msgstr "Recurso no encontrado"
 
+#: ../src/librygel-renderer/rygel-av-transport.vala:744
+#, c-format
+msgid "Problem parsing playlist: %s"
+msgstr "Problema al analizar la lista de reproducción: %s"
+
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: ../src/librygel-renderer/rygel-av-transport.vala:757
+#: ../src/librygel-renderer/rygel-av-transport.vala:814
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Falló al acceder al recurso en %s: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:772
+#: ../src/librygel-renderer/rygel-av-transport.vala:830
 msgid "Illegal MIME-type"
 msgstr "Tipo MIME ilegal"
 
@@ -732,7 +737,7 @@ msgid "Failed to destroy object '%s': %s"
 msgstr "Falló al destruir el objeto «%s»: %s"
 
 #: ../src/librygel-server/rygel-item-destroyer.vala:104
-#: ../src/librygel-server/rygel-item-updater.vala:189
+#: ../src/librygel-server/rygel-item-updater.vala:283
 #: ../src/librygel-server/rygel-media-query-action.vala:194
 #: ../src/librygel-server/rygel-reference-creator.vala:68
 #: ../src/librygel-server/rygel-reference-creator.vala:115
@@ -750,50 +755,62 @@ msgid "Object removal from %s not allowed"
 msgstr "No se permite quitar objetos de %s"
 
 #. Sorry we can't do anything without the ID
-#: ../src/librygel-server/rygel-item-updater.vala:70
+#: ../src/librygel-server/rygel-item-updater.vala:74
 msgid "Object id missing"
 msgstr "Falta el ID del objeto"
 
-#: ../src/librygel-server/rygel-item-updater.vala:77
+#: ../src/librygel-server/rygel-item-updater.vala:81
 #, c-format
 msgid "Successfully updated object '%s'"
 msgstr "Objeto «%s» actualizado correctamente"
 
-#: ../src/librygel-server/rygel-item-updater.vala:85
+#: ../src/librygel-server/rygel-item-updater.vala:89
 #, c-format
 msgid "Failed to update object '%s': %s"
 msgstr "Falló al actualizar el objeto «%s»: %s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:162
+#: ../src/librygel-server/rygel-object-creator.vala:601
+#, c-format
+msgid "Invalid date format: %s"
+msgstr "Formato de fecha no válido: %s"
+
+#: ../src/librygel-server/rygel-item-updater.vala:171
+#: ../src/librygel-server/rygel-object-creator.vala:610
+#, c-format
+msgid "Invalid date: %s"
+msgstr "Fecha no válida: %s"
+
+#: ../src/librygel-server/rygel-item-updater.vala:256
 msgid "Bad current tag value."
 msgstr "Valor incorrecto para la etiqueta actual."
 
-#: ../src/librygel-server/rygel-item-updater.vala:166
+#: ../src/librygel-server/rygel-item-updater.vala:260
 msgid "Bad new tag value."
 msgstr "Valor incorrecto para la etiqueta nueva."
 
-#: ../src/librygel-server/rygel-item-updater.vala:169
+#: ../src/librygel-server/rygel-item-updater.vala:263
 msgid "Tried to delete required tag."
 msgstr "Se ha intentado eliminar la etiqueta requerida."
 
-#: ../src/librygel-server/rygel-item-updater.vala:172
+#: ../src/librygel-server/rygel-item-updater.vala:266
 msgid "Tried to change read-only property."
 msgstr "Se ha intentado cambiar una propiedad de sólo lectura."
 
-#: ../src/librygel-server/rygel-item-updater.vala:175
+#: ../src/librygel-server/rygel-item-updater.vala:269
 msgid "Parameter count mismatch."
 msgstr "El número de parámetros no coincide."
 
-#: ../src/librygel-server/rygel-item-updater.vala:178
+#: ../src/librygel-server/rygel-item-updater.vala:272
 msgid "Unknown error."
 msgstr "Error desconocido."
 
-#: ../src/librygel-server/rygel-item-updater.vala:191
+#: ../src/librygel-server/rygel-item-updater.vala:285
 #, c-format
 msgid "Metadata modification of object %s not allowed"
 msgstr "No se permite modificar los metadatos del objeto %s"
 
-#: ../src/librygel-server/rygel-item-updater.vala:196
+#: ../src/librygel-server/rygel-item-updater.vala:290
 #, c-format
 msgid ""
 "Metadata modification of object %s being a child of restricted object %s not "
@@ -815,13 +832,13 @@ msgstr "No se ha encontrado un motor de medios."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "No se ha llamado a MediaEngine.init. No se puede continuar."
 
-#: ../src/librygel-server/rygel-media-item.vala:322
+#: ../src/librygel-server/rygel-media-item.vala:309
 #, c-format
 msgid "Bad URI: %s"
 msgstr "URI errónea: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-item.vala:334
+#: ../src/librygel-server/rygel-media-item.vala:321
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Falló al probar el protocolo para el URI %s. Asumiendo «%s»."
@@ -913,16 +930,6 @@ msgstr "Falló al crear un elemento bajo «%s»: %s"
 #, c-format
 msgid "DLNA profile '%s' not supported"
 msgstr "Perfil DLNA «%s» no soportado"
-
-#: ../src/librygel-server/rygel-object-creator.vala:601
-#, c-format
-msgid "Invalid date format: %s"
-msgstr "Formato de fecha no válido: %s"
-
-#: ../src/librygel-server/rygel-object-creator.vala:610
-#, c-format
-msgid "Invalid date: %s"
-msgstr "Fecha no válida: %s"
 
 #: ../src/librygel-server/rygel-object-creator.vala:643
 #, c-format
@@ -1054,69 +1061,78 @@ msgstr "Falta el elemento requerido %s"
 msgid "Time-based seek not supported"
 msgstr "Búsqueda basada en el tiempo no soportada"
 
-#: ../src/rygel/rygel-cmdline-config.vala:77
+#: ../src/rygel/rygel-cmdline-config.vala:80
 msgid "Network Interfaces"
 msgstr "Interfaces de red"
 
-#: ../src/rygel/rygel-cmdline-config.vala:81
+#: ../src/rygel/rygel-cmdline-config.vala:84
 msgid "Disable transcoding"
 msgstr "Desactivar transcodificación"
 
-#: ../src/rygel/rygel-cmdline-config.vala:83
+#: ../src/rygel/rygel-cmdline-config.vala:86
 msgid "Disallow upload"
 msgstr "No permitir la subida"
 
-#: ../src/rygel/rygel-cmdline-config.vala:85
+#: ../src/rygel/rygel-cmdline-config.vala:88
 msgid "Disallow deletion"
 msgstr "No permitir la eliminación"
 
-#: ../src/rygel/rygel-cmdline-config.vala:87
+#: ../src/rygel/rygel-cmdline-config.vala:90
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr ""
 "Lista de parejas dominio:nivel separadas por comas. Consulte rygel (1) para "
 "obtener más detalles"
 
-#: ../src/rygel/rygel-cmdline-config.vala:89
+#: ../src/rygel/rygel-cmdline-config.vala:92
 msgid "Plugin Path"
 msgstr "Ruta del complemento"
 
-#: ../src/rygel/rygel-cmdline-config.vala:91
+#: ../src/rygel/rygel-cmdline-config.vala:94
 msgid "Engine Path"
 msgstr "Ruta del motor"
 
-#: ../src/rygel/rygel-cmdline-config.vala:94
+#: ../src/rygel/rygel-cmdline-config.vala:97
 msgid "Disable plugin"
 msgstr "Desactivar complemento"
 
-#: ../src/rygel/rygel-cmdline-config.vala:96
+#: ../src/rygel/rygel-cmdline-config.vala:99
 msgid "Set plugin titles"
 msgstr "Configurar los títulos del complemento"
 
-#: ../src/rygel/rygel-cmdline-config.vala:98
+#: ../src/rygel/rygel-cmdline-config.vala:101
 msgid "Set plugin options"
 msgstr "Configurar las opciones del complemento"
 
-#: ../src/rygel/rygel-cmdline-config.vala:100
+#: ../src/rygel/rygel-cmdline-config.vala:103
 msgid "Disable UPnP (streaming-only)"
 msgstr "Desactivar UPnP (sólo para «streaming»)"
 
-#: ../src/rygel/rygel-cmdline-config.vala:102
+#: ../src/rygel/rygel-cmdline-config.vala:105
 msgid "Use configuration file instead of user configuration"
 msgstr ""
 "Usar un archivo de configuración de lugar de la configuración del usuario"
 
-#: ../src/rygel/rygel-cmdline-config.vala:104
+#: ../src/rygel/rygel-cmdline-config.vala:107
 msgid "Shutdown remote Rygel reference"
 msgstr "Preferencias de apagado remoto de Rygel"
 
-#: ../src/rygel/rygel-cmdline-config.vala:141
+#: ../src/rygel/rygel-cmdline-config.vala:109
+msgid "Replace currently running instance of rygel"
+msgstr "Reemplazar la instancia actual en ejecución de Rygel"
+
+#: ../src/rygel/rygel-cmdline-config.vala:146
 msgid "Shutting down remote Rygel instance\n"
 msgstr "Apagando la instancia remota de Rygel\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:149
+#: ../src/rygel/rygel-cmdline-config.vala:154
 #, c-format
 msgid "Failed to shut-down other rygel instance: %s"
 msgstr "Falló al parar otra instancia de rygel: %s"
+
+#: ../src/rygel/rygel-dbus-service.vala:81
+#| msgid "Another instance of Rygel is already running."
+msgid "Another instance of rygel is already running. Not starting."
+msgstr "Ya se está ejecutando otra instancia del Rygel. No se inicia."
 
 #: ../src/rygel/rygel-main.vala:83
 msgid "Rygel is running in streaming-only mode."
@@ -1256,9 +1272,6 @@ msgstr "Falló al parar el servicio Rygel: %s"
 
 #~ msgid "Another instance of Rygel is taking over. Exiting"
 #~ msgstr "Otro instancia de Rygel está asumiendo el control. Saliendo"
-
-#~ msgid "Another instance of Rygel is already running."
-#~ msgstr "Ya se está ejecutando otra instancia del Rygel."
 
 #~ msgid "Failed to start D-Bus service: %s"
 #~ msgstr "Falló al iniciar el servicio D-Bus: %s"
