@@ -100,7 +100,7 @@ internal class Rygel.HTTPItemURI : Object {
         if (this.extension == "") {
             string uri_extension = "";
 
-            foreach (string uri_string in item.uris) {
+            foreach (string uri_string in item.get_uris ()) {
                 string basename = Path.get_basename (uri_string);
                 int dot_index = basename.last_index_of(".");
 

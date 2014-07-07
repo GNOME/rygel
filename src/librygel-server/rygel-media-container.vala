@@ -127,7 +127,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
     public override OCMFlags ocm_flags {
         get {
-            if (!(this is WritableContainer) || this.uris.size == 0) {
+            if (!(this is WritableContainer) || this.get_uris ().is_empty) {
                 return OCMFlags.NONE;
             }
 

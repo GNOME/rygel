@@ -77,7 +77,7 @@ public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     private bool http_uri_present (MediaItem item) {
         bool present = false;
 
-        foreach (var uri in item.uris) {
+        foreach (var uri in item.get_uris ()) {
             if (!this.need_proxy (uri)) {
                 present = true;
 

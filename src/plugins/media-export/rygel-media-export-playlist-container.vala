@@ -48,7 +48,7 @@ internal class Rygel.MediaExport.PlaylistContainer : DBContainer,
 
         // Need to add an URI otherwise core doesn't mark the container as
         // writable
-        this.uris.add (PlaylistContainer.URI);
+        this.add_uri (PlaylistContainer.URI);
     }
 
     public override OCMFlags ocm_flags {

@@ -136,7 +136,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         queue.dequeue (this.item);
 
         try {
-            var source_file = File.new_for_uri (this.item.uris[0]);
+            var source_file = File.new_for_uri (this.item.get_primary_uri ());
             this.output_stream = yield source_file.replace_async (null,
                                                                   false,
                                                                   FileCreateFlags.PRIVATE,
@@ -154,7 +154,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
 
             debug ("Importing resource from %s to %s",
                    source_uri,
-                   this.item.uris[0]);
+                   this.item.get_primary_uri ());
 
             yield;
         } catch (Error err) {
@@ -187,7 +187,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         } else if (!(media_object as MediaItem).place_holder) {
             msg = _("Pushing data to non-empty item '%s' not allowed").printf
                                         (media_object.id);
-        } else if (media_object.uris.size < 1) {
+        } else if (media_object.get_uris ().is_empty) {
             assert_not_reached ();
         }
 
@@ -207,7 +207,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
             this.status = TransferStatus.ERROR;
             try {
                 this.output_stream.close (this.cancellable);
-                var file = File.new_for_uri (this.item.uris[0]);
+                var file = File.new_for_uri (this.item.get_primary_uri ());
                 file.delete (this.cancellable);
             } catch (Error error) {};
 

@@ -513,20 +513,20 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
         }
 
         // extract_item_parameters could not find an uri
-        if (this.object.uris.size == 0) {
+        if (this.object.get_uris ().is_empty) {
             var uri = yield this.create_uri (container, this.object.title);
-            this.object.uris.add (uri);
+            this.object.add_uri (uri);
             if (this.object is MediaItem) {
                 (this.object as MediaItem).place_holder = true;
             }
         } else {
             if (this.object is MediaItem) {
-                var file = File.new_for_uri (this.object.uris[0]);
+                var file = File.new_for_uri (this.object.get_primary_uri ());
                 (this.object as MediaItem).place_holder = !file.is_native ();
             }
         }
 
-        this.object.id = this.object.uris[0];
+        this.object.id = this.object.get_primary_uri ();
 
         this.parse_and_verify_didl_date ();
     }

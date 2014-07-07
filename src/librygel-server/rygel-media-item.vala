@@ -110,15 +110,15 @@ public abstract class Rygel.MediaItem : MediaObject {
     // Live media items need to provide a nice working implementation of this
     // method if they can/do not provide a valid URI
     public virtual DataSource? create_stream_source (string? host_ip = null) {
-        if (this.uris.size == 0) {
+        if (this.get_uris ().is_empty) {
             return null;
         }
 
-        string translated_uri = this.uris.get (0);
+        string translated_uri = this.get_primary_uri ();
         if (host_ip != null) {
             try {
                 translated_uri = MediaItem.address_regex.replace_literal
-                    (this.uris.get (0), -1, 0, host_ip);
+                    (this.get_primary_uri (), -1, 0, host_ip);
             } catch (Error error) {
                 assert_not_reached ();
             }
@@ -132,10 +132,6 @@ public abstract class Rygel.MediaItem : MediaObject {
     }
 
     public abstract bool streamable ();
-
-    public virtual void add_uri (string uri) {
-        this.uris.add (uri);
-    }
 
     internal int compare_transcoders (Transcoder transcoder1,
                                       Transcoder transcoder2) {
@@ -329,7 +325,7 @@ public abstract class Rygel.MediaItem : MediaObject {
     protected virtual void add_resources (DIDLLiteItem didl_item,
                                           bool         allow_internal)
                                           throws Error {
-        foreach (var uri in this.uris) {
+        foreach (var uri in this.get_uris ()) {
             var protocol = this.get_protocol_for_uri (uri);
 
             if (allow_internal || protocol != "internal") {

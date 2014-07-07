@@ -60,7 +60,7 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
                                         Cancellable? cancellable)
                                         throws Error {
         item.parent = this;
-        var file = File.new_for_uri (item.uris[0]);
+        var file = File.new_for_uri (item.get_primary_uri ());
         // TODO: Mark as place-holder. Make this proper some time.
         if (file.is_native ()) {
             item.modified = int64.MAX;
@@ -83,7 +83,7 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
         switch (container.upnp_class) {
         case MediaContainer.STORAGE_FOLDER:
         case MediaContainer.UPNP_CLASS:
-            var file = File.new_for_uri (container.uris[0]);
+            var file = File.new_for_uri (container.get_primary_uri ());
             container.id = MediaCache.get_id (file);
             if (file.is_native ()) {
                 file.make_directory_with_parents (cancellable);
@@ -101,7 +101,7 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
 
     protected override async void remove_child (MediaObject object) {
         yield base.remove_child (object);
-        var file = File.new_for_uri (object.uris[0]);
+        var file = File.new_for_uri (object.get_primary_uri ());
         try {
             yield file.delete_async ();
         } catch (Error error) {

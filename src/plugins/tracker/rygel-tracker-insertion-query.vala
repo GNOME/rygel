@@ -55,7 +55,7 @@ public class Rygel.Tracker.InsertionQuery : Query {
 
     public InsertionQuery (MediaItem item, string category) {
         var type = "nie:DataObject";
-        var file = File.new_for_uri (item.uris[0]);
+        var file = File.new_for_uri (item.get_primary_uri ());
 
         if (!file.is_native ()) {
             type = "nfo:RemoteDataObject";
@@ -92,7 +92,7 @@ public class Rygel.Tracker.InsertionQuery : Query {
 
         triplets.add (new QueryTriplet (QUERY_ID,
                                         "nie:url",
-                                        "\"" + item.uris[0] + "\""));
+                                        "\"" + item.get_primary_uri () + "\""));
         string date;
         if (item.date == null) {
             var now = TimeVal ();
@@ -115,7 +115,7 @@ public class Rygel.Tracker.InsertionQuery : Query {
 
         base (triplets);
 
-        this.uri = item.uris[0];
+        this.uri = item.get_primary_uri ();
     }
 
     public override async void execute (Sparql.Connection resources)
