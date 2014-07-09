@@ -167,16 +167,18 @@ internal class Rygel.BasicManagementTestNSLookup : BasicManagementTest {
         default = DEFAULT_INTERVAL_TIMEOUT;
     }
 
+    private uint _repetitions;
     public uint repetitions {
         construct {
-            this.iterations = value;
-            if (this.iterations == 0) {
-                this.iterations = DEFAULT_REPETITIONS;
+            this.iterations = 1;
+            this._repetitions = value;
+            if (this._repetitions == 0) {
+                this._repetitions = DEFAULT_REPETITIONS;
             }
         }
 
         private get {
-            return this.iterations;
+            return this._repetitions;
         }
         default = DEFAULT_REPETITIONS;
     }
@@ -217,6 +219,7 @@ internal class Rygel.BasicManagementTestNSLookup : BasicManagementTest {
 
         this.command = { "nslookup",
                          "-timeout=%u".printf (this.interval_time_out/1000),
+                         "-retry=%u".printf (this.repetitions),
                          host_name };
         if (name_server != null && name_server.length > 0) {
             this.command += name_server;
