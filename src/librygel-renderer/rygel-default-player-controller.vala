@@ -126,13 +126,16 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
             switch (this.playback_state) {
                 case "PLAYING":
                 case "TRANSITIONING":
-                    actions = "Stop,Seek,Pause";
+                    actions = "Stop";
+                    if (!this.player.mime_type.has_prefix ("image/")) {
+                        actions += ",Pause";
+                    }
                     break;
                 case "STOPPED":
                     actions = "Play";
                     break;
                 case "PAUSED_PLAYBACK":
-                    actions = "Stop,Play,Seek";
+                    actions = "Stop,Play";
                     break;
                 default:
                     break;
@@ -150,13 +153,13 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
             }
 
             if (this.player.can_seek) {
-                actions += ",X_DLNA_SeekTime";
+                actions += ",Seek,X_DLNA_SeekTime";
             }
-            if (actions != null && this.player.can_seek_bytes) {
+            if (this.player.can_seek_bytes) {
                 actions += ",X_DLNA_SeekByte";
             }
 
-            if (actions != null &&
+            if (!this.player.mime_type.has_prefix ("image/") &&
                 this.player.allowed_playback_speeds.length > 1) {
                 string play_speeds = "";
                 foreach (var speed in this.player.allowed_playback_speeds) {
