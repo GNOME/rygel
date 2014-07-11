@@ -62,6 +62,9 @@ public interface Rygel.PlayerController : GLib.Object {
 
     public abstract string play_mode { get; set; }
 
+    /// Return true if the current controller can go into PAUSE playback state
+    public abstract bool can_pause { get; }
+
     public abstract bool next ();
 
     public abstract bool previous ();

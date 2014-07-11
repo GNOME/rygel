@@ -120,6 +120,19 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
     public string next_uri { owned get; protected set; default = ""; }
     public string next_metadata { owned get; protected set; default = ""; }
 
+    public bool can_pause {
+        get {
+            if (this.playback_state != "PLAYING" &&
+                this.playback_state != "TRANSITIONING") {
+                return false;
+            }
+
+            /* Pause is valid for images only in playlist */
+            return (!this.player.mime_type.has_prefix ("image/") ||
+                    this.playlist != null);
+        }
+    }
+
     public string current_transport_actions {
         owned get {
             string actions = null;
@@ -127,7 +140,9 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
                 case "PLAYING":
                 case "TRANSITIONING":
                     actions = "Stop";
-                    if (!this.player.mime_type.has_prefix ("image/")) {
+                    /* Pause is valid for images only in playlist */
+                    if (!this.player.mime_type.has_prefix ("image/") ||
+                        this.playlist != null) {
                         actions += ",Pause";
                     }
                     break;
@@ -349,7 +364,7 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
             // Play next item in playlist, play next_uri, or move to STOPPED
             Idle.add (() => {
                 if (!this.next ()) {
-                    this.reset ();
+                    this.playback_state = "STOPPED";
                 }
 
                 return false;
@@ -357,6 +372,24 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
         } else if (this._playback_state != state) {
             // mirror player value in _playback_state and notify
             this._playback_state = state;
+
+            if (this.timeout_id != 0) {
+                Source.remove (this.timeout_id);
+                this.timeout_id = 0;
+            }
+
+            /* start image playlist timeout and update track */
+            switch (this._playback_state) {
+                case "PLAYING":
+                    this.setup_image_timeout ();
+                    break;
+                case "STOPPED":
+                    this.track = 1;
+                    break;
+                default:
+                    break;
+            }
+
             this.notify_property ("playback-state");
         }
     }
@@ -383,37 +416,33 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
                                         (item.get_xml_string ());
             this.track_uri = res.get_uri ();
 
-            if (item.upnp_class.has_prefix ("object.item.image") &&
-                this.playback_state != "STOPPED") {
-                this.setup_image_timeouts (item.lifetime);
+            if (this.playback_state == "PLAYING") {
+                setup_image_timeout ();
             }
         }
     }
 
-    private void reset () {
-        this.playback_state = "STOPPED";
-        this.track = 1;
-    }
-
-    private void setup_image_timeouts (long lifetime) {
-        // For images, we handle the timeout here. Either the item carries a
-        // dlna:lifetime tag, then we use that or we use a default timeout of
-        // 5 minutes.
-        var timeout = this.default_image_timeout;
-        if (lifetime > 0) {
-            timeout = (uint) lifetime;
+    private void setup_image_timeout () {
+        if (this.playlist == null) {
+             return;
         }
 
-        debug ("Item is image, setup timer: %ld", timeout);
-
-        if (this.timeout_id != 0) {
-            Source.remove (this.timeout_id);
+        var item = this.playlist.nth (this.track - 1).data;
+        if (!item.upnp_class.has_prefix ("object.item.image")) {
+            return;
         }
 
-        this.timeout_id = Timeout.add_seconds ((uint) timeout, () => {
+        // If image does not have dlna:lifetime tag, then use a default timeout
+        var lifetime = item.lifetime;
+        if (lifetime <= 0) {
+            lifetime = this.default_image_timeout;
+        }
+        debug ("Item is image, setup timer: %ld", lifetime);
+
+        this.timeout_id = Timeout.add_seconds ((uint) lifetime, () => {
             this.timeout_id = 0;
             if (!this.next ()) {
-                this.reset ();
+                this.playback_state = "STOPPED";
             }
 
             return false;
