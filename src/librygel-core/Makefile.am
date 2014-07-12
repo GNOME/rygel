@@ -13,6 +13,7 @@ librygel_core_2_4_la_SOURCES = \
 
 librygel_core_2_4_la_VALAFLAGS = \
 	-H rygel-core.h -C --library=rygel-core-2.4 \
+	--gir=Rygel-2.4.gir \
 	--vapidir=$(srcdir) \
 	--pkg uuid \
 	--pkg posix \
@@ -46,7 +47,21 @@ DEPS_FILES = rygel-core-2.4.deps
 
 vapidir = $(VAPIDIR)
 vapi_DATA = $(VAPI_FILES) $(DEPS_FILES)
-rygel-core-2.4.vapi rygel-core.h: librygel_core_2_4_la_vala.stamp
+rygel-core-2.4.vapi rygel-core.h Rygel-2.4.gir: librygel_core_2_4_la_vala.stamp
+
+-include $(INTROSPECTION_MAKEFILE)
+INTROSPECTION_GIRS=
+INTROSPECTION_SCANNER_ARGS=
+INTROSPECTION_COMPILER_ARGS= -l librygel-core-2.4.so.2
+$(srcdir)/RygelCore-2.4.gir: $(srcdir)/Rygel-2.4.gir
+	$(AM_V_GEN)$(SED) -e 's,Rygel\.,RygelCore.,g' -e 's,namespace name="Rygel",namespace name="RygelCore",g' $< >$@
+GIRS = RygelCore-2.4.gir
+
+girdir=$(datadir)/gir-1.0
+dist_gir_DATA = $(GIRS)
+
+typelibdir = $(libdir)/girepository-1.0
+nodist_typelib_DATA = $(GIRS:.gir=.typelib)
 
 MAINTAINERCLEANFILES += $(BUILT_SOURCES)
 
@@ -55,4 +70,5 @@ EXTRA_DIST = \
 	$(VAPI_FILES) \
 	$(DEPS_FILES) \
 	uuid.vapi \
-	$(BUILT_SOURCES)
+	$(BUILT_SOURCES) \
+	RygelCore-2.4.gir

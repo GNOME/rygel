@@ -14,6 +14,7 @@ librygel_renderer_2_4_la_SOURCES = \
 
 librygel_renderer_2_4_la_VALAFLAGS = \
 	-H rygel-renderer.h --library=rygel-renderer-2.4 \
+	--gir=Rygel-2.4.gir \
 	$(LIBRYGEL_RENDERER_DEPS_VALAFLAGS) \
 	$(RYGEL_COMMON_LIBRYGEL_CORE_VALAFLAGS) \
 	$(RYGEL_COMMON_VALAFLAGS)
@@ -30,6 +31,27 @@ librygel_renderer_2_4_la_LDFLAGS = \
 vapidir = $(VAPIDIR)
 vapi_DATA = rygel-renderer-2.4.vapi rygel-renderer-2.4.deps
 
-rygel-renderer.h rygel-renderer-2.4.vapi: librygel_renderer_2_4_la_vala.stamp
+rygel-renderer.h rygel-renderer-2.4.vapi Rygel-2.4.gir: librygel_renderer_2_4_la_vala.stamp
 
-EXTRA_DIST = rygel-renderer.h rygel-renderer-2.4.vapi rygel-renderer-2.4.deps
+-include $(INTROSPECTION_MAKEFILE)
+INTROSPECTION_GIRS=
+INTROSPECTION_SCANNER_ARGS=
+INTROSPECTION_COMPILER_ARGS= -l librygel-renderer-2.4.so.2 --includedir=$(builddir)/../librygel-core
+$(srcdir)/RygelRenderer-2.4.gir: $(srcdir)/Rygel-2.4.gir
+	$(AM_V_GEN)$(SED) -e 's,Rygel\.,RygelRenderer.,g' \
+		-e 's,namespace name="Rygel",namespace name="RygelRenderer",g' \
+		-e 's,RygelRenderer\.Plugin,RygelCore.Plugin,g' \
+		-e 's,RygelRenderer\.MediaDevice,RygelCore.MediaDevice,g' \
+		-e 's,<package name="rygel-renderer-2.4"/>,<include name="RygelCore" version="2.4"/>\n<package name="rygel-renderer-2.4"/>,' \
+		$< >$@
+GIRS = RygelRenderer-2.4.gir
+
+girdir=$(datadir)/gir-1.0
+dist_gir_DATA = $(GIRS)
+
+typelibdir = $(libdir)/girepository-1.0
+nodist_typelib_DATA = $(GIRS:.gir=.typelib)
+
+
+
+EXTRA_DIST = rygel-renderer.h rygel-renderer-2.4.vapi rygel-renderer-2.4.deps RygelRenderer-2.4.gir

@@ -22,7 +22,7 @@
 
 using GUPnP;
 
-public enum SerializerType {
+public enum Rygel.SerializerType {
     /// Normal serialization of container/item using DIDL-Lite
     GENERIC_DIDL,
 

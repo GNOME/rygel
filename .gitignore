@@ -20,6 +20,8 @@ stamp-*
 *.LOCAL.*
 *.BASE.*
 *.REMOTE.*
+*.gir
+*.typelib
 core
 *.log
 .intltool-merge-cache

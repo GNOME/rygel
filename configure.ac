@@ -29,6 +29,8 @@ LT_INIT([dlopen disable-static])
 
 AC_SYS_LARGEFILE
 
+GOBJECT_INTROSPECTION_REQUIRE([1.33.4])
+
 dnl Required versions of library packages
 dnl Not all of these are actually used, depending on the configure options.
 GLIB_REQUIRED=2.34.0
