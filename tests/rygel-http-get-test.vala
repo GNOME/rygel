@@ -392,6 +392,8 @@ public abstract class Rygel.MediaItem : Rygel.MediaObject {
     public long size = 1024;
     public ArrayList<string> uris = new ArrayList<string> ();
 
+    public Gee.ArrayList<string> get_uris () { return this.uris; }
+
     public bool place_holder = false;
 
     public bool is_live_stream () {

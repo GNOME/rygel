@@ -79,6 +79,7 @@ private class Rygel.MediaObject : GLib.Object {
 private class Rygel.MediaItem : Rygel.MediaObject {
     public ArrayList<string> uris = new ArrayList<string> ();
     public string mime_type;
+    public Gee.ArrayList<string> get_uris () { return this.uris; }
 }
 
 private class Rygel.Thumbnail {

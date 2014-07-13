@@ -422,6 +422,7 @@ public class Rygel.MediaItem : Rygel.MediaObject {
     public long size = 1024;
     public long duration = 1024;
     public ArrayList<string> uris = new ArrayList<string> ();
+    public Gee.ArrayList<string> get_uris () { return this.uris; }
 
     public bool place_holder = true;
 
