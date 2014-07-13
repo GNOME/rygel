@@ -37,7 +37,7 @@ rygel-renderer.h rygel-renderer-2.4.vapi Rygel-2.4.gir: librygel_renderer_2_4_la
 INTROSPECTION_GIRS=
 INTROSPECTION_SCANNER_ARGS=
 INTROSPECTION_COMPILER_ARGS= -l librygel-renderer-2.4.so.2 --includedir=$(builddir)/../librygel-core
-$(srcdir)/RygelRenderer-2.4.gir: $(srcdir)/Rygel-2.4.gir
+$(builddir)/RygelRenderer-2.4.gir: $(srcdir)/Rygel-2.4.gir
 	$(AM_V_GEN)$(SED) -e 's,Rygel\.,RygelRenderer.,g' \
 		-e 's,namespace name="Rygel",namespace name="RygelRenderer",g' \
 		-e 's,RygelRenderer\.Plugin,RygelCore.Plugin,g' \

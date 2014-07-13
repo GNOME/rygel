@@ -53,7 +53,7 @@ rygel-core-2.4.vapi rygel-core.h Rygel-2.4.gir: librygel_core_2_4_la_vala.stamp
 INTROSPECTION_GIRS=
 INTROSPECTION_SCANNER_ARGS=
 INTROSPECTION_COMPILER_ARGS= -l librygel-core-2.4.so.2
-$(srcdir)/RygelCore-2.4.gir: $(srcdir)/Rygel-2.4.gir
+$(builddir)/RygelCore-2.4.gir: $(srcdir)/Rygel-2.4.gir
 	$(AM_V_GEN)$(SED) -e 's,Rygel\.,RygelCore.,g' -e 's,namespace name="Rygel",namespace name="RygelCore",g' $< >$@
 GIRS = RygelCore-2.4.gir
 
