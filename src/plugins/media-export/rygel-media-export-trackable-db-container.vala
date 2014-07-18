@@ -53,7 +53,7 @@ public class Rygel.MediaExport.TrackableDbContainer : DBContainer,
             }
             cache.save_container (this);
         } catch (Error error) {
-            warning ("Failed to save object: %s", error.message);
+            warning (_("Failed to save object: %s"), error.message);
         }
     }
 
@@ -61,7 +61,7 @@ public class Rygel.MediaExport.TrackableDbContainer : DBContainer,
         try {
             this.media_db.save_container (this);
         } catch (Error error) {
-            warning ("Failed to save object: %s", error.message);
+            warning (_("Failed to save object: %s"), error.message);
         }
     }
 
@@ -76,7 +76,7 @@ public class Rygel.MediaExport.TrackableDbContainer : DBContainer,
                 assert_not_reached ();
             }
         } catch (Error error) {
-            warning ("Failed to add object: %s", error.message);
+            warning (_("Failed to add object: %s"), error.message);
         }
     }
 
@@ -84,7 +84,7 @@ public class Rygel.MediaExport.TrackableDbContainer : DBContainer,
         try {
             this.media_db.remove_object (object);
         } catch (Error error) {
-            warning ("Failed to remove object: %s", error.message);
+            warning (_("Failed to remove object: %s"), error.message);
         }
     }
 
