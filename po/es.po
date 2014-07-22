@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-06-30 10:15+0000\n"
-"PO-Revision-Date: 2014-06-30 13:07+0200\n"
+"POT-Creation-Date: 2014-07-21 22:21+0000\n"
+"PO-Revision-Date: 2014-07-22 11:36+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -272,6 +272,25 @@ msgstr "Imágenes"
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:588
 msgid "Videos"
 msgstr "Vídeos"
+
+#: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
+#: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
+#, c-format
+#| msgid "Failed to update object '%s': %s"
+msgid "Failed to save object: %s"
+msgstr "Falló al guardar el objeto: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:79
+#, c-format
+#| msgid "Failed to update object '%s': %s"
+msgid "Failed to add object: %s"
+msgstr "Falló al añadir el objeto: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:87
+#, c-format
+#| msgid "Failed to remove entry: %s"
+msgid "Failed to remove object: %s"
+msgstr "Falló al eliminar el objeto: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
 #, c-format
@@ -832,13 +851,13 @@ msgstr "No se ha encontrado un motor de medios."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "No se ha llamado a MediaEngine.init. No se puede continuar."
 
-#: ../src/librygel-server/rygel-media-item.vala:309
+#: ../src/librygel-server/rygel-media-item.vala:305
 #, c-format
 msgid "Bad URI: %s"
 msgstr "URI errónea: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-item.vala:321
+#: ../src/librygel-server/rygel-media-item.vala:317
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Falló al probar el protocolo para el URI %s. Asumiendo «%s»."
@@ -1130,7 +1149,6 @@ msgid "Failed to shut-down other rygel instance: %s"
 msgstr "Falló al parar otra instancia de rygel: %s"
 
 #: ../src/rygel/rygel-dbus-service.vala:81
-#| msgid "Another instance of Rygel is already running."
 msgid "Another instance of rygel is already running. Not starting."
 msgstr "Ya se está ejecutando otra instancia del Rygel. No se inicia."
 
