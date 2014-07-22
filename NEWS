@@ -1,3 +1,41 @@
+0.23.2
+======
+
+- Hide Object.uris property. Its semantics were always unclear.
+
+Renderer:
+ - Work-around failing HEAD requests, next incarnation.
+ - Support M3U playlists.
+ - Check instance id in Next() and Prev() SOAP calls.
+ - Sent byte position in RelCount/AbsCount instead of int.MAX.
+
+GStreamer renderer:
+ - Remove "TRANSITIONING" state in Stop() and Pause() SOAP calls.
+ - Don't try to parse empty meta-data for duration guessing.
+
+Server:
+ - Make sure tags don't contain white-spaces in UpdateObject() call.
+ - Improve CSV splitting in UpdateObject().
+ - Validate date in UpdateObject().
+
+Basic Management:
+ - Fix NSLookup repitition.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=732935
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Enrico Nicoletto <liverig@gmail.com>
+ - Daniel Mustieles <dnaiel.mustieles@gmail.com>
+ - rygelgit <p.balasubramanian@cablelabs.com>
+ - Fran Diéguez <fran.dieguez@mabishu.com>
+
+Added/updated translations
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - pt_BR, courtesy of Enrico Nicoletto
+
 0.23.1.1
 ========
 
