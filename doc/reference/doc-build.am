@@ -86,6 +86,7 @@ uninstall-hook:
 distclean-local:
 	@if test "$(abs_srcdir)" != "$(abs_builddir)" ; then \
 		rm -f gtkdoc/lib$(RYGEL_DOCBUILD_MODULE)-docs.xml; \
+		rm -f gtkdoc/*-scan.[co] ; \
 	fi
 
 EXTRA_DIST = $(RYGEL_GTKDOC_DOCS_XML) gtkdoc/html valadoc
