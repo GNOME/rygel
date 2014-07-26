@@ -1,3 +1,40 @@
+0.22.3
+======
+
+A new stable release of Rygel!
+
+- Remove odd build flags.
+- Work-around an issue with valadoc and code samples.
+
+Server:
+ - Fix UPnP error codes on object creation.
+ - Set HTTP version as late as possible.
+ - Prevent a critical on upload.
+ - Avoid a potential crash by null dereference.
+
+Renderer:
+ - Set Next* values in GetMediaInfo().
+ - Rely on libsoap to handle proxies properly.
+ - Fix an issue about non-existing timeout ids.
+ - Work-around failing HEAD requests.
+ - Set proper UPnP error if instance ids are missing on Prev/Next.
+ - Send the current byte position.
+
+Basic diagnostics:
+ - Fix use of repitition parameter in NSLookup.
+
+GStreamer Renderer:
+ - Fix duration for and position.
+ - Parse duration from meta-data.
+ - Remove "TRANSITIONING" state when going to "STOPPED" or "PAUSED_PLAYBACK".
+
+GStreamer Media Engine:
+ - Prevent a critical after streaming ends.
+
+Media Export:
+ - Prevent a warning on upload.
+ - Fix album art for m4a media.
+
 0.22.2
 ======
 
