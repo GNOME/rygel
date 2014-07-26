@@ -95,9 +95,8 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
             if (!(err is IOError.NOT_FOUND)) {
                 // Avoid warning when file is removed in the meantime, e.g. in
                 // upload case.
-                warning (_("Failed to get file info for %s: %s"),
-                         file.get_uri (),
-                         err.message);
+                warning (_("Failed to get file info for %s"),
+                         file.get_uri ());
             } else {
                 debug ("File %s disappeared while trying to get information",
                        file.get_uri ());
