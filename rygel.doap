@@ -6,6 +6,7 @@
 
   <name xml:lang="en">Rygel</name>
   <category rdf:resource="http://api.gnome.org/doap-extensions#apps" />
+  <programming-language>Vala</programming-language>
   <shortdesc xml:lang="en">A UPnP AV media server and renderer</shortdesc>
   <description>Rygel is a home media solution that allows you to easily share audio, video and
 pictures, and control of media player on your home network. In technical terms
