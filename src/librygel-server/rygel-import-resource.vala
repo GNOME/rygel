@@ -218,6 +218,8 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                 this.action.return_error (715, phrase);
             }
         }
+
+        this.action = null;
     }
 
     private void got_chunk_cb (Message message, Buffer buffer) {
@@ -265,7 +267,13 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                 this.status = TransferStatus.ERROR;
 
                 var phrase = Status.get_phrase (message.status_code);
-                this.action.return_error (714, phrase);
+                warning (_("Failed to import file from %s: %s"),
+                         this.source_uri,
+                         phrase);
+
+                if (this.action != null) {
+                    this.action.return_error (714, phrase);
+                }
             }
         }
 
