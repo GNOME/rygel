@@ -3,7 +3,7 @@ AC_INIT([Rygel],
 	[m4_esyscmd(GNOME_TAG_PATTERN=RYGEL build-aux/git-version-gen .tarball-version)],
 	[http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel],
 	[rygel],
-	[http://live.gnome.org/Rygel])
+	[http://www.rygel-project.org])
 AC_CONFIG_AUX_DIR([build-aux])
 
 AC_CONFIG_SRCDIR([src/librygel-core/rygel-root-device.vala])
