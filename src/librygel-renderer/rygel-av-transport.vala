@@ -866,6 +866,7 @@ internal class Rygel.AVTransport : Service {
             var message = new Message ("HEAD", uri);
             message.request_headers.append ("getContentFeatures.dlna.org",
                                             "1");
+            message.request_headers.append ("Connection", "close");
             this.head_faked = false;
             message.finished.connect ((msg) => {
                 this.check_resource (msg, uri, metadata, action);
