@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-07-25 10:22+0000\n"
-"PO-Revision-Date: 2014-07-25 23:47+0300\n"
+"POT-Creation-Date: 2014-08-15 10:26+0000\n"
+"PO-Revision-Date: 2014-08-15 23:37+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -223,7 +223,6 @@ msgstr "Nestebės failo pasikeitimų"
 #. upload case.
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
-#| msgid "Failed to get file info for %s"
 msgid "Failed to get file info for %s: %s"
 msgstr "Nepavyko gauti %s failo informacijos: %s"
 
@@ -280,19 +279,16 @@ msgstr "Vaizdo įrašai"
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
 #, c-format
-#| msgid "Failed to update object '%s': %s"
 msgid "Failed to save object: %s"
 msgstr "Nepavyko atnaujinti objekto: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:79
 #, c-format
-#| msgid "Failed to update object '%s': %s"
 msgid "Failed to add object: %s"
 msgstr "Nepavyko atnaujinti objekto: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:87
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Failed to remove object: %s"
 msgstr "Nepavyko pašalinti objekto: %s"
 
@@ -316,7 +312,6 @@ msgid "GStreamer Player"
 msgstr "GStreamer grotuvas"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:43
-#| msgid "Could not create GstElement for URI %s"
 msgid "Could not create GStreamer player"
 msgstr "Nepavyko sukurti GStreamer grotuvo"
 
@@ -743,6 +738,12 @@ msgstr "Nepavyko gauti originalaus „%s“ URI: %s"
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URI „%s“ netinkamas turinio importavimui"
+
+#: ../src/librygel-server/rygel-import-resource.vala:271
+#, c-format
+#| msgid "Failed to remove file %s: %s"
+msgid "Failed to import file from %s: %s"
+msgstr "Nepavyko importuoti failo iš %s: %s"
 
 #. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
