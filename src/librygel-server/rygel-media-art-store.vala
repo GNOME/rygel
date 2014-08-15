@@ -36,11 +36,12 @@ public class Rygel.MediaArtStore : GLib.Object {
     private static bool first_time = true;
 
     private string directory;
+    private MediaArt.Process? media_art_process;
 
     public static MediaArtStore? get_default () {
         if (first_time) {
             try {
-                MediaArt.init ();
+                MediaArt.plugin_init (128);
                 media_art_store = new MediaArtStore ();
             } catch (MediaArtStoreError error) {
                 warning ("No media art available: %s", error.message);
@@ -107,9 +108,16 @@ public class Rygel.MediaArtStore : GLib.Object {
     }
 
     public void add (MusicItem item, File file, uint8[]? data) {
-        MediaArt.process_file (data, item.mime_type,
-                               MediaArt.Type.ALBUM, item.artist, item.album,
-                               file);
+        if (media_art_process == null) {
+            return;
+        }
+
+        try {
+            media_art_process.buffer (MediaArt.Type.ALBUM, MediaArt.ProcessFlags.NONE, file,
+                                      data, item.mime_type, item.artist, item.album);
+        } catch (Error error) {
+            warning ("%s", error.message);
+        }
     }
 
     private MediaArtStore () throws MediaArtStoreError {
@@ -122,5 +130,12 @@ public class Rygel.MediaArtStore : GLib.Object {
         }
 
         this.directory = dir;
+
+        try {
+            this.media_art_process = new MediaArt.Process ();
+        } catch (Error error) {
+            this.media_art_process = null;
+            throw new MediaArtStoreError.NO_MEDIA_ART ("%s", error.message);
+        }
     }
 }
