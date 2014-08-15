@@ -114,12 +114,12 @@ internal class Rygel.BasicManagementTestNSLookup : BasicManagementTest {
     private static const uint DEFAULT_INTERVAL_TIMEOUT = 1000;
 
     private struct Result {
-        private ProcessState state;
-        private string name_server_address;
-        private string returned_host_name;
-        private string[] addresses;
-        private ResultStatus status;
-        private AnswerType answer_type;
+        public ProcessState state;
+        public string name_server_address;
+        public string returned_host_name;
+        public string[] addresses;
+        public ResultStatus status;
+        public AnswerType answer_type;
         uint execution_time;
 
         private string get_addresses_csv () {
