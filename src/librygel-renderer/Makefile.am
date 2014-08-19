@@ -36,7 +36,7 @@ rygel-renderer.h rygel-renderer-2.4.vapi Rygel-2.4.gir: librygel_renderer_2_4_la
 -include $(INTROSPECTION_MAKEFILE)
 INTROSPECTION_GIRS=
 INTROSPECTION_SCANNER_ARGS=
-INTROSPECTION_COMPILER_ARGS= -l librygel-renderer-2.4.so.2 --includedir=$(builddir)/../librygel-core
+INTROSPECTION_COMPILER_ARGS= -l librygel-renderer-2.4.so.2 --includedir=$(builddir)/../librygel-core --includedir=$(srcdir)/../librygel-core
 $(builddir)/RygelRenderer-2.4.gir: $(srcdir)/Rygel-2.4.gir
 	$(AM_V_GEN)$(SED) -e 's,Rygel\.,RygelRenderer.,g' \
 		-e 's,namespace name="Rygel",namespace name="RygelRenderer",g' \
@@ -53,5 +53,5 @@ typelibdir = $(libdir)/girepository-1.0
 nodist_typelib_DATA = $(GIRS:.gir=.typelib)
 
 
-
-EXTRA_DIST = rygel-renderer.h rygel-renderer-2.4.vapi rygel-renderer-2.4.deps RygelRenderer-2.4.gir
+DISTCLEANFILES = RygelRenderer-2.4.typelib
+EXTRA_DIST = rygel-renderer.h rygel-renderer-2.4.vapi rygel-renderer-2.4.deps RygelRenderer-2.4.gir Rygel-2.4.gir

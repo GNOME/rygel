@@ -40,7 +40,7 @@ rygel-server.h rygel-server-2.4.vapi Rygel-2.4.gir: librygel_server_2_4_la_vala.
 -include $(INTROSPECTION_MAKEFILE)
 INTROSPECTION_GIRS=
 INTROSPECTION_SCANNER_ARGS=
-INTROSPECTION_COMPILER_ARGS= -l librygel-server-2.4.so.2 --includedir=$(builddir)/../librygel-core
+INTROSPECTION_COMPILER_ARGS= -l librygel-server-2.4.so.2 --includedir=$(builddir)/../librygel-core --includedir=$(srcdir)/../librygel-core
 $(builddir)/RygelServer-2.4.gir: $(srcdir)/Rygel-2.4.gir
 	$(AM_V_GEN)$(SED) -e 's,Rygel\.,RygelServer.,g' \
 		-e 's,namespace name="Rygel",namespace name="RygelServer",g' \
@@ -56,5 +56,5 @@ dist_gir_DATA = $(GIRS)
 typelibdir = $(libdir)/girepository-1.0
 nodist_typelib_DATA = $(GIRS:.gir=.typelib)
 
-
-EXTRA_DIST = rygel-server.h rygel-server-2.4.vapi rygel-server-2.4.deps RygelServer-2.4.gir
+DISTCLEANFILES = RygelServer-2.4.typelib
+EXTRA_DIST = rygel-server.h rygel-server-2.4.vapi rygel-server-2.4.deps RygelServer-2.4.gir Rygel-2.4.gir

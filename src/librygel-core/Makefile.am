@@ -63,6 +63,8 @@ dist_gir_DATA = $(GIRS)
 typelibdir = $(libdir)/girepository-1.0
 nodist_typelib_DATA = $(GIRS:.gir=.typelib)
 
+DISTCLEANFILES = RygelCore-2.4.typelib
+
 MAINTAINERCLEANFILES += $(BUILT_SOURCES)
 
 EXTRA_DIST = \
@@ -71,4 +73,5 @@ EXTRA_DIST = \
 	$(DEPS_FILES) \
 	uuid.vapi \
 	$(BUILT_SOURCES) \
-	RygelCore-2.4.gir
+	RygelCore-2.4.gir \
+	Rygel-2.4.gir
