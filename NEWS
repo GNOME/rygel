@@ -1,3 +1,51 @@
+0.23.3
+======
+
+- Some build fixes.
+- Add GObject introspection support and some examples.
+
+Core:
+ - Fix building with recent vala versions.
+
+Server:
+ - Fix a crash when ImportResource() is cancelled.
+ - Simplify error handling in ImportResource().
+ - Use new libmediaart API.
+
+Renderer:
+ - Make it possible to re-implement PlayerController.
+
+Changes in dependencies:
+  - Libmediaart >= 0.5.0
+
+Known issues:
+ - It's currently not possible to implement a renderer using g-i. That is
+   either some issue in Vala or a bug in what we do.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=732057
+ - https://bugzilla.gnome.org/show_bug.cgi?id=734302
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Tom Tryfonidis <tomtryf@gmail.com>
+ - Rico Tzschichholz <ricotz@t-online.de>
+ - Richard Röjfors <richard.rojfors@gmail.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Olav Vitters <olav@vitters.nl>
+ - ngoswami <ngoswami@redhat.com>
+ - MarMav <mavridou@gmail.com>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Daniel Mustieles <dnaiel.mustieles@gmail.com>
+
+Added/updated translations
+ - as, courtesy of Nilamdyuti Goswami
+ - el, courtesy of Tom Tryfonidis
+ - es, courtesy of Daniel Mustieles
+ - lt, courtesy of Aurimas Černius
+ - nb, courtesy of Kjartan Maraas
+
 0.23.2
 ======
 
