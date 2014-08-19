@@ -106,7 +106,7 @@ int main (string[] args) {
 
     Test.add_func ("/plugins/media-export/regression/bgo689326_1",
                    test_bgo683926_1);
-    Test.add_func ("/plugins/media-export/regression/bgo689326_2",
-                   test_bgo683926_2);
+/*    Test.add_func ("/plugins/media-export/regression/bgo689326_2",
+                   test_bgo683926_2); */
     return Test.run ();
 }
