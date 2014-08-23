@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel 3.13.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-23 11:45+0200\n"
-"PO-Revision-Date: 2014-07-23 11:47+0200\n"
+"POT-Creation-Date: 2014-08-23 12:01+0200\n"
+"PO-Revision-Date: 2014-08-23 12:02+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -731,6 +731,11 @@ msgstr "Klarte ikke å hente original URI for «%s»: %s"
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URI «%s» er ugyldig for import av data"
+
+#: ../src/librygel-server/rygel-import-resource.vala:271
+#, c-format
+msgid "Failed to import file from %s: %s"
+msgstr "Klarte ikke å importere fil fra %s: %s"
 
 #. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
