@@ -64,7 +64,7 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
     [CCode (notify = false)]
     public uint n_tracks {
         get { return this._n_tracks; }
-        private set {
+        protected set {
             if (value != this._n_tracks) {
                 this._n_tracks = value;
                 this.notify_property ("n-tracks");
@@ -86,8 +86,8 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
         default = 0;
     }
 
-    public string uri { owned get; private set; default = ""; }
-    public string metadata { owned get; private set; default = ""; }
+    public string uri { owned get; protected set; default = ""; }
+    public string metadata { owned get; protected set; default = ""; }
 
     [CCode (notify = false)]
     public string track_uri {
@@ -99,7 +99,7 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
             }
         }
 
-        private set {
+        protected set {
             this.player.uri = value;
         }
     }
@@ -108,7 +108,7 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
     public string track_metadata {
         owned get { return this.player.metadata ?? ""; }
 
-        private set {
+        protected set {
             if (value.has_prefix ("&lt;")) {
                 this.player.metadata = this.unescape (value);
             } else {
@@ -117,8 +117,8 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
         }
     }
 
-    public string next_uri { owned get; private set; default = ""; }
-    public string next_metadata { owned get; private set; default = ""; }
+    public string next_uri { owned get; protected set; default = ""; }
+    public string next_metadata { owned get; protected set; default = ""; }
 
     public string current_transport_actions {
         owned get {
