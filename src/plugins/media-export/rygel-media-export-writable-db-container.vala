@@ -127,4 +127,14 @@ internal class Rygel.MediaExport.WritableDbContainer : TrackableDbContainer,
         yield this.remove_item (id, cancellable);
     }
 
+    public void remove_tracked (MediaObject object) throws Error {
+        this.updated (object, ObjectEventType.DELETED);
+        this.total_deleted_child_count++;
+
+        this.media_db.remove_by_id (object.id);
+
+        this.updated ();
+        this.child_removed (object);
+    }
+
 }

@@ -210,14 +210,23 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
             // change
             var id = MediaCache.get_id (file);
             var object = cache.get_object (id);
-            var parent = null as MediaContainer;
 
-            if (object != null) {
-                parent = object.parent;
-                if (parent is TrackableContainer) {
+            if (object != null && object.parent != null) {
+                var parent = object.parent;
+
+                if (parent is WritableDbContainer) {
+                    var container = parent as WritableDbContainer;
+
+                    container.remove_tracked (object);
+                } else if (parent is TrackableDbContainer) {
+                    // This should not be possible, but just to be sure.
                     var container = parent as TrackableContainer;
+
                     container.remove_child_tracked.begin (object);
                 }
+            } else {
+                warning (_("Could not find object %s or its parent. Database is inconsistent"),
+                         id);
             }
         } catch (Error error) {
             warning (_("Error removing object from database: %s"),
