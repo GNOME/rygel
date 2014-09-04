@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-01 22:18+0200\n"
-"PO-Revision-Date: 2014-07-01 22:20+0200\n"
+"POT-Creation-Date: 2014-09-04 22:03+0200\n"
+"PO-Revision-Date: 2014-09-04 22:06+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -275,6 +275,22 @@ msgstr "Imaxes"
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:588
 msgid "Videos"
 msgstr "Vídeos"
+
+#: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
+#: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
+#, c-format
+msgid "Failed to save object: %s"
+msgstr "Produciuse un erro ao gardar o obxecto: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:79
+#, c-format
+msgid "Failed to add object: %s"
+msgstr "Produciuse un erro ao engadir o obxecto: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:87
+#, c-format
+msgid "Failed to remove object: %s"
+msgstr "Produciuse un erro ao eliminar o obxecto: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
 #, c-format
@@ -728,6 +744,11 @@ msgstr "Produciuse un erro ao obter o URI orixinal para «%s»: %s"
 msgid "URI '%s' invalid for importing contents to"
 msgstr "O URI «%s» non é válido para importar contido a el"
 
+#: ../src/librygel-server/rygel-import-resource.vala:271
+#, c-format
+msgid "Failed to import file from %s: %s"
+msgstr "Produciuse un erro ao importar o ficheiro desde %s: %s"
+
 #. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
@@ -839,13 +860,13 @@ msgstr "Non se atopou un motor multimedia."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init non foi chamado. Non se pode continuar."
 
-#: ../src/librygel-server/rygel-media-item.vala:309
+#: ../src/librygel-server/rygel-media-item.vala:305
 #, c-format
 msgid "Bad URI: %s"
 msgstr "URI erróneo: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-item.vala:321
+#: ../src/librygel-server/rygel-media-item.vala:317
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Produciuse un erro ao probar o protocolo para o URI %s. Asumindo «%s»"
@@ -1136,7 +1157,8 @@ msgstr "Produciuse un erro ao apagar a outra instancia de Rygel: %s"
 
 #: ../src/rygel/rygel-dbus-service.vala:81
 msgid "Another instance of rygel is already running. Not starting."
-msgstr "Xa hai outra instancia de rygel en execución. Non se vai iniciar outra."
+msgstr ""
+"Xa hai outra instancia de rygel en execución. Non se vai iniciar outra."
 
 #: ../src/rygel/rygel-main.vala:83
 msgid "Rygel is running in streaming-only mode."
