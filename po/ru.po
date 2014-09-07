@@ -9,17 +9,17 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-06-24 10:18+0000\n"
-"PO-Revision-Date: 2014-06-24 17:16+0400\n"
-"Last-Translator: Yuri Myasoedov <ymyasoedov@yandex.ru>\n"
+"POT-Creation-Date: 2014-09-06 23:19+0000\n"
+"PO-Revision-Date: 2014-09-07 10:32+0300\n"
+"Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
 "Language-Team: русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -223,7 +223,6 @@ msgstr "Не будет следить за изменениями файлов"
 #. upload case.
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
-#| msgid "Failed to get file info for %s"
 msgid "Failed to get file info for %s: %s"
 msgstr "Не удалось получить информацию о файле для %s: %s"
 
@@ -277,6 +276,25 @@ msgstr "Изображения"
 msgid "Videos"
 msgstr "Видео"
 
+#: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
+#: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
+#, c-format
+#| msgid "Failed to update object '%s': %s"
+msgid "Failed to save object: %s"
+msgstr "Не удалось сохранить объект: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:79
+#, c-format
+#| msgid "Failed to update object '%s': %s"
+msgid "Failed to add object: %s"
+msgstr "Не удалось добавить объект: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:87
+#, c-format
+#| msgid "Failed to remove entry: %s"
+msgid "Failed to remove object: %s"
+msgstr "Не удалось удалить элемент: %s"
+
 #: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
 #, c-format
 msgid "Failed to remove file %s: %s"
@@ -297,7 +315,6 @@ msgid "GStreamer Player"
 msgstr "Проигрыватель GStreamer"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:43
-#| msgid "Could not create GstElement for URI %s"
 msgid "Could not create GStreamer player"
 msgstr "Не удалось создать проигрыватель GStreamer"
 
@@ -551,7 +568,7 @@ msgstr "Ошибка создания списка содержимого пап
 msgid "Could not load plugin: %s"
 msgstr "Не удалось загрузить модуль: %s"
 
-#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:366
+#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:364
 msgid ""
 "Your GStreamer installation seems to be missing the \"playbin\" element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
@@ -581,26 +598,32 @@ msgstr "Режим перемещения не поддерживается"
 #: ../src/librygel-renderer/rygel-av-transport.vala:528
 #: ../src/librygel-renderer/rygel-av-transport.vala:553
 #: ../src/librygel-renderer/rygel-av-transport.vala:566
-#: ../src/librygel-renderer/rygel-av-transport.vala:587
-#: ../src/librygel-renderer/rygel-av-transport.vala:595
+#: ../src/librygel-renderer/rygel-av-transport.vala:591
+#: ../src/librygel-renderer/rygel-av-transport.vala:603
 msgid "Illegal seek target"
 msgstr "Недопустимый запрос перемещения"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:694
-#: ../src/librygel-renderer/rygel-av-transport.vala:704
-#: ../src/librygel-renderer/rygel-av-transport.vala:761
+#: ../src/librygel-renderer/rygel-av-transport.vala:702
+#: ../src/librygel-renderer/rygel-av-transport.vala:746
+#: ../src/librygel-renderer/rygel-av-transport.vala:755
+#: ../src/librygel-renderer/rygel-av-transport.vala:818
 msgid "Resource not found"
 msgstr "Ресурс не найден"
 
+#: ../src/librygel-renderer/rygel-av-transport.vala:744
+#, c-format
+msgid "Problem parsing playlist: %s"
+msgstr "Проблема при разборе списка воспроизведения: %s"
+
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: ../src/librygel-renderer/rygel-av-transport.vala:757
+#: ../src/librygel-renderer/rygel-av-transport.vala:814
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Не удалось получить доступ к ресурсу %s: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:772
+#: ../src/librygel-renderer/rygel-av-transport.vala:830
 msgid "Illegal MIME-type"
 msgstr "Недопустимый тип MIME"
 
@@ -719,6 +742,12 @@ msgstr "Не удалось получить исходный URI для «%s»:
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Недопустимый URI «%s» для импортирования в"
 
+#: ../src/librygel-server/rygel-import-resource.vala:271
+#, c-format
+#| msgid "Failed to remove file %s: %s"
+msgid "Failed to import file from %s: %s"
+msgstr "Не удалось импортировать файл из %s: %s"
+
 #. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
@@ -735,7 +764,7 @@ msgid "Failed to destroy object '%s': %s"
 msgstr "Не удалось уничтожить объект «%s»: %s"
 
 #: ../src/librygel-server/rygel-item-destroyer.vala:104
-#: ../src/librygel-server/rygel-item-updater.vala:189
+#: ../src/librygel-server/rygel-item-updater.vala:283
 #: ../src/librygel-server/rygel-media-query-action.vala:194
 #: ../src/librygel-server/rygel-reference-creator.vala:68
 #: ../src/librygel-server/rygel-reference-creator.vala:115
@@ -753,50 +782,62 @@ msgid "Object removal from %s not allowed"
 msgstr "Удаление объекта из %s запрещено"
 
 #. Sorry we can't do anything without the ID
-#: ../src/librygel-server/rygel-item-updater.vala:70
+#: ../src/librygel-server/rygel-item-updater.vala:74
 msgid "Object id missing"
 msgstr "Отсутствует ObjectID"
 
-#: ../src/librygel-server/rygel-item-updater.vala:77
+#: ../src/librygel-server/rygel-item-updater.vala:81
 #, c-format
 msgid "Successfully updated object '%s'"
 msgstr "Объект «%s» успешно обновлён"
 
-#: ../src/librygel-server/rygel-item-updater.vala:85
+#: ../src/librygel-server/rygel-item-updater.vala:89
 #, c-format
 msgid "Failed to update object '%s': %s"
 msgstr "Не удалось обновить объект «%s»: %s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:162
+#: ../src/librygel-server/rygel-object-creator.vala:601
+#, c-format
+msgid "Invalid date format: %s"
+msgstr "Неверный формат даты: «%s»"
+
+#: ../src/librygel-server/rygel-item-updater.vala:171
+#: ../src/librygel-server/rygel-object-creator.vala:610
+#, c-format
+msgid "Invalid date: %s"
+msgstr "Неверная дата: «%s»"
+
+#: ../src/librygel-server/rygel-item-updater.vala:256
 msgid "Bad current tag value."
 msgstr "Неверное значение текущего тэга."
 
-#: ../src/librygel-server/rygel-item-updater.vala:166
+#: ../src/librygel-server/rygel-item-updater.vala:260
 msgid "Bad new tag value."
 msgstr "Неверное значение нового тэга."
 
-#: ../src/librygel-server/rygel-item-updater.vala:169
+#: ../src/librygel-server/rygel-item-updater.vala:263
 msgid "Tried to delete required tag."
 msgstr "Попытка удаления необходимого тэга."
 
-#: ../src/librygel-server/rygel-item-updater.vala:172
+#: ../src/librygel-server/rygel-item-updater.vala:266
 msgid "Tried to change read-only property."
 msgstr "Попытка изменения свойства доступного только для чтения."
 
-#: ../src/librygel-server/rygel-item-updater.vala:175
+#: ../src/librygel-server/rygel-item-updater.vala:269
 msgid "Parameter count mismatch."
 msgstr "Несоответствие параметров счётчика."
 
-#: ../src/librygel-server/rygel-item-updater.vala:178
+#: ../src/librygel-server/rygel-item-updater.vala:272
 msgid "Unknown error."
 msgstr "Неизвестная ошибка."
 
-#: ../src/librygel-server/rygel-item-updater.vala:191
+#: ../src/librygel-server/rygel-item-updater.vala:285
 #, c-format
 msgid "Metadata modification of object %s not allowed"
 msgstr "Изменение метаданных объекта %s запрещено"
 
-#: ../src/librygel-server/rygel-item-updater.vala:196
+#: ../src/librygel-server/rygel-item-updater.vala:290
 #, c-format
 msgid ""
 "Metadata modification of object %s being a child of restricted object %s not "
@@ -818,13 +859,13 @@ msgstr "Не найден движок мультимедиа."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init не был вызван. Продолжение невозможно."
 
-#: ../src/librygel-server/rygel-media-item.vala:309
+#: ../src/librygel-server/rygel-media-item.vala:305
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Неверный URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-item.vala:321
+#: ../src/librygel-server/rygel-media-item.vala:317
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Не удалось проверить протокол для URI %s. Для «%s»"
@@ -916,16 +957,6 @@ msgstr "Не удалось создать элемент под «%s»: %s"
 #, c-format
 msgid "DLNA profile '%s' not supported"
 msgstr "Профиль DLNA «%s» не поддерживается"
-
-#: ../src/librygel-server/rygel-object-creator.vala:601
-#, c-format
-msgid "Invalid date format: %s"
-msgstr "Неверный формат даты: «%s»"
-
-#: ../src/librygel-server/rygel-object-creator.vala:610
-#, c-format
-msgid "Invalid date: %s"
-msgstr "Неверная дата: «%s»"
 
 #: ../src/librygel-server/rygel-object-creator.vala:643
 #, c-format
@@ -1196,9 +1227,3 @@ msgstr "Не удалось запустить службу Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Не удалось остановить службу Rygel: %s"
-
-#~ msgid "Not Found"
-#~ msgstr "Не найдено"
-
-#~ msgid " %%% Object creation in %s not allowed"
-#~ msgstr " %%% Создание объекта в %s запрещено"
