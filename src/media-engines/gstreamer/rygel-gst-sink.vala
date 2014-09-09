@@ -78,12 +78,12 @@ internal class Rygel.GstSink : Sink {
     }
 
     public void freeze () {
-        if (this.frozen) {
-            return;
+        this.buffer_mutex.lock ();
+
+        if (!this.frozen) {
+            this.frozen = true;
         }
 
-        this.buffer_mutex.lock ();
-        this.frozen = true;
         this.buffer_mutex.unlock ();
     }
 
