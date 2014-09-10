@@ -71,6 +71,7 @@ internal class Rygel.DbusThumbnailer : GLib.Object {
 
         if (this.timeout_id != 0) {
             Source.remove (this.timeout_id);
+            this.timeout_id = 0;
         }
 
         if (this.uris.size < THUMBNAIL_MAX_QUEUE_SIZE) {
