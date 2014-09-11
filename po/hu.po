@@ -4,13 +4,14 @@
 #
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2010, 2011, 2012, 2013.
 # Balázs Úr <urbalazs at gmail dot com>, 2013, 2014.
+# Balázs Úr <urbalazs@gmail.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: Rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-07-26 10:22+0000\n"
-"PO-Revision-Date: 2014-07-26 13:40+0200\n"
+"POT-Creation-Date: 2014-09-11 10:25+0000\n"
+"PO-Revision-Date: 2014-09-11 20:38+0200\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -221,9 +222,9 @@ msgstr "A fájlváltozások nem kerülnek megfigyelésre"
 #. upload case.
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
-#| msgid "Failed to get file info for %s"
-msgid "Failed to get file info for %s: %s"
-msgstr "Nem sikerült a(z) %s fájlinformációinak lekérése: %s"
+#| msgid "Failed to get file info for %s: %s"
+msgid "Failed to get file info for %s"
+msgstr "Nem sikerült a(z) %s fájlinformációinak lekérése"
 
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
@@ -625,7 +626,7 @@ msgstr "Nem alkalmazható"
 msgid "No such file transfer"
 msgstr "Nincs ilyen fájlátvitel"
 
-#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:115
+#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:116
 msgid "No D-Bus thumbnailer service available"
 msgstr "Nem érhető el D-Bus bélyegképkészítő szolgáltatás"
 
