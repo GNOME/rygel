@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-04 22:03+0200\n"
-"PO-Revision-Date: 2014-09-04 22:06+0200\n"
+"POT-Creation-Date: 2014-09-11 10:00+0200\n"
+"PO-Revision-Date: 2014-09-11 10:01+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -128,7 +128,14 @@ msgstr "Produciuse un erro ao obter o obxecto «%s» desde a base de datos: %s"
 msgid "Failed to query info of a file %s: %s"
 msgstr "Produciuse un fallo ao consultar a información do ficheiro %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:223
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:228
+#, c-format
+msgid "Could not find object %s or its parent. Database is inconsistent"
+msgstr ""
+"Non foi posíbel atopar o obxecto %s ou os seus pais. A base de datos non é "
+"consistente"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:232
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Produciuse un erro ao retirar o obxecto da base de datos: %s"
@@ -664,7 +671,7 @@ msgstr "Non é aplicábel"
 msgid "No such file transfer"
 msgstr "Non existe tal transferencia de ficheiro"
 
-#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:115
+#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:116
 msgid "No D-Bus thumbnailer service available"
 msgstr "No hai ningún xerador de miniaturas de D-Bus dispoñíbel"
 
