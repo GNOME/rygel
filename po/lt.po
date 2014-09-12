@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-15 10:26+0000\n"
-"PO-Revision-Date: 2014-08-15 23:37+0300\n"
+"POT-Creation-Date: 2014-09-12 10:31+0000\n"
+"PO-Revision-Date: 2014-09-12 22:30+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -129,7 +129,13 @@ msgstr "Klaida gaunant objektą „%s“ iš duomenų bazės: %s"
 msgid "Failed to query info of a file %s: %s"
 msgstr "Nepavyko užklausti failo informacijos %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:223
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:228
+#, c-format
+#| msgid "Could not find object %d in cache"
+msgid "Could not find object %s or its parent. Database is inconsistent"
+msgstr "Nepavyko rasti objekto %s ar jo tėvo. Duomenų bazė yra nevienalytė"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:232
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Klaida šalinant objektą iš duomenų bazės: %s"
@@ -659,7 +665,7 @@ msgstr "Netaikoma"
 msgid "No such file transfer"
 msgstr "Nėra tokio failo siuntimo"
 
-#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:115
+#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:116
 msgid "No D-Bus thumbnailer service available"
 msgstr "Nėra pasiekiamos D-Bus miniatiūrų tarnybos"
 
@@ -741,7 +747,6 @@ msgstr "URI „%s“ netinkamas turinio importavimui"
 
 #: ../src/librygel-server/rygel-import-resource.vala:271
 #, c-format
-#| msgid "Failed to remove file %s: %s"
 msgid "Failed to import file from %s: %s"
 msgstr "Nepavyko importuoti failo iš %s: %s"
 
