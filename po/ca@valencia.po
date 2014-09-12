@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-07 01:19+0200\n"
-"PO-Revision-Date: 2014-09-07 01:16+0200\n"
+"POT-Creation-Date: 2014-09-13 00:18+0200\n"
+"PO-Revision-Date: 2014-09-13 00:17+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca-XV\n"
@@ -127,7 +127,14 @@ msgstr ""
 msgid "Failed to query info of a file %s: %s"
 msgstr "No s'ha pogut consultar la informació d'un fitxer %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:223
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:228
+#, c-format
+msgid "Could not find object %s or its parent. Database is inconsistent"
+msgstr ""
+"No s'ha pogut trobar l'objecte %s o el seu pare. La base de dades és "
+"inconsistent."
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:232
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "S'ha produït un error en suprimir l'objecte de la base de dades: %s"
@@ -662,7 +669,7 @@ msgstr "No és aplicable"
 msgid "No such file transfer"
 msgstr "No existeix la transferència del fitxer"
 
-#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:115
+#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:116
 msgid "No D-Bus thumbnailer service available"
 msgstr "No hi ha disponible cap servei de miniatures a través de D-Bus"
 
