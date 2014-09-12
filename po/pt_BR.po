@@ -14,16 +14,16 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-21 10:57+0000\n"
-"PO-Revision-Date: 2014-08-21 16:59-0300\n"
-"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
+"POT-Creation-Date: 2014-09-11 22:20+0000\n"
+"PO-Revision-Date: 2014-09-11 22:21-0300\n"
+"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.6.9\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -135,10 +135,17 @@ msgstr "Erro ao obter objeto \"%s\" do banco de dados: %s"
 msgid "Failed to query info of a file %s: %s"
 msgstr "Ocorreu falha ao consultar informações de um arquivo %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:223
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:228
+#, c-format
+msgid "Could not find object %s or its parent. Database is inconsistent"
+msgstr ""
+"Não foi possível localizar o objeto %s ou seu pai. O banco de dados está "
+"inconsistente"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:232
 #, c-format
 msgid "Error removing object from database: %s"
-msgstr "Erro removendo objeto da base dados: %s"
+msgstr "Erro removendo objeto do banco de dados: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:114
 #, c-format
@@ -668,7 +675,7 @@ msgstr "Não aplicável"
 msgid "No such file transfer"
 msgstr "A transferência de arquivo não existe"
 
-#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:115
+#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:116
 msgid "No D-Bus thumbnailer service available"
 msgstr "Nenhum serviço miniaturizador D-Bus disponível"
 
@@ -750,7 +757,6 @@ msgstr "URL \"%s\" inválida para onde importar conteúdos"
 
 #: ../src/librygel-server/rygel-import-resource.vala:271
 #, c-format
-#| msgid "Failed to remove file %s: %s"
 msgid "Failed to import file from %s: %s"
 msgstr "Ocorreu falha ao importar o arquivo de %s: %s"
 
