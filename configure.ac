@@ -29,7 +29,7 @@ LT_INIT([dlopen disable-static])
 
 AC_SYS_LARGEFILE
 
-GOBJECT_INTROSPECTION_REQUIRE([1.33.4])
+GOBJECT_INTROSPECTION_CHECK([1.33.4])
 
 dnl Required versions of library packages
 dnl Not all of these are actually used, depending on the configure options.
@@ -484,6 +484,8 @@ echo "
         preferences ui:         ${HAVE_GTK}
         Media Engine:           ${with_media_engine}
         API documentation:      ${found_valadoc}
+        GObject-Introspection:  ${found_introspection}
+
     Plugins:
         examples:               ${enable_example_plugins}
         tracker:                ${enable_tracker_plugin}
