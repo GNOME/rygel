@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-10 13:21+0000\n"
-"PO-Revision-Date: 2014-09-10 22:53+0100\n"
+"POT-Creation-Date: 2014-09-15 22:18+0000\n"
+"PO-Revision-Date: 2014-09-16 09:03+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -145,7 +145,16 @@ msgstr "Vyskytla sa chyba pri získavaní objektu „%s“ z databázy: %s"
 msgid "Failed to query info of a file %s: %s"
 msgstr "Zlyhal dopyt informácií o súbore %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:223
+# %d je identifikátor
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:228
+#, c-format
+#| msgid "Could not find object %d in cache"
+msgid "Could not find object %s or its parent. Database is inconsistent"
+msgstr ""
+"Nepodarilo sa nájsť objekt %s alebo jeho pôvodcu. Databáza nie je "
+"konzistentná."
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:232
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Vyskytla sa chyba pri odstraňovaní objektu z databázy: %s"
@@ -240,7 +249,6 @@ msgstr "Nebudú sa sledovať zmeny súborov"
 #. upload case.
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
-#| msgid "Failed to get file info for %s"
 msgid "Failed to get file info for %s: %s"
 msgstr "Zlyhalo získanie informácií o súbore %s: %s"
 
@@ -297,19 +305,16 @@ msgstr "Videá"
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
 #, c-format
-#| msgid "Failed to update object '%s': %s"
 msgid "Failed to save object: %s"
 msgstr "Zlyhalo uloženie objektu: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:79
 #, c-format
-#| msgid "Failed to update object '%s': %s"
 msgid "Failed to add object: %s"
 msgstr "Zlyhalo pridanie objektu: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:87
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Failed to remove object: %s"
 msgstr "Zlyhalo odstránenie objektu: %s"
 
@@ -335,7 +340,6 @@ msgid "GStreamer Player"
 msgstr "Prehrávač GStreamer"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:43
-#| msgid "Could not create GstElement for URI %s"
 msgid "Could not create GStreamer player"
 msgstr "Nepodarilo sa vytvoriť prehrávač GStreamer"
 
@@ -778,7 +782,6 @@ msgstr "Identifikátor URI „%s“ je neplatný pre importovanie obsahu"
 
 #: ../src/librygel-server/rygel-import-resource.vala:271
 #, c-format
-#| msgid "Failed to remove file %s: %s"
 msgid "Failed to import file from %s: %s"
 msgstr "Zlyhalo importovanie súboru z %s: %s"
 
