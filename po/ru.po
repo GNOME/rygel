@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-06 23:19+0000\n"
-"PO-Revision-Date: 2014-09-07 10:32+0300\n"
-"Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
+"POT-Creation-Date: 2014-09-17 10:24+0000\n"
+"PO-Revision-Date: 2014-09-17 21:03+0400\n"
+"Last-Translator: Yuri Myasoedov <ymyasoedov@yandex.ru>\n"
 "Language-Team: русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.9\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -129,7 +129,13 @@ msgstr "Ошибка получения объекта «%s» из базы да
 msgid "Failed to query info of a file %s: %s"
 msgstr "Не удалось запросить информацию о файле %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:223
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:228
+#, c-format
+msgid "Could not find object %s or its parent. Database is inconsistent"
+msgstr ""
+"Не удалось найти объект %s или его родителя. База данных не согласована"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:232
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Ошибка удаления объекта из базы данных: %s"
@@ -279,19 +285,16 @@ msgstr "Видео"
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
 #, c-format
-#| msgid "Failed to update object '%s': %s"
 msgid "Failed to save object: %s"
 msgstr "Не удалось сохранить объект: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:79
 #, c-format
-#| msgid "Failed to update object '%s': %s"
 msgid "Failed to add object: %s"
 msgstr "Не удалось добавить объект: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:87
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Failed to remove object: %s"
 msgstr "Не удалось удалить элемент: %s"
 
@@ -662,7 +665,7 @@ msgstr "Не применимо"
 msgid "No such file transfer"
 msgstr "Нет такой передачи файлов"
 
-#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:115
+#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:116
 msgid "No D-Bus thumbnailer service available"
 msgstr "Нет доступной службы миниатюр D-Bus"
 
@@ -744,7 +747,6 @@ msgstr "Недопустимый URI «%s» для импортирования 
 
 #: ../src/librygel-server/rygel-import-resource.vala:271
 #, c-format
-#| msgid "Failed to remove file %s: %s"
 msgid "Failed to import file from %s: %s"
 msgstr "Не удалось импортировать файл из %s: %s"
 
