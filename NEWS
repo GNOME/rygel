@@ -18,6 +18,65 @@ Renderer:
 GStreamer media engine:
  - Fix possible race in accessing a critical section.
 
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=734303
+ - https://bugzilla.gnome.org/show_bug.cgi?id=734358
+ - https://bugzilla.gnome.org/show_bug.cgi?id=736403
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Debarshi Ray <debarshir@gnome.org>
+ - Yuri Myasoedov <ymyasoedov@yandex.ru>
+ - Marek Černocký <marek@manet.cz>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Gil Forcada <gforcada@gnome.org>
+ - Fran Diéguez <fran.dieguez@mabishu.com>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Carles Ferrando <carles.ferrando@gmail.com>
+ - Andika Triwidada <andika@gmail.com>
+ - Tong Hui <tonghuix@gmail.com>
+ - Tom Tryfonidis <tomtryf@gmail.com>
+ - Sebastian Rasmussen <sebras@gmail.com>
+ - Rafael Ferreira <rafael.f.f1@gmail.com>
+ - Paweł Żołnowski <pawel@zolnowski.name>
+ - Nilamdyuti Goswami <ngoswami@redhat.com>
+ - Enrico Nicoletto <liverig@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Daniel Korostil <ted.korostiled@gmail.com>
+ - Christian Kirbach <Christian.Kirbach@gmail.com>
+ - Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+ - Balázs Úr <urbalazs@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Ask H. Larsen <asklarsen@gmail.com>
+ - Alexandre Franke <alexandre.franke@gmail.com>
+
+Added/updated translations
+ - as, courtesy of Nilamdyuti Goswami
+ - ca, courtesy of Gil Forcada
+ - ca@valencia, courtesy of Gil Forcada
+ - cs, courtesy of Marek Černocký
+ - da, courtesy of Ask Hjorth Larsen
+ - de, courtesy of Christian Kirbach
+ - el, courtesy of Tom Tryfonidis
+ - es, courtesy of Daniel Mustieles
+ - fr, courtesy of naybnet
+ - gl, courtesy of Fran Dieguez
+ - hu, courtesy of Balázs Úr
+ - id, courtesy of Andika Triwidada
+ - ko, courtesy of Changwoo Ryu
+ - lt, courtesy of Aurimas Černius
+ - nb, courtesy of Kjartan Maraas
+ - pl, courtesy of Paweł Żołnowski
+ - pt_BR, courtesy of Rafael Ferreira
+ - ru, courtesy of Yuri Myasoedov
+ - sk, courtesy of Dušan Kazik
+ - sv, courtesy of Sebastian Rasmussen
+ - uk, courtesy of Daniel Korostil
+ - zh_CN, courtesy of Tong Hui
+ - zh_HK, courtesy of Chao-Hsiung Liao
+ - zh_TW, courtesy of Chao-Hsiung Liao
+
 0.23.3
 ======
 
