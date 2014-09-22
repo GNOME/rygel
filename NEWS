@@ -1,3 +1,23 @@
+0.24.0
+======
+
+A new stable release of Rygel!
+
+- Make it possible to build without GObject introspection.
+
+Server:
+ - Fix a critical about timeout sources.
+
+MediaExport:
+ - Fix typo in plugin file.
+ - Don't delete a file if the file monitor signalled the file was deleted.
+
+Renderer:
+ - Fix criticals on start-up.
+
+GStreamer media engine:
+ - Fix possible race in accessing a critical section.
+
 0.23.3
 ======
 
