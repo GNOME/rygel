@@ -28,7 +28,7 @@ namespace Rygel.External.FreeDesktop {
 
 [DBus (name = "org.freedesktop.DBus")]
 internal interface Rygel.External.FreeDesktop.DBusObject: Object {
-    internal abstract signal void name_owner_changed (string name,
+    public abstract signal void name_owner_changed (string name,
                                                     string old_owner,
                                                     string new_owner);
 
