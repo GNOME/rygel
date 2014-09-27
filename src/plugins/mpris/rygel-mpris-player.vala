@@ -167,6 +167,10 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
 
     public int64 position {
         get {
+            // Remove cached value. Position is not supposed to be notified
+            // so the cache might be outdated.
+            this.actual_player.set_cached_property ("Position", null);
+
             return this.actual_player.position;
         }
     }
