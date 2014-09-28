@@ -77,19 +77,6 @@ internal class Rygel.AVTransport : Service {
         }
     }
 
-    private string _mode = "NORMAL";
-    public string mode {
-        get {
-            return this._mode;
-        }
-
-        set {
-            this._mode = value;
-
-            this.changelog.log ("CurrentPlayMode", this._mode);
-        }
-    }
-
     private ChangeLog changelog;
     private MediaPlayer player;
     private PlayerController controller;
@@ -136,6 +123,7 @@ internal class Rygel.AVTransport : Service {
         this.controller.notify["track-metadata"].connect (this.notify_track_meta_data_cb);
         this.controller.notify["next-uri"].connect (this.notify_next_uri_cb);
         this.controller.notify["next-metadata"].connect (this.notify_next_meta_data_cb);
+        this.controller.notify["play-mode"].connect (this.notify_play_mode_cb);
 
         this.player.notify["duration"].connect (this.notify_duration_cb);
 
@@ -164,7 +152,7 @@ internal class Rygel.AVTransport : Service {
         log.log ("RecordStorageMedium",          "NOT_IMPLEMENTED");
         log.log ("PossiblePlaybackStorageMedia", "None,Network");
         log.log ("PossibleRecordStorageMedia",   "NOT_IMPLEMENTED");
-        log.log ("CurrentPlayMode",              this.mode);
+        log.log ("CurrentPlayMode",              this.controller.play_mode);
         log.log ("TransportPlaySpeed",           this.player.playback_speed);
         log.log ("RecordMediumWriteStatus",      "NOT_IMPLEMENTED");
         log.log ("CurrentRecordQualityMode",     "NOT_IMPLEMENTED");
@@ -444,7 +432,7 @@ internal class Rygel.AVTransport : Service {
 
         action.set ("PlayMode",
                         typeof (string),
-                        this.mode,
+                        this.controller.play_mode,
                     "RecQualityMode",
                         typeof (string),
                         "NOT_IMPLEMENTED");
@@ -685,6 +673,10 @@ internal class Rygel.AVTransport : Service {
     private void notify_next_meta_data_cb (Object player, ParamSpec p) {
         this.changelog.log ("NextAVTransportURIMetaData",
                             Markup.escape_text (this.controller.next_metadata));
+    }
+
+    private void notify_play_mode_cb (Object player, ParamSpec p) {
+	this.changelog.log ("CurrentPlayMode", this.controller.play_mode);
     }
 
     private async void handle_playlist (ServiceAction action,

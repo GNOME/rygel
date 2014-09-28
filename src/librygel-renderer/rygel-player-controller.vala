@@ -60,6 +60,8 @@ public interface Rygel.PlayerController : GLib.Object {
 
     public abstract string current_transport_actions { owned get; }
 
+    public abstract string play_mode { get; set; }
+
     public abstract bool next ();
 
     public abstract bool previous ();
