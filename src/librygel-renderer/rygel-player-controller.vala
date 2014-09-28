@@ -84,6 +84,8 @@ public interface Rygel.PlayerController : GLib.Object {
                                        string metadata,
                                        MediaCollection collection);
 
+    public abstract bool is_play_mode_valid (string play_mode);
+
     protected string unescape (string input) {
         var result = input.replace ("&quot;", "\"");
         result = result.replace ("&lt;", "<");

@@ -415,6 +415,26 @@
             </argument>
          </argumentList>
       </action>
+
+      <action>
+          <name>SetPlayMode</name>
+          <argumentList>
+              <argument>
+                  <name>InstanceID</name>
+                  <direction>in</direction>
+                  <relatedStateVariable>
+                      A_ARG_TYPE_InstanceID
+                  </relatedStateVariable>
+              </argument>
+              <argument>
+                  <name>NewPlayMode</name>
+                  <direction>in</direction>
+                  <relatedStateVariable>
+                      CurrentPlayMode
+                  </relatedStateVariable>
+              </argument>
+          </argumentList>
+      </action>
    </actionList>
 
    <serviceStateTable>

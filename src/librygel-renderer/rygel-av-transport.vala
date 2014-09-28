@@ -113,6 +113,7 @@ internal class Rygel.AVTransport : Service {
         action_invoked["Previous"].connect (this.previous_cb);
         action_invoked["X_DLNA_GetBytePositionInfo"].connect
                                         (this.x_dlna_get_byte_position_info_cb);
+        action_invoked["SetPlayMode"].connect (this.set_play_mode_cb);
 
         this.controller.notify["playback-state"].connect (this.notify_state_cb);
         this.controller.notify["n-tracks"].connect (this.notify_n_tracks_cb);
@@ -620,6 +621,28 @@ internal class Rygel.AVTransport : Service {
                             typeof (string),
                             position);
         }
+
+        action.return ();
+    }
+
+    private void set_play_mode_cb (Service       service,
+                                   ServiceAction action) {
+        if (!this.check_instance_id (action)) {
+            return;
+        }
+
+        string play_mode;
+
+        action.get ("NewPlayMode",
+                        typeof (string),
+                        out play_mode);
+
+        if (!this.controller.is_play_mode_valid(play_mode)) {
+            action.return_error (712, _("Play mode not supported"));
+            return;
+        }
+
+        this.controller.play_mode = play_mode;
 
         action.return ();
     }

@@ -358,6 +358,10 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
         }
     }
 
+    public bool is_play_mode_valid (string play_mode) {
+        return play_mode == "NORMAL";
+    }
+
     private void notify_uri_cb (Object player, ParamSpec p) {
         notify_property ("track-uri");
     }
