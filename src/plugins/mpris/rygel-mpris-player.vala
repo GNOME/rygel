@@ -190,6 +190,20 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
         actual_player.g_properties_changed.connect (this.on_properties_changed);
     }
 
+    public override void constructed () {
+        base.constructed ();
+
+        // force synchronisation of current state
+        Idle.add (() => {
+            this.notify_property ("playback-state");
+            this.notify_property ("volume");
+            this.notify_property ("uri");
+            this.notify_property ("duration");
+
+            return false;
+        });
+    }
+
     public bool seek (int64 time) {
         var ret = false;
 
