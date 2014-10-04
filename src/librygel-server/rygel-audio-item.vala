@@ -80,6 +80,8 @@ public class Rygel.AudioItem : MediaItem {
     }
 
     internal override void apply_didl_lite (DIDLLiteObject didl_object) {
+        base.apply_didl_lite (didl_object);
+
         this.album = didl_object.album;
     }
 
