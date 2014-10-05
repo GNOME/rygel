@@ -100,9 +100,15 @@ internal class Rygel.Main : Object {
             var config = MetaConfig.get_default ();
             timeout = config.get_int ("plugin",
                                       "TIMEOUT",
-                                      PLUGIN_TIMEOUT,
+                                      0,
                                       int.MAX);
         } catch (Error error) {};
+
+        if (timeout == 0) {
+            debug ("Plugin timeout disabled...");
+
+            return;
+        }
 
         Timeout.add_seconds (timeout, () => {
             if (this.plugin_loader.list_plugins ().size == 0) {
