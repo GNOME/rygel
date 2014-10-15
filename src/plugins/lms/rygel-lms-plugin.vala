@@ -30,6 +30,6 @@ public class Rygel.LMS.Plugin : Rygel.MediaServerPlugin {
     public Plugin() {
         if (root == null)
             root = new RootContainer();
-        base(root, Plugin.NAME, null, 0);
+        base(root, Plugin.NAME, null, PluginCapabilities.TRACK_CHANGES);
     }
 }
