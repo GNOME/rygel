@@ -117,24 +117,25 @@ protected class UIElem : UIListing
         HashMap<string, string> elements =
             new HashMap<string, string> ();
         bool match = false;
+        // Add all mandatory and optional elements
         elements.set (UIID, this.id);
         elements.set (NAME, this.name);
+        elements.set (DESCRIPTION, this.description);
+        elements.set (FORK, this.fork);
+        elements.set (LIFETIME, this.lifetime);
 
         if ((this.name != null) && (filters_match (filters, NAME, this.name))) {
             match = true;
         }
         if ((this.description != null) && (filters_match (filters, DESCRIPTION,
                                                          this.description))) {
-            elements.set (DESCRIPTION, this.description);
             match = true;
         }
         if ((this.fork != null) && (filters_match (filters, FORK, this.fork))) {
-            elements.set (FORK, this.fork);
             match = true;
         }
         if ((this.lifetime != null) && (filters_match (filters, LIFETIME,
                                                       this.lifetime))) {
-            elements.set (LIFETIME, this.lifetime);
             match = true;
         }
 

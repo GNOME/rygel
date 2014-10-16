@@ -84,7 +84,6 @@ public class Rygel.RuihServiceManager
     public string get_compatible_uis (string deviceProfile, string filter)
         throws RuihServiceError {
         lock (object) {
-            ArrayList<ProtocolElem> protocols = new ArrayList<ProtocolElem> ();
             ArrayList<FilterEntry> filter_entries = new ArrayList<FilterEntry> ();
             Xml.Node* device_profile_node = null;
             Xml.Doc* doc = null;
@@ -138,10 +137,13 @@ public class Rygel.RuihServiceManager
             } // outer if
 
             if (filter.length > 0) {
-                if (filter == "*" || filter == "\"*\"") {
+                var filter_wildcard = (filter == "*" || filter == "\"*\"");
+
+                // Only enable wildcard if deviceprofile is not available
+                if (device_profile_node == null && filter_wildcard) {
                     // Wildcard filter entry
                     filter_entries.add (new WildCardFilterEntry ());
-                } else {
+                } else if (!filter_wildcard) {
                     // Check if the input UIFilter is in the right format.
                     if ((filter.get_char (0) != '"') ||
                         ((filter.get_char (filter.length - 1) != '"')
@@ -181,14 +183,22 @@ public class Rygel.RuihServiceManager
             StringBuilder result = new StringBuilder (PRE_RESULT);
 
             if (this.ui_list != null && this.ui_list.size > 0) {
+                var result_content = new StringBuilder ();
+
                 foreach (UIElem i in this.ui_list) {
                     UIElem ui = (UIElem)i;
-                    if (ui.match (protocols , filter_entries)) {
-                        result.append (ui.to_ui_listing (filter_entries));
-                    }
+                    result_content.append (ui.to_ui_listing (filter_entries));
                 }
+
+                // Return empty string if there is no matching UI for a filter
+                if (result_content.str == "") {
+                    return "";
+                }
+
+                result.append (result_content.str);
             }
             result.append (POST_RESULT);
+
             return result.str;
         }
     }
