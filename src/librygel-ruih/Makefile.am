@@ -1,7 +1,7 @@
 include ../../common.am
 include $(srcdir)/filelist.am
 
-librygel_ruih_includedir=$(includedir)/rygel-2.2
+librygel_ruih_includedir=$(includedir)/rygel-2.4
 librygel_ruih_include_HEADERS = rygel-ruih.h
 
 lib_LTLIBRARIES = librygel-ruih-2.0.la
