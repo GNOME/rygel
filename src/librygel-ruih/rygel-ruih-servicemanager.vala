@@ -44,7 +44,8 @@ public class Rygel.RuihServiceManager : Object
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
         + "<" + UILIST + " xmlns=\"urn:schemas-upnp-org:remoteui:uilist-1-0\" "
         + "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
-        + "xsi:schemaLocation=\"urn:schemas-upnp-org:remoteui:uilist-1-0 CompatibleUIs.xsd\">\n";
+        + "xsi:schemaLocation=\"urn:schemas-upnp-org:remoteui:uilist-1-0 "
+        + "CompatibleUIs.xsd\">\n";
 
     private static string POST_RESULT = "</" + UILIST + ">\n";
     private ArrayList<UIElem> ui_list;
@@ -82,6 +83,9 @@ public class Rygel.RuihServiceManager : Object
             this.ui_file_monitor = ui_file.monitor_file (FileMonitorFlags.NONE,
                                                          cancellable);
             this.ui_file_monitor.changed.connect ((src, dest, event) => {
+                debug ("File monitor for %s triggered with %s",
+                       this.ui_listing_full_path,
+                       event.to_string ());
                 try {
                         ruih_manager.set_ui_list (ui_listing_full_path);
                 } catch (RuihServiceError e) {
@@ -92,7 +96,8 @@ public class Rygel.RuihServiceManager : Object
             });
         } catch (Rygel.RuihServiceError e) {
             error ("Failed to set initial UI list for file %s - %s\n",
-                  this.ui_listing_full_path, e.message);
+                     this.ui_listing_full_path,
+                     e.message);
         } catch (GLib.IOError e) {
             error ("Failed to monitor the file %s - %s\n",
                    this.ui_listing_full_path,
@@ -113,13 +118,13 @@ public class Rygel.RuihServiceManager : Object
 
         var doc = Parser.parse_file (ui_list_file_path);
         if (doc == null) {
+            var msg = _("Unable to parse UI list file %s");
             throw new RuihServiceError.OPERATION_REJECTED
-                ("Unable to parse UI list file: " + ui_list_file_path);
+                                        (msg.printf (ui_list_file_path));
         }
 
         var ui_list_node = doc->get_root_element ();
-        if (ui_list_node != null && ui_list_node->name == UILIST)
-        {
+        if (ui_list_node != null && ui_list_node->name == UILIST) {
             foreach (var node in new XMLUtils.ChildIterator (ui_list_node)) {
                 if (node->name == UI) {
                     this.ui_list.add (new UIElem (node));
@@ -127,22 +132,25 @@ public class Rygel.RuihServiceManager : Object
             }
         }
 
+        this.updated ();
+
         delete doc;
     }
 
-    public string get_compatible_uis (string deviceProfile, string filter)
+    public string get_compatible_uis (string device_profile, string filter)
                                       throws RuihServiceError {
         ArrayList<FilterEntry> filter_entries = new ArrayList<FilterEntry> ();
         Xml.Node* device_profile_node = null;
         Xml.Doc* doc = null;
         // Parse if there is device info
 
-        if (deviceProfile != null && deviceProfile.length > 0) {
-            doc = Parser.parse_memory (deviceProfile,
-                                       deviceProfile.length);
+        if (device_profile != null && device_profile.length > 0) {
+            doc = Parser.parse_memory (device_profile,
+                                       device_profile.length);
             if (doc == null) {
+                var msg = _("Unable to parse device profile data: %s");
                 throw new RuihServiceError.OPERATION_REJECTED
-                    ("Unable to parse device profile data: " + deviceProfile);
+                                        (msg.printf (device_profile));
             }
             device_profile_node = doc->get_root_element ();
         }
@@ -162,7 +170,7 @@ public class Rygel.RuihServiceManager : Object
         delete doc;
 
         // Generate result XML with or without protocols
-        StringBuilder result = new StringBuilder (PRE_RESULT);
+        var result = new StringBuilder (PRE_RESULT);
 
         if (this.ui_list != null && this.ui_list.size > 0) {
             var result_content = new StringBuilder ();
@@ -183,8 +191,9 @@ public class Rygel.RuihServiceManager : Object
         return result.str;
     }
 
-    private void convert_device_profile_to_filter (Xml.Node *node,
-                                                   Gee.List<FilterEntry> filter_entries) {
+    private void convert_device_profile_to_filter
+                                        (Xml.Node *node,
+                                         Gee.List<FilterEntry> filter_entries) {
         if (node == null || node->name != DEVICEPROFILE) {
             return;
         }
@@ -235,20 +244,20 @@ public class Rygel.RuihServiceManager : Object
         } else if (!filter_is_wildcard) {
             // Check if the input UIFilter is in the right format.
             if ((filter.get_char (0) != '"') ||
-                ((filter.get_char (filter.length - 1) != '"')
-                && (filter.get_char (filter.length - 1) != ','))
-                ||  (!(filter.contains (",")) && filter.contains (";"))) {
-                throw new RuihServiceError.INVALID_FILTER
-                    ("Invalid filter: " + filter);
+                ((filter.get_char (filter.length - 1) != '"') &&
+                 (filter.get_char (filter.length - 1) != ',')) ||
+                (!(filter.contains (",")) && filter.contains (";"))) {
+                var msg = _("Invalid UI filter: %s");
+                throw new RuihServiceError.INVALID_FILTER (msg.printf (filter));
             }
 
-            string[] entries = filter.split (",");
+            var entries = filter.split (",");
             foreach (unowned string str in entries) {
                 // separator with no content, ignore
                 if (str.length == 0) {
                     continue;
                 }
-                string value = null;
+
                 // string off quotes
                 var name_value = str.split ("=");
                 if (name_value != null &&
@@ -256,10 +265,9 @@ public class Rygel.RuihServiceManager : Object
                     name_value[1] != null &&
                     name_value[1].length > 2) {
                     if (name_value[1].get_char (0) == '"' &&
-                       name_value[1].get_char
-                       (name_value[1].length - 1) == '"') {
-                        value = name_value[1].substring
-                            (1, name_value[1].length - 1);
+                        name_value[1].get_char (name_value[1].length - 1) == '"') {
+                        var value = name_value[1].substring
+                                        (1, name_value[1].length - 1);
                         filter_entries.add (new FilterEntry
                                             (name_value[0], value));
                     }
