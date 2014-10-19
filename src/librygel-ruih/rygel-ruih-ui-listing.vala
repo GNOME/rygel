@@ -43,7 +43,7 @@ public abstract class UIListing
     protected static const string URI = "uri";
     protected static const string UIID = "uiID";
 
-    public abstract bool match (Gee.ArrayList<ProtocolElem> protocols,
+    public abstract bool match (Gee.ArrayList<ProtocolElem>? protocols,
                                Gee.ArrayList<FilterEntry> filters);
     public abstract string to_ui_listing (Gee.ArrayList<FilterEntry> filters);
 

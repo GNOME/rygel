@@ -93,7 +93,7 @@ protected class UIElem : UIListing
         }
     }
 
-    public override bool match (Gee.ArrayList<ProtocolElem> protocol_elements,
+    public override bool match (Gee.ArrayList<ProtocolElem>? protocol_elements,
                                Gee.ArrayList<FilterEntry> filters) {
         if (protocol_elements == null || protocol_elements.size == 0) {
             return true;

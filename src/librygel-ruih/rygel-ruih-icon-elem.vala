@@ -76,7 +76,7 @@ protected class IconElem : UIListing {
         }
     }
 
-    public override bool match (Gee.ArrayList<ProtocolElem> protocols, Gee.ArrayList<FilterEntry> filters) {
+    public override bool match (Gee.ArrayList<ProtocolElem>? protocols, Gee.ArrayList<FilterEntry> filters) {
         return true;
     }
 

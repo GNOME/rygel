@@ -83,7 +83,7 @@ protected class ProtocolElem : UIListing {
         return this.protocol_info;
     }
 
-    public override bool match (Gee.ArrayList<ProtocolElem> protocols,
+    public override bool match (Gee.ArrayList<ProtocolElem>? protocols,
                                 Gee.ArrayList filters) {
         if (protocols == null || protocols.size == 0) {
             return true;
