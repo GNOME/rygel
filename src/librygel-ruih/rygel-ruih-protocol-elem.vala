@@ -37,10 +37,6 @@ protected class ProtocolElem : UIListing {
     public ProtocolElem (Xml.Node* node) throws Rygel.RuihServiceError {
         this.uris = new ArrayList<string> ();
 
-        if (node == null) {
-            throw new Rygel.RuihServiceError.OPERATION_REJECTED
-                ("Unable to parse Protocol data - null");
-        }
         for (Xml.Attr* prop = node->properties; prop != null;
             prop = prop->next) {
             string attr_name = prop->name;

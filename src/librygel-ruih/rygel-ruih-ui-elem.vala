@@ -41,11 +41,6 @@ protected class UIElem : UIListing
     private ArrayList<ProtocolElem> protocols;
 
     public UIElem (Xml.Node* node) throws Rygel.RuihServiceError {
-        if (node == null) {
-            throw new Rygel.RuihServiceError.OPERATION_REJECTED
-                ("Unable to parse UI data - null");
-        }
-
         this.icons = new ArrayList<IconElem> ();
         this.protocols = new ArrayList<ProtocolElem> ();
 

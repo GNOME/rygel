@@ -44,9 +44,6 @@ protected class IconElem : UIListing {
     private string url = null;
 
     public IconElem (Xml.Node* node) throws Rygel.RuihServiceError {
-        if (node == null) {
-            throw new Rygel.RuihServiceError.OPERATION_REJECTED ("Unable to parse Icon data - null");
-        }
         // Invalid XML Handling?
         foreach (var child_node in new Rygel.XMLUtils.ChildIterator (node)) {
             if (child_node->type == Xml.ElementType.TEXT_NODE) {
