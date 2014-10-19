@@ -39,46 +39,6 @@ internal class Rygel.RuihService: Service {
                     "urn:schemas-upnp-org:service:RemoteUIServer:1";
     public const string DESCRIPTION_PATH =
                     "xml/RemoteUIServerService.xml";
-    public const string UI_LISTING_FILE_NAME = "UIList.xml";
-
-    internal static Cancellable cancellable;
-    private static string ui_listing_full_path;
-    private static FileMonitor ui_file_monitor;
-    private static RuihServiceManager ruih_manager;
-
-    static construct {
-        cancellable = new Cancellable ();
-        var ui_listing_directory = Path.build_filename (
-                Environment.get_user_config_dir (), "Rygel");
-        ui_listing_full_path = Path.build_filename (ui_listing_directory,
-                UI_LISTING_FILE_NAME);
-        DirUtils.create_with_parents (ui_listing_directory, 0755);
-        ruih_manager = new RuihServiceManager ();
-
-        try {
-            ruih_manager.set_ui_list (ui_listing_full_path);
-            var ui_file = File.new_for_path (ui_listing_full_path);
-            ui_file_monitor = ui_file.monitor_file (FileMonitorFlags.NONE,
-                                                        cancellable);
-            ui_file_monitor.changed.connect ((src, dest, event) => {
-                try {
-                        ruih_manager.set_ui_list (ui_listing_full_path);
-                }
-                catch (RuihServiceError e) {
-                   error ("Failed to set UIList for file %s - %s\n", ui_listing_full_path,
-                         e.message);
-                }
-            });
-        }
-        catch (Rygel.RuihServiceError e) {
-            error ("Failed to set initial UI list for file %s - %s\n",
-                  ui_listing_full_path, e.message);
-        }
-        catch (GLib.IOError e) {
-            error ("Failed to monitor the file %s - %s\n", ui_listing_full_path,
-                  e.message);
-        }
-    }
 
     public override void constructed () {
         base.constructed ();
@@ -88,10 +48,6 @@ internal class Rygel.RuihService: Service {
 
         this.action_invoked["GetCompatibleUIs"].connect
             (this.get_compatible_uis_cb);
-    }
-
-    ~RuihService () {
-        cancellable.cancel ();
     }
 
     /* Browse action implementation */
@@ -105,8 +61,9 @@ internal class Rygel.RuihService: Service {
 
         try
         {
-            string compat_ui = ruih_manager.get_compatible_uis
-                (input_device_profile, input_ui_filter);
+            var manager = RuihServiceManager.get_default ();
+            var compat_ui = manager.get_compatible_uis (input_device_profile,
+                                                        input_ui_filter);
 
             action.set ("UIListing", typeof (string), compat_ui);
             action.return ();

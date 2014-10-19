@@ -31,7 +31,7 @@ using Gee;
 using Xml;
 using GLib;
 
-public class Rygel.RuihServiceManager
+public class Rygel.RuihServiceManager : Object
 {
     private static const string DEVICEPROFILE = "deviceprofile";
     private static const string PROTOCOL = "protocol";
@@ -49,6 +49,61 @@ public class Rygel.RuihServiceManager
     private static string POST_RESULT = "</" + UILIST + ">\n";
     private ArrayList<UIElem> ui_list;
     private Object object = null;
+
+    private static RuihServiceManager instance = null;
+
+    internal Cancellable cancellable;
+    private string ui_listing_full_path;
+    private FileMonitor ui_file_monitor;
+    private RuihServiceManager ruih_manager;
+
+    public const string UI_LISTING_FILE_NAME = "UIList.xml";
+
+    public static RuihServiceManager get_default () {
+        if (instance == null) {
+            instance = new RuihServiceManager ();
+        }
+
+        return instance;
+    }
+
+    public override void constructed () {
+        base.constructed ();
+
+        unowned string config_dir = Environment.get_user_config_dir ();
+        this.cancellable = new Cancellable ();
+        var ui_listing_directory = Path.build_filename (config_dir, "Rygel");
+        this.ui_listing_full_path = Path.build_filename (ui_listing_directory,
+                                                         UI_LISTING_FILE_NAME);
+        DirUtils.create_with_parents (ui_listing_directory, 0755);
+
+        try {
+            this.set_ui_list (ui_listing_full_path);
+            var ui_file = File.new_for_path (ui_listing_full_path);
+            this.ui_file_monitor = ui_file.monitor_file (FileMonitorFlags.NONE,
+                                                         cancellable);
+            this.ui_file_monitor.changed.connect ((src, dest, event) => {
+                try {
+                        ruih_manager.set_ui_list (ui_listing_full_path);
+                } catch (RuihServiceError e) {
+                    error ("Failed to set UIList for file %s - %s\n",
+                           ui_listing_full_path,
+                           e.message);
+                }
+            });
+        } catch (Rygel.RuihServiceError e) {
+            error ("Failed to set initial UI list for file %s - %s\n",
+                  this.ui_listing_full_path, e.message);
+        } catch (GLib.IOError e) {
+            error ("Failed to monitor the file %s - %s\n",
+                   this.ui_listing_full_path,
+                   e.message);
+        }
+    }
+
+    ~RuihServiceManager () {
+        this.cancellable.cancel ();
+    }
 
     public void set_ui_list (string ui_list_file_path) throws RuihServiceError {
         lock (object) {
