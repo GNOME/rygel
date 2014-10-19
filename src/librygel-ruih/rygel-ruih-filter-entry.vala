@@ -29,11 +29,11 @@
 protected class FilterEntry {
     private static const string LIFETIME = "lifetime";
 
-    string entry_name = null;
-    string entry_value = null;
+    private string entry_name = null;
+    private string entry_value = null;
 
     public FilterEntry (string name, string value) {
-        string temp = name;
+        var temp = name;
         // Get rid of extra "  in name
         temp = temp.replace ("\"", "");
         entry_name = temp;
@@ -49,8 +49,8 @@ protected class FilterEntry {
         entry_value = temp;
     }
 
-    public bool matches (string name, string value) {
-        if (entry_name == null && entry_value == null) {
+    public virtual bool matches (string name, string value) {
+        if (this.entry_name == null && this.entry_value == null) {
             return false;
         }
 
@@ -58,17 +58,16 @@ protected class FilterEntry {
             if (entry_value != null) {
                 if (entry_name == LIFETIME) {
                     // Lifetime value can be negative as well.
-                    if (int.parse (entry_value) == int.parse (value)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return int.parse (entry_value) == int.parse (value);
                 }
+
                 var result = Regex.match_simple (entry_value, value,
                                                  RegexCompileFlags.CASELESS);
+
                 return result;
             }
         }
+
         return false;
     }
 }

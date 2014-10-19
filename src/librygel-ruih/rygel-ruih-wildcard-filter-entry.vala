@@ -31,7 +31,7 @@ protected class WildCardFilterEntry : FilterEntry {
         base ("*","*");
     }
 
-    public new bool matches (string name, string value) {
+    public override bool matches (string name, string value) {
         return true;
     }
 }
