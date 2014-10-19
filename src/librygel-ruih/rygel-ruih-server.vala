@@ -44,7 +44,7 @@ public class Rygel.RuihServer : MediaDevice {
      * Create a RuihServer to serve the UIs.
      */
     public RuihServer (string title,
-                        PluginCapabilities capabilities =
+                       PluginCapabilities capabilities =
                                         PluginCapabilities.NONE) {
         Object (title: title,
                 capabilities: capabilities);
