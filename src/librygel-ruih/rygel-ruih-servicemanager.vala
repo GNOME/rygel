@@ -120,14 +120,13 @@ public class Rygel.RuihServiceManager : Object
         var ui_list_node = doc->get_root_element ();
         if (ui_list_node != null && ui_list_node->name == UILIST)
         {
-            for (var child_node = ui_list_node->children;
-                 child_node != null;
-                 child_node = child_node->next) {
-                if (child_node->name == UI) {
-                    this.ui_list.add (new UIElem (child_node));
+            foreach (var node in new XMLUtils.ChildIterator (ui_list_node)) {
+                if (node->name == UI) {
+                    this.ui_list.add (new UIElem (node));
                 }
             }
         }
+
         delete doc;
     }
 
@@ -190,9 +189,7 @@ public class Rygel.RuihServiceManager : Object
             return;
         }
 
-        for (var child_node = node->children;
-             child_node != null;
-             child_node = child_node->next) {
+        foreach (var child_node in new XMLUtils.ChildIterator (node)) {
             if (child_node->type == Xml.ElementType.TEXT_NODE) {
                 // ignore text nodes
                 continue;

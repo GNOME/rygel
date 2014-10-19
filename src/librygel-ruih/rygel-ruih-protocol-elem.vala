@@ -55,8 +55,7 @@ protected class ProtocolElem : UIListing {
             }
         }
 
-        for (Xml.Node* child_node = node->children; child_node != null;
-            child_node = child_node->next) {
+        foreach (var child_node in new Rygel.XMLUtils.ChildIterator (node)) {
             if (child_node->type == Xml.ElementType.TEXT_NODE) {
                 // ignore text nodes
                 continue;

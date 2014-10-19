@@ -52,9 +52,7 @@ protected class UIElem : UIListing
         this.protocols = new ArrayList<ProtocolElem> ();
 
         // invalid XML exception?
-        for (Xml.Node* child_node = node->children; child_node != null;
-             child_node = child_node->next)
-        {
+        foreach (var child_node in new Rygel.XMLUtils.ChildIterator (node)) {
             if (child_node->type == Xml.ElementType.TEXT_NODE) {
                 // ignore text nodes
                 continue;
@@ -71,11 +69,9 @@ protected class UIElem : UIListing
                 this.description = child_node->get_content ();
                 break;
             case ICONLIST:
-                for (Xml.Node* icon_node = child_node->children;
-                    icon_node != null; icon_node = icon_node->next)
-                {
-                    if (icon_node->name == ICON)
-                    {
+                var it = new Rygel.XMLUtils.ChildIterator (child_node);
+                foreach (var icon_node in it) {
+                    if (icon_node->name == ICON) {
                         this.icons.add (new IconElem (icon_node));
                     }
                 }

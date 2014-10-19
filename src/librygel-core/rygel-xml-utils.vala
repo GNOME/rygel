@@ -48,4 +48,37 @@ public class Rygel.XMLUtils {
 
         return ret;
     }
+
+    /**
+     * Convenience class to iterate over Xml.Node's siblings in vala's foreach
+     * loop.
+     */
+    public class Iterator {
+        private Xml.Node* iter;
+
+        public Iterator (Xml.Node* node) {
+            this.iter = node;
+        }
+
+        public Iterator iterator() {
+            return this;
+        }
+
+        public bool next () {
+            return this.iter != null;
+        }
+
+        public Xml.Node* @get () {
+            var current = this.iter;
+            this.iter = this.iter->next;
+
+            return current;
+        }
+    }
+
+    public class ChildIterator : Iterator {
+        public ChildIterator (Xml.Node* node) {
+            base (node->children);
+        }
+    }
 }
