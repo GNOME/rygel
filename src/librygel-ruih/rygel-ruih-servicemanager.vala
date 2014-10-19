@@ -150,90 +150,17 @@ public class Rygel.RuihServiceManager : Object
 
         // If inputDeviceProfile and filter are empty
         // just display all HTML5 UI elements.
-        // This is a change from the UPNP-defined behavior
+        // This is a change from the UPnP-defined behavior
         if (device_profile_node == null && filter == "") {
             filter_entries.add (new FilterEntry (SHORT_NAME, "*HTML5*"));
         }
 
-        // Parse device info to create protocols
-        if (device_profile_node != null) {
-            if (device_profile_node->name == DEVICEPROFILE) {
-                for (var child_node = device_profile_node->children;
-                     child_node != null;
-                     child_node = child_node->next) {
-                    if (child_node->type == Xml.ElementType.TEXT_NODE) {
-                        // ignore text nodes
-                        continue;
-                    }
+        this.convert_device_profile_to_filter (device_profile_node,
+                                               filter_entries);
 
-                    if (child_node->name == PROTOCOL) {
-                        // Get shortName attribute
-                        for (var prop = child_node->properties;
-                             prop != null;
-                             prop = prop->next) {
-                            if (prop->name == SHORT_NAME &&
-                                prop->children->content != null) {
-                                var entry = new FilterEntry
-                                        (SHORT_NAME,
-                                         prop->children->content);
-                                filter_entries.add (entry);
-                            }
-                        }
-                    }
+        this.convert_filter_string (device_profile_node, filter, filter_entries);
 
-                    if (child_node->name == PROTOCOL_INFO &&
-                        child_node->content != null) {
-                        var entry = new FilterEntry (PROTOCOL_INFO,
-                                                     child_node->content);
-                        filter_entries.add (entry);
-                    }
-                }// for
-            }// if
-            delete doc;
-        } // outer if
-
-        if (filter.length > 0) {
-            var filter_wildcard = (filter == "*" || filter == "\"*\"");
-
-            // Only enable wildcard if deviceprofile is not available
-            if (device_profile_node == null && filter_wildcard) {
-                // Wildcard filter entry
-                filter_entries.add (new WildCardFilterEntry ());
-            } else if (!filter_wildcard) {
-                // Check if the input UIFilter is in the right format.
-                if ((filter.get_char (0) != '"') ||
-                    ((filter.get_char (filter.length - 1) != '"')
-                    && (filter.get_char (filter.length - 1) != ','))
-                    ||  (!(filter.contains (",")) && filter.contains (";"))) {
-                    throw new RuihServiceError.INVALID_FILTER
-                        ("Invalid filter: " + filter);
-                }
-
-                string[] entries = filter.split (",");
-                foreach (unowned string str in entries) {
-                    // separator with no content, ignore
-                    if (str.length == 0) {
-                        continue;
-                    }
-                    string value = null;
-                    // string off quotes
-                    var name_value = str.split ("=");
-                    if (name_value != null &&
-                        name_value.length == 2 &&
-                        name_value[1] != null &&
-                        name_value[1].length > 2) {
-                        if (name_value[1].get_char (0) == '"' &&
-                           name_value[1].get_char
-                           (name_value[1].length - 1) == '"') {
-                            value = name_value[1].substring
-                                (1, name_value[1].length - 1);
-                            filter_entries.add (new FilterEntry
-                                                (name_value[0], value));
-                        }
-                    }
-                }
-            }
-        }
+        delete doc;
 
         // Generate result XML with or without protocols
         StringBuilder result = new StringBuilder (PRE_RESULT);
@@ -255,5 +182,92 @@ public class Rygel.RuihServiceManager : Object
         result.append (POST_RESULT);
 
         return result.str;
-}
+    }
+
+    private void convert_device_profile_to_filter (Xml.Node *node,
+                                                   Gee.List<FilterEntry> filter_entries) {
+        if (node == null || node->name != DEVICEPROFILE) {
+            return;
+        }
+
+        for (var child_node = node->children;
+             child_node != null;
+             child_node = child_node->next) {
+            if (child_node->type == Xml.ElementType.TEXT_NODE) {
+                // ignore text nodes
+                continue;
+            }
+
+            if (child_node->name == PROTOCOL) {
+                // Get shortName attribute
+                for (var prop = child_node->properties;
+                     prop != null;
+                     prop = prop->next) {
+                    if (prop->name == SHORT_NAME &&
+                        prop->children->content != null) {
+                        var entry = new FilterEntry (SHORT_NAME,
+                                                     prop->children->content);
+                        filter_entries.add (entry);
+                    }
+                }
+            }
+
+            if (child_node->name == PROTOCOL_INFO &&
+                child_node->content != null) {
+                var entry = new FilterEntry (PROTOCOL_INFO,
+                                             child_node->content);
+                filter_entries.add (entry);
+            }
+        }// for
+    }
+
+    private void convert_filter_string (Xml.Node *device_profile_node,
+                                        string filter,
+                                        Gee.List<FilterEntry> filter_entries)
+                                        throws RuihServiceError {
+        if (filter.length == 0) {
+            return;
+        }
+
+        var filter_is_wildcard = (filter == "*" || filter == "\"*\"");
+
+        // Only enable wildcard if deviceprofile is not available
+        if (device_profile_node == null && filter_is_wildcard) {
+            // Wildcard filter entry
+            filter_entries.add (new WildCardFilterEntry ());
+        } else if (!filter_is_wildcard) {
+            // Check if the input UIFilter is in the right format.
+            if ((filter.get_char (0) != '"') ||
+                ((filter.get_char (filter.length - 1) != '"')
+                && (filter.get_char (filter.length - 1) != ','))
+                ||  (!(filter.contains (",")) && filter.contains (";"))) {
+                throw new RuihServiceError.INVALID_FILTER
+                    ("Invalid filter: " + filter);
+            }
+
+            string[] entries = filter.split (",");
+            foreach (unowned string str in entries) {
+                // separator with no content, ignore
+                if (str.length == 0) {
+                    continue;
+                }
+                string value = null;
+                // string off quotes
+                var name_value = str.split ("=");
+                if (name_value != null &&
+                    name_value.length == 2 &&
+                    name_value[1] != null &&
+                    name_value[1].length > 2) {
+                    if (name_value[1].get_char (0) == '"' &&
+                       name_value[1].get_char
+                       (name_value[1].length - 1) == '"') {
+                        value = name_value[1].substring
+                            (1, name_value[1].length - 1);
+                        filter_entries.add (new FilterEntry
+                                            (name_value[0], value));
+                    }
+                }
+            }
+        }
+    }
 } // RygelServiceManager class
