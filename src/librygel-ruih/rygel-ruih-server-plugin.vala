@@ -35,20 +35,25 @@ public class Rygel.RuihServerPlugin : Rygel.Plugin {
     private static const string RUIH_SERVER_DESC_PATH =
                                 BuildConfig.DATA_DIR +
                                 "/xml/RuihServer2.xml";
-    private static const string RUIH = "urn:schemas-upnp-org:device:RemoteUIServer";
+    private static const string RUIH =
+                                  "urn:schemas-upnp-org:device:RemoteUIServer";
 
 
     /**
      * Create an instance of the plugin.
      *
-     * @param name The non-human-readable name for the plugin, used in UPnP messages and in the Rygel configuration file.
-     * @param title An optional human-readable name (friendlyName) of the UPnP renderer provided by the plugin. If the title is empty then the name will be used.
-     * @param description An optional human-readable description (modelDescription) of the UPnP renderer provided by the plugin.
+     * @param name The non-human-readable name for the plugin, used in UPnP
+     * messages and in the Rygel configuration file.
+     * @param title An optional human-readable name (friendlyName) of the UPnP
+     * RUIH server provided by the plugin. If the title is empty then the name
+     * will be used.
+     * @param description An optional human-readable description
+     * (modelDescription) of the UPnP RUIH server provided by the plugin.
      */
     public RuihServerPlugin (string  name,
-                                string? title,
-                                string? description = null,
-                                PluginCapabilities capabilities =
+                             string? title,
+                             string? description = null,
+                             PluginCapabilities capabilities =
                                         PluginCapabilities.NONE) {
         Object (desc_path : RUIH_SERVER_DESC_PATH,
                 name : name,
