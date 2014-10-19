@@ -37,17 +37,16 @@ protected class ProtocolElem : UIListing {
     public ProtocolElem (Xml.Node* node) throws Rygel.RuihServiceError {
         this.uris = new ArrayList<string> ();
 
-        for (Xml.Attr* prop = node->properties; prop != null;
-            prop = prop->next) {
-            string attr_name = prop->name;
+        for (var prop = node->properties; prop != null; prop = prop->next) {
+            var attr_name = prop->name;
             switch (attr_name) {
             case SHORT_NAME:
                 this.short_name = prop->children->content;
                 break;
             default:
+                var msg = _("Unable to parse Protocol data - unexpected attribute: %s");
                 throw new Rygel.RuihServiceError.OPERATION_REJECTED
-                        ("Unable to parse Protocol data - unexpected attribute: "
-                         + attr_name);
+                                        (msg.printf (attr_name));
             }
         }
 
@@ -56,7 +55,8 @@ protected class ProtocolElem : UIListing {
                 // ignore text nodes
                 continue;
             }
-            string node_name = child_node->name;
+
+            var node_name = child_node->name;
             switch (node_name) {
             case URI:
                 this.uris.add (child_node->get_content ());
@@ -65,8 +65,9 @@ protected class ProtocolElem : UIListing {
                 this.protocol_info = child_node->get_content ();
                 break;
             default:
+                var msg = _("Unable to parse Protocol data - unexpected node: %s");
                 throw new Rygel.RuihServiceError.OPERATION_REJECTED
-                        ("Unable to parse Protocol data - unexpected node: " + node_name);
+                                        (msg.printf (node_name));
             }
         }
     }
@@ -85,13 +86,12 @@ protected class ProtocolElem : UIListing {
             return true;
         }
 
-        foreach (ProtocolElem i in protocols) {
-            ProtocolElem proto = (ProtocolElem)i;
+        foreach (var proto in protocols) {
             if (this.short_name == proto.get_short_name ()) {
                 // Optionally if a protocolInfo is specified
                 // match on that as well.
                 if (proto.get_protocol_info () != null &&
-                        proto.get_protocol_info ()._strip ().length > 0) {
+                    proto.get_protocol_info ()._strip ().length > 0) {
                     if (proto.get_protocol_info () == this.protocol_info) {
                         return true;
                     }
@@ -104,40 +104,38 @@ protected class ProtocolElem : UIListing {
         return false;
     }
 
-    public override string to_ui_listing (Gee.ArrayList<FilterEntry>
-                                          filters) {
-        bool matches = false;
-        HashMap<string, string> elements = new
-            HashMap<string, string> ();
-        if ((this.short_name != null) && (filters_match (filters,
-            SHORT_NAME, this.short_name)))
-        {
+    public override string to_ui_listing (ArrayList<FilterEntry> filters) {
+        var matches = false;
+        var elements = new HashMap<string, string> ();
+
+        if ((this.short_name != null) &&
+            (this.filters_match (filters, SHORT_NAME, this.short_name))) {
             matches = true;
         }
 
-        if ((this.protocol_info != null) && (filters_match
-            (filters, PROTOCOL_INFO, this.protocol_info)))
-        {
+        if ((this.protocol_info != null) &&
+            (this.filters_match (filters, PROTOCOL_INFO, this.protocol_info))) {
             elements.set (PROTOCOL_INFO, this.protocol_info);
             matches = true;
         }
 
-        StringBuilder sb = new StringBuilder ();
+        var sb = new StringBuilder ();
         if (matches) {
-            sb.append ("<" + PROTOCOL + " " + SHORT_NAME
-                + "=\""  + this.short_name + "\">\n");
-            if (this.uris.size > 0)
-            {
-                foreach (string i in this.uris)
+            sb.append ("<" + PROTOCOL + " " +
+                       SHORT_NAME + "=\""  + this.short_name + "\">\n");
+
+            if (this.uris.size > 0) {
+                foreach (var uri in this.uris)
                 {
                     sb.append ("<").append (URI).append (">")
-                    .append (i)
-                    .append ("</").append (URI).append (">\n");
+                      .append (uri)
+                      .append ("</").append (URI).append (">\n");
                 }
             }
-            sb.append (to_xml (elements));
+            sb.append (this.to_xml (elements));
             sb.append ("</" + PROTOCOL + ">\n");
         }
+
         return sb.str;
     }
 }
