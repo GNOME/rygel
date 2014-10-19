@@ -44,39 +44,37 @@ internal class Rygel.RuihService: Service {
         base.constructed ();
 
         this.query_variable["UIListingUpdate"].connect
-            (this.query_ui_listing);
+                                        (this.query_ui_listing);
 
         this.action_invoked["GetCompatibleUIs"].connect
-            (this.get_compatible_uis_cb);
+                                        (this.get_compatible_uis_cb);
     }
 
     /* Browse action implementation */
     private void get_compatible_uis_cb (Service       content_dir,
-                            ServiceAction action) {
+                                        ServiceAction action) {
 
         string input_device_profile, input_ui_filter;
-        action.get ("InputDeviceProfile", typeof (string),
-                    out input_device_profile);
+        action.get ("InputDeviceProfile",
+                        typeof (string),
+                        out input_device_profile);
         action.get ("UIFilter", typeof (string), out input_ui_filter);
 
-        try
-        {
+        try {
             var manager = RuihServiceManager.get_default ();
             var compat_ui = manager.get_compatible_uis (input_device_profile,
                                                         input_ui_filter);
 
             action.set ("UIListing", typeof (string), compat_ui);
             action.return ();
-        }
-        catch (RuihServiceError e)
-        {
+        } catch (RuihServiceError e) {
             action.return_error (e.code, e.message);
         }
     }
 
-    private void query_ui_listing (Service   ruih_service,
-                                 string    variable,
-                                 ref GLib.Value   value) {
+    private void query_ui_listing (Service        ruih_service,
+                                   string         variable,
+                                   ref GLib.Value value) {
         value.init (typeof (string));
         value.set_string ("");
     }
