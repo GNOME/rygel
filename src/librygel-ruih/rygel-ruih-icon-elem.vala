@@ -68,40 +68,52 @@ protected class IconElem : UIListing {
                 this.url = child_node->get_content ();
                 break;
             default:
-                throw new Rygel.RuihServiceError.OPERATION_REJECTED ("Unable to parse Icon data - unexpected node: " + node_name);
+                var msg = _("Unable to parse Icon data - unexpected node: %s");
+                throw new Rygel.RuihServiceError.OPERATION_REJECTED
+                                        (msg.printf (node_name));
             }
         }
     }
 
-    public override bool match (Gee.ArrayList<ProtocolElem>? protocols, Gee.ArrayList<FilterEntry> filters) {
+    public override bool match (ArrayList<ProtocolElem>? protocols,
+                                ArrayList<FilterEntry> filters) {
         return true;
     }
 
-    public override string to_ui_listing (Gee.ArrayList<FilterEntry> filters) {
-        HashMap<string, string> elements = new HashMap<string, string> ();
-        if ((this.mime_type != null) && (filters_match (filters, ICON + "@" + MIMETYPE, this.mime_type))) {
+    public override string to_ui_listing (ArrayList<FilterEntry> filters) {
+        var elements = new HashMap<string, string> ();
+
+        if ((this.mime_type != null) &&
+            (this.filters_match (filters, ICON + "@" + MIMETYPE,
+                                 this.mime_type))) {
             elements.set (MIMETYPE, this.mime_type);
         }
-        if ((this.width != null) && (filters_match (filters, ICON + "@" + WIDTH, this.width))) {
+        if ((this.width != null) &&
+            (this.filters_match (filters, ICON + "@" + WIDTH, this.width))) {
             elements.set (WIDTH, this.width);
         }
-        if ((this.height != null) && (filters_match (filters, ICON + "@" + HEIGHT, this.height))) {
+        if ((this.height != null) &&
+            (this.filters_match (filters, ICON + "@" + HEIGHT, this.height))) {
             elements.set (HEIGHT, this.height);
         }
-        if ((this.depth != null) && (filters_match (filters, ICON + "@" + DEPTH, this.depth))) {
+        if ((this.depth != null) &&
+            (this.filters_match (filters, ICON + "@" + DEPTH, this.depth))) {
             elements.set (DEPTH, this.depth);
         }
-        if ((this.url != null) && (filters_match (filters, ICON + "@" + URL, this.url))) {
+        if ((this.url != null) &&
+            (this.filters_match (filters, ICON + "@" + URL, this.url))) {
             elements.set (URL, this.url);
         }
 
         if (elements.size > 0) {
-            StringBuilder sb = new StringBuilder ();
+            var sb = new StringBuilder ();
             sb.append ("<" + ICON + ">\n");
-            sb.append (to_xml (elements));
+            sb.append (this.to_xml (elements));
             sb.append ("</" + ICON + ">\n");
+
             return sb.str;
         }
+
         return "";
     }
 }
