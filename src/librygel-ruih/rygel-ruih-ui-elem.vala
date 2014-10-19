@@ -37,13 +37,11 @@ protected class UIElem : UIListing
     private string fork = null;
     private string lifetime = null;
 
-    private Gee.ArrayList<IconElem> icons ;
-    private Gee.ArrayList<ProtocolElem> protocols;
+    private ArrayList<IconElem> icons ;
+    private ArrayList<ProtocolElem> protocols;
 
-    public UIElem (Xml.Node* node) throws Rygel.RuihServiceError
-    {
-        if (node == null)
-        {
+    public UIElem (Xml.Node* node) throws Rygel.RuihServiceError {
+        if (node == null) {
             throw new Rygel.RuihServiceError.OPERATION_REJECTED
                 ("Unable to parse UI data - null");
         }
@@ -57,7 +55,8 @@ protected class UIElem : UIListing
                 // ignore text nodes
                 continue;
             }
-            string node_name = child_node->name;
+
+            var node_name = child_node->name;
             switch (node_name) {
             case UIID:
                 this.id = child_node->get_content ();
@@ -86,9 +85,9 @@ protected class UIElem : UIListing
                 this.protocols.add (new ProtocolElem (child_node));
                 break;
             default:
+                var msg = _("Unable to parse UI data - unexpected node: %s");
                 throw new Rygel.RuihServiceError.OPERATION_REJECTED
-                        ("Unable to parse UI data - unexpected node: "
-                         + node_name);
+                                        (msg.printf (node_name));
             }
         }
     }
@@ -99,8 +98,7 @@ protected class UIElem : UIListing
             return true;
         }
 
-        foreach (ProtocolElem prot in protocol_elements) {
-            ProtocolElem proto = (ProtocolElem)prot;
+        foreach (var proto in protocol_elements) {
             if (proto.match (this.protocols, filters)) {
                 return true;
             }
@@ -110,9 +108,9 @@ protected class UIElem : UIListing
     }
 
     public override string to_ui_listing (Gee.ArrayList<FilterEntry> filters) {
-        HashMap<string, string> elements =
-            new HashMap<string, string> ();
-        bool match = false;
+        var elements = new HashMap<string, string> ();
+        var match = false;
+
         // Add all mandatory and optional elements
         elements.set (UIID, this.id);
         elements.set (NAME, this.name);
@@ -120,27 +118,29 @@ protected class UIElem : UIListing
         elements.set (FORK, this.fork);
         elements.set (LIFETIME, this.lifetime);
 
-        if ((this.name != null) && (filters_match (filters, NAME, this.name))) {
+        if ((this.name != null) &&
+            (this.filters_match (filters, NAME, this.name))) {
             match = true;
         }
-        if ((this.description != null) && (filters_match (filters, DESCRIPTION,
-                                                         this.description))) {
+        if ((this.description != null) &&
+            (this.filters_match (filters, DESCRIPTION, this.description))) {
             match = true;
         }
-        if ((this.fork != null) && (filters_match (filters, FORK, this.fork))) {
+        if ((this.fork != null) &&
+            (this.filters_match (filters, FORK, this.fork))) {
             match = true;
         }
-        if ((this.lifetime != null) && (filters_match (filters, LIFETIME,
-                                                      this.lifetime))) {
+        if ((this.lifetime != null) &&
+            (this.filters_match (filters, LIFETIME, this.lifetime))) {
             match = true;
         }
 
-        StringBuilder sb = new StringBuilder ("<" + UI + ">\n");
-        sb.append (to_xml (elements));
+        var sb = new StringBuilder ("<" + UI + ">\n");
+        sb.append (this.to_xml (elements));
 
-        StringBuilder icon_sb = new StringBuilder ();
-        foreach (IconElem i in this.icons) {
-            icon_sb.append (i.to_ui_listing (filters));
+        var icon_sb = new StringBuilder ();
+        foreach (var icon in this.icons) {
+            icon_sb.append (icon.to_ui_listing (filters));
         }
 
         // Only display list if there is something to display
@@ -150,11 +150,13 @@ protected class UIElem : UIListing
             sb.append (icon_sb.str);
             sb.append ("</" + ICONLIST + ">\n");
         }
-        StringBuilder protocol_sb = new StringBuilder ();
+
+        var protocol_sb = new StringBuilder ();
         if (this.protocols.size > 0) {
-            foreach (ProtocolElem i in this.protocols) {
-                protocol_sb.append (i.to_ui_listing (filters));
+            foreach (var protocol in this.protocols) {
+                protocol_sb.append (protocol.to_ui_listing (filters));
             }
+
             if (protocol_sb.str.length > 0) {
                 match = true;
                 sb.append (protocol_sb.str);
