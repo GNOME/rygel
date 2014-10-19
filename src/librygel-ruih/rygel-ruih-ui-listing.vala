@@ -43,32 +43,33 @@ public abstract class UIListing
     protected static const string URI = "uri";
     protected static const string UIID = "uiID";
 
-    public abstract bool match (Gee.ArrayList<ProtocolElem>? protocols,
-                               Gee.ArrayList<FilterEntry> filters);
-    public abstract string to_ui_listing (Gee.ArrayList<FilterEntry> filters);
+    public abstract bool match (ArrayList<ProtocolElem>? protocols,
+                                ArrayList<FilterEntry> filters);
+    public abstract string to_ui_listing (ArrayList<FilterEntry> filters);
 
-    public string to_xml (Gee.HashMap<string, string> hashMap) {
-        StringBuilder sb = new StringBuilder ();
-        foreach (Map.Entry<string, string> e in hashMap.entries) {
-            sb.append ("<").append (e.key).append (">")
-            .append (e.value)
-            .append ("</").append (e.key).append (">\n");
+    public string to_xml (Gee.HashMap<string, string> hash_map) {
+        var sb = new StringBuilder ();
+        foreach (var e in hash_map.entries) {
+            sb.append_printf ("<%s>%s</%s>\n", e.key, e.value, e.key);
         }
+
         return sb.str;
     }
 
     // Convenience method to avoid a lot of inline loops
-    public bool filters_match (Gee.ArrayList<FilterEntry> filters,
-                               string name, string value) {
-        if (filters != null && name != null && value != null) {
-            foreach (FilterEntry fil in filters) {
-                FilterEntry entry = (FilterEntry)fil;
+    public bool filters_match (ArrayList<FilterEntry>? filters,
+                               string? name,
+                               string? value) {
+        if (filters == null || name == null || value == null) {
+            return false;
+        }
 
-                if ((entry != null) && (entry.matches (name, value))) {
-                    return true;
-                }
+        foreach (var entry in filters) {
+            if ((entry != null) && (entry.matches (name, value))) {
+                return true;
             }
         }
+
         return false;
     }
 }
