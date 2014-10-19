@@ -105,27 +105,25 @@ public class Rygel.RuihServiceManager : Object
     }
 
     public void set_ui_list (string ui_list_file_path) throws RuihServiceError {
-        this.ui_list = new ArrayList<UIElem> ();
+        this.ui_list.clear ();
         // Empty internal data
         if (ui_list_file_path == null) {
             return;
         }
 
-        Xml.Doc* doc = Parser.parse_file (ui_list_file_path);
+        var doc = Parser.parse_file (ui_list_file_path);
         if (doc == null) {
             throw new RuihServiceError.OPERATION_REJECTED
                 ("Unable to parse UI list file: " + ui_list_file_path);
         }
 
-        Xml.Node* ui_list_node = doc->get_root_element ();
-        if (ui_list_node != null &&
-            ui_list_node->name == UILIST)
+        var ui_list_node = doc->get_root_element ();
+        if (ui_list_node != null && ui_list_node->name == UILIST)
         {
-            for (Xml.Node* child_node = ui_list_node->children;
-                 child_node != null; child_node = child_node->next)
-            {
-                if (child_node->name == UI)
-                {
+            for (var child_node = ui_list_node->children;
+                 child_node != null;
+                 child_node = child_node->next) {
+                if (child_node->name == UI) {
                     this.ui_list.add (new UIElem (child_node));
                 }
             }
@@ -142,7 +140,7 @@ public class Rygel.RuihServiceManager : Object
 
         if (deviceProfile != null && deviceProfile.length > 0) {
             doc = Parser.parse_memory (deviceProfile,
-                                                deviceProfile.length);
+                                       deviceProfile.length);
             if (doc == null) {
                 throw new RuihServiceError.OPERATION_REJECTED
                     ("Unable to parse device profile data: " + deviceProfile);
@@ -160,27 +158,34 @@ public class Rygel.RuihServiceManager : Object
         // Parse device info to create protocols
         if (device_profile_node != null) {
             if (device_profile_node->name == DEVICEPROFILE) {
-                for (Xml.Node* child_node = device_profile_node->children;
-                     child_node != null; child_node = child_node->next) {
+                for (var child_node = device_profile_node->children;
+                     child_node != null;
+                     child_node = child_node->next) {
                     if (child_node->type == Xml.ElementType.TEXT_NODE) {
                         // ignore text nodes
                         continue;
                     }
+
                     if (child_node->name == PROTOCOL) {
                         // Get shortName attribute
-                        for (Xml.Attr* prop = child_node->properties; prop != null;
+                        for (var prop = child_node->properties;
+                             prop != null;
                              prop = prop->next) {
                             if (prop->name == SHORT_NAME &&
                                 prop->children->content != null) {
-                                filter_entries.add (new FilterEntry (SHORT_NAME,
-                                                                     prop->children->content));
+                                var entry = new FilterEntry
+                                        (SHORT_NAME,
+                                         prop->children->content);
+                                filter_entries.add (entry);
                             }
                         }
                     }
+
                     if (child_node->name == PROTOCOL_INFO &&
                         child_node->content != null) {
-                        filter_entries.add (new FilterEntry (PROTOCOL_INFO,
-                                                            child_node->content));
+                        var entry = new FilterEntry (PROTOCOL_INFO,
+                                                     child_node->content);
+                        filter_entries.add (entry);
                     }
                 }// for
             }// if
@@ -236,8 +241,7 @@ public class Rygel.RuihServiceManager : Object
         if (this.ui_list != null && this.ui_list.size > 0) {
             var result_content = new StringBuilder ();
 
-            foreach (UIElem i in this.ui_list) {
-                UIElem ui = (UIElem)i;
+            foreach (var ui in this.ui_list) {
                 result_content.append (ui.to_ui_listing (filter_entries));
             }
 
