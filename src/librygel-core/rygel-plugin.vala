@@ -196,7 +196,7 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
                                ICON_JPG_DEPTH);
 
         /* Enable EnergyManagement service on this device if needed */
-        var config = MetaConfig.get_default ();
+        config = MetaConfig.get_default ();
         try {
             if (config.get_bool (this.name, "energy-management")) {
                 var resource = new ResourceInfo (EnergyManagement.UPNP_ID,
