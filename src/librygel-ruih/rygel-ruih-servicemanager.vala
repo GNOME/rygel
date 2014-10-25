@@ -70,6 +70,8 @@ public class Rygel.RuihServiceManager : Object
     public override void constructed () {
         base.constructed ();
 
+        this.ui_list = new ArrayList<UIElem> ();
+
         unowned string config_dir = Environment.get_user_config_dir ();
         this.cancellable = new Cancellable ();
         var ui_listing_directory = Path.build_filename (config_dir, "Rygel");
