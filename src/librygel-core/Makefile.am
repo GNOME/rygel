@@ -16,9 +16,6 @@ librygel_core_2_4_la_VALAFLAGS = \
 	--gir=Rygel-2.4.gir \
 	--vapidir=$(srcdir) \
 	--pkg uuid \
-	--pkg posix \
-	--pkg linux \
-	--pkg rygel-energy-management-helper \
 	$(LIBRYGEL_CORE_DEPS_VALAFLAGS) \
 	$(RYGEL_COMMON_VALAFLAGS)
 

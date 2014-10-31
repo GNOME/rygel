@@ -116,53 +116,9 @@ public class Rygel.EnergyManagement : Service {
                      this.create_network_interface_info ());
     }
 
-    private bool get_mac_and_network_type (string iface,
-                                           out string mac,
-                                           out string type) {
-        var success = true;
-
-        var sock = Posix.socket (Posix.AF_INET, Posix.SOCK_STREAM, 0);
-        if (sock == -1) {
-            warning ("Failed to get a socket: %s\n", strerror (errno));
-            mac = "00:00:00:00:00:00";
-            type = "Other";
-
-            return false;
-        }
-
-        var ifreq = Linux.Network.IfReq ();
-        var ifreqp = (Linux.Network.IfReq*)(&ifreq);
-        Posix.strncpy ((string)ifreqp->ifr_name,
-                       iface,
-                       Linux.Network.INTERFACE_NAME_SIZE);
-
-        if (Posix.ioctl (sock, Linux.Network.SIOCGIFHWADDR, &ifreq) < 0) {
-            warning ("Failed to get mac address: %s\n",
-                     strerror (errno));
-            mac = "00:00:00:00:00:00";
-            success = false;
-        } else {
-            /* workaround for https://bugzilla.gnome.org/show_bug.cgi?id=707180 */
-            EnergyManagementHelper.SockAddr *addr =
-                                        (EnergyManagementHelper.SockAddr*)(&ifreq.ifr_hwaddr);
-
-            mac = "%02X:%02X:%02X:%02X:%02X:%02X".printf
-                                        ((uchar)addr.sa_data[0], (uchar)addr.sa_data[1],
-                                         (uchar)addr.sa_data[2], (uchar)addr.sa_data[3],
-                                         (uchar)addr.sa_data[4], (uchar)addr.sa_data[5]);
-        }
-
-        /* Note that this call really takes a struct IwReq, but this
-         * works since we only test if the call fails or not */
-        var ret_val = Posix.ioctl (sock, Linux.WirelessExtensions.SIOCGIWNAME, &ifreq);
-        if (ret_val == -1) {
-            type = "Ethernet";
-        } else {
-            type = "Wi-Fi";
-        }
-
-        return success;
-    }
+    extern static bool get_mac_and_network_type (string iface,
+                                                 out string mac,
+                                                 out string type);
 
     private string create_network_interface_info () {
 
@@ -172,7 +128,7 @@ public class Rygel.EnergyManagement : Service {
         var iface = this.root_device.context.interface;
         var config_section ="EnergyManagement-%s".printf (iface);
 
-        success = this.get_mac_and_network_type (iface, out mac_address, out type);
+        success = EnergyManagement.get_mac_and_network_type (iface, out mac_address, out type);
 
         var mac = mac_address.replace (":", "");
 
