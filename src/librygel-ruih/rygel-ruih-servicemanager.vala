@@ -55,9 +55,10 @@ public class Rygel.RuihServiceManager : Object
     internal Cancellable cancellable;
     private string ui_listing_full_path;
     private FileMonitor ui_file_monitor;
-    private RuihServiceManager ruih_manager;
 
     public const string UI_LISTING_FILE_NAME = "UIList.xml";
+
+    public signal void updated ();
 
     public static RuihServiceManager get_default () {
         if (instance == null) {
@@ -82,18 +83,23 @@ public class Rygel.RuihServiceManager : Object
         try {
             this.set_ui_list (ui_listing_full_path);
             var ui_file = File.new_for_path (ui_listing_full_path);
-            this.ui_file_monitor = ui_file.monitor_file (FileMonitorFlags.NONE,
-                                                         cancellable);
+            var config_dir_file = File.new_for_path (ui_listing_directory);
+            this.ui_file_monitor = config_dir_file.monitor_directory
+                                        (FileMonitorFlags.NONE,
+                                         cancellable);
             this.ui_file_monitor.changed.connect ((src, dest, event) => {
-                debug ("File monitor for %s triggered with %s",
-                       this.ui_listing_full_path,
-                       event.to_string ());
-                try {
-                    ruih_manager.set_ui_list (ui_listing_full_path);
-                } catch (RuihServiceError e) {
-                    warning (_("Failed to set UIList for file %s - %s"),
-                             ui_listing_full_path,
-                             e.message);
+                if (ui_file.equal (src)) {
+                    try {
+                        this.set_ui_list (ui_listing_full_path);
+                    } catch (RuihServiceError e) {
+                        warning (_("Failed to set UIList for file %s - %s"),
+                                 ui_listing_full_path,
+                                 e.message);
+                    }
+
+                    // Always signal update as the first thing set_ui_list
+                    // does is to clear the old list.
+                    this.updated ();
                 }
             });
         } catch (RuihServiceError e) {
@@ -109,6 +115,10 @@ public class Rygel.RuihServiceManager : Object
 
     ~RuihServiceManager () {
         this.cancellable.cancel ();
+    }
+
+    public bool ui_list_available () {
+        return !this.ui_list.is_empty;
     }
 
     public void set_ui_list (string ui_list_file_path) throws RuihServiceError {
@@ -133,8 +143,6 @@ public class Rygel.RuihServiceManager : Object
                 }
             }
         }
-
-        this.updated ();
 
         delete doc;
     }

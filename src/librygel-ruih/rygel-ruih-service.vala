@@ -48,6 +48,10 @@ internal class Rygel.RuihService: Service {
 
         this.action_invoked["GetCompatibleUIs"].connect
                                         (this.get_compatible_uis_cb);
+
+        var manager = RuihServiceManager.get_default ();
+        manager.updated.connect (this.update_plugin_availability);
+        this.update_plugin_availability ();
     }
 
     /* Browse action implementation */
@@ -77,5 +81,13 @@ internal class Rygel.RuihService: Service {
                                    ref GLib.Value value) {
         value.init (typeof (string));
         value.set_string ("");
+    }
+
+    private void update_plugin_availability () {
+        var manager = RuihServiceManager.get_default ();
+        var plugin = this.root_device.resource_factory as Plugin;
+
+
+        plugin.active = manager.ui_list_available ();
     }
 }
