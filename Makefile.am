@@ -8,7 +8,8 @@ pkgconfig_DATA += rygel-renderer-gst-2.4.pc
 endif
 
 EXTRA_DIST = rygel-core-2.4.pc.in rygel-renderer-2.4.pc.in \
-             rygel-server-2.4.pc.in .version
+             rygel-server-2.4.pc.in .version \
+             build-aux/git-version-gen
 
 DISTCHECK_CONFIGURE_FLAGS =
 
