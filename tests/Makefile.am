@@ -1,5 +1,7 @@
 include $(top_srcdir)/common.am
 
+AUTOMAKE_OPTIONS = subdir-objects
+
 check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-http-response-test \
 		 rygel-http-byte-seek-test \
