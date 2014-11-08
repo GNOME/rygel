@@ -3,6 +3,7 @@ include $(top_srcdir)/common.am
 bin_PROGRAMS = rygel
 
 rygel_SOURCES = \
+	rygel-acl.vala \
 	rygel-dbus-service.vala \
 	rygel-main.vala \
 	rygel-cmdline-config.vala \
@@ -21,6 +22,7 @@ rygel_CFLAGS = \
 	-DLOCALEDIR=\""$(datadir)/locale"\" \
 	-DG_LOG_DOMAIN='"Rygel"' \
 	-DSYS_CONFIG_DIR='"$(sysconfigdir)"'
+
 rygel_LDADD = \
 	$(RYGEL_DEPS_LIBS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)

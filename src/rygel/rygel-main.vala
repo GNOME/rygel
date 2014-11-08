@@ -3,9 +3,11 @@
  * Copyright (C) 2008 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>.
  * Copyright (C) 2012 Openismus GmbH.
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2014 Jens Georg <mail@jensge.org>
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *         Jens Georg <jensg@openismus.com>
+ *         Jens Georg <mail@jensge.org>
  *
  * This file is part of Rygel.
  *
@@ -38,6 +40,7 @@ internal class Rygel.Main : Object {
 
     private Configuration config;
     private LogHandler log_handler;
+    private Acl acl;
 
     private MainLoop main_loop;
 
@@ -54,6 +57,7 @@ internal class Rygel.Main : Object {
         this.root_devices = new ArrayList <RootDevice> ();
         this.factories = new ArrayList <RootDeviceFactory> ();
         this.main_loop = new GLib.MainLoop (null, false);
+        this.acl = new Acl ();
 
         this.exit_code = 0;
 
@@ -150,6 +154,8 @@ internal class Rygel.Main : Object {
                context.network,
                context.interface,
                context.host_ip);
+
+        context.acl = this.acl;
 
         try {
             ifaces = this.config.get_interfaces ();

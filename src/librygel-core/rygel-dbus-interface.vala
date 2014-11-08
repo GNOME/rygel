@@ -28,3 +28,16 @@ public interface Rygel.DBusInterface : Object {
 
     public abstract void shutdown () throws IOError;
 }
+
+[DBus (name = "org.gnome.Rygel1.AclProvider1")]
+public interface Rygel.DBusAclProvider : Object {
+    public const string SERVICE_NAME = "org.gnome.Rygel1.AclProvider1";
+    public const string OBJECT_PATH = "/org/gnome/Rygel1/AclProvider1";
+
+    public abstract async bool is_allowed (GLib.HashTable<string, string> device,
+                                           GLib.HashTable<string, string> service,
+                                           string                         path,
+                                           string                         address,
+                                           string?                        agent)
+                                           throws DBusError, IOError;
+}
