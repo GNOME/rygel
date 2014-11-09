@@ -6,10 +6,10 @@ includedir=@includedir@
 plugindir=@RYGEL_PLUGIN_DIR@
 plugin_ldflags=@RYGEL_PLUGIN_LINKER_FLAGS@
 
-Name: rygel-core-2.4
+Name: rygel-core-2.6
 Description: GNOME (Mobile) UPnP/DLNA Media Server
 Version: @VERSION@
-Libs: -L${libdir} -lrygel-core-2.4
-Cflags: -I${includedir}/rygel-2.4
+Libs: -L${libdir} -lrygel-core-2.6
+Cflags: -I${includedir}/rygel-2.6
 Requires: gupnp-av-1.0 gee-0.8
 Requires.Private: uuid gmodule-2.0
