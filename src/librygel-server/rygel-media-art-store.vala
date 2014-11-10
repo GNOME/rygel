@@ -100,9 +100,7 @@ public class Rygel.MediaArtStore : GLib.Object {
         MediaArt.get_file (item.artist,
                            type == "album" ? item.album : item.title,
                            type,
-                           null,
-                           out file,
-                           null);
+                           out file);
 
         return file;
     }
