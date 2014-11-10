@@ -294,7 +294,12 @@ namespace Rygel.MediaExport.ItemFactory {
             case Tag.ImageType.FRONT_COVER:
                 Gst.MapInfo map_info;
                 sample.get_buffer ().map (out map_info, Gst.MapFlags.READ);
-                store.add (item, file, map_info.data, structure.get_name ());
+
+                // Work-around bgo#739915
+                weak uint8[] data = map_info.data;
+                data.length = (int) map_info.size;
+
+                store.add (item, file, data, structure.get_name ());
                 sample.get_buffer ().unmap (map_info);
                 break;
             default:
