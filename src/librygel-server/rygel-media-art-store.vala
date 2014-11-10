@@ -107,14 +107,27 @@ public class Rygel.MediaArtStore : GLib.Object {
         return file;
     }
 
-    public void add (MusicItem item, File file, uint8[]? data) {
-        if (media_art_process == null) {
+    public void add (MusicItem item, File file, uint8[]? data, string? mime) {
+        if (this.media_art_process == null) {
             return;
         }
 
         try {
-            media_art_process.buffer (MediaArt.Type.ALBUM, MediaArt.ProcessFlags.NONE, file,
-                                      data, item.mime_type, item.artist, item.album);
+            if (data != null) {
+                this.media_art_process.buffer (MediaArt.Type.ALBUM,
+                                               MediaArt.ProcessFlags.NONE,
+                                               file,
+                                               data,
+                                               mime,
+                                               item.artist,
+                                               item.album);
+            } else {
+                this.media_art_process.file (MediaArt.Type.ALBUM,
+                                             MediaArt.ProcessFlags.NONE,
+                                             file,
+                                             item.artist,
+                                             item.album);
+            }
         } catch (Error error) {
             warning ("%s", error.message);
         }
