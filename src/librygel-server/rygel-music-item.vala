@@ -47,7 +47,9 @@ public class Rygel.MusicItem : AudioItem {
     }
 
     public void lookup_album_art () {
-        assert (this.album_art == null);
+        if (this.album_art != null) {
+            return;
+        }
 
         var media_art_store = MediaArtStore.get_default ();
         if (media_art_store == null) {
@@ -55,8 +57,10 @@ public class Rygel.MusicItem : AudioItem {
         }
 
         try {
-            this.album_art = media_art_store.find_media_art_any (this);
-        } catch (Error err) {};
+            this.album_art = media_art_store.lookup_media_art (this);
+        } catch (Error error) {
+            debug ("Failed to look up album art: %s", error.message);
+        };
     }
 
     internal override void add_resources (DIDLLiteItem didl_item,

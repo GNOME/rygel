@@ -278,7 +278,7 @@ namespace Rygel.MediaExport.ItemFactory {
         }
 
         if (sample == null) {
-            store.add (item, file, null, null);
+            store.search_media_art_for_file (item, file);
 
             return item;
         }

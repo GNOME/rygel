@@ -184,7 +184,7 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
                                sqlite3 >= $LIBSQLITE3_REQUIRED
                                libmediaart-2.0 >= $MEDIAART_REQUIRED
                                uuid])
-            RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gupnp-dlna-2.0 --pkg gupnp-dlna-gst-2.0 --pkg gstreamer-tag-1.0 --pkg gstreamer-app-1.0 --pkg gstreamer-pbutils-1.0 --pkg sqlite3"
+            RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gupnp-dlna-2.0 --pkg gupnp-dlna-gst-2.0 --pkg gstreamer-tag-1.0 --pkg gstreamer-app-1.0 --pkg gstreamer-pbutils-1.0 --pkg sqlite3 --pkg libmediaart-2.0"
             AC_SUBST([RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS])
           ])
 
