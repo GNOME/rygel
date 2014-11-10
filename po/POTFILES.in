@@ -102,6 +102,7 @@ src/librygel-core/rygel-configuration.vala
 src/librygel-core/rygel-connection-manager.vala
 src/librygel-core/rygel-dbus-interface.vala
 src/librygel-core/rygel-description-file.vala
+src/librygel-core/rygel-energy-management-helper.c
 src/librygel-core/rygel-icon-info.vala
 src/librygel-core/rygel-log-handler.vala
 src/librygel-core/rygel-media-device.vala
