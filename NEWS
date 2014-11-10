@@ -1,3 +1,18 @@
+0.24.2
+======
+
+A maintenance release of Rygel!
+
+Server:
+ - Fix sidecar album art extraction.
+
+Media-Export:
+ - Work-around an issue with GStreamer bindings that caused truncated embedded
+   album art.
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+
 0.24.1
 ======
 
