@@ -88,19 +88,26 @@ public class Rygel.MediaArtStore : GLib.Object {
         return thumb;
     }
 
-    public void add (MusicItem item, File file, uint8[] data, string mime) {
+    public void add (MediaItem item, File file, uint8[] data, string mime) {
         if (this.media_art_process == null) {
             return;
         }
 
+        MediaArt.Type type;
+        string title;
+        if (!this.get_type_and_title (item, out type, out title)) {
+            return;
+        }
+
         try {
-            this.media_art_process.buffer (MediaArt.Type.ALBUM,
+            // Setting artist to " " is a work-around for bgo#739942
+            this.media_art_process.buffer (type,
                                            MediaArt.ProcessFlags.NONE,
                                            file,
                                            data,
                                            mime,
-                                           item.artist,
-                                           item.album);
+                                           item.artist ?? " ",
+                                           title);
         } catch (Error error) {
             warning (_("Failed to add album art for %s: %s"),
                      file.get_uri (),
@@ -108,18 +115,47 @@ public class Rygel.MediaArtStore : GLib.Object {
         }
     }
 
-    public void search_media_art_for_file (MusicItem item, File file) {
+    public void search_media_art_for_file (MediaItem item, File file) {
+        if (this.media_art_process == null) {
+            return;
+        }
+
+        MediaArt.Type type;
+        string title;
+        if (!this.get_type_and_title (item, out type, out title)) {
+            return;
+        }
+
         try {
-            this.media_art_process.file (MediaArt.Type.ALBUM,
+            this.media_art_process.file (type,
                                          MediaArt.ProcessFlags.NONE,
                                          file,
                                          item.artist,
-                                         item.album);
+                                         title);
         } catch (Error error) {
             warning (_("Failed to find media art for %s: %s"),
                      file.get_uri (),
                      error.message);
         }
+    }
+
+    private bool get_type_and_title (MediaItem item,
+                                     out MediaArt.Type type,
+                                     out string title) {
+        type = MediaArt.Type.NONE;
+        title = null;
+
+        if (item is MusicItem) {
+            type = MediaArt.Type.ALBUM;
+            title = (item as MusicItem).album;
+        } else if (item is VideoItem) {
+            type = MediaArt.Type.VIDEO;
+            title = item.title;
+        } else {
+            return false;
+        }
+
+        return true;
     }
 
     private MediaArtStore () throws MediaArtStoreError {

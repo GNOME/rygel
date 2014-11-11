@@ -211,6 +211,8 @@ namespace Rygel.MediaExport.ItemFactory {
         var color_depth = (int) video_info.get_depth ();
         item.color_depth = (color_depth == 0) ? -1 : color_depth;
 
+        extract_media_art (item, file, audio_info.get_tags ());
+
         return item;
     }
 
@@ -268,6 +270,17 @@ namespace Rygel.MediaExport.ItemFactory {
         tags.get_uint (Tags.TRACK_NUMBER, out tmp);
         item.track_number = (int) tmp;
 
+        extract_media_art (item, file, tags);
+
+        return item;
+    }
+
+    static void extract_media_art (MediaItem item,
+                                   File file,
+                                   Gst.TagList? tags) {
+        if (tags == null) {
+            return;
+        }
 
         var store = MediaArtStore.get_default ();
 
@@ -277,10 +290,12 @@ namespace Rygel.MediaExport.ItemFactory {
             tags.get_sample (Tags.PREVIEW_IMAGE, out sample);
         }
 
+        // Nothing embedded. Do some media art guessing using files located
+        // next to our media file.
         if (sample == null) {
             store.search_media_art_for_file (item, file);
 
-            return item;
+            return;
         }
 
         unowned Structure structure = sample.get_caps ().get_structure (0);
@@ -305,8 +320,6 @@ namespace Rygel.MediaExport.ItemFactory {
             default:
                 break;
         }
-
-        return item;
     }
 
     private static void fill_media_item (MediaItem          item,
