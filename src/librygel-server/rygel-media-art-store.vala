@@ -57,14 +57,17 @@ public class Rygel.MediaArtStore : GLib.Object {
         return media_art_store;
     }
 
-    public Thumbnail? lookup_media_art (MusicItem item) throws Error {
+    public Thumbnail? lookup_media_art (MediaItem item) throws Error {
         File file = null;
 
         foreach (var type in MediaArtStore.types) {
             MediaArt.get_file (item.artist,
-                               type == "album" ? item.album : item.title,
+                               (type == "album" && item is MusicItem) ?
+                                   (item as MusicItem).album : item.title,
                                type,
                                out file);
+            message ("Trying to find file for type %s and %s -> %s",
+                     item.title, type, file != null ? file.get_uri () : "None");
 
             if (file != null && file.query_exists (null)) {
                 break;

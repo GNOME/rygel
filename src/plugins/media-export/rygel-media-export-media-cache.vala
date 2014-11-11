@@ -961,6 +961,11 @@ public class Rygel.MediaExport.MediaCache : Object {
             visual_item.height = statement.column_int (DetailColumn.HEIGHT);
             visual_item.color_depth = statement.column_int
                                         (DetailColumn.COLOR_DEPTH);
+            if (item is VideoItem) {
+                var video_item = item as VideoItem;
+
+                video_item.lookup_media_art ();
+            }
         }
     }
 

@@ -61,6 +61,10 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
      */
     public ArrayList<Thumbnail> thumbnails { get; protected set; }
 
+    /// Media art for the video (poster etc.)
+    public Thumbnail media_art { get; protected set; }
+
+    /// Subtitles associated with this video
     public ArrayList<Subtitle> subtitles { get; protected set; }
 
     public VideoItem (string         id,
@@ -222,5 +226,28 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
             // Thumbnails comes in the end
             this.add_thumbnail_proxy_resources (server, didl_item);
         }
+    }
+
+    public void lookup_media_art () {
+        if (this.media_art != null) {
+            return;
+        }
+
+        var media_art_store = MediaArtStore.get_default ();
+        if (media_art_store == null) {
+            return;
+        }
+
+        try {
+            this.media_art = media_art_store.lookup_media_art (this);
+
+            // Add media art as first thumbnail until we get albumArt support
+            // for non-music items
+            if (this.media_art != null) {
+                this.thumbnails.insert (0, this.media_art);
+            }
+        } catch (Error error) {
+            debug ("Failed to look up album art: %s", error.message);
+        };
     }
 }
