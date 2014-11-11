@@ -61,7 +61,7 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
      */
     public ArrayList<Thumbnail> thumbnails { get; protected set; }
 
-    public ArrayList<Subtitle> subtitles;
+    public ArrayList<Subtitle> subtitles { get; protected set; }
 
     public VideoItem (string         id,
                       MediaContainer parent,
