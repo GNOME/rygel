@@ -293,7 +293,7 @@ namespace Rygel.MediaExport.ItemFactory {
         // Nothing embedded. Do some media art guessing using files located
         // next to our media file.
         if (sample == null) {
-            store.search_media_art_for_file (item, file);
+            store.add_external (item, file);
 
             return;
         }

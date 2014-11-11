@@ -115,7 +115,7 @@ public class Rygel.MediaArtStore : GLib.Object {
         }
     }
 
-    public void search_media_art_for_file (MediaItem item, File file) {
+    public void add_external (MediaItem item, File file) {
         if (this.media_art_process == null) {
             return;
         }
