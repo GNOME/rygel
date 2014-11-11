@@ -112,7 +112,7 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
 
         base.add_resources (didl_item, allow_internal);
 
-        add_thumbnail_resources (didl_item, allow_internal);
+        this.add_thumbnail_resources (didl_item, allow_internal);
     }
 
     internal override DIDLLiteResource add_resource
@@ -155,7 +155,7 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
     internal override void apply_didl_lite (DIDLLiteObject didl_object) {
         base.apply_didl_lite (didl_object);
 
-        this.author = get_first (didl_object.get_authors ());
+        this.author = this.get_first (didl_object.get_authors ());
     }
 
     internal override DIDLLiteObject? serialize (Serializer serializer,
