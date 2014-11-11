@@ -38,6 +38,10 @@ public class Rygel.MediaArtStore : GLib.Object {
 
     private MediaArt.Process? media_art_process;
 
+    /**
+     * Get the MediaArtStore singleton instance.
+     * @return null if the there was an issue using libmediaart
+     */
     public static MediaArtStore? get_default () {
         if (first_time) {
             try {
@@ -88,6 +92,14 @@ public class Rygel.MediaArtStore : GLib.Object {
         return thumb;
     }
 
+    /**
+     * Add binary data as media art for a media item.
+     *
+     * @item A MediaItem containing the meta-data for @file
+     * @file File on the disk
+     * @data the binary data of the art
+     * @mime the content-type of the binary data
+     */
     public void add (MediaItem item, File file, uint8[] data, string mime) {
         if (this.media_art_process == null) {
             return;
@@ -115,6 +127,12 @@ public class Rygel.MediaArtStore : GLib.Object {
         }
     }
 
+    /**
+     * Try to lookup external media art for a media item.
+     *
+     * @item A MediaItem containing the meta-data for @file
+     * @file File on the disk
+     */
     public void add_external (MediaItem item, File file) {
         if (this.media_art_process == null) {
             return;
