@@ -55,7 +55,7 @@ public interface Rygel.VisualItem : MediaItem {
      */
     public abstract ArrayList<Thumbnail> thumbnails { get; protected set; }
 
-    internal void add_thumbnail_for_uri (string uri, string mime_type) {
+    internal void add_thumbnail_for_uri (string uri) {
         // Lets see if we can provide the thumbnails
         var thumbnailer = Thumbnailer.get_default ();
 
