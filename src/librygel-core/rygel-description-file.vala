@@ -235,6 +235,10 @@ public class Rygel.DescriptionFile : Object {
             flags += "+DIAGE+";
         }
 
+        if (PluginCapabilities.ENERGY_MANAGEMENT in capabilities) {
+            flags += "+LPE+";
+        }
+
         // Set the flags we found; otherwise remove whatever is in the
         // template.
         if (flags.length > 0) {

@@ -53,8 +53,13 @@ public enum Rygel.PluginCapabilities {
 
     /* Renderer caps */
 
+    /// General capabilities
+
     /* Diagnostics (DIAGE) support */
     DIAGNOSTICS,
+
+    /* EnergyManagement (LPE) support */
+    ENERGY_MANAGEMENT
 }
 
 /**
@@ -162,7 +167,28 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
 
                 this.capabilities |= PluginCapabilities.DIAGNOSTICS;
             }
-        } catch (GLib.Error error) {}
+        } catch (GLib.Error error) {
+            if (!(error is ConfigurationError.NO_VALUE_SET))
+                warning ("Failed to read configuration: %s", error.message);
+        }
+
+        /* Enable EnergyManagement service on this device if needed */
+        config = MetaConfig.get_default ();
+        try {
+            if (config.get_bool (this.name, "energy-management")) {
+                var resource = new ResourceInfo (EnergyManagement.UPNP_ID,
+                                                 EnergyManagement.UPNP_TYPE,
+                                                 EnergyManagement.DESCRIPTION_PATH,
+                                                 typeof (EnergyManagement));
+                this.add_resource (resource);
+
+                this.capabilities |= PluginCapabilities.ENERGY_MANAGEMENT;
+
+            }
+        } catch (GLib.Error error) {
+            if (!(error is ConfigurationError.NO_VALUE_SET))
+                warning ("Failed to read configuration: %s", error.message);
+        }
 
         this.icon_infos = new ArrayList<IconInfo> ();
         this.default_icons = new ArrayList<IconInfo> ();
@@ -194,23 +220,6 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
                                ICON_SMALL_WIDTH,
                                ICON_SMALL_HEIGHT,
                                ICON_JPG_DEPTH);
-
-        /* Enable EnergyManagement service on this device if needed */
-        config = MetaConfig.get_default ();
-        try {
-            if (config.get_bool (this.name, "energy-management")) {
-                var resource = new ResourceInfo (EnergyManagement.UPNP_ID,
-                                                 EnergyManagement.UPNP_TYPE,
-                                                 EnergyManagement.DESCRIPTION_PATH,
-                                                 typeof (EnergyManagement));
-                this.add_resource (resource);
-
-            }
-        } catch (GLib.Error error) {
-            if (!(error is ConfigurationError.NO_VALUE_SET))
-                warning ("Failed to read configuration: %s", error.message);
-        }
-
     }
 
     public void add_resource (ResourceInfo resource_info) {
