@@ -252,8 +252,9 @@ public class Rygel.BasicManagement : Service {
                         out dscp);
 
         if (host == "") {
-            message ("Ping action : Host is empty !");
+            warning (_("Cannot run 'Ping' action: Host is empty"));
             action.return_error (402, _("Invalid argument"));
+
             return;
         }
 
@@ -344,8 +345,9 @@ public class Rygel.BasicManagement : Service {
                         out interval_time_out);
 
         if (hostname == "") {
-            message ("NSLookup action : Host is empty !");
+            warning (_("Cannot run 'NSLookup' action: HostName is empty"));
             action.return_error (402, _("Invalid argument"));
+
             return;
         }
 
@@ -425,8 +427,9 @@ public class Rygel.BasicManagement : Service {
                         out dscp);
 
         if (host == "") {
-            message ("Traceroute action : Host is empty !");
+            warning (_("Cannot run 'Traceroute action': Host is empty"));
             action.return_error (402, _("Invalid argument"));
+
             return;
         }
 
