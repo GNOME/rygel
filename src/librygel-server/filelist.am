@@ -16,6 +16,7 @@ LIBRYGEL_SERVER_VAPI_SOURCE_FILES = \
 	rygel-media-item.vala \
 	rygel-media-file-item.vala \
 	rygel-media-object.vala \
+	rygel-media-resource.vala \
 	rygel-media-server-plugin.vala \
 	rygel-search-expression.vala \
 	rygel-searchable-container.vala \
