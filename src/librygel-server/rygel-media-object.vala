@@ -69,6 +69,9 @@ public abstract class Rygel.MediaObject : GLib.Object {
         this.uris.add (uri);
     }
 
+    private Gee.List<MediaResource> media_resources
+                                    = new Gee.LinkedList<MediaResource> ();
+
     // You can keep both an unowned and owned ref to parent of this MediaObject.
     // In most cases, one will only need to keep an unowned ref to avoid cyclic
     // references since usually the parent container will keep refs to child items.
@@ -212,6 +215,13 @@ public abstract class Rygel.MediaObject : GLib.Object {
         }
 
         return writables;
+    }
+
+    /**
+     * Return the MediaResource list.
+     */
+    public Gee.List<MediaResource> get_resource_list () {
+        return media_resources;
     }
 
     public abstract DIDLLiteObject? serialize (Serializer serializer,
