@@ -25,7 +25,7 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 
-#ifdef G_OS_LINUX
+#if defined(__linux__)
 
 #include <sys/ioctl.h>
 #include <sys/types.h>
