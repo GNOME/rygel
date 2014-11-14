@@ -80,6 +80,7 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         this.pipeline.set_state (State.NULL);
         if (this.bus_watch_id != 0) {
             Source.remove (this.bus_watch_id);
+            this.bus_watch_id = 0;
         }
         Idle.add ( () => { this.done (); return false; });
     }
