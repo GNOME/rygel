@@ -68,35 +68,32 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
     }
 
     public void freeze () {
-        if (this.frozen) {
-            return;
+        this.mutex.lock ();
+        if (!this.frozen) {
+            this.frozen = true;
         }
 
-        this.mutex.lock ();
-        this.frozen = true;
         this.mutex.unlock ();
     }
 
     public void thaw () {
-        if (!this.frozen) {
-            return;
+        this.mutex.lock ();
+        if (this.frozen) {
+            this.frozen = false;
+            this.cond.broadcast ();
         }
 
-        this.mutex.lock ();
-        this.frozen = false;
-        this.cond.broadcast ();
         this.mutex.unlock ();
     }
 
     public void stop () {
-        if (this.stop_thread) {
-            return;
+        this.mutex.lock ();
+        if (!this.stop_thread) {
+            this.frozen = false;
+            this.stop_thread = true;
+            this.cond.broadcast ();
         }
 
-        this.mutex.lock ();
-        this.frozen = false;
-        this.stop_thread = true;
-        this.cond.broadcast ();
         this.mutex.unlock ();
     }
 
