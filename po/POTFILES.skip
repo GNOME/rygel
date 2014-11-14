@@ -21,6 +21,7 @@ src/librygel-core/rygel-configuration.c
 src/librygel-core/rygel-connection-manager.c
 src/librygel-core/rygel-dbus-interface.c
 src/librygel-core/rygel-description-file.c
+src/librygel-core/rygel-energy-management.c
 src/librygel-core/rygel-free-desktop-interfaces.c
 src/librygel-core/rygel-icon-info.c
 src/librygel-core/rygel-log-handler.c
@@ -49,6 +50,10 @@ src/librygel-renderer/rygel-rendering-control.c
 src/librygel-renderer/rygel-sink-connection-manager.c
 src/librygel-renderer/rygel-time-utils.c
 src/librygel-renderer/rygel-volume.c
+src/librygel-ruih/rygel-ruih-icon-elem.c
+src/librygel-ruih/rygel-ruih-protocol-elem.c
+src/librygel-ruih/rygel-ruih-servicemanager.c
+src/librygel-ruih/rygel-ruih-ui-elem.c
 src/librygel-server/rygel-audio-item.c
 src/librygel-server/rygel-browse.c
 src/librygel-server/rygel-client-hacks.c
