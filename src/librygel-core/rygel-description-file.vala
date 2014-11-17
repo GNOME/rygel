@@ -273,8 +273,8 @@ public class Rygel.DescriptionFile : Object {
             // Add X_DLNADOC element that holds LPE capability
             // in the device template
             this.add_dlna_doc_element (X_DLNADOC_LPE_XPATH,
-                                      X_DLNADOC_NON_DEVCAP_XPATH,
-                                      LPE_DEV_CAP);
+                                       X_DLNADOC_NON_DEVCAP_XPATH,
+                                       LPE_DEV_CAP);
         } else {
             // Remove X_DLNADOC element that holds LPE capability
             // in the device template if it is disabled
@@ -304,52 +304,57 @@ public class Rygel.DescriptionFile : Object {
         // Check if the X_DLNADOC node has already dev_cap
         // dlnadoc_xpath checks for a X_DLNADOC element that contains a
         // capablity. We can return if that's the case.
-        if (!this.apply_xpath (dlnadoc_xpath, null)) {
-            // Get all X_DLNADOC node and extract the 'capability host & version'
-            if (this.apply_xpath (dlnadoc_non_xpath, out dlna_doc_object)) {
-                for (var i = 0; i < dlna_doc_object->nodesetval->length (); i++) {
-                    var node = dlna_doc_object->nodesetval->item (i);
-                    var node_content = node->get_content ();
-                    var doc_index = node_content.last_index_of ("/");
-                    string devcap_content;
-
-                    // Add X_DLNADOC sibbling element for
-                    // each unique capability-host
-                    var device = this.get_device_element ();
-                    var devcap_element = device->new_child (node->ns,
-                                                            X_DLNADOC_NODE);
-                    if (doc_index != -1) {
-                        devcap_content = node_content[doc_index+1:node_content.length];
-                    } else {
-                        devcap_content = node_content;
-                    }
-                    debug (dev_cap + "/" + devcap_content);
-                    devcap_element->set_content (dev_cap +
-                                                 "/" +
-                                                 devcap_content);
-                    node->add_next_sibling (devcap_element);
-                }
-
-                delete dlna_doc_object;
-            }
+        if (this.apply_xpath (dlnadoc_xpath, null)) {
+            return;
         }
+
+        // Get all X_DLNADOC node and extract the 'capability host & version'
+        if (!this.apply_xpath (dlnadoc_non_xpath, out dlna_doc_object)) {
+            return;
+        }
+
+        for (var i = 0; i < dlna_doc_object->nodesetval->length (); i++) {
+            var node = dlna_doc_object->nodesetval->item (i);
+            var node_content = node->get_content ();
+            var doc_index = node_content.last_index_of ("/");
+            string devcap_content;
+
+            // Add X_DLNADOC sibbling element for
+            // each unique capability-host
+            var device = this.get_device_element ();
+            var devcap_element = device->new_child (node->ns, X_DLNADOC_NODE);
+            if (doc_index != -1) {
+                devcap_content = node_content[doc_index+1:node_content.length];
+            } else {
+                devcap_content = node_content;
+            }
+            debug (dev_cap + "/" + devcap_content);
+            devcap_element->set_content (dev_cap + "/" + devcap_content);
+            node->add_next_sibling (devcap_element);
+        }
+
+        delete dlna_doc_object;
     }
 
     // Remove the X_DLNADOC element with DEV CAP if disabled.
     public void remove_dlna_doc_element (string dlnadoc_xpath) {
         Xml.XPath.Object* devcap_object = null;
-        if (this.apply_xpath (dlnadoc_xpath, out devcap_object)) {
-            for (int i=0; i < devcap_object->nodesetval->length(); i++) {
-                Xml.Node* node = devcap_object->nodesetval->item (i);
-                if (node != null) {
-                    node->unlink ();
+        if (!this.apply_xpath (dlnadoc_xpath, out devcap_object)) {
+            return;
+        }
 
-                    delete node;
-                }
+        for (var i = 0; i < devcap_object->nodesetval->length (); i++) {
+            var node = devcap_object->nodesetval->item (i);
+            if (node == null) {
+                continue;
             }
 
-            delete devcap_object;
+            node->unlink ();
+
+            delete node;
         }
+
+        delete devcap_object;
     }
 
     private Xml.Node* get_device_element () {
