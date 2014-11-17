@@ -258,13 +258,13 @@ public class Rygel.DescriptionFile : Object {
 
             // Add X_DLNADOC element that holds DIAGE capability
             // in the device template
-            add_dlna_doc_element (X_DLNADOC_DIAGE_XPATH,
-                                  X_DLNADOC_NON_DEVCAP_XPATH,
-                                  DIAGE_DEV_CAP);
+            this.add_dlna_doc_element (X_DLNADOC_DIAGE_XPATH,
+                                       X_DLNADOC_NON_DEVCAP_XPATH,
+                                       DIAGE_DEV_CAP);
         } else {
             // Remove X_DLNADOC element that holds DIAGE capability
             // in the device template if it is disabled
-            remove_dlna_doc_element (X_DLNADOC_DIAGE_XPATH);
+            this.remove_dlna_doc_element (X_DLNADOC_DIAGE_XPATH);
         }
 
         if (PluginCapabilities.ENERGY_MANAGEMENT in capabilities) {
@@ -272,13 +272,13 @@ public class Rygel.DescriptionFile : Object {
 
             // Add X_DLNADOC element that holds LPE capability
             // in the device template
-            add_dlna_doc_element (X_DLNADOC_LPE_XPATH,
-                                  X_DLNADOC_NON_DEVCAP_XPATH,
-                                  LPE_DEV_CAP);
+            this.add_dlna_doc_element (X_DLNADOC_LPE_XPATH,
+                                      X_DLNADOC_NON_DEVCAP_XPATH,
+                                      LPE_DEV_CAP);
         } else {
             // Remove X_DLNADOC element that holds LPE capability
             // in the device template if it is disabled
-            remove_dlna_doc_element (X_DLNADOC_LPE_XPATH);
+            this.remove_dlna_doc_element (X_DLNADOC_LPE_XPATH);
         }
 
         // Set the flags we found; otherwise remove whatever is in the
@@ -302,26 +302,27 @@ public class Rygel.DescriptionFile : Object {
         Xml.XPath.Object* dlna_doc_object = null;
 
         // Check if the X_DLNADOC node has already dev_cap
-        if (is_node_unavailable (dlnadoc_xpath)) {
+        if (this.is_node_unavailable (dlnadoc_xpath)) {
             // Get all X_DLNADOC node and extract the 'capability host & version'
-            if (get_dlna_doc_nodes (dlnadoc_non_xpath, ref dlna_doc_object)) {
-                for (int i=0; i < dlna_doc_object->nodesetval->length(); i++) {
-                    Xml.Node* node = dlna_doc_object->nodesetval->item (i);
-                    string node_content = node->get_content ();
-                    int doc_index = node_content.last_index_of ("/");
+            if (this.get_dlna_doc_nodes (dlnadoc_non_xpath,
+                ref dlna_doc_object)) {
+                for (var i = 0; i < dlna_doc_object->nodesetval->length (); i++) {
+                    var node = dlna_doc_object->nodesetval->item (i);
+                    var node_content = node->get_content ();
+                    var doc_index = node_content.last_index_of ("/");
                     string devcap_content;
 
                     // Add X_DLNADOC sibbling element for
                     // each unique capability-host
-                    var devcap_element = get_device_element ()
-                                        ->new_child (node->ns, X_DLNADOC_NODE);
+                    var device = this.get_device_element ();
+                    var devcap_element = device->new_child (node->ns,
+                                                            X_DLNADOC_NODE);
                     if (doc_index != -1) {
-                        devcap_content = (string)node_content
-                                                [doc_index+1:node_content.length];
+                        devcap_content = node_content[doc_index+1:node_content.length];
                     } else {
                         devcap_content = node_content;
                     }
-                    message (dev_cap + "/" + devcap_content);
+                    debug (dev_cap + "/" + devcap_content);
                     devcap_element->set_content (dev_cap +
                                                  "/" +
                                                  devcap_content);
@@ -334,11 +335,12 @@ public class Rygel.DescriptionFile : Object {
     // Remove the X_DLNADOC element with DEV CAP if disabled.
     public void remove_dlna_doc_element (string dlnadoc_xpath) {
         Xml.XPath.Object* devcap_object = null;
-        if (get_nodes (dlnadoc_xpath, ref devcap_object)) {
+        if (this.get_nodes (dlnadoc_xpath, ref devcap_object)) {
             for (int i=0; i < devcap_object->nodesetval->length(); i++) {
                 Xml.Node* node = devcap_object->nodesetval->item (i);
                 if (node != null) {
                     node->unlink ();
+
                     delete node;
                 }
             }
@@ -355,15 +357,17 @@ public class Rygel.DescriptionFile : Object {
     private bool is_node_unavailable (string devcap_node_xpath) {
         var context = new XPath.Context (this.doc.doc);
         var devcap_node = context.eval_expression (devcap_node_xpath);
+
         return (devcap_node != null &&
                 devcap_node->type == XPath.ObjectType.NODESET &&
                 devcap_node->nodesetval->is_empty ());
     }
 
     private bool get_nodes (string devcap_node_xpath,
-                                 ref Xml.XPath.Object* devcap_object) {
+                            ref Xml.XPath.Object* devcap_object) {
         var context = new XPath.Context (this.doc.doc);
         devcap_object = context.eval_expression (devcap_node_xpath);
+
         return (devcap_object != null &&
                 devcap_object->type == XPath.ObjectType.NODESET &&
                 !devcap_object->nodesetval->is_empty ());
@@ -373,6 +377,7 @@ public class Rygel.DescriptionFile : Object {
                                      ref Xml.XPath.Object* dlna_doc_object) {
         var context = new XPath.Context (this.doc.doc);
         dlna_doc_object = context.eval_expression (dlna_doc_xpath);
+
         return (dlna_doc_object != null &&
                 dlna_doc_object->type == XPath.ObjectType.NODESET &&
                 !dlna_doc_object->nodesetval->is_empty ());
