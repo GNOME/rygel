@@ -141,6 +141,14 @@ public abstract class Rygel.MediaFileItem : MediaItem {
         return MediaEngine.get_default ().create_data_source (translated_uri);
     }
 
+    public override DataSource? create_stream_source_for_resource
+                                        (HTTPRequest request,
+                                         MediaResource resource)
+                                         throws Error {
+        return MediaEngine.get_default ().create_data_source_for_resource
+                                        (this, resource);
+    }
+
     public bool is_live_stream () {
         return this.streamable () && this.size <= 0;
     }

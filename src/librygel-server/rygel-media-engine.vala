@@ -105,6 +105,13 @@ public abstract class Rygel.MediaEngine : GLib.Object {
      */
     public abstract unowned List<Transcoder>? get_transcoders ();
 
+    public virtual DataSource? create_data_source_for_resource
+                                        (MediaObject item,
+                                         MediaResource resource)
+                                         throws Error {
+        return this.create_data_source (resource.uri);
+    }
+
     /**
      * Get a data source for the URI.
      *

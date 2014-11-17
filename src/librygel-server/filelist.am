@@ -44,7 +44,6 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-http-get-handler.vala \
 	rygel-http-get.vala \
 	rygel-http-identity-handler.vala \
-	rygel-http-playlist-handler.vala \
 	rygel-http-item-uri.vala \
 	rygel-http-post.vala \
 	rygel-http-request.vala \
@@ -52,6 +51,7 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-http-server.vala \
 	rygel-http-time-seek.vala \
 	rygel-http-transcode-handler.vala \
+	rygel-http-resource-handler.vala \
 	rygel-import-resource.vala \
 	rygel-object-creator.vala \
 	rygel-reference-creator.vala \

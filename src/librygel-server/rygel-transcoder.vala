@@ -83,7 +83,6 @@ public abstract class Rygel.Transcoder : GLib.Object {
                                                  -1,
                                                  -1,
                                                  this.dlna_profile,
-                                                 null,
                                                  null);
         var res = item.add_resource (didl_item, uri, protocol);
         res.size = -1;

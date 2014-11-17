@@ -135,7 +135,6 @@ public class Rygel.MusicItem : AudioItem {
                                                                 0,
                                                                 -1,
                                                                 null,
-                                                                null,
                                                                 null);
         }
     }

@@ -66,10 +66,10 @@ internal class Rygel.HTTPGet : HTTPRequest {
                                                      this.cancellable);
         }
 
-        if (uri.playlist_format != null &&
-            HTTPPlaylistHandler.is_supported (uri.playlist_format)) {
-            this.handler = new HTTPPlaylistHandler (uri.playlist_format,
-                                                    this.cancellable);
+        if (uri.resource_name != null) {
+            this.handler = new HTTPMediaResourceHandler (this.object,
+                                                         uri.resource_name,
+                                                         this.cancellable);
         }
 
         if (this.handler == null) {
@@ -213,7 +213,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
         switch (mode) {
         case "Streaming":
-            correct = (!(this.handler is HTTPPlaylistHandler)) && (
+            correct = (
                       (this.handler is HTTPTranscodeHandler ||
                       ((this.object as MediaFileItem).streamable () &&
                        this.subtitle == null &&
@@ -225,8 +225,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
                       ((!(this.object as MediaFileItem).is_live_stream () &&
                        !(this.object as MediaFileItem).streamable ()) ||
                        (this.subtitle != null ||
-                        this.thumbnail != null))) ||
-                      this.handler is HTTPPlaylistHandler;
+                        this.thumbnail != null)));
 
             break;
         }

@@ -101,7 +101,6 @@ public interface Rygel.VisualItem : MediaFileItem {
                                                               index,
                                                               -1,
                                                               null,
-                                                              null,
                                                               null);
                 thumbnail.add_resource (didl_item, server.get_protocol ());
 

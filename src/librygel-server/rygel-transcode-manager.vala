@@ -45,7 +45,6 @@ public abstract class Rygel.TranscodeManager : GLib.Object {
                                                   int          thumbnail_index,
                                                   int          subtitle_index,
                                                   string?      transcode_target,
-                                                  string?      playlist_target,
                                                   string?      resource_name);
 
     public void add_resources (DIDLLiteItem didl_item, MediaFileItem item)

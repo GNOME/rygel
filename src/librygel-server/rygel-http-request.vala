@@ -25,7 +25,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-internal errordomain Rygel.HTTPRequestError {
+public errordomain Rygel.HTTPRequestError {
     UNACCEPTABLE = Soup.Status.NOT_ACCEPTABLE,
     BAD_REQUEST = Soup.Status.BAD_REQUEST,
     NOT_FOUND = Soup.Status.NOT_FOUND,
@@ -35,7 +35,7 @@ internal errordomain Rygel.HTTPRequestError {
 /**
  * Base class for HTTP client requests.
  */
-internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
+public abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     public unowned HTTPServer http_server;
     private MediaContainer root_container;
     public unowned Soup.Server server;
@@ -89,8 +89,8 @@ internal abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
         if (media_object == null ||
             !((media_object is MediaContainer &&
-               this.uri.playlist_format != null) ||
-              (media_object is MediaFileItem && this.uri.playlist_format == null))) {
+               this.uri.resource_name != null) ||
+              (media_object is MediaFileItem))) {
             throw new HTTPRequestError.NOT_FOUND
                                         (_("Requested item '%s' not found"),
                                          this.uri.item_id);

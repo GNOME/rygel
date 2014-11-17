@@ -79,7 +79,6 @@ private class Rygel.BaseMediaContainer : MediaContainer {
                                                     throws Error {
         return null;
     }
-
 }
 
 

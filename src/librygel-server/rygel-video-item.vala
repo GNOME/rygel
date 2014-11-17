@@ -195,7 +195,6 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
                                                              -1,
                                                              index,
                                                              null,
-                                                             null,
                                                              null);
                 subtitle.add_didl_node (didl_item);
 

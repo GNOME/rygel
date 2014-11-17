@@ -25,12 +25,11 @@
 
 using Gee;
 
-internal class Rygel.HTTPItemURI : Object {
+public class Rygel.HTTPItemURI : Object {
     public string item_id { get; set; }
     public int thumbnail_index { get; set; default = -1; }
     public int subtitle_index { get; set; default = -1; }
     public string? transcode_target { get; set; default = null; }
-    public string? playlist_format { get; set; default = null; }
     public string? resource_name { get; set; default = null; }
     public unowned HTTPServer http_server { get; set; }
 
@@ -54,14 +53,12 @@ internal class Rygel.HTTPItemURI : Object {
                         int        thumbnail_index = -1,
                         int        subtitle_index = -1,
                         string?    transcode_target = null,
-                        string?    playlist_format = null,
                         string?    resource_name = null) {
         this.item_id = object.id;
         this.thumbnail_index = thumbnail_index;
         this.subtitle_index = subtitle_index;
         this.transcode_target = transcode_target;
         this.http_server = http_server;
-        this.playlist_format = playlist_format;
         this.resource_name = resource_name;
         this.extension = "";
 
@@ -196,10 +193,6 @@ internal class Rygel.HTTPItemURI : Object {
                     this.subtitle_index = int.parse (parts[i + 1]);
 
                     break;
-                case "pl":
-                    this.playlist_format = Soup.URI.decode (parts[i + 1]);
-
-                    break;
                 case "res":
                     this.resource_name = Soup.URI.decode (parts[i + 1]);
 
@@ -230,9 +223,6 @@ internal class Rygel.HTTPItemURI : Object {
             path += "/th/" + this.thumbnail_index.to_string ();
         } else if (this.subtitle_index >= 0) {
             path += "/sub/" + this.subtitle_index.to_string ();
-        } else if (this.playlist_format != null) {
-            path += "/pl/" + Uri.escape_string
-                                        (this.playlist_format, "", true);
         } else if (this.resource_name != null) {
             path += "/res/" + Uri.escape_string
                                         (this.resource_name, "", true);
