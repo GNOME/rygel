@@ -302,10 +302,11 @@ public class Rygel.DescriptionFile : Object {
         Xml.XPath.Object* dlna_doc_object = null;
 
         // Check if the X_DLNADOC node has already dev_cap
-        if (this.is_node_unavailable (dlnadoc_xpath)) {
+        // dlnadoc_xpath checks for a X_DLNADOC element that contains a
+        // capablity. We can return if that's the case.
+        if (!this.apply_xpath (dlnadoc_xpath, null)) {
             // Get all X_DLNADOC node and extract the 'capability host & version'
-            if (this.get_dlna_doc_nodes (dlnadoc_non_xpath,
-                ref dlna_doc_object)) {
+            if (this.apply_xpath (dlnadoc_non_xpath, out dlna_doc_object)) {
                 for (var i = 0; i < dlna_doc_object->nodesetval->length (); i++) {
                     var node = dlna_doc_object->nodesetval->item (i);
                     var node_content = node->get_content ();
@@ -328,6 +329,8 @@ public class Rygel.DescriptionFile : Object {
                                                  devcap_content);
                     node->add_next_sibling (devcap_element);
                 }
+
+                delete dlna_doc_object;
             }
         }
     }
@@ -335,7 +338,7 @@ public class Rygel.DescriptionFile : Object {
     // Remove the X_DLNADOC element with DEV CAP if disabled.
     public void remove_dlna_doc_element (string dlnadoc_xpath) {
         Xml.XPath.Object* devcap_object = null;
-        if (this.get_nodes (dlnadoc_xpath, ref devcap_object)) {
+        if (this.apply_xpath (dlnadoc_xpath, out devcap_object)) {
             for (int i=0; i < devcap_object->nodesetval->length(); i++) {
                 Xml.Node* node = devcap_object->nodesetval->item (i);
                 if (node != null) {
@@ -344,6 +347,8 @@ public class Rygel.DescriptionFile : Object {
                     delete node;
                 }
             }
+
+            delete devcap_object;
         }
     }
 
@@ -354,33 +359,17 @@ public class Rygel.DescriptionFile : Object {
                                "device");
     }
 
-    private bool is_node_unavailable (string devcap_node_xpath) {
+    private bool apply_xpath (string xpath, out Xml.XPath.Object *xpo) {
         var context = new XPath.Context (this.doc.doc);
-        var devcap_node = context.eval_expression (devcap_node_xpath);
+        var result = context.eval_expression (xpath);
 
-        return (devcap_node != null &&
-                devcap_node->type == XPath.ObjectType.NODESET &&
-                devcap_node->nodesetval->is_empty ());
-    }
+        var retval = result != null &&
+                     result->type == XPath.ObjectType.NODESET &&
+                     !result->nodesetval->is_empty ();
 
-    private bool get_nodes (string devcap_node_xpath,
-                            ref Xml.XPath.Object* devcap_object) {
-        var context = new XPath.Context (this.doc.doc);
-        devcap_object = context.eval_expression (devcap_node_xpath);
+        xpo = result;
 
-        return (devcap_object != null &&
-                devcap_object->type == XPath.ObjectType.NODESET &&
-                !devcap_object->nodesetval->is_empty ());
-    }
-
-    private bool get_dlna_doc_nodes (string dlna_doc_xpath,
-                                     ref Xml.XPath.Object* dlna_doc_object) {
-        var context = new XPath.Context (this.doc.doc);
-        dlna_doc_object = context.eval_expression (dlna_doc_xpath);
-
-        return (dlna_doc_object != null &&
-                dlna_doc_object->type == XPath.ObjectType.NODESET &&
-                !dlna_doc_object->nodesetval->is_empty ());
+        return retval;
     }
 
     public void add_service (string device_name, ResourceInfo resource_info) {
@@ -449,16 +438,14 @@ public class Rygel.DescriptionFile : Object {
      */
     public void modify_service_type (string old_type,
                                      string new_type) {
-        var context = new XPath.Context (this.doc.doc);
+        Xml.XPath.Object *xpath_object = null;
 
         var xpath = SERVICE_TYPE_TEMPLATE.printf (old_type);
-        var xpath_object = context.eval_expression (xpath);
-        assert (xpath_object != null);
-        assert (xpath_object->type == XPath.ObjectType.NODESET);
-        assert (!xpath_object->nodesetval->is_empty ());
+        if (this.apply_xpath (xpath, out xpath_object)) {
+            xpath_object->nodesetval->item (0)->set_content (new_type);
 
-        xpath_object->nodesetval->item (0)->set_content (new_type);
-        delete xpath_object;
+            delete xpath_object;
+        }
     }
 
     /**
