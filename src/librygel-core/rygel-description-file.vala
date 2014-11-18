@@ -222,23 +222,28 @@ public class Rygel.DescriptionFile : Object {
             } catch (GLib.Error error) { }
 
             if (allow_upload) {
+                bool can_upload = false;
                 if (PluginCapabilities.IMAGE_UPLOAD in capabilities) {
                     flags += "image-upload";
+                    can_upload = true;
                 }
 
                 if (PluginCapabilities.VIDEO_UPLOAD in capabilities) {
                     flags += "av-upload";
+                    can_upload = true;
                 }
 
                 if (PluginCapabilities.AUDIO_UPLOAD in capabilities) {
                     flags += "audio-upload";
+                    can_upload = true;
+                }
+
+                // destroy capablity needs to co-exist with at least one
+                // of the upload caps. DLNA 2014, 7.4.1.8.4.1, Table 26
+                if (allow_delete && can_upload) {
+                    flags += "create-item-with-OCM-destroy-item";
                 }
             }
-
-            if (allow_delete) {
-                flags += "create-item-with-OCM-destroy-item";
-            }
-
         }
 
         if (PluginCapabilities.TRACK_CHANGES in capabilities) {
