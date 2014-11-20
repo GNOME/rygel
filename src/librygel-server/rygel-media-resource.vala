@@ -113,6 +113,10 @@ public class Rygel.MediaResource : GLib.Object {
         return new_speeds;
     }
 
+    public MediaResource dup () {
+        return new MediaResource.from_resource (this.get_name (), this);
+    }
+
     public string get_name () {
         return this.name;
     }
