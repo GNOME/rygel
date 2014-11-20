@@ -68,6 +68,10 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
         }
     }
 
+    public override int64 get_resource_size () {
+        return -1;
+    }
+
     public override bool knows_size (HTTPGet request) {
         var size = this.get_size (request);
 

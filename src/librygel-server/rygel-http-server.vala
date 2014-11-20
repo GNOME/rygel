@@ -77,34 +77,8 @@ public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         // This server supports all DLNA delivery modes - so leave those flags alone
      }
 
-    internal void add_proxy_resource (DIDLLiteItem  didl_item,
-                                      MediaFileItem item)
-                                      throws Error {
-        if (this.http_uri_present (item)) {
-            return;
-        }
-
-        var uri = this.create_uri_for_object (item, -1, -1, null, null);
-
-        item.add_resource (didl_item, uri, this.get_protocol (), uri);
-    }
-
     public bool need_proxy (string uri) {
         return Uri.parse_scheme (uri) != "http";
-    }
-
-    private bool http_uri_present (MediaItem item) {
-        bool present = false;
-
-        foreach (var uri in item.get_uris ()) {
-            if (!this.need_proxy (uri)) {
-                present = true;
-
-                break;
-            }
-        }
-
-        return present;
     }
 
     private void on_cancelled (Cancellable cancellable) {

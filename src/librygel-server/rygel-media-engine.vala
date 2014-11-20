@@ -99,6 +99,29 @@ public abstract class Rygel.MediaEngine : GLib.Object {
     public abstract unowned List<DLNAProfile> get_dlna_profiles ();
 
     /**
+     * Retrieve engine-provided resources for the given MediaObject
+     *
+     * The MediaResources returned may include formats/profiles that do not
+     * match the source content byte-for-byte (e.g. transcodes, encrypted
+     * formats, etc). The MediaEngine must return a MediaResource for the raw
+     * MediaObject content if it can support streaming the content directly.
+     *
+     * The order of MediaResources in the returned List should be from
+     * most-preferred to least-preferred and each must have a unique
+     * alphanumeric "name" field.
+     *
+     * Note: The engine should set all delivery-related flags assuming all
+     * delivery forms are supported (e.g. the protocol fields and delivery
+     * flags of the ProtocolInfo). And the resource uri should be set to the
+     * empty string for http-delivered resources. The effective delivery
+     * options and uri will be established by the HTTP server.
+     *
+     * @return A list of #MediaResources<!-- -->s or null if no representations
+     *         are provided by the engine for the item.
+     */
+    public abstract async Gee.List<MediaResource> ? get_resources_for_item (MediaObject item);
+
+   /**
      * Get a list of the transcoders that are provided by this media engine.
      *
      * @return A list of #RygelTranscoder<!-- -->s or null if not supported.

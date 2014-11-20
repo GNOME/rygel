@@ -83,7 +83,7 @@ public interface Rygel.VisualItem : MediaFileItem {
         }
     }
 
-    internal void add_visual_props (DIDLLiteResource res) {
+    internal void set_visual_resource_properties (MediaResource res) {
         res.width = this.width;
         res.height = this.height;
         res.color_depth = this.color_depth;

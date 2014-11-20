@@ -113,6 +113,8 @@ public abstract class Rygel.MediaFileItem : MediaItem {
                 upnp_class : upnp_class);
     }
 
+    public static Gee.HashMap<string, string> mime_to_ext;
+
     static construct {
         try {
             address_regex = new Regex (Regex.escape_string ("@ADDRESS@"));
@@ -203,42 +205,116 @@ public abstract class Rygel.MediaFileItem : MediaItem {
     internal override DIDLLiteObject? serialize (Serializer serializer,
                                                  HTTPServer http_server)
                                                  throws Error {
-        var didl_item = base.serialize (serializer, http_server)
-                                        as DIDLLiteItem;
-
-        /* We list proxy/transcoding resources first instead of original URIs
-         * because some crappy MediaRenderer/ControlPoint implemenation out
-         * there just choose the first one in the list instead of the one they
-         * can handle.
-         */
-        this.add_proxy_resources (http_server, didl_item);
+        var didl_item = base.serialize (serializer, http_server) as DIDLLiteItem;
 
         if (!this.place_holder) {
-            var host_ip = http_server.context.host_ip;
+            // Subclasses can override add_resources and augment the media resource list (which
+            //  should contain the primary resource representations for the MediaItem
+            //  at this point) with any secondary representations or alternate delivery
+            //  mechanisms they can provide
+            this.add_additional_resources (http_server);
 
-            // then original URIs
-            bool internal_allowed;
-            internal_allowed = http_server.context.interface == "lo" ||
-                               host_ip == "127.0.0.1";
-            this.add_resources (didl_item, internal_allowed);
+            this.add_proxy_resources (http_server, didl_item);
 
-            foreach (var res in didl_item.get_resources ()) {
-                res.uri = MediaFileItem.address_regex.replace_literal (res.uri,
-                                                                       -1,
-                                                                       0,
-                                                                       host_ip);
-            }
+            this.serialize_resource_list (didl_item, http_server);
         }
 
         return didl_item;
     }
 
+    /**
+     * Subclasses override this method to create the type-specific primary MediaResource.
+     *
+     * The resource returned is presumed to represent the "internal" file resource and
+     * a uri referring to the source file. Transport-specific variants can be created
+     * by the caller.
+     */
+    public virtual MediaResource get_primary_resource () {
+        var res = new MediaResource ("primary");
+
+        res.mime_type = this.mime_type;
+        res.dlna_profile = this.dlna_profile;
+        res.dlna_flags = DLNAFlags.BACKGROUND_TRANSFER_MODE;
+
+        // MediaFileItems refer directly to the source URI
+        res.uri = this.get_primary_uri ();
+        try {
+            res.protocol = this.get_protocol_for_uri (res.uri);
+        } catch (Error e) {
+            warning ("Could not determine protocol for " + res.uri);
+        }
+        res.extension = get_extension ();
+        res.size = this.size;
+        return res;
+    }
+
+    /**
+     * Return the file/uri extension that best represents the item's primary resource.
+     */
+    public virtual string get_extension () {
+        string uri_extension = null;
+        // Use the extension from the source content filename, if it has an extension
+        string basename = Path.get_basename (this.get_primary_uri ());
+        int dot_index = -1;
+        if (basename != null) {
+            dot_index = basename.last_index_of (".");
+            if (dot_index > -1) {
+               uri_extension = basename.substring (dot_index + 1);
+            }
+        }
+
+        if (uri_extension == null) {
+            uri_extension = ext_from_mime_type (this.mime_type);
+        }
+        return uri_extension;
+    }
+
+    protected string ext_from_mime_type (string mime_type) {
+        if (mime_to_ext == null) {
+            // Lazy initialization of the static hashmap
+            mime_to_ext = new Gee.HashMap<string, string> ();
+            // videos
+            string[] videos = {"mpeg", "webm", "ogg", "mp4"};
+
+            foreach (string video in videos) {
+                mime_to_ext.set ("video/" + video, video);
+            }
+            mime_to_ext.set ("video/x-matroska", "mkv");
+
+            // audios
+            mime_to_ext.set ("audio/x-wav", "wav");
+            mime_to_ext.set ("audio/x-matroska", "mka");
+            mime_to_ext.set ("audio/L16","pcm");
+            mime_to_ext.set ("audio/vnd.dlna.adts","adts");
+            mime_to_ext.set ("audio/mpeg","mp3");
+            mime_to_ext.set ("audio/3gpp","3gp");
+
+            // images
+            string[] images = {"jpeg", "png"};
+
+            foreach (string image in images) {
+                mime_to_ext.set ("image/" + image, image);
+            }
+
+            // texts
+            mime_to_ext.set ("text/srt", "srt");
+            mime_to_ext.set ("text/xml", "xml");
+
+            // applications? (can be either video or audio?);
+            mime_to_ext.set ("application/ogg", "ogg");
+        }
+
+        if (MediaFileItem.mime_to_ext.has_key (mime_type)) {
+            return mime_to_ext.get (mime_type);
+        }
+
+        return "";
+    }
+
+
     internal virtual void add_proxy_resources (HTTPServer   server,
                                                DIDLLiteItem didl_item)
                                                throws Error {
-        // Proxy resource for the original resources
-        server.add_proxy_resource (didl_item, this);
-
         if (!this.place_holder) {
             // Transcoding resources
             server.add_resources (didl_item, this);
@@ -273,5 +349,19 @@ public abstract class Rygel.MediaFileItem : MediaItem {
                 this.add_resource (didl_item, uri, protocol);
             }
         }
+    }
+
+    /**
+     * Subclasses can override this method to augment the MediaObject MediaResource
+     * list with secondary MediaResource objects representing derivative resources.
+     *
+     * Note: Implementations should add both internal/file-based resources and HTTP-accessible
+     *       resources to the MediaResource list.
+     * FIXME: Will be renamed once we can safely remove old add_resources
+     */
+    internal virtual void add_additional_resources (HTTPServer server) {
+        /* Do nothing - provide default implementation to avoid unnecessary
+           empty code blocks.
+         */
     }
 }

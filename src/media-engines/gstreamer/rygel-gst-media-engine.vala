@@ -22,6 +22,7 @@
 
 using Gst;
 using Gee;
+using GUPnP;
 
 // Remove for GStreamer 1.0
 [CCode (cname = "PRESET_DIR")]
@@ -127,6 +128,66 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
             return null;
         }
     }
+
+    public override async Gee.List<MediaResource>? get_resources_for_item (MediaObject
+            object) {
+        if (! (object is MediaFileItem)) {
+            warning ("Can only process file-based MediaObjects (MediaFileItems)");
+            return null;
+        }
+
+        var item = object as MediaFileItem;
+
+        // For MediaFileItems, the primary URI refers directly to the content
+        string source_uri = item.get_primary_uri ();
+
+        debug ("get_resources_for_item(%s)", source_uri);
+
+        if (!source_uri.has_prefix ("file://")) {
+            warning ("Can't process non-file uri " + source_uri);
+            return null;
+        }
+
+        Gee.List<MediaResource> resources = new Gee.ArrayList<MediaResource> ();
+
+        var primary_res = item.get_primary_resource ();
+
+        // The GstMediaEngine only supports byte-based seek on the primary resource currently
+        primary_res.dlna_operation = DLNAOperation.RANGE;
+
+        // The GstMediaEngine supports connection stalling on the primary resource
+        primary_res.dlna_flags |= DLNAFlags.CONNECTION_STALL;
+
+        // Add a resource for http consumption
+        MediaResource http_res = new MediaResource.from_resource ("primary_http",
+                                                                  primary_res);
+        http_res.uri = ""; // The URI needs to be assigned by the MediaServer
+        resources.add (http_res);
+
+        // Put the primary resource as most-preferred (front of the list)
+        resources.add (primary_res);
+
+        return resources;
+    }
+
+    public override DataSource? create_data_source_for_resource
+                                        (MediaObject object,
+                                         MediaResource res) throws Error {
+        if (!(object is MediaFileItem)) {
+            warning ("Can only process file-based MediaObjects (MediaFileItem)");
+            return null;
+        }
+
+        var item = object as MediaFileItem;
+
+        string source_uri = item.get_primary_uri ();
+        debug ("creating data source for %s", source_uri);
+
+        DataSource ds = new GstDataSource (source_uri);
+
+        return ds;
+    }
+
 
     public DataSource create_data_source_from_element (Element element) {
         return new GstDataSource.from_element (element);

@@ -87,25 +87,22 @@ public class Rygel.ImageItem : MediaFileItem, VisualItem {
         this.add_thumbnail_for_uri (uri);
     }
 
+    internal override MediaResource get_primary_resource () {
+        var res = base.get_primary_resource ();
+
+        this.set_visual_resource_properties (res);
+
+        res.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
+
+        return res;
+    }
+
     internal override void add_resources (DIDLLiteItem didl_item,
                                           bool         allow_internal)
                                           throws Error {
         base.add_resources (didl_item, allow_internal);
 
         this.add_thumbnail_resources (didl_item, allow_internal);
-    }
-
-    internal override DIDLLiteResource add_resource
-                                        (DIDLLiteObject didl_object,
-                                         string?      uri,
-                                         string       protocol,
-                                         string?      import_uri = null)
-                                         throws Error {
-        var res = base.add_resource (didl_object, uri, protocol, import_uri);
-
-        this.add_visual_props (res);
-
-        return res;
     }
 
     internal override void add_proxy_resources (HTTPServer   server,

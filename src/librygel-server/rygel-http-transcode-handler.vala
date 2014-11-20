@@ -67,6 +67,10 @@ internal class Rygel.HTTPTranscodeHandler : HTTPGetHandler {
         }
     }
 
+    public override int64 get_resource_size () {
+        return -1;
+    }
+
     protected override DIDLLiteResource add_resource
                                         (DIDLLiteObject didl_object,
                                          HTTPGet      request)

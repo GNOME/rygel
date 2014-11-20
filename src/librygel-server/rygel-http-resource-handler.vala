@@ -80,6 +80,10 @@ internal class Rygel.HTTPMediaResourceHandler : HTTPGetHandler {
         }
     }
 
+    public override int64 get_resource_size () {
+        return media_resource.size;
+    }
+
     protected override DIDLLiteResource add_resource (DIDLLiteObject didl_object,
                                                       HTTPGet      request)
                                                       throws Error {

@@ -266,7 +266,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
             } else {
                 try {
                     var protocol = this.get_protocol_for_uri (res.uri);
-                    if (protocol != "internal") {
+                    if (protocol != "internal" || http_server.is_local ()) {
                         // Exclude internal resources when request is non-local
                         var didl_resource = didl_object.add_resource ();
                         res.serialize (didl_resource);

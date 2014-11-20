@@ -112,13 +112,8 @@ public class Rygel.AudioItem : MediaFileItem {
         return didl_item;
     }
 
-    internal override DIDLLiteResource add_resource
-                                        (DIDLLiteObject didl_object,
-                                         string?        uri,
-                                         string         protocol,
-                                         string?        import_uri = null)
-                                         throws Error {
-        var res = base.add_resource (didl_object, uri, protocol, import_uri);
+    internal override MediaResource get_primary_resource () {
+        var res = base.get_primary_resource ();
 
         res.duration = this.duration;
         res.bitrate = this.bitrate;

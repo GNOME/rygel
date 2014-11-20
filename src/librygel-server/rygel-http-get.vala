@@ -169,6 +169,28 @@ internal class Rygel.HTTPGet : HTTPRequest {
         // Add headers
         this.handler.add_response_headers (this);
 
+        int64 response_size;
+        {
+            // Response size might have already been set by one of the response elements
+            response_size = this.msg.response_headers.get_content_length ();
+
+            if (response_size > 0) {
+                this.msg.response_headers.set_content_length (response_size);
+                debug ("Response size set via response element: size "
+                       + response_size.to_string());
+            } else {
+                // If not already set by a response element, try to set it to the resource size
+                if ((response_size = this.handler.get_resource_size ()) > 0) {
+                    this.msg.response_headers.set_content_length (response_size);
+                    debug ("Response size set via response element: size "
+                           + response_size.to_string());
+                } else {
+                    debug ("Response size unknown");
+                }
+            }
+            // size will factor into other logic below...
+        }
+
         // Add general headers
         if (this.msg.request_headers.get_one ("Range") != null) {
             this.msg.set_status (Soup.Status.PARTIAL_CONTENT);
