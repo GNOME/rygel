@@ -62,19 +62,10 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
                        "failed to provide the value in response headers");
         }
 
-        // Handle Samsung DLNA TV proprietary subtitle headers
-        if (request.msg.request_headers.get_one ("getCaptionInfo.sec") != null
-            && (request.object is VideoItem)
-            && (request.object as VideoItem).subtitles.size > 0) {
-                var caption_uri = request.http_server.create_uri_for_item
-                                        (request.object as MediaItem,
-                                         -1,
-                                         0, // FIXME: offer first subtitle only?
-                                         null,
-                                         null);
-
-                request.msg.response_headers.append ("CaptionInfo.sec",
-                                                     caption_uri);
+        // Handle device-specific hacks that need to change the response
+        // headers such as Samsung's subtitle stuff.
+        if (request.hack != null) {
+            request.hack.modify_headers (request);
         }
 
         request.msg.response_headers.append ("Connection", "close");

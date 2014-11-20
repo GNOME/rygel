@@ -95,6 +95,8 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
 
     public virtual bool force_seek () { return false; }
 
+    public virtual void modify_headers (HTTPRequest request) {}
+
     public virtual async MediaObjects? search
                                         (SearchableContainer container,
                                          SearchExpression?   expression,
