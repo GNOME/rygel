@@ -144,7 +144,7 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
                 }
 
                 foreach (var profile in this.supported_profiles) {
-                    if (supported_profiles.data.name != profile.name) {
+                    if (supported_profiles.data != profile) {
                         this.sink_protocol_info += ",";
                     }
                     this.sink_protocol_info += protocol + ":*:" +
