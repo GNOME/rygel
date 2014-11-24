@@ -1,3 +1,119 @@
+0.25.0
+======
+
+A new unstable release of Rygel!
+
+- (Presumably) Fix issue with generated version if downstream calls autoreconf
+  on the dist tarball.
+- Add Remote UI Server implementation.
+- Add EnergyManagement service implementation.
+- Bump ABI/API.
+
+Renderer:
+ - Make it possible to implement different play modes.
+
+Server:
+ - Several style fixes and code refactorings.
+ - Move the code for Samsung subtitles into Samsung device hack.
+
+MediaExport:
+ - Style and documentation fixes.
+
+GStreamer media engine:
+ - Fix warning about non-existent source id.
+
+Simple media engine:
+ - Fix locking.
+
+Tests:
+ - Reenable locking-affected engine tests.
+
+Dependencies:
+ - Bump libmediaart version to 0.7.0.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=737513
+ - https://bugzilla.gnome.org/show_bug.cgi?id=737522
+ - https://bugzilla.gnome.org/show_bug.cgi?id=737867
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Richard Röjfors <richard.rojfors@gmail.com>
+ - Parthiban Balasubramanian <p.balasubramanian@cablelabs.com>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Yosef Or Boczko <yoseforb@src.gnome.org>
+ - Scott Deboy <sdeboy@secondstryke.com>
+ - rygelgit <p.balasubramanian@cablelabs.com>
+ - Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Jussi Kukkonen <jussi.kukkonen@intel.com>
+ - Dimitris Spingos <dmtrs32@gmail.com>
+ - Claudio Arseni <claudio.arseni@gmail.com>
+
+Added/updated translations
+ - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+ - es, courtesy of Daniel Mustieles
+ - he, courtesy of Yosef Or Boczko
+ - it, courtesy of Milo Casagrande
+ - lv, courtesy of Rūdolfs Mazurs
+ - nb, courtesy of Kjartan Maraas
+
+0.24.2
+======
+
+A maintenance release of Rygel!
+
+Server:
+ - Fix sidecar album art extraction.
+
+Media-Export:
+ - Work-around an issue with GStreamer bindings that caused truncated embedded
+   album art.
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+
+0.24.1
+======
+
+A maintenance release of Rygel!
+
+Server:
+ - Fix UpdateObject call on MusicItem.
+
+External:
+ - Fix plugin activation.
+
+MPRIS:
+ - Fix stream position indication for clients that do not event "Position".
+ - Fix plugin activation.
+ - Force update of properties on plugin creation.
+
+GObject-Introspection:
+ - Fix renderer example and require a recent version of g-i.
+ - Add license for examples.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=737867
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Мирослав Николић <miroslavnikolic@rocketmail.com>
+ - Yosef Or Boczko <yoseforb@src.gnome.org>
+ - Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+ - Richard Röjfors <richard.rojfors@gmail.com>
+ - Milo Casagrande <milo@ubuntu.com>
+ - Kjartan Maraas <kmaraas@gnome.org>
+
+Added/updated translations
+ - he, courtesy of Yosef Or Boczko
+ - it, courtesy of Milo Casagrande
+ - lv, courtesy of Rūdolfs Mazurs
+ - nb, courtesy of Kjartan Maraas
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+
 0.24.0
 ======
 
