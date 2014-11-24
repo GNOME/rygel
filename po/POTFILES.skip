@@ -302,3 +302,4 @@ tests/rygel-state-machine_object-creator.c
 tests/rygel-thumbnail.c
 tests/rygel-user-config.c
 tests/rygel-user-config-test.c
+doc/reference/librygel-core/gtkdoc/ccomments/rygel-energy-management-helper.c
