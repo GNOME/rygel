@@ -427,7 +427,7 @@ public class Rygel.BasicManagement : Service {
                         out dscp);
 
         if (host == "") {
-            warning (_("Cannot run 'Traceroute action': Host is empty"));
+            warning (_("Cannot run 'Traceroute' action: Host is empty"));
             action.return_error (402, _("Invalid argument"));
 
             return;
