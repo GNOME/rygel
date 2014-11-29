@@ -97,25 +97,6 @@ public class Rygel.ImageItem : MediaFileItem, VisualItem {
         return res;
     }
 
-    internal override void add_resources (DIDLLiteItem didl_item,
-                                          bool         allow_internal)
-                                          throws Error {
-        base.add_resources (didl_item, allow_internal);
-
-        this.add_thumbnail_resources (didl_item, allow_internal);
-    }
-
-    internal override void add_proxy_resources (HTTPServer   server,
-                                                DIDLLiteItem didl_item)
-                                                throws Error {
-        base.add_proxy_resources (server, didl_item);
-
-        if (!this.place_holder) {
-            // Thumbnails comes in the end
-            this.add_thumbnail_proxy_resources (server, didl_item);
-        }
-    }
-
     protected override ProtocolInfo get_protocol_info (string? uri,
                                                        string  protocol) {
         var protocol_info = base.get_protocol_info (uri, protocol);
@@ -124,4 +105,11 @@ public class Rygel.ImageItem : MediaFileItem, VisualItem {
 
         return protocol_info;
     }
+
+    internal override void add_additional_resources (HTTPServer server) {
+        base.add_additional_resources (server);
+
+        this.add_thumbnail_resources (server);
+    }
+
 }

@@ -113,8 +113,6 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
         }
 
         base.add_resources (didl_item, allow_internal);
-
-        this.add_thumbnail_resources (didl_item, allow_internal);
     }
 
     internal override MediaResource get_primary_resource () {
@@ -214,10 +212,11 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
                 resource.subtitle_file_uri = main_subtitle.uri;
             }
         }
+    }
 
-        if (!this.place_holder) {
-            // Thumbnails comes in the end
-            this.add_thumbnail_proxy_resources (server, didl_item);
-        }
+    internal override void add_additional_resources (HTTPServer server) {
+        base.add_additional_resources (server);
+
+        this.add_thumbnail_resources (server);
     }
 }

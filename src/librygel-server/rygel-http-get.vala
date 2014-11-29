@@ -72,6 +72,12 @@ internal class Rygel.HTTPGet : HTTPRequest {
                                                          this.cancellable);
         }
 
+        if (uri.thumbnail_index >= 0) {
+            this.handler = new HTTPThumbnailHandler (this.object as MediaFileItem,
+                                                     uri.thumbnail_index,
+                                                     this.cancellable);
+        }
+
         if (this.handler == null) {
             this.handler = new HTTPIdentityHandler (this.cancellable);
         }

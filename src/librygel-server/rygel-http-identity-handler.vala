@@ -37,9 +37,6 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
         if (request.subtitle != null) {
            request.msg.response_headers.append ("Content-Type",
                                                 request.subtitle.mime_type);
-        } else if (request.thumbnail != null) {
-            request.msg.response_headers.append ("Content-Type",
-                                                 request.thumbnail.mime_type);
         } else {
             request.msg.response_headers.append ("Content-Type",
                                                  (request.object as MediaFileItem).mime_type);
@@ -85,12 +82,7 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
                                         throws Error {
         var protocol = request.http_server.get_protocol ();
 
-        if (request.thumbnail != null) {
-            return request.thumbnail.add_resource (didl_object as DIDLLiteItem,
-                                                   protocol);
-        } else {
-            return request.object.add_resource (didl_object, null, protocol);
-        }
+        return request.object.add_resource (didl_object, null, protocol);
     }
 
     private HTTPResponse render_body_real (HTTPGet request) throws Error {
@@ -99,8 +91,6 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
 
         if (request.subtitle != null) {
             src = engine.create_data_source (request.subtitle.uri);
-        } else if (request.thumbnail != null) {
-            src = engine.create_data_source (request.thumbnail.uri);
         } else {
             src = (request.object as MediaFileItem).create_stream_source
                                         (request.http_server.context.host_ip);
@@ -116,10 +106,6 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
     private int64 get_size (HTTPGet request) {
         if (request.subtitle != null) {
             return request.subtitle.size;
-        }
-
-        if (request.thumbnail != null) {
-            return request.thumbnail.size;
         }
 
         return (request.object as MediaFileItem).size;

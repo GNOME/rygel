@@ -36,45 +36,28 @@ public class Rygel.Thumbnail : Rygel.IconInfo {
         this.dlna_profile = dlna_profile;
     }
 
-    internal virtual DIDLLiteResource? add_resource (DIDLLiteItem didl_item,
-                                                     string       protocol) {
-        var res = didl_item.add_resource ();
+    internal virtual MediaResource get_resource (string protocol, int index) {
+        var name = "%s_thumbnail_%02d".printf (protocol, index);
+        MediaResource res = new MediaResource (name);
 
-        /* We check for NULL because 
-         * gupnp_didl_lite_resource_set_uri(),
-         * used by the generated code,
-         * complains, with a critical warning, if the URI is NULL.
-         * It's already the default.
-         */
-        if (this.uri != null) {
-            res.uri = this.uri;
-        }
-
-        res.size64 = this.size;
-
+        res.size = this.size;
         res.width = this.width;
         res.height = this.height;
         res.color_depth = this.depth;
+        res.mime_type = this.mime_type;
+        res.dlna_profile = this.dlna_profile;
+        res.protocol = protocol;
+        // Note: These represent best-case. The MediaServer/HTTPServer can dial these back
+        res.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE |
+                          DLNAFlags.BACKGROUND_TRANSFER_MODE |
+                          DLNAFlags.CONNECTION_STALL |
+                          DLNAFlags.DLNA_V15;
+        res.dlna_operation = DLNAOperation.RANGE;
+        res.dlna_conversion = DLNAConversion.TRANSCODED;
+        res.extension = this.file_extension;
 
-        /* Protocol info */
-        res.protocol_info = this.get_protocol_info (protocol);
+        res.uri = this.uri;
 
         return res;
-    }
-
-    private ProtocolInfo get_protocol_info (string protocol) {
-        var protocol_info = new ProtocolInfo ();
-
-        protocol_info.mime_type = this.mime_type;
-        protocol_info.dlna_profile = this.dlna_profile;
-        protocol_info.protocol = protocol;
-        protocol_info.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE |
-                                    DLNAFlags.BACKGROUND_TRANSFER_MODE |
-                                    DLNAFlags.CONNECTION_STALL |
-                                    DLNAFlags.DLNA_V15;
-        protocol_info.dlna_operation = DLNAOperation.RANGE;
-        protocol_info.dlna_conversion = DLNAConversion.TRANSCODED;
-
-        return protocol_info;
     }
 }
