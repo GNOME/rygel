@@ -1,10 +1,12 @@
 /*
  * Copyright (C) 2008, 2009 Nokia Corporation.
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Jens Georg <jensg@openismus.com>
+ *         Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -33,6 +35,7 @@ public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
     public MediaContainer root_container;
     public GUPnP.Context context;
     private ArrayList<HTTPRequest> requests;
+    private bool locally_hosted;
 
     public Cancellable cancellable { get; set; }
 
@@ -44,6 +47,10 @@ public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         this.context = content_dir.context;
         this.requests = new ArrayList<HTTPRequest> ();
         this.cancellable = content_dir.cancellable;
+
+        // FIXME: Needs adaptation for IPv6
+        this.locally_hosted = this.context.interface == "lo" ||
+                              this.context.host_ip == "127.0.0.1";
 
         this.path_root = "/" + name;
     }
@@ -126,6 +133,10 @@ public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         protocol_infos.add (protocol_info);
 
         return protocol_infos;
+    }
+
+    public bool is_local () {
+        return this.locally_hosted;
     }
 
     private void on_request_completed (StateMachine machine) {

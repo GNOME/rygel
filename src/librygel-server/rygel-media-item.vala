@@ -249,10 +249,7 @@ public abstract class Rygel.MediaItem : MediaObject {
             var host_ip = http_server.context.host_ip;
 
             // then original URIs
-            bool internal_allowed;
-            internal_allowed = http_server.context.interface == "lo" ||
-                               host_ip == "127.0.0.1";
-            this.add_resources (didl_item, internal_allowed);
+            this.add_resources (didl_item, http_server.is_local ());
 
             foreach (var res in didl_item.get_resources ()) {
                 res.uri = MediaItem.address_regex.replace_literal (res.uri,
