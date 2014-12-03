@@ -191,11 +191,11 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
                 var uri = subtitle.uri; // Save the original URI
                 var index = this.subtitles.index_of (subtitle);
 
-                subtitle.uri = server.create_uri_for_item (this,
-                                                           -1,
-                                                           index,
-                                                           null,
-                                                           null);
+                subtitle.uri = server.create_uri_for_object (this,
+                                                             -1,
+                                                             index,
+                                                             null,
+                                                             null);
                 subtitle.add_didl_node (didl_item);
 
                 if (main_subtitle == null) {

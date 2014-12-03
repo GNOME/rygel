@@ -131,11 +131,11 @@ public class Rygel.MusicItem : AudioItem {
         if (!this.place_holder &&
             this.album_art != null &&
             server.need_proxy (this.album_art.uri)) {
-            didl_item.album_art = server.create_uri_for_item (this,
-                                                              0,
-                                                              -1,
-                                                              null,
-                                                              null);
+            didl_item.album_art = server.create_uri_for_object (this,
+                                                                0,
+                                                                -1,
+                                                                null,
+                                                                null);
         }
     }
 }

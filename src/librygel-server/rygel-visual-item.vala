@@ -97,11 +97,11 @@ public interface Rygel.VisualItem : MediaFileItem {
                 var uri = thumbnail.uri; // Save the original URI
                 var index = this.thumbnails.index_of (thumbnail);
 
-                thumbnail.uri = server.create_uri_for_item (this,
-                                                            index,
-                                                            -1,
-                                                            null,
-                                                            null);
+                thumbnail.uri = server.create_uri_for_object (this,
+                                                              index,
+                                                              -1,
+                                                              null,
+                                                              null);
                 thumbnail.add_resource (didl_item, server.get_protocol ());
 
                 // Now restore the original URI
