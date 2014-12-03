@@ -163,14 +163,11 @@ internal class Rygel.AVTransport : Service {
         log.log ("CurrentTrackDuration",         this.player.duration_as_str);
         log.log ("CurrentMediaDuration",         this.player.duration_as_str);
         log.log ("AVTransportURI",               this.controller.uri);
-        log.log ("AVTransportURIMetaData",
-                 Markup.escape_text (this.controller.metadata));
+        log.log ("AVTransportURIMetaData",       this.controller.metadata);
         log.log ("CurrentTrackURI",              this.controller.track_uri);
-        log.log ("CurrentTrackMetaData",
-                 Markup.escape_text (this.controller.track_metadata));
+        log.log ("CurrentTrackMetaData",         this.controller.track_metadata);
         log.log ("NextAVTransportURI",           this.controller.next_uri);
-        log.log ("NextAVTransportURIMetaData",
-                 Markup.escape_text (this.controller.next_metadata));
+        log.log ("NextAVTransportURIMetaData",   this.controller.next_metadata);
 
         value.init (typeof (string));
         value.set_string (log.finish ());
