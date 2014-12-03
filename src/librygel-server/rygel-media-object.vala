@@ -224,9 +224,61 @@ public abstract class Rygel.MediaObject : GLib.Object {
         return media_resources;
     }
 
+    public MediaResource? get_resource_by_name (string resource_name) {
+        foreach (var resource in this.media_resources) {
+            if (resource.get_name () == resource_name) {
+                return resource;
+            }
+        }
+
+        return null;
+    }
+
     public abstract DIDLLiteObject? serialize (Serializer serializer,
                                                HTTPServer http_server)
                                                throws Error;
+
+    /**
+     * Serialize the resource list
+     *
+     * Any resource with an empty URIs will get a resource-based HTTP URI and have its protocol
+     * and delivery options adjusted to the HTTPServer.
+     *
+     * Internal (e.g. "file:") resources will only be included when the http server
+     * is on the local host.
+     *
+     * Resources will be serialized in list order.
+     */
+    public void serialize_resource_list (DIDLLiteObject didl_object,
+                                         HTTPServer     http_server)
+                                         throws Error {
+        foreach (var res in this.get_resource_list ()) {
+            if (res.uri == null || res.uri == "") {
+                res.uri = http_server.create_uri_for_object (this,
+                                                             -1,
+                                                             -1,
+                                                             null,
+                                                             null,
+                                                             res.get_name ());
+                var didl_resource = didl_object.add_resource ();
+                http_server.set_resource_delivery_options (res);
+                res.serialize (didl_resource);
+                res.uri = null;
+            } else {
+                try {
+                    var protocol = this.get_protocol_for_uri (res.uri);
+                    if (protocol != "internal") {
+                        // Exclude internal resources when request is non-local
+                        var didl_resource = didl_object.add_resource ();
+                        res.serialize (didl_resource);
+                    }
+                } catch (Error e) {
+                    warning (_("Could not determine protocol for %s"), res.uri);
+                }
+            }
+        }
+    }
+
 
     internal virtual void apply_didl_lite (DIDLLiteObject didl_object) {
         this.title = didl_object.title;
@@ -414,5 +466,28 @@ public abstract class Rygel.MediaObject : GLib.Object {
         }
 
         return "";
+    }
+
+    internal string get_protocol_for_uri (string uri) throws Error {
+        var scheme = Uri.parse_scheme (uri);
+        if (scheme == null) {
+            throw new MediaItemError.BAD_URI (_("Bad URI: %s"), uri);
+        }
+
+        if (scheme == "http") {
+            return "http-get";
+        } else if (scheme == "file") {
+            return "internal";
+        } else if (scheme == "rtsp") {
+            // FIXME: Assuming that RTSP is always accompanied with RTP over UDP
+            return "rtsp-rtp-udp";
+        } else {
+            // Assume the protocol to be the scheme of the URI
+            warning (_("Failed to probe protocol for URI %s. Assuming '%s'"),
+                     uri,
+                     scheme);
+
+            return scheme;
+        }
     }
 }

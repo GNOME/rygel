@@ -170,7 +170,7 @@ public class Rygel.MediaResource : GLib.Object {
         didl_resource.height = this.height;
         didl_resource.audio_channels = this.audio_channels;
         didl_resource.sample_freq = this.sample_freq;
-        didl_resource.protocol_info = get_protocol_info ();
+        didl_resource.protocol_info = this.get_protocol_info ();
 
         return didl_resource;
     }

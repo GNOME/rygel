@@ -255,29 +255,6 @@ public abstract class Rygel.MediaFileItem : MediaItem {
         return protocol_info;
     }
 
-    internal string get_protocol_for_uri (string uri) throws Error {
-        var scheme = Uri.parse_scheme (uri);
-        if (scheme == null) {
-            throw new MediaItemError.BAD_URI (_("Bad URI: %s"), uri);
-        }
-
-        if (scheme == "http") {
-            return "http-get";
-        } else if (scheme == "file") {
-            return "internal";
-        } else if (scheme == "rtsp") {
-            // FIXME: Assuming that RTSP is always accompanied with RTP over UDP
-            return "rtsp-rtp-udp";
-        } else {
-            // Assume the protocol to be the scheme of the URI
-            warning (_("Failed to probe protocol for URI %s. Assuming '%s'"),
-                     uri,
-                     scheme);
-
-            return scheme;
-        }
-    }
-
     protected virtual void add_resources (DIDLLiteItem didl_item,
                                           bool         allow_internal)
                                           throws Error {

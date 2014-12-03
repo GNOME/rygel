@@ -31,6 +31,7 @@ internal class Rygel.HTTPItemURI : Object {
     public int subtitle_index { get; set; default = -1; }
     public string? transcode_target { get; set; default = null; }
     public string? playlist_format { get; set; default = null; }
+    public string? resource_name { get; set; default = null; }
     public unowned HTTPServer http_server { get; set; }
 
     private string real_extension;
@@ -53,17 +54,29 @@ internal class Rygel.HTTPItemURI : Object {
                         int        thumbnail_index = -1,
                         int        subtitle_index = -1,
                         string?    transcode_target = null,
-                        string?    playlist_format = null) {
+                        string?    playlist_format = null,
+                        string?    resource_name = null) {
         this.item_id = object.id;
         this.thumbnail_index = thumbnail_index;
         this.subtitle_index = subtitle_index;
         this.transcode_target = transcode_target;
         this.http_server = http_server;
         this.playlist_format = playlist_format;
+        this.resource_name = resource_name;
         this.extension = "";
 
-        if (!(object is MediaFileItem)) {
+        if (this.resource_name != null) {
+            var resource = object.get_resource_by_name
+                                    (this.resource_name);
+            if (resource != null) {
+                this.extension = resource.extension;
+            }
+
             return;
+        } else {
+            if (!(object is MediaFileItem)) {
+                return;
+            }
         }
 
         var item = object as MediaFileItem;
@@ -187,6 +200,10 @@ internal class Rygel.HTTPItemURI : Object {
                     this.playlist_format = Soup.URI.decode (parts[i + 1]);
 
                     break;
+                case "res":
+                    this.resource_name = Soup.URI.decode (parts[i + 1]);
+
+                    break;
                 default:
                     break;
             }
@@ -216,6 +233,9 @@ internal class Rygel.HTTPItemURI : Object {
         } else if (this.playlist_format != null) {
             path += "/pl/" + Uri.escape_string
                                         (this.playlist_format, "", true);
+        } else if (this.resource_name != null) {
+            path += "/res/" + Uri.escape_string
+                                        (this.resource_name, "", true);
         }
         path += this.extension;
 
