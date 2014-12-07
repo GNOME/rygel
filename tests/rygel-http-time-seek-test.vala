@@ -26,6 +26,8 @@ private errordomain Rygel.TestError {
 }
 
 private class Rygel.HTTPTranscodeHandler : GLib.Object {}
+private class Rygel.HTTPSubtitleHandler : GLib.Object {}
+private class Rygel.HTTPThumbnailHandler : GLib.Object {}
 
 public class Rygel.MediaObject : GLib.Object {
     public int64 size = -1;

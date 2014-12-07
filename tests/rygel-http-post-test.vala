@@ -504,10 +504,18 @@ public class Rygel.ObjectRemovalQueue: GLib.Object {
     }
 }
 
+public class Rygel.MediaResource : GLib.Object {
+    public string extension;
+}
+
 public class Rygel.MediaObject : GLib.Object {
     public string id;
     public unowned MediaContainer parent;
     public string mime_type = "";
+
+    public MediaResource? get_resource_by_name (string name) {
+        return null;
+    }
 }
 
 public class Rygel.Thumbnail : GLib.Object {
