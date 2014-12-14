@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-12-04 11:26+0000\n"
-"PO-Revision-Date: 2014-12-04 21:42+0200\n"
+"POT-Creation-Date: 2014-12-14 11:31+0000\n"
+"PO-Revision-Date: 2014-12-14 17:19+0200\n"
 "Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -27,23 +27,23 @@ msgstr "Rygel Tercihleri"
 
 #: ../data/rygel-preferences.ui.h:2
 msgid "column"
-msgstr ""
+msgstr "sütun"
 
 #: ../data/rygel-preferences.ui.h:3
 msgid "Add a directory to the list of shared directories"
-msgstr ""
+msgstr "Bir dizini, paylaşılan dizinler listesine ekleyin"
 
 #: ../data/rygel-preferences.ui.h:4
 msgid "Add shared directory"
-msgstr ""
+msgstr "Paylaşılan dizin ekle"
 
 #: ../data/rygel-preferences.ui.h:5
 msgid "Remove a directory from the list of shared directories"
-msgstr ""
+msgstr "Bir dizini, paylaşılan dizinler listesinden çıkarın"
 
 #: ../data/rygel-preferences.ui.h:6
 msgid "Remove shared directory"
-msgstr ""
+msgstr "Paylaşılan dizini kaldır"
 
 #: ../data/rygel-preferences.ui.h:7
 msgid "_Share media through DLNA"
@@ -55,7 +55,7 @@ msgstr ""
 
 #: ../data/rygel-preferences.ui.h:9
 msgid "Add network interface"
-msgstr ""
+msgstr "Ağ arabirimi ekle"
 
 #: ../data/rygel-preferences.ui.h:10
 msgid "Remove a network interface Rygel should no longer serve files on"
@@ -63,10 +63,9 @@ msgstr ""
 
 #: ../data/rygel-preferences.ui.h:11
 msgid "Remove network interface"
-msgstr ""
+msgstr "Ağ arabirimini kaldır"
 
 #: ../data/rygel-preferences.ui.h:12
-#| msgid "_Network"
 msgid "Networks:"
 msgstr "Ağlar:"
 
@@ -88,7 +87,7 @@ msgstr "UPnP/DLNA Hizmetleri"
 
 #: ../data/rygel.desktop.in.in.h:3
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
-msgstr ""
+msgstr "medya sunucusu;medya yorumlayıcı;paylaş;ses;video;görüntü;resimler;"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -219,7 +218,6 @@ msgstr ""
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Can't remove items in %s"
 msgstr "%s'deki ögeler kaldırılamıyor"
 
@@ -264,7 +262,6 @@ msgid "Genre"
 msgstr "Tarz"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:56
-#| msgid "Select folders"
 msgid "Files & Folders"
 msgstr "Dosyalar ve Klasörler"
 
@@ -295,25 +292,21 @@ msgstr "Videolar"
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
 #, c-format
-#| msgid "Failed to destroy object '%s': %s"
 msgid "Failed to save object: %s"
 msgstr "Nesne kaydetme başarısız oldu: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:79
 #, c-format
-#| msgid "Failed to destroy object '%s': %s"
 msgid "Failed to add object: %s"
 msgstr "Nesne ekleme başarısız oldu: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:87
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Failed to remove object: %s"
 msgstr "Nesne kaldırma başarısız oldu: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
 #, c-format
-#| msgid "Failed to remove entry: %s"
 msgid "Failed to remove file %s: %s"
 msgstr "%s dosyası kaldırılamadı: %s"
 
@@ -332,7 +325,6 @@ msgid "GStreamer Player"
 msgstr "GStreamer Oynatıcı"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:43
-#| msgid "GStreamer Player"
 msgid "Could not create GStreamer player"
 msgstr "GStreamer oynatıcı oluşturulamadı"
 
@@ -361,7 +353,6 @@ msgid "Could not subscribe to Tracker signals: %s"
 msgstr ""
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:95
-#| msgid "Seek mode not supported"
 msgid "Not supported"
 msgstr "Desteklenmiyor"
 
@@ -769,10 +760,9 @@ msgid "Seeking not supported"
 msgstr "Arama modu desteklenmiyor"
 
 #: ../src/librygel-server/rygel-http-playlist-handler.vala:97
-#, fuzzy
 #| msgid "Failed to seek to offset %lld"
 msgid "Failed to generate playlist"
-msgstr "%lld konumu araştırılamadı"
+msgstr "Çalma listesi üretilemedi"
 
 #: ../src/librygel-server/rygel-http-post.vala:62
 #: ../src/librygel-server/rygel-import-resource.vala:188
@@ -818,15 +808,15 @@ msgid "URI '%s' invalid for importing contents to"
 msgstr "'%s' adresi içerik aktarımı için geçersiz"
 
 #: ../src/librygel-server/rygel-import-resource.vala:271
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to read from URI: %s: %s"
 msgid "Failed to import file from %s: %s"
-msgstr "URI den okunamadı: %s: %s"
+msgstr "%s'den dosya içe aktarılamadı: %s"
 
 #. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
-msgstr ""
+msgstr "ContainerID eksik"
 
 #: ../src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
@@ -859,13 +849,13 @@ msgstr "%s içerisinden nesne çıkarılmasına izin verilmiyor"
 #. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:74
 msgid "Object id missing"
-msgstr ""
+msgstr "Nesne kimliği (id) eksik"
 
 #: ../src/librygel-server/rygel-item-updater.vala:81
-#, fuzzy, c-format
+#, c-format
 #| msgid "Successfully destroyed object '%s'"
 msgid "Successfully updated object '%s'"
-msgstr "'%s' nesnesi başarıyla yokedildi"
+msgstr "'%s' nesnesi başarıyla güncellendi"
 
 #: ../src/librygel-server/rygel-item-updater.vala:89
 #, fuzzy, c-format
@@ -876,14 +866,12 @@ msgstr "'%s' nesnesinin yok edilmesi başarısız oldu: %s"
 #: ../src/librygel-server/rygel-item-updater.vala:162
 #: ../src/librygel-server/rygel-object-creator.vala:601
 #, c-format
-#| msgid "Invalid Range '%s'"
 msgid "Invalid date format: %s"
 msgstr "Geçersiz tarih biçimi: %s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:171
 #: ../src/librygel-server/rygel-object-creator.vala:610
 #, c-format
-#| msgid "Invalid Range '%s'"
 msgid "Invalid date: %s"
 msgstr "Geçersiz tarih: %s"
 
@@ -909,7 +897,7 @@ msgstr ""
 
 #: ../src/librygel-server/rygel-item-updater.vala:272
 msgid "Unknown error."
-msgstr ""
+msgstr "Bilinmeyen hata."
 
 #: ../src/librygel-server/rygel-item-updater.vala:285
 #, fuzzy, c-format
@@ -949,13 +937,13 @@ msgstr ""
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr ""
 
-#: ../src/librygel-server/rygel-media-item.vala:305
+#: ../src/librygel-server/rygel-media-item.vala:302
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Yanlış URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-item.vala:317
+#: ../src/librygel-server/rygel-media-item.vala:314
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "URI %s için protokol incelenemedi. '%s' varsayılıyor"
@@ -974,10 +962,9 @@ msgid "ObjectID argument missing"
 msgstr "'Elements' değişkeni eksik"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:127
-#, fuzzy
 #| msgid "Invalid Name"
 msgid "Invalid range"
-msgstr "Geçersiz isim"
+msgstr "Geçersiz aralık"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:131
 msgid "Missing filter"
@@ -1203,10 +1190,9 @@ msgid "Time-based seek not supported"
 msgstr "Desteklenmeyen oynatma hızı"
 
 #: ../src/rygel/rygel-cmdline-config.vala:80
-#, fuzzy
 #| msgid "_Interface"
 msgid "Network Interfaces"
-msgstr "_Arayüz"
+msgstr "Ağ Arayüzleri"
 
 #: ../src/rygel/rygel-cmdline-config.vala:84
 msgid "Disable transcoding"
@@ -1236,7 +1222,7 @@ msgstr ""
 
 #: ../src/rygel/rygel-cmdline-config.vala:97
 msgid "Disable plugin"
-msgstr ""
+msgstr "Eklentiyi devre dışı bırak"
 
 #: ../src/rygel/rygel-cmdline-config.vala:99
 msgid "Set plugin titles"
