@@ -119,7 +119,8 @@ public class Rygel.Tracker.InsertionQuery : Query {
     }
 
     public override async void execute (Sparql.Connection resources)
-                                        throws IOError,
+                                        throws Error,
+                                        IOError,
                                         Sparql.Error,
                                         DBusError {
         var str = this.to_string ();

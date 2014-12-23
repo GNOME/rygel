@@ -37,7 +37,8 @@ public abstract class Rygel.Tracker.Query {
     }
 
     public abstract async void execute (Sparql.Connection resources)
-                                        throws IOError,
+                                        throws Error,
+                                               IOError,
                                                Sparql.Error,
                                                DBusError;
 
