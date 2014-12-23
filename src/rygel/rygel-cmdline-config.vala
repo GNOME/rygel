@@ -37,7 +37,6 @@ public errordomain Rygel.CmdlineConfigError {
  */
 public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     [CCode (array_length = false, array_null_terminated = true)]
-    [NoArrayLength]
     private static string[] ifaces;
     private static int port;
 
@@ -60,13 +59,10 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static bool replace;
 
     [CCode (array_length = false, array_null_terminated = true)]
-    [NoArrayLength]
     private static string[] disabled_plugins;
     [CCode (array_length = false, array_null_terminated = true)]
-    [NoArrayLength]
     private static string[] plugin_titles;
     [CCode (array_length = false, array_null_terminated = true)]
-    [NoArrayLength]
     private static string[] plugin_options;
 
     // Our singleton
