@@ -40,7 +40,10 @@ public class Rygel.Tracker.DeletionQuery : Query {
     }
 
     public override async void execute (Sparql.Connection resources)
-                                        throws IOError, Sparql.Error, DBusError {
+                                        throws Error,
+                                               IOError,
+                                               Sparql.Error,
+                                               DBusError {
         var str = this.to_string ();
 
         debug ("Executing SPARQL query: %s", str);
