@@ -144,15 +144,17 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                                   File?            other,
                                   FileMonitorEvent event) {
         try {
-            var info = file.query_info (FileAttribute.STANDARD_TYPE,
-                                        FileQueryInfoFlags.NONE,
-                                        this.cancellable);
             switch (event) {
-                case FileMonitorEvent.CREATED:
+                case FileMonitorEvent.CREATED: {
+                    var info = file.query_info (FileAttribute.STANDARD_TYPE,
+                                                FileQueryInfoFlags.NONE,
+                                                this.cancellable);
+
                     if (info.get_file_type () == FileType.DIRECTORY) {
                         this.on_changes_done (file);
                     }
                     break;
+                }
                 case FileMonitorEvent.CHANGES_DONE_HINT:
                     this.on_changes_done (file);
                     break;
@@ -162,7 +164,11 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                 default:
                     break;
             }
-        } catch (Error error) { }
+        } catch (Error error) {
+            debug ("Failed to query information for %s: %s",
+                   file.get_uri (),
+                   error.message);
+        }
     }
 
     private void on_file_added (File file) {
