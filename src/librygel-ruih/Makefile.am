@@ -22,7 +22,7 @@ librygel_ruih_2_0_la_CFLAGS = \
         $(LIBRYGEL_SERVER_DEPS_CFLAGS) \
         $(RYGEL_COMMON_LIBRYGEL_CORE_CFLAGS) \
         -DENGINE_DIR='"$(enginedir)"' \
-        -DG_LOG_DOMAIN=\"Rygel\"
+        -DG_LOG_DOMAIN=\"RygelRuih\"
 librygel_ruih_2_0_la_LIBADD = \
         $(LIBRYGEL_RUIH_DEPS_LIBS) \
         $(RYGEL_COMMON_LIBRYGEL_CORE_LIBS)

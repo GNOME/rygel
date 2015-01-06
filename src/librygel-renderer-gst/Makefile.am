@@ -26,7 +26,7 @@ librygel_renderer_gst_2_6_la_LIBADD = \
 	$(RYGEL_COMMON_LIBRYGEL_RENDERER_LIBS)
 librygel_renderer_gst_2_6_la_LDFLAGS = \
 	-version-info $(LIBRYGEL_RENDERER_GST_VERSION) \
-	-DG_LOG_DOMAIN=\"Rygel\"
+	-DG_LOG_DOMAIN=\"RygelRendererGst\"
 
 rygel-renderer-gst.h rygel-renderer-gst-2.6.vapi: \
 	librygel_renderer_gst_2_6_la_vala.stamp

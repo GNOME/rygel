@@ -26,7 +26,7 @@ librygel_core_2_6_la_CFLAGS = \
 	-DSMALL_ICON_DIR='"$(smallicondir)"' \
 	-DBIG_ICON_DIR='"$(bigicondir)"' \
 	-include config.h \
-	-DG_LOG_DOMAIN='"Rygel"'
+	-DG_LOG_DOMAIN='"RygelCore"'
 
 librygel_core_2_6_la_LIBADD = \
 	$(LIBRYGEL_CORE_DEPS_LIBS) \

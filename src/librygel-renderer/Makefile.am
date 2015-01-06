@@ -21,7 +21,7 @@ librygel_renderer_2_6_la_VALAFLAGS = \
 librygel_renderer_2_6_la_CFLAGS = \
 	$(LIBRYGEL_RENDERER_DEPS_CFLAGS) \
 	$(RYGEL_COMMON_LIBRYGEL_CORE_CFLAGS) \
-	-DG_LOG_DOMAIN=\"Rygel\"
+	-DG_LOG_DOMAIN=\"RygelRenderer\"
 librygel_renderer_2_6_la_LIBADD = \
 	$(LIBRYGEL_RENDERER_DEPS_LIBS) \
 	$(RYGEL_COMMON_LIBRYGEL_CORE_LIBS)
