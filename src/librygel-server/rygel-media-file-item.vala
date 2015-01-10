@@ -215,9 +215,8 @@ public abstract class Rygel.MediaFileItem : MediaItem {
             this.add_additional_resources (http_server);
 
             this.add_proxy_resources (http_server, didl_item);
-
-            this.serialize_resource_list (didl_item, http_server);
         }
+        this.serialize_resource_list (didl_item, http_server);
 
         return didl_item;
     }

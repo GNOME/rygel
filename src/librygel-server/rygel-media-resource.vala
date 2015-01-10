@@ -164,6 +164,7 @@ public class Rygel.MediaResource : GLib.Object {
     public DIDLLiteResource serialize (DIDLLiteResource didl_resource) {
         // Note: For a DIDLLiteResource, a value of -1/null also signals "not set"
         didl_resource.uri = this.uri;
+        didl_resource.import_uri = this.import_uri;
         didl_resource.size64 = this.size;
         didl_resource.cleartext_size = this.cleartext_size;
         didl_resource.duration = this.duration;

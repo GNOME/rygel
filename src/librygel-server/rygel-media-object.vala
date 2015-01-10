@@ -254,15 +254,22 @@ public abstract class Rygel.MediaObject : GLib.Object {
                                          throws Error {
         foreach (var res in this.get_resource_list ()) {
             if (res.uri == null || res.uri == "") {
-                res.uri = http_server.create_uri_for_object (this,
+                var uri = http_server.create_uri_for_object (this,
                                                              -1,
                                                              -1,
                                                              null,
                                                              res.get_name ());
+                if (this is MediaFileItem &&
+                    (this as MediaFileItem).place_holder) {
+                    res.import_uri = uri;
+                } else {
+                    res.uri = uri;
+                }
                 var didl_resource = didl_object.add_resource ();
                 http_server.set_resource_delivery_options (res);
                 res.serialize (didl_resource);
                 res.uri = null;
+                res.import_uri = null;
             } else {
                 try {
                     var protocol = this.get_protocol_for_uri (res.uri);
