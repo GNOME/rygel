@@ -2,15 +2,15 @@
 # Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
 # Jorge González <jorgegonz@svn.gnome.org>, 2010, 2011.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2014.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2014, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-11-19 11:26+0000\n"
-"PO-Revision-Date: 2014-11-19 12:58+0100\n"
+"POT-Creation-Date: 2015-01-11 23:27+0000\n"
+"PO-Revision-Date: 2015-01-12 12:13+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -116,24 +116,24 @@ msgstr "Falló al deshacer la transacción: %s"
 msgid "'%s' harvested"
 msgstr "«%s» recolectado"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:185
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:191
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Error al obtener el objeto «%s» de la base de datos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:193
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:199
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "Falló al obtener información sobre un archivo %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:228
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:234
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr ""
 "No se pudo encontrar el objeto %s o su padre. La base de datos no es "
 "consistente"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:232
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:238
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Error al quitar el objeto de la base de datos: %s"
@@ -472,7 +472,8 @@ msgstr ""
 "No se puede ejecutar la acción «NSLookup»: el campo «equipo» está vacío"
 
 #: ../src/librygel-core/rygel-basic-management.vala:430
-msgid "Cannot run 'Traceroute action': Host is empty"
+#| msgid "Cannot run 'Traceroute action': Host is empty"
+msgid "Cannot run 'Traceroute' action: Host is empty"
 msgstr ""
 "No se puede ejecutar la acción «Traceroute»: el campo «equipo» está vacío"
 
@@ -480,7 +481,7 @@ msgstr ""
 msgid "Invalid connection reference"
 msgstr "Referencia de conexión no válida"
 
-#: ../src/librygel-core/rygel-description-file.vala:347
+#: ../src/librygel-core/rygel-description-file.vala:474
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Falló al escribir la descripción modificada en %s"
@@ -515,25 +516,25 @@ msgstr "Falló al obtener el nivel de registro de la configuración: %s"
 #: ../src/librygel-core/rygel-meta-config.vala:242
 #: ../src/librygel-core/rygel-meta-config.vala:261
 #: ../src/librygel-core/rygel-meta-config.vala:280
-#: ../src/rygel/rygel-cmdline-config.vala:168
-#: ../src/rygel/rygel-cmdline-config.vala:176
-#: ../src/rygel/rygel-cmdline-config.vala:185
-#: ../src/rygel/rygel-cmdline-config.vala:193
-#: ../src/rygel/rygel-cmdline-config.vala:201
-#: ../src/rygel/rygel-cmdline-config.vala:209
-#: ../src/rygel/rygel-cmdline-config.vala:217
-#: ../src/rygel/rygel-cmdline-config.vala:225
-#: ../src/rygel/rygel-cmdline-config.vala:264
-#: ../src/rygel/rygel-cmdline-config.vala:283
-#: ../src/rygel/rygel-cmdline-config.vala:289
+#: ../src/rygel/rygel-cmdline-config.vala:164
+#: ../src/rygel/rygel-cmdline-config.vala:172
+#: ../src/rygel/rygel-cmdline-config.vala:181
+#: ../src/rygel/rygel-cmdline-config.vala:189
+#: ../src/rygel/rygel-cmdline-config.vala:197
+#: ../src/rygel/rygel-cmdline-config.vala:205
+#: ../src/rygel/rygel-cmdline-config.vala:213
+#: ../src/rygel/rygel-cmdline-config.vala:221
+#: ../src/rygel/rygel-cmdline-config.vala:260
+#: ../src/rygel/rygel-cmdline-config.vala:279
+#: ../src/rygel/rygel-cmdline-config.vala:285
+#: ../src/rygel/rygel-cmdline-config.vala:292
 #: ../src/rygel/rygel-cmdline-config.vala:296
 #: ../src/rygel/rygel-cmdline-config.vala:300
-#: ../src/rygel/rygel-cmdline-config.vala:304
-#: ../src/rygel/rygel-cmdline-config.vala:327
-#: ../src/rygel/rygel-cmdline-config.vala:353
-#: ../src/rygel/rygel-cmdline-config.vala:382
-#: ../src/rygel/rygel-cmdline-config.vala:408
-#: ../src/rygel/rygel-cmdline-config.vala:433
+#: ../src/rygel/rygel-cmdline-config.vala:323
+#: ../src/rygel/rygel-cmdline-config.vala:349
+#: ../src/rygel/rygel-cmdline-config.vala:378
+#: ../src/rygel/rygel-cmdline-config.vala:404
+#: ../src/rygel/rygel-cmdline-config.vala:429
 #: ../src/rygel/rygel-environment-config.vala:105
 #: ../src/rygel/rygel-environment-config.vala:109
 #: ../src/rygel/rygel-environment-config.vala:113
@@ -691,7 +692,7 @@ msgstr "No se puede examinar en el elemento hijo"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Falló al examinar «%s»: %s\n"
 
-#: ../src/librygel-server/rygel-client-hacks.vala:134
+#: ../src/librygel-server/rygel-client-hacks.vala:136
 msgid "Not Applicable"
 msgstr "No es aplicable"
 
@@ -905,13 +906,13 @@ msgstr "No se ha encontrado un motor de medios."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "No se ha llamado a MediaEngine.init. No se puede continuar."
 
-#: ../src/librygel-server/rygel-media-item.vala:305
+#: ../src/librygel-server/rygel-media-item.vala:302
 #, c-format
 msgid "Bad URI: %s"
 msgstr "URI errónea: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-item.vala:317
+#: ../src/librygel-server/rygel-media-item.vala:314
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Falló al probar el protocolo para el URI %s. Asumiendo «%s»."
@@ -1134,70 +1135,70 @@ msgstr "Falta el elemento requerido %s"
 msgid "Time-based seek not supported"
 msgstr "Búsqueda basada en el tiempo no soportada"
 
-#: ../src/rygel/rygel-cmdline-config.vala:80
+#: ../src/rygel/rygel-cmdline-config.vala:76
 msgid "Network Interfaces"
 msgstr "Interfaces de red"
 
-#: ../src/rygel/rygel-cmdline-config.vala:84
+#: ../src/rygel/rygel-cmdline-config.vala:80
 msgid "Disable transcoding"
 msgstr "Desactivar transcodificación"
 
-#: ../src/rygel/rygel-cmdline-config.vala:86
+#: ../src/rygel/rygel-cmdline-config.vala:82
 msgid "Disallow upload"
 msgstr "No permitir la subida"
 
-#: ../src/rygel/rygel-cmdline-config.vala:88
+#: ../src/rygel/rygel-cmdline-config.vala:84
 msgid "Disallow deletion"
 msgstr "No permitir la eliminación"
 
-#: ../src/rygel/rygel-cmdline-config.vala:90
+#: ../src/rygel/rygel-cmdline-config.vala:86
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr ""
 "Lista de parejas dominio:nivel separadas por comas. Consulte rygel (1) para "
 "obtener más detalles"
 
-#: ../src/rygel/rygel-cmdline-config.vala:92
+#: ../src/rygel/rygel-cmdline-config.vala:88
 msgid "Plugin Path"
 msgstr "Ruta del complemento"
 
-#: ../src/rygel/rygel-cmdline-config.vala:94
+#: ../src/rygel/rygel-cmdline-config.vala:90
 msgid "Engine Path"
 msgstr "Ruta del motor"
 
-#: ../src/rygel/rygel-cmdline-config.vala:97
+#: ../src/rygel/rygel-cmdline-config.vala:93
 msgid "Disable plugin"
 msgstr "Desactivar complemento"
 
-#: ../src/rygel/rygel-cmdline-config.vala:99
+#: ../src/rygel/rygel-cmdline-config.vala:95
 msgid "Set plugin titles"
 msgstr "Configurar los títulos del complemento"
 
-#: ../src/rygel/rygel-cmdline-config.vala:101
+#: ../src/rygel/rygel-cmdline-config.vala:97
 msgid "Set plugin options"
 msgstr "Configurar las opciones del complemento"
 
-#: ../src/rygel/rygel-cmdline-config.vala:103
+#: ../src/rygel/rygel-cmdline-config.vala:99
 msgid "Disable UPnP (streaming-only)"
 msgstr "Desactivar UPnP (sólo para «streaming»)"
 
-#: ../src/rygel/rygel-cmdline-config.vala:105
+#: ../src/rygel/rygel-cmdline-config.vala:101
 msgid "Use configuration file instead of user configuration"
 msgstr ""
 "Usar un archivo de configuración de lugar de la configuración del usuario"
 
-#: ../src/rygel/rygel-cmdline-config.vala:107
+#: ../src/rygel/rygel-cmdline-config.vala:103
 msgid "Shutdown remote Rygel reference"
 msgstr "Preferencias de apagado remoto de Rygel"
 
-#: ../src/rygel/rygel-cmdline-config.vala:109
+#: ../src/rygel/rygel-cmdline-config.vala:105
 msgid "Replace currently running instance of rygel"
 msgstr "Reemplazar la instancia actual en ejecución de Rygel"
 
-#: ../src/rygel/rygel-cmdline-config.vala:146
+#: ../src/rygel/rygel-cmdline-config.vala:142
 msgid "Shutting down remote Rygel instance\n"
 msgstr "Apagando la instancia remota de Rygel\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:154
+#: ../src/rygel/rygel-cmdline-config.vala:150
 #, c-format
 msgid "Failed to shut-down other rygel instance: %s"
 msgstr "Falló al parar otra instancia de rygel: %s"
