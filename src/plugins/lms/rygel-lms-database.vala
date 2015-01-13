@@ -107,7 +107,7 @@ public class Rygel.LMS.Database {
         if (this.db.errcode () != Sqlite.OK) {
             throw new DatabaseError.OPEN ("Failed to open '%s': %d",
                                           db_path,
-                                          this.db.errcode);
+                                          this.db.errcode () );
         }
 
         this.db.create_function ("contains",
