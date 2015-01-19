@@ -82,7 +82,18 @@ internal class Rygel.HTTPGet : HTTPRequest {
             this.handler = new HTTPIdentityHandler (this.cancellable);
         }
 
-        this.ensure_correct_mode ();
+        { // Check the transfer mode
+            var transfer_mode = this.msg.request_headers.get_one (TRANSFER_MODE_HEADER);
+
+            if (transfer_mode == null) {
+                transfer_mode = this.handler.get_default_transfer_mode ();
+            }
+
+            if (! this.handler.supports_transfer_mode (transfer_mode)) {
+                throw new HTTPRequestError.UNACCEPTABLE ("%s transfer mode not supported for '%s'",
+                                                        transfer_mode, uri.to_string ());
+            }
+        }
 
         yield this.handle_item_request ();
     }
@@ -233,36 +244,5 @@ internal class Rygel.HTTPGet : HTTPRequest {
         yield response.run ();
 
         this.end (Soup.Status.NONE);
-    }
-
-    private void ensure_correct_mode () throws HTTPRequestError {
-        var mode = this.msg.request_headers.get_one (TRANSFER_MODE_HEADER);
-        var correct = true;
-
-        switch (mode) {
-        case "Streaming":
-            correct = (
-                      (this.handler is HTTPTranscodeHandler ||
-                      ((this.object as MediaFileItem).streamable () &&
-                       this.subtitle == null &&
-                       this.thumbnail == null)));
-
-            break;
-        case "Interactive":
-            correct = (this.handler is HTTPIdentityHandler &&
-                      ((!(this.object as MediaFileItem).is_live_stream () &&
-                       !(this.object as MediaFileItem).streamable ()) ||
-                       (this.subtitle != null ||
-                        this.thumbnail != null)));
-
-            break;
-        }
-
-        if (!correct) {
-            throw new HTTPRequestError.UNACCEPTABLE
-                                        ("%s mode not supported for '%s'",
-                                         mode,
-                                         this.object.id);
-        }
     }
 }

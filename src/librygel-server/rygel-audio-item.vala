@@ -120,6 +120,7 @@ public class Rygel.AudioItem : MediaFileItem {
         res.sample_freq = this.sample_freq;
         res.bits_per_sample = this.bits_per_sample;
         res.audio_channels = this.channels;
+        res.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
 
         return res;
     }

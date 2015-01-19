@@ -63,6 +63,16 @@ internal class Rygel.HTTPMediaResourceHandler : HTTPGetHandler {
         base.add_response_headers (request);
     }
 
+    public override string get_default_transfer_mode () {
+        // Per DLNA 7.5.4.3.2.33.2, the assumed transfer mode is based on the content type
+        // "Streaming" for AV content and "Interactive" for all others
+        return media_resource.get_default_transfer_mode ();
+    }
+
+    public override bool supports_transfer_mode (string mode) {
+        return media_resource.supports_transfer_mode (mode);
+    }
+
     public override HTTPResponse render_body (HTTPGet request)
                                               throws HTTPRequestError {
         try {

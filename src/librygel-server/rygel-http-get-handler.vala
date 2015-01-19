@@ -28,20 +28,21 @@ using GUPnP;
  * HTTP GET request handler interface.
  */
 internal abstract class Rygel.HTTPGetHandler: GLib.Object {
-    private const string TRANSFER_MODE_HEADER = "transferMode.dlna.org";
+    protected const string TRANSFER_MODE_HEADER = "transferMode.dlna.org";
+
+    protected const string TRANSFER_MODE_STREAMING = "Streaming";
+    protected const string TRANSFER_MODE_INTERACTIVE = "Interactive";
+    protected const string TRANSFER_MODE_BACKGROUND = "Background";
 
     public Cancellable cancellable { get; set; }
 
     // Add response headers.
+    /**
+     * Invokes the handler to add response headers to/for the given HTTP request
+     */
     public virtual void add_response_headers (HTTPGet request)
                                               throws HTTPRequestError {
         var mode = request.msg.request_headers.get_one (TRANSFER_MODE_HEADER);
-        if (mode != null) {
-            // FIXME: Is it OK to just copy the value of this header from
-            // request to response? All we do to entertain this header is to
-            // set the priority of IO operations.
-            request.msg.response_headers.append (TRANSFER_MODE_HEADER, mode);
-        }
 
         // Yes, I know this is not the ideal code to just get a specific
         // string for an HTTP header but if you think you can come-up with
@@ -61,6 +62,14 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
             warning ("Received request for 'contentFeatures.dlna.org' but " +
                        "failed to provide the value in response headers");
         }
+        // Per DLNA 7.5.4.3.2.33.2, if the transferMode header is empty it
+        // must be treated as Streaming mode or Interactive, depending upon the content
+        if (mode == null) {
+            request.msg.response_headers.append (TRANSFER_MODE_HEADER,
+                                                 this.get_default_transfer_mode ());
+        } else {
+            request.msg.response_headers.append (TRANSFER_MODE_HEADER, mode);
+        }
 
         // Handle device-specific hacks that need to change the response
         // headers such as Samsung's subtitle stuff.
@@ -70,6 +79,19 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
 
         request.msg.response_headers.append ("Connection", "close");
     }
+
+    /**
+     * Returns the default transfer mode for the handler.
+     * The default is "Interactive"
+     */
+    public virtual string get_default_transfer_mode () {
+        return TRANSFER_MODE_INTERACTIVE; // Considering this the default
+    }
+
+    /**
+     * Returns true if the handler supports the given transfer mode, false otherwise.
+     */
+    public abstract bool supports_transfer_mode (string mode);
 
     /**
      * Returns the resource size or -1 if not known.

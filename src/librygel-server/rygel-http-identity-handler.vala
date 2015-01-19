@@ -65,6 +65,10 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
         }
     }
 
+    public override bool supports_transfer_mode (string mode) {
+        return true;
+    }
+
     public override int64 get_resource_size () {
         return -1;
     }

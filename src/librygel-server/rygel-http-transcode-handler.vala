@@ -71,6 +71,15 @@ internal class Rygel.HTTPTranscodeHandler : HTTPGetHandler {
         return -1;
     }
 
+    public override string get_default_transfer_mode () {
+        return TRANSFER_MODE_STREAMING;
+    }
+
+    public override bool supports_transfer_mode (string mode) {
+        return (mode == TRANSFER_MODE_STREAMING ||
+                mode == TRANSFER_MODE_BACKGROUND);
+    }
+
     protected override DIDLLiteResource add_resource
                                         (DIDLLiteObject didl_object,
                                          HTTPGet      request)

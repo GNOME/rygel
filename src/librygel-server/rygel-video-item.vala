@@ -101,20 +101,6 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
         }
     }
 
-    internal override void add_resources (DIDLLiteItem didl_item,
-                                          bool         allow_internal)
-                                          throws Error {
-        foreach (var subtitle in this.subtitles) {
-            var protocol = this.get_protocol_for_uri (subtitle.uri);
-
-            if (allow_internal || protocol != "internal") {
-                subtitle.add_didl_node (didl_item);
-            }
-        }
-
-        base.add_resources (didl_item, allow_internal);
-    }
-
     internal override MediaResource get_primary_resource () {
         var res = base.get_primary_resource ();
 
