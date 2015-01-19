@@ -1,3 +1,55 @@
+0.25.1
+======
+
+- Use different log domains for components.
+
+Core:
+ - Fix typo.
+
+Server:
+ - Small refactoring regarding remote/local resources.
+
+Rygel:
+ - Improve compatibility with recent Vala compiler.
+
+Tracker:
+ - Fix compile issues due to missing exception.
+
+MediaExport:
+ - Fix issue where files removed on dist were not removed from index.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=740903
+ - https://bugzilla.gnome.org/show_bug.cgi?id=741913
+ - https://bugzilla.gnome.org/show_bug.cgi?id=741953
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Rafael Ferreira <rafael.f.f1@gmail.com>
+ - Muhammet Kara <muhammetk@gmail.com>
+ - Marek Černocký <marek@manet.cz>
+ - Marc-André Lureau <marcandre.lureau@gmail.com>
+ - Inaki Larranaga Murgoitio <dooteo@zundan.com>
+ - Balázs Úr <urbalazs@gmail.com>
+ - Pawan Chitrakar <chautari@gmail.com>
+ - hmt <dev@hmt.im>
+ - Fran Dieguez <fran.dieguez@mabishu.com>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Bernd Homuth <dev@hmt.im>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - de, courtesy of Bernd Homuth
+ - es, courtesy of Daniel Mustieles
+ - eu, courtesy of Iñaki Larrañaga Murgoitio
+ - gl, courtesy of Fran Dieguez
+ - hu, courtesy of Balázs Úr
+ - ne, courtesy of Pawan Chitrakar
+ - pt_BR, courtesy of Rafael Ferreira
+ - sk, courtesy of Dušan Kazik
+ - tr, courtesy of Muhammet Kara
+
 0.25.0
 ======
 
