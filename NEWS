@@ -1,3 +1,30 @@
+0.24.3
+======
+
+A maintenance release of Rygel!
+
+- Distribute git-version-gen so that distributions that re-configure the
+  tarball will get a proper version (known affected distributions are those
+  that get the package from Debian).
+
+Core:
+ - Fix use of OCM flags.
+
+Simple media engine:
+ - Fix locking
+
+GStreamer media engine:
+ - Fix Warning about removing the bus watch.
+
+MediaExport:
+ - Fix issue with removed files still showing up in browser.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=741953
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+
 0.24.2
 ======
 
