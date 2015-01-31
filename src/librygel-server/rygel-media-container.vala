@@ -75,6 +75,10 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                               "+upnp:originalTrackNumber," +
                                               "+dc:title";
 
+    public static bool equal_func (MediaContainer a, MediaContainer b) {
+        return a.id == b.id;
+    }
+
     /* TODO: When we implement ContentDirectory v4, this will be emitted also
      * when child _items_ are updated.
      */
