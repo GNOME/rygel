@@ -75,6 +75,10 @@ public abstract class Rygel.MediaContainer : MediaObject {
                                               "+upnp:originalTrackNumber," +
                                               "+dc:title";
 
+    public static bool equal_func (MediaContainer a, MediaContainer b) {
+        return a.id == b.id;
+    }
+
     /**
      * The container_updated signal is emitted if the subtree unter this
      * container has been modified. The object parameter is set to
