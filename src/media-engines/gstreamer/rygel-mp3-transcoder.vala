@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Prasanna Modem <prasanna@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -20,6 +22,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
+
 using Gst;
 using GUPnP;
 using Gee;
@@ -30,10 +33,11 @@ using Gee;
 internal class Rygel.MP3Transcoder : Rygel.AudioTranscoder {
     public const int BITRATE = 128;
     private const string FORMAT = "audio/mpeg,mpegversion=1,layer=3";
-
+    private const string NAME = "MP3";
     public MP3Transcoder () {
-        base ("audio/mpeg",
-              "MP3",
+        base (NAME,
+              "audio/mpeg",
+              NAME,
               BITRATE,
               AudioTranscoder.NO_CONTAINER,
               FORMAT,

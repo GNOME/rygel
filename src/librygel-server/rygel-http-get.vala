@@ -59,13 +59,6 @@ internal class Rygel.HTTPGet : HTTPRequest {
             throw new HTTPRequestError.BAD_REQUEST (_("Invalid Request"));
         }
 
-        if (uri.transcode_target != null) {
-            var transcoder = this.http_server.get_transcoder
-                                        (uri.transcode_target);
-            this.handler = new HTTPTranscodeHandler (transcoder,
-                                                     this.cancellable);
-        }
-
         if (uri.resource_name != null) {
             this.handler = new HTTPMediaResourceHandler (this.object,
                                                          uri.resource_name,

@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Prasanna Modem <prasanna@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -20,6 +22,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
+
 using Gst;
 using GUPnP;
 using Gee;
@@ -34,7 +37,7 @@ internal class Rygel.L16Transcoder : Rygel.AudioTranscoder {
     private const int DEPTH = 16;
     private const bool SIGNED = true;
     private const int ENDIANNESS = ByteOrder.BIG_ENDIAN;
-
+    private const string NAME = "LPCM";
     public L16Transcoder () {
         var mime_type = "audio/L" + L16Transcoder.WIDTH.to_string () +
                         ";rate=" + L16Transcoder.FREQUENCY.to_string () +
@@ -44,35 +47,16 @@ internal class Rygel.L16Transcoder : Rygel.AudioTranscoder {
                        ",channels=" + CHANNELS.to_string () +
                        ",rate=" +  FREQUENCY.to_string ();
 
-        base (mime_type,
-              "LPCM",
+        base (NAME,
+              mime_type,
+              NAME,
               0,
               AudioTranscoder.NO_CONTAINER,
               caps_str,
               "lpcm");
     }
 
-    public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
-                                                    MediaFileItem    item,
-                                                    TranscodeManager manager)
-                                                    throws Error {
-        var resource = base.add_resource (didl_item, item, manager);
-        if (resource == null) {
-            return null;
-        }
-
-        resource.sample_freq = L16Transcoder.FREQUENCY;
-        resource.audio_channels = L16Transcoder.CHANNELS;
-        resource.bits_per_sample = L16Transcoder.WIDTH;
-        // Set bitrate in bytes/second
-        resource.bitrate = L16Transcoder.FREQUENCY *
-                           L16Transcoder.CHANNELS *
-                           L16Transcoder.WIDTH / 8;
-
-        return resource;
-    }
-
-    public override uint get_distance (MediaItem item) {
+    public override uint get_distance (MediaFileItem item) {
         if (!(item is AudioItem) || item is VideoItem) {
             return uint.MAX;
         }
@@ -93,5 +77,22 @@ internal class Rygel.L16Transcoder : Rygel.AudioTranscoder {
         }
 
         return distance;
+    }
+
+    public override MediaResource? get_resource_for_item (MediaFileItem item) {
+        var resource = base.get_resource_for_item (item);
+        if (resource == null) {
+            return null;
+        }
+
+        resource.sample_freq = L16Transcoder.FREQUENCY;
+        resource.audio_channels = L16Transcoder.CHANNELS;
+        resource.bits_per_sample = L16Transcoder.WIDTH;
+        // Set bitrate in bytes/second
+        resource.bitrate = L16Transcoder.FREQUENCY *
+                           L16Transcoder.CHANNELS *
+                           L16Transcoder.WIDTH / 8;
+
+        return resource;
     }
 }

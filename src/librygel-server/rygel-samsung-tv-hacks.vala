@@ -61,7 +61,6 @@ internal class Rygel.SamsungTVHacks : ClientHacks {
                                         (request.object as MediaItem,
                                          -1,
                                          0, // FIXME: offer first subtitle only?
-                                         null,
                                          null);
 
                 request.msg.response_headers.append ("CaptionInfo.sec",

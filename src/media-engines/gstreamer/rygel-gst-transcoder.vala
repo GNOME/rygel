@@ -1,10 +1,12 @@
 /*
  * Copyright (C) 2009-2012 Nokia Corporation.
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Jens Georg <jensg@openismus.com>
+ *         Prasanna Modem <prasanna@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -32,10 +34,16 @@ public errordomain Rygel.GstTranscoderError {
 }
 
 /**
- * The base Transcoder class. Each implementation derives from it and must
- * implement get_distance and get_encoding_profile methods.
+ * The base Transcoder class used by gstreamer media engine.
+ * Each implementation derives from it and must
+ * implement get_resources_for_item and get_encoding_profile methods.
  */
-internal abstract class Rygel.GstTranscoder : Rygel.Transcoder {
+public abstract class Rygel.GstTranscoder : GLib.Object {
+    public string name { get; construct; }
+    public string mime_type { get; construct; }
+    public string dlna_profile { get; construct; }
+    public string extension { get; construct; }
+
     public string preset { get;
                            protected set;
                            default =  DEFAULT_ENCODING_PRESET; }
@@ -49,10 +57,12 @@ internal abstract class Rygel.GstTranscoder : Rygel.Transcoder {
 
     private bool link_failed;
 
-    public GstTranscoder (string mime_type,
+    public GstTranscoder (string name,
+                          string mime_type,
                           string dlna_profile,
                           string extension) {
-        GLib.Object (mime_type : mime_type,
+        GLib.Object (name : name,
+                     mime_type : mime_type,
                      dlna_profile : dlna_profile,
                      extension : extension);
     }
@@ -64,6 +74,47 @@ internal abstract class Rygel.GstTranscoder : Rygel.Transcoder {
     }
 
     /**
+     * Get the supported (transcoded) MediaResource for the given content item
+     *
+     * @return A MediaResources or null if the transcoder cannot
+     * transcode this media item
+     */
+    public virtual MediaResource? get_resource_for_item (MediaFileItem item) {
+        MediaResource res = new MediaResource(this.name);
+
+        res.mime_type = this.mime_type;
+        res.dlna_profile = this.dlna_profile;
+        res.extension = this.extension;
+        res.dlna_conversion = DLNAConversion.TRANSCODED;
+        res.dlna_flags = DLNAFlags.DLNA_V15
+                         | DLNAFlags.STREAMING_TRANSFER_MODE
+                         | DLNAFlags.BACKGROUND_TRANSFER_MODE
+                         | DLNAFlags.CONNECTION_STALL;
+        // For transcoded content only support time seek
+        res.dlna_operation = DLNAOperation.TIMESEEK;
+
+        // Retrieve the duration from primary media resource
+        if (item is AudioItem) {
+            res.duration = (item as AudioItem).duration;
+        }
+
+        return res;
+    }
+
+    /**
+     * Gets a numeric value that gives an gives an estimate of how hard
+     * it would be for this transcoder to trancode @item to the target profile of
+     * this transcoder.
+     *
+     * @param item the media item to calculate the distance for
+     *
+     * @return      the distance from the @item, uint.MIN if providing such a
+     *              value is impossible or uint.MAX if it doesn't make any
+     *              sense to use this transcoder for @item
+     */
+    public abstract uint get_distance (MediaFileItem item);
+
+    /**
      * Creates a transcoding source.
      *
      * @param src the media item to create the transcoding source for
@@ -71,8 +122,7 @@ internal abstract class Rygel.GstTranscoder : Rygel.Transcoder {
      *
      * @return      the new transcoding source
      */
-    public override DataSource create_source (MediaItem  item,
-                                              DataSource src) throws Error {
+    public DataSource create_source (MediaFileItem item, DataSource src) throws Error {
         // We can only link GStreamer data sources together
         assert (src is GstDataSource);
 

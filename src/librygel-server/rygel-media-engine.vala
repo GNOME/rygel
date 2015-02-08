@@ -121,13 +121,6 @@ public abstract class Rygel.MediaEngine : GLib.Object {
      */
     public abstract async Gee.List<MediaResource> ? get_resources_for_item (MediaObject item);
 
-   /**
-     * Get a list of the transcoders that are provided by this media engine.
-     *
-     * @return A list of #RygelTranscoder<!-- -->s or null if not supported.
-     */
-    public abstract unowned List<Transcoder>? get_transcoders ();
-
     public virtual DataSource? create_data_source_for_resource
                                         (MediaObject item,
                                          MediaResource resource)

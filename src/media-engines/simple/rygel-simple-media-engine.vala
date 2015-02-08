@@ -38,10 +38,6 @@ internal class Rygel.SimpleMediaEngine : MediaEngine {
         return this.profiles;
     }
 
-    public override unowned List<Transcoder>? get_transcoders () {
-        return null;
-    }
-
     public override async Gee.List<MediaResource>? get_resources_for_item (MediaObject
             object) {
         if (! (object is MediaFileItem)) {

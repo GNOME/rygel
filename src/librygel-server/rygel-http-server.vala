@@ -28,7 +28,7 @@
 using GUPnP;
 using Gee;
 
-public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
+public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
     public string path_root { get; private set; }
 
     // Reference to root container of associated ContentDirectory
@@ -90,35 +90,25 @@ public class Rygel.HTTPServer : Rygel.TranscodeManager, Rygel.StateMachine {
         this.completed ();
     }
 
-    internal override string create_uri_for_object (MediaObject object,
-                                                    int         thumbnail_index,
-                                                    int         subtitle_index,
-                                                    string?     transcode_target,
-                                                    string?     resource_name) {
+    internal string create_uri_for_object (MediaObject object,
+                                           int         thumbnail_index,
+                                           int         subtitle_index,
+                                           string?     resource_name) {
         var uri = new HTTPItemURI (object,
                                    this,
                                    thumbnail_index,
                                    subtitle_index,
-                                   transcode_target,
                                    resource_name);
 
         return uri.to_string ();
     }
 
-    internal override string get_protocol () {
+    internal virtual string get_protocol () {
         return "http-get";
     }
 
-    internal override ArrayList<ProtocolInfo> get_protocol_info () {
-        var protocol_infos = base.get_protocol_info ();
-
-        var protocol_info = new ProtocolInfo ();
-        protocol_info.protocol = this.get_protocol ();
-        protocol_info.mime_type = "*";
-
-        protocol_infos.add (protocol_info);
-
-        return protocol_infos;
+    internal virtual ArrayList<ProtocolInfo> get_protocol_info () {
+        return new ArrayList<ProtocolInfo>();
     }
 
     public bool is_local () {

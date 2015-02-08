@@ -1,7 +1,9 @@
 /*
  * Copyright (C) 2011 Nokia Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Jens Georg <jensg@openismus.com>
+ *         Prasanna Modem <prasanna@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -19,6 +21,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
+
 using Gst;
 using Gst.PbUtils;
 using GUPnP;
@@ -26,12 +29,13 @@ using GUPnP;
 /**
  * Base class for all transcoders that handle video.
  */
-internal class Rygel.VideoTranscoder : Rygel.AudioTranscoder {
+internal abstract class Rygel.VideoTranscoder : Rygel.AudioTranscoder {
     private int video_bitrate;
     private Caps video_codec_format;
     private Caps video_restrictions = null;
 
-    public VideoTranscoder (string  content_type,
+    public VideoTranscoder (string  name,
+                            string  content_type,
                             string  dlna_profile,
                             int     audio_bitrate,
                             int     video_bitrate,
@@ -41,7 +45,8 @@ internal class Rygel.VideoTranscoder : Rygel.AudioTranscoder {
                             string  extension,
                             string? restrictions = null) {
 
-        base.with_class (content_type,
+        base.with_class (name,
+                         content_type,
                          dlna_profile,
                          audio_bitrate,
                          container_caps,
@@ -56,25 +61,7 @@ internal class Rygel.VideoTranscoder : Rygel.AudioTranscoder {
         }
     }
 
-    public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
-                                                    MediaFileItem        item,
-                                                    TranscodeManager manager)
-                                                    throws Error {
-        var resource = base.add_resource (didl_item, item, manager);
-        if (resource == null) {
-            return null;
-        }
-
-        var video_item = item as VideoItem;
-
-        resource.width = video_item.width;
-        resource.height = video_item.height;
-        resource.bitrate = (this.video_bitrate + this.audio_bitrate) * 1000 / 8;
-
-        return resource;
-    }
-
-    public override uint get_distance (MediaItem item) {
+    public override uint get_distance (MediaFileItem item) {
         if (!(item is VideoItem)) {
             return uint.MAX;
         }
@@ -103,5 +90,20 @@ internal class Rygel.VideoTranscoder : Rygel.AudioTranscoder {
         enc_container_profile.add_profile (enc_video_profile);
 
         return enc_container_profile;
+    }
+
+    public override MediaResource? get_resource_for_item (MediaFileItem item) {
+        var resource = base.get_resource_for_item (item);
+        if (resource == null) {
+            return null;
+        }
+
+        var video_item = item as VideoItem;
+
+        resource.width = video_item.width;
+        resource.height = video_item.height;
+        resource.bitrate = (this.video_bitrate + this.audio_bitrate) * 1000 / 8;
+
+        return resource;
     }
 }

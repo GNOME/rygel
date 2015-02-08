@@ -29,7 +29,6 @@ public class Rygel.HTTPItemURI : Object {
     public string item_id { get; set; }
     public int thumbnail_index { get; set; default = -1; }
     public int subtitle_index { get; set; default = -1; }
-    public string? transcode_target { get; set; default = null; }
     public string? resource_name { get; set; default = null; }
     public unowned HTTPServer http_server { get; set; }
 
@@ -52,12 +51,10 @@ public class Rygel.HTTPItemURI : Object {
                         HTTPServer http_server,
                         int        thumbnail_index = -1,
                         int        subtitle_index = -1,
-                        string?    transcode_target = null,
                         string?    resource_name = null) {
         this.item_id = object.id;
         this.thumbnail_index = thumbnail_index;
         this.subtitle_index = subtitle_index;
-        this.transcode_target = transcode_target;
         this.http_server = http_server;
         this.resource_name = resource_name;
         this.extension = "";
@@ -99,12 +96,6 @@ public class Rygel.HTTPItemURI : Object {
                     this.extension = subtitles[subtitle_index].caption_type;
                 }
             }
-        } else if (transcode_target != null) {
-            try {
-                var tc = this.http_server.get_transcoder (transcode_target);
-
-                this.extension = tc.extension;
-            } catch (Error error) {}
         }
 
         if (this.extension == "") {
@@ -151,7 +142,6 @@ public class Rygel.HTTPItemURI : Object {
         // do not decode the path here as it may contain encoded slashes
         this.thumbnail_index = -1;
         this.subtitle_index = -1;
-        this.transcode_target = null;
         this.http_server = http_server;
         this.extension = "";
 
@@ -179,10 +169,6 @@ public class Rygel.HTTPItemURI : Object {
                     StringBuilder builder = new StringBuilder ();
                     builder.append ((string) data);
                     this.item_id = builder.str;
-
-                    break;
-                case "tr":
-                    this.transcode_target = Soup.URI.decode (parts[i + 1]);
 
                     break;
                 case "th":
@@ -216,10 +202,7 @@ public class Rygel.HTTPItemURI : Object {
         var escaped = Uri.escape_string (data, "", true);
         string path = "/i/" + escaped;
 
-        if (this.transcode_target != null) {
-            escaped = Uri.escape_string (this.transcode_target, "", true);
-            path += "/tr/" + escaped;
-        } else if (this.thumbnail_index >= 0) {
+        if (this.thumbnail_index >= 0) {
             path += "/th/" + this.thumbnail_index.to_string ();
         } else if (this.subtitle_index >= 0) {
             path += "/sub/" + this.subtitle_index.to_string ();

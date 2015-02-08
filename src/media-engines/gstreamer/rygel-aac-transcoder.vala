@@ -1,7 +1,9 @@
 /*
  * Copyright (C) 2011 Nokia Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Luis de Bethencourt <luis.debethencourt@collabora.com>
+ *         Prasanna Modem <prasanna@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -31,8 +33,9 @@ internal class Rygel.AACTranscoder : Rygel.AudioTranscoder {
     private const string CODEC = "audio/mpeg,mpegversion=4," +
                                  "stream-format=adts,rate=44100,base-profile=lc";
 
+    private const string NAME = "AAC_ADTS_320";
     public AACTranscoder () {
-        base ("audio/vnd.dlna.adts", "AAC_ADTS_320", BITRATE, null, CODEC, "adts");
+        base (NAME, "audio/vnd.dlna.adts", NAME, BITRATE, null, CODEC, "adts");
         this.preset = "Rygel AAC_ADTS_320 preset";
     }
 }

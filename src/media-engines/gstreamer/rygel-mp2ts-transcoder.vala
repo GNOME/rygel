@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2009 Nokia Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Prasanna Modem <prasanna@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -20,6 +22,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
+
 using Gst;
 using GUPnP;
 
@@ -59,7 +62,8 @@ internal class Rygel.MP2TSTranscoder : Rygel.VideoTranscoder {
     private MP2TSProfile profile;
 
     public MP2TSTranscoder (MP2TSProfile profile) {
-        base ("video/mpeg",
+        base (PROFILES[profile],
+              "video/mpeg",
               PROFILES[profile],
               AUDIO_BITRATE,
               VIDEO_BITRATE,
@@ -74,23 +78,7 @@ internal class Rygel.MP2TSTranscoder : Rygel.VideoTranscoder {
         this.profile = profile;
     }
 
-    public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
-                                                    MediaFileItem    item,
-                                                    TranscodeManager manager)
-                                                    throws Error {
-        var resource = base.add_resource (didl_item, item, manager);
-        if (resource == null) {
-            return null;
-        }
-
-        resource.width = WIDTH[this.profile];
-        resource.height = HEIGHT[this.profile];
-        resource.bitrate = (VIDEO_BITRATE + AUDIO_BITRATE) * 1000 / 8;
-
-        return resource;
-    }
-
-    public override uint get_distance (MediaItem item) {
+    public override uint get_distance (MediaFileItem item) {
         if (!(item is VideoItem)) {
             return uint.MAX;
         }
@@ -111,5 +99,18 @@ internal class Rygel.MP2TSTranscoder : Rygel.VideoTranscoder {
         }
 
         return distance;
+    }
+
+    public override MediaResource? get_resource_for_item (MediaFileItem item) {
+        var resource = base.get_resource_for_item(item);
+        if (resource == null) {
+            return null;
+        }
+
+        resource.width = WIDTH[this.profile];
+        resource.height = HEIGHT[this.profile];
+        resource.bitrate = (VIDEO_BITRATE + AUDIO_BITRATE) * 1000 / 8;
+
+        return resource;
     }
 }

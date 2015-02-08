@@ -157,12 +157,6 @@ public abstract class Rygel.MediaFileItem : MediaItem {
 
     public abstract bool streamable ();
 
-    internal int compare_transcoders (Transcoder transcoder1,
-                                      Transcoder transcoder2) {
-        return (int) transcoder1.get_distance (this) -
-               (int) transcoder2.get_distance (this);
-    }
-
     internal override DIDLLiteResource add_resource
                                         (DIDLLiteObject didl_object,
                                          string?        uri,
@@ -213,8 +207,6 @@ public abstract class Rygel.MediaFileItem : MediaItem {
             //  at this point) with any secondary representations or alternate delivery
             //  mechanisms they can provide
             this.add_additional_resources (http_server);
-
-            this.add_proxy_resources (http_server, didl_item);
         }
         this.serialize_resource_list (didl_item, http_server);
 
@@ -310,15 +302,6 @@ public abstract class Rygel.MediaFileItem : MediaItem {
         return "";
     }
 
-
-    internal virtual void add_proxy_resources (HTTPServer   server,
-                                               DIDLLiteItem didl_item)
-                                               throws Error {
-        if (!this.place_holder) {
-            // Transcoding resources
-            server.add_resources (didl_item, this);
-        }
-    }
 
     protected override ProtocolInfo get_protocol_info (string? uri,
                                                        string  protocol) {

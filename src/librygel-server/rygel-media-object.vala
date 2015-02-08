@@ -257,7 +257,6 @@ public abstract class Rygel.MediaObject : GLib.Object {
                 var uri = http_server.create_uri_for_object (this,
                                                              -1,
                                                              -1,
-                                                             null,
                                                              res.get_name ());
                 if (this is MediaFileItem &&
                     (this as MediaFileItem).place_holder) {
