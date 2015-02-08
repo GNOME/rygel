@@ -2,10 +2,13 @@
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2010 Nokia Corporation.
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Jens Georg <jensg@openismus.com>
+ *         Doug Galligan <doug@sentosatech.com>
+ *         Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -63,20 +66,6 @@ public class Rygel.MusicItem : AudioItem {
         };
     }
 
-    internal override void add_resources (DIDLLiteItem didl_item,
-                                          bool         allow_internal)
-                                          throws Error {
-        base.add_resources (didl_item, allow_internal);
-
-        if (this.album_art != null) {
-            var protocol = this.get_protocol_for_uri (this.album_art.uri);
-
-            if (allow_internal || protocol != "internal") {
-                didl_item.album_art = this.album_art.uri;
-            }
-        }
-    }
-
     internal override int compare_by_property (MediaObject media_object,
                                                string      property) {
         if (!(media_object is MusicItem)) {
@@ -111,12 +100,24 @@ public class Rygel.MusicItem : AudioItem {
             didl_item.track_number = this.track_number;
         }
 
-        if (didl_item.album_art != null) {
-            didl_item.album_art = MediaFileItem.address_regex.replace_literal
-                                        (didl_item.album_art,
-                                         -1,
-                                         0,
-                                         http_server.context.host_ip);
+        if (!this.place_holder && this.album_art != null) {
+            var protocol = this.get_protocol_for_uri (this.album_art.uri);
+
+            // Use the existing URI if the server is local or a non-internal/file uri is set
+            if (http_server.is_local () || protocol != "internal") {
+                didl_item.album_art = this.album_art.uri;
+            } else {
+                // Create a http uri for the album art that our server can process
+                string http_uri = http_server.create_uri_for_object (this,
+                                                                   0,
+                                                                   -1,
+                                                                   null);
+                didl_item.album_art = MediaFileItem.address_regex.replace_literal
+                                            (http_uri,
+                                             -1,
+                                             0,
+                                             http_server.context.host_ip);
+            }
         }
 
         return didl_item;
