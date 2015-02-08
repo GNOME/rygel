@@ -70,13 +70,6 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
         return -1;
     }
 
-    public override bool knows_size (HTTPGet request) {
-        var size = this.get_size (request);
-
-        return (request.seek != null && request.seek is HTTPByteSeek) ||
-                    size > 0;
-    }
-
     protected override DIDLLiteResource add_resource
                                         (DIDLLiteObject didl_object,
                                          HTTPGet      request)

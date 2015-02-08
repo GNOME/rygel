@@ -76,8 +76,6 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
         if (request.hack != null) {
             request.hack.modify_headers (request);
         }
-
-        request.msg.response_headers.append ("Connection", "close");
     }
 
     /**
@@ -97,10 +95,6 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
      * Returns the resource size or -1 if not known.
      */
     public abstract int64 get_resource_size ();
-
-    public virtual bool knows_size (HTTPGet request) {
-        return this.get_resource_size () >= 0;
-    }
 
     // Create an HTTPResponse object that will render the body.
     public abstract HTTPResponse render_body (HTTPGet request)
