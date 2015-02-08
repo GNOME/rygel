@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2015-02-08 17:04+0000\n"
-"PO-Revision-Date: 2015-01-07 08:11+0100\n"
+"PO-Revision-Date: 2015-02-08 23:56+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -473,10 +473,10 @@ msgid "Requested item '%s' not found"
 msgstr "Vyžadovaná položka „%s“ nenalezena"
 
 #: ../src/librygel-server/rygel-http-resource-handler.vala:83
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to create GStreamer data source for %s: %s"
 msgid "Couldn't create data source for %s"
-msgstr "Selhalo vytvoření datového zdroje GStreamer pro %s: %s"
+msgstr "Nelze vytvořit datový zdroj pro %s"
 
 #: ../src/librygel-server/rygel-http-seek.vala:95
 #, c-format
@@ -627,7 +627,7 @@ msgstr "Selhalo vygenerování seznamu k přehrání"
 #: ../src/librygel-server/rygel-media-container.vala:457
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
-msgstr ""
+msgstr "Neznámý prostředek MediaContainer: %s"
 
 #: ../src/librygel-server/rygel-media-engine.vala:69
 msgid "No media engine found."
@@ -638,10 +638,10 @@ msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "Nebyla zavolána funkce MegiaEngine.init a proto nelze pokračovat."
 
 #: ../src/librygel-server/rygel-media-object.vala:282
-#, fuzzy, c-format
+#, c-format
 #| msgid "Could not create GstElement for URI %s"
 msgid "Could not determine protocol for %s"
-msgstr "Nelze vytvořit GstElement pro adresu URI %s"
+msgstr "Nelze uržit protokol pro %s"
 
 #: ../src/librygel-server/rygel-media-object.vala:487
 #, c-format
