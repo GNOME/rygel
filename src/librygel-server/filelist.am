@@ -22,8 +22,6 @@ LIBRYGEL_SERVER_VAPI_SOURCE_FILES = \
 	rygel-searchable-container.vala \
 	rygel-trackable-container.vala \
 	rygel-trackable-item.vala \
-	rygel-transcode-manager.vala \
-	rygel-transcoder.vala \
 	rygel-visual-item.vala \
 	rygel-writable-container.vala \
 	rygel-media-server.vala \
@@ -52,7 +50,6 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-http-response.vala \
 	rygel-http-server.vala \
 	rygel-http-time-seek.vala \
-	rygel-http-transcode-handler.vala \
 	rygel-http-resource-handler.vala \
 	rygel-import-resource.vala \
 	rygel-object-creator.vala \

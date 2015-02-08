@@ -104,7 +104,6 @@ public interface Rygel.VisualItem : MediaFileItem {
                                                  (this,
                                                   index,
                                                   -1,
-                                                  null,
                                                   null);
                     this.get_resource_list ().add (http_thumb_res);
                 }

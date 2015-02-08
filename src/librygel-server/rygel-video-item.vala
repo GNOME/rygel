@@ -167,7 +167,6 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
                     subtitle.uri = http_server.create_uri_for_object (this,
                                                                       -1,
                                                                       index,
-                                                                      null,
                                                                       null);
                     subtitle.add_didl_node (didl_item);
                     subtitle.uri = uri; // Now restore the original URI

@@ -121,21 +121,4 @@ public class Rygel.MusicItem : AudioItem {
 
         return didl_item;
     }
-
-    internal override void add_proxy_resources (HTTPServer   server,
-                                                DIDLLiteItem didl_item)
-                                                throws Error {
-        base.add_proxy_resources (server, didl_item);
-
-        // Album-art URI comes in the end
-        if (!this.place_holder &&
-            this.album_art != null &&
-            server.need_proxy (this.album_art.uri)) {
-            didl_item.album_art = server.create_uri_for_object (this,
-                                                                0,
-                                                                -1,
-                                                                null,
-                                                                null);
-        }
-    }
 }

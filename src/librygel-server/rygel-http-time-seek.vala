@@ -23,6 +23,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+using GUPnP;
+
 internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
     public HTTPTimeSeek (HTTPGet request) throws HTTPSeekError {
         string range;
@@ -89,6 +91,12 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
         this.seek_type = HTTPSeekType.TIME;
     }
 
+    private static bool is_transcoder (HTTPGetHandler handler) {
+        return (handler is HTTPMediaResourceHandler) &&
+            ((handler as HTTPMediaResourceHandler).media_resource.dlna_conversion ==
+                DLNAConversion.TRANSCODED);
+    }
+
     public static bool needed (HTTPGet request) {
         bool force_seek = false;
 
@@ -99,7 +107,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
 
         return force_seek || (request.object is AudioItem &&
                (request.object as AudioItem).duration > 0 &&
-               (request.handler is HTTPTranscodeHandler ||
+               (is_transcoder (request.handler) ||
                 (!(request.handler is HTTPThumbnailHandler) &&
                  !(request.handler is HTTPSubtitleHandler) &&
                  (request.object as MediaFileItem).is_live_stream ())));

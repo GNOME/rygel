@@ -1,8 +1,10 @@
 /*
  * Copyright (C) 2011 Nokia Corporation.
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Jens Georg <jensg@openismus.com>
+ *         Prasanna Modem <prasanna@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -20,6 +22,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
+
 using Gst;
 using Gst.PbUtils;
 using GUPnP;
@@ -27,20 +30,21 @@ using GUPnP;
 /**
  * Base class for all transcoders that handle audio.
  */
-internal class Rygel.AudioTranscoder : Rygel.GstTranscoder {
+internal abstract class Rygel.AudioTranscoder : Rygel.GstTranscoder {
     protected int audio_bitrate;
     protected Caps container_format = null;
     protected Caps audio_codec_format = null;
 
     public const string NO_CONTAINER = null;
 
-    public AudioTranscoder (string  content_type,
+    public AudioTranscoder (string  name,
+                            string  content_type,
                             string  dlna_profile,
                             int     audio_bitrate,
                             string? container_caps,
                             string  audio_codec_caps,
                             string  extension) {
-        base (content_type, dlna_profile, extension);
+        base (name, content_type, dlna_profile, extension);
 
         this.audio_bitrate = audio_bitrate;
         if (container_caps != null) {
@@ -50,13 +54,14 @@ internal class Rygel.AudioTranscoder : Rygel.GstTranscoder {
         this.audio_codec_format = Caps.from_string (audio_codec_caps);
     }
 
-    public AudioTranscoder.with_class (string  content_type,
+    public AudioTranscoder.with_class (string  name,
+                                       string  content_type,
                                        string  dlna_profile,
                                        int     audio_bitrate,
                                        string? container_caps,
                                        string  audio_codec_caps,
                                        string  extension) {
-        base (content_type, dlna_profile, extension);
+        base (name, content_type, dlna_profile, extension);
 
         this.audio_bitrate = audio_bitrate;
         if (container_caps != null) {
@@ -66,22 +71,7 @@ internal class Rygel.AudioTranscoder : Rygel.GstTranscoder {
         this.audio_codec_format = Caps.from_string (audio_codec_caps);
     }
 
-
-    public override DIDLLiteResource? add_resource (DIDLLiteItem     didl_item,
-                                                    MediaFileItem    item,
-                                                    TranscodeManager manager)
-                                                    throws Error {
-        var resource = base.add_resource (didl_item, item, manager);
-        if (resource == null) {
-            return null;
-        }
-
-        resource.bitrate = (this.audio_bitrate * 1000) / 8;
-
-        return resource;
-    }
-
-    public override uint get_distance (MediaItem item) {
+    public override uint get_distance (MediaFileItem item) {
         if (!(item is AudioItem) || item is VideoItem) {
             return uint.MAX;
         }
@@ -114,5 +104,16 @@ internal class Rygel.AudioTranscoder : Rygel.GstTranscoder {
         }
 
         return enc_audio_profile;
+    }
+
+    public override MediaResource? get_resource_for_item (MediaFileItem item) {
+        var resource = base.get_resource_for_item (item);
+        if (resource == null) {
+            return null;
+        }
+
+        resource.sample_freq = this.audio_bitrate;
+
+        return resource;
     }
 }
