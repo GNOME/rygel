@@ -101,7 +101,7 @@ internal class Rygel.HTTPTimeSeek : Rygel.HTTPSeek {
                (request.object as AudioItem).duration > 0 &&
                (request.handler is HTTPTranscodeHandler ||
                 (!(request.handler is HTTPThumbnailHandler) &&
-                 request.subtitle == null &&
+                 !(request.handler is HTTPSubtitleHandler) &&
                  (request.object as MediaFileItem).is_live_stream ())));
     }
 

@@ -34,10 +34,7 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
 
     public override void add_response_headers (HTTPGet request)
                                                throws HTTPRequestError {
-        if (request.subtitle != null) {
-           request.msg.response_headers.append ("Content-Type",
-                                                request.subtitle.mime_type);
-        } else {
+        {
             request.msg.response_headers.append ("Content-Type",
                                                  (request.object as MediaFileItem).mime_type);
         }
@@ -90,15 +87,8 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
     }
 
     private HTTPResponse render_body_real (HTTPGet request) throws Error {
-        DataSource src;
-        var engine = MediaEngine.get_default ();
-
-        if (request.subtitle != null) {
-            src = engine.create_data_source (request.subtitle.uri);
-        } else {
-            src = (request.object as MediaFileItem).create_stream_source
+        var src = (request.object as MediaFileItem).create_stream_source
                                         (request.http_server.context.host_ip);
-        }
 
         if (src == null) {
             throw new HTTPRequestError.NOT_FOUND (_("Not found"));
@@ -108,10 +98,6 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
     }
 
     private int64 get_size (HTTPGet request) {
-        if (request.subtitle != null) {
-            return request.subtitle.size;
-        }
-
         return (request.object as MediaFileItem).size;
     }
 }

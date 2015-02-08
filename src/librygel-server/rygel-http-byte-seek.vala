@@ -72,7 +72,7 @@ internal class Rygel.HTTPByteSeek : Rygel.HTTPSeek {
                 ((request.object as MediaFileItem).size > 0 &&
                 request.handler is HTTPIdentityHandler) ||
                 (request.handler is HTTPThumbnailHandler) ||
-               (request.subtitle != null && request.subtitle.size > 0));
+                (request.handler is HTTPSubtitleHandler));
     }
 
     public static bool requested (HTTPGet request) {

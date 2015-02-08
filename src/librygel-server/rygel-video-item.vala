@@ -142,62 +142,65 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
     internal override DIDLLiteObject? serialize (Serializer serializer,
                                                  HTTPServer  http_server)
                                                  throws Error {
-        var didl_item = base.serialize (serializer, http_server);
+        var didl_item = base.serialize (serializer, http_server) as DIDLLiteItem;
 
         if (this.author != null && this.author != "") {
             var contributor = didl_item.add_author ();
             contributor.name = this.author;
         }
 
-        return didl_item;
-    }
-
-    internal override void add_proxy_resources (HTTPServer   server,
-                                                DIDLLiteItem didl_item)
-                                                throws Error {
-        var main_subtitle = null as Subtitle;
         if (!this.place_holder) {
-            // Subtitles first
+            var main_subtitle = null as Subtitle;
             foreach (var subtitle in this.subtitles) {
-                if (!server.need_proxy (subtitle.uri)) {
-                    if (main_subtitle == null) {
-                        main_subtitle = subtitle;
-                    }
-
+                string protocol;
+                try {
+                    protocol = this.get_protocol_for_uri (subtitle.uri);
+                } catch (Error e) {
+                    message ("Could not determine protocol for " + subtitle.uri);
                     continue;
                 }
 
-                var uri = subtitle.uri; // Save the original URI
-                var index = this.subtitles.index_of (subtitle);
+                if (http_server.need_proxy (subtitle.uri)) {
+                    var uri = subtitle.uri; // Save the original URI
+                    var index = this.subtitles.index_of (subtitle);
 
-                subtitle.uri = server.create_uri_for_object (this,
-                                                             -1,
-                                                             index,
-                                                             null,
-                                                             null);
-                subtitle.add_didl_node (didl_item);
+                    subtitle.uri = http_server.create_uri_for_object (this,
+                                                                      -1,
+                                                                      index,
+                                                                      null,
+                                                                      null);
+                    subtitle.add_didl_node (didl_item);
+                    subtitle.uri = uri; // Now restore the original URI
 
-                if (main_subtitle == null) {
-                    main_subtitle = new Subtitle (subtitle.mime_type,
-                                                  subtitle.caption_type);
-                    main_subtitle.uri = subtitle.uri;
+                    if (main_subtitle == null) {
+                        main_subtitle = new Subtitle (subtitle.mime_type,
+                                                      subtitle.caption_type);
+                        main_subtitle.uri = uri;
+                    }
+                } else if (main_subtitle == null) {
+                    main_subtitle = subtitle;
                 }
 
-                // Now restore the original URI
-                subtitle.uri = uri;
+                if (http_server.is_local () || protocol != "internal") {
+                    subtitle.add_didl_node (didl_item);
+                }
+            }
+            if (main_subtitle != null) {
+                // Add resource-level subtitle metadata to all streamable video resources
+                // Note: All resources have already been serialized by the base
+                var resources = didl_item.get_resources ();
+                foreach (var resource in resources) {
+                    if ( (resource.protocol_info.dlna_flags
+                          & DLNAFlags.STREAMING_TRANSFER_MODE) != 0) {
+                        resource.subtitle_file_type =
+                            main_subtitle.caption_type.up ();
+                        resource.subtitle_file_uri = main_subtitle.uri;
+                    }
+                }
             }
         }
 
-        base.add_proxy_resources (server, didl_item);
-
-        if (main_subtitle != null) {
-            var resources = didl_item.get_resources ();
-            foreach (var resource in resources) {
-                resource.subtitle_file_type =
-                    main_subtitle.caption_type.up ();
-                resource.subtitle_file_uri = main_subtitle.uri;
-            }
-        }
+        return didl_item;
     }
 
     internal override void add_additional_resources (HTTPServer server) {

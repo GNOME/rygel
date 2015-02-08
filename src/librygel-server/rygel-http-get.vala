@@ -70,12 +70,14 @@ internal class Rygel.HTTPGet : HTTPRequest {
             this.handler = new HTTPMediaResourceHandler (this.object,
                                                          uri.resource_name,
                                                          this.cancellable);
-        }
-
-        if (uri.thumbnail_index >= 0) {
+        } else if (uri.thumbnail_index >= 0) {
             this.handler = new HTTPThumbnailHandler (this.object as MediaFileItem,
                                                      uri.thumbnail_index,
                                                      this.cancellable);
+        } else if (uri.subtitle_index >= 0) {
+            this.handler = new HTTPSubtitleHandler (this.object as MediaFileItem,
+                                                    uri.subtitle_index,
+                                                    this.cancellable);
         }
 
         if (this.handler == null) {
