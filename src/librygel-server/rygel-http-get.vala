@@ -2,11 +2,14 @@
  * Copyright (C) 2008-2010 Nokia Corporation.
  * Copyright (C) 2006, 2007, 2008 OpenedHand Ltd.
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Jorn Baayen <jorn.baayen@gmail.com>
  *         Jens Georg <jensg@openismus.com>
+ *         Craig Pratt <craig@ecaspia.com>
+ *         Parthiban Balasubramanian <P.Balasubramanian-contractor@cablelabs.com>
  *
  * This file is part of Rygel.
  *
@@ -50,13 +53,19 @@ internal class Rygel.HTTPGet : HTTPRequest {
     }
 
     protected override async void handle () throws Error {
-        var header = this.msg.request_headers.get_one
-                                        ("getcontentFeatures.dlna.org");
-
         /* We only entertain 'HEAD' and 'GET' requests */
-        if ((this.msg.method != "HEAD" && this.msg.method != "GET") ||
-            (header != null && header != "1")) {
-            throw new HTTPRequestError.BAD_REQUEST (_("Invalid Request"));
+        if (!(this.msg.method == "HEAD" || this.msg.method == "GET")) {
+            throw new HTTPRequestError.BAD_REQUEST
+                          (_("Invalid Request (only GET and HEAD supported)"));
+        }
+
+        { /* Check for proper content feature request */
+            var cf_header = "getcontentFeatures.dlna.org";
+            var cf_val = this.msg.request_headers.get_one (cf_header);
+
+            if (cf_val != null && cf_val != "1") {
+                throw new HTTPRequestError.BAD_REQUEST (_(cf_header + " must be 1"));
+            }
         }
 
         if (uri.resource_name != null) {
