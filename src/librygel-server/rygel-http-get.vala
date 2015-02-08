@@ -190,6 +190,7 @@ internal class Rygel.HTTPGet : HTTPRequest {
         // Add headers
         this.handler.add_response_headers (this);
 
+        // Determine the size value
         int64 response_size;
         {
             // Response size might have already been set by one of the response elements
@@ -219,10 +220,25 @@ internal class Rygel.HTTPGet : HTTPRequest {
             this.msg.set_status (Soup.Status.OK);
         }
 
-        if (this.handler.knows_size (this)) {
-            this.msg.response_headers.set_encoding (Soup.Encoding.CONTENT_LENGTH);
-        } else {
-            this.msg.response_headers.set_encoding (Soup.Encoding.EOF);
+        // Determine the transfer mode encoding
+        {
+            Soup.Encoding response_body_encoding;
+            // See DLNA 7.5.4.3.2.15 for requirements
+            if (response_size > 0) {
+                // TODO: Incorporate ChunkEncodingMode.dlna.org request into this block
+                response_body_encoding = Soup.Encoding.CONTENT_LENGTH;
+                debug ("Response encoding set to CONTENT-LENGTH");
+            } else { // Response size is <= 0
+                if (this.msg.get_http_version () == Soup.HTTPVersion.@1_0) {
+                    // Can't send the length and can't send chunked (in HTTP 1.0)...
+                    response_body_encoding = Soup.Encoding.EOF;
+                    debug ("Response encoding set to EOF");
+                } else {
+                    response_body_encoding = Soup.Encoding.CHUNKED;
+                    debug ("Response encoding set to CHUNKED");
+                }
+            }
+            this.msg.response_headers.set_encoding (response_body_encoding);
         }
 
         if (msg.get_http_version () == Soup.HTTPVersion.@1_0) {
