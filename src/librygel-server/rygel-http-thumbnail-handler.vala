@@ -93,11 +93,4 @@ internal class Rygel.HTTPThumbnailHandler : Rygel.HTTPGetHandler {
     public override int64 get_resource_size () {
         return thumbnail.size;
     }
-
-    protected override DIDLLiteResource add_resource
-                                        (DIDLLiteObject didl_object,
-                                         HTTPGet        request)
-                                         throws Error {
-        return null as DIDLLiteResource;
-    }
 }

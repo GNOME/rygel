@@ -44,24 +44,6 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
                                               throws HTTPRequestError {
         var mode = request.msg.request_headers.get_one (TRANSFER_MODE_HEADER);
 
-        // Yes, I know this is not the ideal code to just get a specific
-        // string for an HTTP header but if you think you can come-up with
-        // something better, be my guest and provide a patch.
-        var didl_writer = new GUPnP.DIDLLiteWriter (null);
-        var didl_item = didl_writer.add_item ();
-        try {
-            var resource = this.add_resource (didl_item, request);
-            if (resource != null) {
-                var tokens = resource.protocol_info.to_string ().split (":", 4);
-                assert (tokens.length == 4);
-
-                request.msg.response_headers.append ("contentFeatures.dlna.org",
-                                                     tokens[3]);
-            }
-        } catch (Error err) {
-            warning ("Received request for 'contentFeatures.dlna.org' but " +
-                       "failed to provide the value in response headers");
-        }
         // Per DLNA 7.5.4.3.2.33.2, if the transferMode header is empty it
         // must be treated as Streaming mode or Interactive, depending upon the content
         if (mode == null) {
@@ -99,9 +81,5 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
     // Create an HTTPResponse object that will render the body.
     public abstract HTTPResponse render_body (HTTPGet request)
                                               throws HTTPRequestError;
-
-    protected abstract DIDLLiteResource add_resource (DIDLLiteObject didl_object,
-                                                      HTTPGet      request)
-                                                      throws Error;
 
 }

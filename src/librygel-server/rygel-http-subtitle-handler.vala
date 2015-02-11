@@ -92,11 +92,4 @@ internal class Rygel.HTTPSubtitleHandler : Rygel.HTTPGetHandler {
     public override int64 get_resource_size () {
         return subtitle.size;
     }
-
-    protected override DIDLLiteResource add_resource
-                                        (DIDLLiteObject didl_object,
-                                         HTTPGet        request)
-                                         throws Error {
-        return null as DIDLLiteResource;
-    }
 }

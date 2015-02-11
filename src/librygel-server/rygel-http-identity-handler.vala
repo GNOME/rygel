@@ -70,15 +70,6 @@ internal class Rygel.HTTPIdentityHandler : Rygel.HTTPGetHandler {
         return -1;
     }
 
-    protected override DIDLLiteResource add_resource
-                                        (DIDLLiteObject didl_object,
-                                         HTTPGet      request)
-                                        throws Error {
-        var protocol = request.http_server.get_protocol ();
-
-        return request.object.add_resource (didl_object, null, protocol);
-    }
-
     private HTTPResponse render_body_real (HTTPGet request) throws Error {
         var src = (request.object as MediaFileItem).create_stream_source
                                         (request.http_server.context.host_ip);
