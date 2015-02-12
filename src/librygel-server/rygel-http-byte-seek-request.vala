@@ -94,8 +94,12 @@ public class Rygel.HTTPByteSeekRequest : Rygel.HTTPSeekRequest {
         }
 
         if (range_tokens[1] == null || (range_tokens[1].length == 0)) {
-            end_byte = UNSPECIFIED;
-            range_length = UNSPECIFIED;
+            end_byte = total_size;
+            if (total_size != UNSPECIFIED) {
+                range_length = end_byte - start_byte + 1; // range is inclusive
+            } else {
+                range_length = UNSPECIFIED;
+            }
         } else {
             if (!int64.try_parse (strip_leading_zeros(range_tokens[1]), out end_byte)) {
                 throw new HTTPSeekRequestError.INVALID_RANGE
