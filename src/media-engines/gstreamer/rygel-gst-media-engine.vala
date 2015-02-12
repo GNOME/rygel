@@ -118,7 +118,7 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
 
     public override DataSource? create_data_source (string uri) {
         try {
-            return new GstDataSource (uri);
+            return new GstDataSource (uri, null);
         } catch (Error error) {
             warning (_("Failed to create GStreamer data source for %s: %s"),
                      uri,
@@ -199,7 +199,7 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         string source_uri = item.get_primary_uri ();
         debug ("creating data source for %s", source_uri);
 
-        DataSource ds = new GstDataSource (source_uri);
+        DataSource ds = new GstDataSource (source_uri, resource);
         debug ("MediaResource %s, profile %s, mime_type %s", resource.get_name (),
                resource.dlna_profile, resource.mime_type);
         if (resource.dlna_conversion == DLNAConversion.TRANSCODED) {

@@ -1,7 +1,9 @@
 /*
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Jens Georg <jensg@openismus.com>
+ *         Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -38,7 +40,6 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
     private Posix.off_t last_byte = 0;
     private bool frozen = false;
     private bool stop_thread = false;
-    private HTTPSeek offsets = null;
 
     public SimpleDataSource (string uri) {
         debug ("Creating new data source for %s", uri);
@@ -49,17 +50,32 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
         this.stop ();
     }
 
-    public void start (HTTPSeek? offsets) throws Error {
-        if (offsets != null) {
-            if (offsets.seek_type == HTTPSeekType.TIME) {
-                throw new DataSourceError.SEEK_FAILED
-                                        (_("Time-based seek not supported"));
+    public Gee.List<HTTPResponseElement> ? preroll (HTTPSeekRequest? seek_request)
+       throws Error {
+        var response_list = new Gee.ArrayList<HTTPResponseElement> ();
 
+        if (seek_request != null) {
+            if (!(seek_request is HTTPByteSeekRequest)) {
+                throw new DataSourceError.SEEK_FAILED
+                                        (_("Only byte-based seek supported"));
             }
+
+            var byte_seek = seek_request as HTTPByteSeekRequest;
+            this.first_byte = (Posix.off_t) byte_seek.start_byte;
+            this.last_byte = (Posix.off_t) (byte_seek.end_byte + 1);
+            debug ("Processing byte seek request for bytes %lld-%lld of %s",
+                    byte_seek.start_byte, byte_seek.end_byte, this.uri);
+            var seek_response = new HTTPByteSeekResponse.from_request (byte_seek);
+            // Response will just return what was in the request
+            response_list.add (seek_response);
+        } else {
+            this.first_byte = 0;
+            this.last_byte = 0; // Indicates the entire file
         }
 
-        this.offsets = offsets;
-
+        return response_list;
+    }
+    public void start () throws Error {
         debug ("Starting data source for uri %s", this.uri);
 
         // TODO: Convert to use a thread pool
@@ -109,11 +125,7 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
                                           Posix.strerror (Posix.errno));
             }
 
-            if (this.offsets != null) {
-                this.first_byte = (Posix.off_t) this.offsets.start;
-                this.last_byte = (Posix.off_t) this.offsets.stop + 1;
-            } else {
-                this.first_byte = 0;
+            if (this.last_byte == 0) {
                 this.last_byte = Posix.lseek (fd, 0, Posix.SEEK_END);
                 Posix.lseek (fd, 0, Posix.SEEK_SET);
             }

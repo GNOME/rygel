@@ -110,12 +110,16 @@ public abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
             status = Soup.Status.NOT_FOUND;
         }
 
-        this.end (status);
+        this.end (status, error.message);
     }
 
-    protected void end (uint status) {
+    protected void end (uint status, string ? reason = null) {
         if (status != Soup.Status.NONE) {
-            this.msg.set_status (status);
+            if (reason == null) {
+                this.msg.set_status (status);
+            } else {
+                this.msg.set_status_full (status, reason);
+            }
         }
 
         this.completed ();

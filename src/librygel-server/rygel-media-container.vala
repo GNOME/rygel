@@ -58,16 +58,22 @@ internal class Rygel.PlaylistDatasource : Rygel.DataSource, Object {
 
     public signal void data_ready ();
 
-    public void start (HTTPSeek? offsets) throws Error {
-        if (offsets != null) {
+    public Gee.List<HTTPResponseElement> ? preroll ( HTTPSeekRequest? seek_request)
+       throws Error {
+        if (seek_request != null) {
             throw new DataSourceError.SEEK_FAILED
                                         (_("Seeking not supported"));
         }
 
+        return null;
+    }
+
+
+    public void start () throws Error {
         if (this.data == null) {
             this.data_ready.connect ( () => {
                 try {
-                    this.start (offsets);
+                    this.start ();
                 } catch (Error error) { }
             });
 

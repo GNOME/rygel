@@ -37,19 +37,21 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-content-directory.vala \
 	rygel-dbus-thumbnailer.vala \
 	rygel-engine-loader.vala \
+	rygel-http-byte-seek-request.vala \
+	rygel-http-byte-seek-response.vala \
 	rygel-free-desktop-interfaces.vala \
-	rygel-http-byte-seek.vala \
 	rygel-http-get-handler.vala \
 	rygel-http-get.vala \
 	rygel-http-thumbnail-handler.vala \
 	rygel-http-subtitle-handler.vala \
-	rygel-http-identity-handler.vala \
 	rygel-http-item-uri.vala \
 	rygel-http-post.vala \
 	rygel-http-request.vala \
 	rygel-http-response.vala \
+	rygel-http-response-element.vala \
 	rygel-http-server.vala \
-	rygel-http-time-seek.vala \
+	rygel-http-time-seek-request.vala \
+	rygel-http-time-seek-response.vala \
 	rygel-http-resource-handler.vala \
 	rygel-import-resource.vala \
 	rygel-object-creator.vala \

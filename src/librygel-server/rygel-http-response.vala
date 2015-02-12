@@ -1,10 +1,12 @@
 /*
  * Copyright (C) 2008-2012 Nokia Corporation.
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Jens Georg <jensg@openismus.com>
+ *         Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -25,13 +27,13 @@
 
 using Soup;
 
-internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
+public class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     public unowned Soup.Server server { get; private set; }
     public Soup.Message msg;
 
     public Cancellable cancellable { get; set; }
 
-    public HTTPSeek seek;
+    public HTTPSeekRequest seek;
 
     private SourceFunc run_continue;
     private int _priority = -1;
@@ -99,10 +101,14 @@ internal class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         }
     }
 
+    public Gee.List<HTTPResponseElement> ? preroll () throws Error {
+        return this.src.preroll (this.seek);
+    }
+
     public async void run () {
         this.run_continue = run.callback;
         try {
-            this.src.start (this.seek);
+            this.src.start ();
         } catch (Error error) {
             Idle.add (() => {
                 this.end (false, Status.NONE);

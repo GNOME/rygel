@@ -31,12 +31,12 @@
 /**
  * Responsible for handling HTTP GET & HEAD client requests.
  */
-internal class Rygel.HTTPGet : HTTPRequest {
+public class Rygel.HTTPGet : HTTPRequest {
     private const string TRANSFER_MODE_HEADER = "transferMode.dlna.org";
 
+    public HTTPSeekRequest seek;
     public Thumbnail thumbnail;
     public Subtitle subtitle;
-    public HTTPSeek seek;
 
     private int thumbnail_index;
     private int subtitle_index;
@@ -80,10 +80,6 @@ internal class Rygel.HTTPGet : HTTPRequest {
             this.handler = new HTTPSubtitleHandler (this.object as MediaFileItem,
                                                     uri.subtitle_index,
                                                     this.cancellable);
-        }
-
-        if (this.handler == null) {
-            this.handler = new HTTPIdentityHandler (this.cancellable);
         }
 
         { // Check the transfer mode
@@ -157,38 +153,66 @@ internal class Rygel.HTTPGet : HTTPRequest {
     }
 
     private async void handle_item_request () throws Error {
-        var need_time_seek = HTTPTimeSeek.needed (this);
-        var requested_time_seek = HTTPTimeSeek.requested (this);
-        var need_byte_seek = HTTPByteSeek.needed (this);
-        var requested_byte_seek = HTTPByteSeek.requested (this);
+        var supports_time_seek = HTTPTimeSeekRequest.supported (this);
+        var requested_time_seek = HTTPTimeSeekRequest.requested (this);
+        var supports_byte_seek = HTTPByteSeekRequest.supported (this);
+        var requested_byte_seek = HTTPByteSeekRequest.requested (this);
 
-        if ((requested_time_seek && !need_time_seek) ||
-            (requested_byte_seek && !need_byte_seek)) {
-            throw new HTTPRequestError.UNACCEPTABLE ("Invalid seek request");
+        if (requested_byte_seek) {
+            if (!supports_byte_seek) {
+                throw new HTTPRequestError.UNACCEPTABLE ( "Byte seek not supported for "
+                                                          + this.uri.to_string () );
+            }
+        } else if (requested_time_seek) {
+            if (!supports_time_seek) {
+                throw new HTTPRequestError.UNACCEPTABLE ( "Time seek not supported for "
+                                                          + this.uri.to_string () );
+            }
         }
 
         try {
-            if (need_time_seek && requested_time_seek) {
-                this.seek = new HTTPTimeSeek (this);
-            } else if (need_byte_seek && requested_byte_seek) {
-                this.seek = new HTTPByteSeek (this);
-            }
-        } catch (HTTPSeekError error) {
-            this.server.unpause_message (this.msg);
-
-            if (error is HTTPSeekError.INVALID_RANGE) {
-                this.end (Soup.Status.BAD_REQUEST);
-            } else if (error is HTTPSeekError.OUT_OF_RANGE) {
-                this.end (Soup.Status.REQUESTED_RANGE_NOT_SATISFIABLE);
+            // Order is intentional here
+            if (supports_byte_seek && requested_byte_seek) {
+                var byte_seek = new HTTPByteSeekRequest (this);
+                debug ("Processing byte range request (bytes %lld to %lld)",
+                       byte_seek.start_byte, byte_seek.end_byte);
+                this.seek = byte_seek;
+            } else if (supports_time_seek && requested_time_seek) {
+                // Assert: speed_request has been checked/processed
+                var time_seek = new HTTPTimeSeekRequest (this);
+                debug ("Processing " + time_seek.to_string ());
+                this.seek = time_seek;
             } else {
-                throw error;
+                this.seek = null;
             }
-
+        } catch (HTTPSeekRequestError error) {
+            warning ("Caught HTTPSeekRequestError: " + error.message);
+            this.server.unpause_message (this.msg);
+            this.end (error.code, error.message); // All seek error codes are Soup.Status codes
             return;
-        }
+         }
 
         // Add headers
         this.handler.add_response_headers (this);
+
+        var response = this.handler.render_body (this);
+
+        // Have the response process the seek/speed request
+        try {
+            var responses = response.preroll ();
+
+            // Incorporate the prerolled responses
+            if (responses != null) {
+                foreach (var response_elem in responses) {
+                    response_elem.add_response_headers (this);
+                }
+            }
+        } catch (HTTPSeekRequestError error) {
+            warning ("Caught HTTPSeekRequestError on preroll: " + error.message);
+            this.server.unpause_message (this.msg);
+            this.end (error.code, error.message); // All seek error codes are Soup.Status codes
+            return;
+        }
 
         // Determine the size value
         int64 response_size;
@@ -213,13 +237,6 @@ internal class Rygel.HTTPGet : HTTPRequest {
             // size will factor into other logic below...
         }
 
-        // Add general headers
-        if (this.msg.request_headers.get_one ("Range") != null) {
-            this.msg.set_status (Soup.Status.PARTIAL_CONTENT);
-        } else {
-            this.msg.set_status (Soup.Status.OK);
-        }
-
         // Determine the transfer mode encoding
         {
             Soup.Encoding response_body_encoding;
@@ -241,6 +258,36 @@ internal class Rygel.HTTPGet : HTTPRequest {
             this.msg.response_headers.set_encoding (response_body_encoding);
         }
 
+        // Determine the Vary header (if not HTTP 1.0)
+        {
+            // Per DLNA 7.5.4.3.2.35.4, the Vary header needs to include the timeseek
+            // header if it is supported for the resource/uri
+            if (supports_time_seek) {
+                if (this.msg.get_http_version () != Soup.HTTPVersion.@1_0) {
+                    var vary_header = new StringBuilder
+                                             (this.msg.response_headers.get_list ("Vary"));
+                    if (supports_time_seek) {
+                        if (vary_header.len > 0) {
+                            vary_header.append (",");
+                        }
+                        vary_header.append (HTTPTimeSeekRequest.TIMESEEKRANGE_HEADER);
+                    }
+                    this.msg.response_headers.replace ("Vary", vary_header.str);
+                }
+            }
+        }
+
+        // Determine the status code
+        {
+            int response_code;
+            if (this.msg.response_headers.get_one ("Content-Range") != null) {
+                response_code = Soup.Status.PARTIAL_CONTENT;
+            } else {
+                response_code = Soup.Status.OK;
+            }
+            this.msg.set_status (response_code);
+        }
+
         if (msg.get_http_version () == Soup.HTTPVersion.@1_0) {
             // Set the response version to HTTP 1.1 (see DLNA 7.5.4.3.2.7.2)
             msg.set_http_version (Soup.HTTPVersion.@1_1);
@@ -258,8 +305,6 @@ internal class Rygel.HTTPGet : HTTPRequest {
 
             return;
         }
-
-        var response = this.handler.render_body (this);
 
         yield response.run ();
 

@@ -93,4 +93,8 @@ internal class Rygel.HTTPThumbnailHandler : Rygel.HTTPGetHandler {
     public override int64 get_resource_size () {
         return thumbnail.size;
     }
+
+    public override bool supports_byte_seek () {
+        return true;
+    }
 }

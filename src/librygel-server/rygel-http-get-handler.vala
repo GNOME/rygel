@@ -1,9 +1,11 @@
 /*
  * Copyright (C) 2008-2010 Nokia Corporation.
  * Copyright (C) 2010 Andreas Henriksson <andreas@fatal.se>
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
+ *         Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -27,7 +29,7 @@ using GUPnP;
 /**
  * HTTP GET request handler interface.
  */
-internal abstract class Rygel.HTTPGetHandler: GLib.Object {
+public abstract class Rygel.HTTPGetHandler: GLib.Object {
     protected const string TRANSFER_MODE_HEADER = "transferMode.dlna.org";
 
     protected const string TRANSFER_MODE_STREAMING = "Streaming";
@@ -36,7 +38,6 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
 
     public Cancellable cancellable { get; set; }
 
-    // Add response headers.
     /**
      * Invokes the handler to add response headers to/for the given HTTP request
      */
@@ -78,7 +79,29 @@ internal abstract class Rygel.HTTPGetHandler: GLib.Object {
      */
     public abstract int64 get_resource_size ();
 
-    // Create an HTTPResponse object that will render the body.
+    /**
+     * Returns the resource duration (in microseconds) or -1 if not known.
+     */
+    public virtual int64 get_resource_duration () {
+        return -1;
+    }
+
+    /**
+     * Returns true if the handler supports full random-access byte seek.
+     */
+    public virtual bool supports_byte_seek () {
+        return false;
+    }
+
+    /**
+     * Returns true if the handler supports full random-access time seek.
+     */
+    public virtual bool supports_time_seek () {
+        return false;
+    }
+    /**
+     * Create an HTTPResponse object that will render the body.
+     */
     public abstract HTTPResponse render_body (HTTPGet request)
                                               throws HTTPRequestError;
 

@@ -93,4 +93,18 @@ internal class Rygel.HTTPMediaResourceHandler : HTTPGetHandler {
     public override int64 get_resource_size () {
         return media_resource.size;
     }
+
+    public override int64 get_resource_duration () {
+        return media_resource.duration * TimeSpan.SECOND;
+    }
+
+    public override bool supports_byte_seek () {
+        return media_resource.supports_arbitrary_byte_seek ()
+               || media_resource.supports_limited_byte_seek ();
+    }
+
+    public override bool supports_time_seek () {
+        return media_resource.supports_arbitrary_time_seek ()
+               || media_resource.supports_limited_time_seek ();
+    }
 }

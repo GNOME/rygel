@@ -92,4 +92,8 @@ internal class Rygel.HTTPSubtitleHandler : Rygel.HTTPGetHandler {
     public override int64 get_resource_size () {
         return subtitle.size;
     }
+
+    public override bool supports_byte_seek () {
+        return true;
+    }
 }

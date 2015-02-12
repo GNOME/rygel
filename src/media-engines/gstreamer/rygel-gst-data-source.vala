@@ -1,7 +1,10 @@
 /*
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Jens Georg <jensg@openismus.com>
+ *         Prasanna Modem <prasanna@ecaspia.com>
+ *         Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -28,12 +31,14 @@ internal errordomain Rygel.GstDataSourceError {
 
 internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
     internal dynamic Element src;
+    internal MediaResource res;
     private Pipeline pipeline;
-    private HTTPSeek seek = null;
+    private HTTPSeekRequest seek = null;
     private GstSink sink;
     private uint bus_watch_id;
 
-    public GstDataSource (string uri) throws Error {
+    public GstDataSource (string uri, MediaResource ? resource) throws Error {
+        this.res = resource;
         this.src = GstUtils.create_source_for_uri (uri);
         if (this.src == null) {
             var msg = _("Could not create GstElement for URI %s");
@@ -56,8 +61,38 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         this.src = element;
     }
 
-    public void start (HTTPSeek? offsets) throws Error {
-        this.seek = offsets;
+    public Gee.List<HTTPResponseElement> ? preroll ( HTTPSeekRequest? seek_request)
+       throws Error {
+        var response_list = new Gee.ArrayList<HTTPResponseElement>();
+
+        if (seek_request == null) {
+            debug("No seek requested - sending entire binary");
+        } else if (seek_request is HTTPByteSeekRequest) {
+            var seek_response = new HTTPByteSeekResponse.from_request( seek_request
+                                                                       as HTTPByteSeekRequest );
+            debug("Processing byte seek request for bytes %lld-%lld",
+                    seek_response.start_byte, seek_response.end_byte);
+            response_list.add(seek_response);
+            // Supported - and no reponse values required...
+        } else if (seek is HTTPTimeSeekRequest) {
+            var time_seek = seek_request as HTTPTimeSeekRequest;
+            // Set the effective TimeSeekRange response range to the requested range
+            // TODO: Align this with actual time range being returned
+            var seek_response = new HTTPTimeSeekResponse.from_request(time_seek, res.duration);
+            debug("Processing time seek request for %lldns-%lldns",
+                    seek_response.start_time, seek_response.end_time);
+            response_list.add(seek_response);
+        } else {
+            // Unknown/unsupported seek type
+            throw new DataSourceError.SEEK_FAILED
+                                    (_("HTTPSeekRequest type unsupported"));
+        }
+
+        this.seek = seek_request;
+        return response_list;
+    }
+
+    public void start () throws Error {
         this.prepare_pipeline ("RygelGstDataSource", this.src);
         if (this.seek != null) {
             this.pipeline.set_state (State.PAUSED);
@@ -220,29 +255,35 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
     }
 
     private bool perform_seek () {
-        if (this.seek != null &&
-            this.seek.length >= this.seek.total_length) {
-            return true;
-        }
-
         var stop_type = Gst.SeekType.NONE;
         Format format;
         var flags = SeekFlags.FLUSH;
         int64 start, stop;
 
-        if (this.seek.seek_type == HTTPSeekType.TIME) {
+        if (this.seek is HTTPTimeSeekRequest) {
+            var time_seek = this.seek as HTTPTimeSeekRequest;
             format = Format.TIME;
             flags |= SeekFlags.KEY_UNIT;
-            start = (this.seek.start) * Gst.USECOND;
-            stop = (this.seek.stop) * Gst.USECOND;
-        } else {
+            start = time_seek.start_time * Gst.USECOND;
+            stop = time_seek.end_time * Gst.USECOND;
+            debug("Performing time-range seek: %lldns to %lldns", start, stop);
+        } else if (this.seek is HTTPByteSeekRequest) {
+            var byte_seek = this.seek as HTTPByteSeekRequest;
+            if (byte_seek.range_length >= byte_seek.total_size) {
+                // How/why would this happen?
+                return true;
+            }
             format = Format.BYTES;
             flags |= SeekFlags.ACCURATE;
-            start = this.seek.start;
-            stop = this.seek.stop;
+            start = byte_seek.start_byte;
+            stop = byte_seek.end_byte;
+            debug("Performing byte-range seek: bytes %lld to %lld", start, stop);
+        } else {
+            this.error (new DataSourceError.SEEK_FAILED (_("Unsupported seek type")));
+            return false;
         }
 
-        if (this.seek.stop > 0) {
+        if (stop > 0) {
             stop_type = Gst.SeekType.SET;
         }
 
@@ -254,8 +295,7 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
                                  stop_type,
                                  stop + 1)) {
             warning (_("Failed to seek to offsets %lld:%lld"),
-                     this.seek.start,
-                     this.seek.stop);
+                     start, stop);
 
             this.error (new DataSourceError.SEEK_FAILED (_("Failed to seek")));
 

@@ -1,10 +1,12 @@
 /*
  * Copyright (C) 2008-2009 Nokia Corporation.
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Jens Georg <jensg@openismus.com>
+ *         Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -23,89 +25,22 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-public errordomain Rygel.HTTPSeekError {
+/**
+ * Various errors that can be thrown when attempting to seek into a stream.
+ *
+ * Note: All codes must be set to Soup.Status codes
+ */
+public errordomain Rygel.HTTPSeekRequestError {
     INVALID_RANGE = Soup.Status.BAD_REQUEST,
+    BAD_REQUEST = Soup.Status.BAD_REQUEST,
     OUT_OF_RANGE = Soup.Status.REQUESTED_RANGE_NOT_SATISFIABLE,
 }
 
-public enum Rygel.HTTPSeekType {
-    BYTE,
-    TIME
-}
-
 /**
- * HTTPSeek is an abstract representation of a ranged HTTP request.
- *
- * It can be one of:
- *
- *  - The classic Range request (seek_type == HTTPSeekType.BYTE), with start and stop in bytes.
- *  - The DLNA-Specific "TimeSeekRange.dlna.org" request (seek_type == HTTPSeekType.TIME) with start and stop in microseconds.
+ * HTTPSeekRequest is an abstract base for a variety of seek request types.
  */
-public abstract class Rygel.HTTPSeek : GLib.Object {
-
-    /**
-     * Identifies whether this is a class Range request or a DLNA-specific
-     * "TimeSeekRange.dlna.org" request.
-     */
-    public HTTPSeekType seek_type { get; protected set; }
-    public Soup.Message msg { get; private set; }
-
-    /**
-     * The start of the range as a number of bytes (classic) or as microseconds 
-     * (DLNA-specific). See seek_type.
-     */
-    public int64 start { get; private set; }
-
-    /**
-     * The end of the range as a number of bytes (classic) or as microseconds 
-     * (DLNA-specific). See seek_type.
-     */
-    public int64 stop { get; private set; }
-
-    /**
-     * Either 1 byte (classic) or as 1000 G_TIME_SPAN_MILLISECOND microseconds 
-     * (DLNA-specific). See seek_type.
-     */
-    public int64 step { get; private set; }
-
-    /**
-     * The length of the range as a number of bytes (classic) or as microseconds 
-     * (DLNA-specific). See seek_type.
-     */
-    public int64 length { get; private set; }
-
-    /**
-     * The length of the media file as a number of bytes (classic) or as microseconds 
-     * (DLNA-specific). See seek_type.
-     */
-    public int64 total_length { get; private set; }
-
-    public HTTPSeek (Soup.Message msg,
-                     int64        start,
-                     int64        stop,
-                     int64        step,
-                     int64        total_length) throws HTTPSeekError {
-        this.msg = msg;
-        this.start = start;
-        this.stop = stop;
-        this.length = length;
-        this.total_length = total_length;
-
-        if (start < 0 || start >= total_length) {
-            throw new HTTPSeekError.OUT_OF_RANGE (_("Out Of Range Start '%ld'"),
-                                                  start);
-        }
-        if (stop < 0 || stop >= total_length) {
-            throw new HTTPSeekError.OUT_OF_RANGE (_("Out Of Range Stop '%ld'"),
-                                                  stop);
-        }
-
-        if (length > 0) {
-            this.stop = stop.clamp (start + 1, length - 1);
-        }
-
-        this.length = stop + step - start;
-    }
-
-    public abstract void add_response_headers ();
+public abstract class Rygel.HTTPSeekRequest : GLib.Object {
+    // For designating fields that are unset
+    public static const int64 UNSPECIFIED = -1;
+    // Note: -1 is significant in that libsoup also uses it to designate an "unknown" value
 }
