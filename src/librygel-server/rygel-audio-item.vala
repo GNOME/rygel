@@ -75,10 +75,6 @@ public class Rygel.AudioItem : MediaFileItem {
                 upnp_class : upnp_class);
     }
 
-    public override bool streamable () {
-        return true;
-    }
-
     internal override void apply_didl_lite (DIDLLiteObject didl_object) {
         base.apply_didl_lite (didl_object);
 

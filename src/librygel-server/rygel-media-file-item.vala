@@ -151,51 +151,6 @@ public abstract class Rygel.MediaFileItem : MediaItem {
                                         (this, resource);
     }
 
-    public bool is_live_stream () {
-        return this.streamable () && this.size <= 0;
-    }
-
-    public abstract bool streamable ();
-
-    internal override DIDLLiteResource add_resource
-                                        (DIDLLiteObject didl_object,
-                                         string?        uri,
-                                         string         protocol,
-                                         string?        import_uri = null)
-                                         throws Error {
-        var res = base.add_resource (didl_object,
-                                     uri,
-                                     protocol,
-                                     import_uri);
-
-        if (uri != null && !this.place_holder) {
-            res.uri = uri;
-        } else {
-            // Set empty string otherwise gupnp-av (libxml actually) will add
-            // a self-enclosing node in the DIDL-Lite which is not very much
-            // appreciated by UPnP devices using crappy XML parsers.
-            res.uri = "";
-        }
-
-        if (import_uri != null && this.place_holder) {
-            res.import_uri = import_uri;
-        }
-
-        if (this is TrackableItem) {
-            // This is attribute is mandatory for track changes
-            // implementation. We don't really support updating the resources
-            // so we just set it to 0.
-            res.update_count = 0;
-        }
-
-        res.size64 = this.size;
-
-        /* Protocol info */
-        res.protocol_info = this.get_protocol_info (uri, protocol);
-
-        return res;
-    }
-
     internal override DIDLLiteObject? serialize (Serializer serializer,
                                                  HTTPServer http_server)
                                                  throws Error {
@@ -302,36 +257,6 @@ public abstract class Rygel.MediaFileItem : MediaItem {
         return "";
     }
 
-
-    protected override ProtocolInfo get_protocol_info (string? uri,
-                                                       string  protocol) {
-        var protocol_info = base.get_protocol_info (uri, protocol);
-
-        protocol_info.mime_type = this.mime_type;
-        protocol_info.dlna_profile = this.dlna_profile;
-
-        if (this.size > 0) {
-            protocol_info.dlna_operation = DLNAOperation.RANGE;
-        }
-
-        if (this.streamable ()) {
-            protocol_info.dlna_flags |= DLNAFlags.STREAMING_TRANSFER_MODE;
-        }
-
-        return protocol_info;
-    }
-
-    protected virtual void add_resources (DIDLLiteItem didl_item,
-                                          bool         allow_internal)
-                                          throws Error {
-        foreach (var uri in this.get_uris ()) {
-            var protocol = this.get_protocol_for_uri (uri);
-
-            if (allow_internal || protocol != "internal") {
-                this.add_resource (didl_item, uri, protocol);
-            }
-        }
-    }
 
     /**
      * Subclasses can override this method to augment the MediaObject MediaResource

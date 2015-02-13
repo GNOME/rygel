@@ -82,10 +82,6 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
         this.subtitles = new ArrayList<Subtitle> ();
     }
 
-    public override bool streamable () {
-        return true;
-    }
-
     public override void add_uri (string uri) {
         base.add_uri (uri);
 

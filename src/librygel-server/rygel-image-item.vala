@@ -77,10 +77,6 @@ public class Rygel.ImageItem : MediaFileItem, VisualItem {
         this.thumbnails = new ArrayList<Thumbnail> ();
     }
 
-    public override bool streamable () {
-        return false;
-    }
-
     public override void add_uri (string uri) {
         base.add_uri (uri);
 

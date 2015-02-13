@@ -35,11 +35,6 @@ public class Rygel.HTTPGet : HTTPRequest {
     private const string TRANSFER_MODE_HEADER = "transferMode.dlna.org";
 
     public HTTPSeekRequest seek;
-    public Thumbnail thumbnail;
-    public Subtitle subtitle;
-
-    private int thumbnail_index;
-    private int subtitle_index;
 
     public HTTPGetHandler handler;
 
@@ -47,9 +42,6 @@ public class Rygel.HTTPGet : HTTPRequest {
                     Soup.Server  server,
                     Soup.Message msg) {
         base (http_server, server, msg);
-
-        this.thumbnail_index = -1;
-        this.subtitle_index = -1;
     }
 
     protected override async void handle () throws Error {
@@ -80,6 +72,9 @@ public class Rygel.HTTPGet : HTTPRequest {
             this.handler = new HTTPSubtitleHandler (this.object as MediaFileItem,
                                                     uri.subtitle_index,
                                                     this.cancellable);
+        } else {
+            throw new HTTPRequestError.NOT_FOUND ("No handler found for '%s'",
+                                                  uri.to_string ());
         }
 
         { // Check the transfer mode
@@ -114,41 +109,6 @@ public class Rygel.HTTPGet : HTTPRequest {
 
         if (this.hack != null) {
             this.hack.apply (this.object);
-        }
-
-        if (this.uri.thumbnail_index >= 0) {
-            if (this.object is MusicItem) {
-                var music = this.object as MusicItem;
-                this.thumbnail = music.album_art;
-
-                return;
-            } else if (this.object is VisualItem) {
-                var visual = this.object as VisualItem;
-                if (this.uri.thumbnail_index < visual.thumbnails.size) {
-                    this.thumbnail = visual.thumbnails.get
-                                            (this.uri.thumbnail_index);
-
-                    return;
-                }
-            }
-
-            throw new HTTPRequestError.NOT_FOUND
-                                        ("No Thumbnail available for item '%s",
-                                         this.object.id);
-        }
-
-        if (this.uri.subtitle_index >= 0 && this.object is VideoItem) {
-            var video = this.object as VideoItem;
-
-            if (this.uri.subtitle_index < video.subtitles.size) {
-                this.subtitle = video.subtitles.get (this.uri.subtitle_index);
-
-                return;
-            }
-
-            throw new HTTPRequestError.NOT_FOUND
-                                        ("No subtitles available for item '%s",
-                                         this.object.id);
         }
     }
 

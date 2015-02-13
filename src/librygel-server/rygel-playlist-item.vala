@@ -40,10 +40,6 @@ public class Rygel.PlaylistItem : MediaFileItem {
                 upnp_class : upnp_class);
     }
 
-    public override bool streamable () {
-        return false;
-    }
-
     internal override DIDLLiteObject? serialize (Serializer serializer,
                                                  HTTPServer http_server)
                                                  throws Error {
