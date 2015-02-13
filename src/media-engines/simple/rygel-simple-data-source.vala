@@ -50,9 +50,10 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
         this.stop ();
     }
 
-    public Gee.List<HTTPResponseElement> ? preroll (HTTPSeekRequest? seek_request)
+    public Gee.List<HTTPResponseElement> ? preroll (HTTPSeekRequest? seek_request,
+                                                    PlaySpeedRequest? playspeed_request)
        throws Error {
-        var response_list = new Gee.ArrayList<HTTPResponseElement> ();
+         var response_list = new Gee.ArrayList<HTTPResponseElement> ();
 
         if (seek_request != null) {
             if (!(seek_request is HTTPByteSeekRequest)) {
@@ -71,6 +72,11 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
         } else {
             this.first_byte = 0;
             this.last_byte = 0; // Indicates the entire file
+        }
+
+        if (playspeed_request != null) {
+            throw new DataSourceError.PLAYSPEED_FAILED
+                                    (_("Playspeed not supported"));
         }
 
         return response_list;

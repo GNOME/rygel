@@ -35,6 +35,7 @@ public class Rygel.HTTPGet : HTTPRequest {
     private const string TRANSFER_MODE_HEADER = "transferMode.dlna.org";
 
     public HTTPSeekRequest seek;
+    public PlaySpeedRequest speed_request;
 
     public HTTPGetHandler handler;
 
@@ -130,6 +131,37 @@ public class Rygel.HTTPGet : HTTPRequest {
             }
         }
 
+        // Check for DLNA PlaySpeed request only if Range or Range.dtcp.com is not
+        // in the request. DLNA 7.5.4.3.3.19.2, DLNA Link Protection : 7.6.4.4.2.12
+        // (is 7.5.4.3.3.19.2 compatible with the use case in 7.5.4.3.2.24.5?)
+        // Note: We need to check the speed first since direction factors into validating
+        //       the time-seek request
+        try {
+            if ( !requested_byte_seek
+                 && PlaySpeedRequest.requested (this) ) {
+                this.speed_request = new PlaySpeedRequest.from_request (this);
+                debug ("Processing playspeed %s", speed_request.speed.to_string ());
+                if (this.speed_request.speed.is_normal_rate ()) {
+                    // This is not a scaled-rate request. Treat it as if it wasn't even there
+                    this.speed_request = null;
+                }
+            } else {
+                this.speed_request = null;
+            }
+        } catch (PlaySpeedError error) {
+            this.server.unpause_message (this.msg);
+            if (error is PlaySpeedError.INVALID_SPEED_FORMAT) {
+                this.end (Soup.Status.BAD_REQUEST, error.message);
+                // Per DLNA 7.5.4.3.3.16.3
+            } else if (error is PlaySpeedError.SPEED_NOT_PRESENT) {
+                this.end (Soup.Status.NOT_ACCEPTABLE, error.message);
+                 // Per DLNA 7.5.4.3.3.16.5
+            } else {
+                throw error;
+            }
+            debug ("Error processing PlaySpeed: %s", error.message);
+            return;
+        }
         try {
             // Order is intentional here
             if (supports_byte_seek && requested_byte_seek) {
@@ -139,7 +171,8 @@ public class Rygel.HTTPGet : HTTPRequest {
                 this.seek = byte_seek;
             } else if (supports_time_seek && requested_time_seek) {
                 // Assert: speed_request has been checked/processed
-                var time_seek = new HTTPTimeSeekRequest (this);
+                var time_seek = new HTTPTimeSeekRequest (this, ((this.speed_request == null) ? null
+                                                                : this.speed_request.speed) );
                 debug ("Processing " + time_seek.to_string ());
                 this.seek = time_seek;
             } else {
@@ -201,7 +234,13 @@ public class Rygel.HTTPGet : HTTPRequest {
         {
             Soup.Encoding response_body_encoding;
             // See DLNA 7.5.4.3.2.15 for requirements
-            if (response_size > 0) {
+            if ((this.speed_request != null)
+                && (this.msg.get_http_version () != Soup.HTTPVersion.@1_0) ) {
+                // We'll want the option to insert PlaySpeed position information
+                //  whether or not we know the length (see DLNA 7.5.4.3.3.17)
+                response_body_encoding = Soup.Encoding.CHUNKED;
+                debug ("Response encoding set to CHUNKED");
+            } else if (response_size > 0) {
                 // TODO: Incorporate ChunkEncodingMode.dlna.org request into this block
                 response_body_encoding = Soup.Encoding.CONTENT_LENGTH;
                 debug ("Response encoding set to CONTENT-LENGTH");
@@ -220,9 +259,10 @@ public class Rygel.HTTPGet : HTTPRequest {
 
         // Determine the Vary header (if not HTTP 1.0)
         {
-            // Per DLNA 7.5.4.3.2.35.4, the Vary header needs to include the timeseek
-            // header if it is supported for the resource/uri
-            if (supports_time_seek) {
+            // Per DLNA 7.5.4.3.2.35.4, the Vary header needs to include the timeseek and/or
+            //  playspeed header if both/either are supported for the resource/uri
+            bool supports_playspeed = PlaySpeedRequest.supported (this);
+            if (supports_time_seek || supports_playspeed) {
                 if (this.msg.get_http_version () != Soup.HTTPVersion.@1_0) {
                     var vary_header = new StringBuilder
                                              (this.msg.response_headers.get_list ("Vary"));
@@ -231,6 +271,12 @@ public class Rygel.HTTPGet : HTTPRequest {
                             vary_header.append (",");
                         }
                         vary_header.append (HTTPTimeSeekRequest.TIMESEEKRANGE_HEADER);
+                    }
+                    if (supports_playspeed) {
+                        if (vary_header.len > 0) {
+                            vary_header.append (",");
+                        }
+                        vary_header.append (PlaySpeedRequest.PLAYSPEED_HEADER);
                     }
                     this.msg.response_headers.replace ("Vary", vary_header.str);
                 }

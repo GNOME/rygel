@@ -107,4 +107,8 @@ internal class Rygel.HTTPMediaResourceHandler : HTTPGetHandler {
         return media_resource.supports_arbitrary_time_seek ()
                || media_resource.supports_limited_time_seek ();
     }
+
+    public override bool supports_playspeed () {
+        return media_resource.supports_playspeed ();
+    }
 }

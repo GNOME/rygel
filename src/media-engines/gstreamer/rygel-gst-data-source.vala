@@ -61,9 +61,16 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         this.src = element;
     }
 
-    public Gee.List<HTTPResponseElement> ? preroll ( HTTPSeekRequest? seek_request)
+    public Gee.List<HTTPResponseElement> ? preroll ( HTTPSeekRequest? seek_request,
+                                                     PlaySpeedRequest? playspeed_request)
        throws Error {
         var response_list = new Gee.ArrayList<HTTPResponseElement>();
+
+        if (playspeed_request != null) {
+            throw new DataSourceError.PLAYSPEED_FAILED
+                                    (_("Playspeed not supported"));
+        }
+
 
         if (seek_request == null) {
             debug("No seek requested - sending entire binary");

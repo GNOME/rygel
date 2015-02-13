@@ -25,6 +25,7 @@
 public errordomain Rygel.DataSourceError {
     GENERAL,
     SEEK_FAILED,
+    PLAYSPEED_FAILED
 }
 
 /**
@@ -61,20 +62,24 @@ public errordomain Rygel.DataSourceError {
  */
 public interface Rygel.DataSource : GLib.Object {
     /**
-     * Preroll the data with the given seek
+     * Preroll the data with the given seek and playspeed.
      *
      * @param seek    optional seek/range specifier
-    *
+     * @param playspeed optional playback rate specifier. This will only be provided
+     *                  when a scaled rate is requested (the speed will not be 0.0 or 1.0)
+     *
      * @return List of HTTPResponseElements appropriate for the content request and
-     *         optional seek (e.g. Content-Range, TimeSeekRange.dlna.org,
+     *         optional seek/playspeed (e.g. Content-Range, TimeSeekRange.dlna.org,
      *         etc) or null/empty list if none are appropriate. Note: the list will
      *         be processed in-order by the caller.
      *
      * @throws Error if anything goes wrong while prerolling the stream.
      *         Throws DataSourceError.SEEK_FAILED if a seek method is not supported or the
      *         range is not fulfillable.
+     *         Throws PLAYSPEED_FAILED if the rate is not supported or fulfillable.
      */
-    public abstract Gee.List<HTTPResponseElement> ? preroll (HTTPSeekRequest? seek)
+    public abstract Gee.List<HTTPResponseElement> ? preroll (HTTPSeekRequest? seek,
+                                                             PlaySpeedRequest? playspeed)
        throws Error;
 
     /**

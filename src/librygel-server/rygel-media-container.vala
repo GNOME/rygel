@@ -58,16 +58,21 @@ internal class Rygel.PlaylistDatasource : Rygel.DataSource, Object {
 
     public signal void data_ready ();
 
-    public Gee.List<HTTPResponseElement> ? preroll ( HTTPSeekRequest? seek_request)
+    public Gee.List<HTTPResponseElement> ? preroll ( HTTPSeekRequest? seek_request,
+                                                     PlaySpeedRequest? playspeed_request)
        throws Error {
         if (seek_request != null) {
             throw new DataSourceError.SEEK_FAILED
                                         (_("Seeking not supported"));
         }
 
+        if (playspeed_request != null) {
+            throw new DataSourceError.PLAYSPEED_FAILED
+                                    (_("Speed not supported"));
+        }
+
         return null;
     }
-
 
     public void start () throws Error {
         if (this.data == null) {

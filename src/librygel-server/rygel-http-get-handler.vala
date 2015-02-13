@@ -99,6 +99,14 @@ public abstract class Rygel.HTTPGetHandler: GLib.Object {
     public virtual bool supports_time_seek () {
         return false;
     }
+
+    /**
+     * Returns true if the handler supports any play speed requests.
+     */
+    public virtual bool supports_playspeed () {
+        return false;
+    }
+
     /**
      * Create an HTTPResponse object that will render the body.
      */

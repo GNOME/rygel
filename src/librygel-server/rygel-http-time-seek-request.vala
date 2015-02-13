@@ -59,12 +59,20 @@ public class Rygel.HTTPTimeSeekRequest : Rygel.HTTPSeekRequest {
      * Note: This constructor will check the syntax of the request (per DLNA 7.5.4.3.2.24.3)
      *       as well as perform some range validation. If the provided request is associated
      *       with a handler that can provide content duration, the start and end time will
-     *       be checked for out-of-bounds conditions.
+     *       be checked for out-of-bounds conditions. Additionally, the start and end will
+     *       be checked according to playspeed direction (with rate +1.0 assumed when speed
+     *       is not provided). When speed is provided, the range end parameter check is
+     *       relaxed when the rate is not +1.0 (per DLNA 7.5.4.3.2.24.4).
+     *
      * @param request The HTTP GET/HEAD request
+     * @speed speed An associated speed request
      */
-    internal HTTPTimeSeekRequest (HTTPGet request)
+    internal HTTPTimeSeekRequest (HTTPGet request, PlaySpeed ? speed)
             throws HTTPSeekRequestError {
         base ();
+
+        bool positive_rate = (speed == null) || speed.is_positive ();
+        bool trick_mode = (speed != null) && !speed.is_normal_rate ();
 
         this.total_duration = request.handler.get_resource_duration ();
         if (this.total_duration <= 0) {
@@ -100,15 +108,37 @@ public class Rygel.HTTPTimeSeekRequest : Rygel.HTTPSeekRequest {
                           TIMESEEKRANGE_HEADER, range);
         }
 
-        this.start_time = start;
+        // Check for out-of-bounds range start and clamp it in if in trick/scan mode
+        if ((this.total_duration != UNSPECIFIED) && (start > this.total_duration)) {
+            if (trick_mode && !positive_rate) { // Per DLNA 7.5.4.3.2.24.4
+                this.start_time = this.total_duration;
+            } else { // See DLNA 7.5.4.3.2.24.8
+                throw new HTTPSeekRequestError.OUT_OF_RANGE
+                              ("Invalid %s start time %lldns is beyond the content duration of %lldns",
+                               TIMESEEKRANGE_HEADER, start, this.total_duration);
+            }
+        } else { // Nothing to check it against - just store it
+            this.start_time = start;
+        }
 
         // Look for an end time
         int64 end = UNSPECIFIED;
         if (parse_npt_time (range_tokens[1], ref end)) {
             // The end time was specified in the npt ("start-end")
             // Check for valid range
-            {
-                this.end_time = end;
+            if (positive_rate) {
+                // Check for out-of-bounds range end or fence it in
+                if ((this.total_duration != UNSPECIFIED) && (end > this.total_duration)) {
+                    if (trick_mode) { // Per DLNA 7.5.4.3.2.24.4
+                        this.end_time = this.total_duration;
+                    } else { // Per DLNA 7.5.4.3.2.24.8
+                        throw new HTTPSeekRequestError.OUT_OF_RANGE
+                                      ("Invalid %s end time %lldns is beyond the content duration of %lldns",
+                                       TIMESEEKRANGE_HEADER, end,this.total_duration);
+                    }
+                } else {
+                    this.end_time = end;
+                }
 
                 this.range_duration =  this.end_time - this.start_time;
                 // At positive rate, start < end
@@ -117,6 +147,16 @@ public class Rygel.HTTPTimeSeekRequest : Rygel.HTTPSeekRequest {
                                   ("Invalid %s value (start time after end time - forward scan): '%s'",
                                    TIMESEEKRANGE_HEADER, range);
                 }
+            } else { // Negative rate
+                // Note: start_time has already been checked/clamped
+                this.end_time = end;
+                this.range_duration = this.start_time - this.end_time;
+                // At negative rate, start > end
+                if (this.range_duration <= 0) { // See DLNA 7.5.4.3.2.24.12
+                    throw new HTTPSeekRequestError.INVALID_RANGE
+                                 ("Invalid %s value (start time before end time - reverse scan): '%s'",
+                                  TIMESEEKRANGE_HEADER, range);
+                }
             }
         } else { // End time not specified in the npt field ("start-")
             // See DLNA 7.5.4.3.2.24.4
@@ -124,7 +164,11 @@ public class Rygel.HTTPTimeSeekRequest : Rygel.HTTPSeekRequest {
             if (this.total_duration == UNSPECIFIED) {
                 this.range_duration = UNSPECIFIED;
             } else {
-                this.range_duration = this.total_duration - this.start_time;
+                if (positive_rate) {
+                    this.range_duration = this.total_duration - this.start_time;
+                } else {
+                    this.range_duration = this.start_time; // Going backward from start to 0
+                }
             }
         }
     }
