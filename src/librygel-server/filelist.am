@@ -86,4 +86,6 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-playspeed-request.vala \
 	rygel-playspeed-response.vala \
 	rygel-dtcp-cleartext-request.vala \
-	rygel-dtcp-cleartext-response.vala
+	rygel-dtcp-cleartext-response.vala \
+	rygel-dlna-available-seek-request.vala \
+	rygel-dlna-available-seek-response.vala
