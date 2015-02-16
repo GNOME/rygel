@@ -116,18 +116,6 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         return this.dlna_profiles;
     }
 
-    public override DataSource? create_data_source (string uri) {
-        try {
-            return new GstDataSource (uri, null);
-        } catch (Error error) {
-            warning (_("Failed to create GStreamer data source for %s: %s"),
-                     uri,
-                     error.message);
-
-            return null;
-        }
-    }
-
     public override async Gee.List<MediaResource> ? get_resources_for_item (MediaObject object) {
         if (! (object is MediaFileItem)) {
             warning ("Can only process file-based MediaObjects (MediaFileItems)");
@@ -179,20 +167,20 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
             if (res != null)
                 resources.add (res);
         }
+
         // Put the primary resource as most-preferred (front of the list)
         resources.add (primary_res);
 
         return resources;
     }
 
-    public override DataSource? create_data_source_for_resource
-                                        (MediaObject object,
-                                         MediaResource resource) throws Error {
-        if (!(object is MediaFileItem)) {
-            warning ("Can only process file-based MediaObjects (MediaFileItem)");
+    public override DataSource? create_data_source_for_resource ( MediaObject object,
+                                                                  MediaResource resource)
+        throws Error {
+        if (! (object is MediaFileItem)) {
+            warning ("Can only process file-based MediaObjects (MediaFileItems)");
             return null;
         }
-
         var item = object as MediaFileItem;
 
         // For MediaFileItems, the primary URI refers directly to the content
@@ -215,6 +203,19 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         return ds;
     }
 
+    public override DataSource? create_data_source_for_uri (string source_uri) {
+        try {
+            debug("creating data source for %s", source_uri);
+            DataSource ds = new GstDataSource (source_uri, null);
+            return ds;
+        } catch (Error error) {
+            warning (_("Failed to create GStreamer data source for %s: %s"),
+                     source_uri,
+                     error.message);
+
+            return null;
+        }
+    }
 
     public DataSource create_data_source_from_element (Element element) {
         return new GstDataSource.from_element (element);

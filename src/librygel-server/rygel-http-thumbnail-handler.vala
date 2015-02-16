@@ -82,7 +82,7 @@ internal class Rygel.HTTPThumbnailHandler : Rygel.HTTPGetHandler {
         DataSource src;
         try {
             var engine = MediaEngine.get_default ();
-            src = engine.create_data_source (this.thumbnail.uri);
+            src = engine.create_data_source_for_uri (this.thumbnail.uri);
 
             return new HTTPResponse (request, this, src);
         } catch (Error err) {

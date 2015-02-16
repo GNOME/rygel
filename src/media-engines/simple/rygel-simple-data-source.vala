@@ -53,7 +53,7 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
     public Gee.List<HTTPResponseElement> ? preroll (HTTPSeekRequest? seek_request,
                                                     PlaySpeedRequest? playspeed_request)
        throws Error {
-         var response_list = new Gee.ArrayList<HTTPResponseElement> ();
+        var response_list = new Gee.ArrayList<HTTPResponseElement> ();
 
         if (seek_request != null) {
             if (!(seek_request is HTTPByteSeekRequest)) {
@@ -81,6 +81,7 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
 
         return response_list;
     }
+
     public void start () throws Error {
         debug ("Starting data source for uri %s", this.uri);
 

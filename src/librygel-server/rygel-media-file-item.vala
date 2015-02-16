@@ -123,26 +123,6 @@ public abstract class Rygel.MediaFileItem : MediaItem {
         }
     }
 
-    // Live media items need to provide a nice working implementation of this
-    // method if they can/do not provide a valid URI
-    public virtual DataSource? create_stream_source (string? host_ip = null) {
-        if (this.get_uris ().is_empty) {
-            return null;
-        }
-
-        string translated_uri = this.get_primary_uri ();
-        if (host_ip != null) {
-            try {
-                translated_uri = MediaFileItem.address_regex.replace_literal
-                    (translated_uri, -1, 0, host_ip);
-            } catch (Error error) {
-                assert_not_reached ();
-            }
-        }
-
-        return MediaEngine.get_default ().create_data_source (translated_uri);
-    }
-
     public override DataSource? create_stream_source_for_resource
                                         (HTTPRequest request,
                                          MediaResource resource)

@@ -1,7 +1,9 @@
 /*
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Jens Georg <jensg@openismus.com>
+ *         Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -26,10 +28,13 @@ public errordomain Rygel.MediaEngineError {
 
 /**
  * This is the base class for media engines that contain knowledge about 
- * the streaming and (optionally) the transcoding and seeking capabilites
- * of the media library in use. Derived classes also instantiate any
- * transcoding objects supported by the media engine and specify the list
- * of media formats the engine is capable of playing.
+ * the streaming and transformational capabilites of the media library in use.
+ *
+ * Media engines express what representations of a MediaObject they can
+ * produce by returning MediaResource objects which will, in turn, be
+ * used to express to endpoints representations can be streamed from
+ * the MediaServer. These representations may include transformations,
+ * time-scaled representations, and/or encrypted representations.
  *
  * See, for instance, Rygel's built-in "gstreamer" and "simple" media engines,
  * or the external rygel-gst-0-10-media-engine module.
@@ -41,18 +46,6 @@ public errordomain Rygel.MediaEngineError {
  *
  * Media engines should also derive their own #RygelDataSource,
  * returning an instance of it from create_data_source().
- *
- * If this media engine supports transcoding then it will typically
- * implement a set of transcoding classes, typically with one 
- * base class and a number of sub-classes - one for each transcoding
- * format you want to support. These should be returned by the
- * get_transcoders() virtual function. The base transcoder class could
- * provide a generic way to create a #RygelDataSource capable of
- * providing Rygel with a transcoded version of a file using the
- * underlying media framework. The sub-classes could contain the
- * various media-framework-specific parameters required to 
- * transcode to a given format and implement a heuristic that
- * can be used to order an item's transcoded resources.
  *
  * See the
  * <link linkend="implementing-media-engines">Implementing Media Engines</link> section.
@@ -84,55 +77,63 @@ public abstract class Rygel.MediaEngine : GLib.Object {
     }
 
     /**
-     * Get a list of the DLNA profiles that are supported by this media
-     * engine when calling rygel_media_engine_create_data_source().
-     *
-     * Other DLNA profiles may be supported as transcoding targets -
+     * Get a list of the DLNA profiles that the media engine can stream.
      *
      * This information is needed to implement DLNA's
      * ConnectionManager.GetProtocolInfo call and to determine whether Rygel
      * can accept an uploaded file.
      *
      * @return A list of #RygelDLNAProfile<!-- -->s
-     * @see rygel_media_engine_get_transcoders().
      */
     public abstract unowned List<DLNAProfile> get_dlna_profiles ();
 
     /**
      * Retrieve engine-provided resources for the given MediaObject
      *
-     * The MediaResources returned may include formats/profiles that do not
-     * match the source content byte-for-byte (e.g. transcodes, encrypted
-     * formats, etc). The MediaEngine must return a MediaResource for the raw
-     * MediaObject content if it can support streaming the content directly.
+     * The MediaResources returned may include formats/profiles that do not match the
+     * source content byte-for-byte (e.g. transcodes, encrypted formats, etc). The
+     * MediaEngine must return a MediaResource for the raw MediaObject content if it
+     * can support streaming the content directly.
      *
-     * The order of MediaResources in the returned List should be from
-     * most-preferred to least-preferred and each must have a unique
-     * alphanumeric "name" field.
+     * The order of MediaResources in the returned List should be from most-preferred to
+     * least-preferred and each must have a unique alphanumeric "name" field.
      *
-     * Note: The engine should set all delivery-related flags assuming all
-     * delivery forms are supported (e.g. the protocol fields and delivery
-     * flags of the ProtocolInfo). And the resource uri should be set to the
-     * empty string for http-delivered resources. The effective delivery
-     * options and uri will be established by the HTTP server.
+     * Note: The engine should set all delivery-related flags assuming all delivery forms are
+     * supported (e.g. the protocol fields and delivery flags of the ProtocolInfo). And the
+     * resource uri should be set to the empty string for http-delivered resources. The
+     * effective delivery options and uri will be established by the HTTP server.
      *
      * @return A list of #MediaResources<!-- -->s or null if no representations
      *         are provided by the engine for the item.
      */
     public abstract async Gee.List<MediaResource> ? get_resources_for_item (MediaObject item);
 
-    public virtual DataSource? create_data_source_for_resource
-                                        (MediaObject item,
-                                         MediaResource resource)
-                                         throws Error {
-        return this.create_data_source (resource.uri);
-    }
+    /**
+     * Signaled when one or more #MediaResources<!-- -->s associated with a MediaObject changes.
+     * #get_resources_for_item should be called in response to this signal to retrieve the
+     * updated list of MediaResources for the associated MediaObject.
+     *
+     * @param media_object_uri is the uri associated with a MediaObject.=
+     */
+    public signal void resource_changed (string media_object_uri);
 
     /**
-     * Get a data source for the URI.
+     * Get a #DataSource for given #MediaResource representation of the #MediaObject.
      *
-     * @param uri to create the data source for.
-     * @return A data source representing the uri
+     * @param item The #MediaObject to create the #DataSource for
+     * @param resource The specific resource to create the #DataSource for
+     *
+     * @return A #DataSource representing the given item resource
      */
-    public abstract DataSource? create_data_source (string uri);
+    public abstract DataSource? create_data_source_for_resource (MediaObject item,
+                                                                 MediaResource resource)
+          throws Error;
+
+    /**
+     * Get a #DataSource for the URI.
+     *
+     * @param uri to create the #DataSource for.
+     * @return A #DataSource representing the uri
+     */
+    public abstract DataSource? create_data_source_for_uri (string uri) throws Error;
 }

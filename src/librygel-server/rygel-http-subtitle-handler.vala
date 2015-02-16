@@ -81,7 +81,7 @@ internal class Rygel.HTTPSubtitleHandler : Rygel.HTTPGetHandler {
         DataSource src;
         try {
             var engine = MediaEngine.get_default ();
-            src = engine.create_data_source (this.subtitle.uri);
+            src = engine.create_data_source_for_uri (this.subtitle.uri);
 
             return new HTTPResponse (request, this, src);
         } catch (Error err) {

@@ -71,7 +71,6 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
                                     (_("Playspeed not supported"));
         }
 
-
         if (seek_request == null) {
             debug("No seek requested - sending entire binary");
         } else if (seek_request is HTTPByteSeekRequest) {

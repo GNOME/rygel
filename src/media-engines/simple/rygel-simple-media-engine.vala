@@ -1,7 +1,9 @@
 /*
  * Copyright (C) 2012 Intel Corporation.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
  *
  * Author: Jens Georg <jensg@openismus.com>
+ *         Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
  *
@@ -26,7 +28,7 @@ using GUPnP;
  * The simple media engine does not use GStreamer or any other
  * multimedia framework. Therefore its capabilities are limited.
  *
- * It does not support transcoding - get_transcoders() returns null.
+ * It does not support transcoding - get_resources() returns null.
  * Also, its RygelSimpleDataSource does not support time-base seeking.
  */
 internal class Rygel.SimpleMediaEngine : MediaEngine {
@@ -34,12 +36,12 @@ internal class Rygel.SimpleMediaEngine : MediaEngine {
 
     public SimpleMediaEngine () { }
 
-    public override unowned List<DLNAProfile> get_dlna_profiles () {
+    public override unowned List<DLNAProfile> get_dlna_profiles() {
         return this.profiles;
     }
 
-    public override async Gee.List<MediaResource>? get_resources_for_item (MediaObject
-            object) {
+    public override async Gee.List<MediaResource> ? get_resources_for_item
+                                                        (MediaObject object) {
         if (! (object is MediaFileItem)) {
             warning ("Can only process file-based MediaObjects (MediaFileItems)");
             return null;
@@ -74,24 +76,26 @@ internal class Rygel.SimpleMediaEngine : MediaEngine {
         resources.add (primary_res);
 
         return resources;
-   }
-
-    public override DataSource? create_data_source_for_resource
-                                        (MediaObject object,
-                                         MediaResource res) throws Error {
-       if (!(object is MediaFileItem)) {
-            warning ("Can only process file-based MediaObjects (MediaFileItem)");
-            return null;
-       }
-
-       string source_uri = object.get_primary_uri ();
-       return new SimpleDataSource (source_uri);
     }
-    public override DataSource? create_data_source (string uri) {
-        if (!uri.has_prefix ("file://")) {
+
+    public override DataSource? create_data_source_for_resource (MediaObject object,
+                                                                 MediaResource resource)
+        throws Error {
+        if (! (object is MediaFileItem)) {
+            warning ("Can only process file-based MediaObjects (MediaFileItems)");
             return null;
         }
 
+        // For MediaFileItems, the primary URI referrs to the local content file
+        string source_uri = object.get_primary_uri ();
+        return new SimpleDataSource (source_uri);
+    }
+
+    public override DataSource? create_data_source_for_uri (string uri) {
+        if (!uri.has_prefix ("file://")) {
+            return null;
+        }
+        debug ("creating data source for %s", uri);
         return new SimpleDataSource (uri);
     }
 }
