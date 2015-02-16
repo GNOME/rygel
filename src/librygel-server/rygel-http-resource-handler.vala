@@ -46,11 +46,14 @@ internal class Rygel.HTTPMediaResourceHandler : HTTPGetHandler {
     public override void add_response_headers (HTTPGet request)
                                                throws HTTPRequestError {
         request.http_server.set_resource_delivery_options (this.media_resource);
-        request.msg.response_headers.append ("Content-Type",
-                                             this.media_resource.mime_type);
+        var replacements = request.http_server.get_replacements ();
+        var mime_type = MediaObject.apply_replacements
+                                     (replacements,
+                                      this.media_resource.mime_type);
+        request.msg.response_headers.append ("Content-Type", mime_type);
 
         // Add contentFeatures.dlna.org
-        var protocol_info = this.media_resource.get_protocol_info ();
+        var protocol_info = media_resource.get_protocol_info (replacements);
         if (protocol_info != null) {
             var pi_fields = protocol_info.to_string ().split (":", 4);
             if (pi_fields[3] != null) {

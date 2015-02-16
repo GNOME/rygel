@@ -6,6 +6,7 @@
  * Author: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Jens Georg <jensg@openismus.com>
+ *         Doug Galligan <doug@sentosatech.com>
  *         Craig Pratt <craig@ecaspia.com>
  *
  * This file is part of Rygel.
@@ -36,6 +37,7 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
     public GUPnP.Context context;
     private ArrayList<HTTPRequest> requests;
     private bool locally_hosted;
+    public HashTable<string, string> replacements;
 
     public Cancellable cancellable { get; set; }
 
@@ -53,6 +55,14 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
                               this.context.host_ip == "127.0.0.1";
 
         this.path_root = "/" + name;
+        this.replacements = new HashTable <string, string> (str_hash, str_equal);
+        this.replacements.insert ("@SERVICE_ADDRESS@",
+                                  this.context.host_ip);
+        this.replacements.insert ("@SERVICE_INTERFACE@",
+                                  this.context.interface);
+        this.replacements.insert ("@SERVICE_PORT@",
+                                  this.context.port.to_string ());
+        this.replacements.insert ("@HOSTNAME@", Environment.get_host_name ());
     }
 
     public async void run () {
@@ -109,6 +119,10 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
 
     internal virtual ArrayList<ProtocolInfo> get_protocol_info () {
         return new ArrayList<ProtocolInfo>();
+    }
+
+    public HashTable<string, string> get_replacements () {
+        return this.replacements;
     }
 
     public bool is_local () {

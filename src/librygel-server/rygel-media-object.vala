@@ -252,7 +252,8 @@ public abstract class Rygel.MediaObject : GLib.Object {
     public void serialize_resource_list (DIDLLiteObject didl_object,
                                          HTTPServer     http_server)
                                          throws Error {
-        foreach (var res in this.get_resource_list ()) {
+        var replacements = http_server.get_replacements ();
+        foreach (var res in get_resource_list ()) {
             if (res.uri == null || res.uri == "") {
                 var uri = http_server.create_uri_for_object (this,
                                                              -1,
@@ -266,7 +267,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
                 }
                 var didl_resource = didl_object.add_resource ();
                 http_server.set_resource_delivery_options (res);
-                res.serialize (didl_resource);
+                res.serialize (didl_resource, replacements);
                 res.uri = null;
                 res.import_uri = null;
             } else {
@@ -275,13 +276,34 @@ public abstract class Rygel.MediaObject : GLib.Object {
                     if (protocol != "internal" || http_server.is_local ()) {
                         // Exclude internal resources when request is non-local
                         var didl_resource = didl_object.add_resource ();
-                        res.serialize (didl_resource);
+                        res.serialize (didl_resource, replacements);
                     }
                 } catch (Error e) {
                     warning (_("Could not determine protocol for %s"), res.uri);
                 }
             }
         }
+    }
+
+    /**
+     * Replace each key in replacement_pairs with its corresponding
+     * value in the source_string and return the result.
+     *
+     * If source_string is null, null is returned.
+     */
+    public static string ? apply_replacements
+                            (HashTable<string, string> replacement_pairs,
+                             string source_string) {
+        if (source_string == null) {
+            return null;
+        }
+        var replaced_string = source_string;
+        replacement_pairs.foreach ((search_string, replacement)
+            => {
+                    replaced_string
+                        = replaced_string.replace (search_string, replacement);
+               } );
+        return replaced_string;
     }
 
     /**

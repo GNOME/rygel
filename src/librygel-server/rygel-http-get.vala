@@ -118,8 +118,21 @@ public class Rygel.HTTPGet : HTTPRequest {
         var requested_time_seek = HTTPTimeSeekRequest.requested (this);
         var supports_byte_seek = HTTPByteSeekRequest.supported (this);
         var requested_byte_seek = HTTPByteSeekRequest.requested (this);
+        var supports_cleartext_seek = DTCPCleartextRequest.supported (this);
+        var requested_cleartext_seek = DTCPCleartextRequest.requested (this);
 
-        if (requested_byte_seek) {
+        // Order is significant here when the request has more than one seek header
+        if (requested_cleartext_seek) {
+            if (!supports_cleartext_seek) {
+                throw new HTTPRequestError.UNACCEPTABLE ( "Cleartext seek not supported for "
+                                                          + this.uri.to_string () );
+            }
+            if (requested_byte_seek) {
+                    // Per DLNA Link Protection 7.6.4.3.3.9
+                    throw new HTTPRequestError.UNACCEPTABLE ( "Both Cleartext and Range seek requested "
+                                                              + this.uri.to_string ());
+            }
+        } else if (requested_byte_seek) {
             if (!supports_byte_seek) {
                 throw new HTTPRequestError.UNACCEPTABLE ( "Byte seek not supported for "
                                                           + this.uri.to_string () );
@@ -137,7 +150,7 @@ public class Rygel.HTTPGet : HTTPRequest {
         // Note: We need to check the speed first since direction factors into validating
         //       the time-seek request
         try {
-            if ( !requested_byte_seek
+            if ( !(requested_byte_seek || requested_cleartext_seek)
                  && PlaySpeedRequest.requested (this) ) {
                 this.speed_request = new PlaySpeedRequest.from_request (this);
                 debug ("Processing playspeed %s", speed_request.speed.to_string ());
@@ -164,7 +177,12 @@ public class Rygel.HTTPGet : HTTPRequest {
         }
         try {
             // Order is intentional here
-            if (supports_byte_seek && requested_byte_seek) {
+            if (supports_cleartext_seek && requested_cleartext_seek) {
+                var cleartext_seek = new DTCPCleartextRequest (this);
+                debug ("Processing DTCP cleartext byte range request (bytes %lld to %lld)",
+                         cleartext_seek.start_byte, cleartext_seek.end_byte);
+                this.seek = cleartext_seek;
+            } else if (supports_byte_seek && requested_byte_seek) {
                 var byte_seek = new HTTPByteSeekRequest (this);
                 debug ("Processing byte range request (bytes %lld to %lld)",
                        byte_seek.start_byte, byte_seek.end_byte);

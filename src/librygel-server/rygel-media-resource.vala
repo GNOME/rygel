@@ -62,9 +62,10 @@ public class Rygel.MediaResource : GLib.Object {
     public DLNAOperation dlna_operation { get; set; default = DLNAOperation.NONE; }
 
     // I know gupnp-av DIDLLiteResource and ProtocolInfo structures have the above fields.
-    //  But both proved to be problematic in their current form. This class can be
-    //  refactored if/when these classes are made more more flexible. For now, this class
-    //  needs to serve the needs of Rygel first and foremost...
+    //  But both proved to be problematic in their current form when used in a variety
+    //  of containers (appears to be issues with reference management causing (incomplete)
+    //  copies of DIDLLiteResource/ProtocolInfo to be made). This class can be refactored
+    //  if/when these classes are made more flexible.
 
     public MediaResource (string name) {
         this.name = name;
@@ -100,6 +101,39 @@ public class Rygel.MediaResource : GLib.Object {
         this.dlna_operation = that.dlna_operation;
     }
 
+    public MediaResource.from_didl_lite_resource (string name, DIDLLiteResource didl_resource) {
+        // Create a MediaResource from the given DIDLLiteResource
+        // Note: For a DIDLLiteResource, a value of -1/null also signals "not set"
+        this.name = name;
+        // res block
+        this.uri = didl_resource.uri;
+        this.size = didl_resource.size64;
+        this.cleartext_size = didl_resource.cleartext_size;
+        this.duration = didl_resource.duration;
+        this.bitrate = didl_resource.bitrate;
+        this.bits_per_sample = didl_resource.bits_per_sample;
+        this.color_depth = didl_resource.color_depth;
+        this.width = didl_resource.width;
+        this.height = didl_resource.height;
+        this.audio_channels = didl_resource.audio_channels;
+        this.sample_freq = didl_resource.sample_freq;
+        // protocol info
+        if (didl_resource.protocol_info != null) {
+            this.protocol = didl_resource.protocol_info.protocol;
+            this.mime_type = didl_resource.protocol_info.mime_type;
+            this.dlna_profile = didl_resource.protocol_info.dlna_profile;
+            this.network = didl_resource.protocol_info.network;
+            this.play_speeds = copy_speeds (didl_resource.protocol_info.play_speeds);
+            this.dlna_conversion = didl_resource.protocol_info.dlna_conversion;
+            this.dlna_flags = didl_resource.protocol_info.dlna_flags;
+            this.dlna_operation = didl_resource.protocol_info.dlna_operation;
+        }
+    }
+
+    public MediaResource dup () {
+        return new MediaResource.from_resource (this.get_name (), this);
+    }
+
     public static string []? copy_speeds (string? [] src) {
         if (src == null) {
             return null;
@@ -113,58 +147,20 @@ public class Rygel.MediaResource : GLib.Object {
         return new_speeds;
     }
 
-    public MediaResource dup () {
-        return new MediaResource.from_resource (this.get_name (), this);
-    }
-
     public string get_name () {
         return this.name;
     }
 
-    private HashMap<string,string> property_table = new HashMap<string,string> ();
-
-    public void set_custom_property (string ? name, string ? value) {
-        property_table.set (name,value);
-    }
-
-    public string get_custom_property (string ? name) {
-        return property_table.get (name);
-    }
-
-    public Set get_custom_property_names () {
-        return property_table.keys;
-    }
-
-    public void apply_didl_lite (DIDLLiteResource didl_resource) {
-        //  Populate the MediaResource from the given DIDLLiteResource
-        // Note: For a DIDLLiteResource, a value of -1/null also signals "not set"
-        this.uri = didl_resource.uri;
-        this.size = didl_resource.size64;
-        this.cleartext_size = didl_resource.cleartext_size;
-        this.duration = didl_resource.duration;
-        this.bitrate = didl_resource.bitrate;
-        this.bits_per_sample = didl_resource.bits_per_sample;
-        this.color_depth = didl_resource.color_depth;
-        this.width = didl_resource.width;
-        this.height = didl_resource.height;
-        this.audio_channels = didl_resource.audio_channels;
-        this.sample_freq = didl_resource.sample_freq;
-        if (didl_resource.protocol_info != null) {
-            this.protocol = didl_resource.protocol_info.protocol;
-            this.mime_type = didl_resource.protocol_info.mime_type;
-            this.dlna_profile = didl_resource.protocol_info.dlna_profile;
-            this.network = didl_resource.protocol_info.network;
-            this.play_speeds = copy_speeds (didl_resource.protocol_info.play_speeds);
-            this.dlna_conversion = didl_resource.protocol_info.dlna_conversion;
-            this.dlna_flags = didl_resource.protocol_info.dlna_flags;
-            this.dlna_operation = didl_resource.protocol_info.dlna_operation;
+    public DIDLLiteResource serialize
+                               (DIDLLiteResource didl_resource,
+                                HashTable<string, string> ? replacements) {
+        // Note: For a DIDLLiteResource, a values -1/null also signal "not set"
+        if (replacements == null) {
+            didl_resource.uri = this.uri;
+        } else {
+            didl_resource.uri = MediaObject.apply_replacements (replacements,
+                                                                this.uri);
         }
-    }
-
-    public DIDLLiteResource serialize (DIDLLiteResource didl_resource) {
-        // Note: For a DIDLLiteResource, a value of -1/null also signals "not set"
-        didl_resource.uri = this.uri;
-        didl_resource.import_uri = this.import_uri;
         didl_resource.size64 = this.size;
         didl_resource.cleartext_size = this.cleartext_size;
         didl_resource.duration = this.duration;
@@ -191,12 +187,18 @@ public class Rygel.MediaResource : GLib.Object {
         this.play_speeds = copy_speeds (pi.play_speeds);
     }
 
-    public ProtocolInfo get_protocol_info () {
+    public ProtocolInfo get_protocol_info
+                            (HashTable<string, string> ? replacements = null) {
         var new_pi = new ProtocolInfo ();
 
         new_pi.protocol = this.protocol;
         new_pi.network = this.network;
-        new_pi.mime_type = this.mime_type;
+        if (replacements == null) {
+            new_pi.mime_type = this.mime_type;
+        } else {
+            new_pi.mime_type = MediaObject.apply_replacements (replacements,
+                                                               this.mime_type);
+        }
         new_pi.dlna_profile = this.dlna_profile;
         new_pi.dlna_conversion = this.dlna_conversion;
         new_pi.dlna_operation = this.dlna_operation;
@@ -289,8 +291,8 @@ public class Rygel.MediaResource : GLib.Object {
     }
 
     public string to_string () {
-        var strbuf = new StringBuilder ();
-        strbuf.append (name).append_unichar ('(');
+        var strbuf = new StringBuilder (name);
+        strbuf.append_unichar ('(');
         if (this.size >= 0) {
             strbuf.append ("size ").append (this.size.to_string ())
                   .append_unichar (',');
@@ -343,12 +345,60 @@ public class Rygel.MediaResource : GLib.Object {
         strbuf.append ("dlna_profile ")
               .append (this.dlna_profile == null ? "null" : this.dlna_profile)
               .append_unichar (',');
-        strbuf.append_printf ("dlna_flags %.8X,", this.dlna_flags);
+        strbuf.append_printf ("dlna_flags %.8X [", this.dlna_flags);
+        if (is_dlna_protocol_flag_set (DLNAFlags.SENDER_PACED)) {
+            strbuf.append ("sp-flag ");
+        }
+        if (is_dlna_protocol_flag_set (DLNAFlags.TIME_BASED_SEEK)) {
+            strbuf.append ("lop-time ");
+        }
+        if (is_dlna_protocol_flag_set (DLNAFlags.BYTE_BASED_SEEK)) {
+            strbuf.append ("lop-byte ");
+        }
+        if (is_dlna_protocol_flag_set (DLNAFlags.S0_INCREASE)) {
+            strbuf.append ("s0-increase ");
+        }
+        if (is_dlna_protocol_flag_set (DLNAFlags.SN_INCREASE)) {
+            strbuf.append ("sn-increase ");
+        }
+        if (is_dlna_protocol_flag_set (DLNAFlags.STREAMING_TRANSFER_MODE)) {
+            strbuf.append ("streaming ");
+        }
+        if (is_dlna_protocol_flag_set (DLNAFlags.INTERACTIVE_TRANSFER_MODE)) {
+            strbuf.append ("interactive ");
+        }
+        if (is_dlna_protocol_flag_set (DLNAFlags.BACKGROUND_TRANSFER_MODE)) {
+            strbuf.append ("background ");
+        }
+        if (is_dlna_protocol_flag_set (DLNAFlags.CONNECTION_STALL)) {
+            strbuf.append ("stall ");
+        }
+        if (is_dlna_protocol_flag_set (DLNAFlags.DLNA_V15)) {
+            strbuf.append ("v1.5 ");
+        }
+        if (is_dlna_protocol_flag_set (DLNAFlags.LINK_PROTECTED_CONTENT)) {
+            strbuf.append ("link-protected ");
+        }
+        if (is_dlna_protocol_flag_set (DLNAFlags.CLEARTEXT_BYTESEEK_FULL)) {
+            strbuf.append ("cleartext-full ");
+        }
+        if (is_dlna_protocol_flag_set (DLNAFlags.LOP_CLEARTEXT_BYTESEEK)) {
+            strbuf.append ("cleartext-lop ");
+        }
+        strbuf.overwrite (strbuf.len-1,"],"); // Replace space
+
         if (this.dlna_conversion != DLNAConversion.NONE) {
             strbuf.append_printf ("dlna_conversion %1d,", this.dlna_conversion);
         }
         if (this.dlna_operation != DLNAOperation.NONE) {
-            strbuf.append_printf ("dlna_operation %.2X,", this.dlna_operation);
+            strbuf.append_printf ("dlna_operation %.2X [", this.dlna_operation);
+            if (is_dlna_operation_mode_set (DLNAOperation.RANGE)) {
+                strbuf.append ("byte-seek ");
+            }
+            if (is_dlna_operation_mode_set (DLNAOperation.TIMESEEK)) {
+                strbuf.append ("time-seek ");
+            }
+            strbuf.overwrite (strbuf.len-1,"],"); // Replace space
         }
         if (this.play_speeds != null) {
             strbuf.append ("play_speeds [");
