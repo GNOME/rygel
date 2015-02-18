@@ -12,6 +12,8 @@ check_PROGRAMS = rygel-http-item-uri-test \
 		 rygel-regression \
 		 rygel-media-engine-test
 
+check_PROGRAMS =
+
 TESTS = $(check_PROGRAMS)
 
 EXTRA_DIST = $(srcdir)/data/test-data.dat
