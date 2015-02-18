@@ -1,3 +1,22 @@
+0.25.2.1
+========
+
+- Fix dist tarball
+- Include new translations
+
+Bugs fixed in this release:
+
+All contributors to this release:
+ - Yuri Myasoedov <ymyasoedov@yandex.ru>
+ - Jens Georg <mail@jensge.org>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+
+Added/updated translations
+ - es, courtesy of Daniel Mustieles
+ - ru, courtesy of Yuri Myasoedov
+ - sk, courtesy of Dušan Kazik
+
 0.25.2
 ======
 
