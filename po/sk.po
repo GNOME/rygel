@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-09 11:40+0000\n"
-"PO-Revision-Date: 2015-02-09 13:16+0100\n"
+"POT-Creation-Date: 2015-02-18 11:43+0000\n"
+"PO-Revision-Date: 2015-02-18 16:36+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 1.7.3\n"
+"X-Generator: Poedit 1.7.4\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -445,31 +445,22 @@ msgstr "Takýto prenos súboru neexistuje"
 msgid "No D-Bus thumbnailer service available"
 msgstr "Na zbernici D-Bus nie je dostupná žiadna služba na tvorbu miniatúr"
 
-#. Range header was present but invalid
-#: ../src/librygel-server/rygel-http-byte-seek.vala:49
-#: ../src/librygel-server/rygel-http-byte-seek.vala:54
-#: ../src/librygel-server/rygel-http-time-seek.vala:49
-#: ../src/librygel-server/rygel-http-time-seek.vala:61
-#: ../src/librygel-server/rygel-http-time-seek.vala:68
-#: ../src/librygel-server/rygel-http-time-seek.vala:83
-#, c-format
-msgid "Invalid Range '%s'"
-msgstr "Neplatný rozsah „%s“"
+#: ../src/librygel-server/rygel-http-get.vala:52
+msgid "Invalid Request (only GET and HEAD supported)"
+msgstr "Neplatná požiadavka (podporovaná je iba požiadavka GET a HEAD)"
 
-#: ../src/librygel-server/rygel-http-get.vala:59
-msgid "Invalid Request"
-msgstr "Neplatná požiadavka"
+#: ../src/librygel-server/rygel-http-get.vala:60
+msgid " must be 1"
+msgstr " musí byť 1"
 
-#: ../src/librygel-server/rygel-http-identity-handler.vala:94
-#: ../src/librygel-server/rygel-http-item-uri.vala:206
-#: ../src/librygel-server/rygel-http-transcode-handler.vala:58
-msgid "Not found"
-msgstr "Nenájdený"
-
-#: ../src/librygel-server/rygel-http-item-uri.vala:162
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Neplatný identifikátor URI „%s“"
+
+#: ../src/librygel-server/rygel-http-item-uri.vala:192
+msgid "Not found"
+msgstr "Nenájdený"
 
 #: ../src/librygel-server/rygel-http-post.vala:62
 #: ../src/librygel-server/rygel-import-resource.vala:188
@@ -493,21 +484,10 @@ msgstr "Zlyhal presun súboru začínajúceho bodkou %s: %s"
 msgid "Requested item '%s' not found"
 msgstr "Požadovaná položka „%s“ sa nenašla"
 
-#: ../src/librygel-server/rygel-http-resource-handler.vala:83
+#: ../src/librygel-server/rygel-http-resource-handler.vala:86
 #, c-format
 msgid "Couldn't create data source for %s"
 msgstr "Nepodarilo sa vytvoriť dátový zdroj pre %s"
-
-#: ../src/librygel-server/rygel-http-seek.vala:95
-#, c-format
-msgid "Out Of Range Start '%ld'"
-msgstr "Začiatok „%ld“ je mimo rozsah"
-
-# * The length of the media file as a number of bytes (classic) or as microseconds
-#: ../src/librygel-server/rygel-http-seek.vala:99
-#, c-format
-msgid "Out Of Range Stop '%ld'"
-msgstr "Koniec „%ld“ je mimo rozsah"
 
 #: ../src/librygel-server/rygel-import-resource.vala:124
 #, c-format
@@ -638,24 +618,28 @@ msgstr "Zlyhalo pridanie obalu albumu pre %s: %s"
 msgid "Failed to find media art for %s: %s"
 msgstr "Zlyhalo nájdenie obalu média pre %s: %s"
 
-#: ../src/librygel-server/rygel-media-container.vala:64
+#: ../src/librygel-server/rygel-media-container.vala:66
 msgid "Seeking not supported"
 msgstr "Presúvanie nie je podporované"
 
-#: ../src/librygel-server/rygel-media-container.vala:111
+#: ../src/librygel-server/rygel-media-container.vala:71
+msgid "Speed not supported"
+msgstr "Rýchlosť nie je podporovaná"
+
+#: ../src/librygel-server/rygel-media-container.vala:122
 msgid "Failed to generate playlist"
 msgstr "Zlyhalo generovanie zoznamu skladieb"
 
-#: ../src/librygel-server/rygel-media-container.vala:457
+#: ../src/librygel-server/rygel-media-container.vala:468
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
 msgstr "Neznámy zdroj kontajneru MediaContainer: %s"
 
-#: ../src/librygel-server/rygel-media-engine.vala:69
+#: ../src/librygel-server/rygel-media-engine.vala:62
 msgid "No media engine found."
 msgstr "Nenašiel sa žiadny nástroj pre multimédiá (media-engine)."
 
-#: ../src/librygel-server/rygel-media-engine.vala:80
+#: ../src/librygel-server/rygel-media-engine.vala:73
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init nebol zavolaný. Nedá sa pokračovať."
 
@@ -664,13 +648,13 @@ msgstr "MediaEngine.init nebol zavolaný. Nedá sa pokračovať."
 msgid "Could not determine protocol for %s"
 msgstr "Nepodarilo sa určiť protokol pre %s"
 
-#: ../src/librygel-server/rygel-media-object.vala:487
+#: ../src/librygel-server/rygel-media-object.vala:497
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Zlý identifikátor URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-object.vala:499
+#: ../src/librygel-server/rygel-media-object.vala:509
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr ""
@@ -825,57 +809,68 @@ msgstr "Nie je dostupná žiadna miniatúra"
 msgid "No D-Bus thumbnailer available"
 msgstr "Na zbernici D-Bus nie je dostupný žiadny nástroj na tvorbu miniatúr"
 
-#: ../src/librygel-server/rygel-transcode-manager.vala:79
-#, c-format
-msgid "No transcoder available for target format '%s'"
-msgstr "Nie je dostupný žiadny prevodník kódu pre cieľový formát „%s“"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:39
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:44
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr "Nepodarilo sa vytvoriť prvok GstElement pre identifikátor URI %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:95
+# PK: co je toto? nemoze to byt Zmena rychlosti?
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:71
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:79
+msgid "Playspeed not supported"
+msgstr "Rýchlosť prehrávania nie je podporovaná"
+
+#. Unknown/unsupported seek type
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:94
+#| msgid "Seek mode not supported"
+msgid "HTTPSeekRequest type unsupported"
+msgstr "Typ požiadavky HTTPSeekRequest nie je podporovaný"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:136
 msgid "Failed to create pipeline"
 msgstr "Zlyhalo vytvorenie zreťazenia"
 
 #. static pads? easy!
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:106
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:127
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:147
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:168
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Zlyhalo spojenie %s s %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:141
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:182
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Zlyhalo spojenie vložky %s s %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:196
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:237
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Chyba zo zreťazenia %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:203
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:244
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Upozornenie zo zreťazenia %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:256
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:288
+msgid "Unsupported seek type"
+msgstr "Nepodporovaný typ presúvania"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:303
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Zlyhalo presunutie na ofsety %lld:%lld"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:260
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:306
 msgid "Failed to seek"
 msgstr "Zlyhalo presunutie"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:124
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:212
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Zlyhalo vytvorenie dátového zdroja sady GStreamer pre %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:88
+#: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
 msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation might "
 "be missing a plug-in"
@@ -888,9 +883,9 @@ msgstr ""
 msgid "Required element %s missing"
 msgstr "Požadovaný prvok %s chýba"
 
-#: ../src/media-engines/simple/rygel-simple-data-source.vala:56
-msgid "Time-based seek not supported"
-msgstr "Presúvanie v čase nie je podporované"
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:61
+msgid "Only byte-based seek supported"
+msgstr "Je podporované iba presúvanie založené na bajtoch (byte-based)"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -1328,3 +1323,19 @@ msgstr "Zlyhalo spustenie služby Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Zlyhalo zastavenie služby Rygel: %s"
+
+#~ msgid "Invalid Range '%s'"
+#~ msgstr "Neplatný rozsah „%s“"
+
+#~ msgid "Invalid Request"
+#~ msgstr "Neplatná požiadavka"
+
+#~ msgid "Out Of Range Start '%ld'"
+#~ msgstr "Začiatok „%ld“ je mimo rozsah"
+
+# * The length of the media file as a number of bytes (classic) or as microseconds
+#~ msgid "Out Of Range Stop '%ld'"
+#~ msgstr "Koniec „%ld“ je mimo rozsah"
+
+#~ msgid "No transcoder available for target format '%s'"
+#~ msgstr "Nie je dostupný žiadny prevodník kódu pre cieľový formát „%s“"
