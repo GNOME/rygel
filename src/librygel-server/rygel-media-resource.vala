@@ -95,7 +95,7 @@ public class Rygel.MediaResource : GLib.Object {
         this.mime_type = that.mime_type;
         this.dlna_profile = that.dlna_profile;
         this.network = that.network;
-        this.play_speeds = copy_speeds (that.play_speeds);
+        this.play_speeds = that.play_speeds;
         this.dlna_conversion = that.dlna_conversion;
         this.dlna_flags = that.dlna_flags;
         this.dlna_operation = that.dlna_operation;
@@ -123,7 +123,7 @@ public class Rygel.MediaResource : GLib.Object {
             this.mime_type = didl_resource.protocol_info.mime_type;
             this.dlna_profile = didl_resource.protocol_info.dlna_profile;
             this.network = didl_resource.protocol_info.network;
-            this.play_speeds = copy_speeds (didl_resource.protocol_info.play_speeds);
+            this.play_speeds = didl_resource.protocol_info.play_speeds;
             this.dlna_conversion = didl_resource.protocol_info.dlna_conversion;
             this.dlna_flags = didl_resource.protocol_info.dlna_flags;
             this.dlna_operation = didl_resource.protocol_info.dlna_operation;
@@ -132,19 +132,6 @@ public class Rygel.MediaResource : GLib.Object {
 
     public MediaResource dup () {
         return new MediaResource.from_resource (this.get_name (), this);
-    }
-
-    public static string []? copy_speeds (string? [] src) {
-        if (src == null) {
-            return null;
-        }
-        var new_speeds = new string[src.length];
-        int speed_index = 0;
-        foreach (var speed in src) {
-            new_speeds[speed_index++] = speed;
-        }
-
-        return new_speeds;
     }
 
     public string get_name () {
@@ -184,7 +171,7 @@ public class Rygel.MediaResource : GLib.Object {
         this.dlna_conversion = pi.dlna_conversion;
         this.dlna_operation = pi.dlna_operation;
         this.dlna_flags = pi.dlna_flags;
-        this.play_speeds = copy_speeds (pi.play_speeds);
+        this.play_speeds = pi.play_speeds;
     }
 
     public ProtocolInfo get_protocol_info
@@ -205,7 +192,7 @@ public class Rygel.MediaResource : GLib.Object {
         new_pi.dlna_flags = this.dlna_flags;
         // ProtocolInfo doesn't like having play_speeds set to null
         if (this.play_speeds != null) {
-            new_pi.play_speeds = copy_speeds (this.play_speeds);
+            new_pi.play_speeds = this.play_speeds;
         }
 
         return new_pi;
