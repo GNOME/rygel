@@ -793,6 +793,25 @@ internal class Rygel.AVTransport : Service {
 
     bool head_faked;
 
+    // HACK ALERT: This work around vala's feature of capturing 'this' pointer
+    // for all lambdas introduced in a class instance, even if 'this' is never
+    // used. Captured 'this' extends lifetime of an AVTransport instance beyond
+    // time expected by GUPnP. Due to GUPnP not using weak pointers at some
+    // places (e.g. xmlNode property of GUPnPServiceInfo), a crash happens when
+    // AVTransport is freed.
+    private static void setup_check_resource_callback (AVTransport instance, Soup.Message message) {
+        var weakme = WeakRef (instance);
+        var weakmsg = WeakRef (message);
+        message.got_headers.connect( () => {
+                Rygel.AVTransport? me = (Rygel.AVTransport?)weakme.get();
+                Soup.Message? msg = (Soup.Message?)weakmsg.get();
+                if (me == null || msg == null)
+                    return;
+                me.head_faked = true;
+                me.session.cancel_message (msg, msg.status_code);
+            });
+    }
+
     private void check_resource (Soup.Message msg,
                                  string       _uri,
                                  string       _metadata,
@@ -810,10 +829,7 @@ internal class Rygel.AVTransport : Service {
 
             // Fake HEAD request by cancelling the message after the headers
             // were received, then restart the message
-            msg.got_headers.connect ((msg) => {
-                this.head_faked = true;
-                this.session.cancel_message (msg, msg.status_code);
-            });
+            setup_check_resource_callback (this, msg);
 
             this.session.queue_message (msg, null);
 
@@ -856,6 +872,27 @@ internal class Rygel.AVTransport : Service {
         }
     }
 
+    // HACK ALERT: This work around vala's feature of capturing 'this' pointer
+    // for all lambdas introduced in a class instance, even if 'this' is never
+    // used. Captured 'this' extends lifetime of an AVTransport instance beyond
+    // time expected by GUPnP. Due to GUPnP not using weak pointers at some
+    // places (e.g. xmlNode property of GUPnPServiceInfo), a crash happens when
+    // AVTransport is freed.
+    private static void setup_handle_new_transport_uri_callback(AVTransport instance,
+    Message message, string uri, string metadata, GUPnP.ServiceAction action) {
+        var weakme = WeakRef(instance);
+        var weakmsg = WeakRef(message);
+        //var weakact = WeakRef(action);
+        message.finished.connect( () => {
+            Rygel.AVTransport? me = (Rygel.AVTransport?)weakme.get();
+            Soup.Message? msg = (Soup.Message?)weakmsg.get();
+            //GUPnP.ServiceAction? act = (GUPnP.ServiceAction?)weakact.get();
+            if (me == null || msg == null)
+                return;
+            me.check_resource (msg, uri, metadata, action);
+        });
+    }
+
     private void handle_new_transport_uri (ServiceAction action,
                                            string        uri,
                                            string        metadata) {
@@ -865,9 +902,8 @@ internal class Rygel.AVTransport : Service {
                                             "1");
             message.request_headers.append ("Connection", "close");
             this.head_faked = false;
-            message.finished.connect ((msg) => {
-                this.check_resource (msg, uri, metadata, action);
-            });
+            setup_handle_new_transport_uri_callback(this, message, uri,
+            metadata, action);
 
             this.session.queue_message (message, null);
         } else {
