@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-15 11:39+0000\n"
-"PO-Revision-Date: 2015-02-15 14:02+0100\n"
+"POT-Creation-Date: 2015-02-22 11:41+0000\n"
+"PO-Revision-Date: 2015-02-22 22:28+0100\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -421,31 +421,22 @@ msgstr "Nincs ilyen fájlátvitel"
 msgid "No D-Bus thumbnailer service available"
 msgstr "Nem érhető el D-Bus bélyegképkészítő szolgáltatás"
 
-#. Range header was present but invalid
-#: ../src/librygel-server/rygel-http-byte-seek.vala:49
-#: ../src/librygel-server/rygel-http-byte-seek.vala:54
-#: ../src/librygel-server/rygel-http-time-seek.vala:49
-#: ../src/librygel-server/rygel-http-time-seek.vala:61
-#: ../src/librygel-server/rygel-http-time-seek.vala:68
-#: ../src/librygel-server/rygel-http-time-seek.vala:83
-#, c-format
-msgid "Invalid Range '%s'"
-msgstr "Érvénytelen tartomány: „%s”"
+#: ../src/librygel-server/rygel-http-get.vala:52
+msgid "Invalid Request (only GET and HEAD supported)"
+msgstr "Érvénytelen kérés (csak GET és HEAD támogatott)"
 
-#: ../src/librygel-server/rygel-http-get.vala:59
-msgid "Invalid Request"
-msgstr "Érvénytelen kérés"
+#: ../src/librygel-server/rygel-http-get.vala:60
+msgid " must be 1"
+msgstr " 1-nek kell lennie"
 
-#: ../src/librygel-server/rygel-http-identity-handler.vala:94
-#: ../src/librygel-server/rygel-http-item-uri.vala:206
-#: ../src/librygel-server/rygel-http-transcode-handler.vala:58
-msgid "Not found"
-msgstr "Nem található"
-
-#: ../src/librygel-server/rygel-http-item-uri.vala:162
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Érvénytelen URI: „%s”"
+
+#: ../src/librygel-server/rygel-http-item-uri.vala:192
+msgid "Not found"
+msgstr "Nem található"
 
 #: ../src/librygel-server/rygel-http-post.vala:62
 #: ../src/librygel-server/rygel-import-resource.vala:188
@@ -469,21 +460,10 @@ msgstr "A rejtett fájl (%s) áthelyezése meghiúsult: %s"
 msgid "Requested item '%s' not found"
 msgstr "A kért „%s” elem nem található"
 
-#: ../src/librygel-server/rygel-http-resource-handler.vala:83
+#: ../src/librygel-server/rygel-http-resource-handler.vala:86
 #, c-format
-#| msgid "Failed to create GStreamer data source for %s: %s"
 msgid "Couldn't create data source for %s"
 msgstr "Az adatforrás létrehozása nem sikerült ehhez: %s"
-
-#: ../src/librygel-server/rygel-http-seek.vala:95
-#, c-format
-msgid "Out Of Range Start '%ld'"
-msgstr "Tartományon kívüli kezdés: „%ld”"
-
-#: ../src/librygel-server/rygel-http-seek.vala:99
-#, c-format
-msgid "Out Of Range Stop '%ld'"
-msgstr "Tartományon kívüli befejezés: „%ld”"
 
 #: ../src/librygel-server/rygel-import-resource.vala:124
 #, c-format
@@ -613,40 +593,44 @@ msgstr "A(z) %s lemezborítójának hozzáadása meghiúsult: %s"
 msgid "Failed to find media art for %s: %s"
 msgstr "A(z) „%s” médiaborítójának keresése meghiúsult: %s"
 
-#: ../src/librygel-server/rygel-media-container.vala:64
+#: ../src/librygel-server/rygel-media-container.vala:66
 msgid "Seeking not supported"
-msgstr "A pozicionálás nem támogatott"
+msgstr "A tekerés nem támogatott"
 
-#: ../src/librygel-server/rygel-media-container.vala:111
+#: ../src/librygel-server/rygel-media-container.vala:71
+#| msgid "Seek mode not supported"
+msgid "Speed not supported"
+msgstr "A sebesség nem támogatott"
+
+#: ../src/librygel-server/rygel-media-container.vala:122
 msgid "Failed to generate playlist"
 msgstr "Nem sikerült lejátszólistát létrehozni"
 
-#: ../src/librygel-server/rygel-media-container.vala:457
+#: ../src/librygel-server/rygel-media-container.vala:468
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
 msgstr "Ismeretlen MediaContainer erőforrás: %s"
 
-#: ../src/librygel-server/rygel-media-engine.vala:69
+#: ../src/librygel-server/rygel-media-engine.vala:62
 msgid "No media engine found."
 msgstr "Nem található médiamotor."
 
-#: ../src/librygel-server/rygel-media-engine.vala:80
+#: ../src/librygel-server/rygel-media-engine.vala:73
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "A MediaEngine.init nem lett meghívva. Nem lehet folytatni."
 
 #: ../src/librygel-server/rygel-media-object.vala:282
 #, c-format
-#| msgid "Could not create GstElement for URI %s"
 msgid "Could not determine protocol for %s"
 msgstr "Nem sikerült meghatározni a protokollt ehhez: %s"
 
-#: ../src/librygel-server/rygel-media-object.vala:487
+#: ../src/librygel-server/rygel-media-object.vala:497
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Hibás URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-object.vala:499
+#: ../src/librygel-server/rygel-media-object.vala:509
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr ""
@@ -801,57 +785,69 @@ msgstr "Nem érhető el bélyegkép"
 msgid "No D-Bus thumbnailer available"
 msgstr "Nem érhető el D-Bus bélyegképkészítő"
 
-#: ../src/librygel-server/rygel-transcode-manager.vala:79
-#, c-format
-msgid "No transcoder available for target format '%s'"
-msgstr "Nem érhető el átkódoló a(z) „%s” célformátumhoz"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:39
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:44
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr "Nem hozható létre GstElement a(z) %s URI-hoz"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:95
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:71
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:79
+#| msgid "Play speed not supported"
+msgid "Playspeed not supported"
+msgstr "A lejátszási sebesség nem támogatott"
+
+#. Unknown/unsupported seek type
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:94
+#| msgid "Seek mode not supported"
+msgid "HTTPSeekRequest type unsupported"
+msgstr "A HTTPSeekRequest típus nem támogatott"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:136
 msgid "Failed to create pipeline"
 msgstr "Nem sikerült adatcsatornát létrehozni"
 
 #. static pads? easy!
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:106
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:127
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:147
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:168
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "A(z) %s és a(z) %s összekötése meghiúsult"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:141
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:182
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "A(z) %s kitöltő és a(z) %s összekötése meghiúsult"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:196
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:237
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Hiba a(z) %s adatcsatornától: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:203
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:244
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Figyelmeztetés a(z) %s adatcsatornától: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:256
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:288
+#| msgid "Unsupported type %s"
+msgid "Unsupported seek type"
+msgstr "Nem támogatott tekeréstípus"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:303
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Nem sikerült a tekerés a(z) %lld:%lld eltolásra"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:260
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:306
 msgid "Failed to seek"
 msgstr "Nem sikerült a tekerés"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:124
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:212
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "A GStreamer adatforrás létrehozása meghiúsult ehhez: %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:88
+#: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
 msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation "
 "might be missing a plug-in"
@@ -864,9 +860,10 @@ msgstr ""
 msgid "Required element %s missing"
 msgstr "A szükséges %s elem hiányzik"
 
-#: ../src/media-engines/simple/rygel-simple-data-source.vala:56
-msgid "Time-based seek not supported"
-msgstr "Az idő-alapú tekerés nem támogatott"
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:61
+#| msgid "Time-based seek not supported"
+msgid "Only byte-based seek supported"
+msgstr "Csak a bájt-alapú tekerés támogatott"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -1289,6 +1286,21 @@ msgstr "A Rygel szolgáltatás indítása meghiúsult: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "A Rygel szolgáltatás leállítása meghiúsult: %s"
+
+#~ msgid "Invalid Range '%s'"
+#~ msgstr "Érvénytelen tartomány: „%s”"
+
+#~ msgid "Invalid Request"
+#~ msgstr "Érvénytelen kérés"
+
+#~ msgid "Out Of Range Start '%ld'"
+#~ msgstr "Tartományon kívüli kezdés: „%ld”"
+
+#~ msgid "Out Of Range Stop '%ld'"
+#~ msgstr "Tartományon kívüli befejezés: „%ld”"
+
+#~ msgid "No transcoder available for target format '%s'"
+#~ msgstr "Nem érhető el átkódoló a(z) „%s” célformátumhoz"
 
 #~ msgid "Not Found"
 #~ msgstr "Nem található"
