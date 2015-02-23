@@ -572,8 +572,8 @@
          <name>PossiblePlaybackStorageMedia</name>
          <dataType>string</dataType>
          <allowedValueList>
-             <allowedValue>None</allowedValue>
-             <allowedValue>Network</allowedValue>
+             <allowedValue>NONE</allowedValue>
+             <allowedValue>NETWORK</allowedValue>
          </allowedValueList>
       </stateVariable>
 
