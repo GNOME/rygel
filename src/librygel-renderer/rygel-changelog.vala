@@ -26,7 +26,7 @@ using Gee;
 
 // Helper class for building LastChange messages
 internal class Rygel.ChangeLog : Object {
-    public unowned Service service { get; set; }
+    public WeakRef service;
 
     private string service_ns;
 
@@ -37,7 +37,7 @@ internal class Rygel.ChangeLog : Object {
     private uint timeout_id = 0;
 
     public ChangeLog (Service? service, string service_ns) {
-        this.service = service;
+        this.service = WeakRef(service);
         this.service_ns = service_ns;
         this.str = new StringBuilder ();
         this.hash = new HashMap<string, string> ();
@@ -50,8 +50,13 @@ internal class Rygel.ChangeLog : Object {
     }
 
     private bool timeout () {
+        // Check whether the AVTransport service has not been destroyed already
+        Service? service = (Service?)this.service.get();
+        if (service == null)
+            return false;
+
         // Emit notification
-        this.service.notify ("LastChange", typeof (string), this.finish ());
+        service.notify ("LastChange", typeof (string), this.finish ());
         debug ("LastChange sent");
 
         // Reset
@@ -64,7 +69,7 @@ internal class Rygel.ChangeLog : Object {
 
     private void ensure_timeout () {
         // Make sure we have a notification timeout
-        if (this.service != null && this.timeout_id == 0) {
+        if (this.service.get() != null && this.timeout_id == 0) {
             debug ("Setting up timeout for LastChange");
             this.timeout_id = Timeout.add (150, this.timeout);
         }
