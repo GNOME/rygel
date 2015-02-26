@@ -468,6 +468,13 @@ internal class Rygel.AVTransport : Service {
             return;
         }
 
+        if (this.controller.playback_state != "STOPPED"
+            && this.controller.playback_state != "PAUSED_PLAYBACK") {
+            action.return_error (701, _("Transition not available"));
+
+            return;
+        }
+
         // Speed change will take effect when playback state is changed
         this.player.playback_speed = speed;
         this.controller.playback_state = "PLAYING";
