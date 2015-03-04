@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-08 17:04+0000\n"
-"PO-Revision-Date: 2015-02-08 23:56+0100\n"
+"POT-Creation-Date: 2015-03-04 11:47+0000\n"
+"PO-Revision-Date: 2015-03-04 14:07+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -347,7 +347,7 @@ msgstr "Přechod není k dispozici"
 #: ../src/librygel-renderer/rygel-av-transport.vala:536
 #: ../src/librygel-renderer/rygel-av-transport.vala:566
 msgid "Seek mode not supported"
-msgstr "Režim posunu není podporován"
+msgstr "Režim přeskakování není podporován"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:517
 #: ../src/librygel-renderer/rygel-av-transport.vala:542
@@ -355,7 +355,7 @@ msgstr "Režim posunu není podporován"
 #: ../src/librygel-renderer/rygel-av-transport.vala:580
 #: ../src/librygel-renderer/rygel-av-transport.vala:592
 msgid "Illegal seek target"
-msgstr "Neplatný cíl posunu"
+msgstr "Neplatný cíl přeskočení"
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:641
 msgid "Play mode not supported"
@@ -424,31 +424,22 @@ msgstr "Žádný takový přenos souboru neexistuje"
 msgid "No D-Bus thumbnailer service available"
 msgstr "Žádná služba pro generování náhledů přes D-Bus není k dispozici"
 
-#. Range header was present but invalid
-#: ../src/librygel-server/rygel-http-byte-seek.vala:49
-#: ../src/librygel-server/rygel-http-byte-seek.vala:54
-#: ../src/librygel-server/rygel-http-time-seek.vala:49
-#: ../src/librygel-server/rygel-http-time-seek.vala:61
-#: ../src/librygel-server/rygel-http-time-seek.vala:68
-#: ../src/librygel-server/rygel-http-time-seek.vala:83
-#, c-format
-msgid "Invalid Range '%s'"
-msgstr "Neplatný rozsah „%s“"
+#: ../src/librygel-server/rygel-http-get.vala:52
+msgid "Invalid Request (only GET and HEAD supported)"
+msgstr "Neplatný požadavek (podporován je pouze GET a HEAD)"
 
-#: ../src/librygel-server/rygel-http-get.vala:59
-msgid "Invalid Request"
-msgstr "Neplatný požadavek"
+#: ../src/librygel-server/rygel-http-get.vala:60
+msgid " must be 1"
+msgstr " musí být 1"
 
-#: ../src/librygel-server/rygel-http-identity-handler.vala:94
-#: ../src/librygel-server/rygel-http-item-uri.vala:206
-#: ../src/librygel-server/rygel-http-transcode-handler.vala:58
-msgid "Not found"
-msgstr "Nenalezeno"
-
-#: ../src/librygel-server/rygel-http-item-uri.vala:162
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Neplatná adresa URI „%s“"
+
+#: ../src/librygel-server/rygel-http-item-uri.vala:192
+msgid "Not found"
+msgstr "Nenalezeno"
 
 #: ../src/librygel-server/rygel-http-post.vala:62
 #: ../src/librygel-server/rygel-import-resource.vala:188
@@ -472,21 +463,10 @@ msgstr "Selhal přesun souboru s tečkou na začátku %s: %s"
 msgid "Requested item '%s' not found"
 msgstr "Vyžadovaná položka „%s“ nenalezena"
 
-#: ../src/librygel-server/rygel-http-resource-handler.vala:83
+#: ../src/librygel-server/rygel-http-resource-handler.vala:86
 #, c-format
-#| msgid "Failed to create GStreamer data source for %s: %s"
 msgid "Couldn't create data source for %s"
 msgstr "Nelze vytvořit datový zdroj pro %s"
-
-#: ../src/librygel-server/rygel-http-seek.vala:95
-#, c-format
-msgid "Out Of Range Start '%ld'"
-msgstr "Mimo rozsah počátku „%ld“"
-
-#: ../src/librygel-server/rygel-http-seek.vala:99
-#, c-format
-msgid "Out Of Range Stop '%ld'"
-msgstr "Mimo rozsah konce „%ld“"
 
 #: ../src/librygel-server/rygel-import-resource.vala:124
 #, c-format
@@ -616,40 +596,43 @@ msgstr "Selhalo přidání přebalu alba pro %s: %s"
 msgid "Failed to find media art for %s: %s"
 msgstr "Selhalo vyhledání přebalu média pro %s: %s"
 
-#: ../src/librygel-server/rygel-media-container.vala:64
+#: ../src/librygel-server/rygel-media-container.vala:66
 msgid "Seeking not supported"
 msgstr "Přeskakování není podporováno"
 
-#: ../src/librygel-server/rygel-media-container.vala:111
+#: ../src/librygel-server/rygel-media-container.vala:71
+msgid "Speed not supported"
+msgstr "Rychlost není podporována"
+
+#: ../src/librygel-server/rygel-media-container.vala:122
 msgid "Failed to generate playlist"
 msgstr "Selhalo vygenerování seznamu k přehrání"
 
-#: ../src/librygel-server/rygel-media-container.vala:457
+#: ../src/librygel-server/rygel-media-container.vala:468
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
 msgstr "Neznámý prostředek MediaContainer: %s"
 
-#: ../src/librygel-server/rygel-media-engine.vala:69
+#: ../src/librygel-server/rygel-media-engine.vala:62
 msgid "No media engine found."
 msgstr "Nebyl nalezen žádný multimediální server."
 
-#: ../src/librygel-server/rygel-media-engine.vala:80
+#: ../src/librygel-server/rygel-media-engine.vala:73
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "Nebyla zavolána funkce MegiaEngine.init a proto nelze pokračovat."
 
 #: ../src/librygel-server/rygel-media-object.vala:282
 #, c-format
-#| msgid "Could not create GstElement for URI %s"
 msgid "Could not determine protocol for %s"
 msgstr "Nelze uržit protokol pro %s"
 
-#: ../src/librygel-server/rygel-media-object.vala:487
+#: ../src/librygel-server/rygel-media-object.vala:497
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Chybná adresa URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-object.vala:499
+#: ../src/librygel-server/rygel-media-object.vala:509
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr ""
@@ -804,57 +787,66 @@ msgstr "Žádný náhled není k dispozici"
 msgid "No D-Bus thumbnailer available"
 msgstr "Žádný generátor náhledů přes D-Bus není k dispozici"
 
-#: ../src/librygel-server/rygel-transcode-manager.vala:79
-#, c-format
-msgid "No transcoder available for target format '%s'"
-msgstr "Pro cílový formát „%s“ není k dispozici žádný převodník"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:39
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:44
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr "Nelze vytvořit GstElement pro adresu URI %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:95
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:71
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:79
+msgid "Playspeed not supported"
+msgstr "Rychlost přehrávání není podporována"
+
+#. Unknown/unsupported seek type
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:94
+msgid "HTTPSeekRequest type unsupported"
+msgstr "Typ HTTPSeekRequest není podporován"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:136
 msgid "Failed to create pipeline"
 msgstr "Selhalo vytvoření roury"
 
 #. static pads? easy!
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:106
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:127
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:147
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:168
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Selhalo navázání %s na %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:141
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:182
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Selhalo napojení propojky %s na %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:196
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:237
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Chyba od roury %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:203
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:244
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Varování od roury %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:256
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:288
+msgid "Unsupported seek type"
+msgstr "Nepodporovaný typ přeskočení"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:303
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
-msgstr "Selhal posun na pozici %lld:%lld"
+msgstr "Selhalo přeskočení na pozici %lld:%lld"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:260
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:306
 msgid "Failed to seek"
-msgstr "Selhal posun"
+msgstr "Selhalo přeskočení"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:124
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:212
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Selhalo vytvoření datového zdroje GStreamer pro %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:88
+#: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
 msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation "
 "might be missing a plug-in"
@@ -867,9 +859,9 @@ msgstr ""
 msgid "Required element %s missing"
 msgstr "Vyžadovaný prvek %s schází"
 
-#: ../src/media-engines/simple/rygel-simple-data-source.vala:56
-msgid "Time-based seek not supported"
-msgstr "Posun podle časového údaje není podporován"
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:61
+msgid "Only byte-based seek supported"
+msgstr "Podporováno je přeskakování pouze podle bajtů"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
