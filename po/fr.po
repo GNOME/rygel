@@ -5,7 +5,7 @@
 # Claude Paroz <claude@2xlibre.net>, 2010-2011.
 # Bruno Brouard <annoa.b@gmail.com>, 2010-2011.
 # Alexandre Franke <alexandre.franke@gmail.com>, 2011.
-# Alain Lojewski <allomervan@gmail.com>, 2013.
+# Alain Lojewski <allomervan@gmail.com>, 2013-2015.
 # naybnet <naybnet@gmail.com>, 2014.
 #
 msgid ""
@@ -13,9 +13,9 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-01 23:48+0000\n"
-"PO-Revision-Date: 2014-03-16 13:40+0100\n"
-"Last-Translator: naybnet <naybnet@gmail.com>\n"
+"POT-Creation-Date: 2015-03-05 11:43+0000\n"
+"PO-Revision-Date: 2015-03-05 13:40+0100\n"
+"Last-Translator: Alain Lojewski <allomervan@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -186,15 +186,15 @@ msgstr "Paramètre non valide"
 
 #: ../src/librygel-core/rygel-basic-management.vala:255
 msgid "Cannot run 'Ping' action: Host is empty"
-msgstr ""
+msgstr "Impossible d'exécuter le « ping » : l'hôte est vide"
 
 #: ../src/librygel-core/rygel-basic-management.vala:348
 msgid "Cannot run 'NSLookup' action: HostName is empty"
-msgstr ""
+msgstr "Impossible d'exécuter « NSLookup » : le nom d'hôte est vide"
 
 #: ../src/librygel-core/rygel-basic-management.vala:430
 msgid "Cannot run 'Traceroute' action: Host is empty"
-msgstr ""
+msgstr "Impossible d'exécuter le « Traceroute » : l'hôte est vide"
 
 #: ../src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
@@ -217,7 +217,7 @@ msgstr "Impossible d'obtenir l'adresse MAC pour %s : %s"
 
 #: ../src/librygel-core/rygel-energy-management-helper.c:103
 msgid "MAC and network type querying not implemented"
-msgstr ""
+msgstr "Requêtes de type MAC et réseau non implémentées"
 
 #: ../src/librygel-core/rygel-log-handler.vala:68
 #, c-format
@@ -596,16 +596,14 @@ msgid "Unknown"
 msgstr "Inconnu"
 
 #: ../src/librygel-server/rygel-media-art-store.vala:105
-#, fuzzy, c-format
-#| msgid "Failed to add item with ID %s: %s"
+#, c-format
 msgid "Failed to add album art for %s: %s"
-msgstr "Impossible d'ajouter l'élément ID %s : %s"
+msgstr "Impossible d'ajouter une couverture d'album pour %s : %s"
 
 #: ../src/librygel-server/rygel-media-art-store.vala:119
-#, fuzzy, c-format
-#| msgid "Failed to enumerate folder \"%s\": %s"
+#, c-format
 msgid "Failed to find media art for %s: %s"
-msgstr "Impossible d'énumérer le dossier « %s » : %s"
+msgstr "Impossible de trouver une couverture de média pour %s : %s"
 
 #: ../src/librygel-server/rygel-media-container.vala:66
 msgid "Seeking not supported"
@@ -622,7 +620,7 @@ msgstr "Impossible de générer la liste de lecture"
 #: ../src/librygel-server/rygel-media-container.vala:468
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
-msgstr ""
+msgstr "Source du MediaContainer inconnue : %s"
 
 #: ../src/librygel-server/rygel-media-engine.vala:62
 msgid "No media engine found."
@@ -633,10 +631,9 @@ msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init n'a pas été appelé. Impossible de continuer."
 
 #: ../src/librygel-server/rygel-media-object.vala:282
-#, fuzzy, c-format
-#| msgid "Could not create GstElement for URI %s"
+#, c-format
 msgid "Could not determine protocol for %s"
-msgstr "Impossible de créer un GstElement depuis l'URI %s"
+msgstr "Impossible de déterminer le protocole pour %s"
 
 #: ../src/librygel-server/rygel-media-object.vala:497
 #, c-format
@@ -811,10 +808,8 @@ msgstr "Vitesse de lecture non prise en charge"
 
 #. Unknown/unsupported seek type
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:94
-#, fuzzy
-#| msgid "Seek mode not supported"
 msgid "HTTPSeekRequest type unsupported"
-msgstr "Mode de recherche non pris en charge"
+msgstr "Type HTTPSeekRequest non pris en charge"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:136
 msgid "Failed to create pipeline"
@@ -874,10 +869,8 @@ msgid "Required element %s missing"
 msgstr "Élément requis %s manquant"
 
 #: ../src/media-engines/simple/rygel-simple-data-source.vala:61
-#, fuzzy
-#| msgid "Time-based seek not supported"
 msgid "Only byte-based seek supported"
-msgstr "Recherche dans le temps non prise en charge"
+msgstr "Seule la recherche par octet est prise en charge"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
