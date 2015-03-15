@@ -1,8 +1,8 @@
 # Danish translation for rygel.
-# Copyright (C) 2013-2014 rygel's developers
+# Copyright (C) 2013-2015 rygel's developers
 # This file is distributed under the same license as the rygel package.
 # Joe Hansen (joedalton2@yahoo.dk), 2011, 2012, 2013.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2010, 2013-2014.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2010, 2013-2015.
 #
 # item -> element
 #
@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-20 17:23+0200\n"
-"PO-Revision-Date: 2014-09-20 13:49+0200\n"
+"POT-Creation-Date: 2015-03-15 14:50+0100\n"
+"PO-Revision-Date: 2015-03-14 03:27+0100\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -20,10 +20,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel.desktop.in.in.h:1
+msgid "Rygel"
+msgstr "Rygel"
+
+#: ../data/rygel.desktop.in.in.h:2
+msgid "UPnP/DLNA Services"
+msgstr "UPnP/DLNA-tjenester"
+
+#: ../data/rygel.desktop.in.in.h:3
+msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
+msgstr "medieserver;medieoptegner;medierendering;del;lyd;video;billeder;"
+
 #: ../data/rygel-preferences.desktop.in.in.h:1
+#: ../data/rygel-preferences.ui.h:1
 msgid "Rygel Preferences"
 msgstr "Indstillinger for Rygel"
+
+#: ../data/rygel-preferences.desktop.in.in.h:2
+msgid "UPnP/DLNA Preferences"
+msgstr "UPnP/DLNA-indstillinger"
 
 #: ../data/rygel-preferences.ui.h:2
 msgid "column"
@@ -73,21 +89,776 @@ msgstr "Netværk:"
 msgid "Select folders"
 msgstr "Vælg mapper"
 
-#: ../data/rygel-preferences.desktop.in.in.h:2
-msgid "UPnP/DLNA Preferences"
-msgstr "UPnP/DLNA-indstillinger"
+#: ../src/librygel-core/rygel-base-configuration.vala:30
+#: ../src/librygel-core/rygel-base-configuration.vala:34
+#: ../src/librygel-core/rygel-base-configuration.vala:39
+#: ../src/librygel-core/rygel-base-configuration.vala:43
+#: ../src/librygel-core/rygel-base-configuration.vala:47
+#: ../src/librygel-core/rygel-base-configuration.vala:51
+#: ../src/librygel-core/rygel-base-configuration.vala:55
+#: ../src/librygel-core/rygel-base-configuration.vala:59
+#: ../src/librygel-core/rygel-base-configuration.vala:63
+#: ../src/librygel-core/rygel-base-configuration.vala:67
+#: ../src/librygel-core/rygel-base-configuration.vala:71
+#: ../src/librygel-core/rygel-base-configuration.vala:75
+#: ../src/librygel-core/rygel-base-configuration.vala:79
+#: ../src/librygel-core/rygel-base-configuration.vala:83
+#: ../src/librygel-core/rygel-base-configuration.vala:87
+#: ../src/librygel-core/rygel-base-configuration.vala:91
+#: ../src/librygel-core/rygel-base-configuration.vala:97
+#: ../src/librygel-core/rygel-base-configuration.vala:103
+#: ../src/librygel-core/rygel-base-configuration.vala:111
+#: ../src/librygel-core/rygel-base-configuration.vala:117
+#: ../src/librygel-core/rygel-base-configuration.vala:123
+msgid "Not implemented"
+msgstr "Ikke implementeret"
 
-#: ../data/rygel.desktop.in.in.h:1
-msgid "Rygel"
-msgstr "Rygel"
+#: ../src/librygel-core/rygel-basic-management-test.vala:197
+#, c-format
+msgid "Failed to read standard output from %s: %s"
+msgstr "Kunne ikke læse standard-ud fra %s: %s"
 
-#: ../data/rygel.desktop.in.in.h:2
-msgid "UPnP/DLNA Services"
-msgstr "UPnP/DLNA-tjenester"
+#: ../src/librygel-core/rygel-basic-management-test.vala:225
+#, c-format
+msgid "Failed to read error output from %s: %s"
+msgstr "Kunne ikke læse standard-fejl fra %s: %s"
 
-#: ../data/rygel.desktop.in.in.h:3
-msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
-msgstr "medieserver;medieoptegner;medierendering;del;lyd;video;billeder;"
+#. / No test with the specified TestID was found
+#: ../src/librygel-core/rygel-basic-management.vala:159
+msgid "No Such Test"
+msgstr "Ingen sådan test"
+
+#. / TestID is valid but refers to the wrong test type
+#: ../src/librygel-core/rygel-basic-management.vala:167
+msgid "Wrong Test Type"
+msgstr "Forkert testtype"
+
+#. / TestID is valid but the test Results are not available
+#: ../src/librygel-core/rygel-basic-management.vala:175
+#, c-format
+msgid "Invalid Test State '%s'"
+msgstr "Ugyldig testtilstand \"%s\""
+
+#. / TestID is valid but the test can't be canceled
+#: ../src/librygel-core/rygel-basic-management.vala:181
+#, c-format
+msgid "State '%s' Precludes Cancel"
+msgstr "Tilstanden \"%s\" udelukker annullering"
+
+#: ../src/librygel-core/rygel-basic-management.vala:214
+#: ../src/librygel-core/rygel-basic-management.vala:229
+#: ../src/librygel-core/rygel-basic-management.vala:256
+#: ../src/librygel-core/rygel-basic-management.vala:272
+#: ../src/librygel-core/rygel-basic-management.vala:324
+#: ../src/librygel-core/rygel-basic-management.vala:349
+#: ../src/librygel-core/rygel-basic-management.vala:365
+#: ../src/librygel-core/rygel-basic-management.vala:404
+#: ../src/librygel-core/rygel-basic-management.vala:431
+#: ../src/librygel-core/rygel-basic-management.vala:448
+#: ../src/librygel-core/rygel-basic-management.vala:487
+#: ../src/librygel-core/rygel-basic-management.vala:502
+#: ../src/librygel-core/rygel-basic-management.vala:517
+#: ../src/librygel-core/rygel-basic-management.vala:541
+#: ../src/librygel-core/rygel-connection-manager.vala:95
+#: ../src/librygel-core/rygel-connection-manager.vala:109
+#: ../src/librygel-core/rygel-connection-manager.vala:126
+#: ../src/librygel-renderer/rygel-av-transport.vala:187
+#: ../src/librygel-renderer/rygel-rendering-control.vala:131
+#: ../src/librygel-server/rygel-content-directory.vala:261
+#: ../src/librygel-server/rygel-content-directory.vala:289
+#: ../src/librygel-server/rygel-content-directory.vala:308
+#: ../src/librygel-server/rygel-content-directory.vala:343
+#: ../src/librygel-server/rygel-content-directory.vala:372
+#: ../src/librygel-server/rygel-content-directory.vala:397
+#: ../src/librygel-server/rygel-content-directory.vala:616
+#: ../src/librygel-server/rygel-content-directory.vala:767
+#: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr "Ugyldigt argument"
+
+#: ../src/librygel-core/rygel-basic-management.vala:255
+msgid "Cannot run 'Ping' action: Host is empty"
+msgstr "Kan ikke køre handlingen \"Ping\": Vært (Host) er tom"
+
+#: ../src/librygel-core/rygel-basic-management.vala:348
+msgid "Cannot run 'NSLookup' action: HostName is empty"
+msgstr "Kan ikke køre handlingen \"NSLookup\": Værtsnavn (HostName) er tomt"
+
+#: ../src/librygel-core/rygel-basic-management.vala:430
+msgid "Cannot run 'Traceroute' action: Host is empty"
+msgstr "Kan ikke køre handlingen \"Traceroute\": Vært (Host) er tom"
+
+#: ../src/librygel-core/rygel-connection-manager.vala:132
+msgid "Invalid connection reference"
+msgstr "Ugyldig forbindelsesreference"
+
+#: ../src/librygel-core/rygel-description-file.vala:474
+#, c-format
+msgid "Failed to write modified description to %s"
+msgstr "Kunne ikke skrive ændret beskrivelse til %s"
+
+#: ../src/librygel-core/rygel-energy-management-helper.c:54
+#, c-format
+msgid "Failed to get a socket: %s"
+msgstr "Kunne ikke hente en sokkel: %s"
+
+#: ../src/librygel-core/rygel-energy-management-helper.c:61
+#, c-format
+msgid "Failed to get MAC address for %s: %s"
+msgstr "Kunne ikke finde MAC-adressen for %s: %s"
+
+#: ../src/librygel-core/rygel-energy-management-helper.c:103
+msgid "MAC and network type querying not implemented"
+msgstr "MAC- og netværkstypeforespørgsel er ikke implementeret"
+
+#: ../src/librygel-core/rygel-log-handler.vala:68
+#, c-format
+msgid "Failed to get log level from configuration: %s"
+msgstr "Kunne ikke hente logniveauet fra konfigurationen: %s"
+
+#: ../src/librygel-core/rygel-meta-config.vala:89
+#: ../src/librygel-core/rygel-meta-config.vala:108
+#: ../src/librygel-core/rygel-meta-config.vala:128
+#: ../src/librygel-core/rygel-meta-config.vala:147
+#: ../src/librygel-core/rygel-meta-config.vala:166
+#: ../src/librygel-core/rygel-meta-config.vala:185
+#: ../src/librygel-core/rygel-meta-config.vala:204
+#: ../src/librygel-core/rygel-meta-config.vala:223
+#: ../src/librygel-core/rygel-meta-config.vala:242
+#: ../src/librygel-core/rygel-meta-config.vala:261
+#: ../src/librygel-core/rygel-meta-config.vala:280
+#: ../src/rygel/rygel-cmdline-config.vala:164
+#: ../src/rygel/rygel-cmdline-config.vala:172
+#: ../src/rygel/rygel-cmdline-config.vala:181
+#: ../src/rygel/rygel-cmdline-config.vala:189
+#: ../src/rygel/rygel-cmdline-config.vala:197
+#: ../src/rygel/rygel-cmdline-config.vala:205
+#: ../src/rygel/rygel-cmdline-config.vala:213
+#: ../src/rygel/rygel-cmdline-config.vala:221
+#: ../src/rygel/rygel-cmdline-config.vala:260
+#: ../src/rygel/rygel-cmdline-config.vala:279
+#: ../src/rygel/rygel-cmdline-config.vala:285
+#: ../src/rygel/rygel-cmdline-config.vala:292
+#: ../src/rygel/rygel-cmdline-config.vala:296
+#: ../src/rygel/rygel-cmdline-config.vala:300
+#: ../src/rygel/rygel-cmdline-config.vala:323
+#: ../src/rygel/rygel-cmdline-config.vala:349
+#: ../src/rygel/rygel-cmdline-config.vala:378
+#: ../src/rygel/rygel-cmdline-config.vala:404
+#: ../src/rygel/rygel-cmdline-config.vala:429
+#: ../src/rygel/rygel-environment-config.vala:105
+#: ../src/rygel/rygel-environment-config.vala:109
+#: ../src/rygel/rygel-environment-config.vala:113
+msgid "No value available"
+msgstr "Ingen tilgængelig værdi"
+
+#. translators: "enabled" is part of the config key and must not be translated
+#: ../src/librygel-core/rygel-meta-config.vala:344
+#, c-format
+msgid "No value set for '%s/enabled'"
+msgstr "Ingen værdi givet for \"%s/enabled\""
+
+#. translators: "title" is part of the config key and must not be translated
+#: ../src/librygel-core/rygel-meta-config.vala:363
+#, c-format
+msgid "No value set for '%s/title'"
+msgstr "Ingen værdi givet for \"%s/title\""
+
+#: ../src/librygel-core/rygel-meta-config.vala:383
+#: ../src/librygel-core/rygel-meta-config.vala:405
+#: ../src/librygel-core/rygel-meta-config.vala:431
+#: ../src/librygel-core/rygel-meta-config.vala:453
+#: ../src/librygel-core/rygel-meta-config.vala:477
+#, c-format
+msgid "No value available for '%s/%s'"
+msgstr "Ingen tilgængelig værdi for \"%s/%s\""
+
+#: ../src/librygel-core/rygel-plugin-information.vala:59
+msgid "[Plugin] group not found"
+msgstr "[Udvidelsesmodul]-gruppe ikke fundet"
+
+#: ../src/librygel-core/rygel-plugin-information.vala:77
+#, c-format
+msgid "Plugin module %s does not exist"
+msgstr "Udvidelsesmodulet %s findes ikke"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:81
+#, c-format
+msgid "New plugin '%s' available"
+msgstr "Nyt udvidelsesmodul \"%s\" er tilgængeligt"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:96
+#, c-format
+msgid "A module named %s is already loaded"
+msgstr "Et modul med navnet %s er allerede indlæst"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:105
+#, c-format
+msgid "Failed to load module from path '%s': %s"
+msgstr "Kunne ikke indlæse modul fra stien \"%s\": %s"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:115
+#, c-format
+msgid "Failed to find entry point function '%s' in '%s': %s"
+msgstr "Kunne ikke finde indgangspunktfunktion \"%s\" i \"%s\": %s"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:144
+#, c-format
+msgid "Error listing contents of folder '%s': %s"
+msgstr "Fejl ved opskrivning af indhold i mappen \"%s\": %s"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:188
+#, c-format
+msgid "Could not load plugin: %s"
+msgstr "Kunne ikke indlæse udvidelsesmodul: %s"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
+#, c-format
+msgid "Failed to query content type for '%s'"
+msgstr "Kunne ikke forespørge om indholdstypen for \"%s\""
+
+#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:364
+msgid ""
+"Your GStreamer installation seems to be missing the \"playbin\" element. The "
+"Rygel GStreamer renderer implementation cannot work without it"
+msgstr ""
+"Din GStreamer-installation synes at mangle elementet \"playbin\". Rygels "
+"GStreamer-optegningsimplementation kan ikke fungere uden dette"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:193
+#: ../src/librygel-renderer/rygel-rendering-control.vala:137
+msgid "Invalid InstanceID"
+msgstr "Ugyldig InstanceID"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:463
+msgid "Play speed not supported"
+msgstr "Afspilningshastighed understøttes ikke"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:481
+msgid "Transition not available"
+msgstr "Overgang ikke tilgængelig"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:511
+#: ../src/librygel-renderer/rygel-av-transport.vala:536
+#: ../src/librygel-renderer/rygel-av-transport.vala:566
+msgid "Seek mode not supported"
+msgstr "Søgetilstand understøttes ikke"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:517
+#: ../src/librygel-renderer/rygel-av-transport.vala:542
+#: ../src/librygel-renderer/rygel-av-transport.vala:555
+#: ../src/librygel-renderer/rygel-av-transport.vala:580
+#: ../src/librygel-renderer/rygel-av-transport.vala:592
+msgid "Illegal seek target"
+msgstr "Illegalt søgemål"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:641
+msgid "Play mode not supported"
+msgstr "Afspilningstilstand understøttes ikke"
+
+#. FIXME: Return a more sensible error here.
+#: ../src/librygel-renderer/rygel-av-transport.vala:717
+#: ../src/librygel-renderer/rygel-av-transport.vala:761
+#: ../src/librygel-renderer/rygel-av-transport.vala:770
+#: ../src/librygel-renderer/rygel-av-transport.vala:833
+msgid "Resource not found"
+msgstr "Ressource blev ikke fundet"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:759
+#, c-format
+msgid "Problem parsing playlist: %s"
+msgstr "Problem ved fortolkning af afspilningsliste: %s"
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: ../src/librygel-renderer/rygel-av-transport.vala:829
+#, c-format
+msgid "Failed to access resource at %s: %s"
+msgstr "Kunne ikke tilgå ressource på %s: %s"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:845
+msgid "Illegal MIME-type"
+msgstr "Illegal MIME-type"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:168
+msgid "Invalid Name"
+msgstr "Ugyldigt navn"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:182
+msgid "Invalid Channel"
+msgstr "Ugyldig kanal"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:218
+#: ../src/librygel-renderer/rygel-rendering-control.vala:260
+#: ../src/librygel-renderer/rygel-rendering-control.vala:269
+msgid "Action Failed"
+msgstr "Handling mislykkedes"
+
+#: ../src/librygel-server/rygel-browse.vala:63
+msgid "Invalid Arguments"
+msgstr "Ugyldige argumenter"
+
+#: ../src/librygel-server/rygel-browse.vala:94
+msgid "Cannot browse children on item"
+msgstr "Kan ikke gennemse underopdelinger på punkt"
+
+#: ../src/librygel-server/rygel-browse.vala:130
+#, c-format
+msgid "Failed to browse '%s': %s\n"
+msgstr "Kunne ikke gennemse \"%s\": %s\n"
+
+#: ../src/librygel-server/rygel-client-hacks.vala:136
+msgid "Not Applicable"
+msgstr "Ikke anvendelig"
+
+#: ../src/librygel-server/rygel-content-directory.vala:637
+msgid "No such file transfer"
+msgstr "Ingen sådan filoverførsel"
+
+#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:116
+msgid "No D-Bus thumbnailer service available"
+msgstr "Ingen D-Bus-miniaturetjeneste tilgængelig"
+
+#: ../src/librygel-server/rygel-http-get.vala:52
+msgid "Invalid Request (only GET and HEAD supported)"
+msgstr "Ugyldig forespørgsel (kun GET og HEAD er understøttet)"
+
+#: ../src/librygel-server/rygel-http-get.vala:60
+msgid " must be 1"
+msgstr "skal være 1"
+
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
+#, c-format
+msgid "Invalid URI '%s'"
+msgstr "Ugyldig URI \"%s\""
+
+#: ../src/librygel-server/rygel-http-item-uri.vala:192
+msgid "Not found"
+msgstr "Ikke fundet"
+
+#: ../src/librygel-server/rygel-http-post.vala:62
+#: ../src/librygel-server/rygel-import-resource.vala:188
+#, c-format
+msgid "Pushing data to non-empty item '%s' not allowed"
+msgstr "Skub af data til element \"%s\", der ikke er tomt, er ikke tilladt"
+
+#: ../src/librygel-server/rygel-http-post.vala:71
+#, c-format
+msgid "No writable URI for %s available"
+msgstr "Der er ingen skrivbar URI tilgængelig for %s"
+
+#. translators: Dotfile is the filename with prefix "."
+#: ../src/librygel-server/rygel-http-post.vala:186
+#, c-format
+msgid "Failed to move dotfile %s: %s"
+msgstr "Kunne ikke flytte fil med endelsen %s: %s"
+
+#: ../src/librygel-server/rygel-http-request.vala:95
+#, c-format
+msgid "Requested item '%s' not found"
+msgstr "Det forespurgte element \"%s\" blev ikke fundet"
+
+#: ../src/librygel-server/rygel-http-resource-handler.vala:86
+#, c-format
+msgid "Couldn't create data source for %s"
+msgstr "Kunne ikke oprette datakilde for %s"
+
+#: ../src/librygel-server/rygel-import-resource.vala:124
+#, c-format
+msgid "Failed to get original URI for '%s': %s"
+msgstr "Kunne ikke hente oprindelig URI for \"%s\": %s"
+
+#: ../src/librygel-server/rygel-import-resource.vala:185
+#, c-format
+msgid "URI '%s' invalid for importing contents to"
+msgstr "URI \"%s\" ugyldig for import af indhold til"
+
+#: ../src/librygel-server/rygel-import-resource.vala:271
+#, c-format
+msgid "Failed to import file from %s: %s"
+msgstr "Kunne ikke importere fil fra %s: %s"
+
+#. Sorry we can't do anything without the ID
+#: ../src/librygel-server/rygel-item-destroyer.vala:53
+msgid "ContainerID missing"
+msgstr "Mangler ContainerID"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:60
+#, c-format
+msgid "Successfully destroyed object '%s'"
+msgstr "Ødelagde med succes objekt \"%s\""
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:68
+#, c-format
+msgid "Failed to destroy object '%s': %s"
+msgstr "Kunne ikke ødelægge objekt \"%s\": %s"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:104
+#: ../src/librygel-server/rygel-item-updater.vala:283
+#: ../src/librygel-server/rygel-media-query-action.vala:194
+#: ../src/librygel-server/rygel-reference-creator.vala:68
+#: ../src/librygel-server/rygel-reference-creator.vala:115
+msgid "No such object"
+msgstr "Intet sådant objekt"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:107
+#, c-format
+msgid "Removal of object %s not allowed"
+msgstr "Fjernelse af objekt %s er ikke tilladt"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:110
+#, c-format
+msgid "Object removal from %s not allowed"
+msgstr "Objektfjernelse fra %s er ikke tilladt"
+
+#. Sorry we can't do anything without the ID
+#: ../src/librygel-server/rygel-item-updater.vala:74
+msgid "Object id missing"
+msgstr "Mangler objekt-id"
+
+#: ../src/librygel-server/rygel-item-updater.vala:81
+#, c-format
+msgid "Successfully updated object '%s'"
+msgstr "Opdaterede med succes objekt \"%s\""
+
+#: ../src/librygel-server/rygel-item-updater.vala:89
+#, c-format
+msgid "Failed to update object '%s': %s"
+msgstr "Kunne ikke opdatere objekt \"%s\": %s"
+
+#: ../src/librygel-server/rygel-item-updater.vala:162
+#: ../src/librygel-server/rygel-object-creator.vala:600
+#, c-format
+msgid "Invalid date format: %s"
+msgstr "Ugyldigt datoformat: %s"
+
+#: ../src/librygel-server/rygel-item-updater.vala:171
+#: ../src/librygel-server/rygel-object-creator.vala:609
+#, c-format
+msgid "Invalid date: %s"
+msgstr "Ugyldig dato: %s"
+
+#: ../src/librygel-server/rygel-item-updater.vala:256
+msgid "Bad current tag value."
+msgstr "Ugyldig aktuel mærkeværdi."
+
+#: ../src/librygel-server/rygel-item-updater.vala:260
+msgid "Bad new tag value."
+msgstr "Ugyldig ny mærkeværdi."
+
+#: ../src/librygel-server/rygel-item-updater.vala:263
+msgid "Tried to delete required tag."
+msgstr "Forsøgte at slette påkrævet mærke."
+
+#: ../src/librygel-server/rygel-item-updater.vala:266
+msgid "Tried to change read-only property."
+msgstr "Forsøgte at ændre skrivebeskyttet egenskab."
+
+#: ../src/librygel-server/rygel-item-updater.vala:269
+msgid "Parameter count mismatch."
+msgstr "Antallet af parametre er forskelligt."
+
+#: ../src/librygel-server/rygel-item-updater.vala:272
+msgid "Unknown error."
+msgstr "Ukendt fejl."
+
+#: ../src/librygel-server/rygel-item-updater.vala:285
+#, c-format
+msgid "Metadata modification of object %s not allowed"
+msgstr "Metadatamodifikation af objekt %s er ikke tilladt"
+
+#: ../src/librygel-server/rygel-item-updater.vala:290
+#, c-format
+msgid ""
+"Metadata modification of object %s being a child of restricted object %s not "
+"allowed"
+msgstr ""
+"Metadatamodifikation af objekt %s, som er et underobjekt af begrænset objekt "
+"%s, er ikke tilladt"
+
+#: ../src/librygel-server/rygel-m3u-playlist.vala:67
+#: ../src/librygel-server/rygel-m3u-playlist.vala:70
+msgid "Unknown"
+msgstr "Ukendt"
+
+#: ../src/librygel-server/rygel-media-art-store.vala:105
+#, c-format
+msgid "Failed to add album art for %s: %s"
+msgstr "Kunne ikke tilføje albumbillede for %s: %s"
+
+#: ../src/librygel-server/rygel-media-art-store.vala:119
+#, c-format
+msgid "Failed to find media art for %s: %s"
+msgstr "Kunne ikke finde mediebillede til %s: %s"
+
+#: ../src/librygel-server/rygel-media-container.vala:66
+msgid "Seeking not supported"
+msgstr "Søgning understøttes ikke"
+
+#: ../src/librygel-server/rygel-media-container.vala:71
+msgid "Speed not supported"
+msgstr "Hastigheden understøttes ikke"
+
+#: ../src/librygel-server/rygel-media-container.vala:122
+msgid "Failed to generate playlist"
+msgstr "Kunne ikke generere afspilningsliste"
+
+#: ../src/librygel-server/rygel-media-container.vala:468
+#, c-format
+msgid "Unknown MediaContainer resource: %s"
+msgstr "Ukendt MediaContainer-ressource: %s"
+
+#: ../src/librygel-server/rygel-media-engine.vala:62
+msgid "No media engine found."
+msgstr "Ingen mediemotor fundet."
+
+#: ../src/librygel-server/rygel-media-engine.vala:73
+msgid "MediaEngine.init was not called. Cannot continue."
+msgstr "MediaEngine.init blev ikke kaldt. Kan ikke fortsætte."
+
+#: ../src/librygel-server/rygel-media-object.vala:282
+#, c-format
+msgid "Could not determine protocol for %s"
+msgstr "Kunne ikke bestemme protokollen for %s"
+
+#: ../src/librygel-server/rygel-media-object.vala:497
+#, c-format
+msgid "Bad URI: %s"
+msgstr "Ugyldig URI: %s"
+
+# ?
+#. Assume the protocol to be the scheme of the URI
+#: ../src/librygel-server/rygel-media-object.vala:509
+#, c-format
+msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+msgstr "Kunne ikke forespørge protokol om URI %s. Antager \"%s\""
+
+#: ../src/librygel-server/rygel-media-query-action.vala:100
+msgid "Invalid number of arguments"
+msgstr "Ugyldigt antal argumenter"
+
+#. Sorry we can't do anything without ObjectID
+#: ../src/librygel-server/rygel-media-query-action.vala:122
+msgid "ObjectID argument missing"
+msgstr "Mangler ObjectID-argument"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:127
+msgid "Invalid range"
+msgstr "Ugyldigt interval"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:131
+msgid "Missing filter"
+msgstr "Mangler filter"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:197
+#: ../src/librygel-server/rygel-object-creator.vala:406
+msgid "No such container"
+msgstr "Ingen sådan beholder"
+
+#: ../src/librygel-server/rygel-object-creator.vala:150
+msgid "upnp:createClass value not supported"
+msgstr "upnp:createClass-værdi understøttes ikke"
+
+#: ../src/librygel-server/rygel-object-creator.vala:191
+msgid "'Elements' argument missing."
+msgstr "Argumentet \"Elements\" mangler."
+
+#: ../src/librygel-server/rygel-object-creator.vala:194
+msgid "Comments not allowed in XML"
+msgstr "Kommentarer tillades ikke i XML"
+
+#. Sorry we can't do anything without ContainerID
+#: ../src/librygel-server/rygel-object-creator.vala:200
+msgid "Missing ContainerID argument"
+msgstr "Mangler ContainerID-argument"
+
+#: ../src/librygel-server/rygel-object-creator.vala:224
+#, c-format
+msgid "No objects in DIDL-Lite from client: '%s'"
+msgstr "Ingen objekter i DIDL-Lite fra klient: \"%s\""
+
+#: ../src/librygel-server/rygel-object-creator.vala:231
+msgid "@id must be set to \"\" in CreateObject call"
+msgstr "@id skal sættes til \"\" i CreateObject-kald"
+
+#: ../src/librygel-server/rygel-object-creator.vala:236
+msgid "dc:title must not be empty in CreateObject call"
+msgstr "dc:title må ikke være tom i CreateObjekt-kald"
+
+#: ../src/librygel-server/rygel-object-creator.vala:247
+msgid "Flags that must not be set were found in 'dlnaManaged'"
+msgstr "Der blev fundet flag, som ikke må være sat, i \"dlnaManaged\""
+
+#: ../src/librygel-server/rygel-object-creator.vala:255
+msgid "Invalid upnp:class given in CreateObject"
+msgstr "Ugyldig upnp:class givet i CreateObject"
+
+#: ../src/librygel-server/rygel-object-creator.vala:260
+msgid "Cannot create restricted item"
+msgstr "Kan ikke oprette begrænset element"
+
+#: ../src/librygel-server/rygel-object-creator.vala:377
+#, c-format
+msgid "UPnP class '%s' not supported"
+msgstr "UPnP-klassen \"%s\" understøttes ikke"
+
+#: ../src/librygel-server/rygel-object-creator.vala:411
+#: ../src/librygel-server/rygel-object-creator.vala:423
+#: ../src/librygel-server/rygel-object-creator.vala:709
+#: ../src/librygel-server/rygel-reference-creator.vala:118
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr "Objektoprettelse i %s er ikke tilladt"
+
+#: ../src/librygel-server/rygel-object-creator.vala:468
+#, c-format
+msgid "Failed to create item under '%s': %s"
+msgstr "Kunne ikke oprette element under \"%s\": %s"
+
+#: ../src/librygel-server/rygel-object-creator.vala:542
+#, c-format
+msgid "DLNA profile '%s' not supported"
+msgstr "DLNA-profilen \"%s\" understøttes ikke"
+
+#: ../src/librygel-server/rygel-object-creator.vala:642
+#, c-format
+msgid "Cannot create object of class '%s': Not supported"
+msgstr "Kan ikke oprette objekt af klassen \"%s\": Ikke understøttet"
+
+#: ../src/librygel-server/rygel-object-creator.vala:740
+#, c-format
+msgid ""
+"Error from container '%s' on trying to find the newly added child object "
+"'%s' in it: %s"
+msgstr ""
+"Fejl fra beholderen \"%s\" ved forsøg på at finde det nytilføjede "
+"underobjekt \"%s\" i den: %s"
+
+#: ../src/librygel-server/rygel-reference-creator.vala:50
+msgid "'ContainerID' agument missing."
+msgstr "Mangler \"ContainerID\"-argument."
+
+#: ../src/librygel-server/rygel-reference-creator.vala:55
+msgid "'ObjectID' argument missing."
+msgstr "Mangler \"ObjectID\"-argument."
+
+#: ../src/librygel-server/rygel-reference-creator.vala:86
+#, c-format
+msgid "Failed to create object under '%s': %s"
+msgstr "Kunne ikke oprette objekt under \"%s\": %s"
+
+#: ../src/librygel-server/rygel-search.vala:70
+msgid "Invalid search criteria given"
+msgstr "Der blev givet ugyldige søgekriterier"
+
+#: ../src/librygel-server/rygel-search.vala:94
+#, c-format
+msgid "Failed to search in '%s': %s"
+msgstr "Kunne ikke søge i \"%s\": %s"
+
+#: ../src/librygel-server/rygel-subtitle-manager.vala:85
+msgid "No subtitle available"
+msgstr "Ingen tilgængelige undertekster"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:61
+#, c-format
+msgid "No thumbnailer available: %s"
+msgstr "Ingen miniaturefunktion tilgængelig: %s"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:74
+msgid "Thumbnailing not supported"
+msgstr "Miniaturefunktion understøttes ikke"
+
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
+#: ../src/librygel-server/rygel-thumbnailer.vala:88
+#: ../src/librygel-server/rygel-thumbnailer.vala:97
+#: ../src/librygel-server/rygel-thumbnailer.vala:102
+#: ../src/librygel-server/rygel-thumbnailer.vala:113
+msgid "No thumbnail available"
+msgstr "Ingen miniature tilgængelig"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:132
+msgid "No D-Bus thumbnailer available"
+msgstr "Ingen D-Bus-miniatureproces tilgængelig"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:44
+#, c-format
+msgid "Could not create GstElement for URI %s"
+msgstr "Kunne ikke oprette GstElement for URI %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:71
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:79
+msgid "Playspeed not supported"
+msgstr "Afspilningshastighed understøttes ikke"
+
+#. Unknown/unsupported seek type
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:94
+msgid "HTTPSeekRequest type unsupported"
+msgstr "HTTPSeekRequest-typen understøttes ikke"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:136
+msgid "Failed to create pipeline"
+msgstr "Kunne ikke oprette datakanal"
+
+#. static pads? easy!
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:147
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:168
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "Kunne ikke linke %s til %s"
+
+# ???
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:182
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr "Kunne ikke hægte blok %s til %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:237
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr "Fejl fra rørledning %s: %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:244
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr "Advarsel fra rørledning %s: %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:288
+msgid "Unsupported seek type"
+msgstr "Søgetype understøttes ikke"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:303
+#, c-format
+msgid "Failed to seek to offsets %lld:%lld"
+msgstr "Kunne ikke søge til forskydninger %lld:%lld"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:306
+msgid "Failed to seek"
+msgstr "Kunne ikke søge"
+
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:212
+#, c-format
+msgid "Failed to create GStreamer data source for %s: %s"
+msgstr "Kunne ikke oprette GStreamer-datakilde for %s: %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
+msgid ""
+"Could not create a transcoder configuration. Your GStreamer installation "
+"might be missing a plug-in"
+msgstr ""
+"Kunne ikke oprette en transkoderkonfiguration. Din GStreamer-installation "
+"mangler måske et udvidelsesmodul"
+
+#: ../src/media-engines/gstreamer/rygel-gst-utils.vala:39
+#, c-format
+msgid "Required element %s missing"
+msgstr "Det påkrævede element %s mangler"
+
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:61
+msgid "Only byte-based seek supported"
+msgstr "Kun bytebaseret søgning understøttes"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -116,7 +887,7 @@ msgstr "Kunne ikke rulle transaktion tilbage: %s"
 msgid "'%s' harvested"
 msgstr "\"%s\" høstet"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:185
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:191
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Fejl ved hentning af objektet \"%s\" fra databasen: %s"
@@ -125,19 +896,19 @@ msgstr "Fejl ved hentning af objektet \"%s\" fra databasen: %s"
 # "forespørge informationen for en fil", det er lidt svært at finde ud af. 
 # Filnavnet antyder godt nok noget med mediaeksport, så det kunne jo være at det 
 # er noget mediefilesmetadata de er ude efter.
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:193
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:199
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "Kunne ikke forespørge i informationen for en fil %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:228
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:234
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr ""
 "Kunne ikke finde objektet %s eller dets ophavselement. Databasen er "
 "inkonsistent"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:232
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:238
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Fejl ved fjernelse af objekt fra database: %s"
@@ -168,20 +939,14 @@ msgstr "Kunne ikke finde underelementer af beholderen %s: %s"
 msgid "Failed to get child count of query container: %s"
 msgstr "Kunne ikke finde antal underelementer af forespørgselsbeholder: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:130
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:132
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Kunne ikke tilføje element med id %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:563
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:565
 msgid "Cannot create references to containers"
 msgstr "Kan ikke oprette referencer til beholdere"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
-#, c-format
-msgid "Failed to query content type for '%s'"
-msgstr "Kunne ikke forespørge om indholdstypen for \"%s\""
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
@@ -210,7 +975,7 @@ msgid "Can't remove containers in %s"
 msgstr "Kan ikke fjerne beholdere i %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:590
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:593
 msgid "Playlists"
 msgstr "Afspilningslister"
 
@@ -262,26 +1027,26 @@ msgid "Files & Folders"
 msgstr "Filer & mapper"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:346
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:349
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@s medier"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:437
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:504
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:440
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:507
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Kunne ikke fjerne post: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:583
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
 msgid "Music"
 msgstr "Musik"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:589
 msgid "Pictures"
 msgstr "Billeder"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:588
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:591
 msgid "Videos"
 msgstr "Videoer"
 
@@ -382,780 +1147,67 @@ msgstr ""
 msgid "Titles"
 msgstr "Titler"
 
-#: ../src/librygel-core/rygel-base-configuration.vala:30
-#: ../src/librygel-core/rygel-base-configuration.vala:34
-#: ../src/librygel-core/rygel-base-configuration.vala:39
-#: ../src/librygel-core/rygel-base-configuration.vala:43
-#: ../src/librygel-core/rygel-base-configuration.vala:47
-#: ../src/librygel-core/rygel-base-configuration.vala:51
-#: ../src/librygel-core/rygel-base-configuration.vala:55
-#: ../src/librygel-core/rygel-base-configuration.vala:59
-#: ../src/librygel-core/rygel-base-configuration.vala:63
-#: ../src/librygel-core/rygel-base-configuration.vala:67
-#: ../src/librygel-core/rygel-base-configuration.vala:71
-#: ../src/librygel-core/rygel-base-configuration.vala:75
-#: ../src/librygel-core/rygel-base-configuration.vala:79
-#: ../src/librygel-core/rygel-base-configuration.vala:83
-#: ../src/librygel-core/rygel-base-configuration.vala:87
-#: ../src/librygel-core/rygel-base-configuration.vala:91
-#: ../src/librygel-core/rygel-base-configuration.vala:97
-#: ../src/librygel-core/rygel-base-configuration.vala:103
-#: ../src/librygel-core/rygel-base-configuration.vala:111
-#: ../src/librygel-core/rygel-base-configuration.vala:117
-#: ../src/librygel-core/rygel-base-configuration.vala:123
-msgid "Not implemented"
-msgstr "Ikke implementeret"
-
-#: ../src/librygel-core/rygel-basic-management-test.vala:197
-#, c-format
-msgid "Failed to read standard output from %s: %s"
-msgstr "Kunne ikke læse standard-ud fra %s: %s"
-
-#: ../src/librygel-core/rygel-basic-management-test.vala:225
-#, c-format
-msgid "Failed to read error output from %s: %s"
-msgstr "Kunne ikke læse standard-fejl fra %s: %s"
-
-#. / No test with the specified TestID was found
-#: ../src/librygel-core/rygel-basic-management.vala:159
-msgid "No Such Test"
-msgstr "Ingen sådan test"
-
-#. / TestID is valid but refers to the wrong test type
-#: ../src/librygel-core/rygel-basic-management.vala:167
-msgid "Wrong Test Type"
-msgstr "Forkert testtype"
-
-#. / TestID is valid but the test Results are not available
-#: ../src/librygel-core/rygel-basic-management.vala:175
-#, c-format
-msgid "Invalid Test State '%s'"
-msgstr "Ugyldig testtilstand \"%s\""
-
-#. / TestID is valid but the test can't be canceled
-#: ../src/librygel-core/rygel-basic-management.vala:181
-#, c-format
-msgid "State '%s' Precludes Cancel"
-msgstr "Tilstanden \"%s\" udelukker annullering"
-
-#: ../src/librygel-core/rygel-basic-management.vala:214
-#: ../src/librygel-core/rygel-basic-management.vala:229
-#: ../src/librygel-core/rygel-basic-management.vala:265
-#: ../src/librygel-core/rygel-basic-management.vala:317
-#: ../src/librygel-core/rygel-basic-management.vala:351
-#: ../src/librygel-core/rygel-basic-management.vala:390
-#: ../src/librygel-core/rygel-basic-management.vala:427
-#: ../src/librygel-core/rygel-basic-management.vala:466
-#: ../src/librygel-core/rygel-basic-management.vala:481
-#: ../src/librygel-core/rygel-basic-management.vala:496
-#: ../src/librygel-core/rygel-basic-management.vala:520
-#: ../src/librygel-core/rygel-connection-manager.vala:95
-#: ../src/librygel-core/rygel-connection-manager.vala:109
-#: ../src/librygel-core/rygel-connection-manager.vala:126
-#: ../src/librygel-renderer/rygel-av-transport.vala:198
-#: ../src/librygel-renderer/rygel-rendering-control.vala:131
-#: ../src/librygel-server/rygel-content-directory.vala:262
-#: ../src/librygel-server/rygel-content-directory.vala:290
-#: ../src/librygel-server/rygel-content-directory.vala:309
-#: ../src/librygel-server/rygel-content-directory.vala:344
-#: ../src/librygel-server/rygel-content-directory.vala:373
-#: ../src/librygel-server/rygel-content-directory.vala:398
-#: ../src/librygel-server/rygel-content-directory.vala:617
-#: ../src/librygel-server/rygel-content-directory.vala:768
-#: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
-msgid "Invalid argument"
-msgstr "Ugyldigt argument"
-
-#: ../src/librygel-core/rygel-connection-manager.vala:132
-msgid "Invalid connection reference"
-msgstr "Ugyldig forbindelsesreference"
-
-#: ../src/librygel-core/rygel-description-file.vala:343
-#, c-format
-msgid "Failed to write modified description to %s"
-msgstr "Kunne ikke skrive ændret beskrivelse til %s"
-
-#: ../src/librygel-core/rygel-log-handler.vala:68
-#, c-format
-msgid "Failed to get log level from configuration: %s"
-msgstr "Kunne ikke hente logniveauet fra konfigurationen: %s"
-
-#: ../src/librygel-core/rygel-meta-config.vala:89
-#: ../src/librygel-core/rygel-meta-config.vala:108
-#: ../src/librygel-core/rygel-meta-config.vala:128
-#: ../src/librygel-core/rygel-meta-config.vala:147
-#: ../src/librygel-core/rygel-meta-config.vala:166
-#: ../src/librygel-core/rygel-meta-config.vala:185
-#: ../src/librygel-core/rygel-meta-config.vala:204
-#: ../src/librygel-core/rygel-meta-config.vala:223
-#: ../src/librygel-core/rygel-meta-config.vala:242
-#: ../src/librygel-core/rygel-meta-config.vala:261
-#: ../src/librygel-core/rygel-meta-config.vala:280
-#: ../src/rygel/rygel-cmdline-config.vala:168
-#: ../src/rygel/rygel-cmdline-config.vala:176
-#: ../src/rygel/rygel-cmdline-config.vala:185
-#: ../src/rygel/rygel-cmdline-config.vala:193
-#: ../src/rygel/rygel-cmdline-config.vala:201
-#: ../src/rygel/rygel-cmdline-config.vala:209
-#: ../src/rygel/rygel-cmdline-config.vala:217
-#: ../src/rygel/rygel-cmdline-config.vala:225
-#: ../src/rygel/rygel-cmdline-config.vala:264
-#: ../src/rygel/rygel-cmdline-config.vala:283
-#: ../src/rygel/rygel-cmdline-config.vala:289
-#: ../src/rygel/rygel-cmdline-config.vala:296
-#: ../src/rygel/rygel-cmdline-config.vala:300
-#: ../src/rygel/rygel-cmdline-config.vala:304
-#: ../src/rygel/rygel-cmdline-config.vala:327
-#: ../src/rygel/rygel-cmdline-config.vala:353
-#: ../src/rygel/rygel-cmdline-config.vala:382
-#: ../src/rygel/rygel-cmdline-config.vala:408
-#: ../src/rygel/rygel-cmdline-config.vala:433
-#: ../src/rygel/rygel-environment-config.vala:105
-#: ../src/rygel/rygel-environment-config.vala:109
-#: ../src/rygel/rygel-environment-config.vala:113
-msgid "No value available"
-msgstr "Ingen tilgængelig værdi"
-
-#. translators: "enabled" is part of the config key and must not be translated
-#: ../src/librygel-core/rygel-meta-config.vala:344
-#, c-format
-msgid "No value set for '%s/enabled'"
-msgstr "Ingen værdi givet for \"%s/enabled\""
-
-#. translators: "title" is part of the config key and must not be translated
-#: ../src/librygel-core/rygel-meta-config.vala:363
-#, c-format
-msgid "No value set for '%s/title'"
-msgstr "Ingen værdi givet for \"%s/title\""
-
-#: ../src/librygel-core/rygel-meta-config.vala:383
-#: ../src/librygel-core/rygel-meta-config.vala:405
-#: ../src/librygel-core/rygel-meta-config.vala:431
-#: ../src/librygel-core/rygel-meta-config.vala:453
-#: ../src/librygel-core/rygel-meta-config.vala:477
-#, c-format
-msgid "No value available for '%s/%s'"
-msgstr "Ingen tilgængelig værdi for \"%s/%s\""
-
-#: ../src/librygel-core/rygel-plugin-information.vala:59
-msgid "[Plugin] group not found"
-msgstr "[Udvidelsesmodul]-gruppe ikke fundet"
-
-#: ../src/librygel-core/rygel-plugin-information.vala:77
-#, c-format
-msgid "Plugin module %s does not exist"
-msgstr "Udvidelsesmodulet %s findes ikke"
-
-#: ../src/librygel-core/rygel-plugin-loader.vala:81
-#, c-format
-msgid "New plugin '%s' available"
-msgstr "Nyt udvidelsesmodul \"%s\" er tilgængeligt"
-
-#: ../src/librygel-core/rygel-plugin-loader.vala:96
-#, c-format
-msgid "A module named %s is already loaded"
-msgstr "Et modul med navnet %s er allerede indlæst"
-
-#: ../src/librygel-core/rygel-plugin-loader.vala:105
-#, c-format
-msgid "Failed to load module from path '%s': %s"
-msgstr "Kunne ikke indlæse modul fra stien \"%s\": %s"
-
-#: ../src/librygel-core/rygel-plugin-loader.vala:115
-#, c-format
-msgid "Failed to find entry point function '%s' in '%s': %s"
-msgstr "Kunne ikke finde indgangspunktfunktion \"%s\" i \"%s\": %s"
-
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:144
-#, c-format
-msgid "Error listing contents of folder '%s': %s"
-msgstr "Fejl ved opskrivning af indhold i mappen \"%s\": %s"
-
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:188
-#, c-format
-msgid "Could not load plugin: %s"
-msgstr "Kunne ikke indlæse udvidelsesmodul: %s"
-
-#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:364
-msgid ""
-"Your GStreamer installation seems to be missing the \"playbin\" element. The "
-"Rygel GStreamer renderer implementation cannot work without it"
-msgstr ""
-"Din GStreamer-installation synes at mangle elementet \"playbin\". Rygels "
-"GStreamer-optegningsimplementation kan ikke fungere uden dette"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:204
-#: ../src/librygel-renderer/rygel-rendering-control.vala:137
-msgid "Invalid InstanceID"
-msgstr "Ugyldig InstanceID"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:474
-msgid "Play speed not supported"
-msgstr "Afspilningshastighed understøttes ikke"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:492
-msgid "Transition not available"
-msgstr "Overgang ikke tilgængelig"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:522
-#: ../src/librygel-renderer/rygel-av-transport.vala:547
-#: ../src/librygel-renderer/rygel-av-transport.vala:577
-msgid "Seek mode not supported"
-msgstr "Søgetilstand understøttes ikke"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:528
-#: ../src/librygel-renderer/rygel-av-transport.vala:553
-#: ../src/librygel-renderer/rygel-av-transport.vala:566
-#: ../src/librygel-renderer/rygel-av-transport.vala:591
-#: ../src/librygel-renderer/rygel-av-transport.vala:603
-msgid "Illegal seek target"
-msgstr "Illegalt søgemål"
-
-#. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:702
-#: ../src/librygel-renderer/rygel-av-transport.vala:746
-#: ../src/librygel-renderer/rygel-av-transport.vala:755
-#: ../src/librygel-renderer/rygel-av-transport.vala:818
-msgid "Resource not found"
-msgstr "Ressource blev ikke fundet"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:744
-#, c-format
-msgid "Problem parsing playlist: %s"
-msgstr "Problem ved fortolkning af afspilningsliste: %s"
-
-#. TRANSLATORS: first %s is a URI, the second an explanaition of
-#. the error
-#: ../src/librygel-renderer/rygel-av-transport.vala:814
-#, c-format
-msgid "Failed to access resource at %s: %s"
-msgstr "Kunne ikke tilgå ressource på %s: %s"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:830
-msgid "Illegal MIME-type"
-msgstr "Illegal MIME-type"
-
-#: ../src/librygel-renderer/rygel-rendering-control.vala:168
-msgid "Invalid Name"
-msgstr "Ugyldigt navn"
-
-#: ../src/librygel-renderer/rygel-rendering-control.vala:182
-msgid "Invalid Channel"
-msgstr "Ugyldig kanal"
-
-#: ../src/librygel-renderer/rygel-rendering-control.vala:218
-#: ../src/librygel-renderer/rygel-rendering-control.vala:260
-#: ../src/librygel-renderer/rygel-rendering-control.vala:269
-msgid "Action Failed"
-msgstr "Handling mislykkedes"
-
-#: ../src/librygel-server/rygel-browse.vala:63
-msgid "Invalid Arguments"
-msgstr "Ugyldige argumenter"
-
-#: ../src/librygel-server/rygel-browse.vala:94
-msgid "Cannot browse children on item"
-msgstr "Kan ikke gennemse underopdelinger på punkt"
-
-#: ../src/librygel-server/rygel-browse.vala:130
-#, c-format
-msgid "Failed to browse '%s': %s\n"
-msgstr "Kunne ikke gennemse \"%s\": %s\n"
-
-#: ../src/librygel-server/rygel-client-hacks.vala:134
-msgid "Not Applicable"
-msgstr "Ikke anvendelig"
-
-#: ../src/librygel-server/rygel-content-directory.vala:638
-msgid "No such file transfer"
-msgstr "Ingen sådan filoverførsel"
-
-#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:116
-msgid "No D-Bus thumbnailer service available"
-msgstr "Ingen D-Bus-miniaturetjeneste tilgængelig"
-
-#. Range header was present but invalid
-#: ../src/librygel-server/rygel-http-byte-seek.vala:49
-#: ../src/librygel-server/rygel-http-byte-seek.vala:54
-#: ../src/librygel-server/rygel-http-time-seek.vala:49
-#: ../src/librygel-server/rygel-http-time-seek.vala:61
-#: ../src/librygel-server/rygel-http-time-seek.vala:68
-#: ../src/librygel-server/rygel-http-time-seek.vala:83
-#, c-format
-msgid "Invalid Range '%s'"
-msgstr "Ugyldigt interval \"%s\""
-
-#: ../src/librygel-server/rygel-http-get.vala:59
-msgid "Invalid Request"
-msgstr "Ugyldig forespørgsel"
-
-#: ../src/librygel-server/rygel-http-identity-handler.vala:106
-#: ../src/librygel-server/rygel-http-item-uri.vala:196
-#: ../src/librygel-server/rygel-http-transcode-handler.vala:58
-msgid "Not found"
-msgstr "Ikke fundet"
-
-#: ../src/librygel-server/rygel-http-item-uri.vala:152
-#, c-format
-msgid "Invalid URI '%s'"
-msgstr "Ugyldig URI \"%s\""
-
-#: ../src/librygel-server/rygel-http-playlist-handler.vala:50
-msgid "Seeking not supported"
-msgstr "Søgning understøttes ikke"
-
-#: ../src/librygel-server/rygel-http-playlist-handler.vala:97
-msgid "Failed to generate playlist"
-msgstr "Kunne ikke generere afspilningsliste"
-
-#: ../src/librygel-server/rygel-http-post.vala:62
-#: ../src/librygel-server/rygel-import-resource.vala:188
-#, c-format
-msgid "Pushing data to non-empty item '%s' not allowed"
-msgstr "Skub af data til element \"%s\", der ikke er tomt, er ikke tilladt"
-
-#: ../src/librygel-server/rygel-http-post.vala:71
-#, c-format
-msgid "No writable URI for %s available"
-msgstr "Der er ingen skrivbar URI tilgængelig for %s"
-
-#. translators: Dotfile is the filename with prefix "."
-#: ../src/librygel-server/rygel-http-post.vala:186
-#, c-format
-msgid "Failed to move dotfile %s: %s"
-msgstr "Kunne ikke flytte fil med endelsen %s: %s"
-
-#: ../src/librygel-server/rygel-http-request.vala:93
-#, c-format
-msgid "Requested item '%s' not found"
-msgstr "Det forespurgte element \"%s\" blev ikke fundet"
-
-#: ../src/librygel-server/rygel-http-seek.vala:95
-#, c-format
-msgid "Out Of Range Start '%ld'"
-msgstr "Start uden for interval \"%ld\""
-
-#: ../src/librygel-server/rygel-http-seek.vala:99
-#, c-format
-msgid "Out Of Range Stop '%ld'"
-msgstr "Stop uden for interval \"%ld\""
-
-#: ../src/librygel-server/rygel-import-resource.vala:124
-#, c-format
-msgid "Failed to get original URI for '%s': %s"
-msgstr "Kunne ikke hente oprindelig URI for \"%s\": %s"
-
-#: ../src/librygel-server/rygel-import-resource.vala:185
-#, c-format
-msgid "URI '%s' invalid for importing contents to"
-msgstr "URI \"%s\" ugyldig for import af indhold til"
-
-#: ../src/librygel-server/rygel-import-resource.vala:271
-#, c-format
-msgid "Failed to import file from %s: %s"
-msgstr "Kunne ikke importere fil fra %s: %s"
-
-#. Sorry we can't do anything without the ID
-#: ../src/librygel-server/rygel-item-destroyer.vala:53
-msgid "ContainerID missing"
-msgstr "Mangler ContainerID"
-
-#: ../src/librygel-server/rygel-item-destroyer.vala:60
-#, c-format
-msgid "Successfully destroyed object '%s'"
-msgstr "Ødelagde med succes objekt \"%s\""
-
-#: ../src/librygel-server/rygel-item-destroyer.vala:68
-#, c-format
-msgid "Failed to destroy object '%s': %s"
-msgstr "Kunne ikke ødelægge objekt \"%s\": %s"
-
-#: ../src/librygel-server/rygel-item-destroyer.vala:104
-#: ../src/librygel-server/rygel-item-updater.vala:283
-#: ../src/librygel-server/rygel-media-query-action.vala:194
-#: ../src/librygel-server/rygel-reference-creator.vala:68
-#: ../src/librygel-server/rygel-reference-creator.vala:115
-msgid "No such object"
-msgstr "Intet sådant objekt"
-
-#: ../src/librygel-server/rygel-item-destroyer.vala:107
-#, c-format
-msgid "Removal of object %s not allowed"
-msgstr "Fjernelse af objekt %s er ikke tilladt"
-
-#: ../src/librygel-server/rygel-item-destroyer.vala:110
-#, c-format
-msgid "Object removal from %s not allowed"
-msgstr "Objektfjernelse fra %s er ikke tilladt"
-
-#. Sorry we can't do anything without the ID
-#: ../src/librygel-server/rygel-item-updater.vala:74
-msgid "Object id missing"
-msgstr "Mangler objekt-id"
-
-#: ../src/librygel-server/rygel-item-updater.vala:81
-#, c-format
-msgid "Successfully updated object '%s'"
-msgstr "Opdaterede med succes objekt \"%s\""
-
-#: ../src/librygel-server/rygel-item-updater.vala:89
-#, c-format
-msgid "Failed to update object '%s': %s"
-msgstr "Kunne ikke opdatere objekt \"%s\": %s"
-
-#: ../src/librygel-server/rygel-item-updater.vala:162
-#: ../src/librygel-server/rygel-object-creator.vala:601
-#, c-format
-msgid "Invalid date format: %s"
-msgstr "Ugyldigt datoformat: %s"
-
-#: ../src/librygel-server/rygel-item-updater.vala:171
-#: ../src/librygel-server/rygel-object-creator.vala:610
-#, c-format
-msgid "Invalid date: %s"
-msgstr "Ugyldig dato: %s"
-
-#: ../src/librygel-server/rygel-item-updater.vala:256
-msgid "Bad current tag value."
-msgstr "Ugyldig aktuel mærkeværdi."
-
-#: ../src/librygel-server/rygel-item-updater.vala:260
-msgid "Bad new tag value."
-msgstr "Ugyldig ny mærkeværdi."
-
-#: ../src/librygel-server/rygel-item-updater.vala:263
-msgid "Tried to delete required tag."
-msgstr "Forsøgte at slette påkrævet mærke."
-
-#: ../src/librygel-server/rygel-item-updater.vala:266
-msgid "Tried to change read-only property."
-msgstr "Forsøgte at ændre skrivebeskyttet egenskab."
-
-#: ../src/librygel-server/rygel-item-updater.vala:269
-msgid "Parameter count mismatch."
-msgstr "Antallet af parametre er forskelligt."
-
-#: ../src/librygel-server/rygel-item-updater.vala:272
-msgid "Unknown error."
-msgstr "Ukendt fejl."
-
-#: ../src/librygel-server/rygel-item-updater.vala:285
-#, c-format
-msgid "Metadata modification of object %s not allowed"
-msgstr "Metadatamodifikation af objekt %s er ikke tilladt"
-
-#: ../src/librygel-server/rygel-item-updater.vala:290
-#, c-format
-msgid ""
-"Metadata modification of object %s being a child of restricted object %s not "
-"allowed"
-msgstr ""
-"Metadatamodifikation af objekt %s, som er et underobjekt af begrænset objekt "
-"%s, er ikke tilladt"
-
-#: ../src/librygel-server/rygel-m3u-playlist.vala:67
-#: ../src/librygel-server/rygel-m3u-playlist.vala:70
-msgid "Unknown"
-msgstr "Ukendt"
-
-#: ../src/librygel-server/rygel-media-engine.vala:69
-msgid "No media engine found."
-msgstr "Ingen mediemotor fundet."
-
-#: ../src/librygel-server/rygel-media-engine.vala:80
-msgid "MediaEngine.init was not called. Cannot continue."
-msgstr "MediaEngine.init blev ikke kaldt. Kan ikke fortsætte."
-
-#: ../src/librygel-server/rygel-media-item.vala:305
-#, c-format
-msgid "Bad URI: %s"
-msgstr "Ugyldig URI: %s"
-
-# ?
-#. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-item.vala:317
-#, c-format
-msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr "Kunne ikke forespørge protokol om URI %s. Antager \"%s\""
-
-#: ../src/librygel-server/rygel-media-query-action.vala:100
-msgid "Invalid number of arguments"
-msgstr "Ugyldigt antal argumenter"
-
-#. Sorry we can't do anything without ObjectID
-#: ../src/librygel-server/rygel-media-query-action.vala:122
-msgid "ObjectID argument missing"
-msgstr "Mangler ObjectID-argument"
-
-#: ../src/librygel-server/rygel-media-query-action.vala:127
-msgid "Invalid range"
-msgstr "Ugyldigt interval"
-
-#: ../src/librygel-server/rygel-media-query-action.vala:131
-msgid "Missing filter"
-msgstr "Mangler filter"
-
-#: ../src/librygel-server/rygel-media-query-action.vala:197
-#: ../src/librygel-server/rygel-object-creator.vala:407
-msgid "No such container"
-msgstr "Ingen sådan beholder"
-
-#: ../src/librygel-server/rygel-object-creator.vala:151
-msgid "upnp:createClass value not supported"
-msgstr "upnp:createClass-værdi understøttes ikke"
-
-#: ../src/librygel-server/rygel-object-creator.vala:192
-msgid "'Elements' argument missing."
-msgstr "Argumentet \"Elements\" mangler."
-
-#: ../src/librygel-server/rygel-object-creator.vala:195
-msgid "Comments not allowed in XML"
-msgstr "Kommentarer tillades ikke i XML"
-
-#. Sorry we can't do anything without ContainerID
-#: ../src/librygel-server/rygel-object-creator.vala:201
-msgid "Missing ContainerID argument"
-msgstr "Mangler ContainerID-argument"
-
-#: ../src/librygel-server/rygel-object-creator.vala:225
-#, c-format
-msgid "No objects in DIDL-Lite from client: '%s'"
-msgstr "Ingen objekter i DIDL-Lite fra klient: \"%s\""
-
-#: ../src/librygel-server/rygel-object-creator.vala:232
-msgid "@id must be set to \"\" in CreateObject call"
-msgstr "@id skal sættes til \"\" i CreateObject-kald"
-
-#: ../src/librygel-server/rygel-object-creator.vala:237
-msgid "dc:title must not be empty in CreateObject call"
-msgstr "dc:title må ikke være tom i CreateObjekt-kald"
-
-#: ../src/librygel-server/rygel-object-creator.vala:248
-msgid "Flags that must not be set were found in 'dlnaManaged'"
-msgstr "Der blev fundet flag, som ikke må være sat, i \"dlnaManaged\""
-
-#: ../src/librygel-server/rygel-object-creator.vala:256
-msgid "Invalid upnp:class given in CreateObject"
-msgstr "Ugyldig upnp:class givet i CreateObject"
-
-#: ../src/librygel-server/rygel-object-creator.vala:261
-msgid "Cannot create restricted item"
-msgstr "Kan ikke oprette begrænset element"
-
-#: ../src/librygel-server/rygel-object-creator.vala:378
-#, c-format
-msgid "UPnP class '%s' not supported"
-msgstr "UPnP-klassen \"%s\" understøttes ikke"
-
-#: ../src/librygel-server/rygel-object-creator.vala:412
-#: ../src/librygel-server/rygel-object-creator.vala:424
-#: ../src/librygel-server/rygel-object-creator.vala:710
-#: ../src/librygel-server/rygel-reference-creator.vala:118
-#, c-format
-msgid "Object creation in %s not allowed"
-msgstr "Objektoprettelse i %s er ikke tilladt"
-
-#: ../src/librygel-server/rygel-object-creator.vala:469
-#, c-format
-msgid "Failed to create item under '%s': %s"
-msgstr "Kunne ikke oprette element under \"%s\": %s"
-
-#: ../src/librygel-server/rygel-object-creator.vala:543
-#, c-format
-msgid "DLNA profile '%s' not supported"
-msgstr "DLNA-profilen \"%s\" understøttes ikke"
-
-#: ../src/librygel-server/rygel-object-creator.vala:643
-#, c-format
-msgid "Cannot create object of class '%s': Not supported"
-msgstr "Kan ikke oprette objekt af klassen \"%s\": Ikke understøttet"
-
-#: ../src/librygel-server/rygel-object-creator.vala:741
-#, c-format
-msgid ""
-"Error from container '%s' on trying to find the newly added child object "
-"'%s' in it: %s"
-msgstr ""
-"Fejl fra beholderen \"%s\" ved forsøg på at finde det nytilføjede "
-"underobjekt \"%s\" i den: %s"
-
-#: ../src/librygel-server/rygel-reference-creator.vala:50
-msgid "'ContainerID' agument missing."
-msgstr "Mangler \"ContainerID\"-argument."
-
-#: ../src/librygel-server/rygel-reference-creator.vala:55
-msgid "'ObjectID' argument missing."
-msgstr "Mangler \"ObjectID\"-argument."
-
-#: ../src/librygel-server/rygel-reference-creator.vala:86
-#, c-format
-msgid "Failed to create object under '%s': %s"
-msgstr "Kunne ikke oprette objekt under \"%s\": %s"
-
-#: ../src/librygel-server/rygel-search.vala:70
-msgid "Invalid search criteria given"
-msgstr "Der blev givet ugyldige søgekriterier"
-
-#: ../src/librygel-server/rygel-search.vala:94
-#, c-format
-msgid "Failed to search in '%s': %s"
-msgstr "Kunne ikke søge i \"%s\": %s"
-
-#: ../src/librygel-server/rygel-subtitle-manager.vala:85
-msgid "No subtitle available"
-msgstr "Ingen tilgængelige undertekster"
-
-#: ../src/librygel-server/rygel-thumbnailer.vala:61
-#, c-format
-msgid "No thumbnailer available: %s"
-msgstr "Ingen miniaturefunktion tilgængelig: %s"
-
-#: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thumbnailing not supported"
-msgstr "Miniaturefunktion understøttes ikke"
-
-#. Thumbnailing failed previously, so there's no current thumbnail
-#. and it doesn't make any sense to request one.
-#: ../src/librygel-server/rygel-thumbnailer.vala:88
-#: ../src/librygel-server/rygel-thumbnailer.vala:97
-#: ../src/librygel-server/rygel-thumbnailer.vala:102
-#: ../src/librygel-server/rygel-thumbnailer.vala:113
-msgid "No thumbnail available"
-msgstr "Ingen miniature tilgængelig"
-
-#: ../src/librygel-server/rygel-thumbnailer.vala:132
-msgid "No D-Bus thumbnailer available"
-msgstr "Ingen D-Bus-miniatureproces tilgængelig"
-
-#: ../src/librygel-server/rygel-transcode-manager.vala:79
-#, c-format
-msgid "No transcoder available for target format '%s'"
-msgstr "Der er ingen tilgængelig omkoder for målformatet \"%s\""
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:39
-#, c-format
-msgid "Could not create GstElement for URI %s"
-msgstr "Kunne ikke oprette GstElement for URI %s"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:94
-msgid "Failed to create pipeline"
-msgstr "Kunne ikke oprette datakanal"
-
-#. static pads? easy!
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:105
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:126
-#, c-format
-msgid "Failed to link %s to %s"
-msgstr "Kunne ikke linke %s til %s"
-
-# ???
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:140
-#, c-format
-msgid "Failed to link pad %s to %s"
-msgstr "Kunne ikke hægte blok %s til %s"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:195
-#, c-format
-msgid "Error from pipeline %s: %s"
-msgstr "Fejl fra rørledning %s: %s"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:202
-#, c-format
-msgid "Warning from pipeline %s: %s"
-msgstr "Advarsel fra rørledning %s: %s"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:255
-#, c-format
-msgid "Failed to seek to offsets %lld:%lld"
-msgstr "Kunne ikke søge til forskydninger %lld:%lld"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:259
-msgid "Failed to seek"
-msgstr "Kunne ikke søge"
-
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:123
-#, c-format
-msgid "Failed to create GStreamer data source for %s: %s"
-msgstr "Kunne ikke oprette GStreamer-datakilde for %s: %s"
-
-#: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:88
-msgid ""
-"Could not create a transcoder configuration. Your GStreamer installation "
-"might be missing a plug-in"
-msgstr ""
-"Kunne ikke oprette en transkoderkonfiguration. Din GStreamer-installation "
-"mangler måske et udvidelsesmodul"
-
-#: ../src/media-engines/gstreamer/rygel-gst-utils.vala:39
-#, c-format
-msgid "Required element %s missing"
-msgstr "Det påkrævede element %s mangler"
-
-#: ../src/media-engines/simple/rygel-simple-data-source.vala:56
-msgid "Time-based seek not supported"
-msgstr "Tidsbaseret søgning understøttes ikke"
-
-#: ../src/rygel/rygel-cmdline-config.vala:80
+#: ../src/rygel/rygel-cmdline-config.vala:76
 msgid "Network Interfaces"
 msgstr "Netværksgrænseflader"
 
-#: ../src/rygel/rygel-cmdline-config.vala:84
+#: ../src/rygel/rygel-cmdline-config.vala:80
 msgid "Disable transcoding"
 msgstr "Deaktivér transkodning"
 
-#: ../src/rygel/rygel-cmdline-config.vala:86
+#: ../src/rygel/rygel-cmdline-config.vala:82
 msgid "Disallow upload"
 msgstr "Tillad ikke upload"
 
-#: ../src/rygel/rygel-cmdline-config.vala:88
+#: ../src/rygel/rygel-cmdline-config.vala:84
 msgid "Disallow deletion"
 msgstr "Tillad ikke sletning"
 
-#: ../src/rygel/rygel-cmdline-config.vala:90
+#: ../src/rygel/rygel-cmdline-config.vala:86
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr "Kommaadskilt liste af domæne:niveau-par. Se rygel(1) for detaljer"
 
-#: ../src/rygel/rygel-cmdline-config.vala:92
+#: ../src/rygel/rygel-cmdline-config.vala:88
 msgid "Plugin Path"
 msgstr "Sti til udvidelsesmodul"
 
-#: ../src/rygel/rygel-cmdline-config.vala:94
+#: ../src/rygel/rygel-cmdline-config.vala:90
 msgid "Engine Path"
 msgstr "Motorsti"
 
-#: ../src/rygel/rygel-cmdline-config.vala:97
+#: ../src/rygel/rygel-cmdline-config.vala:93
 msgid "Disable plugin"
 msgstr "Deaktivér udvidelsesmodul"
 
-#: ../src/rygel/rygel-cmdline-config.vala:99
+#: ../src/rygel/rygel-cmdline-config.vala:95
 msgid "Set plugin titles"
 msgstr "Sæt udvidelsesmodultitler"
 
-#: ../src/rygel/rygel-cmdline-config.vala:101
+#: ../src/rygel/rygel-cmdline-config.vala:97
 msgid "Set plugin options"
 msgstr "Sæt indstillinger for udvidelsesmodul"
 
-#: ../src/rygel/rygel-cmdline-config.vala:103
+#: ../src/rygel/rygel-cmdline-config.vala:99
 msgid "Disable UPnP (streaming-only)"
 msgstr "Deaktivér UPnP (kun til streaming)"
 
-#: ../src/rygel/rygel-cmdline-config.vala:105
+#: ../src/rygel/rygel-cmdline-config.vala:101
 msgid "Use configuration file instead of user configuration"
 msgstr "Brug konfigurationsfil frem for brugerkonfiguration"
 
-#: ../src/rygel/rygel-cmdline-config.vala:107
+#: ../src/rygel/rygel-cmdline-config.vala:103
 msgid "Shutdown remote Rygel reference"
 msgstr "Luk fjern Rygel-reference"
 
-#: ../src/rygel/rygel-cmdline-config.vala:109
+#: ../src/rygel/rygel-cmdline-config.vala:105
 msgid "Replace currently running instance of rygel"
 msgstr "Erstat kørende instans af rygel"
 
-#: ../src/rygel/rygel-cmdline-config.vala:146
+#: ../src/rygel/rygel-cmdline-config.vala:142
 msgid "Shutting down remote Rygel instance\n"
 msgstr "Lukker fjern Rygel-instans\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:154
+#: ../src/rygel/rygel-cmdline-config.vala:150
 #, c-format
 msgid "Failed to shut-down other rygel instance: %s"
 msgstr "Kunne ikke stoppe anden Rygel-instans: %s"
@@ -1173,24 +1225,24 @@ msgstr "Rygel kører i kun streaming-tilstand."
 msgid "Rygel v%s starting…"
 msgstr "Rygel v%s starter op…"
 
-#: ../src/rygel/rygel-main.vala:109
+#: ../src/rygel/rygel-main.vala:115
 #, c-format
 msgid "No plugins found in %d second; giving up..."
 msgid_plural "No plugins found in %d seconds; giving up..."
 msgstr[0] "Ingen udvidelsesmoduler blev fundet på %d sekund; giver op..."
 msgstr[1] "Ingen udvidelsesmoduler blev fundet på %d sekunder; giver op..."
 
-#: ../src/rygel/rygel-main.vala:170
+#: ../src/rygel/rygel-main.vala:176
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Kunne ikke oprette fabrik for rodenhed: %s"
 
-#: ../src/rygel/rygel-main.vala:228
+#: ../src/rygel/rygel-main.vala:234
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Kunne ikke oprette RootDevice for %s. Årsag: %s"
 
-#: ../src/rygel/rygel-main.vala:265
+#: ../src/rygel/rygel-main.vala:271
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Kunne ikke indlæse brugerkonfiguration: %s"
@@ -1233,6 +1285,21 @@ msgstr "Kunne ikke starte Rygel-tjeneste: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Kunne ikke stoppe Rygel-tjeneste: %s"
+
+#~ msgid "Invalid Range '%s'"
+#~ msgstr "Ugyldigt interval \"%s\""
+
+#~ msgid "Invalid Request"
+#~ msgstr "Ugyldig forespørgsel"
+
+#~ msgid "Out Of Range Start '%ld'"
+#~ msgstr "Start uden for interval \"%ld\""
+
+#~ msgid "Out Of Range Stop '%ld'"
+#~ msgstr "Stop uden for interval \"%ld\""
+
+#~ msgid "No transcoder available for target format '%s'"
+#~ msgstr "Der er ingen tilgængelig omkoder for målformatet \"%s\""
 
 #~ msgid "Not Found"
 #~ msgstr "Ikke fundet"
