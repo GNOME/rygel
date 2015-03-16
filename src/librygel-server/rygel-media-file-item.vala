@@ -32,7 +32,8 @@ private errordomain Rygel.MediaFileItemError {
     BAD_URI
 }
 
-/** Represents a file-accessible or http-accessible media item (music file,
+/**
+ * Represents a file-accessible or http-accessible media item (music file,
  * image file, video file, etc) with some pre-established metadata or a
  * content placeholder for uploaded content.
  *

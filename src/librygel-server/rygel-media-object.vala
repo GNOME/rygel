@@ -294,7 +294,6 @@ public abstract class Rygel.MediaObject : GLib.Object {
      * @param source_string String that shall have the replacements applied
      * to.
      *
-     * If source_string is null, null is returned.
      * @return null if source_string is null, string with all replacements
      * applied otherwise.
      */
