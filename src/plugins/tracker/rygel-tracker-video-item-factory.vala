@@ -90,6 +90,8 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
         if (metadata.is_bound (VideoMetadata.DURATION))
             video.duration = (int) metadata.get_integer
                                         (VideoMetadata.DURATION);
+
+        base.add_resources(video);
     }
 }
 

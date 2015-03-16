@@ -85,6 +85,8 @@ public class Rygel.Tracker.PictureItemFactory : ItemFactory {
         if (metadata.is_bound (PictureMetadata.HEIGHT)) {
             photo.height = (int) metadata.get_integer (PictureMetadata.HEIGHT);
         }
+
+        base.add_resources(photo);
     }
 }
 
