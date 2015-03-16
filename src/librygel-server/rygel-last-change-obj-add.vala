@@ -37,8 +37,7 @@ internal class Rygel.LastChangeObjAdd : Rygel.LastChangeEntry {
         this.upnp_class = upnp_class;
     }
 
-    protected override string additional_info ()
-    {
+    protected override string additional_info () {
         var str = new StringBuilder ();
         var st_update = (this.sub_tree_update ? "1" : "0");
 

@@ -13,24 +13,12 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL CABLE TELEVISION LABORATORIES
- * INC. OR ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
- * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 using GUPnP;
 
 public class Rygel.DTCPCleartextResponse : Rygel.HTTPResponseElement {
-    public static const string DTCP_CONTENT_RANGE_HEADER = "Content-Range.dtcp.com";
+    public const string DTCP_CONTENT_RANGE_HEADER = "Content-Range.dtcp.com";
 
     /**
      * The start of the response range in bytes
@@ -57,7 +45,9 @@ public class Rygel.DTCPCleartextResponse : Rygel.HTTPResponseElement {
      */
     public int64 encrypted_length { get; public set;}
 
-    public DTCPCleartextResponse (int64 start_byte, int64 end_byte, int64 total_size,
+    public DTCPCleartextResponse (int64 start_byte,
+                                  int64 end_byte,
+                                  int64 total_size,
                                   int64 encrypted_length = UNSPECIFIED) {
         this.start_byte = start_byte;
         this.end_byte = end_byte;
@@ -66,8 +56,9 @@ public class Rygel.DTCPCleartextResponse : Rygel.HTTPResponseElement {
         this.encrypted_length = encrypted_length;
     }
 
-    public DTCPCleartextResponse.from_request (DTCPCleartextRequest request,
-                                               int64 encrypted_length = UNSPECIFIED) {
+    public DTCPCleartextResponse.from_request
+                                        (DTCPCleartextRequest request,
+                                         int64 encrypted_length = UNSPECIFIED) {
         this.start_byte = request.start_byte;
         this.end_byte = request.end_byte;
         this.range_length = request.range_length;
@@ -83,15 +74,21 @@ public class Rygel.DTCPCleartextResponse : Rygel.HTTPResponseElement {
                               + ( (this.total_size == UNSPECIFIED) ? "*"
                                   : this.total_size.to_string () );
 
-            request.msg.response_headers.append (DTCP_CONTENT_RANGE_HEADER, response);
+            request.msg.response_headers.append (DTCP_CONTENT_RANGE_HEADER,
+                                                 response);
         }
+
         if (this.encrypted_length != UNSPECIFIED) {
-            request.msg.response_headers.set_content_length (this.encrypted_length);
+            request.msg.response_headers.set_content_length
+                                        (this.encrypted_length);
         }
     }
 
     public override string to_string () {
         return ("DTCPCleartextResponse(bytes=%lld-%lld/%lld, enc_len=%lld)"
-                .printf (this.start_byte, this.end_byte, this.total_size, this.encrypted_length));
+                .printf (this.start_byte,
+                         this.end_byte,
+                         this.total_size,
+                         this.encrypted_length));
     }
 }

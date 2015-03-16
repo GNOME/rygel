@@ -103,7 +103,8 @@ public class Rygel.MusicItem : AudioItem {
         if (!this.place_holder && this.album_art != null) {
             var protocol = this.get_protocol_for_uri (this.album_art.uri);
 
-            // Use the existing URI if the server is local or a non-internal/file uri is set
+            // Use the existing URI if the server is local or a non-internal
+            // file uri is set
             if (http_server.is_local () || protocol != "internal") {
                 didl_item.album_art = this.album_art.uri;
             } else {

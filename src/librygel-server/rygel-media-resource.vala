@@ -13,18 +13,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL CABLE TELEVISION LABORATORIES
- * INC. OR ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
- * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 using GUPnP;
@@ -57,15 +45,18 @@ public class Rygel.MediaResource : GLib.Object {
     public string dlna_profile  { get; set; default = null; }
     public string network  { get; set; default = null; }
     public string[] play_speeds = null;
-    public DLNAConversion dlna_conversion { get; set; default = DLNAConversion.NONE; }
+    public DLNAConversion dlna_conversion { get; set;
+                                            default = DLNAConversion.NONE; }
     public DLNAFlags dlna_flags { get; set; default = DLNAFlags.NONE; }
-    public DLNAOperation dlna_operation { get; set; default = DLNAOperation.NONE; }
+    public DLNAOperation dlna_operation { get; set;
+                                          default = DLNAOperation.NONE; }
 
-    // I know gupnp-av DIDLLiteResource and ProtocolInfo structures have the above fields.
-    //  But both proved to be problematic in their current form when used in a variety
-    //  of containers (appears to be issues with reference management causing (incomplete)
-    //  copies of DIDLLiteResource/ProtocolInfo to be made). This class can be refactored
-    //  if/when these classes are made more flexible.
+    // I know gupnp-av DIDLLiteResource and ProtocolInfo structures have the
+    // above fields.  But both proved to be problematic in their current form
+    // when used in a variety of containers (appears to be issues with
+    // reference management causing (incomplete) copies of
+    // DIDLLiteResource/ProtocolInfo to be made). This class can be refactored
+    // if/when these classes are made more flexible.
 
     public MediaResource (string name) {
         this.name = name;
@@ -101,9 +92,11 @@ public class Rygel.MediaResource : GLib.Object {
         this.dlna_operation = that.dlna_operation;
     }
 
-    public MediaResource.from_didl_lite_resource (string name, DIDLLiteResource didl_resource) {
+    public MediaResource.from_didl_lite_resource (string name,
+                                                  DIDLLiteResource didl_resource) {
         // Create a MediaResource from the given DIDLLiteResource
-        // Note: For a DIDLLiteResource, a value of -1/null also signals "not set"
+        // Note: For a DIDLLiteResource, a value of -1/null also signals "not
+        // set"
         this.name = name;
         // res block
         this.uri = didl_resource.uri;
@@ -139,8 +132,8 @@ public class Rygel.MediaResource : GLib.Object {
     }
 
     public DIDLLiteResource serialize
-                               (DIDLLiteResource didl_resource,
-                                HashTable<string, string> ? replacements) {
+                                     (DIDLLiteResource didl_resource,
+                                      HashTable<string, string>? replacements) {
         // Note: For a DIDLLiteResource, a values -1/null also signal "not set"
         if (replacements == null) {
             didl_resource.uri = this.uri;
@@ -175,7 +168,7 @@ public class Rygel.MediaResource : GLib.Object {
     }
 
     public ProtocolInfo get_protocol_info
-                            (HashTable<string, string> ? replacements = null) {
+                            (HashTable<string, string>? replacements = null) {
         var new_pi = new ProtocolInfo ();
 
         new_pi.protocol = this.protocol;
@@ -199,31 +192,31 @@ public class Rygel.MediaResource : GLib.Object {
     }
 
     public bool supports_arbitrary_byte_seek () {
-        return is_dlna_operation_mode_set (DLNAOperation.RANGE);
+        return this.is_dlna_operation_mode_set (DLNAOperation.RANGE);
     }
 
     public bool supports_arbitrary_time_seek () {
-        return is_dlna_operation_mode_set (DLNAOperation.TIMESEEK);
+        return this.is_dlna_operation_mode_set (DLNAOperation.TIMESEEK);
     }
 
     public bool supports_limited_byte_seek () {
-        return is_dlna_protocol_flag_set (DLNAFlags.BYTE_BASED_SEEK);
+        return this.is_dlna_protocol_flag_set (DLNAFlags.BYTE_BASED_SEEK);
     }
 
     public bool supports_limited_time_seek () {
-        return is_dlna_protocol_flag_set (DLNAFlags.TIME_BASED_SEEK);
+        return this.is_dlna_protocol_flag_set (DLNAFlags.TIME_BASED_SEEK);
     }
 
     public bool supports_limited_cleartext_byte_seek () {
-        return is_dlna_protocol_flag_set (DLNAFlags.LOP_CLEARTEXT_BYTESEEK);
+        return this.is_dlna_protocol_flag_set (DLNAFlags.LOP_CLEARTEXT_BYTESEEK);
     }
 
     public bool supports_full_cleartext_byte_seek () {
-        return is_dlna_protocol_flag_set (DLNAFlags.CLEARTEXT_BYTESEEK_FULL);
+        return this.is_dlna_protocol_flag_set (DLNAFlags.CLEARTEXT_BYTESEEK_FULL);
     }
 
     public bool is_link_protection_enabled () {
-        return is_dlna_protocol_flag_set (DLNAFlags.LINK_PROTECTED_CONTENT);
+        return this.is_dlna_protocol_flag_set (DLNAFlags.LINK_PROTECTED_CONTENT);
     }
 
     public bool is_dlna_content () {
@@ -231,7 +224,7 @@ public class Rygel.MediaResource : GLib.Object {
     }
 
     public string get_default_transfer_mode () {
-        if (is_dlna_protocol_flag_set (DLNAFlags.STREAMING_TRANSFER_MODE)) {
+        if (this.is_dlna_protocol_flag_set (DLNAFlags.STREAMING_TRANSFER_MODE)) {
             return "Streaming";
         } else {
             return "Interactive";
@@ -245,24 +238,29 @@ public class Rygel.MediaResource : GLib.Object {
 
         switch (transfer_mode) {
             case "Streaming" :
-                return is_dlna_protocol_flag_set (DLNAFlags.STREAMING_TRANSFER_MODE);
+                return this.is_dlna_protocol_flag_set
+                                        (DLNAFlags.STREAMING_TRANSFER_MODE);
             case "Interactive" :
-                return is_dlna_protocol_flag_set (DLNAFlags.INTERACTIVE_TRANSFER_MODE);
+                return this.is_dlna_protocol_flag_set
+                                        (DLNAFlags.INTERACTIVE_TRANSFER_MODE);
             case "Background" :
-                return is_dlna_protocol_flag_set (DLNAFlags.BACKGROUND_TRANSFER_MODE);
+                return this.is_dlna_protocol_flag_set
+                                        (DLNAFlags.BACKGROUND_TRANSFER_MODE);
             default:
                 return false;
         }
     }
 
     public bool is_streamable () {
-        return is_dlna_protocol_flag_set (DLNAFlags.STREAMING_TRANSFER_MODE);
+        return this.is_dlna_protocol_flag_set
+                                        (DLNAFlags.STREAMING_TRANSFER_MODE);
     }
 
     // This is to check if any of the cleartext byte seek operations are supported.
     public bool is_cleartext_range_support_enabled () {
-        return ( is_dlna_protocol_flag_set (DLNAFlags.CLEARTEXT_BYTESEEK_FULL
-                                            | DLNAFlags.LOP_CLEARTEXT_BYTESEEK) );
+        return (this.is_dlna_protocol_flag_set
+                                        (DLNAFlags.CLEARTEXT_BYTESEEK_FULL |
+                                         DLNAFlags.LOP_CLEARTEXT_BYTESEEK));
     }
 
     public bool supports_playspeed () {
@@ -285,7 +283,8 @@ public class Rygel.MediaResource : GLib.Object {
                   .append_unichar (',');
         }
         if (this.cleartext_size >= 0) {
-            strbuf.append ("cleartextsize ").append (this.cleartext_size.to_string ())
+            strbuf.append ("cleartextsize ")
+                  .append (this.cleartext_size.to_string ())
                   .append_unichar (',');
         }
         if (this.duration >= 0) {
@@ -297,7 +296,8 @@ public class Rygel.MediaResource : GLib.Object {
                   .append_unichar (',');
         }
         if (this.bits_per_sample >= 0) {
-            strbuf.append ("bits_per_sample ").append (this.bits_per_sample.to_string ())
+            strbuf.append ("bits_per_sample ")
+                  .append (this.bits_per_sample.to_string ())
                   .append_unichar (',');
         }
         if (this.width >= 0) {
@@ -309,19 +309,23 @@ public class Rygel.MediaResource : GLib.Object {
                   .append_unichar (',');
         }
         if (this.color_depth >= 0) {
-            strbuf.append ("color_depth ").append (this.color_depth.to_string ())
+            strbuf.append ("color_depth ")
+                  .append (this.color_depth.to_string ())
                   .append_unichar (',');
         }
         if (this.audio_channels >= 0) {
-            strbuf.append ("audio_channels ").append (this.audio_channels.to_string ())
+            strbuf.append ("audio_channels ")
+                  .append (this.audio_channels.to_string ())
                   .append_unichar (',');
         }
         if (this.sample_freq >= 0) {
-            strbuf.append ("sample_freq ").append (this.sample_freq.to_string ())
+            strbuf.append ("sample_freq ")
+                  .append (this.sample_freq.to_string ())
                   .append_unichar (',');
         }
         if (this.network != null) {
-            strbuf.append ("network ").append (this.network).append_unichar (',');
+            strbuf.append ("network ")
+                  .append (this.network).append_unichar (',');
         }
         strbuf.append ("protocol ")
               .append (this.protocol == null ? "null" : this.protocol)
@@ -333,66 +337,73 @@ public class Rygel.MediaResource : GLib.Object {
               .append (this.dlna_profile == null ? "null" : this.dlna_profile)
               .append_unichar (',');
         strbuf.append_printf ("dlna_flags %.8X [", this.dlna_flags);
-        if (is_dlna_protocol_flag_set (DLNAFlags.SENDER_PACED)) {
+        if (this.is_dlna_protocol_flag_set (DLNAFlags.SENDER_PACED)) {
             strbuf.append ("sp-flag ");
         }
-        if (is_dlna_protocol_flag_set (DLNAFlags.TIME_BASED_SEEK)) {
+        if (this.is_dlna_protocol_flag_set (DLNAFlags.TIME_BASED_SEEK)) {
             strbuf.append ("lop-time ");
         }
-        if (is_dlna_protocol_flag_set (DLNAFlags.BYTE_BASED_SEEK)) {
+        if (this.is_dlna_protocol_flag_set (DLNAFlags.BYTE_BASED_SEEK)) {
             strbuf.append ("lop-byte ");
         }
-        if (is_dlna_protocol_flag_set (DLNAFlags.S0_INCREASE)) {
+        if (this.is_dlna_protocol_flag_set (DLNAFlags.S0_INCREASE)) {
             strbuf.append ("s0-increase ");
         }
-        if (is_dlna_protocol_flag_set (DLNAFlags.SN_INCREASE)) {
+        if (this.is_dlna_protocol_flag_set (DLNAFlags.SN_INCREASE)) {
             strbuf.append ("sn-increase ");
         }
-        if (is_dlna_protocol_flag_set (DLNAFlags.STREAMING_TRANSFER_MODE)) {
+        if (this.is_dlna_protocol_flag_set
+                                        (DLNAFlags.STREAMING_TRANSFER_MODE)) {
             strbuf.append ("streaming ");
         }
-        if (is_dlna_protocol_flag_set (DLNAFlags.INTERACTIVE_TRANSFER_MODE)) {
+        if (this.is_dlna_protocol_flag_set
+                                        (DLNAFlags.INTERACTIVE_TRANSFER_MODE)) {
             strbuf.append ("interactive ");
         }
-        if (is_dlna_protocol_flag_set (DLNAFlags.BACKGROUND_TRANSFER_MODE)) {
+        if (this.is_dlna_protocol_flag_set
+                                        (DLNAFlags.BACKGROUND_TRANSFER_MODE)) {
             strbuf.append ("background ");
         }
-        if (is_dlna_protocol_flag_set (DLNAFlags.CONNECTION_STALL)) {
+        if (this.is_dlna_protocol_flag_set (DLNAFlags.CONNECTION_STALL)) {
             strbuf.append ("stall ");
         }
-        if (is_dlna_protocol_flag_set (DLNAFlags.DLNA_V15)) {
+        if (this.is_dlna_protocol_flag_set (DLNAFlags.DLNA_V15)) {
             strbuf.append ("v1.5 ");
         }
-        if (is_dlna_protocol_flag_set (DLNAFlags.LINK_PROTECTED_CONTENT)) {
+        if (this.is_dlna_protocol_flag_set (DLNAFlags.LINK_PROTECTED_CONTENT)) {
             strbuf.append ("link-protected ");
         }
-        if (is_dlna_protocol_flag_set (DLNAFlags.CLEARTEXT_BYTESEEK_FULL)) {
+        if (this.is_dlna_protocol_flag_set
+                                        (DLNAFlags.CLEARTEXT_BYTESEEK_FULL)) {
             strbuf.append ("cleartext-full ");
         }
-        if (is_dlna_protocol_flag_set (DLNAFlags.LOP_CLEARTEXT_BYTESEEK)) {
+        if (this.is_dlna_protocol_flag_set (DLNAFlags.LOP_CLEARTEXT_BYTESEEK)) {
             strbuf.append ("cleartext-lop ");
         }
-        strbuf.overwrite (strbuf.len-1,"],"); // Replace space
+        strbuf.overwrite (strbuf.len - 1,"],"); // Replace space
 
         if (this.dlna_conversion != DLNAConversion.NONE) {
             strbuf.append_printf ("dlna_conversion %1d,", this.dlna_conversion);
         }
+
         if (this.dlna_operation != DLNAOperation.NONE) {
             strbuf.append_printf ("dlna_operation %.2X [", this.dlna_operation);
             if (is_dlna_operation_mode_set (DLNAOperation.RANGE)) {
                 strbuf.append ("byte-seek ");
             }
+
             if (is_dlna_operation_mode_set (DLNAOperation.TIMESEEK)) {
                 strbuf.append ("time-seek ");
             }
             strbuf.overwrite (strbuf.len-1,"],"); // Replace space
         }
+
         if (this.play_speeds != null) {
             strbuf.append ("play_speeds [");
             foreach (var speed in this.play_speeds) {
                 strbuf.append (speed).append_unichar (',');
             }
-            strbuf.overwrite (strbuf.len-1,"]"); // Replace comma
+            strbuf.overwrite (strbuf.len - 1,"]"); // Replace comma
         }
         strbuf.append (",uri ").append (this.uri == null ? "null" : this.uri);
         strbuf.append_unichar (')');

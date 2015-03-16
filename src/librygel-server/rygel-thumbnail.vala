@@ -47,7 +47,8 @@ public class Rygel.Thumbnail : Rygel.IconInfo {
         res.mime_type = this.mime_type;
         res.dlna_profile = this.dlna_profile;
         res.protocol = protocol;
-        // Note: These represent best-case. The MediaServer/HTTPServer can dial these back
+        // Note: These represent best-case. The MediaServer/HTTPServer can
+        // dial these back
         res.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE |
                           DLNAFlags.BACKGROUND_TRANSFER_MODE |
                           DLNAFlags.CONNECTION_STALL |

@@ -83,7 +83,7 @@ internal class Rygel.ObjectRemovalQueue: GLib.Object {
 
             debug ("Auto-destroyed object '%s'!", object.id);
         } catch (Error err) {
-            warning ("Failed to auto-destroy temporary object '%s': %s",
+            warning (/*_*/("Failed to auto-destroy temporary object '%s': %s"),
                      object.id,
                      err.message);
         }

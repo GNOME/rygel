@@ -27,8 +27,7 @@ internal class Rygel.LastChangeStDone : Rygel.LastChangeEntry {
         base ("stDone", id, update_id);
     }
 
-    protected override string additional_info ()
-    {
+    protected override string additional_info () {
         return "";
     }
 }

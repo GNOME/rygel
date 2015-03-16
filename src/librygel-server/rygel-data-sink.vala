@@ -49,12 +49,7 @@ internal class Rygel.DataSink : Object {
 
         this.chunks_buffered = 0;
         this.bytes_sent = 0;
-        this.max_bytes = int64.MAX;
-        if (offsets != null &&
-            offsets is HTTPByteSeekRequest &&
-            ((offsets as HTTPByteSeekRequest).range_length != HTTPSeekRequest.UNSPECIFIED)) {
-            this.max_bytes = (offsets as HTTPByteSeekRequest).range_length;
-        }
+        this.max_bytes = this.get_max_bytes (offsets);
         debug ("Setting max_bytes to %s", (this.max_bytes == int64.MAX)
                                           ? "MAX" : this.max_bytes.to_string());
         this.source.data_available.connect (this.on_data_available);
@@ -87,5 +82,18 @@ internal class Rygel.DataSink : Object {
         if (this.chunks_buffered > MAX_BUFFERED_CHUNKS) {
             this.source.freeze ();
         }
+    }
+
+    private int64 get_max_bytes (HTTPSeekRequest? offsets) {
+        if (offsets == null || !(offsets is HTTPByteSeekRequest)) {
+            debug ("Setting max_bytes to MAX");
+
+            return int64.MAX;
+        }
+
+        var request = offsets as HTTPByteSeekRequest;
+        debug ("Setting max_bytes to %lld", request.range_length);
+
+        return request.range_length;
     }
 }

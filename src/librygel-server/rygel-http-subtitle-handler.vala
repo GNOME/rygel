@@ -34,7 +34,8 @@ internal class Rygel.HTTPSubtitleHandler : Rygel.HTTPGetHandler {
 
     public HTTPSubtitleHandler (MediaFileItem media_item,
                                 int subtitle_index,
-                                Cancellable? cancellable) throws HTTPRequestError {
+                                Cancellable? cancellable)
+                                throws HTTPRequestError {
         this.media_item = media_item;
         this.subtitle_index = subtitle_index;
         this.cancellable = cancellable;
@@ -48,8 +49,10 @@ internal class Rygel.HTTPSubtitleHandler : Rygel.HTTPGetHandler {
         }
 
         if (this.subtitle == null) {
-            throw new HTTPRequestError.NOT_FOUND ("Subtitle index %d not found for item '%s",
-                                                  subtitle_index, media_item.id);
+            var msg = /*_*/("Subtitle index %d not found for item '%s");
+            throw new HTTPRequestError.NOT_FOUND (msg,
+                                                  subtitle_index,
+                                                  media_item.id);
         }
     }
 
@@ -61,16 +64,18 @@ internal class Rygel.HTTPSubtitleHandler : Rygel.HTTPGetHandler {
     public override void add_response_headers (HTTPGet request)
                                                throws HTTPRequestError {
         // Add Content-Type
-        request.msg.response_headers.append ("Content-Type", subtitle.mime_type);
+        request.msg.response_headers.append ("Content-Type",
+                                             subtitle.mime_type);
 
         // Add contentFeatures.dlna.org
 
-        // This is functionally equivalent to how contentFeatures was formed via the
-        //  (deprecated) HTTPIdentityHandler
-        MediaResource res = this.media_item.get_resource_list ().get (0);
-        string protocol_info = res.get_protocol_info ().to_string ();
+        // This is functionally equivalent to how contentFeatures was formed
+        // via the (deprecated) HTTPIdentityHandler
+        var res = this.media_item.get_resource_list ().get (0);
+        var protocol_info = res.get_protocol_info ().to_string ();
         var pi_fields = protocol_info.split (":", 4);
-        request.msg.response_headers.append ("contentFeatures.dlna.org", pi_fields[3]);
+        request.msg.response_headers.append ("contentFeatures.dlna.org",
+                                             pi_fields[3]);
 
         // Chain-up
         base.add_response_headers (request);

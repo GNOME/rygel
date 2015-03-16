@@ -32,12 +32,12 @@ private errordomain Rygel.MediaFileItemError {
     BAD_URI
 }
 
-/**
- * Represents a file-accessible or http-accessible media item (music file, image file,
- * video file, etc) with some pre-established metadata or a content placeholder for
- * uploaded content.
+/** Represents a file-accessible or http-accessible media item (music file,
+ * image file, video file, etc) with some pre-established metadata or a
+ * content placeholder for uploaded content.
  *
- * Items representing non-file-accessible content should create their own MediaItem subclass.
+ * Items representing non-file-accessible content should create their own
+ * MediaItem subclass.
  */
 public abstract class Rygel.MediaFileItem : MediaItem {
     /**
@@ -137,10 +137,11 @@ public abstract class Rygel.MediaFileItem : MediaItem {
         var didl_item = base.serialize (serializer, http_server) as DIDLLiteItem;
 
         if (!this.place_holder) {
-            // Subclasses can override add_resources and augment the media resource list (which
-            //  should contain the primary resource representations for the MediaItem
-            //  at this point) with any secondary representations or alternate delivery
-            //  mechanisms they can provide
+            // Subclasses can override add_resources and augment the media
+            // resource list (which should contain the primary resource
+            // representations for the MediaItem at this point) with any
+            // secondary representations or alternate delivery mechanisms they
+            // can provide
             this.add_additional_resources (http_server);
         }
         this.serialize_resource_list (didl_item, http_server);
@@ -149,11 +150,15 @@ public abstract class Rygel.MediaFileItem : MediaItem {
     }
 
     /**
-     * Subclasses override this method to create the type-specific primary MediaResource.
+     * Subclasses override this method to create the type-specific primary
+     * MediaResource.
      *
-     * The resource returned is presumed to represent the "internal" file resource and
-     * a uri referring to the source file. Transport-specific variants can be created
-     * by the caller.
+     * The resource returned is presumed to represent the "internal" file
+     * resource and a uri referring to the source file. Transport-specific
+     * variants can be created by the caller.
+     *
+     * @return a RygelMediaResource for the on-disk file represented by this
+     * instance.
      */
     public virtual MediaResource get_primary_resource () {
         var res = new MediaResource ("primary");
@@ -167,19 +172,24 @@ public abstract class Rygel.MediaFileItem : MediaItem {
         try {
             res.protocol = this.get_protocol_for_uri (res.uri);
         } catch (Error e) {
-            warning ("Could not determine protocol for " + res.uri);
+            warning (_("Could not determine protocol for uri %s"),
+                     res.uri);
         }
-        res.extension = get_extension ();
+
+        res.extension = this.get_extension ();
         res.size = this.size;
+
         return res;
     }
 
     /**
-     * Return the file/uri extension that best represents the item's primary resource.
+     * Return the file/uri extension that best represents the item's primary
+     * resource.
      */
     public virtual string get_extension () {
         string uri_extension = null;
-        // Use the extension from the source content filename, if it has an extension
+        // Use the extension from the source content filename, if it has an
+        // extension
         string basename = Path.get_basename (this.get_primary_uri ());
         int dot_index = -1;
         if (basename != null) {
@@ -192,6 +202,7 @@ public abstract class Rygel.MediaFileItem : MediaItem {
         if (uri_extension == null) {
             uri_extension = ext_from_mime_type (this.mime_type);
         }
+
         return uri_extension;
     }
 

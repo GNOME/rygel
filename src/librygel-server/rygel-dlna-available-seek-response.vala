@@ -14,18 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL CABLE TELEVISION LABORATORIES
- * INC. OR ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
- * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 public static const string AVAILABLE_SEEK_RANGE_HEADER = "availableSeekRange.dlna.org";
@@ -61,8 +49,11 @@ public class Rygel.DLNAAvailableSeekRangeResponse : Rygel.HTTPResponseElement {
      */
     public int64 range_length { get; private set; }
 
-    public DLNAAvailableSeekRangeResponse (int mode, int64 start_time, int64 end_time,
-                                           int64 start_byte, int64 end_byte) {
+    public DLNAAvailableSeekRangeResponse (int mode,
+                                           int64 start_time,
+                                           int64 end_time,
+                                           int64 start_byte,
+                                           int64 end_byte) {
         base ();
         this.mode = mode;
         this.start_time = start_time;
@@ -72,7 +63,9 @@ public class Rygel.DLNAAvailableSeekRangeResponse : Rygel.HTTPResponseElement {
         this.range_length = end_byte - start_byte + 1;
     }
 
-    public DLNAAvailableSeekRangeResponse.time_only (int mode, int64 start_time, int64 end_time) {
+    public DLNAAvailableSeekRangeResponse.time_only (int mode,
+                                                     int64 start_time,
+                                                     int64 end_time) {
         base ();
         this.mode = mode;
         this.start_time = start_time;
@@ -81,9 +74,10 @@ public class Rygel.DLNAAvailableSeekRangeResponse : Rygel.HTTPResponseElement {
     }
 
     public override void add_response_headers (Rygel.HTTPRequest request) {
-        var response = get_response_string ();
+        var response = this.get_response_string ();
         if (response != null) {
-            request.msg.response_headers.append (AVAILABLE_SEEK_RANGE_HEADER, response);
+            request.msg.response_headers.append (AVAILABLE_SEEK_RANGE_HEADER,
+                                                 response);
         }
     }
 
@@ -94,24 +88,28 @@ public class Rygel.DLNAAvailableSeekRangeResponse : Rygel.HTTPResponseElement {
 
         // The availableSeekRange format:
         //
-        // availableSeekRange.dlna.org: MODE npt=START_TIME-END_TIME bytes=START_BYTE-END_BYTE
+        // availableSeekRange.dlna.org:
+        // MODE npt=START_TIME-END_TIME bytes=START_BYTE-END_BYTE
         //
-        // The MODE can be either "0" or "1", indicating the limited operation mode being
-        //  used by the server.
+        // The MODE can be either "0" or "1", indicating the limited operation
+        // mode being used by the server.
         //
-        // The "bytes=" field can be ommitted in some cases. (e.g. ORG_OP b-val==0 and
-        // lop-bytes is 0).
+        // The "bytes=" field can be ommitted in some cases. (e.g. ORG_OP
+        // b-val==0 and lop-bytes is 0).
 
-        // It's not our job at this level to enforce all the semantics of the availableSeekRange
-        //  response, as we don't have enough context. Setting up the correct HTTPTimeSeekRequest
-        //  object is the responsibility of the object owner. To form the response, we just
-        //  use what is set.
+        // It's not our job at this level to enforce all the semantics of the
+        // availableSeekRange response, as we don't have enough context.
+        // Setting up the correct HTTPTimeSeekRequest object is the
+        // responsibility of the object owner. To form the response, we just
+        // use what is set.
 
         var response = new StringBuilder ();
         response.append (mode.to_string ());
         response.append (" npt=");
-        response.append_printf ("%.3f-", (double) this.start_time / TimeSpan.SECOND);
-        response.append_printf ("%.3f", (double) this.end_time / TimeSpan.SECOND);
+        response.append_printf ("%.3f-",
+                                (double) this.start_time / TimeSpan.SECOND);
+        response.append_printf ("%.3f",
+                                (double) this.end_time / TimeSpan.SECOND);
 
         if (this.start_byte != UNSPECIFIED) {
             response.append (" bytes=");
@@ -124,6 +122,7 @@ public class Rygel.DLNAAvailableSeekRangeResponse : Rygel.HTTPResponseElement {
    }
 
     public override string to_string () {
-        return ("HTTPTimeSeekResponse (%s)".printf (get_response_string ()));
+        return ("HTTPTimeSeekResponse (%s)".printf
+                                        (this.get_response_string ()));
     }
 }

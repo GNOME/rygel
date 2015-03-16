@@ -60,7 +60,7 @@ internal class Rygel.XBoxHacks : ClientHacks {
         particles += "th";
         particles += "0";
 
-        uri.set_path (string.joinv("/", particles));
+        uri.set_path (string.joinv ("/", particles));
     }
 
     public void apply_on_device (RootDevice device,

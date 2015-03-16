@@ -34,8 +34,8 @@ internal class Rygel.HTTPThumbnailHandler : Rygel.HTTPGetHandler {
 
     public HTTPThumbnailHandler (MediaFileItem media_item,
                                  int thumbnail_index,
-                                 Cancellable? cancellable) throws HTTPRequestError 
-    {
+                                 Cancellable? cancellable)
+                                 throws HTTPRequestError {
 
         this.media_item = media_item;
         this.thumbnail_index = thumbnail_index;
@@ -50,9 +50,12 @@ internal class Rygel.HTTPThumbnailHandler : Rygel.HTTPGetHandler {
                 this.thumbnail = visual_item.thumbnails.get (thumbnail_index);
             }
         }
+
         if (this.thumbnail == null) {
-            throw new HTTPRequestError.NOT_FOUND ("Thumbnail index %d not found for item '%s",
-                                                  thumbnail_index, media_item.id);
+            var msg = ("Thumbnail index %d not found for item '%s");
+            throw new HTTPRequestError.NOT_FOUND (msg,
+                                                  thumbnail_index,
+                                                  media_item.id);
         }
     }
 
@@ -64,14 +67,17 @@ internal class Rygel.HTTPThumbnailHandler : Rygel.HTTPGetHandler {
     public override void add_response_headers (HTTPGet request)
                                                throws HTTPRequestError {
         // Add Content-Type
-        request.msg.response_headers.append ("Content-Type", thumbnail.mime_type);
+        request.msg.response_headers.append ("Content-Type",
+                                             thumbnail.mime_type);
 
         // Add contentFeatures.dlna.org
-        MediaResource res = this.thumbnail.get_resource
-            (request.http_server.get_protocol (), this.thumbnail_index);
-        string protocol_info = res.get_protocol_info ().to_string ();
+        var res = this.thumbnail.get_resource
+                                        (request.http_server.get_protocol (),
+                                         this.thumbnail_index);
+        var protocol_info = res.get_protocol_info ().to_string ();
         var pi_fields = protocol_info.split (":", 4);
-        request.msg.response_headers.append ("contentFeatures.dlna.org", pi_fields[3]);
+        request.msg.response_headers.append ("contentFeatures.dlna.org",
+                                             pi_fields[3]);
 
         // Chain-up
         base.add_response_headers (request);

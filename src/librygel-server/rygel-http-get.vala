@@ -79,15 +79,18 @@ public class Rygel.HTTPGet : HTTPRequest {
         }
 
         { // Check the transfer mode
-            var transfer_mode = this.msg.request_headers.get_one (TRANSFER_MODE_HEADER);
+            var headers = this.msg.request_headers;
+            var transfer_mode = headers.get_one (TRANSFER_MODE_HEADER);
 
             if (transfer_mode == null) {
                 transfer_mode = this.handler.get_default_transfer_mode ();
             }
 
             if (! this.handler.supports_transfer_mode (transfer_mode)) {
-                throw new HTTPRequestError.UNACCEPTABLE ("%s transfer mode not supported for '%s'",
-                                                        transfer_mode, uri.to_string ());
+                var msg = /*_*/("%s transfer mode not supported for '%s'");
+                throw new HTTPRequestError.UNACCEPTABLE (msg,
+                                                         transfer_mode,
+                                                         uri.to_string ());
             }
         }
 
@@ -121,41 +124,50 @@ public class Rygel.HTTPGet : HTTPRequest {
         var supports_cleartext_seek = DTCPCleartextRequest.supported (this);
         var requested_cleartext_seek = DTCPCleartextRequest.requested (this);
 
-        // Order is significant here when the request has more than one seek header
+        var response_headers = this.msg.response_headers;
+
+        // Order is significant here when the request has more than one seek
+        // header
         if (requested_cleartext_seek) {
             if (!supports_cleartext_seek) {
-                throw new HTTPRequestError.UNACCEPTABLE ( "Cleartext seek not supported for "
-                                                          + this.uri.to_string () );
+                var msg = "Cleartext seek not supported for %s";
+                throw new HTTPRequestError.UNACCEPTABLE (msg,
+                                                         this.uri.to_string ());
             }
             if (requested_byte_seek) {
-                    // Per DLNA Link Protection 7.6.4.3.3.9
-                    throw new HTTPRequestError.UNACCEPTABLE ( "Both Cleartext and Range seek requested "
-                                                              + this.uri.to_string ());
+                var msg = "Both Cleartext and Range seek requested for %s";
+                // Per DLNA Link Protection 7.6.4.3.3.9
+                throw new HTTPRequestError.UNACCEPTABLE (msg,
+                                                         this.uri.to_string ());
             }
         } else if (requested_byte_seek) {
             if (!supports_byte_seek) {
-                throw new HTTPRequestError.UNACCEPTABLE ( "Byte seek not supported for "
-                                                          + this.uri.to_string () );
+                var msg = "Byte seek not supported for %s";
+                throw new HTTPRequestError.UNACCEPTABLE (msg,
+                                                         this.uri.to_string ());
             }
         } else if (requested_time_seek) {
             if (!supports_time_seek) {
-                throw new HTTPRequestError.UNACCEPTABLE ( "Time seek not supported for "
-                                                          + this.uri.to_string () );
+                var msg = "Time seek not supported for %s";
+                throw new HTTPRequestError.UNACCEPTABLE (msg,
+                                                         this.uri.to_string ());
             }
         }
 
-        // Check for DLNA PlaySpeed request only if Range or Range.dtcp.com is not
-        // in the request. DLNA 7.5.4.3.3.19.2, DLNA Link Protection : 7.6.4.4.2.12
-        // (is 7.5.4.3.3.19.2 compatible with the use case in 7.5.4.3.2.24.5?)
-        // Note: We need to check the speed first since direction factors into validating
-        //       the time-seek request
+        // Check for DLNA PlaySpeed request only if Range or Range.dtcp.com is
+        // not in the request. DLNA 7.5.4.3.3.19.2, DLNA Link Protection :
+        // 7.6.4.4.2.12 (is 7.5.4.3.3.19.2 compatible with the use case in
+        // 7.5.4.3.2.24.5?)
+        // Note: We need to check the speed first since direction factors into
+        //       validating the time-seek request
         try {
-            if ( !(requested_byte_seek || requested_cleartext_seek)
-                 && PlaySpeedRequest.requested (this) ) {
+            if (!(requested_byte_seek || requested_cleartext_seek)
+                && PlaySpeedRequest.requested (this)) {
                 this.speed_request = new PlaySpeedRequest.from_request (this);
                 debug ("Processing playspeed %s", speed_request.speed.to_string ());
                 if (this.speed_request.speed.is_normal_rate ()) {
-                    // This is not a scaled-rate request. Treat it as if it wasn't even there
+                    // This is not a scaled-rate request. Treat it as if it
+                    // wasn't even there
                     this.speed_request = null;
                 }
             } else {
@@ -172,7 +184,8 @@ public class Rygel.HTTPGet : HTTPRequest {
             } else {
                 throw error;
             }
-            debug ("Error processing PlaySpeed: %s", error.message);
+            warning ("Error processing PlaySpeed: %s", error.message);
+
             return;
         }
         try {
@@ -180,7 +193,7 @@ public class Rygel.HTTPGet : HTTPRequest {
             if (supports_cleartext_seek && requested_cleartext_seek) {
                 var cleartext_seek = new DTCPCleartextRequest (this);
                 debug ("Processing DTCP cleartext byte range request (bytes %lld to %lld)",
-                         cleartext_seek.start_byte, cleartext_seek.end_byte);
+                       cleartext_seek.start_byte, cleartext_seek.end_byte);
                 this.seek = cleartext_seek;
             } else if (supports_byte_seek && requested_byte_seek) {
                 var byte_seek = new HTTPByteSeekRequest (this);
@@ -189,17 +202,20 @@ public class Rygel.HTTPGet : HTTPRequest {
                 this.seek = byte_seek;
             } else if (supports_time_seek && requested_time_seek) {
                 // Assert: speed_request has been checked/processed
-                var time_seek = new HTTPTimeSeekRequest (this, ((this.speed_request == null) ? null
-                                                                : this.speed_request.speed) );
-                debug ("Processing " + time_seek.to_string ());
+                var speed = this.speed_request == null ? null
+                            : this.speed_request.speed;
+                var time_seek = new HTTPTimeSeekRequest (this, speed);
+                debug ("Processing time seek %s", time_seek.to_string ());
                 this.seek = time_seek;
             } else {
                 this.seek = null;
             }
         } catch (HTTPSeekRequestError error) {
-            warning ("Caught HTTPSeekRequestError: " + error.message);
+            warning ("Caught HTTPSeekRequestError: %s", error.message);
             this.server.unpause_message (this.msg);
-            this.end (error.code, error.message); // All seek error codes are Soup.Status codes
+            this.end (error.code, error.message);
+            // All seek error codes are Soup.Status codes
+
             return;
          }
 
@@ -219,26 +235,31 @@ public class Rygel.HTTPGet : HTTPRequest {
                 }
             }
         } catch (HTTPSeekRequestError error) {
-            warning ("Caught HTTPSeekRequestError on preroll: " + error.message);
+            warning ("Caught HTTPSeekRequestError on preroll: %s",
+                     error.message);
             this.server.unpause_message (this.msg);
-            this.end (error.code, error.message); // All seek error codes are Soup.Status codes
+            this.end (error.code, error.message);
+            // All seek error codes are Soup.Status codes
+
             return;
         }
 
         // Determine the size value
         int64 response_size;
         {
-            // Response size might have already been set by one of the response elements
-            response_size = this.msg.response_headers.get_content_length ();
+            // Response size might have already been set by one of the
+            // response elements
+            response_size = response_headers.get_content_length ();
 
             if (response_size > 0) {
-                this.msg.response_headers.set_content_length (response_size);
+                response_headers.set_content_length (response_size);
                 debug ("Response size set via response element: size "
                        + response_size.to_string());
             } else {
-                // If not already set by a response element, try to set it to the resource size
+                // If not already set by a response element, try to set it to
+                // the resource size
                 if ((response_size = this.handler.get_resource_size ()) > 0) {
-                    this.msg.response_headers.set_content_length (response_size);
+                    response_headers.set_content_length (response_size);
                     debug ("Response size set via response element: size "
                            + response_size.to_string());
                 } else {
@@ -272,18 +293,19 @@ public class Rygel.HTTPGet : HTTPRequest {
                     debug ("Response encoding set to CHUNKED");
                 }
             }
-            this.msg.response_headers.set_encoding (response_body_encoding);
+            response_headers.set_encoding (response_body_encoding);
         }
 
         // Determine the Vary header (if not HTTP 1.0)
         {
-            // Per DLNA 7.5.4.3.2.35.4, the Vary header needs to include the timeseek and/or
-            //  playspeed header if both/either are supported for the resource/uri
+            // Per DLNA 7.5.4.3.2.35.4, the Vary header needs to include the
+            // timeseek and/or playspeed header if both/either are supported
+            // for the resource/uri
             bool supports_playspeed = PlaySpeedRequest.supported (this);
             if (supports_time_seek || supports_playspeed) {
                 if (this.msg.get_http_version () != Soup.HTTPVersion.@1_0) {
                     var vary_header = new StringBuilder
-                                             (this.msg.response_headers.get_list ("Vary"));
+                                        (response_headers.get_list ("Vary"));
                     if (supports_time_seek) {
                         if (vary_header.len > 0) {
                             vary_header.append (",");

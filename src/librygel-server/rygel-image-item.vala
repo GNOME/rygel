@@ -40,19 +40,22 @@ public class Rygel.ImageItem : MediaFileItem, VisualItem {
 
     /**
      * The width of the image in pixels.
-     * A value of -1 means that the width is unknown and will not, or did not, appear in DIDL-Lite XML.
+     * A value of -1 means that the width is unknown and will not, or did not,
+     * appear in DIDL-Lite XML.
      */
     public int width { get; set; default = -1; }
 
     /**
      * The height of the image in pixels.
-     * A value of -1 means that the height is unknown and will not, or did not, appear in DIDL-Lite XML.
+     * A value of -1 means that the height is unknown and will not, or did not,
+     * appear in DIDL-Lite XML.
      */
     public int height { get; set; default = -1; }
 
     /**
      *The number of bits per pixel used to represent the image resource.
-     * A value of -1 means that the color depth is unknown and will not, or did not, appear in DIDL-Lite XML.
+     * A value of -1 means that the color depth is unknown and will not, or did
+     * not, appear in DIDL-Lite XML.
      */
     public int color_depth { get; set; default = -1; }
 

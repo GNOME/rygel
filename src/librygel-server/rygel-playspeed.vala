@@ -13,18 +13,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL CABLE TELEVISION LABORATORIES
- * INC. OR ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
- * TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 /**
@@ -65,36 +53,42 @@ public class Rygel.PlaySpeed {
         if (this.denominator == 1) {
             return numerator.to_string ();
         } else {
-            return this.numerator.to_string () + "/" + this.denominator.to_string ();
+            return "%d/%u".printf (this.numerator, this.denominator);
         }
     }
 
     public float to_float () {
-        return (float)numerator/denominator;
+        return (float) numerator / denominator;
     }
 
     public double to_double () {
-        return (double)numerator/denominator;
+        return (double) numerator / denominator;
     }
 
     private void parse (string speed) throws PlaySpeedError {
-        if (! ("/" in speed)) {
+        if (!("/" in speed)) {
             this.numerator = int.parse (speed);
             this.denominator = 1;
         } else {
             var elements = speed.split ("/");
             if (elements.length != 2) {
-                throw new PlaySpeedError.INVALID_SPEED_FORMAT ("Missing/extra numerator/denominator");
+                var msg = /*_*/("Missing/extra numerator/denominator in fraction %s");
+                throw new PlaySpeedError.INVALID_SPEED_FORMAT (msg, speed);
             }
             this.numerator = int.parse (elements[0]);
             this.denominator = int.parse (elements[1]);
         }
-        // "0" isn't a valid numerator or denominator (and parse returns "0" on parse error)
+
+        // "0" isn't a valid numerator or denominator (and parse returns "0" on
+        // parse error)
         if (this.numerator == 0) {
-            throw new PlaySpeedError.INVALID_SPEED_FORMAT ("Invalid numerator in speed: " + speed);
+            var msg = /*_*/("Invalid numerator in speed %s");
+            throw new PlaySpeedError.INVALID_SPEED_FORMAT (msg.printf (speed));
         }
+
         if (this.denominator <= 0) {
-            throw new PlaySpeedError.INVALID_SPEED_FORMAT ("Invalid denominator in speed: " + speed);
+            var msg = /*_*/("Invalid numerator in speed %s");
+            throw new PlaySpeedError.INVALID_SPEED_FORMAT (msg.printf (speed));
         }
     }
 }

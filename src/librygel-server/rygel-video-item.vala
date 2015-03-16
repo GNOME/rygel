@@ -152,7 +152,9 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
                 try {
                     protocol = this.get_protocol_for_uri (subtitle.uri);
                 } catch (Error e) {
-                    message ("Could not determine protocol for " + subtitle.uri);
+                    message (/*_*/("Could not determine protocol for URI %s"),
+                             subtitle.uri);
+
                     continue;
                 }
 
@@ -181,8 +183,9 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
                 }
             }
             if (main_subtitle != null) {
-                // Add resource-level subtitle metadata to all streamable video resources
-                // Note: All resources have already been serialized by the base
+                // Add resource-level subtitle metadata to all streamable
+                // video resources Note: All resources have already been
+                // serialized by the base
                 var resources = didl_item.get_resources ();
                 foreach (var resource in resources) {
                     if ( (resource.protocol_info.dlna_flags

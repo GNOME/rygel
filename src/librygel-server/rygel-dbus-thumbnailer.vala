@@ -116,7 +116,13 @@ internal class Rygel.DbusThumbnailer : GLib.Object {
                 debug (_("No D-Bus thumbnailer service available"));
             }
         } catch (DBusError error) {
+            debug ("DBus error while trying to connect to thumbmailer service:"
+                   + " %s",
+                   error.message);
         } catch (IOError io_error) {
+            debug ("I/O error while trying to connect to thumbmailer service:"
+                   + " %s",
+                   io_error.message);
         }
 
         this.ready (this.tumbler != null);

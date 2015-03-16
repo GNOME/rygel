@@ -63,21 +63,28 @@ internal class Rygel.SubtitleManager : GLib.Object {
             var subtitle_file = directory.get_child (filename);
 
             try {
-                var info = subtitle_file.query_info (FileAttribute.ACCESS_CAN_READ + "," +
-                                                     FileAttribute.STANDARD_SIZE + "," +
-                                                     FileAttribute.STANDARD_CONTENT_TYPE,
+                var attribs = FileAttribute.ACCESS_CAN_READ + "," +
+                              FileAttribute.STANDARD_SIZE + "," +
+                              FileAttribute.STANDARD_CONTENT_TYPE;
+
+                var info = subtitle_file.query_info (attribs,
                                                      FileQueryInfoFlags.NONE,
                                                      null);
 
                 if (info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ)) {
-                    string content_type = info.get_attribute_string (FileAttribute.STANDARD_CONTENT_TYPE);
+                    var content_type = info.get_attribute_string
+                                        (FileAttribute.STANDARD_CONTENT_TYPE);
                     var subtitle = new Subtitle (content_type, ext);
                     subtitle.uri = subtitle_file.get_uri ();
                     subtitle.size = (int64) info.get_attribute_uint64
-                                                    (FileAttribute.STANDARD_SIZE);
-                    subtitles.add(subtitle);
+                                        (FileAttribute.STANDARD_SIZE);
+                    subtitles.add (subtitle);
                 }
-            } catch (Error err) { }
+            } catch (Error err) {
+                debug ("Failed to query file information for %s: %s",
+                       subtitle_file.get_path (),
+                       err.message);
+            }
         }
 
         if (subtitles.size == 0) {

@@ -87,7 +87,9 @@ public interface Rygel.VisualItem : MediaFileItem {
                 try {
                     protocol = this.get_protocol_for_uri (thumbnail.uri);
                 } catch (Error e) {
-                    message ("Could not determine protocol for " + thumbnail.uri);
+                    message (/*_*/("Could not determine protocol for URI %s"),
+                             thumbnail.uri);
+
                     continue;
                 }
 

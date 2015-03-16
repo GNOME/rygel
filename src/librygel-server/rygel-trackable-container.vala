@@ -46,7 +46,7 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
                 yield this.remove_child_tracked (child);
             }
         } catch (Error error) {
-            warning ("Failed to clear trackable container %s: %s",
+            warning (/*_*/("Failed to clear trackable container %s: %s"),
                      id,
                      error.message);
         }

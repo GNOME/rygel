@@ -78,13 +78,15 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
     /**
      * Set or unset options the server supports/doesn't support
      *
-     * Resources should be setup assuming server supports all optional delivery modes
+     * Resources should be setup assuming server supports all optional
+     * delivery modes
      */
     public void set_resource_delivery_options (MediaResource res) {
         res.protocol = this.get_protocol ();
         // Set this just to be safe
         res.dlna_flags |= DLNAFlags.DLNA_V15;
-        // This server supports all DLNA delivery modes - so leave those flags alone
+        // This server supports all DLNA delivery modes - so leave those flags
+        // alone
      }
 
     public bool need_proxy (string uri) {

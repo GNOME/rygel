@@ -118,7 +118,8 @@ public abstract class Rygel.MediaObject : GLib.Object {
      *  - @@REALNAME@ will be substituted by the user's real name.
      *  - @@USERNAME@ will be substituted by the users's login ID.
      *  - @@HOSTNAME@ will be substituted by the name of the machine.
-     *  - @@ADDRESS@ will be substituted by the IP address of network interface used for the UpNP communication.
+     *  - @@ADDRESS@ will be substituted by the IP address of network interface
+     *    used for the UPnP communication.
      *  - @@PRETTY_HOSTNAME@ will be substituted by the human readable name of the machine
      *    (PRETTY_HOSTNAME field of /etc/machine-info)
      */
@@ -177,7 +178,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
     public override void constructed () {
         base.constructed ();
 
-        uris = new ArrayList<string> ();
+        this.uris = new ArrayList<string> ();
     }
 
     /**
@@ -289,20 +290,28 @@ public abstract class Rygel.MediaObject : GLib.Object {
      * Replace each key in replacement_pairs with its corresponding
      * value in the source_string and return the result.
      *
+     * @param replacement_pairs HashTable of variable -> substitution pairs
+     * @param source_string String that shall have the replacements applied
+     * to.
+     *
      * If source_string is null, null is returned.
+     * @return null if source_string is null, string with all replacements
+     * applied otherwise.
      */
-    public static string ? apply_replacements
+    public static string? apply_replacements
                             (HashTable<string, string> replacement_pairs,
-                             string source_string) {
+                             string?                   source_string) {
         if (source_string == null) {
             return null;
         }
+
         var replaced_string = source_string;
         replacement_pairs.foreach ((search_string, replacement)
             => {
                     replaced_string
                         = replaced_string.replace (search_string, replacement);
                } );
+
         return replaced_string;
     }
 
@@ -369,7 +378,10 @@ public abstract class Rygel.MediaObject : GLib.Object {
                 }
             }
 
-        } catch (Error e) {}
+        } catch (Error e) {
+            debug ("Failed to apply fragments: %s. Ignoring.",
+                   e.message);
+        }
 
         return result;
     }
@@ -429,11 +441,11 @@ public abstract class Rygel.MediaObject : GLib.Object {
         }
 
         try {
-            var info = yield file.query_info_async (
-                    FileAttribute.ACCESS_CAN_WRITE,
-                    FileQueryInfoFlags.NONE,
-                    Priority.DEFAULT,
-                    cancellable);
+            var info = yield file.query_info_async
+                                        (FileAttribute.ACCESS_CAN_WRITE,
+                                         FileQueryInfoFlags.NONE,
+                                         Priority.DEFAULT,
+                                         cancellable);
 
             return info.get_attribute_boolean (FileAttribute.ACCESS_CAN_WRITE);
         } catch (IOError.NOT_FOUND error) {

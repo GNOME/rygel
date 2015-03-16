@@ -31,8 +31,7 @@ internal class Rygel.LastChangeObjMod : Rygel.LastChangeEntry {
         this.sub_tree_update = sub_tree_update;
     }
 
-    protected override string additional_info ()
-    {
+    protected override string additional_info () {
         var str = new StringBuilder ();
         var st_update = (this.sub_tree_update ? "1" : "0");
 

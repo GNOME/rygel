@@ -48,10 +48,13 @@ public class Rygel.HTTPByteSeekResponse : Rygel.HTTPResponseElement {
      */
     public int64 total_size { get; set; }
 
-    public HTTPByteSeekResponse (int64 start_byte, int64 end_byte, int64 total_size) {
+    public HTTPByteSeekResponse (int64 start_byte,
+                                 int64 end_byte,
+                                 int64 total_size) {
         this.start_byte = start_byte;
         this.end_byte = end_byte;
-        this.range_length = end_byte-start_byte+1; // +1, since range is inclusive
+        // +1, since range is inclusive
+        this.range_length = end_byte - start_byte + 1;
         this.total_size = total_size;
     }
 
@@ -64,14 +67,18 @@ public class Rygel.HTTPByteSeekResponse : Rygel.HTTPResponseElement {
 
     public override void add_response_headers (Rygel.HTTPRequest request) {
         // Content-Range: bytes START_BYTE-END_BYTE/TOTAL_LENGTH (or "*")
-        request.msg.response_headers.set_content_range ( this.start_byte, this.end_byte,
-                                                         this.total_size );
+        request.msg.response_headers.set_content_range (this.start_byte,
+                                                        this.end_byte,
+                                                        this.total_size);
         request.msg.response_headers.append ("Accept-Ranges", "bytes");
         request.msg.response_headers.set_content_length (range_length);
     }
 
     public override string to_string () {
         return ("HTTPByteSeekResponse(bytes=%lld-%lld/%lld (%lld bytes))"
-                .printf (this.start_byte, this.end_byte, this.total_size, this.total_size));
+                .printf (this.start_byte,
+                         this.end_byte,
+                         this.total_size,
+                         this.total_size));
     }
 }

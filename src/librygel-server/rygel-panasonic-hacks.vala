@@ -53,6 +53,10 @@ internal class Rygel.PanasonicHacks : ClientHacks {
             return;
         }
 
+        // Panasonic TVs only accept thumbnails with DLNA profile and mime
+        // type JPEG. This is correct from a DLNA pov, but we usually only
+        // supply PNG. When fooled into accepting it, they're rendered fine,
+        // however.
         foreach (var thumbnail in (item as VisualItem).thumbnails) {
             try {
                 thumbnail.mime_type = mime_regex.replace_literal

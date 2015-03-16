@@ -58,9 +58,10 @@ internal class Rygel.PlaylistDatasource : Rygel.DataSource, Object {
 
     public signal void data_ready ();
 
-    public Gee.List<HTTPResponseElement> ? preroll ( HTTPSeekRequest? seek_request,
-                                                     PlaySpeedRequest? playspeed_request)
-       throws Error {
+    public Gee.List<HTTPResponseElement>? preroll
+                                        (HTTPSeekRequest? seek_request,
+                                         PlaySpeedRequest? playspeed_request)
+                                         throws Error {
         if (seek_request != null) {
             throw new DataSourceError.SEEK_FAILED
                                         (_("Seeking not supported"));
@@ -303,8 +304,9 @@ public abstract class Rygel.MediaContainer : MediaObject {
         this.upnp_class = UPNP_CLASS;
         this.create_mode_enabled = false;
 
-        this.container_updated.connect (on_container_updated);
-        this.sub_tree_updates_finished.connect (on_sub_tree_updates_finished);
+        this.container_updated.connect (this.on_container_updated);
+        this.sub_tree_updates_finished.connect
+                                        (this.on_sub_tree_updates_finished);
         this.add_playlist_resources ();
     }
 

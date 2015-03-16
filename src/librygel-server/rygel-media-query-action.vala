@@ -170,7 +170,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
 
             }
 
-            if (!supported_props.contains (property.slice(1, property.length))) {
+            if (!supported_props.contains (property.slice (1, property.length))) {
                 throw new ContentDirectoryError.INVALID_SORT_CRITERIA
                                         ("%s is invalid or not supported",
                                          property);

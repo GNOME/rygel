@@ -215,7 +215,10 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
         } else {
             max_count = this.child_count;
         }
-        var children_to_search = yield this.get_children (0, max_count, "", cancellable);
+        var children_to_search = yield this.get_children (0,
+                                                          max_count,
+                                                          "",
+                                                          cancellable);
 
         do {
             restart = false;

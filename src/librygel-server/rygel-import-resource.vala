@@ -137,11 +137,12 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
 
         try {
             var source_file = File.new_for_uri (this.item.get_primary_uri ());
-            this.output_stream = yield source_file.replace_async (null,
-                                                                  false,
-                                                                  FileCreateFlags.PRIVATE,
-                                                                  Priority.DEFAULT,
-                                                                  this.cancellable);
+            this.output_stream = yield source_file.replace_async
+                                        (null,
+                                         false,
+                                         FileCreateFlags.PRIVATE,
+                                         Priority.DEFAULT,
+                                         this.cancellable);
             var message = new Message ("GET", source_uri);
             message.got_chunk.connect (this.got_chunk_cb);
             message.got_body.connect (this.got_body_cb);

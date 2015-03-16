@@ -181,8 +181,8 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
 
     // TODO: Document this, or make it unnecessary.
     public override void apply_hacks (RootDevice device,
-                                     string     description_path)
-                                     throws Error {
+                                      string     description_path)
+                                      throws Error {
         // Apply V1 downgrades
         string[] services = { ContentDirectory.UPNP_TYPE,
                               ConnectionManager.UPNP_TYPE };

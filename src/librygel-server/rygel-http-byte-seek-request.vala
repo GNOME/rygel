@@ -59,19 +59,21 @@ public class Rygel.HTTPByteSeekRequest : Rygel.HTTPSeekRequest {
 
         int64 start_byte, end_byte, total_size;
 
-        // The size (entity body size) may not be known up-front (especially for live sources)
+        // The size (entity body size) may not be known up-front (especially
+        // for live sources)
         total_size = request.handler.get_resource_size ();
         if (total_size < 0) {
             total_size = UNSPECIFIED;
         }
 
-        // Note: DLNA restricts the syntax on the Range header (see DLNA 7.5.4.3.2.22.3)
-        //       And we need to retain the concept of an "open range" ("bytes=DIGITS-")
-        //       since the interpretation/legality varies based on the context
-        //       (e.g. DLNA 7.5.4.3.2.19.2, 7.5.4.3.2.20.1, 7.5.4.3.2.20.3)
+        // Note: DLNA restricts the syntax on the Range header (see
+        //       DLNA 7.5.4.3.2.22.3) And we need to retain the concept of an
+        //       "open range" ("bytes=DIGITS-") since the interpretation and
+        //       legality varies based on the context (e.g. DLNA 7.5.4.3.2.19.2,
+        //       7.5.4.3.2.20.1, 7.5.4.3.2.20.3)
         if (!range.has_prefix ("bytes=")) {
-            throw new HTTPSeekRequestError.INVALID_RANGE
-                          ("Invalid Range value (missing 'bytes=' field): '%s'", range);
+            var msg = ("Invalid Range value (missing 'bytes=' field): '%s'");
+            throw new HTTPSeekRequestError.INVALID_RANGE (msg, range);
         }
 
         var parsed_range = range.substring (6);
@@ -82,15 +84,18 @@ public class Rygel.HTTPByteSeekRequest : Rygel.HTTPSeekRequest {
 
         var range_tokens = parsed_range.split ("-", 2);
 
-        if (!int64.try_parse (strip_leading_zeros(range_tokens[0]), out start_byte)) {
+        if (!int64.try_parse (strip_leading_zeros (range_tokens[0]),
+                              out start_byte)) {
             throw new HTTPSeekRequestError.INVALID_RANGE
                           ("Invalid Range start value: '%s'", range);
         }
 
         if ((total_size != UNSPECIFIED) && (start_byte >= total_size)) {
-            throw new HTTPSeekRequestError.OUT_OF_RANGE
-                          ("Range start value %lld is larger than content size %lld: '%s'",
-                          start_byte, total_size, range);
+            var msg = /*_*/("Range start value %lld is larger than content size %lld: '%s'");
+            throw new HTTPSeekRequestError.OUT_OF_RANGE (msg,
+                                                         start_byte,
+                                                         total_size,
+                                                         range);
         }
 
         if (range_tokens[1] == null || (range_tokens[1].length == 0)) {
@@ -101,14 +106,17 @@ public class Rygel.HTTPByteSeekRequest : Rygel.HTTPSeekRequest {
                 range_length = UNSPECIFIED;
             }
         } else {
-            if (!int64.try_parse (strip_leading_zeros(range_tokens[1]), out end_byte)) {
+            if (!int64.try_parse (strip_leading_zeros(range_tokens[1]),
+                                  out end_byte)) {
                 throw new HTTPSeekRequestError.INVALID_RANGE
-                              ("Invalid Range end value: '%s'", range);
+                                       ("Invalid Range end value: '%s'", range);
             }
             if (end_byte < start_byte) {
-                throw new HTTPSeekRequestError.INVALID_RANGE
-                              ("Range end value %lld is smaller than range start value %lld: '%s'",
-                              end_byte, start_byte, range);
+                var msg = /*_*/("Range end value %lld is smaller than range start value %lld: '%s'");
+                throw new HTTPSeekRequestError.INVALID_RANGE (msg,
+                                                              end_byte,
+                                                              start_byte,
+                                                              range);
             }
             if ((total_size != UNSPECIFIED) && (end_byte >= total_size)) {
                 end_byte = total_size - 1;
@@ -135,8 +143,8 @@ public class Rygel.HTTPByteSeekRequest : Rygel.HTTPSeekRequest {
         return (request.msg.request_headers.get_one ("Range") != null);
     }
 
-    // Leading "0"s cause try_parse() to assume the value is octal (see Vala bug 656691)
-    //  So we strip them off before passing to int64.try_parse()
+    // Leading "0"s cause try_parse() to assume the value is octal (see Vala
+    // bug 656691) So we strip them off before passing to int64.try_parse()
     private static string strip_leading_zeros (string number_string) {
         int i=0;
         while ((number_string[i] == '0') && (i < number_string.length)) {
