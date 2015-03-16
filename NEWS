@@ -1,3 +1,73 @@
+0.25.3
+======
+
+Server:
+ - Some clean-up.
+ - Use framerate in PlaySpeed response.
+ - Style fixes.
+
+Tracker:
+ - Fix for new resource handling.
+
+Renderer:
+ - Set "Connection: close" in HEAD request to server.
+ - Fix GetProtocolInfo output.
+ - Correctly escape state variables.
+ - Fix an issue with dangling this pointer of AVTransport in lambdas.
+ - Fix an issue with dangling service pointer in ChangeLog.
+ - Fix AV1-MR:1-AVT:1-6.1.
+ - Return an error on incorrect playback transitions
+
+GStreamer Renderer:
+ - Add GObject introspection.
+
+UI:
+ - Fix ambiguity with recent Vala compiler and GLib.ListStore.
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Milan Plzik <milan.plzik@streamunlimited.com>
+ - Simon Mikuda <simon.mikuda@streamunlimited.com>
+ - Мирослав Николић <miroslavnikolic@rocketmail.com>
+ - Tom Tryfonidis <tomtryf@gmail.com>
+ - Sebastian Rasmussen <sebras@gmail.com>
+ - Samir Ribic <samir.ribic@etf.unsa.ba>
+ - Rafael Ferreira <rafael.f.f1@gmail.com>
+ - Paweł Żołnowski <pawel@zolnowski.name>
+ - Muhammet Kara <muhammetk@gmail.com>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Marek Černocký <marek@manet.cz>
+ - Kevron Rees <kevron.m.rees@intel.com>
+ - Fran Dieguez <fran.dieguez@mabishu.com>
+ - Daniel Korostil <ted.korostiled@gmail.com>
+ - Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Balázs Úr <urbalazs@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Ask Hjorth Larsen <asklarsen@gmail.com>
+ - Alexandre Franke <alexandre.franke@gmail.com>
+ - Alain Lojewski <allomervan@gmail.com>
+
+Added/updated translations
+ - bs, courtesy of Samir Ribić
+ - cs, courtesy of Marek Černocký
+ - da, courtesy of Ask Hjorth Larsen
+ - el, courtesy of Tom Tryfonidis
+ - fr, courtesy of Alain Lojewski
+ - gl, courtesy of Fran Dieguez
+ - hu, courtesy of Balázs Úr
+ - ko, courtesy of Changwoo Ryu
+ - lt, courtesy of Aurimas Černius
+ - pl, courtesy of Paweł Żołnowski
+ - pt_BR, courtesy of Rafael Ferreira
+ - sl, courtesy of Matej Urbančič
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+ - sv, courtesy of Sebastian Rasmussen
+ - tr, courtesy of Muhammet Kara
+ - uk, courtesy of Daniel Korostil
+ - zh_TW, courtesy of Chao-Hsiung Liao
+
 0.25.2.1
 ========
 
