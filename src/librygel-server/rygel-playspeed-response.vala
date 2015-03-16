@@ -44,7 +44,7 @@ public class Rygel.PlaySpeedResponse : Rygel.HTTPResponseElement {
     public PlaySpeedResponse (int numerator, uint denominator, int framerate) {
         base ();
         this.speed = new PlaySpeed (numerator, denominator);
-        this.framerate = NO_FRAMERATE;
+        this.framerate = framerate;
     }
 
     public PlaySpeedResponse.from_speed (PlaySpeed speed, int framerate)
@@ -58,7 +58,7 @@ public class Rygel.PlaySpeedResponse : Rygel.HTTPResponseElement {
        throws PlaySpeedError {
         base ();
         this.speed = new PlaySpeed.from_string (speed);
-        this.framerate = NO_FRAMERATE;
+        this.framerate = framerate;
     }
 
     public bool equals (PlaySpeedRequest that) {
