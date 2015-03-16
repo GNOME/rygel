@@ -36,7 +36,7 @@ public class Rygel.MediaPrefSection : PreferencesSection {
     private ArrayList<Widget> widgets; // All widgets in this section
 
     private TreeView treeview;
-    private ListStore liststore;
+    private Gtk.ListStore liststore;
     private TreeSelection tree_selection;
     private FileChooserDialog dialog;
     private ToolButton remove_button;
@@ -49,7 +49,7 @@ public class Rygel.MediaPrefSection : PreferencesSection {
 
         this.treeview = (TreeView) builder.get_object (URIS_TEXTVIEW);
         assert (this.treeview != null);
-        this.liststore = (ListStore) builder.get_object (URIS_LISTSTORE);
+        this.liststore = (Gtk.ListStore) builder.get_object (URIS_LISTSTORE);
         assert (this.liststore != null);
         this.tree_selection = builder.get_object (TREE_SELECTION)
                                                   as TreeSelection;

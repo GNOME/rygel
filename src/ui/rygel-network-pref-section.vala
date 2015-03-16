@@ -30,8 +30,8 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
     const string TREEVIEW = "networks-treeview";
     const string TREE_SELECTION = "networks-tree-selection";
 
-    private ListStore iface_store;
-    private ListStore networks_store;
+    private Gtk.ListStore iface_store;
+    private Gtk.ListStore networks_store;
     private TreeView treeview;
     private TreeSelection tree_selection;
     private Grid grid;
@@ -43,10 +43,10 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
                                WritableUserConfig config) throws Error {
         base (config, "general");
 
-        this.iface_store = builder.get_object (IFACE_STORE) as ListStore;
+        this.iface_store = builder.get_object (IFACE_STORE) as Gtk.ListStore;
         assert (this.iface_store != null);
 
-        this.networks_store = builder.get_object (NETWORKS_STORE) as ListStore;
+        this.networks_store = builder.get_object (NETWORKS_STORE) as Gtk.ListStore;
         assert (this.networks_store != null);
 
         this.tree_selection = builder.get_object (TREE_SELECTION) as
