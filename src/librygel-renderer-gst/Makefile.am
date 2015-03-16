@@ -37,7 +37,7 @@ vapi_DATA = rygel-renderer-gst-2.6.vapi rygel-renderer-gst-2.6.deps
 -include $(INTROSPECTION_MAKEFILE)
 INTROSPECTION_GIRS=
 INTROSPECTION_SCANNER_ARGS=
-INTROSPECTION_COMPILER_ARGS= -l librygel-renderer-gst-2.6.so.2 --includedir=$(builddir)/../librygel-core --includedir=$(srcdir)/../librygel-core --includedir=$(builddir)/../librygel-renderer
+INTROSPECTION_COMPILER_ARGS= -l librygel-renderer-gst-2.6.so.2 --includedir=$(builddir)/../librygel-core --includedir=$(srcdir)/../librygel-core --includedir=$(builddir)/../librygel-renderer --includedir=$(srcdir)/../librygel-renderer
 
 if HAVE_INTROSPECTION
 $(builddir)/RygelRendererGst-2.6.gir: $(srcdir)/Rygel-2.6.gir
