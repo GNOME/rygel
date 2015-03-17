@@ -3,22 +3,23 @@
 # This file is distributed under the same license as the rygel package.
 # Daniel Nylander <po@danielnylander.se>, 2010, 2011, 2012.
 # Sebastian Rasmussen <sebras@gmail.com>, 2014, 2015.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-20 23:53+0000\n"
-"PO-Revision-Date: 2015-02-23 23:58+0100\n"
-"Last-Translator: Sebastian Rasmussen <sebras@gmail.com>\n"
+"POT-Creation-Date: 2015-03-17 11:45+0000\n"
+"PO-Revision-Date: 2015-03-17 18:39+0100\n"
+"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.7.3\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -163,7 +164,7 @@ msgstr "Tillstånd ”%s” hindrar avbrott"
 #: ../src/librygel-core/rygel-connection-manager.vala:95
 #: ../src/librygel-core/rygel-connection-manager.vala:109
 #: ../src/librygel-core/rygel-connection-manager.vala:126
-#: ../src/librygel-renderer/rygel-av-transport.vala:187
+#: ../src/librygel-renderer/rygel-av-transport.vala:190
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:261
 #: ../src/librygel-server/rygel-content-directory.vala:289
@@ -172,7 +173,7 @@ msgstr "Tillstånd ”%s” hindrar avbrott"
 #: ../src/librygel-server/rygel-content-directory.vala:372
 #: ../src/librygel-server/rygel-content-directory.vala:397
 #: ../src/librygel-server/rygel-content-directory.vala:616
-#: ../src/librygel-server/rygel-content-directory.vala:767
+#: ../src/librygel-server/rygel-content-directory.vala:765
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Ogiltigt argument"
@@ -327,58 +328,59 @@ msgstr ""
 "Din GStreamer-installation verkar sakna ”playbin”-elementet. Rygels "
 "GStreamer-visarimplementation fungerar inte utan den"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:193
+#: ../src/librygel-renderer/rygel-av-transport.vala:196
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Ogiltigt InstanceID"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:463
+#: ../src/librygel-renderer/rygel-av-transport.vala:466
 msgid "Play speed not supported"
 msgstr "Uppspelningshastigheten stöds inte"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:481
+#: ../src/librygel-renderer/rygel-av-transport.vala:473
+#: ../src/librygel-renderer/rygel-av-transport.vala:491
 msgid "Transition not available"
 msgstr "Övergång finns inte tillgänglig"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:511
-#: ../src/librygel-renderer/rygel-av-transport.vala:536
-#: ../src/librygel-renderer/rygel-av-transport.vala:566
+#: ../src/librygel-renderer/rygel-av-transport.vala:521
+#: ../src/librygel-renderer/rygel-av-transport.vala:546
+#: ../src/librygel-renderer/rygel-av-transport.vala:576
 msgid "Seek mode not supported"
 msgstr "Spolningsläge stöds inte"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:517
-#: ../src/librygel-renderer/rygel-av-transport.vala:542
-#: ../src/librygel-renderer/rygel-av-transport.vala:555
-#: ../src/librygel-renderer/rygel-av-transport.vala:580
-#: ../src/librygel-renderer/rygel-av-transport.vala:592
+#: ../src/librygel-renderer/rygel-av-transport.vala:527
+#: ../src/librygel-renderer/rygel-av-transport.vala:552
+#: ../src/librygel-renderer/rygel-av-transport.vala:565
+#: ../src/librygel-renderer/rygel-av-transport.vala:590
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
 msgid "Illegal seek target"
 msgstr "Felaktigt spolningsmål"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:651
 msgid "Play mode not supported"
 msgstr "Uppspelningsläge stöds inte"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:717
-#: ../src/librygel-renderer/rygel-av-transport.vala:761
-#: ../src/librygel-renderer/rygel-av-transport.vala:770
-#: ../src/librygel-renderer/rygel-av-transport.vala:833
+#: ../src/librygel-renderer/rygel-av-transport.vala:727
+#: ../src/librygel-renderer/rygel-av-transport.vala:771
+#: ../src/librygel-renderer/rygel-av-transport.vala:780
+#: ../src/librygel-renderer/rygel-av-transport.vala:859
 msgid "Resource not found"
 msgstr "Resursen hittades inte"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:759
+#: ../src/librygel-renderer/rygel-av-transport.vala:769
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "Problem att tolka spellista: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: ../src/librygel-renderer/rygel-av-transport.vala:829
+#: ../src/librygel-renderer/rygel-av-transport.vala:855
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Misslyckades med att komma åt resurs på %s: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:845
+#: ../src/librygel-renderer/rygel-av-transport.vala:871
 msgid "Illegal MIME-type"
 msgstr "Felaktig MIME-typ"
 
@@ -439,7 +441,7 @@ msgid "Not found"
 msgstr "Hittades inte"
 
 #: ../src/librygel-server/rygel-http-post.vala:62
-#: ../src/librygel-server/rygel-import-resource.vala:188
+#: ../src/librygel-server/rygel-import-resource.vala:189
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Trycka ut data till icke-tomma objektet ”%s” tillåts inte"
@@ -470,12 +472,12 @@ msgstr "Kunde ej skapa datakälla för %s"
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Misslyckades med att få ursprunglig URI för ”%s”: %s"
 
-#: ../src/librygel-server/rygel-import-resource.vala:185
+#: ../src/librygel-server/rygel-import-resource.vala:186
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URI:n ”%s” är ogiltig för import av innehåll till"
 
-#: ../src/librygel-server/rygel-import-resource.vala:271
+#: ../src/librygel-server/rygel-import-resource.vala:272
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "Misslyckades med att importera fil från %s: %s"
@@ -593,19 +595,19 @@ msgstr "Misslyckades med att lägga till omslagsbild för %s: %s"
 msgid "Failed to find media art for %s: %s"
 msgstr "Misslyckades med att hitta omslagsbild för %s: %s"
 
-#: ../src/librygel-server/rygel-media-container.vala:66
+#: ../src/librygel-server/rygel-media-container.vala:67
 msgid "Seeking not supported"
 msgstr "Spolning stöds inte"
 
-#: ../src/librygel-server/rygel-media-container.vala:71
+#: ../src/librygel-server/rygel-media-container.vala:72
 msgid "Speed not supported"
 msgstr "Hastighet stöds inte"
 
-#: ../src/librygel-server/rygel-media-container.vala:122
+#: ../src/librygel-server/rygel-media-container.vala:123
 msgid "Failed to generate playlist"
 msgstr "Misslyckades med att generera spellista"
 
-#: ../src/librygel-server/rygel-media-container.vala:468
+#: ../src/librygel-server/rygel-media-container.vala:470
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
 msgstr "Okänd MediaContainer-resurs: %s"
@@ -618,18 +620,23 @@ msgstr "Ingen mediamotor hittad."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init anropades inte. Kan inte fortsätta."
 
-#: ../src/librygel-server/rygel-media-object.vala:282
+#: ../src/librygel-server/rygel-media-file-item.vala:176
+#, c-format
+msgid "Could not determine protocol for uri %s"
+msgstr "Kunde inte avgöra protokoll för URI %s"
+
+#: ../src/librygel-server/rygel-media-object.vala:283
 #, c-format
 msgid "Could not determine protocol for %s"
 msgstr "Kunde inte avgöra protokoll för %s"
 
-#: ../src/librygel-server/rygel-media-object.vala:497
+#: ../src/librygel-server/rygel-media-object.vala:508
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Felaktig URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-object.vala:509
+#: ../src/librygel-server/rygel-media-object.vala:520
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Misslyckades med att läsa av protokoll för URI %s. Antar ”%s”"
@@ -757,7 +764,7 @@ msgstr "Ogiltiga sökkriterier angivna"
 msgid "Failed to search in '%s': %s"
 msgstr "Misslyckades med att söka i ”%s”: %s"
 
-#: ../src/librygel-server/rygel-subtitle-manager.vala:85
+#: ../src/librygel-server/rygel-subtitle-manager.vala:92
 msgid "No subtitle available"
 msgstr "Ingen undertext tillgänglig"
 
