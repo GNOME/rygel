@@ -1,19 +1,19 @@
 # Russian translation for rygel.
 # Copyright (C) 2011 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
-# Stas Solovey <whats_up@tut.by>, 2013.
 # Ivan Komaritsyn <vantu5z@mail.ru>, 2015.
 # Yuri Myasoedov <ymyasoedov@yandex.ru>, 2011, 2012, 2013, 2014, 2015.
+# Stas Solovey <whats_up@tut.by>, 2013, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-17 11:38+0000\n"
-"PO-Revision-Date: 2015-02-18 20:48+0300\n"
-"Last-Translator: Yuri Myasoedov <ymyasoedov@yandex.ru>\n"
-"Language-Team: русский <gnome-cyr@gnome.org>\n"
+"POT-Creation-Date: 2015-03-16 23:38+0000\n"
+"PO-Revision-Date: 2015-03-17 11:57+0300\n"
+"Last-Translator: Stas Solovey <whats_up@tut.by>\n"
+"Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -166,7 +166,7 @@ msgstr "Состояние «%s» препятствует отмене"
 #: ../src/librygel-core/rygel-connection-manager.vala:95
 #: ../src/librygel-core/rygel-connection-manager.vala:109
 #: ../src/librygel-core/rygel-connection-manager.vala:126
-#: ../src/librygel-renderer/rygel-av-transport.vala:187
+#: ../src/librygel-renderer/rygel-av-transport.vala:190
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:261
 #: ../src/librygel-server/rygel-content-directory.vala:289
@@ -175,7 +175,7 @@ msgstr "Состояние «%s» препятствует отмене"
 #: ../src/librygel-server/rygel-content-directory.vala:372
 #: ../src/librygel-server/rygel-content-directory.vala:397
 #: ../src/librygel-server/rygel-content-directory.vala:616
-#: ../src/librygel-server/rygel-content-directory.vala:767
+#: ../src/librygel-server/rygel-content-directory.vala:765
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Неверный аргумент"
@@ -203,7 +203,6 @@ msgstr "Не удалось записать изменённое описани
 
 #: ../src/librygel-core/rygel-energy-management-helper.c:54
 #, c-format
-#| msgid "Failed to get child count: %s"
 msgid "Failed to get a socket: %s"
 msgstr "Не удалось получить сокет: %s"
 
@@ -331,58 +330,59 @@ msgstr ""
 "В установленном у вас GStreamer отсутствует элемент «playbin». Без этого "
 "элемента не может работать отрисовщик Rygel."
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:193
+#: ../src/librygel-renderer/rygel-av-transport.vala:196
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Недопустимый InstanceID"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:463
+#: ../src/librygel-renderer/rygel-av-transport.vala:466
 msgid "Play speed not supported"
 msgstr "Скорость воспроизведения не поддерживается"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:481
+#: ../src/librygel-renderer/rygel-av-transport.vala:473
+#: ../src/librygel-renderer/rygel-av-transport.vala:491
 msgid "Transition not available"
 msgstr "Перемещение недоступно"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:511
-#: ../src/librygel-renderer/rygel-av-transport.vala:536
-#: ../src/librygel-renderer/rygel-av-transport.vala:566
+#: ../src/librygel-renderer/rygel-av-transport.vala:521
+#: ../src/librygel-renderer/rygel-av-transport.vala:546
+#: ../src/librygel-renderer/rygel-av-transport.vala:576
 msgid "Seek mode not supported"
 msgstr "Режим перемещения не поддерживается"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:517
-#: ../src/librygel-renderer/rygel-av-transport.vala:542
-#: ../src/librygel-renderer/rygel-av-transport.vala:555
-#: ../src/librygel-renderer/rygel-av-transport.vala:580
-#: ../src/librygel-renderer/rygel-av-transport.vala:592
+#: ../src/librygel-renderer/rygel-av-transport.vala:527
+#: ../src/librygel-renderer/rygel-av-transport.vala:552
+#: ../src/librygel-renderer/rygel-av-transport.vala:565
+#: ../src/librygel-renderer/rygel-av-transport.vala:590
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
 msgid "Illegal seek target"
 msgstr "Недопустимый запрос перемещения"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:651
 msgid "Play mode not supported"
 msgstr "Режим воспроизведения не поддерживается"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:717
-#: ../src/librygel-renderer/rygel-av-transport.vala:761
-#: ../src/librygel-renderer/rygel-av-transport.vala:770
-#: ../src/librygel-renderer/rygel-av-transport.vala:833
+#: ../src/librygel-renderer/rygel-av-transport.vala:727
+#: ../src/librygel-renderer/rygel-av-transport.vala:771
+#: ../src/librygel-renderer/rygel-av-transport.vala:780
+#: ../src/librygel-renderer/rygel-av-transport.vala:859
 msgid "Resource not found"
 msgstr "Ресурс не найден"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:759
+#: ../src/librygel-renderer/rygel-av-transport.vala:769
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "Проблема при разборе списка воспроизведения: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: ../src/librygel-renderer/rygel-av-transport.vala:829
+#: ../src/librygel-renderer/rygel-av-transport.vala:855
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Не удалось получить доступ к ресурсу %s: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:845
+#: ../src/librygel-renderer/rygel-av-transport.vala:871
 msgid "Illegal MIME-type"
 msgstr "Недопустимый тип MIME"
 
@@ -443,7 +443,7 @@ msgid "Not found"
 msgstr "Не найдено"
 
 #: ../src/librygel-server/rygel-http-post.vala:62
-#: ../src/librygel-server/rygel-import-resource.vala:188
+#: ../src/librygel-server/rygel-import-resource.vala:189
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Помещение данных в непустой элемент «%s» запрещено"
@@ -474,12 +474,12 @@ msgstr "Не удалось создать источник данных для 
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Не удалось получить исходный URI для «%s»: %s"
 
-#: ../src/librygel-server/rygel-import-resource.vala:185
+#: ../src/librygel-server/rygel-import-resource.vala:186
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Недопустимый URI «%s» для импортирования в"
 
-#: ../src/librygel-server/rygel-import-resource.vala:271
+#: ../src/librygel-server/rygel-import-resource.vala:272
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "Не удалось импортировать файл из %s: %s"
@@ -589,29 +589,27 @@ msgstr "Неизвестный"
 
 #: ../src/librygel-server/rygel-media-art-store.vala:105
 #, c-format
-#| msgid "Failed to add item with ID %s: %s"
 msgid "Failed to add album art for %s: %s"
 msgstr "Не удалось добавить обложку альбома для %s: %s"
 
 #: ../src/librygel-server/rygel-media-art-store.vala:119
 #, c-format
-#| msgid "Failed to enumerate folder \"%s\": %s"
 msgid "Failed to find media art for %s: %s"
 msgstr "Не удалось найти медиаданные для %s: %s"
 
-#: ../src/librygel-server/rygel-media-container.vala:66
+#: ../src/librygel-server/rygel-media-container.vala:67
 msgid "Seeking not supported"
 msgstr "Поиск не поддерживается"
 
-#: ../src/librygel-server/rygel-media-container.vala:71
+#: ../src/librygel-server/rygel-media-container.vala:72
 msgid "Speed not supported"
 msgstr "Скорость не поддерживается"
 
-#: ../src/librygel-server/rygel-media-container.vala:122
+#: ../src/librygel-server/rygel-media-container.vala:123
 msgid "Failed to generate playlist"
 msgstr "Не удалось создать список воспроизведения"
 
-#: ../src/librygel-server/rygel-media-container.vala:468
+#: ../src/librygel-server/rygel-media-container.vala:470
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
 msgstr "Неизвестный ресурс MediaContainer: %s"
@@ -624,18 +622,24 @@ msgstr "Не найден движок мультимедиа."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init не был вызван. Продолжение невозможно."
 
-#: ../src/librygel-server/rygel-media-object.vala:282
+#: ../src/librygel-server/rygel-media-file-item.vala:176
+#, c-format
+#| msgid "Could not determine protocol for %s"
+msgid "Could not determine protocol for uri %s"
+msgstr "Не удалось определить протокол для URI %s"
+
+#: ../src/librygel-server/rygel-media-object.vala:283
 #, c-format
 msgid "Could not determine protocol for %s"
 msgstr "Не удалось определить протокол для %s"
 
-#: ../src/librygel-server/rygel-media-object.vala:497
+#: ../src/librygel-server/rygel-media-object.vala:508
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Неверный URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-object.vala:509
+#: ../src/librygel-server/rygel-media-object.vala:520
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Не удалось проверить протокол для URI %s. Для «%s»"
@@ -764,7 +768,7 @@ msgstr "Некорректный критерий поиска"
 msgid "Failed to search in '%s': %s"
 msgstr "Не удалось выполнить поиск в «%s»: %s"
 
-#: ../src/librygel-server/rygel-subtitle-manager.vala:85
+#: ../src/librygel-server/rygel-subtitle-manager.vala:92
 msgid "No subtitle available"
 msgstr "Субтитры недоступны"
 
@@ -863,7 +867,6 @@ msgid "Required element %s missing"
 msgstr "Отсутствует необходимый элемент %s"
 
 #: ../src/media-engines/simple/rygel-simple-data-source.vala:61
-#| msgid "Time-based seek not supported"
 msgid "Only byte-based seek supported"
 msgstr "Поддерживается только побайтное перемещение "
 
