@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the rygel package.
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2010-2013.
 # Christian Kirbach <Christian.Kirbach@googlemail.com>, 2010, 2012.
-# Wolfgang Stöggl <c72578@yahoo.de>, 2013.
+# Wolfgang Stöggl <c72578@yahoo.de>, 2013, 2015.
 # Benjamin Steinwender <b@stbe.at>, 2013.
 # Tobias Endrigkeit <tobiasendrigkeit@outlook.com>, 2013.
 # Bernd Homuth <dev@hmt.im>, 2014, 2015.
@@ -13,16 +13,16 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-09 12:16+0000\n"
-"PO-Revision-Date: 2015-02-09 22:56+0100\n"
-"Last-Translator: Bernd Homuth <dev@hmt.im>\n"
+"POT-Creation-Date: 2015-03-17 11:45+0000\n"
+"PO-Revision-Date: 2015-03-17 14:51+0100\n"
+"Last-Translator: Wolfgang Stoeggl <c72578@yahoo.de>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.7.5\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -36,7 +36,8 @@ msgstr "UPnP/DLNA-Dienste"
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "Medien-Server;Freigabe;Audio;Video;Bilder;Fotos;"
 
-#: ../data/rygel-preferences.desktop.in.in.h:1 ../data/rygel-preferences.ui.h:1
+#: ../data/rygel-preferences.desktop.in.in.h:1
+#: ../data/rygel-preferences.ui.h:1
 msgid "Rygel Preferences"
 msgstr "Rygel-Einstellungen"
 
@@ -71,7 +72,8 @@ msgstr "Medien über DLNA _freigeben"
 #: ../data/rygel-preferences.ui.h:8
 msgid "Add a network interface Rygel should serve files on"
 msgstr ""
-"Eine Netzwerkschnittstelle hinzufügen, auf der Rygel Dateien bereitstellen soll"
+"Eine Netzwerkschnittstelle hinzufügen, auf der Rygel Dateien bereitstellen "
+"soll"
 
 #: ../data/rygel-preferences.ui.h:9
 msgid "Add network interface"
@@ -168,7 +170,7 @@ msgstr "Status »%s« verhindert einen Abbruch"
 #: ../src/librygel-core/rygel-connection-manager.vala:95
 #: ../src/librygel-core/rygel-connection-manager.vala:109
 #: ../src/librygel-core/rygel-connection-manager.vala:126
-#: ../src/librygel-renderer/rygel-av-transport.vala:187
+#: ../src/librygel-renderer/rygel-av-transport.vala:190
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:261
 #: ../src/librygel-server/rygel-content-directory.vala:289
@@ -177,7 +179,7 @@ msgstr "Status »%s« verhindert einen Abbruch"
 #: ../src/librygel-server/rygel-content-directory.vala:372
 #: ../src/librygel-server/rygel-content-directory.vala:397
 #: ../src/librygel-server/rygel-content-directory.vala:616
-#: ../src/librygel-server/rygel-content-directory.vala:767
+#: ../src/librygel-server/rygel-content-directory.vala:765
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Ungültiges Argument"
@@ -329,61 +331,62 @@ msgid ""
 "Your GStreamer installation seems to be missing the \"playbin\" element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
-"Ihre GStreamer Einrichtung scheint unvollständig. »Playbin« fehlt und verhindert "
-"somit die Ausführung des Rygel Gstreamer-Renderers"
+"Ihre GStreamer Einrichtung scheint unvollständig. »Playbin« fehlt und "
+"verhindert somit die Ausführung des Rygel Gstreamer-Renderers"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:193
+#: ../src/librygel-renderer/rygel-av-transport.vala:196
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Ungültige InstanceID"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:463
+#: ../src/librygel-renderer/rygel-av-transport.vala:466
 msgid "Play speed not supported"
 msgstr "Wiedergabegeschwindigkeit wird nicht unterstützt"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:481
+#: ../src/librygel-renderer/rygel-av-transport.vala:473
+#: ../src/librygel-renderer/rygel-av-transport.vala:491
 msgid "Transition not available"
 msgstr "Übergang nicht verfügbar"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:511
-#: ../src/librygel-renderer/rygel-av-transport.vala:536
-#: ../src/librygel-renderer/rygel-av-transport.vala:566
+#: ../src/librygel-renderer/rygel-av-transport.vala:521
+#: ../src/librygel-renderer/rygel-av-transport.vala:546
+#: ../src/librygel-renderer/rygel-av-transport.vala:576
 msgid "Seek mode not supported"
 msgstr "Suchmodus wird nicht unterstützt"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:517
-#: ../src/librygel-renderer/rygel-av-transport.vala:542
-#: ../src/librygel-renderer/rygel-av-transport.vala:555
-#: ../src/librygel-renderer/rygel-av-transport.vala:580
-#: ../src/librygel-renderer/rygel-av-transport.vala:592
+#: ../src/librygel-renderer/rygel-av-transport.vala:527
+#: ../src/librygel-renderer/rygel-av-transport.vala:552
+#: ../src/librygel-renderer/rygel-av-transport.vala:565
+#: ../src/librygel-renderer/rygel-av-transport.vala:590
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
 msgid "Illegal seek target"
 msgstr "Ungültige Suchposition"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:651
 msgid "Play mode not supported"
 msgstr "Wiedergabemodus wird nicht unterstützt"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:717
-#: ../src/librygel-renderer/rygel-av-transport.vala:761
-#: ../src/librygel-renderer/rygel-av-transport.vala:770
-#: ../src/librygel-renderer/rygel-av-transport.vala:833
+#: ../src/librygel-renderer/rygel-av-transport.vala:727
+#: ../src/librygel-renderer/rygel-av-transport.vala:771
+#: ../src/librygel-renderer/rygel-av-transport.vala:780
+#: ../src/librygel-renderer/rygel-av-transport.vala:859
 msgid "Resource not found"
 msgstr "Ressource nicht gefunden"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:759
+#: ../src/librygel-renderer/rygel-av-transport.vala:769
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "Problem beim Einlesen der Wiedergabeliste »%s«"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: ../src/librygel-renderer/rygel-av-transport.vala:829
+#: ../src/librygel-renderer/rygel-av-transport.vala:855
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Zugriff auf %s ist fehlgeschlagen: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:845
+#: ../src/librygel-renderer/rygel-av-transport.vala:871
 msgid "Illegal MIME-type"
 msgstr "Ungültiger MIME-Typ"
 
@@ -426,34 +429,25 @@ msgstr "Keine solche Dateiübertragung"
 msgid "No D-Bus thumbnailer service available"
 msgstr "Keine D-Bus-basierte Vorschau verfügbar"
 
-#. Range header was present but invalid
-#: ../src/librygel-server/rygel-http-byte-seek.vala:49
-#: ../src/librygel-server/rygel-http-byte-seek.vala:54
-#: ../src/librygel-server/rygel-http-time-seek.vala:49
-#: ../src/librygel-server/rygel-http-time-seek.vala:61
-#: ../src/librygel-server/rygel-http-time-seek.vala:68
-#: ../src/librygel-server/rygel-http-time-seek.vala:83
-#, c-format
-msgid "Invalid Range '%s'"
-msgstr "Ungültiger Bereich »%s«"
+#: ../src/librygel-server/rygel-http-get.vala:52
+msgid "Invalid Request (only GET and HEAD supported)"
+msgstr "Ungültige Anforderung (nur GET und HEAD werden unterstützt)"
 
-#: ../src/librygel-server/rygel-http-get.vala:59
-msgid "Invalid Request"
-msgstr "Ungültige Anfrage"
+#: ../src/librygel-server/rygel-http-get.vala:60
+msgid " must be 1"
+msgstr " muss 1 sein"
 
-#: ../src/librygel-server/rygel-http-identity-handler.vala:94
-#: ../src/librygel-server/rygel-http-item-uri.vala:206
-#: ../src/librygel-server/rygel-http-transcode-handler.vala:58
-msgid "Not found"
-msgstr "Nicht gefunden"
-
-#: ../src/librygel-server/rygel-http-item-uri.vala:162
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
 msgstr "Ungültige Adresse »%s«"
 
+#: ../src/librygel-server/rygel-http-item-uri.vala:192
+msgid "Not found"
+msgstr "Nicht gefunden"
+
 #: ../src/librygel-server/rygel-http-post.vala:62
-#: ../src/librygel-server/rygel-import-resource.vala:188
+#: ../src/librygel-server/rygel-import-resource.vala:189
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Einbringen von Daten in nicht-leeres Objekt »%s« ist nicht erlaubt"
@@ -474,32 +468,22 @@ msgstr "Verborgene Datei %s konnte nicht verschoben werden: %s"
 msgid "Requested item '%s' not found"
 msgstr "Angefordertes Objekt »%s« wurde nicht gefunden"
 
-#: ../src/librygel-server/rygel-http-resource-handler.vala:83
+#: ../src/librygel-server/rygel-http-resource-handler.vala:86
 #, c-format
 msgid "Couldn't create data source for %s"
 msgstr "Datenquelle für »%s« konnte nicht erstellt werden"
-
-#: ../src/librygel-server/rygel-http-seek.vala:95
-#, c-format
-msgid "Out Of Range Start '%ld'"
-msgstr "Start »%ld« außerhalb des Bereichs"
-
-#: ../src/librygel-server/rygel-http-seek.vala:99
-#, c-format
-msgid "Out Of Range Stop '%ld'"
-msgstr "Stop »%ld« außerhalb des Bereichs"
 
 #: ../src/librygel-server/rygel-import-resource.vala:124
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Originaladresse für »%s« konnte nicht erhalten werden: %s"
 
-#: ../src/librygel-server/rygel-import-resource.vala:185
+#: ../src/librygel-server/rygel-import-resource.vala:186
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "Ungültige Adresse »%s« zum Importieren von Inhalten"
 
-#: ../src/librygel-server/rygel-import-resource.vala:271
+#: ../src/librygel-server/rygel-import-resource.vala:272
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "Importieren der Datei »%s« schlug fehl: %s"
@@ -617,39 +601,48 @@ msgstr "Hinzufügen des Covers für %s ist fehlgeschlagen: %s"
 msgid "Failed to find media art for %s: %s"
 msgstr "Cover für %s konnte nicht gefunden werden: %s"
 
-#: ../src/librygel-server/rygel-media-container.vala:64
+#: ../src/librygel-server/rygel-media-container.vala:67
 msgid "Seeking not supported"
 msgstr "Suchmodus wird nicht unterstützt"
 
-#: ../src/librygel-server/rygel-media-container.vala:111
+#: ../src/librygel-server/rygel-media-container.vala:72
+msgid "Speed not supported"
+msgstr "Geschwindigkeit wird nicht unterstützt"
+
+#: ../src/librygel-server/rygel-media-container.vala:123
 msgid "Failed to generate playlist"
 msgstr "Wiedergabeliste konnte nicht erstellt werden"
 
-#: ../src/librygel-server/rygel-media-container.vala:457
+#: ../src/librygel-server/rygel-media-container.vala:470
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
 msgstr "Unbekannte MediaContainer Ressource: %s"
 
-#: ../src/librygel-server/rygel-media-engine.vala:69
+#: ../src/librygel-server/rygel-media-engine.vala:62
 msgid "No media engine found."
 msgstr "Keine Medien-Engine gefunden."
 
-#: ../src/librygel-server/rygel-media-engine.vala:80
+#: ../src/librygel-server/rygel-media-engine.vala:73
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init wurde nicht aufgerufen. Fortsetzen ist nicht möglich."
 
-#: ../src/librygel-server/rygel-media-object.vala:282
+#: ../src/librygel-server/rygel-media-file-item.vala:176
+#, c-format
+msgid "Could not determine protocol for uri %s"
+msgstr "Protokoll für Adresse »%s« konnte nicht festgestellt werden"
+
+#: ../src/librygel-server/rygel-media-object.vala:283
 #, c-format
 msgid "Could not determine protocol for %s"
 msgstr "Protokoll für »%s« konnte nicht festgestellt werden"
 
-#: ../src/librygel-server/rygel-media-object.vala:487
+#: ../src/librygel-server/rygel-media-object.vala:508
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Fehlerhafte Adresse: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-object.vala:499
+#: ../src/librygel-server/rygel-media-object.vala:520
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr ""
@@ -751,11 +744,11 @@ msgstr "Erzeugen eines Objektes der Klasse »%s« wird nicht unterstützt."
 #: ../src/librygel-server/rygel-object-creator.vala:740
 #, c-format
 msgid ""
-"Error from container '%s' on trying to find the newly added child object '%s' in "
-"it: %s"
+"Error from container '%s' on trying to find the newly added child object "
+"'%s' in it: %s"
 msgstr ""
-"Fehler von Container »%s« beim Versuch, das jüngst hinzugefügte Unterobjekt »%s« "
-"in diesem zu finden: %s"
+"Fehler von Container »%s« beim Versuch, das jüngst hinzugefügte Unterobjekt "
+"»%s« in diesem zu finden: %s"
 
 #: ../src/librygel-server/rygel-reference-creator.vala:50
 msgid "'ContainerID' agument missing."
@@ -779,7 +772,7 @@ msgstr "Ungültiges Suchkriterium angegeben"
 msgid "Failed to search in '%s': %s"
 msgstr "Suche in »%s« ist fehlgeschlagen: %s"
 
-#: ../src/librygel-server/rygel-subtitle-manager.vala:85
+#: ../src/librygel-server/rygel-subtitle-manager.vala:92
 msgid "No subtitle available"
 msgstr "Keine Untertitel verfügbar"
 
@@ -805,61 +798,70 @@ msgstr "Keine Vorschau verfügbar"
 msgid "No D-Bus thumbnailer available"
 msgstr "Keine D-Bus-basierte Vorschau verfügbar"
 
-#: ../src/librygel-server/rygel-transcode-manager.vala:79
-#, c-format
-msgid "No transcoder available for target format '%s'"
-msgstr "Für das Zielformat »%s« ist kein Umwandler verfügbar"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:39
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:44
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr "GstElement für Adresse %s konnte nicht angelegt werden"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:95
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:71
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:79
+msgid "Playspeed not supported"
+msgstr "Wiedergabegeschwindigkeit wird nicht unterstützt"
+
+#. Unknown/unsupported seek type
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:94
+msgid "HTTPSeekRequest type unsupported"
+msgstr "HTTPSeekRequest-Typ wird nicht unterstützt"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:136
 msgid "Failed to create pipeline"
 msgstr "Weiterleitung konnte nicht erstellt werden"
 
 #. static pads? easy!
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:106
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:127
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:147
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:168
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Verknüpfung von %s nach %s konnte nicht erstellt werden"
 
 # Ich glaube bei Audio/Videoströmen sind Pads so eine Art Daten- oder Zeiteinheiten
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:141
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:182
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Verknüpfen von Pad %s nach %s ist fehlgeschlagen"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:196
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:237
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Fehler in Weiterleitung %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:203
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:244
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Warnung von Weiterleitung %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:256
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:288
+msgid "Unsupported seek type"
+msgstr "Nicht unterstützter Suchmodus"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:303
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Suche der Position %lld:%lld ist fehlgeschlagen"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:260
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:306
 msgid "Failed to seek"
 msgstr "Suche der Position ist fehlgeschlagen"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:124
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:212
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "GStreamer-Datenquelle für »%s« konnte nicht erstellt werden: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:88
+#: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
 msgid ""
-"Could not create a transcoder configuration. Your GStreamer installation might "
-"be missing a plug-in"
+"Could not create a transcoder configuration. Your GStreamer installation "
+"might be missing a plug-in"
 msgstr ""
 "Umwandlungskonfiguration konnte nicht erstellt werden. Ihrer GStreamer-"
 "Installation fehlt vermutlich eine Erweiterung."
@@ -869,9 +871,9 @@ msgstr ""
 msgid "Required element %s missing"
 msgstr "Benötigtes Element %s fehlt"
 
-#: ../src/media-engines/simple/rygel-simple-data-source.vala:56
-msgid "Time-based seek not supported"
-msgstr "Zeitbasierte Suche wird nicht unterstützt"
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:61
+msgid "Only byte-based seek supported"
+msgstr "Nur bytebasierte Suche wird unterstützt"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -885,8 +887,8 @@ msgstr ""
 #, c-format
 msgid "External provider %s did not provide mandatory property \"%s\""
 msgstr ""
-"Externer Anbieter »%s« hat erforderliche Eigenschaft \"%s\" nicht zur Verfügung "
-"gestellt"
+"Externer Anbieter »%s« hat erforderliche Eigenschaft \"%s\" nicht zur "
+"Verfügung gestellt"
 
 #: ../src/plugins/media-export/rygel-media-export-database-cursor.vala:81
 #, c-format
@@ -917,8 +919,8 @@ msgstr "Information zur Datei %s konnte nicht abgefragt werden: %s"
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr ""
-"Objekt %s oder dessen Vorgänger konnte nicht gefunden werden. Die Datenbank ist "
-"unvollständig."
+"Objekt %s oder dessen Vorgänger konnte nicht gefunden werden. Die Datenbank "
+"ist unvollständig."
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:238
 #, c-format
@@ -949,7 +951,8 @@ msgstr "Unterelemente von Container %s konnten nicht ermittelt werden: %s"
 #, c-format
 msgid "Failed to get child count of query container: %s"
 msgstr ""
-"Anzahl der Unterelemente der Container-Abfrage konnte nicht ermittelt werden: %s"
+"Anzahl der Unterelemente der Container-Abfrage konnte nicht ermittelt "
+"werden: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:132
 #, c-format
@@ -1144,7 +1147,8 @@ msgstr "Fehler beim Ermitteln aller Werte für »%s«: %s"
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
-"Start des Tracker-Dienstes ist fehlgeschlagen: %s. Erweiterung wird deaktiviert."
+"Start des Tracker-Dienstes ist fehlgeschlagen: %s. Erweiterung wird "
+"deaktiviert."
 
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:104
 #, c-format
@@ -1263,17 +1267,21 @@ msgid "Failed to load user configuration: %s"
 msgstr "Benutzerkonfiguration konnte nicht geladen werden: %s"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
-#: ../src/rygel/rygel-user-config.vala:252 ../src/ui/rygel-user-config.vala:252
+#: ../src/rygel/rygel-user-config.vala:252
+#: ../src/ui/rygel-user-config.vala:252
 #, c-format
 msgid "Failed to load user configuration from file '%s': %s"
-msgstr "Benutzerkonfiguration konnte nicht von der Datei »%s« geladen werden: %s"
+msgstr ""
+"Benutzerkonfiguration konnte nicht von der Datei »%s« geladen werden: %s"
 
-#: ../src/rygel/rygel-user-config.vala:305 ../src/ui/rygel-user-config.vala:305
+#: ../src/rygel/rygel-user-config.vala:305
+#: ../src/ui/rygel-user-config.vala:305
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Kein Wert verfügbar für »%s«"
 
-#: ../src/rygel/rygel-user-config.vala:376 ../src/ui/rygel-user-config.vala:376
+#: ../src/rygel/rygel-user-config.vala:376
+#: ../src/ui/rygel-user-config.vala:376
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Wert von »%s« ist außerhalb des Bereichs"
@@ -1298,6 +1306,21 @@ msgstr "Starten des Rygel-Dienstes ist fehlgeschlagen: %s"
 msgid "Failed to stop Rygel service: %s"
 msgstr "Beenden des Rygel-Dienstes ist fehlgeschlagen: %s"
 
+#~ msgid "Invalid Range '%s'"
+#~ msgstr "Ungültiger Bereich »%s«"
+
+#~ msgid "Invalid Request"
+#~ msgstr "Ungültige Anfrage"
+
+#~ msgid "Out Of Range Start '%ld'"
+#~ msgstr "Start »%ld« außerhalb des Bereichs"
+
+#~ msgid "Out Of Range Stop '%ld'"
+#~ msgstr "Stop »%ld« außerhalb des Bereichs"
+
+#~ msgid "No transcoder available for target format '%s'"
+#~ msgstr "Für das Zielformat »%s« ist kein Umwandler verfügbar"
+
 #~ msgid "Not Found"
 #~ msgstr "Nicht gefunden"
 
@@ -1305,14 +1328,15 @@ msgstr "Beenden des Rygel-Dienstes ist fehlgeschlagen: %s"
 #~ msgstr " %%% Erstellung eines Objekts in %s ist nicht erlaubt"
 
 #~ msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
-#~ msgstr "Freigabe von Medien wie Fotos, Videos oder Musik mit DLNA ermöglichen"
+#~ msgstr ""
+#~ "Freigabe von Medien wie Fotos, Videos oder Musik mit DLNA ermöglichen"
 
 #~ msgid ""
 #~ "Select the network interface that DLNA media will be shared on, or share "
 #~ "media on all interfaces"
 #~ msgstr ""
-#~ "Die Netzwerkschnittstelle auswählen, über die DLNA-Medien freigegeben werden, "
-#~ "oder Medien über alle Schnittstellen freigeben"
+#~ "Die Netzwerkschnittstelle auswählen, über die DLNA-Medien freigegeben "
+#~ "werden, oder Medien über alle Schnittstellen freigeben"
 
 #~ msgid "Any"
 #~ msgstr "Alle"
