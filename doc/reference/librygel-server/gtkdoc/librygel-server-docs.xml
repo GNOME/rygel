@@ -49,8 +49,6 @@
     <xi:include href="xml/rygel-subtitle.xml"/>
     <xi:include href="xml/rygel-thumbnail.xml"/>
     <xi:include href="xml/rygel-trackable-container.xml"/>
-    <xi:include href="xml/rygel-transcode-manager.xml"/>
-    <xi:include href="xml/rygel-transcoder.xml"/>
     <xi:include href="xml/rygel-video-item.xml"/>
     <xi:include href="xml/rygel-visual-item.xml"/>
     <xi:include href="xml/rygel-writable-container.xml"/>
