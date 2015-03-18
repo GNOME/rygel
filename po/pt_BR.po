@@ -1,5 +1,5 @@
 # Brazilian Portuguese translation for rygel.
-# Copyright (C) 2014 rygel's COPYRIGHT HOLDER
+# Copyright (C) 2015 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
 # Albino Biasutti Neto <biasuttin@gmail.com>, 2010.
 # Djavan Fagundes <djavan@comum.org>, 2010.
@@ -7,23 +7,23 @@
 # Jonh Wendell <jwendell@gnome.org>, 2010, 2012.
 # Edson Silva <edsonlead@gmail.com>, 2013.
 # Rafael Ferreira <rafael.f.f1@gmail.com>, 2012, 2013, 2014.
-# Enrico Nicoletto <liverig@gmail.com>, 2013, 2014.
+# Enrico Nicoletto <liverig@gmail.com>, 2013, 2014, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-26 11:56+0000\n"
-"PO-Revision-Date: 2015-02-26 17:18-0300\n"
-"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
+"POT-Creation-Date: 2015-03-18 11:49+0000\n"
+"PO-Revision-Date: 2015-03-18 16:42-0300\n"
+"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.7.3\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -170,7 +170,7 @@ msgstr "Estado \"%s\" preclui cancelamento"
 #: ../src/librygel-core/rygel-connection-manager.vala:95
 #: ../src/librygel-core/rygel-connection-manager.vala:109
 #: ../src/librygel-core/rygel-connection-manager.vala:126
-#: ../src/librygel-renderer/rygel-av-transport.vala:187
+#: ../src/librygel-renderer/rygel-av-transport.vala:190
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:261
 #: ../src/librygel-server/rygel-content-directory.vala:289
@@ -179,7 +179,7 @@ msgstr "Estado \"%s\" preclui cancelamento"
 #: ../src/librygel-server/rygel-content-directory.vala:372
 #: ../src/librygel-server/rygel-content-directory.vala:397
 #: ../src/librygel-server/rygel-content-directory.vala:616
-#: ../src/librygel-server/rygel-content-directory.vala:767
+#: ../src/librygel-server/rygel-content-directory.vala:765
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Argumento inválido"
@@ -335,58 +335,59 @@ msgstr ""
 "\"playbin\". A implementação do renderizador Rygel GStreamer não pode "
 "trabalhar sem o mesmo."
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:193
+#: ../src/librygel-renderer/rygel-av-transport.vala:196
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "ID da instância inválidos"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:463
+#: ../src/librygel-renderer/rygel-av-transport.vala:466
 msgid "Play speed not supported"
 msgstr "Sem suporte à velocidade de reprodução"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:481
+#: ../src/librygel-renderer/rygel-av-transport.vala:473
+#: ../src/librygel-renderer/rygel-av-transport.vala:491
 msgid "Transition not available"
 msgstr "Transição não disponível"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:511
-#: ../src/librygel-renderer/rygel-av-transport.vala:536
-#: ../src/librygel-renderer/rygel-av-transport.vala:566
+#: ../src/librygel-renderer/rygel-av-transport.vala:521
+#: ../src/librygel-renderer/rygel-av-transport.vala:546
+#: ../src/librygel-renderer/rygel-av-transport.vala:576
 msgid "Seek mode not supported"
 msgstr "Sem suporte ao modo de busca"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:517
-#: ../src/librygel-renderer/rygel-av-transport.vala:542
-#: ../src/librygel-renderer/rygel-av-transport.vala:555
-#: ../src/librygel-renderer/rygel-av-transport.vala:580
-#: ../src/librygel-renderer/rygel-av-transport.vala:592
+#: ../src/librygel-renderer/rygel-av-transport.vala:527
+#: ../src/librygel-renderer/rygel-av-transport.vala:552
+#: ../src/librygel-renderer/rygel-av-transport.vala:565
+#: ../src/librygel-renderer/rygel-av-transport.vala:590
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
 msgid "Illegal seek target"
 msgstr "Destino de busca ilegal"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:651
 msgid "Play mode not supported"
 msgstr "Sem suporte ao modo de reprodução"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:717
-#: ../src/librygel-renderer/rygel-av-transport.vala:761
-#: ../src/librygel-renderer/rygel-av-transport.vala:770
-#: ../src/librygel-renderer/rygel-av-transport.vala:833
+#: ../src/librygel-renderer/rygel-av-transport.vala:727
+#: ../src/librygel-renderer/rygel-av-transport.vala:771
+#: ../src/librygel-renderer/rygel-av-transport.vala:780
+#: ../src/librygel-renderer/rygel-av-transport.vala:859
 msgid "Resource not found"
 msgstr "Recurso não encontrado"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:759
+#: ../src/librygel-renderer/rygel-av-transport.vala:769
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "Problema ao analisar a lista de reprodução: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: ../src/librygel-renderer/rygel-av-transport.vala:829
+#: ../src/librygel-renderer/rygel-av-transport.vala:855
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Falha ao acessar recurso em %s: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:845
+#: ../src/librygel-renderer/rygel-av-transport.vala:871
 msgid "Illegal MIME-type"
 msgstr "Tipo-MIME ilegal"
 
@@ -447,7 +448,7 @@ msgid "Not found"
 msgstr "Não encontrado"
 
 #: ../src/librygel-server/rygel-http-post.vala:62
-#: ../src/librygel-server/rygel-import-resource.vala:188
+#: ../src/librygel-server/rygel-import-resource.vala:189
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "Não é permitido enviar dados para o item \"%s\" não-vazio"
@@ -478,12 +479,12 @@ msgstr "Não foi possível criar fonte de dados para %s"
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Falha ao obter URI original para \"%s\": %s"
 
-#: ../src/librygel-server/rygel-import-resource.vala:185
+#: ../src/librygel-server/rygel-import-resource.vala:186
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URL \"%s\" inválida para onde importar conteúdos"
 
-#: ../src/librygel-server/rygel-import-resource.vala:271
+#: ../src/librygel-server/rygel-import-resource.vala:272
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "Falha ao importar o arquivo de %s: %s"
@@ -601,19 +602,19 @@ msgstr "Falha ao adicionar arte de álbum para %s: %s"
 msgid "Failed to find media art for %s: %s"
 msgstr "Falha ao localizar arte de mídia para %s: %s"
 
-#: ../src/librygel-server/rygel-media-container.vala:66
+#: ../src/librygel-server/rygel-media-container.vala:67
 msgid "Seeking not supported"
 msgstr "Sem suporte a busca"
 
-#: ../src/librygel-server/rygel-media-container.vala:71
+#: ../src/librygel-server/rygel-media-container.vala:72
 msgid "Speed not supported"
 msgstr "Sem suporte à velocidade"
 
-#: ../src/librygel-server/rygel-media-container.vala:122
+#: ../src/librygel-server/rygel-media-container.vala:123
 msgid "Failed to generate playlist"
 msgstr "Falha ao gerar lista de reprodução"
 
-#: ../src/librygel-server/rygel-media-container.vala:468
+#: ../src/librygel-server/rygel-media-container.vala:470
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
 msgstr "Recurso MediaContainer desconhecido: %s"
@@ -626,18 +627,23 @@ msgstr "Nenhum mecanismo de mídia encontrado."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init não foi chamado. Não pode continuar."
 
-#: ../src/librygel-server/rygel-media-object.vala:282
+#: ../src/librygel-server/rygel-media-file-item.vala:176
+#, c-format
+msgid "Could not determine protocol for uri %s"
+msgstr "Não foi possível determinar o protocolo para a uri %s"
+
+#: ../src/librygel-server/rygel-media-object.vala:283
 #, c-format
 msgid "Could not determine protocol for %s"
 msgstr "Não foi possível determinar protocolo para %s"
 
-#: ../src/librygel-server/rygel-media-object.vala:497
+#: ../src/librygel-server/rygel-media-object.vala:508
 #, c-format
 msgid "Bad URI: %s"
 msgstr "URI errada: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-object.vala:509
+#: ../src/librygel-server/rygel-media-object.vala:520
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Falha ao examinar um protocolo para a URI %s. Assumindo \"%s\""
@@ -766,7 +772,7 @@ msgstr "Critérios de pesquisa inválidos foram dados"
 msgid "Failed to search in '%s': %s"
 msgstr "Falha ao pesquisar em \"%s\": %s"
 
-#: ../src/librygel-server/rygel-subtitle-manager.vala:85
+#: ../src/librygel-server/rygel-subtitle-manager.vala:92
 msgid "No subtitle available"
 msgstr "Nenhuma legenda disponível"
 
