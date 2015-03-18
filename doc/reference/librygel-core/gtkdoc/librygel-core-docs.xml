@@ -48,6 +48,7 @@
   <chapter id="api-main-list-upnp-services">
     <title>librygel-core extra UPnP devices and services</title>
     <xi:include href="xml/rygel-basic-management.xml"/>
+    <xi:include href="xml/rygel-energy-management.xml"/>
   </chapter>
 
   <chapter id="api-main-list-dbus">

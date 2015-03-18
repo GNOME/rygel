@@ -29,6 +29,7 @@
     <xi:include href="xml/rygel-media-renderer-plugin.xml"/>
     <xi:include href="xml/rygel-media-renderer.xml"/>
     <xi:include href="xml/rygel-media-player.xml"/>
+    <xi:include href="xml/rygel-player-controller.xml"/>
   </chapter>
 
   <chapter id="object-tree">
