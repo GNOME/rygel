@@ -19,12 +19,15 @@ VALADOC_FLAGS = --force \
 
 
 valadoc-gen: $(VALA_SOURCE_FILES_WITH_PATHS)
+	@rm -f $@
 	$(AM_V_GEN)$(VALADOC) \
 		-o valadoc \
 		$(VALADOC_FLAGS)
+	@touch $@
 
 # Avoid regeneration of the html if none of its dependencies have changed:
 gtkdoc/html/index.html: gtkdoc-gen
+valadoc/index.html: valadoc-gen
 
 # The use of extra .xml DocBook files, just for the gtk-doc output
 # (in RYGEL_GTKDOC_DOCS_XML_EXTRA),
@@ -37,6 +40,7 @@ RYGEL_GTKDOC_DOCS_XML = \
 	$(top_srcdir)/doc/reference/lib$(RYGEL_DOCBUILD_MODULE)/gtkdoc/overview.xml $(RYGEL_GTKDOC_DOCS_XML_EXTRA)
 
 gtkdoc-gen: $(VALA_SOURCE_FILES_WITH_PATHS) $(RYGEL_GTKDOC_DOCS_XML)
+	@rm -f $@
 	@rm -rf gtkdoc/html
 	$(AM_V_GEN)$(VALADOC) \
 		-X $(top_srcdir)/src/lib$(RYGEL_DOCBUILD_MODULE)/$(RYGEL_DOCBUILD_MODULE).h \
@@ -45,7 +49,7 @@ gtkdoc-gen: $(VALA_SOURCE_FILES_WITH_PATHS) $(RYGEL_GTKDOC_DOCS_XML)
 		-o gtkdoc \
 		--doclet gtkdoc \
 		$(VALADOC_FLAGS)
-		
+	@touch $@
 clean-local:
 	rm -rf valadoc gtkdoc/html
 	rm -f gtkdoc/html.stamp
@@ -61,6 +65,8 @@ clean-local:
 	rm -f gtkdoc/lib$(RYGEL_DOCBUILD_MODULE)*.txt
 	rm -f gtkdoc/lib$(RYGEL_DOCBUILD_MODULE)*.bak
 	rm -f gtkdoc/lib$(RYGEL_DOCBUILD_MODULE).prerequisites
+	rm -f valadoc-gen
+	rm -f gtkdoc-gen
 
 all: valadoc-gen gtkdoc-gen
 
@@ -89,5 +95,5 @@ distclean-local:
 		rm -f gtkdoc/*-scan.[co] ; \
 	fi
 
-EXTRA_DIST = $(RYGEL_GTKDOC_DOCS_XML) gtkdoc/html valadoc
+EXTRA_DIST = $(RYGEL_GTKDOC_DOCS_XML) gtkdoc/html valadoc valadoc-gen gtkdoc-gen
 
