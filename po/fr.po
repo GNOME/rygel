@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-05 11:43+0000\n"
+"POT-Creation-Date: 2015-03-19 13:02+0000\n"
 "PO-Revision-Date: 2015-03-05 13:40+0100\n"
 "Last-Translator: Alain Lojewski <allomervan@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -170,7 +170,7 @@ msgstr "L'état « %s » exclut l'annulation"
 #: ../src/librygel-core/rygel-connection-manager.vala:95
 #: ../src/librygel-core/rygel-connection-manager.vala:109
 #: ../src/librygel-core/rygel-connection-manager.vala:126
-#: ../src/librygel-renderer/rygel-av-transport.vala:187
+#: ../src/librygel-renderer/rygel-av-transport.vala:190
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:261
 #: ../src/librygel-server/rygel-content-directory.vala:289
@@ -179,7 +179,7 @@ msgstr "L'état « %s » exclut l'annulation"
 #: ../src/librygel-server/rygel-content-directory.vala:372
 #: ../src/librygel-server/rygel-content-directory.vala:397
 #: ../src/librygel-server/rygel-content-directory.vala:616
-#: ../src/librygel-server/rygel-content-directory.vala:767
+#: ../src/librygel-server/rygel-content-directory.vala:765
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Paramètre non valide"
@@ -339,58 +339,59 @@ msgstr ""
 "L'implémentation du moteur de rendu GStreamer de Rygel ne peut pas "
 "fonctionner sans lui"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:193
+#: ../src/librygel-renderer/rygel-av-transport.vala:196
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "InstanceID non valide"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:463
+#: ../src/librygel-renderer/rygel-av-transport.vala:466
 msgid "Play speed not supported"
 msgstr "Vitesse de lecture non prise en charge"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:481
+#: ../src/librygel-renderer/rygel-av-transport.vala:473
+#: ../src/librygel-renderer/rygel-av-transport.vala:491
 msgid "Transition not available"
 msgstr "Transition non disponible"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:511
-#: ../src/librygel-renderer/rygel-av-transport.vala:536
-#: ../src/librygel-renderer/rygel-av-transport.vala:566
+#: ../src/librygel-renderer/rygel-av-transport.vala:521
+#: ../src/librygel-renderer/rygel-av-transport.vala:546
+#: ../src/librygel-renderer/rygel-av-transport.vala:576
 msgid "Seek mode not supported"
 msgstr "Mode de recherche non pris en charge"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:517
-#: ../src/librygel-renderer/rygel-av-transport.vala:542
-#: ../src/librygel-renderer/rygel-av-transport.vala:555
-#: ../src/librygel-renderer/rygel-av-transport.vala:580
-#: ../src/librygel-renderer/rygel-av-transport.vala:592
+#: ../src/librygel-renderer/rygel-av-transport.vala:527
+#: ../src/librygel-renderer/rygel-av-transport.vala:552
+#: ../src/librygel-renderer/rygel-av-transport.vala:565
+#: ../src/librygel-renderer/rygel-av-transport.vala:590
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
 msgid "Illegal seek target"
 msgstr "Cible de recherche illégale"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:651
 msgid "Play mode not supported"
 msgstr "Mode de lecture non pris en charge"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:717
-#: ../src/librygel-renderer/rygel-av-transport.vala:761
-#: ../src/librygel-renderer/rygel-av-transport.vala:770
-#: ../src/librygel-renderer/rygel-av-transport.vala:833
+#: ../src/librygel-renderer/rygel-av-transport.vala:727
+#: ../src/librygel-renderer/rygel-av-transport.vala:771
+#: ../src/librygel-renderer/rygel-av-transport.vala:780
+#: ../src/librygel-renderer/rygel-av-transport.vala:859
 msgid "Resource not found"
 msgstr "Ressource introuvable"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:759
+#: ../src/librygel-renderer/rygel-av-transport.vala:769
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "Problème lors de l'analyse de la liste de lecture : %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: ../src/librygel-renderer/rygel-av-transport.vala:829
+#: ../src/librygel-renderer/rygel-av-transport.vala:855
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Impossible d'accéder à la ressource en %s : %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:845
+#: ../src/librygel-renderer/rygel-av-transport.vala:871
 msgid "Illegal MIME-type"
 msgstr "Type MIME illégal"
 
@@ -451,7 +452,7 @@ msgid "Not found"
 msgstr "Introuvable"
 
 #: ../src/librygel-server/rygel-http-post.vala:62
-#: ../src/librygel-server/rygel-import-resource.vala:188
+#: ../src/librygel-server/rygel-import-resource.vala:189
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "L'envoi de données vers l'élément non vide « %s » n'est pas autorisé"
@@ -482,12 +483,12 @@ msgstr "Impossible de créer la source de données pour %s"
 msgid "Failed to get original URI for '%s': %s"
 msgstr "Impossible d'obtenir l'URI original pour « %s » : %s"
 
-#: ../src/librygel-server/rygel-import-resource.vala:185
+#: ../src/librygel-server/rygel-import-resource.vala:186
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "URI « %s » non valide pour l'importation de contenu"
 
-#: ../src/librygel-server/rygel-import-resource.vala:271
+#: ../src/librygel-server/rygel-import-resource.vala:272
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "Impossible d'importer le fichier depuis %s : %s"
@@ -605,19 +606,19 @@ msgstr "Impossible d'ajouter une couverture d'album pour %s : %s"
 msgid "Failed to find media art for %s: %s"
 msgstr "Impossible de trouver une couverture de média pour %s : %s"
 
-#: ../src/librygel-server/rygel-media-container.vala:66
+#: ../src/librygel-server/rygel-media-container.vala:67
 msgid "Seeking not supported"
 msgstr "Recherche non prise en charge"
 
-#: ../src/librygel-server/rygel-media-container.vala:71
+#: ../src/librygel-server/rygel-media-container.vala:72
 msgid "Speed not supported"
 msgstr "Vitesse non prise en charge"
 
-#: ../src/librygel-server/rygel-media-container.vala:122
+#: ../src/librygel-server/rygel-media-container.vala:123
 msgid "Failed to generate playlist"
 msgstr "Impossible de générer la liste de lecture"
 
-#: ../src/librygel-server/rygel-media-container.vala:468
+#: ../src/librygel-server/rygel-media-container.vala:470
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
 msgstr "Source du MediaContainer inconnue : %s"
@@ -630,18 +631,23 @@ msgstr "Aucun moteur de médias trouvé."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init n'a pas été appelé. Impossible de continuer."
 
-#: ../src/librygel-server/rygel-media-object.vala:282
+#: ../src/librygel-server/rygel-media-file-item.vala:176
+#, c-format
+msgid "Could not determine protocol for uri %s"
+msgstr "Impossible de déterminer le protocole pour l'URI %s"
+
+#: ../src/librygel-server/rygel-media-object.vala:283
 #, c-format
 msgid "Could not determine protocol for %s"
 msgstr "Impossible de déterminer le protocole pour %s"
 
-#: ../src/librygel-server/rygel-media-object.vala:497
+#: ../src/librygel-server/rygel-media-object.vala:508
 #, c-format
 msgid "Bad URI: %s"
 msgstr "URI incorrect : %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-object.vala:509
+#: ../src/librygel-server/rygel-media-object.vala:520
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "Impossible de sonder le protocole pour l'URI %s. « %s » est présumé"
@@ -770,7 +776,7 @@ msgstr "Critère de recherche donné non valide"
 msgid "Failed to search in '%s': %s"
 msgstr "Recherche impossible dans « %s » : %s"
 
-#: ../src/librygel-server/rygel-subtitle-manager.vala:85
+#: ../src/librygel-server/rygel-subtitle-manager.vala:92
 msgid "No subtitle available"
 msgstr "Aucun sous-titre disponible"
 
