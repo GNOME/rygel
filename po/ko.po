@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-07 11:45+0000\n"
-"PO-Revision-Date: 2015-03-08 02:31+0900\n"
+"POT-Creation-Date: 2015-03-18 23:47+0000\n"
+"PO-Revision-Date: 2015-03-19 11:47+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: Korean\n"
@@ -33,9 +33,7 @@ msgstr "UPnP/DLNA 서비스"
 
 #: ../data/rygel.desktop.in.in.h:3
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
-msgstr ""
-"mediaserver;미디어서버;mediarenderer;미디어렌더러;share;공유;audio;오디오;음"
-"악;video;비디오;동영상;영화;pictures;사진;그림;"
+msgstr "mediaserver;미디어서버;mediarenderer;미디어렌더러;share;공유;audio;오디오;음악;video;비디오;동영상;영화;pictures;사진;이미지;"
 
 #: ../data/rygel-preferences.desktop.in.in.h:1
 #: ../data/rygel-preferences.ui.h:1
@@ -72,7 +70,7 @@ msgstr "DLNA를 통해 미디어 공유(_S)"
 
 #: ../data/rygel-preferences.ui.h:8
 msgid "Add a network interface Rygel should serve files on"
-msgstr "라이겔이 파일을 서비스할 네트워크 인터페이스를 추가합니다"
+msgstr "라이겔에서 파일을 서비스할 네트워크 인터페이스를 추가합니다"
 
 #: ../data/rygel-preferences.ui.h:9
 msgid "Add network interface"
@@ -80,7 +78,7 @@ msgstr "네트워크 인터페이스 추가"
 
 #: ../data/rygel-preferences.ui.h:10
 msgid "Remove a network interface Rygel should no longer serve files on"
-msgstr "라이겔이 파일 서비스를 중지할 네트워크 인터페이스를 제거합니다"
+msgstr "라이겔에서 파일 서비스를 중지할 네트워크 인터페이스를 제거합니다"
 
 #: ../data/rygel-preferences.ui.h:11
 msgid "Remove network interface"
@@ -167,7 +165,7 @@ msgstr "'%s' 상태는 취소가 불가능합니다"
 #: ../src/librygel-core/rygel-connection-manager.vala:95
 #: ../src/librygel-core/rygel-connection-manager.vala:109
 #: ../src/librygel-core/rygel-connection-manager.vala:126
-#: ../src/librygel-renderer/rygel-av-transport.vala:187
+#: ../src/librygel-renderer/rygel-av-transport.vala:190
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
 #: ../src/librygel-server/rygel-content-directory.vala:261
 #: ../src/librygel-server/rygel-content-directory.vala:289
@@ -176,7 +174,7 @@ msgstr "'%s' 상태는 취소가 불가능합니다"
 #: ../src/librygel-server/rygel-content-directory.vala:372
 #: ../src/librygel-server/rygel-content-directory.vala:397
 #: ../src/librygel-server/rygel-content-directory.vala:616
-#: ../src/librygel-server/rygel-content-directory.vala:767
+#: ../src/librygel-server/rygel-content-directory.vala:765
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "잘못된 인자"
@@ -331,58 +329,59 @@ msgstr ""
 "GStreamer에 \"playbin\" 엘리먼트를 설치하지 않은 것 같습니다. 라이겔의 "
 "GStreamer 렌더러는 이 엘리먼트 없이 동작하지 않습니다."
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:193
+#: ../src/librygel-renderer/rygel-av-transport.vala:196
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "잘못된 인스턴스ID"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:463
+#: ../src/librygel-renderer/rygel-av-transport.vala:466
 msgid "Play speed not supported"
 msgstr "재생 속도를 지원하지 않음"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:481
+#: ../src/librygel-renderer/rygel-av-transport.vala:473
+#: ../src/librygel-renderer/rygel-av-transport.vala:491
 msgid "Transition not available"
 msgstr "트랜지션을 사용할 수 없음"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:511
-#: ../src/librygel-renderer/rygel-av-transport.vala:536
-#: ../src/librygel-renderer/rygel-av-transport.vala:566
+#: ../src/librygel-renderer/rygel-av-transport.vala:521
+#: ../src/librygel-renderer/rygel-av-transport.vala:546
+#: ../src/librygel-renderer/rygel-av-transport.vala:576
 msgid "Seek mode not supported"
 msgstr "이동 모드를 지원하지 않음"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:517
-#: ../src/librygel-renderer/rygel-av-transport.vala:542
-#: ../src/librygel-renderer/rygel-av-transport.vala:555
-#: ../src/librygel-renderer/rygel-av-transport.vala:580
-#: ../src/librygel-renderer/rygel-av-transport.vala:592
+#: ../src/librygel-renderer/rygel-av-transport.vala:527
+#: ../src/librygel-renderer/rygel-av-transport.vala:552
+#: ../src/librygel-renderer/rygel-av-transport.vala:565
+#: ../src/librygel-renderer/rygel-av-transport.vala:590
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
 msgid "Illegal seek target"
 msgstr "탐색 대상이 잘못되었습니다"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
+#: ../src/librygel-renderer/rygel-av-transport.vala:651
 msgid "Play mode not supported"
 msgstr "재생 모드를 지원하지 않습니다"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:717
-#: ../src/librygel-renderer/rygel-av-transport.vala:761
-#: ../src/librygel-renderer/rygel-av-transport.vala:770
-#: ../src/librygel-renderer/rygel-av-transport.vala:833
+#: ../src/librygel-renderer/rygel-av-transport.vala:727
+#: ../src/librygel-renderer/rygel-av-transport.vala:771
+#: ../src/librygel-renderer/rygel-av-transport.vala:780
+#: ../src/librygel-renderer/rygel-av-transport.vala:859
 msgid "Resource not found"
 msgstr "리소스가 없습니다"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:759
+#: ../src/librygel-renderer/rygel-av-transport.vala:769
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "재생 목록을 파싱하는데 문제: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: ../src/librygel-renderer/rygel-av-transport.vala:829
+#: ../src/librygel-renderer/rygel-av-transport.vala:855
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "%s에 있는 리소스에 접근하는데 실패: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:845
+#: ../src/librygel-renderer/rygel-av-transport.vala:871
 msgid "Illegal MIME-type"
 msgstr "잘못된 MIME 형식"
 
@@ -444,7 +443,7 @@ msgid "Not found"
 msgstr "찾지 못했습니다"
 
 #: ../src/librygel-server/rygel-http-post.vala:62
-#: ../src/librygel-server/rygel-import-resource.vala:188
+#: ../src/librygel-server/rygel-import-resource.vala:189
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
 msgstr "데이터를 비어있지 않은 '%s' 항목에 넣는 일은 허용하지 않습니다"
@@ -475,12 +474,12 @@ msgstr "%s에 대한 데이터 소스를 만들 수 없습니다"
 msgid "Failed to get original URI for '%s': %s"
 msgstr "'%s'의 원래 URI 가져오기 실패: %s"
 
-#: ../src/librygel-server/rygel-import-resource.vala:185
+#: ../src/librygel-server/rygel-import-resource.vala:186
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
 msgstr "'%s' URI는 컨텐츠를 가져올 대상으로 올바르지 않습니다"
 
-#: ../src/librygel-server/rygel-import-resource.vala:271
+#: ../src/librygel-server/rygel-import-resource.vala:272
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "%s에서 파일을 가져오는데 실패: %s"
@@ -598,19 +597,19 @@ msgstr "%s에 대한 앨범 아트 추가에 실패했습니다: %s"
 msgid "Failed to find media art for %s: %s"
 msgstr "%s에 대한 미디어 아트 찾기에 실패했습니다: %s"
 
-#: ../src/librygel-server/rygel-media-container.vala:66
+#: ../src/librygel-server/rygel-media-container.vala:67
 msgid "Seeking not supported"
 msgstr "이동을 지원하지 않습니다"
 
-#: ../src/librygel-server/rygel-media-container.vala:71
+#: ../src/librygel-server/rygel-media-container.vala:72
 msgid "Speed not supported"
 msgstr "속도를 지원하지 않습니다"
 
-#: ../src/librygel-server/rygel-media-container.vala:122
+#: ../src/librygel-server/rygel-media-container.vala:123
 msgid "Failed to generate playlist"
 msgstr "재생 목록 만들기에 실패했습니다"
 
-#: ../src/librygel-server/rygel-media-container.vala:468
+#: ../src/librygel-server/rygel-media-container.vala:470
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
 msgstr "알 수 없는 MediaContainer 리소스: %s"
@@ -623,18 +622,23 @@ msgstr "미디어 엔진이 없습니다."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init을 부르지 않았습니다. 계속할 수 없습니다."
 
-#: ../src/librygel-server/rygel-media-object.vala:282
+#: ../src/librygel-server/rygel-media-file-item.vala:176
+#, c-format
+msgid "Could not determine protocol for uri %s"
+msgstr "%s URI에 대한 프로토콜을 결정할 수 없습니다"
+
+#: ../src/librygel-server/rygel-media-object.vala:283
 #, c-format
 msgid "Could not determine protocol for %s"
 msgstr "%s에 대한 프로토콜을 결정할 수 없습니다"
 
-#: ../src/librygel-server/rygel-media-object.vala:497
+#: ../src/librygel-server/rygel-media-object.vala:508
 #, c-format
 msgid "Bad URI: %s"
 msgstr "잘못된 URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-object.vala:509
+#: ../src/librygel-server/rygel-media-object.vala:520
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "URI %s의 프로토콜 검사 실패. '%s' 가정합니다"
@@ -760,7 +764,7 @@ msgstr "주어진 검색 기준이 잘못되었습니다"
 msgid "Failed to search in '%s': %s"
 msgstr "'%s' 검색 실패: %s"
 
-#: ../src/librygel-server/rygel-subtitle-manager.vala:85
+#: ../src/librygel-server/rygel-subtitle-manager.vala:92
 msgid "No subtitle available"
 msgstr "제목 사용 불가"
 
@@ -977,7 +981,7 @@ msgstr "재생 목록"
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
 msgid "Can't remove items in %s"
-msgstr "%s에 항목을 제거할 수 없습니다"
+msgstr "%s에서 항목을 제거할 수 없습니다"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
 #, c-format
@@ -1031,7 +1035,7 @@ msgstr "@REALNAME@의 미디어"
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:507
 #, c-format
 msgid "Failed to remove entry: %s"
-msgstr "엔트리 제거 실패: %s"
+msgstr "항목 제거 실패: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
 msgid "Music"
@@ -1074,7 +1078,7 @@ msgstr "캐시에서 %d 오브젝트를 찾을 수 없습니다"
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
 #, c-format
 msgid "MPRIS interface at %s is read-only. Ignoring."
-msgstr "%s 위치의 MPRIS 인터페이스는 읽기전용입니다. 무시합니다."
+msgstr "%s 위치의 MPRIS 인터페이스는 읽기 전용입니다. 무시합니다."
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
@@ -1086,7 +1090,7 @@ msgstr "GStreamer 플레이어를 만들 수 없습니다"
 
 #: ../src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
-msgstr "엘범"
+msgstr "앨범"
 
 #: ../src/plugins/tracker/rygel-tracker-artists.vala:31
 msgid "Artists"
@@ -1134,7 +1138,7 @@ msgstr "트래커 연결을 가져오는데 실패: %s"
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category '%s': %s"
-msgstr "카테고리 '%s'의 항목 개수 가져오기 오류: %s"
+msgstr "분류 '%s'의 항목 개수 가져오기 오류: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-titles.vala:58
 msgid "Titles"
@@ -1213,7 +1217,7 @@ msgstr "다른 라이겔 인스턴스가 이미 실행 중입니다. 시작하�
 
 #: ../src/rygel/rygel-main.vala:83
 msgid "Rygel is running in streaming-only mode."
-msgstr "라이겔이 스트리밍 전용 모드로 실행 중입니다."
+msgstr "라이겔은 스트리밍 전용 모드로 실행 중입니다."
 
 #: ../src/rygel/rygel-main.vala:87
 #, c-format
@@ -1229,7 +1233,7 @@ msgstr[0] "%d초 동안 플러그인을 찾지 못했습니다. 중지합니다.
 #: ../src/rygel/rygel-main.vala:176
 #, c-format
 msgid "Failed to create root device factory: %s"
-msgstr "루트 디바이스 펙토리 만들기 실패: %s"
+msgstr "최상위 디바이스 팩토리 만들기 실패: %s"
 
 #: ../src/rygel/rygel-main.vala:234
 #, c-format
