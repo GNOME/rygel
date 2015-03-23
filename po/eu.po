@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-01-17 11:28+0000\n"
-"PO-Revision-Date: 2015-01-17 14:42+0100\n"
+"POT-Creation-Date: 2015-03-23 22:04+0100\n"
+"PO-Revision-Date: 2015-03-23 22:07+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
 "Language-Team: Basque <librezale@librezale.org>\n"
 "Language: eu\n"
@@ -18,12 +18,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 1.5\n"
 
-#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel.desktop.in.in.h:1
+msgid "Rygel"
+msgstr "Rygel"
+
+#: ../data/rygel.desktop.in.in.h:2
+msgid "UPnP/DLNA Services"
+msgstr "UPnP/DLNA zerbitzuak"
+
+#: ../data/rygel.desktop.in.in.h:3
+msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
+msgstr ""
+"multimedia-zerbitzaria;multimedia-errendatzailea;partekatu;audioa;bideoa;"
+"argazkiak;"
+
 #: ../data/rygel-preferences.desktop.in.in.h:1
+#: ../data/rygel-preferences.ui.h:1
 msgid "Rygel Preferences"
 msgstr "Rygel-en hobespenak"
+
+#: ../data/rygel-preferences.desktop.in.in.h:2
+msgid "UPnP/DLNA Preferences"
+msgstr "UPnP/DLNA-ren hobespenak"
 
 #: ../data/rygel-preferences.ui.h:2
 msgid "column"
@@ -74,23 +92,780 @@ msgstr "Sareak:"
 msgid "Select folders"
 msgstr "Hautatu karpetak"
 
-#: ../data/rygel-preferences.desktop.in.in.h:2
-msgid "UPnP/DLNA Preferences"
-msgstr "UPnP/DLNA-ren hobespenak"
+#: ../src/librygel-core/rygel-base-configuration.vala:30
+#: ../src/librygel-core/rygel-base-configuration.vala:34
+#: ../src/librygel-core/rygel-base-configuration.vala:39
+#: ../src/librygel-core/rygel-base-configuration.vala:43
+#: ../src/librygel-core/rygel-base-configuration.vala:47
+#: ../src/librygel-core/rygel-base-configuration.vala:51
+#: ../src/librygel-core/rygel-base-configuration.vala:55
+#: ../src/librygel-core/rygel-base-configuration.vala:59
+#: ../src/librygel-core/rygel-base-configuration.vala:63
+#: ../src/librygel-core/rygel-base-configuration.vala:67
+#: ../src/librygel-core/rygel-base-configuration.vala:71
+#: ../src/librygel-core/rygel-base-configuration.vala:75
+#: ../src/librygel-core/rygel-base-configuration.vala:79
+#: ../src/librygel-core/rygel-base-configuration.vala:83
+#: ../src/librygel-core/rygel-base-configuration.vala:87
+#: ../src/librygel-core/rygel-base-configuration.vala:91
+#: ../src/librygel-core/rygel-base-configuration.vala:97
+#: ../src/librygel-core/rygel-base-configuration.vala:103
+#: ../src/librygel-core/rygel-base-configuration.vala:111
+#: ../src/librygel-core/rygel-base-configuration.vala:117
+#: ../src/librygel-core/rygel-base-configuration.vala:123
+msgid "Not implemented"
+msgstr "Inplementatu gabe"
 
-#: ../data/rygel.desktop.in.in.h:1
-msgid "Rygel"
-msgstr "Rygel"
+#: ../src/librygel-core/rygel-basic-management-test.vala:197
+#, c-format
+msgid "Failed to read standard output from %s: %s"
+msgstr "Huts egin du '%s'(n)go irteera estandarretik irakurtzean: %s"
 
-#: ../data/rygel.desktop.in.in.h:2
-msgid "UPnP/DLNA Services"
-msgstr "UPnP/DLNA zerbitzuak"
+#: ../src/librygel-core/rygel-basic-management-test.vala:225
+#, c-format
+msgid "Failed to read error output from %s: %s"
+msgstr "Huts egin du '%s'(n)go erroreen irteeratik irakurtzean: %s"
 
-#: ../data/rygel.desktop.in.in.h:3
-msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
+#. / No test with the specified TestID was found
+#: ../src/librygel-core/rygel-basic-management.vala:159
+msgid "No Such Test"
+msgstr "Ez dago halako probarik"
+
+#. / TestID is valid but refers to the wrong test type
+#: ../src/librygel-core/rygel-basic-management.vala:167
+msgid "Wrong Test Type"
+msgstr "Okerreko proba mota"
+
+#. / TestID is valid but the test Results are not available
+#: ../src/librygel-core/rygel-basic-management.vala:175
+#, c-format
+msgid "Invalid Test State '%s'"
+msgstr "Baliogabeko '%s' probaren egoera"
+
+#. / TestID is valid but the test can't be canceled
+#: ../src/librygel-core/rygel-basic-management.vala:181
+#, c-format
+msgid "State '%s' Precludes Cancel"
+msgstr "'%s' egoerak bertan behera uztea saihesten du"
+
+#: ../src/librygel-core/rygel-basic-management.vala:214
+#: ../src/librygel-core/rygel-basic-management.vala:229
+#: ../src/librygel-core/rygel-basic-management.vala:256
+#: ../src/librygel-core/rygel-basic-management.vala:272
+#: ../src/librygel-core/rygel-basic-management.vala:324
+#: ../src/librygel-core/rygel-basic-management.vala:349
+#: ../src/librygel-core/rygel-basic-management.vala:365
+#: ../src/librygel-core/rygel-basic-management.vala:404
+#: ../src/librygel-core/rygel-basic-management.vala:431
+#: ../src/librygel-core/rygel-basic-management.vala:448
+#: ../src/librygel-core/rygel-basic-management.vala:487
+#: ../src/librygel-core/rygel-basic-management.vala:502
+#: ../src/librygel-core/rygel-basic-management.vala:517
+#: ../src/librygel-core/rygel-basic-management.vala:541
+#: ../src/librygel-core/rygel-connection-manager.vala:95
+#: ../src/librygel-core/rygel-connection-manager.vala:109
+#: ../src/librygel-core/rygel-connection-manager.vala:126
+#: ../src/librygel-renderer/rygel-av-transport.vala:190
+#: ../src/librygel-renderer/rygel-rendering-control.vala:131
+#: ../src/librygel-server/rygel-content-directory.vala:261
+#: ../src/librygel-server/rygel-content-directory.vala:289
+#: ../src/librygel-server/rygel-content-directory.vala:308
+#: ../src/librygel-server/rygel-content-directory.vala:343
+#: ../src/librygel-server/rygel-content-directory.vala:372
+#: ../src/librygel-server/rygel-content-directory.vala:397
+#: ../src/librygel-server/rygel-content-directory.vala:616
+#: ../src/librygel-server/rygel-content-directory.vala:765
+#: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr "Argumentu baliogabea"
+
+#: ../src/librygel-core/rygel-basic-management.vala:255
+msgid "Cannot run 'Ping' action: Host is empty"
+msgstr "Ezin da 'ping' ekintza exekutatu: ostalaria hutsik dago"
+
+#: ../src/librygel-core/rygel-basic-management.vala:348
+msgid "Cannot run 'NSLookup' action: HostName is empty"
+msgstr "Ezin da 'NSLookup' ekintza exekutatu: ostalari-izena hutsik dago"
+
+#: ../src/librygel-core/rygel-basic-management.vala:430
+msgid "Cannot run 'Traceroute' action: Host is empty"
+msgstr "Ezin da 'Traceroute' ekintza exekutatu: ostalaria hutsik dago"
+
+#: ../src/librygel-core/rygel-connection-manager.vala:132
+msgid "Invalid connection reference"
+msgstr "Konexioaren baliogabeko erreferentzia"
+
+#: ../src/librygel-core/rygel-description-file.vala:474
+#, c-format
+msgid "Failed to write modified description to %s"
+msgstr "Huts egin du eraldatutako azalpena '%s'(e)n idaztean"
+
+#: ../src/librygel-core/rygel-energy-management-helper.c:54
+#, c-format
+msgid "Failed to get a socket: %s"
+msgstr "Huts egin du socket-a lortzean: %s"
+
+#: ../src/librygel-core/rygel-energy-management-helper.c:61
+#, c-format
+msgid "Failed to get MAC address for %s: %s"
+msgstr "Huts egin du '%s'(r)en MAC helbidea lortzean: %s"
+
+#: ../src/librygel-core/rygel-energy-management-helper.c:103
+msgid "MAC and network type querying not implemented"
+msgstr "MAC eta sare motaren kontsulta garatu gabe"
+
+#: ../src/librygel-core/rygel-log-handler.vala:68
+#, c-format
+msgid "Failed to get log level from configuration: %s"
+msgstr "Huts egin du konfiguraziotik erregistro-maila eskuratzean: %s"
+
+#: ../src/librygel-core/rygel-meta-config.vala:89
+#: ../src/librygel-core/rygel-meta-config.vala:108
+#: ../src/librygel-core/rygel-meta-config.vala:128
+#: ../src/librygel-core/rygel-meta-config.vala:147
+#: ../src/librygel-core/rygel-meta-config.vala:166
+#: ../src/librygel-core/rygel-meta-config.vala:185
+#: ../src/librygel-core/rygel-meta-config.vala:204
+#: ../src/librygel-core/rygel-meta-config.vala:223
+#: ../src/librygel-core/rygel-meta-config.vala:242
+#: ../src/librygel-core/rygel-meta-config.vala:261
+#: ../src/librygel-core/rygel-meta-config.vala:280
+#: ../src/rygel/rygel-cmdline-config.vala:164
+#: ../src/rygel/rygel-cmdline-config.vala:172
+#: ../src/rygel/rygel-cmdline-config.vala:181
+#: ../src/rygel/rygel-cmdline-config.vala:189
+#: ../src/rygel/rygel-cmdline-config.vala:197
+#: ../src/rygel/rygel-cmdline-config.vala:205
+#: ../src/rygel/rygel-cmdline-config.vala:213
+#: ../src/rygel/rygel-cmdline-config.vala:221
+#: ../src/rygel/rygel-cmdline-config.vala:260
+#: ../src/rygel/rygel-cmdline-config.vala:279
+#: ../src/rygel/rygel-cmdline-config.vala:285
+#: ../src/rygel/rygel-cmdline-config.vala:292
+#: ../src/rygel/rygel-cmdline-config.vala:296
+#: ../src/rygel/rygel-cmdline-config.vala:300
+#: ../src/rygel/rygel-cmdline-config.vala:323
+#: ../src/rygel/rygel-cmdline-config.vala:349
+#: ../src/rygel/rygel-cmdline-config.vala:378
+#: ../src/rygel/rygel-cmdline-config.vala:404
+#: ../src/rygel/rygel-cmdline-config.vala:429
+#: ../src/rygel/rygel-environment-config.vala:105
+#: ../src/rygel/rygel-environment-config.vala:109
+#: ../src/rygel/rygel-environment-config.vala:113
+msgid "No value available"
+msgstr "Ez dago baliorik erabilgarri"
+
+#. translators: "enabled" is part of the config key and must not be translated
+#: ../src/librygel-core/rygel-meta-config.vala:344
+#, c-format
+msgid "No value set for '%s/enabled'"
+msgstr "Ez da honen baliorik ezarri: '%s/enabled'"
+
+#. translators: "title" is part of the config key and must not be translated
+#: ../src/librygel-core/rygel-meta-config.vala:363
+#, c-format
+msgid "No value set for '%s/title'"
+msgstr "Ez da honen baliorik ezarri: '%s/title'"
+
+#: ../src/librygel-core/rygel-meta-config.vala:383
+#: ../src/librygel-core/rygel-meta-config.vala:405
+#: ../src/librygel-core/rygel-meta-config.vala:431
+#: ../src/librygel-core/rygel-meta-config.vala:453
+#: ../src/librygel-core/rygel-meta-config.vala:477
+#, c-format
+msgid "No value available for '%s/%s'"
+msgstr "Ez dago '%s/%s'(r)en baliorik erabilgarri"
+
+#: ../src/librygel-core/rygel-plugin-information.vala:59
+msgid "[Plugin] group not found"
+msgstr "[Plugina] taldea ez da aurkitu"
+
+#: ../src/librygel-core/rygel-plugin-information.vala:77
+#, c-format
+msgid "Plugin module %s does not exist"
+msgstr "'%s' pluginaren modulua ez da existitzen"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:81
+#, c-format
+msgid "New plugin '%s' available"
+msgstr "'%s' plugin berria eskuragarri"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:96
+#, c-format
+msgid "A module named %s is already loaded"
+msgstr "'%s' izeneko modulua lehendik kargatuta dago"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:105
+#, c-format
+msgid "Failed to load module from path '%s': %s"
+msgstr "Huts egin du modulua '%s' bide-izenetik kargatzean: %s"
+
+#: ../src/librygel-core/rygel-plugin-loader.vala:115
+#, c-format
+msgid "Failed to find entry point function '%s' in '%s': %s"
+msgstr "Huts egin du '%s' sarrerako puntuaren funtzioa '%s'(e)n bilatzean: %s"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:144
+#, c-format
+msgid "Error listing contents of folder '%s': %s"
+msgstr "Errorea '%s' karpetaren edukia zerrendatzean: %s"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:188
+#, c-format
+msgid "Could not load plugin: %s"
+msgstr "Ezin izan da plugina kargatu: %s"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
+#, c-format
+msgid "Failed to query content type for '%s'"
+msgstr "Huts egin du '%s'(r)en eduki mota kontsultatzean"
+
+#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:364
+msgid ""
+"Your GStreamer installation seems to be missing the \"playbin\" element. The "
+"Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
-"multimedia-zerbitzaria;multimedia-errendatzailea;partekatu;audioa;bideoa;"
-"argazkiak;"
+"Badirudi GStreamer-en instalazioan 'playbin' elementua falta dela. Rygel "
+"GStreamer errendatzaileak ezin du hura gabe funtzionatu."
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:196
+#: ../src/librygel-renderer/rygel-rendering-control.vala:137
+msgid "Invalid InstanceID"
+msgstr "Instantziaren IDa (InstanceID) baliogabea"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:466
+msgid "Play speed not supported"
+msgstr "Erreprodukzioaren abiadura ez dago onartuta"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:473
+#: ../src/librygel-renderer/rygel-av-transport.vala:491
+msgid "Transition not available"
+msgstr "Trantsizioa ez dago erabilgarri"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:521
+#: ../src/librygel-renderer/rygel-av-transport.vala:546
+#: ../src/librygel-renderer/rygel-av-transport.vala:576
+msgid "Seek mode not supported"
+msgstr "Bilaketa modua ez dago onartuta"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:527
+#: ../src/librygel-renderer/rygel-av-transport.vala:552
+#: ../src/librygel-renderer/rygel-av-transport.vala:565
+#: ../src/librygel-renderer/rygel-av-transport.vala:590
+#: ../src/librygel-renderer/rygel-av-transport.vala:602
+msgid "Illegal seek target"
+msgstr "Bilaketaren helburua ilegala"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:651
+msgid "Play mode not supported"
+msgstr "Erreprodukzioaren modua ez dago onartuta"
+
+#. FIXME: Return a more sensible error here.
+#: ../src/librygel-renderer/rygel-av-transport.vala:727
+#: ../src/librygel-renderer/rygel-av-transport.vala:771
+#: ../src/librygel-renderer/rygel-av-transport.vala:780
+#: ../src/librygel-renderer/rygel-av-transport.vala:859
+msgid "Resource not found"
+msgstr "Ez da baliabiderik aurkitu"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:769
+#, c-format
+msgid "Problem parsing playlist: %s"
+msgstr "Arazoa erreprodukzio-zerrenda analizatzean: %s"
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: ../src/librygel-renderer/rygel-av-transport.vala:855
+#, c-format
+msgid "Failed to access resource at %s: %s"
+msgstr "Huts egin du '%s'(e)ko baliabideak atzitzean: %s"
+
+#: ../src/librygel-renderer/rygel-av-transport.vala:871
+msgid "Illegal MIME-type"
+msgstr "MIME mota ilegala"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:168
+msgid "Invalid Name"
+msgstr "Izen baliogabea"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:182
+msgid "Invalid Channel"
+msgstr "Kanal baliogabea"
+
+#: ../src/librygel-renderer/rygel-rendering-control.vala:218
+#: ../src/librygel-renderer/rygel-rendering-control.vala:260
+#: ../src/librygel-renderer/rygel-rendering-control.vala:269
+msgid "Action Failed"
+msgstr "Ekintzak huts egin du"
+
+#: ../src/librygel-server/rygel-browse.vala:63
+msgid "Invalid Arguments"
+msgstr "Argumentu baliogabeak"
+
+#: ../src/librygel-server/rygel-browse.vala:94
+msgid "Cannot browse children on item"
+msgstr "Ezin dira elementuaren umeak arakatu"
+
+#: ../src/librygel-server/rygel-browse.vala:130
+#, c-format
+msgid "Failed to browse '%s': %s\n"
+msgstr "Huts egin du '%s' arakatzean: %s\n"
+
+#: ../src/librygel-server/rygel-client-hacks.vala:136
+msgid "Not Applicable"
+msgstr "Ez da aplikagarria"
+
+#: ../src/librygel-server/rygel-content-directory.vala:637
+msgid "No such file transfer"
+msgstr "Ez dago hala fitxategi-transferentziarik"
+
+#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:116
+msgid "No D-Bus thumbnailer service available"
+msgstr "Ez dago 'D-Bus'-aren koadro txikitzailearen zerbitzurik erabilgarri"
+
+#: ../src/librygel-server/rygel-http-get.vala:52
+msgid "Invalid Request (only GET and HEAD supported)"
+msgstr "Eskaera baliogabea (soilik GET eta HEAD onartuta)"
+
+#: ../src/librygel-server/rygel-http-get.vala:60
+msgid " must be 1"
+msgstr " 1 izan behar du"
+
+#: ../src/librygel-server/rygel-http-item-uri.vala:152
+#, c-format
+msgid "Invalid URI '%s'"
+msgstr "'%s' URI baliogabea"
+
+#: ../src/librygel-server/rygel-http-item-uri.vala:192
+msgid "Not found"
+msgstr "Ez da aurkitu"
+
+#: ../src/librygel-server/rygel-http-post.vala:62
+#: ../src/librygel-server/rygel-import-resource.vala:189
+#, c-format
+msgid "Pushing data to non-empty item '%s' not allowed"
+msgstr "Hutsik ez dagoen '%s' elementura datuak igortzea ez dago baimenduta"
+
+#: ../src/librygel-server/rygel-http-post.vala:71
+#, c-format
+msgid "No writable URI for %s available"
+msgstr "Ez dago '%s'(r)en URI idazgarririk erabilgarri"
+
+#. translators: Dotfile is the filename with prefix "."
+#: ../src/librygel-server/rygel-http-post.vala:186
+#, c-format
+msgid "Failed to move dotfile %s: %s"
+msgstr "Huts egin du '%s' puntu-fitxategia lekuz aldatzean: %s"
+
+#: ../src/librygel-server/rygel-http-request.vala:95
+#, c-format
+msgid "Requested item '%s' not found"
+msgstr "Ez da eskatutako '%s' elementua aurkitu"
+
+#: ../src/librygel-server/rygel-http-resource-handler.vala:86
+#, c-format
+msgid "Couldn't create data source for %s"
+msgstr "Ezin izan da '%s'(r)en datu-iturburua sortu"
+
+#: ../src/librygel-server/rygel-import-resource.vala:124
+#, c-format
+msgid "Failed to get original URI for '%s': %s"
+msgstr "Huts egin du '%s'(r)en jatorrizko URIa eskuratzean %s"
+
+#: ../src/librygel-server/rygel-import-resource.vala:186
+#, c-format
+msgid "URI '%s' invalid for importing contents to"
+msgstr "'%s' URI baliogabea horra edukiak inportatzeko"
+
+#: ../src/librygel-server/rygel-import-resource.vala:272
+#, c-format
+msgid "Failed to import file from %s: %s"
+msgstr "Huts egin du '%s'(e)tik fitxategia inportatzean: %s"
+
+#. Sorry we can't do anything without the ID
+#: ../src/librygel-server/rygel-item-destroyer.vala:53
+msgid "ContainerID missing"
+msgstr "ContainerID falta da"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:60
+#, c-format
+msgid "Successfully destroyed object '%s'"
+msgstr "'%s' objektua behar bezala deuseztatu da"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:68
+#, c-format
+msgid "Failed to destroy object '%s': %s"
+msgstr "Huts egin du '%s' objektua deuseztatzean: %s"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:104
+#: ../src/librygel-server/rygel-item-updater.vala:283
+#: ../src/librygel-server/rygel-media-query-action.vala:194
+#: ../src/librygel-server/rygel-reference-creator.vala:68
+#: ../src/librygel-server/rygel-reference-creator.vala:115
+msgid "No such object"
+msgstr "Ez dago halako objekturik"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:107
+#, c-format
+msgid "Removal of object %s not allowed"
+msgstr "'%s' objektua kentzea ez dago baimenduta"
+
+#: ../src/librygel-server/rygel-item-destroyer.vala:110
+#, c-format
+msgid "Object removal from %s not allowed"
+msgstr "Objektua '%s'(e)ndik kentzea ez dago baimenduta"
+
+#. Sorry we can't do anything without the ID
+#: ../src/librygel-server/rygel-item-updater.vala:74
+msgid "Object id missing"
+msgstr "Objektuaren IDa falta da"
+
+#: ../src/librygel-server/rygel-item-updater.vala:81
+#, c-format
+msgid "Successfully updated object '%s'"
+msgstr "'%s' objektua ongi eguneratu da"
+
+#: ../src/librygel-server/rygel-item-updater.vala:89
+#, c-format
+msgid "Failed to update object '%s': %s"
+msgstr "Huts egin du '%s' objektua eguneratzean: %s"
+
+#: ../src/librygel-server/rygel-item-updater.vala:162
+#: ../src/librygel-server/rygel-object-creator.vala:600
+#, c-format
+msgid "Invalid date format: %s"
+msgstr "Baliogabeko data-formatua: %s"
+
+#: ../src/librygel-server/rygel-item-updater.vala:171
+#: ../src/librygel-server/rygel-object-creator.vala:609
+#, c-format
+msgid "Invalid date: %s"
+msgstr "Baliogabeko data: %s"
+
+#: ../src/librygel-server/rygel-item-updater.vala:256
+msgid "Bad current tag value."
+msgstr "Uneko etiketaren balioa okerra."
+
+#: ../src/librygel-server/rygel-item-updater.vala:260
+msgid "Bad new tag value."
+msgstr "Etiketa berriaren balioa okerra."
+
+#: ../src/librygel-server/rygel-item-updater.vala:263
+msgid "Tried to delete required tag."
+msgstr "Beharrezko etiketa kentzen saiatu da."
+
+#: ../src/librygel-server/rygel-item-updater.vala:266
+msgid "Tried to change read-only property."
+msgstr "Irakurtzeko soilik den propietatea aldatzea saiatu da."
+
+#: ../src/librygel-server/rygel-item-updater.vala:269
+msgid "Parameter count mismatch."
+msgstr "Parametro kopurua falta da."
+
+#: ../src/librygel-server/rygel-item-updater.vala:272
+msgid "Unknown error."
+msgstr "Errore ezezaguna."
+
+#: ../src/librygel-server/rygel-item-updater.vala:285
+#, c-format
+msgid "Metadata modification of object %s not allowed"
+msgstr "'%s' objektuaren meta-datuen eraldaketa ez dago baimenduta"
+
+#: ../src/librygel-server/rygel-item-updater.vala:290
+#, c-format
+msgid ""
+"Metadata modification of object %s being a child of restricted object %s not "
+"allowed"
+msgstr ""
+"'%s' objektuaren meta-datuen eraldaketa (murriztutako '%s' objektuaren umea "
+"izanik) ez dago baimenduta"
+
+#: ../src/librygel-server/rygel-m3u-playlist.vala:67
+#: ../src/librygel-server/rygel-m3u-playlist.vala:70
+msgid "Unknown"
+msgstr "Ezezaguna"
+
+#: ../src/librygel-server/rygel-media-art-store.vala:105
+#, c-format
+msgid "Failed to add album art for %s: %s"
+msgstr "Huts egin du '%s'(r)en albumaren azala gehitzean: %s"
+
+#: ../src/librygel-server/rygel-media-art-store.vala:119
+#, c-format
+msgid "Failed to find media art for %s: %s"
+msgstr "Huts egin du '%s'(r)en multimediaren azala bilatzean: %s"
+
+#: ../src/librygel-server/rygel-media-container.vala:67
+msgid "Seeking not supported"
+msgstr "Bilaketa ez dago onartuta"
+
+#: ../src/librygel-server/rygel-media-container.vala:72
+msgid "Speed not supported"
+msgstr "Abiadura ez dago onartuta"
+
+#: ../src/librygel-server/rygel-media-container.vala:123
+msgid "Failed to generate playlist"
+msgstr "Huts egin du erreprodukzio-zerrenda sortzean"
+
+#: ../src/librygel-server/rygel-media-container.vala:470
+#, c-format
+msgid "Unknown MediaContainer resource: %s"
+msgstr "'MediaContainer' baliabide ezezaguna: %s"
+
+#: ../src/librygel-server/rygel-media-engine.vala:62
+msgid "No media engine found."
+msgstr "Ez da multimediaren motorrik aurkitu."
+
+#: ../src/librygel-server/rygel-media-engine.vala:73
+msgid "MediaEngine.init was not called. Cannot continue."
+msgstr "Ez da MediaEngine.init deitu. Ezin da jarraitu."
+
+#: ../src/librygel-server/rygel-media-file-item.vala:176
+#, c-format
+msgid "Could not determine protocol for uri %s"
+msgstr "Ezin izan da '%s' URIaren protokoloa zehaztu"
+
+#: ../src/librygel-server/rygel-media-object.vala:283
+#, c-format
+msgid "Could not determine protocol for %s"
+msgstr "Ezin izan da '%s'(r)en protokoloa zehaztu"
+
+#: ../src/librygel-server/rygel-media-object.vala:508
+#, c-format
+msgid "Bad URI: %s"
+msgstr "Okerreko URIa: %s"
+
+#. Assume the protocol to be the scheme of the URI
+#: ../src/librygel-server/rygel-media-object.vala:520
+#, c-format
+msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+msgstr "Huts egin du '%s' URIaren protokoloa probatzean. '%s' suposatzen"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:100
+msgid "Invalid number of arguments"
+msgstr "Argumentuen kopuru baliogabea"
+
+#. Sorry we can't do anything without ObjectID
+#: ../src/librygel-server/rygel-media-query-action.vala:122
+msgid "ObjectID argument missing"
+msgstr "'ObjectID' argumentua falta da"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:127
+msgid "Invalid range"
+msgstr "Barruti baliogabea"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:131
+msgid "Missing filter"
+msgstr "Iragazkia falta da"
+
+#: ../src/librygel-server/rygel-media-query-action.vala:197
+#: ../src/librygel-server/rygel-object-creator.vala:406
+msgid "No such container"
+msgstr "Ez dago halako edukiontzirik"
+
+#: ../src/librygel-server/rygel-object-creator.vala:150
+msgid "upnp:createClass value not supported"
+msgstr "upnp:createClass balioa ez dago onartuta"
+
+#: ../src/librygel-server/rygel-object-creator.vala:191
+msgid "'Elements' argument missing."
+msgstr "'Elements' argumentua falta da."
+
+#: ../src/librygel-server/rygel-object-creator.vala:194
+msgid "Comments not allowed in XML"
+msgstr "Iruzkinak ez daude onartuta XMLan"
+
+#. Sorry we can't do anything without ContainerID
+#: ../src/librygel-server/rygel-object-creator.vala:200
+msgid "Missing ContainerID argument"
+msgstr "'ContainerID' argumentua falta da"
+
+#: ../src/librygel-server/rygel-object-creator.vala:224
+#, c-format
+msgid "No objects in DIDL-Lite from client: '%s'"
+msgstr "Ez dago objekturik 'DIDL-Lite'n bezerotik: '%s'"
+
+#: ../src/librygel-server/rygel-object-creator.vala:231
+msgid "@id must be set to \"\" in CreateObject call"
+msgstr "@id honela ezarri behar da CreateObject deian: \"\""
+
+#: ../src/librygel-server/rygel-object-creator.vala:236
+msgid "dc:title must not be empty in CreateObject call"
+msgstr "dc: titulua ezin da hutsik egon CreateObject deian"
+
+#: ../src/librygel-server/rygel-object-creator.vala:247
+msgid "Flags that must not be set were found in 'dlnaManaged'"
+msgstr "Ezarri behar ez ziren banderak aurkitu dira 'dlnaManaged'-en"
+
+#: ../src/librygel-server/rygel-object-creator.vala:255
+msgid "Invalid upnp:class given in CreateObject"
+msgstr "Baliogabeko upnp:class emanda CreateObject-en"
+
+#: ../src/librygel-server/rygel-object-creator.vala:260
+msgid "Cannot create restricted item"
+msgstr "Ezin da murriztutako elementurik sortu"
+
+#: ../src/librygel-server/rygel-object-creator.vala:377
+#, c-format
+msgid "UPnP class '%s' not supported"
+msgstr "'%s' UPnP klasea ez dago onartuta"
+
+#: ../src/librygel-server/rygel-object-creator.vala:411
+#: ../src/librygel-server/rygel-object-creator.vala:423
+#: ../src/librygel-server/rygel-object-creator.vala:709
+#: ../src/librygel-server/rygel-reference-creator.vala:118
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr "'%s'(e)n objektuak sortzea ez dago baimenduta"
+
+#: ../src/librygel-server/rygel-object-creator.vala:468
+#, c-format
+msgid "Failed to create item under '%s': %s"
+msgstr "Huts egin du '%s' pean elementua sortzean: %s"
+
+#: ../src/librygel-server/rygel-object-creator.vala:542
+#, c-format
+msgid "DLNA profile '%s' not supported"
+msgstr "'%s' DLNA profila ez dago onartuta"
+
+#: ../src/librygel-server/rygel-object-creator.vala:642
+#, c-format
+msgid "Cannot create object of class '%s': Not supported"
+msgstr "Ezin da '%s' klaseko objekturik sortu: ez dago onartuta"
+
+#: ../src/librygel-server/rygel-object-creator.vala:740
+#, c-format
+msgid ""
+"Error from container '%s' on trying to find the newly added child object "
+"'%s' in it: %s"
+msgstr ""
+"Errorea '%s' edukiontzian berriki gehitutako '%s' ume objektua han "
+"bilatzean: %s"
+
+#: ../src/librygel-server/rygel-reference-creator.vala:50
+msgid "'ContainerID' agument missing."
+msgstr "'ContainerID' argumentua falta da."
+
+#: ../src/librygel-server/rygel-reference-creator.vala:55
+msgid "'ObjectID' argument missing."
+msgstr "'ObjectID' argumentua falta da."
+
+#: ../src/librygel-server/rygel-reference-creator.vala:86
+#, c-format
+msgid "Failed to create object under '%s': %s"
+msgstr "Huts egin du '%s' pean objektua sortzean: %s"
+
+#: ../src/librygel-server/rygel-search.vala:70
+msgid "Invalid search criteria given"
+msgstr "Baliogabeko bilaketa-irizpidea eman da"
+
+#: ../src/librygel-server/rygel-search.vala:94
+#, c-format
+msgid "Failed to search in '%s': %s"
+msgstr "Huts egin du '%s'(e)n bilatzean: %s"
+
+#: ../src/librygel-server/rygel-subtitle-manager.vala:92
+msgid "No subtitle available"
+msgstr "Ez dago azpititulurik eskuragarri"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:61
+#, c-format
+msgid "No thumbnailer available: %s"
+msgstr "Ez dago koadro txikitzailerik eskuragarri: %s"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:74
+msgid "Thumbnailing not supported"
+msgstr "Koadroak txikiagotzea ez dago onartuta"
+
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
+#: ../src/librygel-server/rygel-thumbnailer.vala:88
+#: ../src/librygel-server/rygel-thumbnailer.vala:97
+#: ../src/librygel-server/rygel-thumbnailer.vala:102
+#: ../src/librygel-server/rygel-thumbnailer.vala:113
+msgid "No thumbnail available"
+msgstr "Ez dago koadro txikirik erabilgarri"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:132
+msgid "No D-Bus thumbnailer available"
+msgstr "Ez dago 'D-Bus'-aren koadro txikitzailerik erabilgarri"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:44
+#, c-format
+msgid "Could not create GstElement for URI %s"
+msgstr "Ezin izan da '%s' URIaren GstElement sortu"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:71
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:79
+msgid "Playspeed not supported"
+msgstr "Erreprodukzioaren abiadura ez dago onartuta"
+
+#. Unknown/unsupported seek type
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:94
+msgid "HTTPSeekRequest type unsupported"
+msgstr "HTTPSeekRequest mota onartu gabea"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:136
+msgid "Failed to create pipeline"
+msgstr "Huts egin du kanalizazioa sortzean"
+
+#. static pads? easy!
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:147
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:168
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "Ezin izan da %s %s(r)ekin estekatu"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:182
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr "Huts egin du '%s' konektorea '%s'(e)ra estekatzean"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:237
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr "Errorean '%s' kanalizazioan: %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:244
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr "Abisua '%s' kanalizaziotik: %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:288
+msgid "Unsupported seek type"
+msgstr "Onartu gabeko bilaketa mota"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:303
+#, c-format
+msgid "Failed to seek to offsets %lld:%lld"
+msgstr "Huts egin du %lld:%lld desplazamendura kokatzean"
+
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:306
+msgid "Failed to seek"
+msgstr "Huts egin du kokatzean"
+
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:212
+#, c-format
+msgid "Failed to create GStreamer data source for %s: %s"
+msgstr "Huts egin du '%s'(r)en GStreamer datu-iturburua sortzean: %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
+msgid ""
+"Could not create a transcoder configuration. Your GStreamer installation "
+"might be missing a plug-in"
+msgstr ""
+"Ezin izan da transkodetzailearen konfigurazioa sortu. GStreamer-en "
+"instalazioa plugin baten falta egon daiteke"
+
+#: ../src/media-engines/gstreamer/rygel-gst-utils.vala:39
+#, c-format
+msgid "Required element %s missing"
+msgstr "Beharrezko '%s' elementua falta da"
+
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:61
+msgid "Only byte-based seek supported"
+msgstr "Soilik Bytean oinarritutako bilaketa dago onartuta"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -166,20 +941,14 @@ msgstr "Huts egin du '%s' edukiontziaren umea lortzean: %s"
 msgid "Failed to get child count of query container: %s"
 msgstr "Huts egin du kontsultaren edukiontziaren ume kopurua eskuratzean: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:130
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:132
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Huts egin du '%s' IDa duen elementua gehitzean: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:563
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:565
 msgid "Cannot create references to containers"
 msgstr "Ezin da edukiontzietarako erreferentziarik sortu"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
-#, c-format
-msgid "Failed to query content type for '%s'"
-msgstr "Huts egin du '%s'(r)en eduki mota kontsultatzean"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
@@ -378,760 +1147,6 @@ msgstr "Errorea '%s' kategori peko elementu kopurua eskuratzean: %s"
 msgid "Titles"
 msgstr "Tituluak"
 
-#: ../src/librygel-core/rygel-base-configuration.vala:30
-#: ../src/librygel-core/rygel-base-configuration.vala:34
-#: ../src/librygel-core/rygel-base-configuration.vala:39
-#: ../src/librygel-core/rygel-base-configuration.vala:43
-#: ../src/librygel-core/rygel-base-configuration.vala:47
-#: ../src/librygel-core/rygel-base-configuration.vala:51
-#: ../src/librygel-core/rygel-base-configuration.vala:55
-#: ../src/librygel-core/rygel-base-configuration.vala:59
-#: ../src/librygel-core/rygel-base-configuration.vala:63
-#: ../src/librygel-core/rygel-base-configuration.vala:67
-#: ../src/librygel-core/rygel-base-configuration.vala:71
-#: ../src/librygel-core/rygel-base-configuration.vala:75
-#: ../src/librygel-core/rygel-base-configuration.vala:79
-#: ../src/librygel-core/rygel-base-configuration.vala:83
-#: ../src/librygel-core/rygel-base-configuration.vala:87
-#: ../src/librygel-core/rygel-base-configuration.vala:91
-#: ../src/librygel-core/rygel-base-configuration.vala:97
-#: ../src/librygel-core/rygel-base-configuration.vala:103
-#: ../src/librygel-core/rygel-base-configuration.vala:111
-#: ../src/librygel-core/rygel-base-configuration.vala:117
-#: ../src/librygel-core/rygel-base-configuration.vala:123
-msgid "Not implemented"
-msgstr "Inplementatu gabe"
-
-#: ../src/librygel-core/rygel-basic-management-test.vala:197
-#, c-format
-msgid "Failed to read standard output from %s: %s"
-msgstr "Huts egin du '%s'(n)go irteera estandarretik irakurtzean: %s"
-
-#: ../src/librygel-core/rygel-basic-management-test.vala:225
-#, c-format
-msgid "Failed to read error output from %s: %s"
-msgstr "Huts egin du '%s'(n)go erroreen irteeratik irakurtzean: %s"
-
-#. / No test with the specified TestID was found
-#: ../src/librygel-core/rygel-basic-management.vala:159
-msgid "No Such Test"
-msgstr "Ez dago halako probarik"
-
-#. / TestID is valid but refers to the wrong test type
-#: ../src/librygel-core/rygel-basic-management.vala:167
-msgid "Wrong Test Type"
-msgstr "Okerreko proba mota"
-
-#. / TestID is valid but the test Results are not available
-#: ../src/librygel-core/rygel-basic-management.vala:175
-#, c-format
-msgid "Invalid Test State '%s'"
-msgstr "Baliogabeko '%s' probaren egoera"
-
-#. / TestID is valid but the test can't be canceled
-#: ../src/librygel-core/rygel-basic-management.vala:181
-#, c-format
-msgid "State '%s' Precludes Cancel"
-msgstr "'%s' egoerak bertan behera uztea saihesten du"
-
-#: ../src/librygel-core/rygel-basic-management.vala:214
-#: ../src/librygel-core/rygel-basic-management.vala:229
-#: ../src/librygel-core/rygel-basic-management.vala:256
-#: ../src/librygel-core/rygel-basic-management.vala:272
-#: ../src/librygel-core/rygel-basic-management.vala:324
-#: ../src/librygel-core/rygel-basic-management.vala:349
-#: ../src/librygel-core/rygel-basic-management.vala:365
-#: ../src/librygel-core/rygel-basic-management.vala:404
-#: ../src/librygel-core/rygel-basic-management.vala:431
-#: ../src/librygel-core/rygel-basic-management.vala:448
-#: ../src/librygel-core/rygel-basic-management.vala:487
-#: ../src/librygel-core/rygel-basic-management.vala:502
-#: ../src/librygel-core/rygel-basic-management.vala:517
-#: ../src/librygel-core/rygel-basic-management.vala:541
-#: ../src/librygel-core/rygel-connection-manager.vala:95
-#: ../src/librygel-core/rygel-connection-manager.vala:109
-#: ../src/librygel-core/rygel-connection-manager.vala:126
-#: ../src/librygel-renderer/rygel-av-transport.vala:187
-#: ../src/librygel-renderer/rygel-rendering-control.vala:131
-#: ../src/librygel-server/rygel-content-directory.vala:262
-#: ../src/librygel-server/rygel-content-directory.vala:290
-#: ../src/librygel-server/rygel-content-directory.vala:309
-#: ../src/librygel-server/rygel-content-directory.vala:344
-#: ../src/librygel-server/rygel-content-directory.vala:373
-#: ../src/librygel-server/rygel-content-directory.vala:398
-#: ../src/librygel-server/rygel-content-directory.vala:617
-#: ../src/librygel-server/rygel-content-directory.vala:768
-#: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
-msgid "Invalid argument"
-msgstr "Argumentu baliogabea"
-
-#: ../src/librygel-core/rygel-basic-management.vala:255
-msgid "Cannot run 'Ping' action: Host is empty"
-msgstr "Ezin da 'ping' ekintza exekutatu: ostalaria hutsik dago"
-
-#: ../src/librygel-core/rygel-basic-management.vala:348
-msgid "Cannot run 'NSLookup' action: HostName is empty"
-msgstr "Ezin da 'NSLookup' ekintza exekutatu: ostalari-izena hutsik dago"
-
-#: ../src/librygel-core/rygel-basic-management.vala:430
-msgid "Cannot run 'Traceroute' action: Host is empty"
-msgstr "Ezin da 'Traceroute' ekintza exekutatu: ostalaria hutsik dago"
-
-#: ../src/librygel-core/rygel-connection-manager.vala:132
-msgid "Invalid connection reference"
-msgstr "Konexioaren baliogabeko erreferentzia"
-
-#: ../src/librygel-core/rygel-description-file.vala:474
-#, c-format
-msgid "Failed to write modified description to %s"
-msgstr "Huts egin du eraldatutako azalpena '%s'(e)n idaztean"
-
-#: ../src/librygel-core/rygel-energy-management-helper.c:54
-#, c-format
-msgid "Failed to get a socket: %s"
-msgstr "Huts egin du socket-a lortzean: %s"
-
-#: ../src/librygel-core/rygel-energy-management-helper.c:61
-#, c-format
-msgid "Failed to get MAC address for %s: %s"
-msgstr "Huts egin du '%s'(r)en MAC helbidea lortzean: %s"
-
-#: ../src/librygel-core/rygel-energy-management-helper.c:103
-msgid "MAC and network type querying not implemented"
-msgstr "MAC eta sare motaren kontsulta garatu gabe"
-
-#: ../src/librygel-core/rygel-log-handler.vala:68
-#, c-format
-msgid "Failed to get log level from configuration: %s"
-msgstr "Huts egin du konfiguraziotik erregistro-maila eskuratzean: %s"
-
-#: ../src/librygel-core/rygel-meta-config.vala:89
-#: ../src/librygel-core/rygel-meta-config.vala:108
-#: ../src/librygel-core/rygel-meta-config.vala:128
-#: ../src/librygel-core/rygel-meta-config.vala:147
-#: ../src/librygel-core/rygel-meta-config.vala:166
-#: ../src/librygel-core/rygel-meta-config.vala:185
-#: ../src/librygel-core/rygel-meta-config.vala:204
-#: ../src/librygel-core/rygel-meta-config.vala:223
-#: ../src/librygel-core/rygel-meta-config.vala:242
-#: ../src/librygel-core/rygel-meta-config.vala:261
-#: ../src/librygel-core/rygel-meta-config.vala:280
-#: ../src/rygel/rygel-cmdline-config.vala:164
-#: ../src/rygel/rygel-cmdline-config.vala:172
-#: ../src/rygel/rygel-cmdline-config.vala:181
-#: ../src/rygel/rygel-cmdline-config.vala:189
-#: ../src/rygel/rygel-cmdline-config.vala:197
-#: ../src/rygel/rygel-cmdline-config.vala:205
-#: ../src/rygel/rygel-cmdline-config.vala:213
-#: ../src/rygel/rygel-cmdline-config.vala:221
-#: ../src/rygel/rygel-cmdline-config.vala:260
-#: ../src/rygel/rygel-cmdline-config.vala:279
-#: ../src/rygel/rygel-cmdline-config.vala:285
-#: ../src/rygel/rygel-cmdline-config.vala:292
-#: ../src/rygel/rygel-cmdline-config.vala:296
-#: ../src/rygel/rygel-cmdline-config.vala:300
-#: ../src/rygel/rygel-cmdline-config.vala:323
-#: ../src/rygel/rygel-cmdline-config.vala:349
-#: ../src/rygel/rygel-cmdline-config.vala:378
-#: ../src/rygel/rygel-cmdline-config.vala:404
-#: ../src/rygel/rygel-cmdline-config.vala:429
-#: ../src/rygel/rygel-environment-config.vala:105
-#: ../src/rygel/rygel-environment-config.vala:109
-#: ../src/rygel/rygel-environment-config.vala:113
-msgid "No value available"
-msgstr "Ez dago baliorik erabilgarri"
-
-#. translators: "enabled" is part of the config key and must not be translated
-#: ../src/librygel-core/rygel-meta-config.vala:344
-#, c-format
-msgid "No value set for '%s/enabled'"
-msgstr "Ez da honen baliorik ezarri: '%s/enabled'"
-
-#. translators: "title" is part of the config key and must not be translated
-#: ../src/librygel-core/rygel-meta-config.vala:363
-#, c-format
-msgid "No value set for '%s/title'"
-msgstr "Ez da honen baliorik ezarri: '%s/title'"
-
-#: ../src/librygel-core/rygel-meta-config.vala:383
-#: ../src/librygel-core/rygel-meta-config.vala:405
-#: ../src/librygel-core/rygel-meta-config.vala:431
-#: ../src/librygel-core/rygel-meta-config.vala:453
-#: ../src/librygel-core/rygel-meta-config.vala:477
-#, c-format
-msgid "No value available for '%s/%s'"
-msgstr "Ez dago '%s/%s'(r)en baliorik erabilgarri"
-
-#: ../src/librygel-core/rygel-plugin-information.vala:59
-msgid "[Plugin] group not found"
-msgstr "[Plugina] taldea ez da aurkitu"
-
-#: ../src/librygel-core/rygel-plugin-information.vala:77
-#, c-format
-msgid "Plugin module %s does not exist"
-msgstr "'%s' pluginaren modulua ez da existitzen"
-
-#: ../src/librygel-core/rygel-plugin-loader.vala:81
-#, c-format
-msgid "New plugin '%s' available"
-msgstr "'%s' plugin berria eskuragarri"
-
-#: ../src/librygel-core/rygel-plugin-loader.vala:96
-#, c-format
-msgid "A module named %s is already loaded"
-msgstr "'%s' izeneko modulua lehendik kargatuta dago"
-
-#: ../src/librygel-core/rygel-plugin-loader.vala:105
-#, c-format
-msgid "Failed to load module from path '%s': %s"
-msgstr "Huts egin du modulua '%s' bide-izenetik kargatzean: %s"
-
-#: ../src/librygel-core/rygel-plugin-loader.vala:115
-#, c-format
-msgid "Failed to find entry point function '%s' in '%s': %s"
-msgstr "Huts egin du '%s' sarrerako puntuaren funtzioa '%s'(e)n bilatzean: %s"
-
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:144
-#, c-format
-msgid "Error listing contents of folder '%s': %s"
-msgstr "Errorea '%s' karpetaren edukia zerrendatzean: %s"
-
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:188
-#, c-format
-msgid "Could not load plugin: %s"
-msgstr "Ezin izan da plugina kargatu: %s"
-
-#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:364
-msgid ""
-"Your GStreamer installation seems to be missing the \"playbin\" element. The "
-"Rygel GStreamer renderer implementation cannot work without it"
-msgstr ""
-"Badirudi GStreamer-en instalazioan 'playbin' elementua falta dela. Rygel "
-"GStreamer errendatzaileak ezin du hura gabe funtzionatu."
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:193
-#: ../src/librygel-renderer/rygel-rendering-control.vala:137
-msgid "Invalid InstanceID"
-msgstr "Instantziaren IDa (InstanceID) baliogabea"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:463
-msgid "Play speed not supported"
-msgstr "Erreprodukzioaren abiadura ez dago onartuta"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:481
-msgid "Transition not available"
-msgstr "Trantsizioa ez dago erabilgarri"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:511
-#: ../src/librygel-renderer/rygel-av-transport.vala:536
-#: ../src/librygel-renderer/rygel-av-transport.vala:566
-msgid "Seek mode not supported"
-msgstr "Bilaketa modua ez dago onartuta"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:517
-#: ../src/librygel-renderer/rygel-av-transport.vala:542
-#: ../src/librygel-renderer/rygel-av-transport.vala:555
-#: ../src/librygel-renderer/rygel-av-transport.vala:580
-#: ../src/librygel-renderer/rygel-av-transport.vala:592
-msgid "Illegal seek target"
-msgstr "Bilaketaren helburua ilegala"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
-msgid "Play mode not supported"
-msgstr "Erreprodukzioaren modua ez dago onartuta"
-
-#. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:717
-#: ../src/librygel-renderer/rygel-av-transport.vala:761
-#: ../src/librygel-renderer/rygel-av-transport.vala:770
-#: ../src/librygel-renderer/rygel-av-transport.vala:833
-msgid "Resource not found"
-msgstr "Ez da baliabiderik aurkitu"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:759
-#, c-format
-msgid "Problem parsing playlist: %s"
-msgstr "Arazoa erreprodukzio-zerrenda analizatzean: %s"
-
-#. TRANSLATORS: first %s is a URI, the second an explanaition of
-#. the error
-#: ../src/librygel-renderer/rygel-av-transport.vala:829
-#, c-format
-msgid "Failed to access resource at %s: %s"
-msgstr "Huts egin du '%s'(e)ko baliabideak atzitzean: %s"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:845
-msgid "Illegal MIME-type"
-msgstr "MIME mota ilegala"
-
-#: ../src/librygel-renderer/rygel-rendering-control.vala:168
-msgid "Invalid Name"
-msgstr "Izen baliogabea"
-
-#: ../src/librygel-renderer/rygel-rendering-control.vala:182
-msgid "Invalid Channel"
-msgstr "Kanal baliogabea"
-
-#: ../src/librygel-renderer/rygel-rendering-control.vala:218
-#: ../src/librygel-renderer/rygel-rendering-control.vala:260
-#: ../src/librygel-renderer/rygel-rendering-control.vala:269
-msgid "Action Failed"
-msgstr "Ekintzak huts egin du"
-
-#: ../src/librygel-server/rygel-browse.vala:63
-msgid "Invalid Arguments"
-msgstr "Argumentu baliogabeak"
-
-#: ../src/librygel-server/rygel-browse.vala:94
-msgid "Cannot browse children on item"
-msgstr "Ezin dira elementuaren umeak arakatu"
-
-#: ../src/librygel-server/rygel-browse.vala:130
-#, c-format
-msgid "Failed to browse '%s': %s\n"
-msgstr "Huts egin du '%s' arakatzean: %s\n"
-
-#: ../src/librygel-server/rygel-client-hacks.vala:136
-msgid "Not Applicable"
-msgstr "Ez da aplikagarria"
-
-#: ../src/librygel-server/rygel-content-directory.vala:638
-msgid "No such file transfer"
-msgstr "Ez dago hala fitxategi-transferentziarik"
-
-#: ../src/librygel-server/rygel-dbus-thumbnailer.vala:116
-msgid "No D-Bus thumbnailer service available"
-msgstr "Ez dago 'D-Bus'-aren koadro txikitzailearen zerbitzurik erabilgarri"
-
-#. Range header was present but invalid
-#: ../src/librygel-server/rygel-http-byte-seek.vala:49
-#: ../src/librygel-server/rygel-http-byte-seek.vala:54
-#: ../src/librygel-server/rygel-http-time-seek.vala:49
-#: ../src/librygel-server/rygel-http-time-seek.vala:61
-#: ../src/librygel-server/rygel-http-time-seek.vala:68
-#: ../src/librygel-server/rygel-http-time-seek.vala:83
-#, c-format
-msgid "Invalid Range '%s'"
-msgstr "Baliogabeko '%s' barrutia"
-
-#: ../src/librygel-server/rygel-http-get.vala:59
-msgid "Invalid Request"
-msgstr "Eskaera baliogabea"
-
-#: ../src/librygel-server/rygel-http-identity-handler.vala:106
-#: ../src/librygel-server/rygel-http-item-uri.vala:196
-#: ../src/librygel-server/rygel-http-transcode-handler.vala:58
-msgid "Not found"
-msgstr "Ez da aurkitu"
-
-#: ../src/librygel-server/rygel-http-item-uri.vala:152
-#, c-format
-msgid "Invalid URI '%s'"
-msgstr "'%s' URI baliogabea"
-
-#: ../src/librygel-server/rygel-http-playlist-handler.vala:50
-msgid "Seeking not supported"
-msgstr "Bilaketa ez dago onartuta"
-
-#: ../src/librygel-server/rygel-http-playlist-handler.vala:97
-msgid "Failed to generate playlist"
-msgstr "Huts egin du erreprodukzio-zerrenda sortzean"
-
-#: ../src/librygel-server/rygel-http-post.vala:62
-#: ../src/librygel-server/rygel-import-resource.vala:188
-#, c-format
-msgid "Pushing data to non-empty item '%s' not allowed"
-msgstr "Hutsik ez dagoen '%s' elementura datuak igortzea ez dago baimenduta"
-
-#: ../src/librygel-server/rygel-http-post.vala:71
-#, c-format
-msgid "No writable URI for %s available"
-msgstr "Ez dago '%s'(r)en URI idazgarririk erabilgarri"
-
-#. translators: Dotfile is the filename with prefix "."
-#: ../src/librygel-server/rygel-http-post.vala:186
-#, c-format
-msgid "Failed to move dotfile %s: %s"
-msgstr "Huts egin du '%s' puntu-fitxategia lekuz aldatzean: %s"
-
-#: ../src/librygel-server/rygel-http-request.vala:93
-#, c-format
-msgid "Requested item '%s' not found"
-msgstr "Ez da eskatutako '%s' elementua aurkitu"
-
-#: ../src/librygel-server/rygel-http-seek.vala:95
-#, c-format
-msgid "Out Of Range Start '%ld'"
-msgstr "'%ld' hasieraren posiziotik kanpo"
-
-#: ../src/librygel-server/rygel-http-seek.vala:99
-#, c-format
-msgid "Out Of Range Stop '%ld'"
-msgstr "'%ld' bukaeraren posiziotik kanpo"
-
-#: ../src/librygel-server/rygel-import-resource.vala:124
-#, c-format
-msgid "Failed to get original URI for '%s': %s"
-msgstr "Huts egin du '%s'(r)en jatorrizko URIa eskuratzean %s"
-
-#: ../src/librygel-server/rygel-import-resource.vala:185
-#, c-format
-msgid "URI '%s' invalid for importing contents to"
-msgstr "'%s' URI baliogabea horra edukiak inportatzeko"
-
-#: ../src/librygel-server/rygel-import-resource.vala:271
-#, c-format
-msgid "Failed to import file from %s: %s"
-msgstr "Huts egin du '%s'(e)tik fitxategia inportatzean: %s"
-
-#. Sorry we can't do anything without the ID
-#: ../src/librygel-server/rygel-item-destroyer.vala:53
-msgid "ContainerID missing"
-msgstr "ContainerID falta da"
-
-#: ../src/librygel-server/rygel-item-destroyer.vala:60
-#, c-format
-msgid "Successfully destroyed object '%s'"
-msgstr "'%s' objektua behar bezala deuseztatu da"
-
-#: ../src/librygel-server/rygel-item-destroyer.vala:68
-#, c-format
-msgid "Failed to destroy object '%s': %s"
-msgstr "Huts egin du '%s' objektua deuseztatzean: %s"
-
-#: ../src/librygel-server/rygel-item-destroyer.vala:104
-#: ../src/librygel-server/rygel-item-updater.vala:283
-#: ../src/librygel-server/rygel-media-query-action.vala:194
-#: ../src/librygel-server/rygel-reference-creator.vala:68
-#: ../src/librygel-server/rygel-reference-creator.vala:115
-msgid "No such object"
-msgstr "Ez dago halako objekturik"
-
-#: ../src/librygel-server/rygel-item-destroyer.vala:107
-#, c-format
-msgid "Removal of object %s not allowed"
-msgstr "'%s' objektua kentzea ez dago baimenduta"
-
-#: ../src/librygel-server/rygel-item-destroyer.vala:110
-#, c-format
-msgid "Object removal from %s not allowed"
-msgstr "Objektua '%s'(e)ndik kentzea ez dago baimenduta"
-
-#. Sorry we can't do anything without the ID
-#: ../src/librygel-server/rygel-item-updater.vala:74
-msgid "Object id missing"
-msgstr "Objektuaren IDa falta da"
-
-#: ../src/librygel-server/rygel-item-updater.vala:81
-#, c-format
-msgid "Successfully updated object '%s'"
-msgstr "'%s' objektua ongi eguneratu da"
-
-#: ../src/librygel-server/rygel-item-updater.vala:89
-#, c-format
-msgid "Failed to update object '%s': %s"
-msgstr "Huts egin du '%s' objektua eguneratzean: %s"
-
-#: ../src/librygel-server/rygel-item-updater.vala:162
-#: ../src/librygel-server/rygel-object-creator.vala:601
-#, c-format
-msgid "Invalid date format: %s"
-msgstr "Baliogabeko data-formatua: %s"
-
-#: ../src/librygel-server/rygel-item-updater.vala:171
-#: ../src/librygel-server/rygel-object-creator.vala:610
-#, c-format
-msgid "Invalid date: %s"
-msgstr "Baliogabeko data: %s"
-
-#: ../src/librygel-server/rygel-item-updater.vala:256
-msgid "Bad current tag value."
-msgstr "Uneko etiketaren balioa okerra."
-
-#: ../src/librygel-server/rygel-item-updater.vala:260
-msgid "Bad new tag value."
-msgstr "Etiketa berriaren balioa okerra."
-
-#: ../src/librygel-server/rygel-item-updater.vala:263
-msgid "Tried to delete required tag."
-msgstr "Beharrezko etiketa kentzen saiatu da."
-
-#: ../src/librygel-server/rygel-item-updater.vala:266
-msgid "Tried to change read-only property."
-msgstr "Irakurtzeko soilik den propietatea aldatzea saiatu da."
-
-#: ../src/librygel-server/rygel-item-updater.vala:269
-msgid "Parameter count mismatch."
-msgstr "Parametro kopurua falta da."
-
-#: ../src/librygel-server/rygel-item-updater.vala:272
-msgid "Unknown error."
-msgstr "Errore ezezaguna."
-
-#: ../src/librygel-server/rygel-item-updater.vala:285
-#, c-format
-msgid "Metadata modification of object %s not allowed"
-msgstr "'%s' objektuaren meta-datuen eraldaketa ez dago baimenduta"
-
-#: ../src/librygel-server/rygel-item-updater.vala:290
-#, c-format
-msgid ""
-"Metadata modification of object %s being a child of restricted object %s not "
-"allowed"
-msgstr ""
-"'%s' objektuaren meta-datuen eraldaketa (murriztutako '%s' objektuaren umea "
-"izanik) ez dago baimenduta"
-
-#: ../src/librygel-server/rygel-m3u-playlist.vala:67
-#: ../src/librygel-server/rygel-m3u-playlist.vala:70
-msgid "Unknown"
-msgstr "Ezezaguna"
-
-#: ../src/librygel-server/rygel-media-art-store.vala:105
-#, c-format
-msgid "Failed to add album art for %s: %s"
-msgstr "Huts egin du '%s'(r)en albumaren azala gehitzean: %s"
-
-#: ../src/librygel-server/rygel-media-art-store.vala:119
-#, c-format
-msgid "Failed to find media art for %s: %s"
-msgstr "Huts egin du '%s'(r)en multimediaren azala bilatzean: %s"
-
-#: ../src/librygel-server/rygel-media-engine.vala:69
-msgid "No media engine found."
-msgstr "Ez da multimediaren motorrik aurkitu."
-
-#: ../src/librygel-server/rygel-media-engine.vala:80
-msgid "MediaEngine.init was not called. Cannot continue."
-msgstr "Ez da MediaEngine.init deitu. Ezin da jarraitu."
-
-#: ../src/librygel-server/rygel-media-item.vala:302
-#, c-format
-msgid "Bad URI: %s"
-msgstr "Okerreko URIa: %s"
-
-#. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-item.vala:314
-#, c-format
-msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr "Huts egin du '%s' URIaren protokoloa probatzean. '%s' suposatzen"
-
-#: ../src/librygel-server/rygel-media-query-action.vala:100
-msgid "Invalid number of arguments"
-msgstr "Argumentuen kopuru baliogabea"
-
-#. Sorry we can't do anything without ObjectID
-#: ../src/librygel-server/rygel-media-query-action.vala:122
-msgid "ObjectID argument missing"
-msgstr "'ObjectID' argumentua falta da"
-
-#: ../src/librygel-server/rygel-media-query-action.vala:127
-msgid "Invalid range"
-msgstr "Barruti baliogabea"
-
-#: ../src/librygel-server/rygel-media-query-action.vala:131
-msgid "Missing filter"
-msgstr "Iragazkia falta da"
-
-#: ../src/librygel-server/rygel-media-query-action.vala:197
-#: ../src/librygel-server/rygel-object-creator.vala:407
-msgid "No such container"
-msgstr "Ez dago halako edukiontzirik"
-
-#: ../src/librygel-server/rygel-object-creator.vala:151
-msgid "upnp:createClass value not supported"
-msgstr "upnp:createClass balioa ez dago onartuta"
-
-#: ../src/librygel-server/rygel-object-creator.vala:192
-msgid "'Elements' argument missing."
-msgstr "'Elements' argumentua falta da."
-
-#: ../src/librygel-server/rygel-object-creator.vala:195
-msgid "Comments not allowed in XML"
-msgstr "Iruzkinak ez daude onartuta XMLan"
-
-#. Sorry we can't do anything without ContainerID
-#: ../src/librygel-server/rygel-object-creator.vala:201
-msgid "Missing ContainerID argument"
-msgstr "'ContainerID' argumentua falta da"
-
-#: ../src/librygel-server/rygel-object-creator.vala:225
-#, c-format
-msgid "No objects in DIDL-Lite from client: '%s'"
-msgstr "Ez dago objekturik 'DIDL-Lite'n bezerotik: '%s'"
-
-#: ../src/librygel-server/rygel-object-creator.vala:232
-msgid "@id must be set to \"\" in CreateObject call"
-msgstr "@id honela ezarri behar da CreateObject deian: \"\""
-
-#: ../src/librygel-server/rygel-object-creator.vala:237
-msgid "dc:title must not be empty in CreateObject call"
-msgstr "dc: titulua ezin da hutsik egon CreateObject deian"
-
-#: ../src/librygel-server/rygel-object-creator.vala:248
-msgid "Flags that must not be set were found in 'dlnaManaged'"
-msgstr "Ezarri behar ez ziren banderak aurkitu dira 'dlnaManaged'-en"
-
-#: ../src/librygel-server/rygel-object-creator.vala:256
-msgid "Invalid upnp:class given in CreateObject"
-msgstr "Baliogabeko upnp:class emanda CreateObject-en"
-
-#: ../src/librygel-server/rygel-object-creator.vala:261
-msgid "Cannot create restricted item"
-msgstr "Ezin da murriztutako elementurik sortu"
-
-#: ../src/librygel-server/rygel-object-creator.vala:378
-#, c-format
-msgid "UPnP class '%s' not supported"
-msgstr "'%s' UPnP klasea ez dago onartuta"
-
-#: ../src/librygel-server/rygel-object-creator.vala:412
-#: ../src/librygel-server/rygel-object-creator.vala:424
-#: ../src/librygel-server/rygel-object-creator.vala:710
-#: ../src/librygel-server/rygel-reference-creator.vala:118
-#, c-format
-msgid "Object creation in %s not allowed"
-msgstr "'%s'(e)n objektuak sortzea ez dago baimenduta"
-
-#: ../src/librygel-server/rygel-object-creator.vala:469
-#, c-format
-msgid "Failed to create item under '%s': %s"
-msgstr "Huts egin du '%s' pean elementua sortzean: %s"
-
-#: ../src/librygel-server/rygel-object-creator.vala:543
-#, c-format
-msgid "DLNA profile '%s' not supported"
-msgstr "'%s' DLNA profila ez dago onartuta"
-
-#: ../src/librygel-server/rygel-object-creator.vala:643
-#, c-format
-msgid "Cannot create object of class '%s': Not supported"
-msgstr "Ezin da '%s' klaseko objekturik sortu: ez dago onartuta"
-
-#: ../src/librygel-server/rygel-object-creator.vala:741
-#, c-format
-msgid ""
-"Error from container '%s' on trying to find the newly added child object "
-"'%s' in it: %s"
-msgstr ""
-"Errorea '%s' edukiontzian berriki gehitutako '%s' ume objektua han "
-"bilatzean: %s"
-
-#: ../src/librygel-server/rygel-reference-creator.vala:50
-msgid "'ContainerID' agument missing."
-msgstr "'ContainerID' argumentua falta da."
-
-#: ../src/librygel-server/rygel-reference-creator.vala:55
-msgid "'ObjectID' argument missing."
-msgstr "'ObjectID' argumentua falta da."
-
-#: ../src/librygel-server/rygel-reference-creator.vala:86
-#, c-format
-msgid "Failed to create object under '%s': %s"
-msgstr "Huts egin du '%s' pean objektua sortzean: %s"
-
-#: ../src/librygel-server/rygel-search.vala:70
-msgid "Invalid search criteria given"
-msgstr "Baliogabeko bilaketa-irizpidea eman da"
-
-#: ../src/librygel-server/rygel-search.vala:94
-#, c-format
-msgid "Failed to search in '%s': %s"
-msgstr "Huts egin du '%s'(e)n bilatzean: %s"
-
-#: ../src/librygel-server/rygel-subtitle-manager.vala:85
-msgid "No subtitle available"
-msgstr "Ez dago azpititulurik eskuragarri"
-
-#: ../src/librygel-server/rygel-thumbnailer.vala:61
-#, c-format
-msgid "No thumbnailer available: %s"
-msgstr "Ez dago koadro txikitzailerik eskuragarri: %s"
-
-#: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thumbnailing not supported"
-msgstr "Koadroak txikiagotzea ez dago onartuta"
-
-#. Thumbnailing failed previously, so there's no current thumbnail
-#. and it doesn't make any sense to request one.
-#: ../src/librygel-server/rygel-thumbnailer.vala:88
-#: ../src/librygel-server/rygel-thumbnailer.vala:97
-#: ../src/librygel-server/rygel-thumbnailer.vala:102
-#: ../src/librygel-server/rygel-thumbnailer.vala:113
-msgid "No thumbnail available"
-msgstr "Ez dago koadro txikirik erabilgarri"
-
-#: ../src/librygel-server/rygel-thumbnailer.vala:132
-msgid "No D-Bus thumbnailer available"
-msgstr "Ez dago 'D-Bus'-aren koadro txikitzailerik erabilgarri"
-
-#: ../src/librygel-server/rygel-transcode-manager.vala:79
-#, c-format
-msgid "No transcoder available for target format '%s'"
-msgstr "Ez dago helburuko '%s' formatuaren transkodetzailerik erabilgarri"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:39
-#, c-format
-msgid "Could not create GstElement for URI %s"
-msgstr "Ezin izan da '%s' URIaren GstElement sortu"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:95
-msgid "Failed to create pipeline"
-msgstr "Huts egin du kanalizazioa sortzean"
-
-#. static pads? easy!
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:106
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:127
-#, c-format
-msgid "Failed to link %s to %s"
-msgstr "Ezin izan da %s %s(r)ekin estekatu"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:141
-#, c-format
-msgid "Failed to link pad %s to %s"
-msgstr "Huts egin du '%s' konektorea '%s'(e)ra estekatzean"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:196
-#, c-format
-msgid "Error from pipeline %s: %s"
-msgstr "Errorean '%s' kanalizazioan: %s"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:203
-#, c-format
-msgid "Warning from pipeline %s: %s"
-msgstr "Abisua '%s' kanalizaziotik: %s"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:256
-#, c-format
-msgid "Failed to seek to offsets %lld:%lld"
-msgstr "Huts egin du %lld:%lld desplazamendura kokatzean"
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:260
-msgid "Failed to seek"
-msgstr "Huts egin du kokatzean"
-
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:123
-#, c-format
-msgid "Failed to create GStreamer data source for %s: %s"
-msgstr "Huts egin du '%s'(r)en GStreamer datu-iturburua sortzean: %s"
-
-#: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:88
-msgid ""
-"Could not create a transcoder configuration. Your GStreamer installation "
-"might be missing a plug-in"
-msgstr ""
-"Ezin izan da transkodetzailearen konfigurazioa sortu. GStreamer-en "
-"instalazioa plugin baten falta egon daiteke"
-
-#: ../src/media-engines/gstreamer/rygel-gst-utils.vala:39
-#, c-format
-msgid "Required element %s missing"
-msgstr "Beharrezko '%s' elementua falta da"
-
-#: ../src/media-engines/simple/rygel-simple-data-source.vala:56
-msgid "Time-based seek not supported"
-msgstr "Denboran oinarritutako bilaketa ez dago onartuta"
-
 #: ../src/rygel/rygel-cmdline-config.vala:76
 msgid "Network Interfaces"
 msgstr "Sareko interfazeak"
@@ -1276,6 +1291,21 @@ msgstr "Huts egin du Rygel-en zerbitzua abiaraztean: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Huts egin du Rygel-en zerbitzua gelditzean: %s"
+
+#~ msgid "Invalid Range '%s'"
+#~ msgstr "Baliogabeko '%s' barrutia"
+
+#~ msgid "Invalid Request"
+#~ msgstr "Eskaera baliogabea"
+
+#~ msgid "Out Of Range Start '%ld'"
+#~ msgstr "'%ld' hasieraren posiziotik kanpo"
+
+#~ msgid "Out Of Range Stop '%ld'"
+#~ msgstr "'%ld' bukaeraren posiziotik kanpo"
+
+#~ msgid "No transcoder available for target format '%s'"
+#~ msgstr "Ez dago helburuko '%s' formatuaren transkodetzailerik erabilgarri"
 
 #~ msgid "Not Found"
 #~ msgstr "Ez da aurkitu"
