@@ -1,3 +1,59 @@
+0.26.0
+======
+
+A new stable release of Rygel!
+
+- Update documentation build to work out-of-tree and skip useless rebuilds.
+- Include new API in gtk-doc.
+- Fix make distclean.
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Wolfgang Stöggl <c72578@yahoo.de>
+ - Tom Tryfonidis <tomtryf@gmail.com>
+ - Stas Solovey <whats_up@tut.by>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Muhammet Kara <muhammetk@gmail.com>
+ - Marek Černocký <marek@manet.cz>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Kentaro KAZUHAMA <kazken3@gmail.com>
+ - Jiri Grönroos <jiri.gronroos+l10n@iki.fi>
+ - Fran Dieguez <frandieguez@gnome.org>
+ - Enrico Nicoletto <liverig@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Claudio Arseni <claudio.arseni@gmail.com>
+ - Cheng-Chia Tseng <>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Balázs Úr <urbalazs@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Ask Hjorth Larsen <asklarsen@gmail.com>
+ - Anders Jonsson <anders.jonsson@norsjovallen.se>
+ - Alexandre Franke <alexandre.franke@gmail.com>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - da, courtesy of Ask Hjorth Larsen
+ - de, courtesy of Wolfgang Stoeggl
+ - el, courtesy of Tom Tryfonidis
+ - es, courtesy of Daniel Mustieles
+ - fi, courtesy of Jiri Grönroos
+ - fr, courtesy of Alain Lojewski
+ - gl, courtesy of Fran Dieguez
+ - hu, courtesy of Balázs Úr
+ - it, courtesy of Claudio Arseni
+ - ja, courtesy of Kentaro KAZUHAMA
+ - ko, courtesy of Changwoo Ryu
+ - lt, courtesy of Aurimas Černius
+ - nb, courtesy of Kjartan Maraas
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Enrico Nicoletto
+ - ru, courtesy of Stas Solovey
+ - sk, courtesy of Dušan Kazik
+ - sv, courtesy of Anders Jonsson
+ - tr, courtesy of Muhammet Kara
+ - zh_TW, courtesy of Cheng-Chia Tseng
+
 0.25.3
 ======
 
