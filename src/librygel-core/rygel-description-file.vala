@@ -200,6 +200,15 @@ public class Rygel.DescriptionFile : Object {
     }
 
     /**
+     * Set the Serial number of the device.
+     *
+     * @param serial is the Unique Device Name of the device.
+     */
+    public void set_serial_number (string serial) {
+        this.set_device_element ("serialNumber", serial);
+    }
+
+    /**
      * Set the DLNA caps of this root device and while taking the
      * capabilities of the plugin into account.
      *
