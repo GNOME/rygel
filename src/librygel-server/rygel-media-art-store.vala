@@ -57,6 +57,12 @@ public class Rygel.MediaArtStore : GLib.Object {
         File file = null;
 
         foreach (var type in MediaArtStore.types) {
+            if (type == "album" && item.album == null && item.artist == null) {
+                continue;
+            } else if (item.artist == null && item.title == null) {
+                continue;
+            }
+
             MediaArt.get_file (item.artist,
                                type == "album" ? item.album : item.title,
                                type,
