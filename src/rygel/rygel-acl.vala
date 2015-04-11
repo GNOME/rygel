@@ -23,23 +23,47 @@
 internal class Rygel.Acl : GLib.Object, GUPnP.Acl
 {
     private DBusAclProvider provider;
+    private Configuration configuration;
+    private bool fallback_policy;
 
-    public Acl () {
+    public override void constructed () {
+        base.constructed ();
+
         Bus.watch_name (BusType.SESSION,
                         DBusAclProvider.SERVICE_NAME,
                         BusNameWatcherFlags.AUTO_START,
                         this.on_name_appeared,
                         this.on_name_vanished);
-    }
 
-    public bool can_sync () { return false; }
+        this.configuration = MetaConfig.get_default ();
+        this.fallback_policy = true;
+        this.update_fallback_policy ();
+
+        this.configuration.setting_changed.connect ( (s, k) => {
+            if (s == "general" && k == "acl-fallback-policy") {
+                this.update_fallback_policy ();
+            }
+        });
+     }
+
+    /**
+     * Whether this provider supports sync access.
+     *
+     * If we do not have a DBus provider (yet) there is no need to
+     * artificially delay the fall-back policy answer.
+     */
+    public bool can_sync () { return this.provider == null; }
 
     public bool is_allowed (GUPnP.Device? device,
                             GUPnP.Service? service,
                             string         path,
                             string         address,
                             string?        agent) {
-        assert_not_reached ();
+        if (this.provider == null) {
+            return this.fallback_policy;
+        } else {
+            assert_not_reached ();
+        }
     }
 
     public async bool is_allowed_async (GUPnP.Device? device,
@@ -50,9 +74,10 @@ internal class Rygel.Acl : GLib.Object, GUPnP.Acl
                                         GLib.Cancellable? cancellable)
                                         throws GLib.Error {
         if (this.provider == null) {
-            debug ("No external provider found, allowing access…");
+            Idle.add ( () => { is_allowed_async.callback (); return false; });
+            yield;
 
-            return true;
+            return this.fallback_policy;
         }
 
         debug ("Querying ACL for %s on %s by %s@%s",
@@ -106,5 +131,19 @@ internal class Rygel.Acl : GLib.Object, GUPnP.Acl
 
     private void on_name_vanished (DBusConnection connection, string name) {
         this.provider = null;
+    }
+
+    private void update_fallback_policy () {
+        try {
+            this.fallback_policy = this.configuration.get_bool
+                                        ("general",
+                                         "acl-fallback-policy");
+        } catch (Error error) {
+            if (this.fallback_policy) {
+                message (_("No ACL fallback policy found. Using \"allow\""));
+            } else {
+                message (_("No ACL fallback policy found. Using \"deny\""));
+            }
+        }
     }
 }
