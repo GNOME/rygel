@@ -26,7 +26,7 @@ using Gee;
 
 // Helper class for building LastChange messages
 internal class Rygel.ChangeLog : Object {
-    public WeakRef service;
+    private WeakRef service;
 
     private string service_ns;
 
@@ -37,7 +37,7 @@ internal class Rygel.ChangeLog : Object {
     private uint timeout_id = 0;
 
     public ChangeLog (Service? service, string service_ns) {
-        this.service = WeakRef(service);
+        this.service = WeakRef (service);
         this.service_ns = service_ns;
         this.str = new StringBuilder ();
         this.hash = new HashMap<string, string> ();
@@ -51,7 +51,7 @@ internal class Rygel.ChangeLog : Object {
 
     private bool timeout () {
         // Check whether the AVTransport service has not been destroyed already
-        Service? service = (Service?)this.service.get();
+        var service = this.service.get () as Service;
         if (service == null)
             return false;
 
