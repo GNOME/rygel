@@ -709,7 +709,7 @@ internal class Rygel.AVTransport : Service {
     }
 
     private void notify_play_mode_cb (Object player, ParamSpec p) {
-	this.changelog.log ("CurrentPlayMode", this.controller.play_mode);
+        this.changelog.log ("CurrentPlayMode", this.controller.play_mode);
     }
 
     private async void handle_playlist (ServiceAction action,
