@@ -188,7 +188,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                     var parent_container = cache.get_object (id)
                                         as MediaContainer;
                     this.schedule (file, parent_container);
-                } catch (DatabaseError error) {
+                } catch (Database.DatabaseError error) {
                     warning (_("Error fetching object '%s' from database: %s"),
                             id,
                             error.message);

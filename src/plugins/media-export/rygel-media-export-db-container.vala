@@ -21,6 +21,7 @@
  */
 using GUPnP;
 using Gee;
+using Rygel.Database;
 
 public class Rygel.MediaExport.DBContainer : MediaContainer,
                                              SearchableContainer {

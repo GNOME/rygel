@@ -88,6 +88,27 @@ RYGEL_COMMON_MODULES="$RYGEL_BASE_MODULES gupnp-av-1.0 >= $GUPNP_AV_REQUIRED"
 RYGEL_COMMON_MODULES_VALAFLAGS="$RYGEL_BASE_MODULES_VALAFLAGS --pkg gupnp-av-1.0"
 
 ########################################################
+## Db
+########################################################
+RYGEL_CHECK_PACKAGES([sqlite3])
+PKG_CHECK_MODULES([LIBRYGEL_DB_DEPS],
+                  [$RYGEL_COMMON_MODULES
+                   gio-2.0 >= $GIO_REQUIRED
+                   sqlite3 >= $LIBSQLITE3_REQUIRED])
+LIBRYGEL_DB_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg sqlite3 --pkg gio-2.0"
+AC_CHECK_HEADER([unistr.h],
+                AC_CHECK_LIB([unistring],
+                             [u8_strcoll],
+                             [have_unistring=yes],[have_unistring=no]))
+AS_IF([test "x$have_unistring" = "xyes"],
+      [
+        AC_DEFINE([HAVE_UNISTRING], [1], [Use libunistring for collation])
+        LIBRYGEL_DB_DEPS_LIBS="$LIBRYGEL_DB_DEPS_LIBS -lunistring"
+      ])
+AC_SUBST([LIBRYGEL_DB_DEPS_VALAFLAGS])
+
+
+########################################################
 ## Server
 ########################################################
 PKG_CHECK_MODULES([LIBRYGEL_SERVER_DEPS],
@@ -369,15 +390,7 @@ AS_IF([test "x$enable_coverage" != "xno"],
 dnl Check additional requirements for MediaExport plugins
 if test "x$enable_media_export_plugin" = "xyes";
 then
-    RYGEL_CHECK_PACKAGES([sqlite3 gstreamer-tag-1.0 gstreamer-app-1.0])
-    AC_CHECK_HEADER([unistr.h],
-                    AC_CHECK_LIB([unistring],
-                                 [u8_strcoll],
-                                 [have_unistring=yes],[have_unistring=no]))
-    if test "x$have_unistring" = "xyes"; then
-        AC_DEFINE([HAVE_UNISTRING],[1],[Use libunistring for collation])
-        RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_LIBS="$RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_LIBS -lunistring"
-    fi
+    RYGEL_CHECK_PACKAGES([gstreamer-tag-1.0 gstreamer-app-1.0])
 fi
 
 
@@ -489,6 +502,7 @@ AC_CONFIG_FILES([
 Makefile
 src/Makefile
 src/librygel-core/Makefile
+src/librygel-db/Makefile
 src/librygel-renderer/Makefile
 src/librygel-renderer-gst/Makefile
 src/librygel-server/Makefile

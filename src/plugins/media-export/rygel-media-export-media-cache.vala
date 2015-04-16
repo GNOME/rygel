@@ -27,6 +27,7 @@
 using Gee;
 using GUPnP;
 using Sqlite;
+using Rygel.Database;
 
 public errordomain Rygel.MediaExport.MediaCacheError {
     SQLITE_ERROR,
@@ -52,7 +53,7 @@ internal struct Rygel.MediaExport.ExistsCacheEntry {
  */
 public class Rygel.MediaExport.MediaCache : Object {
     // Private members
-    private Database                           db;
+    private Database.Database                  db;
     private ObjectFactory                      factory;
     private SQLFactory                         sql;
     private HashMap<string, ExistsCacheEntry?> exists_cache;
@@ -617,7 +618,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     }
 
     private void open_db (string name) throws Error {
-        this.db = new Database (name);
+        this.db = new Database.Database (name);
         int old_version = -1;
         int current_version = int.parse (SQLFactory.SCHEMA_VERSION);
 
@@ -1170,7 +1171,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         return operator.to_string ();
     }
 
-    private DatabaseCursor exec_cursor (SQLString      id,
+    private Database.Cursor exec_cursor (SQLString      id,
                                         GLib.Value[]?  values = null)
                                         throws DatabaseError {
         return this.db.exec_cursor (this.sql.make (id), values);

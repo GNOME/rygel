@@ -22,7 +22,7 @@
 
 using Sqlite;
 
-internal class Rygel.MediaExport.SqliteWrapper : Object {
+public class Rygel.Database.SqliteWrapper : Object {
     private Sqlite.Database database = null;
     private Sqlite.Database *reference = null;
 

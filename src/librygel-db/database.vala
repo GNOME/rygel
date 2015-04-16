@@ -22,13 +22,24 @@
 
 using Sqlite;
 
-public errordomain Rygel.MediaExport.DatabaseError {
+public errordomain Rygel.Database.DatabaseError {
     IO_ERROR,
     SQLITE_ERROR
 }
 
-namespace Rygel.MediaExport {
+namespace Rygel.Database {
     extern static int utf8_collate_str (uint8[] a, uint8[] b);
+
+    /**
+     * Special GValue to pass to exec or exec_cursor to bind a column to
+     * NULL
+     */
+    public static GLib.Value @null () {
+        GLib.Value v = GLib.Value (typeof (void *));
+        v.set_pointer (null);
+
+        return v;
+    }
 }
 
 /**
@@ -37,7 +48,7 @@ namespace Rygel.MediaExport {
  * It adds statement preparation based on GValue and a cancellable exec
  * function.
  */
-internal class Rygel.MediaExport.Database : SqliteWrapper {
+public class Rygel.Database.Database : SqliteWrapper {
 
     /**
      * Function to implement the custom SQL function 'contains'
@@ -127,10 +138,10 @@ internal class Rygel.MediaExport.Database : SqliteWrapper {
      * @param args Values to bind in the SQL query or null.
      * @throws DatabaseError if the underlying SQLite operation fails.
      */
-    public DatabaseCursor exec_cursor (string        sql,
+    public Cursor exec_cursor (string        sql,
                                        GLib.Value[]? arguments = null)
                                        throws DatabaseError {
-        return new DatabaseCursor (this.db, sql, arguments);
+        return new Cursor (this.db, sql, arguments);
     }
 
     /**
@@ -178,17 +189,6 @@ internal class Rygel.MediaExport.Database : SqliteWrapper {
      */
     public void analyze () {
         this.db.exec ("ANALYZE");
-    }
-
-    /**
-     * Special GValue to pass to exec or exec_cursor to bind a column to
-     * NULL
-     */
-    public static GLib.Value @null () {
-        GLib.Value v = GLib.Value (typeof (void *));
-        v.set_pointer (null);
-
-        return v;
     }
 
     /**

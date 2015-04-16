@@ -22,7 +22,7 @@
 
 using Sqlite;
 
-internal class Rygel.MediaExport.DatabaseCursor : SqliteWrapper {
+public class Rygel.Database.Cursor : SqliteWrapper {
     private Statement statement;
     private int current_state = -1;
     private bool dirty = true;
@@ -42,7 +42,7 @@ internal class Rygel.MediaExport.DatabaseCursor : SqliteWrapper {
      * @param values array of values to bind to the SQL statement or null if
      * none
      */
-    public DatabaseCursor (Sqlite.Database   db,
+    public Cursor (Sqlite.Database   db,
                            string            sql,
                            GLib.Value[]?     arguments) throws DatabaseError {
         base.wrap (db);
@@ -130,9 +130,9 @@ internal class Rygel.MediaExport.DatabaseCursor : SqliteWrapper {
     }
 
     public class Iterator {
-        public DatabaseCursor cursor;
+        public Cursor cursor;
 
-        public Iterator (DatabaseCursor cursor) {
+        public Iterator (Cursor cursor) {
             this.cursor = cursor;
         }
 

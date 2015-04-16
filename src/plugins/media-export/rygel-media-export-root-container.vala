@@ -408,7 +408,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         ArrayList<string> ids;
         try {
             ids = media_db.get_child_ids (FILESYSTEM_FOLDER_ID);
-        } catch (DatabaseError e) {
+        } catch (Database.DatabaseError e) {
             ids = new ArrayList<string> ();
         }
 
@@ -436,7 +436,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
             try {
                 // FIXME: I think this needs to emit objDel events...
                 this.media_db.remove_by_id (id);
-            } catch (DatabaseError error) {
+            } catch (Database.DatabaseError error) {
                 warning (_("Failed to remove entry: %s"), error.message);
             }
         }
@@ -503,7 +503,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
             this.harvester.cancel (file);
             try {
                 this.media_db.remove_by_id (MediaCache.get_id (file));
-            } catch (DatabaseError error) {
+            } catch (Database.DatabaseError error) {
                 warning (_("Failed to remove entry: %s"), error.message);
             }
         }

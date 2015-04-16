@@ -261,7 +261,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             foreach (var child in container.children) {
                 this.cache.remove_by_id (child);
             }
-        } catch (DatabaseError error) {
+        } catch (Database.DatabaseError error) {
             warning (_("Failed to get children of container %s: %s"),
                      container.id,
                      error.message);

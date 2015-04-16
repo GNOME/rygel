@@ -33,9 +33,6 @@ plugin_DATA = media-export.plugin
 
 librygel_media_export_la_SOURCES = \
 	rygel-media-export-plugin.vala \
-	rygel-media-export-database.vala \
-	rygel-media-export-database-cursor.vala \
-	rygel-media-export-sqlite-wrapper.vala \
 	rygel-media-export-db-container.vala \
 	rygel-media-export-sql-factory.vala \
 	rygel-media-export-media-cache.vala \
@@ -63,8 +60,7 @@ librygel_media_export_la_SOURCES = \
 	rygel-media-export-photo-item.vala \
 	rygel-media-export-playlist-item.vala \
 	rygel-media-export-trackable-db-container.vala \
-	rygel-media-export-updatable-object.vala \
-	rygel-media-export-collate.c
+	rygel-media-export-updatable-object.vala
 
 librygel_media_export_la_VALAFLAGS = \
 	--enable-experimental \
@@ -75,16 +71,19 @@ librygel_media_export_la_VALAFLAGS = \
 	--pkg gio-unix-2.0 \
 	$(RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_VALAFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_DB_VALAFLAGS) \
 	$(RYGEL_COMMON_VALAFLAGS)
 
 librygel_media_export_la_CFLAGS = \
 	$(RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_CFLAGS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_CFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_DB_CFLAGS) \
 	-DMX_EXTRACT_PATH='"$(MX_EXTRACT_PATH)"' \
 	-DG_LOG_DOMAIN='"MediaExport"'
 librygel_media_export_la_LIBADD = \
 	$(RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_LIBS) \
-	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS) \
+	$(RYGEL_COMMON_LIBRYGEL_DB_LIBS)
 
 librygel_media_export_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)

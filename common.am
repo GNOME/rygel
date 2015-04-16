@@ -47,6 +47,19 @@ RYGEL_COMMON_LIBRYGEL_CORE_CFLAGS = \
 RYGEL_COMMON_LIBRYGEL_CORE_LIBS = \
 	$(top_builddir)/src/librygel-core/librygel-core-2.6.la
 
+RYGEL_COMMON_LIBRYGEL_DB_VALAFLAGS = \
+	--vapidir=$(top_srcdir)/src/librygel-db \
+	--pkg rygel-db-2.6 \
+	$(RYGEL_COMMON_LIBRYGEL_CORE_VALAFLAGS)
+
+RYGEL_COMMON_LIBRYGEL_DB_CFLAGS = \
+	$(RYGEL_COMMON_DEFINES_CFLAGS) \
+	-I$(top_builddir)/src/librygel-db \
+	-I$(top_srcdir)/src/librygel-db
+
+RYGEL_COMMON_LIBRYGEL_DB_LIBS = \
+	$(RYGEL_COMMON_LIBRYGEL_CORE_LIBS) \
+	$(top_builddir)/src/librygel-db/librygel-db-2.6.la
 
 RYGEL_COMMON_LIBRYGEL_RENDERER_VALAFLAGS = \
 	--vapidir=$(top_srcdir)/src/librygel-renderer \

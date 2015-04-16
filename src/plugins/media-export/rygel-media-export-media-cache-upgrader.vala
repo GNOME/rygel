@@ -22,7 +22,7 @@
 using Gee;
 
 internal class Rygel.MediaExport.MediaCacheUpgrader {
-    private unowned Database database;
+    private unowned Database.Database database;
     private unowned SQLFactory sql;
 
     private const string UPDATE_V3_V4_STRING_2 =
@@ -35,7 +35,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
     private const string UPDATE_V3_V4_STRING_4 =
     "UPDATE Object SET timestamp = 0";
 
-    public MediaCacheUpgrader (Database database, SQLFactory sql) {
+    public MediaCacheUpgrader (Database.Database database, SQLFactory sql) {
         this.database = database;
         this.sql = sql;
     }
@@ -137,7 +137,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
         }
     }
 
-    private void force_reindex () throws DatabaseError {
+    private void force_reindex () throws Database.DatabaseError {
         database.exec ("UPDATE Object SET timestamp = 0");
     }
 
@@ -161,7 +161,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             database.exec (this.sql.make (SQLString.TRIGGER_COMMON));
             database.exec ("UPDATE schema_info SET version = '4'");
             database.commit ();
-        } catch (DatabaseError error) {
+        } catch (Database.DatabaseError error) {
             database.rollback ();
             warning ("Database upgrade failed: %s", error.message);
             database = null;
@@ -209,7 +209,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             database.commit ();
             database.exec ("VACUUM");
             database.analyze ();
-        } catch (DatabaseError err) {
+        } catch (Database.DatabaseError err) {
             database.rollback ();
             warning ("Database upgrade failed: %s", err.message);
             database = null;
@@ -230,7 +230,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             database.commit ();
             database.exec ("VACUUM");
             database.analyze ();
-        } catch (DatabaseError error) {
+        } catch (Database.DatabaseError error) {
             database.rollback ();
             warning ("Database upgrade failed: %s", error.message);
             database = null;
@@ -246,7 +246,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             database.commit ();
             database.exec ("VACUUM");
             database.analyze ();
-        } catch (DatabaseError error) {
+        } catch (Database.DatabaseError error) {
             database.rollback ();
             warning ("Database upgrade failed: %s", error.message);
             database = null;
@@ -263,7 +263,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             database.commit ();
             database.exec ("VACUUM");
             database.analyze ();
-        } catch (DatabaseError error) {
+        } catch (Database.DatabaseError error) {
             database.rollback ();
             warning ("Database upgrade failed: %s", error.message);
             database = null;
@@ -286,7 +286,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             this.database.exec ("UPDATE schema_info SET version = '9'");
             this.database.commit ();
             this.database.exec ("VACUUM");
-        } catch (DatabaseError error) {
+        } catch (Database.DatabaseError error) {
             database.rollback ();
             warning ("Database upgrade failed: %s", error.message);
             database = null;
@@ -355,7 +355,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             database.commit ();
             database.exec ("VACUUM");
             database.analyze ();
-        } catch (DatabaseError error) {
+        } catch (Database.DatabaseError error) {
             database.rollback ();
             warning ("Database upgrade failed: %s", error.message);
             database = null;
@@ -376,7 +376,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             database.commit ();
             database.exec ("VACUUM");
             database.analyze ();
-        } catch (DatabaseError error) {
+        } catch (Database.DatabaseError error) {
             database.rollback ();
             warning ("Database upgrade failed: %s", error.message);
             database = null;
@@ -419,7 +419,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             database.commit ();
             database.exec ("VACUUM");
             database.analyze ();
-        } catch (DatabaseError error) {
+        } catch (Database.DatabaseError error) {
             database.rollback ();
             warning ("Database upgrade failed: %s", error.message);
             database = null;
@@ -482,7 +482,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             this.database.commit ();
             this.database.exec ("VACUUM");
             this.database.analyze ();
-        } catch (DatabaseError error) {
+        } catch (Database.DatabaseError error) {
             this.database.rollback ();
             warning ("Database upgrade failed: %s", error.message);
             this.database = null;
@@ -501,7 +501,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             this.database.commit ();
             this.database.exec ("VACUUM");
             this.database.analyze ();
-        } catch (DatabaseError error) {
+        } catch (Database.DatabaseError error) {
             this.database.rollback ();
             warning ("Database upgrade failed: %s", error.message);
             this.database = null;
@@ -517,7 +517,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             database.commit ();
             database.exec ("VACUUM");
             database.analyze ();
-        } catch (DatabaseError error) {
+        } catch (Database.DatabaseError error) {
             database.rollback ();
             warning ("Database upgrade failed: %s", error.message);
             database = null;
@@ -536,7 +536,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             database.commit ();
             database.exec ("VACUUM");
             database.analyze ();
-        } catch (DatabaseError error) {
+        } catch (Database.DatabaseError error) {
             database.rollback ();
             warning ("Database upgrade failed: %s", error.message);
             database = null;

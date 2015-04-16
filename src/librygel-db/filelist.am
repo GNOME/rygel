@@ -1,0 +1,8 @@
+
+LIBRYGEL_DB_VAPI_SOURCE_FILES = \
+	database-cursor.vala \
+	database.vala \
+	sqlite-wrapper.vala
+
+LIBRYGEL_DB_NONVAPI_SOURCE_FILES = \
+	collate.c
