@@ -20,7 +20,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-internal class Rygel.MediaExport.SqlFunction : SqlOperator {
+public class Rygel.Database.SqlFunction : SqlOperator {
     public SqlFunction (string name, string arg) {
         base (name, arg);
     }

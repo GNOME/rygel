@@ -22,7 +22,7 @@
 
 using GUPnP;
 
-internal class Rygel.MediaExport.SqlOperator : GLib.Object {
+public class Rygel.Database.SqlOperator : GLib.Object {
     protected string name;
     protected string arg;
     protected string collate;
@@ -69,5 +69,3 @@ internal class Rygel.MediaExport.SqlOperator : GLib.Object {
         return "(%s %s ? %s)".printf (arg, name, collate);
     }
 }
-
-
