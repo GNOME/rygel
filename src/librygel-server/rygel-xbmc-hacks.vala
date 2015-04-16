@@ -26,7 +26,7 @@ using GUPnP;
 internal class Rygel.XBMCHacks : ClientHacks {
     // FIXME: Limit to known broken versions once this is fixed in XBMC as
     // promised by developers.
-    private const string AGENT = ".*Platinum/.*|.*XBMC/.*";
+    private const string AGENT = ".*Platinum/.*|.*XBMC/.*|.*Kodi.*";
 
     public XBMCHacks (Message? message = null) throws ClientHacksError {
         base (AGENT, message);
