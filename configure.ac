@@ -62,23 +62,52 @@ TRACKER_SPARQL_REQUIRED_MIN=0.14.0
 
 VALAFLAGS="--enable-deprecated --target-glib=2.32 $VALAFLAGS"
 
+########################################################
+## Base
+########################################################
 RYGEL_BASE_MODULES="gupnp-1.0 >= $GUPNP_REQUIRED gee-0.8 >= $GEE_REQUIRED"
-PKG_CHECK_MODULES([LIBRYGEL_CORE_DEPS], [$RYGEL_BASE_MODULES gssdp-1.0 >= $GSSDP_REQUIRED gio-2.0 >= $GIO_REQUIRED gmodule-2.0 libxml-2.0 >= $LIBXML_REQUIRED])
+
+PKG_CHECK_MODULES([LIBRYGEL_CORE_DEPS],
+                  [$RYGEL_BASE_MODULES
+                   gssdp-1.0 >= $GSSDP_REQUIRED
+                   gio-2.0 >= $GIO_REQUIRED
+                   gmodule-2.0
+                   libxml-2.0 >= $LIBXML_REQUIRED])
 RYGEL_BASE_MODULES_VALAFLAGS='--pkg gupnp-1.0 --pkg gee-0.8'
+
+########################################################
+## Core
+########################################################
 LIBRYGEL_CORE_DEPS_VALAFLAGS="$RYGEL_BASE_MODULES_VALAFLAGS --pkg gssdp-1.0 --pkg gio-2.0 --pkg gmodule-2.0 --pkg posix"
 AC_SUBST([LIBRYGEL_CORE_DEPS_VALAFLAGS])
 
+########################################################
+## Common
+########################################################
 RYGEL_COMMON_MODULES="$RYGEL_BASE_MODULES gupnp-av-1.0 >= $GUPNP_AV_REQUIRED"
-PKG_CHECK_MODULES([LIBRYGEL_SERVER_DEPS], [$RYGEL_COMMON_MODULES
-                   gssdp-1.0 >= $GSSDP_REQUIRED gio-2.0 >=
-                   $GIO_REQUIRED gmodule-2.0 libxml-2.0 >= $LIBXML_REQUIRED
-                   libsoup-2.4 >= $LIBSOUP_REQUIRED libmediaart-2.0 >=
-                   $MEDIAART_REQUIRED])
 RYGEL_COMMON_MODULES_VALAFLAGS="$RYGEL_BASE_MODULES_VALAFLAGS --pkg gupnp-av-1.0"
+
+########################################################
+## Server
+########################################################
+PKG_CHECK_MODULES([LIBRYGEL_SERVER_DEPS],
+                  [$RYGEL_COMMON_MODULES
+                   gssdp-1.0 >= $GSSDP_REQUIRED
+                   gio-2.0 >= $GIO_REQUIRED
+                   gmodule-2.0
+                   libxml-2.0 >= $LIBXML_REQUIRED
+                   libsoup-2.4 >= $LIBSOUP_REQUIRED
+                   libmediaart-2.0 >= $MEDIAART_REQUIRED])
 LIBRYGEL_SERVER_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gssdp-1.0 --pkg gio-2.0 --pkg libsoup-2.4 --pkg gmodule-2.0 --pkg libmediaart-2.0"
 AC_SUBST([LIBRYGEL_SERVER_DEPS_VALAFLAGS])
 
-PKG_CHECK_MODULES([LIBRYGEL_RENDERER_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED libsoup-2.4 >= $LIBSOUP_REQUIRED])
+########################################################
+## Renderer
+########################################################
+PKG_CHECK_MODULES([LIBRYGEL_RENDERER_DEPS],
+                  [$RYGEL_COMMON_MODULES
+                   gio-2.0 >= $GIO_REQUIRED
+                   libsoup-2.4 >= $LIBSOUP_REQUIRED])
 LIBRYGEL_RENDERER_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gio-2.0 --pkg libsoup-2.4"
 AC_SUBST([LIBRYGEL_RENDERER_DEPS_VALAFLAGS])
 
@@ -90,17 +119,37 @@ PKG_CHECK_MODULES([LIBRYGEL_RUIH_DEPS],
 LIBRYGEL_RUIH_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gio-2.0 --pkg gee-0.8 --pkg libxml-2.0"
 AC_SUBST([LIBRYGEL_RUIH_DEPS_VALAFLAGS])
 
-PKG_CHECK_MODULES([RYGEL_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED])
+########################################################
+## Rygel
+########################################################
+PKG_CHECK_MODULES([RYGEL_DEPS],
+                  [$RYGEL_COMMON_MODULES
+                   gio-2.0 >= $GIO_REQUIRED
+                   gssdp-1.0 >= $GSSDP_REQUIRED])
+
 
 # Not all tests use all of these dependencies,
 # but having one set of dependencies keeps things simple.
-PKG_CHECK_MODULES([TEST_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED libsoup-2.4 >= $LIBSOUP_REQUIRED libxml-2.0 >= $LIBXML_REQUIRED])
+
+########################################################
+## Tests
+########################################################
+PKG_CHECK_MODULES([TEST_DEPS],
+                  [$RYGEL_COMMON_MODULES
+                   gio-2.0 >= $GIO_REQUIRED
+                   gssdp-1.0 >= $GSSDP_REQUIRED
+                   libsoup-2.4 >= $LIBSOUP_REQUIRED
+                   libxml-2.0 >= $LIBXML_REQUIRED])
 TEST_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gio-2.0 --pkg gssdp-1.0 --pkg libsoup-2.4 --pkg libxml-2.0 --pkg gmodule-2.0"
 AC_SUBST([TEST_DEPS_VALAFLAGS])
 
-PKG_CHECK_MODULES([EXAMPLE_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED])
-
-
+########################################################
+## Examples
+########################################################
+PKG_CHECK_MODULES([EXAMPLE_DEPS],
+                  [$RYGEL_COMMON_MODULES
+                   gio-2.0 >= $GIO_REQUIRED
+                   gssdp-1.0 >= $GSSDP_REQUIRED])
 
 dnl Media engine to use
 BUILT_ENGINES="librygel-media-engine-simple"
