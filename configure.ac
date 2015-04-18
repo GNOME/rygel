@@ -164,6 +164,18 @@ PKG_CHECK_MODULES([TEST_DEPS],
 TEST_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gio-2.0 --pkg gssdp-1.0 --pkg libsoup-2.4 --pkg libxml-2.0 --pkg gmodule-2.0"
 AC_SUBST([TEST_DEPS_VALAFLAGS])
 
+
+AC_CHECK_HEADER([unistr.h],
+                AC_CHECK_LIB([unistring],
+                             [u8_strcoll],
+                             [have_unistring=yes],[have_unistring=no]))
+AS_IF([test "x$have_unistring" = "xyes"],
+      [
+        AC_DEFINE([HAVE_UNISTRING],[1],[Use libunistring for collation])
+        UNISTRING_LIBS="-lunistring"
+        AC_SUBST([UNISTRING_LIBS])
+])
+
 ########################################################
 ## Examples
 ########################################################
