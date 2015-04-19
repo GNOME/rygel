@@ -79,8 +79,6 @@ public interface Rygel.VisualItem : MediaFileItem {
 
     internal void add_thumbnail_resources (HTTPServer http_server) {
         for (var i = 0; i < this.thumbnails.size; i++) {
-            warning ("Thumbnail is %p for %d/%d", this.thumbnails.get (i), i,
-                     this.thumbnails.size);
             if (!this.place_holder) {
                 var thumbnail = this.thumbnails.get (i);
                 // Add the defined thumbnail uri unconditionally
