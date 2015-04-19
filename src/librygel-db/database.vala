@@ -53,9 +53,9 @@ public class Rygel.Database.Database : SqliteWrapper {
     /**
      * Function to implement the custom SQL function 'contains'
      */
-    private static void utf8_contains (Sqlite.Context context,
-                                       Sqlite.Value[] args)
-                                       requires (args.length == 2) {
+    public static void utf8_contains (Sqlite.Context context,
+                                      Sqlite.Value[] args)
+                                      requires (args.length == 2) {
         if (args[0].to_text () == null ||
             args[1].to_text () == null) {
            context.result_int (0);
@@ -78,7 +78,7 @@ public class Rygel.Database.Database : SqliteWrapper {
      *
      * Uses utf8 case-fold to compare the strings.
      */
-    private static int utf8_collate (int alen, void* a, int blen, void* b) {
+    public static int utf8_collate (int alen, void* a, int blen, void* b) {
         // unowned to prevent array copy
         unowned uint8[] _a = (uint8[]) a;
         _a.length = alen;
