@@ -20,8 +20,6 @@ librygel_lms_la_SOURCES = \
 	rygel-lms-all-images.vala \
 	rygel-lms-image-years.vala \
 	rygel-lms-image-year.vala \
-	rygel-lms-sql-function.vala \
-	rygel-lms-sql-operator.vala \
 	rygel-lms-collate.c \
 	rygel-lms-dbus-interfaces.vala
 
@@ -29,16 +27,19 @@ librygel_lms_la_VALAFLAGS = \
 	--enable-experimental \
 	$(RYGEL_PLUGIN_LMS_DEPS_VALAFLAGS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_VALAFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_DB_VALAFLAGS) \
 	$(RYGEL_COMMON_VALAFLAGS)
 
 librygel_lms_la_CFLAGS = \
 	$(RYGEL_PLUGIN_LMS_DEPS_CFLAGS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_CFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_DB_CFLAGS) \
 	-DG_LOG_DOMAIN='"Lms"'
 
 librygel_lms_la_LIBADD = \
 	$(RYGEL_PLUGIN_LMS_DEPS_LIBS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS) \
+	$(RYGEL_COMMON_LIBRYGEL_DB_LIBS) \
 	$(UNISTRING_LIBS)
 
 librygel_lms_la_LDFLAGS = \

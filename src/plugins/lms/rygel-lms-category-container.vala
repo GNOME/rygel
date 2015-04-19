@@ -22,6 +22,7 @@
  */
 
 using Rygel;
+using Rygel.Database;
 using Gee;
 using Sqlite;
 
