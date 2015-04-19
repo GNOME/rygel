@@ -61,7 +61,7 @@ public interface Rygel.VisualItem : MediaFileItem {
         // Lets see if we can provide the thumbnails
         var thumbnailer = Thumbnailer.get_default ();
 
-        if (thumbnailer != null) {
+        if (thumbnailer != null && this.mime_type != null) {
             try {
                 var thumb = thumbnailer.get_thumbnail (uri, this.mime_type);
                 this.thumbnails.add (thumb);
