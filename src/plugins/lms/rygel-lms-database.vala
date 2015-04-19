@@ -33,10 +33,6 @@ public errordomain Rygel.LMS.DatabaseError {
     NOT_FOUND
 }
 
-namespace Rygel.LMS {
-    extern static int utf8_collate_str (uint8[] a, uint8[] b);
-}
-
 public class Rygel.LMS.Database {
 
     public signal void db_updated(uint64 old_update_id, uint64 new_update_id);
@@ -44,45 +40,6 @@ public class Rygel.LMS.Database {
     private Sqlite.Database db;
     private LMS.DBus lms_proxy;
     private uint64 update_id;
-
-    /**
-     * Function to implement the custom SQL function 'contains'
-     */
-    private static void utf8_contains (Sqlite.Context context,
-                                       Sqlite.Value[] args)
-                                       requires (args.length == 2) {
-        if (args[0].to_text () == null ||
-            args[1].to_text () == null) {
-           context.result_int (0);
-
-           return;
-        }
-
-        var pattern = Regex.escape_string (args[1].to_text ());
-        if (Regex.match_simple (pattern,
-                                args[0].to_text (),
-                                RegexCompileFlags.CASELESS)) {
-            context.result_int (1);
-        } else {
-            context.result_int (0);
-        }
-    }
-
-    /**
-     * Function to implement the custom SQLite collation 'CASEFOLD'.
-     *
-     * Uses utf8 case-fold to compare the strings.
-     */
-    private static int utf8_collate (int alen, void* a, int blen, void* b) {
-        // unowned to prevent array copy
-        unowned uint8[] _a = (uint8[]) a;
-        _a.length = alen;
-
-        unowned uint8[] _b = (uint8[]) b;
-        _b.length = blen;
-
-        return LMS.utf8_collate_str (_a, _b);
-    }
 
     public Database () throws DatabaseError {
         string db_path;
@@ -114,13 +71,13 @@ public class Rygel.LMS.Database {
                                  2,
                                  Sqlite.UTF8,
                                  null,
-                                 LMS.Database.utf8_contains,
+                                 Rygel.Database.Database.utf8_contains,
                                  null,
                                  null);
 
         this.db.create_collation ("CASEFOLD",
                                   Sqlite.UTF8,
-                                  LMS.Database.utf8_collate);
+                                  Rygel.Database.Database.utf8_collate);
 
     }
 

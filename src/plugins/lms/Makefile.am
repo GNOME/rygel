@@ -20,7 +20,6 @@ librygel_lms_la_SOURCES = \
 	rygel-lms-all-images.vala \
 	rygel-lms-image-years.vala \
 	rygel-lms-image-year.vala \
-	rygel-lms-collate.c \
 	rygel-lms-dbus-interfaces.vala
 
 librygel_lms_la_VALAFLAGS = \
