@@ -67,7 +67,7 @@ internal class Rygel.Thumbnailer : GLib.Object {
         return thumbnailer;
     }
 
-    public Thumbnail get_thumbnail (string uri, string mime_type) throws Error {
+    public Thumbnail get_thumbnail (string uri, string? mime_type) throws Error {
         var file = File.new_for_uri (uri);
         if (!file.is_native ()) {
             throw new ThumbnailerError.NO_THUMBNAIL
@@ -90,11 +90,11 @@ internal class Rygel.Thumbnailer : GLib.Object {
 
         // Send a request to create thumbnail if it does not exist, signal
         // that there's no thumbnail available now.
-        if (this.thumbler != null && path == null) {
+        if (this.thumbler != null && path == null && mime_type != null) {
             this.thumbler.queue_thumbnail_task (uri, mime_type);
 
             throw new ThumbnailerError.NO_THUMBNAIL
-                                        (_("No thumbnail available"));
+                                        (_("No thumbnail available. Generation requested."));
         }
 
         if (path == null) {
