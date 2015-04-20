@@ -22,10 +22,11 @@
 
 using Sqlite;
 
-public class Rygel.Database.Cursor : SqliteWrapper {
+public class Rygel.Database.Cursor : Object {
     private Statement statement;
     private int current_state = -1;
     private bool dirty = true;
+    private unowned Sqlite.Database db;
 
     /**
      * Prepare a SQLite statement from a SQL string
@@ -43,9 +44,9 @@ public class Rygel.Database.Cursor : SqliteWrapper {
      * none
      */
     public Cursor (Sqlite.Database   db,
-                           string            sql,
-                           GLib.Value[]?     arguments) throws DatabaseError {
-        base.wrap (db);
+                   string            sql,
+                   GLib.Value[]?     arguments) throws DatabaseError {
+        this.db = db;
 
         this.throw_if_code_is_error (db.prepare_v2 (sql,
                                                     -1,
@@ -143,5 +144,30 @@ public class Rygel.Database.Cursor : SqliteWrapper {
         public unowned Statement @get () throws DatabaseError {
             return this.cursor.next ();
         }
+    }
+
+    /**
+     * Convert a SQLite return code to a DatabaseError
+     */
+    protected void throw_if_code_is_error (int sqlite_error)
+                                           throws DatabaseError {
+        switch (sqlite_error) {
+            case Sqlite.OK:
+            case Sqlite.DONE:
+            case Sqlite.ROW:
+                return;
+            default:
+                throw new DatabaseError.SQLITE_ERROR
+                                        ("SQLite error %d: %s",
+                                         sqlite_error,
+                                         this.db.errmsg ());
+        }
+    }
+
+    /**
+     * Check if the last operation on the database was an error
+     */
+    protected void throw_if_db_has_error () throws DatabaseError {
+        this.throw_if_code_is_error (this.db.errcode ());
     }
 }

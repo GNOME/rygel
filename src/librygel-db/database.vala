@@ -22,12 +22,29 @@
 
 using Sqlite;
 
-public errordomain Rygel.Database.DatabaseError {
-    IO_ERROR,
-    SQLITE_ERROR
-}
-
 namespace Rygel.Database {
+
+    public errordomain DatabaseError {
+        SQLITE_ERROR, /// Error code translated from SQLite
+        OPEN          /// Error while opening database file
+    }
+
+    public enum Flavor {
+        CACHE, /// Database is a cache (will be placed in XDG_USER_CACHE
+        CONFIG /// Database is configuration (will be placed in XDG_USER_CONFIG)
+    }
+
+    public enum Flags {
+        READ_ONLY = 1, /// Database is read-only
+        WRITE_ONLY = 1 << 1, /// Database is write-only
+        /// Database can be read and updated
+        READ_WRITE = READ_ONLY | WRITE_ONLY,
+
+        /// Database is shared between several processes
+        SHARED = 1 << 2;
+    }
+
+    /// Prototype for UTF-8 collation function
     extern static int utf8_collate_str (uint8[] a, uint8[] b);
 
     /**
@@ -48,7 +65,7 @@ namespace Rygel.Database {
  * It adds statement preparation based on GValue and a cancellable exec
  * function.
  */
-public class Rygel.Database.Database : SqliteWrapper {
+public class Rygel.Database.Database : Object {
 
     /**
      * Function to implement the custom SQL function 'contains'
@@ -89,32 +106,54 @@ public class Rygel.Database.Database : SqliteWrapper {
         return utf8_collate_str (_a, _b);
     }
 
-    /**
-     * Open a database in the user's cache directory as defined by XDG
-     *
-     * @param name of the database, used to build full path
-     * (<cache-dir>/rygel/<name>.db)
-     */
-    public Database (string name) throws DatabaseError {
-        string db_file;
-
-        if (name != ":memory:") {
+    private static string build_path (string name, Flavor flavor) {
+        if (name != ":memory:" && !Path.is_absolute (name)) {
             var dirname = Path.build_filename (
-                                        Environment.get_user_cache_dir (),
+                                        flavor == Flavor.CACHE
+                                            ? Environment.get_user_cache_dir ()
+                                            : Environment.get_user_config_dir (),
                                         "rygel");
             DirUtils.create_with_parents (dirname, 0750);
-            db_file = Path.build_filename (dirname, "%s.db".printf (name));
+
+            return Path.build_filename (dirname, "%s.db".printf (name));
         } else {
-            db_file = name;
+            return name;
+        }
+    }
+
+    private Sqlite.Database db;
+
+    /**
+     * Connect to a SQLite database file
+     *
+     * @param name: Name of the database which is used to create the file-name
+     * @param flavor: Specifies the flavor of the database
+     * @param flags: How to open the database
+     */
+    public Database (string name,
+                     Flavor flavor = Flavor.CACHE,
+                     Flags  flags = Flags.READ_WRITE) throws DatabaseError {
+        var path = Database.build_path (name, flavor);
+        if (flags == Flags.READ_ONLY) {
+            Sqlite.Database.open_v2 (path, out this.db, Sqlite.OPEN_READONLY);
+        } else {
+            Sqlite.Database.open (path, out this.db);
+        }
+        if (this.db.errcode () != Sqlite.OK) {
+            var msg = _("Error while opening SQLite database %s: %s");
+            throw new DatabaseError.OPEN (msg, path, this.db.errmsg ());
         }
 
-        base (db_file);
-
-        debug ("Using database file %s", db_file);
+        debug ("Using database file %s", path);
 
         this.exec ("PRAGMA synchronous = OFF");
-        this.exec ("PRAGMA temp_store = MEMORY");
         this.exec ("PRAGMA count_changes = OFF");
+
+        if (Flags.SHARED in flags) {
+            this.exec ("PRAGMA journal_mode = WAL");
+        } else {
+            this.exec ("PRAGMA temp_store = MEMORY");
+        }
 
         this.db.create_function ("contains",
                                  2,
@@ -156,12 +195,6 @@ public class Rygel.Database.Database : SqliteWrapper {
     public void exec (string        sql,
                       GLib.Value[]? arguments = null)
                       throws DatabaseError {
-        if (arguments == null) {
-            this.throw_if_code_is_error (this.db.exec (sql));
-
-            return;
-        }
-
         var cursor = this.exec_cursor (sql, arguments);
         while (cursor.has_next ()) {
             cursor.next ();
