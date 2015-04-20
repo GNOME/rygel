@@ -1,9 +1,9 @@
 # rygel Italian translation.
 # Copyright (C) 2010 rygel copyright holder
-# Copyright (C) 2012, 2013, 2014 the Free Software Foundation, Inc
+# Copyright (C) 2012, 2013, 2014, 2015 the Free Software Foundation, Inc
 # This file is distributed under the same license as the rygel package.
 # Luca Ferretti <lferrett@gnome.org>, 2012.
-# Milo Casagrande <milo@milo.name>, 2010, 2012, 2013, 2014.
+# Milo Casagrande <milo@milo.name>, 2010, 2012, 2013, 2014, 2015.
 # Claudio Arseni <claudio.arseni@ubuntu.com>, 2013, 2014.
 #
 msgid ""
@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-19 02:47+0000\n"
-"PO-Revision-Date: 2015-03-19 12:13+0100\n"
-"Last-Translator: Claudio Arseni <claudio.arseni@ubuntu.com>\n"
+"POT-Creation-Date: 2015-04-20 11:29+0000\n"
+"PO-Revision-Date: 2015-04-20 14:39+0100\n"
+"Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8beta1\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -595,12 +595,12 @@ msgstr ""
 msgid "Unknown"
 msgstr "Sconosciuto"
 
-#: ../src/librygel-server/rygel-media-art-store.vala:105
+#: ../src/librygel-server/rygel-media-art-store.vala:111
 #, c-format
 msgid "Failed to add album art for %s: %s"
 msgstr "Aggiunta della copertina per %s non riuscita: %s"
 
-#: ../src/librygel-server/rygel-media-art-store.vala:119
+#: ../src/librygel-server/rygel-media-art-store.vala:125
 #, c-format
 msgid "Failed to find media art for %s: %s"
 msgstr "Ricerca dei dati multimediali per %s non riuscita: %s"
@@ -792,11 +792,14 @@ msgstr "Creazione delle miniature non supportata"
 #. Thumbnailing failed previously, so there's no current thumbnail
 #. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
-#: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
 #: ../src/librygel-server/rygel-thumbnailer.vala:113
 msgid "No thumbnail available"
 msgstr "Nessuna miniatura disponibile"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:97
+msgid "No thumbnail available. Generation requested."
+msgstr "Nessuna miniatura disponibile: richiesta generazione."
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
@@ -1302,18 +1305,3 @@ msgstr "Avvio del servizio Rygel non riuscito: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Arresto del servizio Rygel non riuscito: %s"
-
-#~ msgid "Invalid Range '%s'"
-#~ msgstr "Intervallo «%s» non valido"
-
-#~ msgid "Invalid Request"
-#~ msgstr "Richiesta non valida"
-
-#~ msgid "Out Of Range Start '%ld'"
-#~ msgstr "Inizio «%ld» fuori intervallo"
-
-#~ msgid "Out Of Range Stop '%ld'"
-#~ msgstr "Fine «%ld» fuori intervallo"
-
-#~ msgid "No transcoder available for target format '%s'"
-#~ msgstr "Nessun codificatore disponibile per il formato «%s»"
