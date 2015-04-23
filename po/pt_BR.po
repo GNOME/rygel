@@ -8,26 +8,28 @@
 # Edson Silva <edsonlead@gmail.com>, 2013.
 # Rafael Ferreira <rafael.f.f1@gmail.com>, 2012, 2013, 2014.
 # Enrico Nicoletto <liverig@gmail.com>, 2013, 2014, 2015.
+# Felipe Braga <fbobraga@gmail.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-18 11:49+0000\n"
-"PO-Revision-Date: 2015-03-18 16:42-0300\n"
-"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
+"POT-Creation-Date: 2015-04-21 23:25+0000\n"
+"PO-Revision-Date: 2015-04-21 22:32-0200\n"
+"Last-Translator: Felipe Braga <fbobraga@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.7.3\n"
+"X-Generator: Virtaal 0.7.1\n"
+"X-Project-Style: gnome\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
-msgstr "Rygel"
+msgstr "Servidor de mídia Rygel"
 
 #: ../data/rygel.desktop.in.in.h:2
 msgid "UPnP/DLNA Services"
@@ -145,13 +147,13 @@ msgstr "Tipo de teste inválido"
 #: ../src/librygel-core/rygel-basic-management.vala:175
 #, c-format
 msgid "Invalid Test State '%s'"
-msgstr "Estado \"%s\" de teste é inválido"
+msgstr "Estado \"%s\" de teste inválido"
 
 #. / TestID is valid but the test can't be canceled
 #: ../src/librygel-core/rygel-basic-management.vala:181
 #, c-format
 msgid "State '%s' Precludes Cancel"
-msgstr "Estado \"%s\" preclui cancelamento"
+msgstr "Estado \"%s\" impede o cancelamento"
 
 #: ../src/librygel-core/rygel-basic-management.vala:214
 #: ../src/librygel-core/rygel-basic-management.vala:229
@@ -213,11 +215,11 @@ msgstr "Falha ao obter um socket: %s"
 #: ../src/librygel-core/rygel-energy-management-helper.c:61
 #, c-format
 msgid "Failed to get MAC address for %s: %s"
-msgstr "Falha ao obter endereço IP para %s: %s"
+msgstr "Falha ao obter endereço MAC para %s: %s"
 
 #: ../src/librygel-core/rygel-energy-management-helper.c:103
 msgid "MAC and network type querying not implemented"
-msgstr "Consulta por tipo de MAC e rede não está implementada"
+msgstr "Consulta por MAC e tipo de rede não está implementada"
 
 #: ../src/librygel-core/rygel-log-handler.vala:68
 #, c-format
@@ -332,8 +334,8 @@ msgid ""
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
 "Aparentemente, em sua instalação do GStreamer, está faltando o elemento "
-"\"playbin\". A implementação do renderizador Rygel GStreamer não pode "
-"trabalhar sem o mesmo."
+"\"playbin\". A implementação do renderizador Rygel GStreamer não funciona "
+"sem ele."
 
 #: ../src/librygel-renderer/rygel-av-transport.vala:196
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
@@ -451,12 +453,12 @@ msgstr "Não encontrado"
 #: ../src/librygel-server/rygel-import-resource.vala:189
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
-msgstr "Não é permitido enviar dados para o item \"%s\" não-vazio"
+msgstr "Não é permitido enviar dados para item não-vazio, \"%s\""
 
 #: ../src/librygel-server/rygel-http-post.vala:71
 #, c-format
 msgid "No writable URI for %s available"
-msgstr "Nenhuma URI gravável para \"%s\" disponível"
+msgstr "Nenhuma URI gravável para %s disponível"
 
 #. translators: Dotfile is the filename with prefix "."
 #: ../src/librygel-server/rygel-http-post.vala:186
@@ -482,7 +484,7 @@ msgstr "Falha ao obter URI original para \"%s\": %s"
 #: ../src/librygel-server/rygel-import-resource.vala:186
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
-msgstr "URL \"%s\" inválida para onde importar conteúdos"
+msgstr "URI '%s' inválida para importar conteúdos"
 
 #: ../src/librygel-server/rygel-import-resource.vala:272
 #, c-format
@@ -520,7 +522,7 @@ msgstr "Remoção do objeto %s não permitida"
 #: ../src/librygel-server/rygel-item-destroyer.vala:110
 #, c-format
 msgid "Object removal from %s not allowed"
-msgstr "Remoção do objeto \"%s\" não permitida"
+msgstr "Remoção de objeto de \"%s\" não permitida"
 
 #. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:74
@@ -592,12 +594,12 @@ msgstr ""
 msgid "Unknown"
 msgstr "Desconhecido"
 
-#: ../src/librygel-server/rygel-media-art-store.vala:105
+#: ../src/librygel-server/rygel-media-art-store.vala:111
 #, c-format
 msgid "Failed to add album art for %s: %s"
 msgstr "Falha ao adicionar arte de álbum para %s: %s"
 
-#: ../src/librygel-server/rygel-media-art-store.vala:119
+#: ../src/librygel-server/rygel-media-art-store.vala:125
 #, c-format
 msgid "Failed to find media art for %s: %s"
 msgstr "Falha ao localizar arte de mídia para %s: %s"
@@ -676,7 +678,7 @@ msgstr "upnp:createClass com valor sem suporte"
 
 #: ../src/librygel-server/rygel-object-creator.vala:191
 msgid "'Elements' argument missing."
-msgstr "Argumentos de \"elementos\" faltando."
+msgstr "Argumentos 'Elements' faltando."
 
 #: ../src/librygel-server/rygel-object-creator.vala:194
 msgid "Comments not allowed in XML"
@@ -690,7 +692,7 @@ msgstr "Faltando argumento de ContainerID"
 #: ../src/librygel-server/rygel-object-creator.vala:224
 #, c-format
 msgid "No objects in DIDL-Lite from client: '%s'"
-msgstr "Nenhum objeto em DIDL-Lite do cliente: \"%s\""
+msgstr "Nenhum objeto em DIDL-Lite do cliente: '%s'"
 
 #: ../src/librygel-server/rygel-object-creator.vala:231
 msgid "@id must be set to \"\" in CreateObject call"
@@ -702,8 +704,7 @@ msgstr "dc:title não deve estar vazio na chamada de CreateObject"
 
 #: ../src/librygel-server/rygel-object-creator.vala:247
 msgid "Flags that must not be set were found in 'dlnaManaged'"
-msgstr ""
-"opções que não devem ser definidas foram encontradas em \"dlnaManaged\""
+msgstr "Opções que não devem ser definidas foram encontradas em 'dlnaManaged'"
 
 #: ../src/librygel-server/rygel-object-creator.vala:255
 msgid "Invalid upnp:class given in CreateObject"
@@ -739,7 +740,7 @@ msgstr "Perfil DLNA \"%s\" sem suporte"
 #: ../src/librygel-server/rygel-object-creator.vala:642
 #, c-format
 msgid "Cannot create object of class '%s': Not supported"
-msgstr "Não foi possível criar objeto de classe \"%s\": sem suporte"
+msgstr "Não foi possível criar objeto de classe '%s': sem suporte"
 
 #: ../src/librygel-server/rygel-object-creator.vala:740
 #, c-format
@@ -748,7 +749,7 @@ msgid ""
 "'%s' in it: %s"
 msgstr ""
 "Erro de contêiner \"%s\" na tentativa de encontrar o recém adicionado objeto "
-"filho \"%s\" nele: %s"
+"\"%s\" nele: %s"
 
 #: ../src/librygel-server/rygel-reference-creator.vala:50
 msgid "'ContainerID' agument missing."
@@ -761,7 +762,7 @@ msgstr "Argumento \"ObjectID\" faltando."
 #: ../src/librygel-server/rygel-reference-creator.vala:86
 #, c-format
 msgid "Failed to create object under '%s': %s"
-msgstr "Falha ao criar item sob \"%s\": %s"
+msgstr "Falha ao criar objeto sob \"%s\": %s"
 
 #: ../src/librygel-server/rygel-search.vala:70
 msgid "Invalid search criteria given"
@@ -788,11 +789,14 @@ msgstr "Sem suporte à miniaturização"
 #. Thumbnailing failed previously, so there's no current thumbnail
 #. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
-#: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
 #: ../src/librygel-server/rygel-thumbnailer.vala:113
 msgid "No thumbnail available"
 msgstr "Nenhuma miniatura disponível"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:97
+msgid "No thumbnail available. Generation requested."
+msgstr "Nenhuma miniatura disponível. Geração solicitada."
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
