@@ -687,7 +687,7 @@ internal class Rygel.AVTransport : Service {
 
     private void notify_meta_data_cb (Object player, ParamSpec p) {
         this.changelog.log ("AVTransportURIMetaData",
-                            Markup.escape_text (this.controller.metadata));
+                            this.controller.metadata);
     }
 
     private void notify_track_uri_cb (Object player, ParamSpec p) {
@@ -696,7 +696,7 @@ internal class Rygel.AVTransport : Service {
 
     private void notify_track_meta_data_cb (Object player, ParamSpec p) {
         this.changelog.log ("CurrentTrackMetaData",
-                            Markup.escape_text (this.controller.track_metadata));
+                            this.controller.track_metadata);
     }
 
     private void notify_next_uri_cb (Object controller, ParamSpec p) {
@@ -705,7 +705,7 @@ internal class Rygel.AVTransport : Service {
 
     private void notify_next_meta_data_cb (Object player, ParamSpec p) {
         this.changelog.log ("NextAVTransportURIMetaData",
-                            Markup.escape_text (this.controller.next_metadata));
+                            this.controller.next_metadata);
     }
 
     private void notify_play_mode_cb (Object player, ParamSpec p) {
