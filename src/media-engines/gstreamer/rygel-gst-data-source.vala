@@ -80,7 +80,7 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
                     seek_response.start_byte, seek_response.end_byte);
             response_list.add(seek_response);
             // Supported - and no reponse values required...
-        } else if (seek is HTTPTimeSeekRequest) {
+        } else if (seek_request is HTTPTimeSeekRequest) {
             var time_seek = seek_request as HTTPTimeSeekRequest;
             // Set the effective TimeSeekRange response range to the requested range
             // TODO: Align this with actual time range being returned
@@ -91,7 +91,8 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         } else {
             // Unknown/unsupported seek type
             throw new DataSourceError.SEEK_FAILED
-                                    (_("HTTPSeekRequest type unsupported"));
+                                    (_("HTTPSeekRequest type %s unsupported"),
+                                     seek_request.get_type (). name ());
         }
 
         this.seek = seek_request;
