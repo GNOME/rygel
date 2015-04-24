@@ -20,6 +20,6 @@ librygel_media_engine_simple_la_LIBADD = \
 	$(LIBRYGEL_SERVER_DEPS_LIBS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
 librygel_media_engine_simple_la_LDFLAGS = \
-	$(RYGEL_PLUGIN_LINKER_FLAGS)
+	$(RYGEL_ENGINE_LINKER_FLAGS)
 
 EXTRA_DIST = media-engine-simple.plugin.in

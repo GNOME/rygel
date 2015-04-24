@@ -35,6 +35,6 @@ librygel_media_engine_gst_la_LIBADD = \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
 
 librygel_media_engine_gst_la_LDFLAGS = \
-	$(RYGEL_PLUGIN_LINKER_FLAGS)
+	$(RYGEL_ENGINE_LINKER_FLAGS)
 
 EXTRA_DIST = media-engine-gst.plugin.in
