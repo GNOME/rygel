@@ -79,6 +79,6 @@ public class Rygel.HTTPByteSeekResponse : Rygel.HTTPResponseElement {
                 .printf (this.start_byte,
                          this.end_byte,
                          this.total_size,
-                         this.total_size));
+                         this.range_length));
     }
 }
