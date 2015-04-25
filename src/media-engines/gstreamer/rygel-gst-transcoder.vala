@@ -157,7 +157,11 @@ public abstract class Rygel.GstTranscoder : GLib.Object {
         var ghost = new GhostPad (null, pad);
         bin.add_pad (ghost);
 
-        return new GstDataSource.from_element (bin);
+        // Hook up resource from original resource
+        var new_source = new GstDataSource.from_element (bin);
+        new_source.res = orig_source.res;
+
+        return new_source;
     }
 
     /**

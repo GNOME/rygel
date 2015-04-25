@@ -84,7 +84,9 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
             var time_seek = seek_request as HTTPTimeSeekRequest;
             // Set the effective TimeSeekRange response range to the requested range
             // TODO: Align this with actual time range being returned
-            var seek_response = new HTTPTimeSeekResponse.from_request(time_seek, res.duration);
+            var seek_response = new HTTPTimeSeekResponse.from_request(time_seek,
+                                                                      res.duration
+                                                                      * TimeSpan.SECOND);
             debug("Processing time seek request for %lldns-%lldns",
                     seek_response.start_time, seek_response.end_time);
             response_list.add(seek_response);
