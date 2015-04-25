@@ -71,7 +71,7 @@ public class Rygel.HTTPByteSeekResponse : Rygel.HTTPResponseElement {
                                                         this.end_byte,
                                                         this.total_size);
         request.msg.response_headers.append ("Accept-Ranges", "bytes");
-        request.msg.response_headers.set_content_length (range_length);
+        request.msg.response_headers.set_content_length (this.range_length);
     }
 
     public override string to_string () {
