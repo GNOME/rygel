@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-04-22 11:32+0000\n"
+"POT-Creation-Date: 2015-04-25 06:52+0000\n"
 "PO-Revision-Date: 2015-04-22 19:27+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
@@ -801,52 +801,53 @@ msgstr "Žádný generátor náhledů přes D-Bus není k dispozici"
 msgid "Could not create GstElement for URI %s"
 msgstr "Nelze vytvořit GstElement pro adresu URI %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:71
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:72
 #: ../src/media-engines/simple/rygel-simple-data-source.vala:79
 msgid "Playspeed not supported"
 msgstr "Rychlost přehrávání není podporována"
 
 #. Unknown/unsupported seek type
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:94
-msgid "HTTPSeekRequest type unsupported"
-msgstr "Typ HTTPSeekRequest není podporován"
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:102
+#, c-format
+msgid "HTTPSeekRequest type %s unsupported"
+msgstr "HTTPSeekRequest typu %s není podporován"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:136
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:146
 msgid "Failed to create pipeline"
 msgstr "Selhalo vytvoření roury"
 
 #. static pads? easy!
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:147
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:168
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:157
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:178
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Selhalo navázání %s na %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:182
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:192
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Selhalo napojení propojky %s na %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:237
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:247
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Chyba od roury %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:244
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:254
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Varování od roury %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:288
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:302
 msgid "Unsupported seek type"
 msgstr "Nepodporovaný typ přeskočení"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:303
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:319
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Selhalo přeskočení na pozici %lld:%lld"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:306
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:321
 msgid "Failed to seek"
 msgstr "Selhalo přeskočení"
 
