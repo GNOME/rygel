@@ -61,10 +61,11 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         this.src = element;
     }
 
-    public Gee.List<HTTPResponseElement> ? preroll ( HTTPSeekRequest? seek_request,
-                                                     PlaySpeedRequest? playspeed_request)
-       throws Error {
-        var response_list = new Gee.ArrayList<HTTPResponseElement>();
+    public Gee.List<HTTPResponseElement>? preroll
+                                        (HTTPSeekRequest? seek_request,
+                                         PlaySpeedRequest? playspeed_request)
+                                         throws Error {
+        var response_list = new Gee.ArrayList<HTTPResponseElement> ();
 
         if (playspeed_request != null) {
             throw new DataSourceError.PLAYSPEED_FAILED
@@ -74,22 +75,27 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         if (seek_request == null) {
             debug("No seek requested - sending entire binary");
         } else if (seek_request is HTTPByteSeekRequest) {
-            var seek_response = new HTTPByteSeekResponse.from_request( seek_request
-                                                                       as HTTPByteSeekRequest );
-            debug("Processing byte seek request for bytes %lld-%lld",
-                    seek_response.start_byte, seek_response.end_byte);
-            response_list.add(seek_response);
             // Supported - and no reponse values required...
+            var seek_response = new HTTPByteSeekResponse.from_request
+                                        (seek_request as HTTPByteSeekRequest);
+            debug ("Processing byte seek request for bytes %lld-%lld",
+                   seek_response.start_byte,
+                   seek_response.end_byte);
+            response_list.add (seek_response);
         } else if (seek_request is HTTPTimeSeekRequest) {
             var time_seek = seek_request as HTTPTimeSeekRequest;
-            // Set the effective TimeSeekRange response range to the requested range
-            // TODO: Align this with actual time range being returned
-            var seek_response = new HTTPTimeSeekResponse.from_request(time_seek,
-                                                                      res.duration
-                                                                      * TimeSpan.SECOND);
-            debug("Processing time seek request for %lldns-%lldns",
-                    seek_response.start_time, seek_response.end_time);
-            response_list.add(seek_response);
+            // Set the effective TimeSeekRange response range to the requested
+            // range
+            // TODO: Align this with actual time range being returned, might
+            // not be possible as we would need to seek before handling the
+            // response
+            var seek_response = new HTTPTimeSeekResponse.from_request
+                                        (time_seek,
+                                         res.duration * TimeSpan.SECOND);
+            debug ("Processing time seek request for %lldms-%lldms",
+                   seek_response.start_time,
+                   seek_response.end_time);
+            response_list.add (seek_response);
         } else {
             // Unknown/unsupported seek type
             throw new DataSourceError.SEEK_FAILED
@@ -98,6 +104,7 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         }
 
         this.seek = seek_request;
+
         return response_list;
     }
 
@@ -275,20 +282,26 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
             flags |= SeekFlags.KEY_UNIT;
             start = time_seek.start_time * Gst.USECOND;
             stop = time_seek.end_time * Gst.USECOND;
-            debug("Performing time-range seek: %lldns to %lldns", start, stop);
+            debug ("Performing time-range seek: %lldns to %lldns", start, stop);
         } else if (this.seek is HTTPByteSeekRequest) {
             var byte_seek = this.seek as HTTPByteSeekRequest;
             if (byte_seek.range_length >= byte_seek.total_size) {
                 // How/why would this happen?
                 return true;
             }
+
             format = Format.BYTES;
             flags |= SeekFlags.ACCURATE;
             start = byte_seek.start_byte;
             stop = byte_seek.end_byte;
-            debug("Performing byte-range seek: bytes %lld to %lld", start, stop);
+            debug ("Performing byte-range seek: bytes %lld to %lld",
+                   start,
+                   stop);
         } else {
-            this.error (new DataSourceError.SEEK_FAILED (_("Unsupported seek type")));
+            var result = new DataSourceError.SEEK_FAILED
+                                        (_("Unsupported seek type"));
+            this.error (result);
+
             return false;
         }
 
@@ -303,8 +316,7 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
                                  start,
                                  stop_type,
                                  stop + 1)) {
-            warning (_("Failed to seek to offsets %lld:%lld"),
-                     start, stop);
+            warning (_("Failed to seek to offsets %lld:%lld"), start, stop);
 
             this.error (new DataSourceError.SEEK_FAILED (_("Failed to seek")));
 
