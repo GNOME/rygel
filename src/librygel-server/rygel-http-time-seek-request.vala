@@ -178,8 +178,10 @@ public class Rygel.HTTPTimeSeekRequest : Rygel.HTTPSeekRequest {
                 this.range_duration = UNSPECIFIED;
             } else {
                 if (positive_rate) {
+                    this.end_time = this.total_duration - TimeSpan.MILLISECOND;
                     this.range_duration = this.total_duration - this.start_time;
                 } else {
+                    this.end_time = 0;
                     // Going backward from start to 0
                     this.range_duration = this.start_time;
                 }
