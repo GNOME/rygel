@@ -40,5 +40,25 @@ internal class Rygel.LGTVHacks : ClientHacks {
             item.mime_type == "audio/x-flac+ogg") {
             item.mime_type = "application/ogg";
         }
+
+        // Re-order resources to it picks up the MP3
+        if (item is MusicItem) {
+            var resources = item.get_resource_list ();
+            var i = 0;
+
+            foreach (var resource in resources) {
+                if (resource.dlna_profile != null &&
+                    resource.dlna_profile.has_prefix ("MP3")) {
+                    break;
+                }
+
+                i++;
+            }
+
+            if (i > 0 && i < resources.size) {
+                var resource = resources.remove_at (i);
+                resources.insert (0, resource);
+            }
+        }
     }
 }
