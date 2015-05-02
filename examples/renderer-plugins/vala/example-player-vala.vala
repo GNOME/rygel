@@ -36,9 +36,6 @@ public class Rygel.Example.PlayerVala : GLib.Object, Rygel.MediaPlayer {
                                          "image/png" };
     private static PlayerVala player;
 
-    private PlayerVala () {
-    }
-
     public static PlayerVala get_default () {
         if (player == null) {
             player = new PlayerVala ();
@@ -46,6 +43,8 @@ public class Rygel.Example.PlayerVala : GLib.Object, Rygel.MediaPlayer {
 
         return player;
     }
+
+    public string? user_agent { owned get; set; }
 
     private string _playback_state = "NO_MEDIA_PRESENT";
     public string playback_state {

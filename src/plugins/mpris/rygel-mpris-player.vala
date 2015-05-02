@@ -1,12 +1,14 @@
 /*
  * Copyright (C) 2008 OpenedHand Ltd.
  * Copyright (C) 2009 Nokia Corporation.
- * Copyright (C) 2013  Cable Television Laboratories, Inc.
+ * Copyright (C) 2013 Cable Television Laboratories, Inc.
+ * Copyright (C) 2015 Jens Georg
  *
  * Author: Jorn Baayen <jorn@openedhand.com>
  *         Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
  *                               <zeeshan.ali@nokia.com>
  *         Sivakumar Mani <siva@orexel.com>
+ *         Jens Georg <mail@jensge.org>
  *
  * Rygel is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -32,6 +34,8 @@ public class Rygel.MPRIS.Player : GLib.Object, Rygel.MediaPlayer {
     private string[] mime_types;
 
     private PlayerProxy actual_player;
+
+    public string? user_agent { owned get; set; }
 
     public string playback_state {
         owned get {

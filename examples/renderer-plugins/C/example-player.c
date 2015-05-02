@@ -35,7 +35,8 @@ enum  {
   RYGEL_EXAMPLE_PLAYER_ALLOWED_PLAYBACK_SPEEDS,
   RYGEL_EXAMPLE_PLAYER_CAN_SEEK_BYTES,
   RYGEL_EXAMPLE_PLAYER_BYTE_POSITION,
-  RYGEL_EXAMPLE_PLAYER_SIZE
+  RYGEL_EXAMPLE_PLAYER_SIZE,
+  RYGEL_EXAMPLE_PLAYER_USER_AGENT
 };
 
 static void rygel_example_player_rygel_media_player_interface_init (RygelMediaPlayerIface  *iface);
@@ -112,6 +113,13 @@ rygel_example_player_real_get_size (RygelMediaPlayer* base);
 static gboolean
 rygel_example_player_real_get_can_seek_bytes (RygelMediaPlayer* base);
 
+static gchar *
+rygel_example_player_real_get_user_agent (RygelMediaPlayer* base);
+
+static void
+rygel_example_player_real_set_user_agent (RygelMediaPlayer* base,
+                                          const char*       user_agent);
+
 static void
 _rygel_example_player_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
 
@@ -136,6 +144,7 @@ struct _RygelExamplePlayerPrivate {
   gint64 _duration;
   gint64 _position;
   gchar *playback_speed;
+  gchar *user_agent;
 };
 
 static const gchar* RYGEL_EXAMPLE_PLAYER_PROTOCOLS[] = {"http-get", NULL};
@@ -173,6 +182,8 @@ rygel_example_player_rygel_media_player_interface_init (RygelMediaPlayerIface *i
   iface->get_can_seek_bytes = rygel_example_player_real_get_can_seek_bytes;
   iface->get_size = rygel_example_player_real_get_size;
   iface->get_byte_position = rygel_example_player_real_get_byte_position;
+  iface->set_user_agent = rygel_example_player_real_set_user_agent;
+  iface->get_user_agent = rygel_example_player_real_get_user_agent;
 }
 
 static void
@@ -240,6 +251,10 @@ rygel_example_player_class_init (RygelExamplePlayerClass *klass) {
   g_object_class_override_property (gobject_class,
                                     RYGEL_EXAMPLE_PLAYER_SIZE,
                                     "size");
+
+  g_object_class_override_property (gobject_class,
+                                    RYGEL_EXAMPLE_PLAYER_USER_AGENT,
+                                    "user-agent");
 }
 
 static void
@@ -480,6 +495,25 @@ rygel_example_player_real_get_can_seek_bytes (RygelMediaPlayer* base)
 }
 
 static void
+rygel_example_player_real_set_user_agent (RygelMediaPlayer* base,
+                                          const char*       user_agent)
+{
+    RygelExamplePlayer *self = RYGEL_EXAMPLE_PLAYER (base);
+
+    g_clear_pointer (&(self->priv->user_agent), g_free);
+
+    self->priv->user_agent = g_strdup (user_agent);
+}
+
+static gchar *
+rygel_example_player_real_get_user_agent (RygelMediaPlayer* base)
+{
+    RygelExamplePlayer *self = RYGEL_EXAMPLE_PLAYER (base);
+
+    return g_strdup (self->priv->user_agent);
+}
+
+static void
 _rygel_example_player_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec) {
   RygelMediaPlayer *base = RYGEL_MEDIA_PLAYER (object);
 
@@ -530,6 +564,9 @@ _rygel_example_player_get_property (GObject *object, guint property_id, GValue *
     case RYGEL_EXAMPLE_PLAYER_SIZE:
       g_value_set_int64 (value, rygel_media_player_get_size (base));
       break;
+    case RYGEL_EXAMPLE_PLAYER_USER_AGENT:
+      g_value_take_string (value, rygel_media_player_get_user_agent (base));
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -562,6 +599,9 @@ _rygel_example_player_set_property (GObject *object, guint property_id, const GV
       break;
     case RYGEL_EXAMPLE_PLAYER_PLAYBACK_SPEED:
       rygel_media_player_set_playback_speed (base, g_value_get_string (value));
+      break;
+    case RYGEL_EXAMPLE_PLAYER_USER_AGENT:
+      rygel_media_player_set_user_agent (base, g_value_get_string (value));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);

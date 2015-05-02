@@ -134,7 +134,15 @@ internal class Rygel.AVTransport : Service {
 
         this.player.notify["duration"].connect (this.notify_duration_cb);
 
-        this.session = new Session ();
+        // Work-around for missing default values on properties in interfaces,
+        // see bgo#702774
+        if (this.player.user_agent == null) {
+            this.player.user_agent = "Rygel/%s DLNADOC/1.50 UPnP/1.0".printf
+                                        (BuildConfig.PACKAGE_VERSION);
+        }
+
+        this.session = new Session.with_options (Soup.SESSION_USER_AGENT,
+                                                 this.player.user_agent);
 
         this.protocol_info = plugin.get_protocol_info ();
     }

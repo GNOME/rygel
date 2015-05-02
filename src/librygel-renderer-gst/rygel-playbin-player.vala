@@ -266,6 +266,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    public string? user_agent { owned get; set; }
+
     private string _content_features = "";
     private ProtocolInfo protocol_info;
     public string? content_features {
@@ -596,6 +598,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
             structure.set_value ("transferMode.dlna.org", this.transfer_mode);
 
             source.extra_headers = structure;
+            source.user_agent = this.user_agent;
         }
     }
 

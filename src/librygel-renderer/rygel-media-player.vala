@@ -100,6 +100,9 @@ public interface Rygel.MediaPlayer : GLib.Object {
         }
     }
 
+    /// The User-Agent header to use in HTTP requests
+    public abstract string? user_agent { owned get; set; }
+
     /**
      * Seek to a point in the current media that is
      * this many microseconds after the start.
