@@ -50,9 +50,9 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
         this.stop ();
     }
 
-    public Gee.List<HTTPResponseElement> ? preroll (HTTPSeekRequest? seek_request,
-                                                    PlaySpeedRequest? playspeed_request)
-       throws Error {
+    public Gee.List<HTTPResponseElement>? preroll (HTTPSeekRequest? seek_request,
+                                                   PlaySpeedRequest? playspeed_request)
+                                                   throws Error {
         var response_list = new Gee.ArrayList<HTTPResponseElement> ();
 
         if (seek_request != null) {
@@ -65,7 +65,9 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
             this.first_byte = (Posix.off_t) byte_seek.start_byte;
             this.last_byte = (Posix.off_t) (byte_seek.end_byte + 1);
             debug ("Processing byte seek request for bytes %lld-%lld of %s",
-                    byte_seek.start_byte, byte_seek.end_byte, this.uri);
+                    byte_seek.start_byte,
+                    byte_seek.end_byte,
+                    this.uri);
             var seek_response = new HTTPByteSeekResponse.from_request (byte_seek);
             // Response will just return what was in the request
             response_list.add (seek_response);

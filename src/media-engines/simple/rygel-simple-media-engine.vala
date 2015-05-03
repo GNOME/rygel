@@ -32,33 +32,35 @@ using GUPnP;
  * Also, its RygelSimpleDataSource does not support time-base seeking.
  */
 internal class Rygel.SimpleMediaEngine : MediaEngine {
-    private List<DLNAProfile> profiles = new List<DLNAProfile> ();
+    private List<DLNAProfile> profiles;
 
-    public SimpleMediaEngine () { }
+    public override void constructed () {
+        this.profiles = new List<DLNAProfile> ();
+    }
 
     public override unowned List<DLNAProfile> get_dlna_profiles() {
         return this.profiles;
     }
 
-    public override async Gee.List<MediaResource> ? get_resources_for_item
-                                                        (MediaObject object) {
-        if (! (object is MediaFileItem)) {
-            warning ("Can only process file-based MediaObjects (MediaFileItems)");
+    public override async Gee.List<MediaResource>? get_resources_for_item
+                                        (MediaObject object) {
+        if (!(object is MediaFileItem)) {
+            warning (_("Can only process file-based MediaObjects (MediaFileItems)"));
+
             return null;
         }
 
         var item = object as MediaFileItem;
 
         // For MediaFileItems, uri 0 is the file URI referring directly to the content
-        string source_uri = item.get_primary_uri ();
+        var source_uri = item.get_primary_uri ();
         if (!source_uri.has_prefix ("file://")) {
-            warning ("Can't process non-file uri " + source_uri);
+            warning (_("Can't process non-file uri %s"), source_uri);
         }
 
         debug ("get_resources_for_item (%s)", source_uri);
 
-        Gee.List<MediaResource> resources = new Gee.ArrayList<MediaResource> ();
-
+        var resources = new Gee.ArrayList<MediaResource> ();
         var primary_res = item.get_primary_resource ();
 
         // The SimpleMediaEngine supports only byte-based seek
@@ -68,34 +70,36 @@ internal class Rygel.SimpleMediaEngine : MediaEngine {
         primary_res.dlna_flags |= DLNAFlags.CONNECTION_STALL;
 
         // Add a resource for http consumption (as SimpleMediaEngine can handle http)
-        MediaResource http_res = new MediaResource.from_resource ("primary_http",
-                                                                  primary_res);
+        var http_res = new MediaResource.from_resource ("primary_http",
+                                                        primary_res);
         http_res.uri = ""; // The URI needs to be assigned by the MediaServer
         resources.add (http_res);
-
         resources.add (primary_res);
 
         return resources;
     }
 
-    public override DataSource? create_data_source_for_resource (MediaObject object,
-                                                                 MediaResource resource)
-        throws Error {
-        if (! (object is MediaFileItem)) {
-            warning ("Can only process file-based MediaObjects (MediaFileItems)");
+    public override DataSource? create_data_source_for_resource
+                                        (MediaObject object,
+                                         MediaResource resource)
+                                        throws Error {
+        if (!(object is MediaFileItem)) {
+            warning (_("Can only process file-based MediaObjects (MediaFileItems)"));
+
             return null;
         }
 
         // For MediaFileItems, the primary URI referrs to the local content file
-        string source_uri = object.get_primary_uri ();
-        return new SimpleDataSource (source_uri);
+        return new SimpleDataSource (object.get_primary_uri ());
     }
 
     public override DataSource? create_data_source_for_uri (string uri) {
         if (!uri.has_prefix ("file://")) {
             return null;
         }
+
         debug ("creating data source for %s", uri);
+
         return new SimpleDataSource (uri);
     }
 }
