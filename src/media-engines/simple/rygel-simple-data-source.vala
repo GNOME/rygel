@@ -40,10 +40,13 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
     private Posix.off_t last_byte = 0;
     private bool frozen = false;
     private bool stop_thread = false;
+    private unowned ThreadPool<SimpleDataSource> pool;
 
-    public SimpleDataSource (string uri) {
+    public SimpleDataSource (ThreadPool<SimpleDataSource>? pool,
+                             string                        uri) {
         debug ("Creating new data source for %s", uri);
         this.uri = uri;
+        this.pool = pool;
     }
 
     ~SimpleDataSource () {
@@ -86,10 +89,12 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
 
     public void start () throws Error {
         debug ("Starting data source for uri %s", this.uri);
-
-        // TODO: Convert to use a thread pool
-        this.thread = new Thread<void*> ("Rygel Serving thread",
-                                         this.thread_func);
+        if (this.pool != null) {
+            this.pool.add (this);
+        } else {
+            this.thread = new Thread<void*> ("Rygel Serving Thread",
+                                             this.thread_func);
+        }
     }
 
     public void freeze () {
@@ -122,7 +127,17 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
         this.mutex.unlock ();
     }
 
+    internal static void pool_func (owned SimpleDataSource data) {
+        data.run ();
+    }
+
     private void* thread_func () {
+        this.run ();
+
+        return null;
+    }
+
+    private void run () {
         var file = File.new_for_commandline_arg (this.uri);
         debug ("Spawning new thread for streaming file %s", this.uri);
         int fd = -1;
@@ -195,7 +210,5 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
 
         // Signal that we're done streaming
         Idle.add ( () => { this.done (); return false; });
-
-        return null;
     }
 }

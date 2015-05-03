@@ -33,9 +33,18 @@ using GUPnP;
  */
 internal class Rygel.SimpleMediaEngine : MediaEngine {
     private List<DLNAProfile> profiles;
+    private ThreadPool<SimpleDataSource> pool;
 
     public override void constructed () {
         this.profiles = new List<DLNAProfile> ();
+        try {
+            this.pool = new ThreadPool<SimpleDataSource>.with_owned_data
+                                            (SimpleDataSource.pool_func,
+                                             10,
+                                             true);
+        } catch (Error error) {
+            debug ("Failed to create pool");
+        }
     }
 
     public override unowned List<DLNAProfile> get_dlna_profiles() {
@@ -90,7 +99,7 @@ internal class Rygel.SimpleMediaEngine : MediaEngine {
         }
 
         // For MediaFileItems, the primary URI referrs to the local content file
-        return new SimpleDataSource (object.get_primary_uri ());
+        return new SimpleDataSource (this.pool, object.get_primary_uri ());
     }
 
     public override DataSource? create_data_source_for_uri (string uri) {
@@ -100,7 +109,7 @@ internal class Rygel.SimpleMediaEngine : MediaEngine {
 
         debug ("creating data source for %s", uri);
 
-        return new SimpleDataSource (uri);
+        return new SimpleDataSource (this.pool, uri);
     }
 }
 
