@@ -59,6 +59,11 @@ internal class Rygel.RuihService: Service {
                         out input_device_profile);
         action.get ("UIFilter", typeof (string), out input_ui_filter);
 
+        if (action.get_argument_count () < 2) {
+            action.return_error (402, _("Invalid argument"));
+            return;
+        }
+
         try {
             var manager = RuihServiceManager.get_default ();
             var compat_ui = manager.get_compatible_uis (input_device_profile,
