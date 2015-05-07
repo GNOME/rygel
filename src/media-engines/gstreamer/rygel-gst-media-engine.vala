@@ -71,6 +71,7 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         } catch (Error err) {}
 
         if (transcoding) {
+            this.transcoders.prepend (new JPEGTranscoder ());
             foreach (var transcoder in transcoder_list) {
                 switch (transcoder) {
                     case "lpcm":

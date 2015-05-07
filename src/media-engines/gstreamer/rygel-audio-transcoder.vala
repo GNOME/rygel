@@ -86,7 +86,8 @@ internal abstract class Rygel.AudioTranscoder : Rygel.GstTranscoder {
         return distance;
     }
 
-    protected override EncodingProfile get_encoding_profile () {
+    protected override EncodingProfile get_encoding_profile
+                                        (MediaFileItem item) {
         var enc_audio_profile = new EncodingAudioProfile (audio_codec_format,
                                                           this.preset,
                                                           null,

@@ -16,6 +16,7 @@ librygel_media_engine_gst_la_SOURCES = \
 	rygel-mp2ts-transcoder.vala \
 	rygel-mp3-transcoder.vala \
 	rygel-video-transcoder.vala \
+	rygel-jpeg-transcoder.vala \
 	rygel-wmv-transcoder.vala
 
 librygel_media_engine_gst_la_VALAFLAGS = \

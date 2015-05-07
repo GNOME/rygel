@@ -76,8 +76,9 @@ internal abstract class Rygel.VideoTranscoder : Rygel.AudioTranscoder {
         return distance;
     }
 
-    protected override EncodingProfile get_encoding_profile () {
-        var enc_container_profile = base.get_encoding_profile () as
+    protected override EncodingProfile get_encoding_profile
+                                        (MediaFileItem item) {
+        var enc_container_profile = base.get_encoding_profile (item) as
                                         EncodingContainerProfile;
 
         var enc_video_profile = new EncodingVideoProfile

@@ -133,7 +133,7 @@ internal abstract class Rygel.GstTranscoder : GLib.Object {
         this.encoder = GstUtils.create_element (ENCODE_BIN,
                                                 ENCODE_BIN);
 
-        encoder.profile = this.get_encoding_profile ();
+        encoder.profile = this.get_encoding_profile (item);
         if (encoder.profile == null) {
             var message = _("Could not create a transcoder configuration. Your GStreamer installation might be missing a plug-in");
 
@@ -168,7 +168,8 @@ internal abstract class Rygel.GstTranscoder : GLib.Object {
      *
      * @return      the Gst.EncodingProfile for this transcoder.
      */
-    protected abstract EncodingProfile get_encoding_profile ();
+    protected abstract EncodingProfile get_encoding_profile
+                                        (MediaFileItem item);
 
     private void on_decoder_pad_added (Element decodebin, Pad new_pad) {
         Gst.Pad sinkpad;
