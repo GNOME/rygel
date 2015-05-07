@@ -77,8 +77,9 @@ internal class Rygel.ChangeLog : Object {
 
     public void log (string variable, string value) {
         debug (@"'%s = %s' logged", variable, value);
-        this.hash.set (variable, "<%s val=\"%s\"/>".printf (variable,
-                                                            Markup.escape_text(value)));
+        this.hash.set (variable,
+                       "<%s val=\"%s\"/>".printf (variable,
+                                                  Markup.escape_text (value)));
 
         this.ensure_timeout ();
     }
@@ -86,10 +87,11 @@ internal class Rygel.ChangeLog : Object {
     public void log_with_channel (string variable,
                                   string value,
                                   string channel) {
-        this.hash.set (variable,
-                       "<%s val=\"%s\" channel=\"%s\"/>".printf (variable,
-                                                                 Markup.escape_text(value),
-                                                                 Markup.escape_text(channel)));
+        var text = "<%s val=\"%s\" channel=\"%s\"/>".printf
+                                        (variable,
+                                         Markup.escape_text(value),
+                                         Markup.escape_text(channel));
+        this.hash.set (variable, text);
 
         this.ensure_timeout ();
     }
