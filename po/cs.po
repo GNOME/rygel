@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-04-25 06:52+0000\n"
-"PO-Revision-Date: 2015-04-22 19:27+0200\n"
+"POT-Creation-Date: 2015-05-06 23:10+0000\n"
+"PO-Revision-Date: 2015-05-07 12:25+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -802,7 +802,7 @@ msgid "Could not create GstElement for URI %s"
 msgstr "Nelze vytvořit GstElement pro adresu URI %s"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:72
-#: ../src/media-engines/simple/rygel-simple-data-source.vala:79
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
 msgstr "Rychlost přehrávání není podporována"
 
@@ -869,9 +869,19 @@ msgstr ""
 msgid "Required element %s missing"
 msgstr "Vyžadovaný prvek %s schází"
 
-#: ../src/media-engines/simple/rygel-simple-data-source.vala:61
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
 msgstr "Podporováno je přeskakování pouze podle bajtů"
+
+#: ../src/media-engines/simple/rygel-simple-media-engine.vala:57
+#: ../src/media-engines/simple/rygel-simple-media-engine.vala:96
+msgid "Can only process file-based MediaObjects (MediaFileItems)"
+msgstr "Zpracovat je možné jen MidiaObjects ze souboru (MediaFileItems)"
+
+#: ../src/media-engines/simple/rygel-simple-media-engine.vala:67
+#, c-format
+msgid "Can't process non-file uri %s"
+msgstr "Nelze zpracovat adresu URI %s neukazující na soubor"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
