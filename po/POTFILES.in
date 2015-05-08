@@ -44,6 +44,11 @@ src/librygel-renderer/rygel-rendering-control.vala
 src/librygel-renderer/rygel-sink-connection-manager.vala
 src/librygel-renderer/rygel-time-utils.vala
 src/librygel-renderer/rygel-volume.vala
+src/librygel-ruih/rygel-ruih-icon-elem.vala
+src/librygel-ruih/rygel-ruih-protocol-elem.vala
+src/librygel-ruih/rygel-ruih-servicemanager.vala
+src/librygel-ruih/rygel-ruih-service.vala
+src/librygel-ruih/rygel-ruih-ui-elem.vala
 src/librygel-server/rygel-audio-item.vala
 src/librygel-server/rygel-browse.vala
 src/librygel-server/rygel-client-hacks.vala

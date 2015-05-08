@@ -45,6 +45,7 @@ src/librygel-renderer/rygel-time-utils.c
 src/librygel-renderer/rygel-volume.c
 src/librygel-ruih/rygel-ruih-icon-elem.c
 src/librygel-ruih/rygel-ruih-protocol-elem.c
+src/librygel-ruih/rygel-ruih-service.c
 src/librygel-ruih/rygel-ruih-servicemanager.c
 src/librygel-ruih/rygel-ruih-ui-elem.c
 src/librygel-server/rygel-audio-item.c
