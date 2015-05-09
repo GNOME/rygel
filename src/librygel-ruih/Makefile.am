@@ -1,4 +1,4 @@
-include ../../common.am
+include $(top_srcdir)/common.am
 include $(srcdir)/filelist.am
 
 librygel_ruih_includedir=$(includedir)/rygel-2.6
@@ -19,10 +19,10 @@ librygel_ruih_2_0_la_VALAFLAGS = \
         $(RYGEL_COMMON_VALAFLAGS)
 
 librygel_ruih_2_0_la_CFLAGS = \
-        $(LIBRYGEL_SERVER_DEPS_CFLAGS) \
+        $(LIBRYGEL_RUIH_DEPS_CFLAGS) \
         $(RYGEL_COMMON_LIBRYGEL_CORE_CFLAGS) \
-        -DENGINE_DIR='"$(enginedir)"' \
         -DG_LOG_DOMAIN=\"RygelRuih\"
+
 librygel_ruih_2_0_la_LIBADD = \
         $(LIBRYGEL_RUIH_DEPS_LIBS) \
         $(RYGEL_COMMON_LIBRYGEL_CORE_LIBS)

@@ -83,6 +83,14 @@ PKG_CHECK_MODULES([LIBRYGEL_RENDERER_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $G
 LIBRYGEL_RENDERER_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gio-2.0 --pkg libsoup-2.4"
 AC_SUBST([LIBRYGEL_RENDERER_DEPS_VALAFLAGS])
 
+PKG_CHECK_MODULES([LIBRYGEL_RUIH_DEPS],
+                  [$RYGEL_COMMON_MODULES
+                   gio-2.0 >= $GIO_REQUIRED
+                   gee-0.8 >= $GEE_REQUIRED
+                   libxml-2.0 >= $LIBXML_REQUIRED])
+LIBRYGEL_RUIH_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gio-2.0 --pkg gee-0.8 --pkg libxml2"
+AC_SUBST([LIBRYGEL_RUIH_DEPS_VALAFLAGS])
+
 PKG_CHECK_MODULES([RYGEL_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED])
 
 # Not all tests use all of these dependencies,
@@ -509,4 +517,5 @@ echo "
         MPRIS2:                 ${enable_mpris_plugin}
         gst-launch:             ${enable_gst_launch_plugin}
         playbin:                ${enable_playbin_plugin}
+        RUIH plugin:            ${enable_ruih_plugin}
 "
