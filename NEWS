@@ -1,3 +1,64 @@
+0.26.1
+======
+
+A new maintenance release of Rygel!
+
+- Fix underlinking of RUIH library.
+
+Server:
+ - Prevent a crticial warning.
+ - Make Kodi a variant of XBMC in hacks,
+ - Prevent a crash on missing thumbnails.
+ - Fix npt= header parsing.
+
+Renderer:
+ - Fix wrong double escaping.
+
+GStreamer media engine:
+ - Fix time-based seeking.
+ - Fix resource duration handling for transcoded resources.
+
+Examples:
+ - Fix the C server example.
+
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=748410
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Tom Tryfonidis <tomtryf@gmail.com>
+ - Stas Solovey <whats_up@tut.by>
+ - Richard Röjfors <richard.rojfors@gmail.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Milo Casagrande <milo@ubuntu.com>
+ - Marek Černocký <marek@manet.cz>
+ - Inaki Larranaga Murgoitio <dooteo@zundan.com>
+ - Gábor Kelemen <kelemeng@openscope.org>
+ - Felipe Braga <fbobraga@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Alexandre Franke <alexandre.franke@gmail.com>
+
+Added/updated translations:
+ - cs, courtesy of Marek Černocký
+ - el, courtesy of Tom Tryfonidis
+ - es, courtesy of Daniel Mustieles
+ - eu, courtesy of Iñaki Larrañaga Murgoitio
+ - fr, courtesy of Alain Lojewski
+ - hu, courtesy of Gabor Kelemen
+ - it, courtesy of Milo Casagrande
+ - ko, courtesy of Changwoo Ryu
+ - lt, courtesy of Aurimas Černius
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Felipe Braga
+ - ru, courtesy of Stas Solovey
+ - sk, courtesy of Dušan Kazik
+ - sl, courtesy of Matej Urbančič
+
 0.26.0
 ======
 
