@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-19 13:02+0000\n"
+"POT-Creation-Date: 2015-05-08 23:15+0000\n"
 "PO-Revision-Date: 2015-03-05 13:40+0100\n"
 "Last-Translator: Alain Lojewski <allomervan@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -596,12 +596,12 @@ msgstr ""
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: ../src/librygel-server/rygel-media-art-store.vala:105
+#: ../src/librygel-server/rygel-media-art-store.vala:111
 #, c-format
 msgid "Failed to add album art for %s: %s"
 msgstr "Impossible d'ajouter une couverture d'album pour %s : %s"
 
-#: ../src/librygel-server/rygel-media-art-store.vala:119
+#: ../src/librygel-server/rygel-media-art-store.vala:125
 #, c-format
 msgid "Failed to find media art for %s: %s"
 msgstr "Impossible de trouver une couverture de média pour %s : %s"
@@ -792,11 +792,14 @@ msgstr "Création de miniatures non prise en charge"
 #. Thumbnailing failed previously, so there's no current thumbnail
 #. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
-#: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
 #: ../src/librygel-server/rygel-thumbnailer.vala:113
 msgid "No thumbnail available"
 msgstr "Aucune vignette disponible"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:97
+msgid "No thumbnail available. Generation requested."
+msgstr "Pas de vignette disponible. La génération à été demandée."
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
@@ -813,46 +816,46 @@ msgid "Playspeed not supported"
 msgstr "Vitesse de lecture non prise en charge"
 
 #. Unknown/unsupported seek type
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:94
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:96
 msgid "HTTPSeekRequest type unsupported"
 msgstr "Type HTTPSeekRequest non pris en charge"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:136
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:138
 msgid "Failed to create pipeline"
 msgstr "Impossible de créer le pipeline"
 
 #. static pads? easy!
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:147
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:168
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:149
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:170
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Impossible de lier %s à %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:182
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:184
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Impossible de lier le connecteur %s à %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:237
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:239
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Erreur du pipeline %s : %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:244
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:246
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Avertissement du pipeline %s : %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:288
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:290
 msgid "Unsupported seek type"
 msgstr "Type de recherche non pris en charge"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:303
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:305
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Impossible d'avancer jusqu'à l'emplacement %lld:%lld"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:306
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:308
 msgid "Failed to seek"
 msgstr "Impossible d'avancer"
 
