@@ -19,9 +19,7 @@ Important facts and features
   * APIs to ease the implementation of AV devices.
   * Export of on-disk media:
     * Tracker plugin.
-    * MediaExport plugin: Recursively exports folders and files specified in
-                          the user configuration. This plugin supports all
-                          types of URIs that gio/gvfs and gstreamer can handle.
+    * MediaExport plugin: Recursively exports folders and files specified in the user configuration. This plugin supports all types of URIs that gio/gvfs and gstreamer can handle.
   * Export of online media from 2nd German TV station.
   * Export of media hierarchies provided by external applications through
     implementation of D-Bus MediaServer spec. Applications that utilize
@@ -34,7 +32,7 @@ Important facts and features
     decodebin2 can handle but output formats are currently limited to: mp3, PCM
     and MPEG TS. Fortunately the transcoding framework is flexible enough to
     easily add more transcoding targets.
-  * Standalone MediaRenderer plugin based on GStreamer playbin2 element.
+  * Standalone MediaRenderer plugin based on GStreamer playbin element.
   * Export of media players that implement MPRIS2 D-Bus interface, as
     MediaRenderer devices. Known implementing applications are:
     * Rhythmbox
@@ -47,29 +45,29 @@ Requirements
     * Core:
       * gupnp
       * gupnp-av
-      * dbus-glib
       * gstreamer
       * gio (part of glib source package)
       * libgee
-      * libuuid
       * libsoup
+      * libmediaart
       * vala (not if building from release tarballs)
     * Preferences UI:
       * gtk+
     * MediaExport:
       * sqlite3
+      * gupnp-dlna
   * Run-time:
     * Definitely needed:
       * gst-plugins-base
       * shared-mime-info
     * Might be needed (depending on your usage and media collection):
       * gst-plugins-good
-      * gst-ffmpeg
+      * gst-libav
       * gst-plugins-bad
       * gst-plugins-ugly
-      
+
 To build without gstreamer, use:
-  --with-media-engine=simple
+  ```--with-media-engine=simple```
 This will also disable any plugins that use gstreamer.
 
 References
