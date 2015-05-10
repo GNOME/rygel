@@ -37,8 +37,7 @@ RYGEL_COMMON_DEFINES_CFLAGS = \
 
 RYGEL_COMMON_LIBRYGEL_CORE_VALAFLAGS = \
 	--vapidir=$(librygelcoredir) \
-	--pkg rygel-core-2.6 \
-	--pkg uuid
+	--pkg rygel-core-2.6
 
 RYGEL_COMMON_LIBRYGEL_CORE_CFLAGS = \
 	$(RYGEL_COMMON_DEFINES_CFLAGS) \

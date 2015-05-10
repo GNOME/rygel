@@ -123,7 +123,7 @@ public interface Rygel.TrackableContainer : Rygel.MediaContainer {
      * version.
      */
     public virtual string get_service_reset_token () {
-        return UUID.get ();
+        return GUPnP.get_uuid ();
     }
 
     /**

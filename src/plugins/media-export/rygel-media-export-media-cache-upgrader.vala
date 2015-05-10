@@ -389,7 +389,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             this.database.exec ("ALTER TABLE schema_info " +
                                 "ADD COLUMN reset_token TEXT");
             this.database.exec ("UPDATE schema_info SET reset_token = '" +
-                                UUID.get () + "'");
+                                GUPnP.get_uuid () + "'");
             this.database.exec ("UPDATE schema_info SET version = '12'");
             this.database.exec ("ALTER TABLE object " +
                                 "ADD COLUMN object_update_id INTEGER");

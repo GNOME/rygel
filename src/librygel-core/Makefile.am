@@ -15,7 +15,6 @@ librygel_core_2_6_la_VALAFLAGS = \
 	-H rygel-core.h -C --library=rygel-core-2.6 \
 	--gir=Rygel-2.6.gir \
 	--vapidir=$(srcdir) \
-	--pkg uuid \
 	$(LIBRYGEL_CORE_DEPS_VALAFLAGS) \
 	$(RYGEL_COMMON_VALAFLAGS)
 
@@ -73,7 +72,6 @@ EXTRA_DIST = \
 	rygel-build-config.vapi \
 	$(VAPI_FILES) \
 	$(DEPS_FILES) \
-	uuid.vapi \
 	$(BUILT_SOURCES) \
 	RygelCore-2.6.gir \
 	Rygel-2.6.gir

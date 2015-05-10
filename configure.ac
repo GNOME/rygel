@@ -38,14 +38,13 @@ LIBXML_REQUIRED=2.7
 VALA_REQUIRED=0.22.0
 VALADOC_REQUIRED=0.2
 GSSDP_REQUIRED=0.13.0
-GUPNP_REQUIRED=0.19.0
+GUPNP_REQUIRED=0.20.14
 GUPNP_AV_REQUIRED=0.12.4
 GUPNP_DLNA_REQUIRED=0.9.4
 GSTREAMER_REQUIRED=1.0
 GSTPBU_REQUIRED=1.0
 GIO_REQUIRED=2.26
 GEE_REQUIRED=0.8.0
-UUID_REQUIRED=1.41.3
 LIBSOUP_REQUIRED=2.44.0
 GTK_REQUIRED=3.0
 MEDIAART_REQUIRED=0.7.0
@@ -64,14 +63,14 @@ TRACKER_SPARQL_REQUIRED_MIN=0.14.0
 VALAFLAGS="--enable-deprecated --target-glib=2.32 $VALAFLAGS"
 
 RYGEL_BASE_MODULES="gupnp-1.0 >= $GUPNP_REQUIRED gee-0.8 >= $GEE_REQUIRED"
-PKG_CHECK_MODULES([LIBRYGEL_CORE_DEPS], [$RYGEL_BASE_MODULES uuid >= $UUID_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED gio-2.0 >= $GIO_REQUIRED gmodule-2.0 libxml-2.0 >= $LIBXML_REQUIRED])
+PKG_CHECK_MODULES([LIBRYGEL_CORE_DEPS], [$RYGEL_BASE_MODULES gssdp-1.0 >= $GSSDP_REQUIRED gio-2.0 >= $GIO_REQUIRED gmodule-2.0 libxml-2.0 >= $LIBXML_REQUIRED])
 RYGEL_BASE_MODULES_VALAFLAGS='--pkg gupnp-1.0 --pkg gee-0.8'
 LIBRYGEL_CORE_DEPS_VALAFLAGS="$RYGEL_BASE_MODULES_VALAFLAGS --pkg gssdp-1.0 --pkg gio-2.0 --pkg gmodule-2.0 --pkg posix"
 AC_SUBST([LIBRYGEL_CORE_DEPS_VALAFLAGS])
 
 RYGEL_COMMON_MODULES="$RYGEL_BASE_MODULES gupnp-av-1.0 >= $GUPNP_AV_REQUIRED"
-PKG_CHECK_MODULES([LIBRYGEL_SERVER_DEPS], [$RYGEL_COMMON_MODULES uuid >=
-                   $UUID_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED gio-2.0 >=
+PKG_CHECK_MODULES([LIBRYGEL_SERVER_DEPS], [$RYGEL_COMMON_MODULES
+                   gssdp-1.0 >= $GSSDP_REQUIRED gio-2.0 >=
                    $GIO_REQUIRED gmodule-2.0 libxml-2.0 >= $LIBXML_REQUIRED
                    libsoup-2.4 >= $LIBSOUP_REQUIRED libmediaart-2.0 >=
                    $MEDIAART_REQUIRED])
@@ -95,7 +94,7 @@ PKG_CHECK_MODULES([RYGEL_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED 
 
 # Not all tests use all of these dependencies,
 # but having one set of dependencies keeps things simple.
-PKG_CHECK_MODULES([TEST_DEPS], [$RYGEL_COMMON_MODULES uuid >= $UUID_REQUIRED gio-2.0 >= $GIO_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED libsoup-2.4 >= $LIBSOUP_REQUIRED libxml-2.0 >= $LIBXML_REQUIRED])
+PKG_CHECK_MODULES([TEST_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED gssdp-1.0 >= $GSSDP_REQUIRED libsoup-2.4 >= $LIBSOUP_REQUIRED libxml-2.0 >= $LIBXML_REQUIRED])
 TEST_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gio-2.0 --pkg gssdp-1.0 --pkg libsoup-2.4 --pkg libxml-2.0 --pkg gmodule-2.0"
 AC_SUBST([TEST_DEPS_VALAFLAGS])
 
@@ -190,8 +189,7 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
                                gstreamer-pbutils-1.0 >= $GSTPBU_REQUIRED
                                libsoup-2.4 >= $LIBSOUP_REQUIRED
                                sqlite3 >= $LIBSQLITE3_REQUIRED
-                               libmediaart-2.0 >= $MEDIAART_REQUIRED
-                               uuid])
+                               libmediaart-2.0 >= $MEDIAART_REQUIRED])
             RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gupnp-dlna-2.0 --pkg gupnp-dlna-gst-2.0 --pkg gstreamer-tag-1.0 --pkg gstreamer-app-1.0 --pkg gstreamer-pbutils-1.0 --pkg sqlite3 --pkg libmediaart-2.0"
             AC_SUBST([RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS])
           ])

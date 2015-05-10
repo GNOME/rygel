@@ -137,7 +137,7 @@ public class Rygel.RootDeviceFactory : Object,
         }
         var udn = file.get_udn ();
         if (udn == null || udn == "") {
-            file.set_udn ("uuid:" + UUID.get());
+            file.set_udn ("uuid:" + GUPnP.get_uuid ());
         }
 
         file.save (desc_path);

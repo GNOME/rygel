@@ -688,7 +688,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
                                                     "_",
                                                     RegexMatchFlags.NOTEMPTY);
 
-        return UUID.get () + "-" + mangled;
+        return GUPnP.get_uuid () + "-" + mangled;
     }
 
     /**
