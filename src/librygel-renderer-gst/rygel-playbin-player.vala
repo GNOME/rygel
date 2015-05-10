@@ -347,9 +347,10 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
     public int64 byte_position {
        get {
-            int64 pos;
+            int64 pos = 0;
 
-            if (this.playbin.source.query_position (Format.BYTES, out pos)) {
+            if (this.playbin.source != null &&
+                this.playbin.source.query_position (Format.BYTES, out pos)) {
                 return pos;
             } else {
                 return 0;
