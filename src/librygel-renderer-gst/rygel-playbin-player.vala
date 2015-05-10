@@ -367,26 +367,6 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         this.setup_playbin ();
     }
 
-    [Deprecated (since="0.21.5")]
-    public Player.wrap (Gst.Element playbin)
-                        requires (playbin.get_type ().name () == "GstPlayBin") {
-        this.playbin = playbin;
-        this.setup_playbin ();
-    }
-
-    [Deprecated (since="0.23.1")]
-    public static Player get_default () {
-        if (player == null) {
-            try {
-                player = new Player ();
-            } catch (Error error) {
-                assert_not_reached ();
-            }
-        }
-
-        return player;
-    }
-
     public static Player instance () throws Error {
         if (player == null) {
             player = new Player ();

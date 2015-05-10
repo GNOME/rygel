@@ -61,22 +61,6 @@ public class Rygel.Playbin.Renderer : Rygel.MediaRenderer {
     }
 
     /**
-     * Create a new instance of Renderer, wrapping an existing GstPlayBin
-     * instance.
-     *
-     * @param pipeline Instance of GstPlayBin to wrap.
-     * @param title Friendly name of the new UPnP renderer on the network.
-     */
-    [Deprecated (since="0.23.1")]
-    public Renderer.wrap (Gst.Element pipeline, string title) {
-        return_val_if_fail (pipeline != null, null);
-        return_val_if_fail (pipeline.get_type ().name() == "GstPlayBin", null);
-
-        Object (title: title,
-                player: new Player.wrap (pipeline));
-    }
-
-    /**
      * Get the GstPlayBin used by this Renderer.
      */
     public Gst.Element? get_playbin () {
