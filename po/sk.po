@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-04-24 17:45+0000\n"
-"PO-Revision-Date: 2015-04-24 20:26+0100\n"
+"POT-Creation-Date: 2015-05-11 23:18+0000\n"
+"PO-Revision-Date: 2015-05-12 09:37+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -182,6 +182,7 @@ msgstr "Stav „%s“ znemožňuje zrušenie"
 #: ../src/librygel-core/rygel-connection-manager.vala:126
 #: ../src/librygel-renderer/rygel-av-transport.vala:190
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
+#: ../src/librygel-ruih/rygel-ruih-service.vala:63
 #: ../src/librygel-server/rygel-content-directory.vala:261
 #: ../src/librygel-server/rygel-content-directory.vala:289
 #: ../src/librygel-server/rygel-content-directory.vala:308
@@ -337,7 +338,7 @@ msgstr "Nepodarilo sa načítať zásuvný modul: %s"
 msgid "Failed to query content type for '%s'"
 msgstr "Zlyhala žiadosť o typ obsahu pre „%s“"
 
-#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:364
+#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:365
 msgid ""
 "Your GStreamer installation seems to be missing the \"playbin\" element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
@@ -417,6 +418,56 @@ msgstr "Neplatný kanál"
 #: ../src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Akcia zlyhala"
+
+#: ../src/librygel-ruih/rygel-ruih-icon-elem.vala:66
+#, c-format
+msgid "Unable to parse Icon data - unexpected node: %s"
+msgstr "Nie je možné analyzovať údaje ikony - neočakávaný uzol: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
+#, c-format
+msgid "Unable to parse Protocol data - unexpected attribute: %s"
+msgstr "Nie je možné analyzovať údaje protokolu - neočakávaný atribút: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
+#, c-format
+msgid "Unable to parse Protocol data - unexpected node: %s"
+msgstr "Nie je možné analyzovať údaje protokolu - neočakávaný uzol: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:90
+#, c-format
+msgid "Failed to set UIList for file %s - %s"
+msgstr "Zlyhalo nastavenie parametra UIList pre súbor %s - %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:101
+#, c-format
+msgid "Failed to set initial UI list for file %s - %s"
+msgstr "Zlyhalo nastavenie počiatočného zoznamu UI pre súbor %s - %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:105
+#, c-format
+msgid "Failed to monitor the file %s - %s"
+msgstr "Zlyhalo monitorovanie súboru %s - %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:128
+#, c-format
+msgid "Unable to parse UI list file %s"
+msgstr "Zlyhalo analyzovanie súboru zoznamu UI %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:156
+#, c-format
+msgid "Unable to parse device profile data: %s"
+msgstr "Zlyhalo analyzovanie údajov profilu zariadenia: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:255
+#, c-format
+msgid "Invalid UI filter: %s"
+msgstr "Neplatný UI filter: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-ui-elem.vala:78
+#, c-format
+msgid "Unable to parse UI data - unexpected node: %s"
+msgstr "Nie je možné analyzovať údaje UI - neočakávaný uzol: %s"
 
 #: ../src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -823,53 +874,53 @@ msgid "Could not create GstElement for URI %s"
 msgstr "Nepodarilo sa vytvoriť prvok GstElement pre identifikátor URI %s"
 
 # PK: co je toto? nemoze to byt Zmena rychlosti?
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:71
-#: ../src/media-engines/simple/rygel-simple-data-source.vala:79
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:72
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
 msgstr "Rýchlosť prehrávania nie je podporovaná"
 
 #. Unknown/unsupported seek type
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:94
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:102
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
 msgstr "Typ požiadavky HTTPSeekRequest %s nie je podporovaný"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:137
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:146
 msgid "Failed to create pipeline"
 msgstr "Zlyhalo vytvorenie zreťazenia"
 
 #. static pads? easy!
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:148
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:169
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:157
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:178
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Zlyhalo spojenie %s s %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:183
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:192
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Zlyhalo spojenie vložky %s s %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:238
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:247
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Chyba zo zreťazenia %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:245
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:254
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Upozornenie zo zreťazenia %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:289
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:302
 msgid "Unsupported seek type"
 msgstr "Nepodporovaný typ presúvania"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:304
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:319
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Zlyhalo presunutie na ofsety %lld:%lld"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:307
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:321
 msgid "Failed to seek"
 msgstr "Zlyhalo presunutie"
 
@@ -891,9 +942,21 @@ msgstr ""
 msgid "Required element %s missing"
 msgstr "Požadovaný prvok %s chýba"
 
-#: ../src/media-engines/simple/rygel-simple-data-source.vala:61
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
 msgstr "Je podporované iba presúvanie založené na bajtoch (byte-based)"
+
+#: ../src/media-engines/simple/rygel-simple-media-engine.vala:57
+#: ../src/media-engines/simple/rygel-simple-media-engine.vala:96
+msgid "Can only process file-based MediaObjects (MediaFileItems)"
+msgstr ""
+"Môže spracovať iba objekty MediaObjects založené na súboroh (položky "
+"MediaFileItems)"
+
+#: ../src/media-engines/simple/rygel-simple-media-engine.vala:67
+#, c-format
+msgid "Can't process non-file uri %s"
+msgstr "Nedá sa spracovať uri %s netýkajúcu sa súboru"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
