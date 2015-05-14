@@ -121,17 +121,13 @@ internal class Rygel.XBoxHacks : ClientHacks {
             return;
         }
 
-        if (! (object is MediaFileItem)) {
-            return;
-        }
-
-        var item = object as MediaFileItem;
-
-        if (item.mime_type == "video/x-msvideo") {
-            item.mime_type = "video/avi";
-        } else if (item.mime_type == "video/mpeg") {
-            // Force transcoding for MPEG files
-            item.mime_type = "invalid/content";
+        foreach (var resource in object.get_resource_list ()) {
+            if (resource.mime_type == "video/x-msvideo") {
+                resource.mime_type = "video/avi";
+            } else if (resource.mime_type == "video/mpeg") {
+                // Force transcoding for MPEG files
+                resource.mime_type = "invalid/content";
+            }
         }
     }
 

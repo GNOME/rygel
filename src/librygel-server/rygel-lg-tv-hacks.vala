@@ -31,19 +31,20 @@ internal class Rygel.LGTVHacks : ClientHacks {
     }
 
     public override void apply (MediaObject object) {
+        foreach (var resource in object.get_resource_list ()) {
+            if (resource.mime_type == "audio/x-vorbis+ogg" ||
+                resource.mime_type == "audio/x-flac+ogg") {
+                resource.mime_type = "application/ogg";
+            }
+        }
+
         if (!(object is MediaFileItem)) {
             return;
         }
 
-        var item = object as MediaFileItem;
-        if (item.mime_type == "audio/x-vorbis+ogg" ||
-            item.mime_type == "audio/x-flac+ogg") {
-            item.mime_type = "application/ogg";
-        }
-
         // Re-order resources to it picks up the MP3
-        if (item is MusicItem) {
-            var resources = item.get_resource_list ();
+        if (object is MusicItem) {
+            var resources = object.get_resource_list ();
             var i = 0;
 
             foreach (var resource in resources) {

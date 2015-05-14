@@ -33,16 +33,12 @@ internal class Rygel.XBMCHacks : ClientHacks {
     }
 
     public override void apply (MediaObject object) {
-        if (!(object is MediaFileItem)) {
-            return;
-        }
-
-        var item = object as MediaFileItem;
-
-        if (item.mime_type == "audio/mp4" ||
-            item.mime_type == "audio/3gpp" ||
-            item.mime_type == "audio/vnd.dlna.adts") {
-            item.mime_type = "audio/aac";
+        foreach (var resource in object.get_resource_list ()) {
+            if (resource.mime_type == "audio/mp4" ||
+                resource.mime_type == "audio/3gpp" ||
+                resource.mime_type == "audio/vnd.dlna.adts") {
+                resource.mime_type = "audio/aac";
+            }
         }
     }
 

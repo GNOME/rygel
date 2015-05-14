@@ -89,6 +89,11 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
     public virtual void translate_container_id (MediaQueryAction action,
                                                 ref string       container_id) {}
 
+    /**
+     * Modify the passed media object.
+     *
+     * Called before serializing the Object to DIDL-Lite.
+     */
     public virtual void apply (MediaObject object) {}
 
     public virtual void filter_sort_criteria (ref string sort_criteria) {}

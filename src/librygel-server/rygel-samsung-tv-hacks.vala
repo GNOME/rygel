@@ -29,23 +29,20 @@ internal class Rygel.SamsungTVHacks : ClientHacks {
     }
 
     public override void apply (MediaObject object) {
-        if (!(object is MediaFileItem)) {
-            return;
-        }
-
-        var item = object as MediaFileItem;
-        if (item.mime_type == "video/x-matroska") {
-            item.mime_type = "video/x-mkv";
-        }
-        else if (item.mime_type == "video/mp2t") {
-            // Required to play Panasonic TZ-7 AVCHD-Lite movies. Verified on D+E-Series TV
-            // Example: http://s3.amazonaws.com/movies.dpreview.com/panasonic_dmcfz150/00015.MTS
-            item.mime_type = "video/vnd.dlna.mpeg-tts";
-        }
-        else if (item.mime_type == "video/quicktime") {
-            // Required to play Canon EOS camera movies. Verfied on D-Series TV (E-Series still don't work)
-            // Example: http://s3.amazonaws.com/movies.dpreview.com/canon_eos60d/MVI_1326.MOV
-            item.mime_type = "video/mp4";
+        foreach (var resource in object.get_resource_list ()) {
+            if (resource.mime_type == "video/x-matroska") {
+                resource.mime_type = "video/x-mkv";
+            } else if (resource.mime_type == "video/mp2t") {
+                // Required to play Panasonic TZ-7 AVCHD-Lite movies. Verified
+                // on D+E-Series TV
+                // Example: http://s3.amazonaws.com/movies.dpreview.com/panasonic_dmcfz150/00015.MTS
+                resource.mime_type = "video/vnd.dlna.mpeg-tts";
+            } else if (resource.mime_type == "video/quicktime") {
+                // Required to play Canon EOS camera movies. Verfied on
+                // D-Series TV (E-Series still don't work)
+                // Example: http://s3.amazonaws.com/movies.dpreview.com/canon_eos60d/MVI_1326.MOV
+                resource.mime_type = "video/mp4";
+            }
         }
     }
 
