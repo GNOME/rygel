@@ -1,3 +1,37 @@
+0.24.4
+======
+
+A maintenance release of Rygel!
+
+Server:
+ - Fix a circular reference causing re-creation of contexts to fail.
+ - Add Kodi as alias to XBMC.
+ - Prevent a potential crash on missing thumbnails.
+
+Tracker:
+ - Fix compiling with newer Vala.
+
+UI:
+ - Fix compiling with newer Vala.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=736365
+ - https://bugzilla.gnome.org/show_bug.cgi?id=741913
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Marc-André Lureau <marcandre.lureau@gmail.com>
+ - Samir Ribic <samir.ribic@etf.unsa.ba>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Necdet Yücel <necdetyucel@gmail.com>
+ - Matej Urbančič <mateju@svn.gnome.org>
+
+Added/updated translations
+ - bs, courtesy of Maida Bakovic
+ - pl, courtesy of Piotr Drąg
+ - sl, courtesy of Matej Urbančič
+ - tr, courtesy of Muhammet Kara
+
 0.24.3
 ======
 
