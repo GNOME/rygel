@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.5\n"
 
 #: ../data/rygel-preferences.ui.h:1
 #: ../data/rygel-preferences.desktop.in.in.h:1
@@ -1021,10 +1021,8 @@ msgid "No thumbnail available"
 msgstr "Sličice niso na voljo"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
-#, fuzzy
-#| msgid "No thumbnailer available: %s"
 msgid "No thumbnail available. Generation requested."
-msgstr "Ustvarjalnik sličic ni na voljo: %s"
+msgstr "Ni sličic. Podana je zahteva za ustvarjanje."
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
