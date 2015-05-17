@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-05-06 23:10+0000\n"
-"PO-Revision-Date: 2015-05-07 12:25+0200\n"
+"POT-Creation-Date: 2015-05-16 23:21+0000\n"
+"PO-Revision-Date: 2015-05-17 09:41+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -166,8 +166,9 @@ msgstr "Stav „%s“ zabraňuje zrušení"
 #: ../src/librygel-core/rygel-connection-manager.vala:95
 #: ../src/librygel-core/rygel-connection-manager.vala:109
 #: ../src/librygel-core/rygel-connection-manager.vala:126
-#: ../src/librygel-renderer/rygel-av-transport.vala:190
+#: ../src/librygel-renderer/rygel-av-transport.vala:198
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
+#: ../src/librygel-ruih/rygel-ruih-service.vala:63
 #: ../src/librygel-server/rygel-content-directory.vala:261
 #: ../src/librygel-server/rygel-content-directory.vala:289
 #: ../src/librygel-server/rygel-content-directory.vala:308
@@ -322,7 +323,7 @@ msgstr "Nelze načíst zásuvný modul: %s"
 msgid "Failed to query content type for '%s'"
 msgstr "Selhal dotaz na typ obsahu pro „%s“"
 
-#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:364
+#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:367
 msgid ""
 "Your GStreamer installation seems to be missing the \"playbin\" element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
@@ -330,59 +331,59 @@ msgstr ""
 "Vypadá to, že ve vaší instalaci GStreamer schácí prvek „playbin“. "
 "Implementace vykreslování GStreamer v aplikaci Rygel bez něj nemůže fungovat."
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:196
+#: ../src/librygel-renderer/rygel-av-transport.vala:204
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Neplatné InstanceID"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:466
+#: ../src/librygel-renderer/rygel-av-transport.vala:474
 msgid "Play speed not supported"
 msgstr "Rychlost přehrávání není podporována"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:473
-#: ../src/librygel-renderer/rygel-av-transport.vala:491
+#: ../src/librygel-renderer/rygel-av-transport.vala:481
+#: ../src/librygel-renderer/rygel-av-transport.vala:499
 msgid "Transition not available"
 msgstr "Přechod není k dispozici"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:521
-#: ../src/librygel-renderer/rygel-av-transport.vala:546
-#: ../src/librygel-renderer/rygel-av-transport.vala:576
+#: ../src/librygel-renderer/rygel-av-transport.vala:529
+#: ../src/librygel-renderer/rygel-av-transport.vala:554
+#: ../src/librygel-renderer/rygel-av-transport.vala:584
 msgid "Seek mode not supported"
 msgstr "Režim přeskakování není podporován"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:527
-#: ../src/librygel-renderer/rygel-av-transport.vala:552
-#: ../src/librygel-renderer/rygel-av-transport.vala:565
-#: ../src/librygel-renderer/rygel-av-transport.vala:590
-#: ../src/librygel-renderer/rygel-av-transport.vala:602
+#: ../src/librygel-renderer/rygel-av-transport.vala:535
+#: ../src/librygel-renderer/rygel-av-transport.vala:560
+#: ../src/librygel-renderer/rygel-av-transport.vala:573
+#: ../src/librygel-renderer/rygel-av-transport.vala:598
+#: ../src/librygel-renderer/rygel-av-transport.vala:610
 msgid "Illegal seek target"
 msgstr "Neplatný cíl přeskočení"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:651
+#: ../src/librygel-renderer/rygel-av-transport.vala:659
 msgid "Play mode not supported"
 msgstr "Režim přehrávání není podporován"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:727
-#: ../src/librygel-renderer/rygel-av-transport.vala:771
-#: ../src/librygel-renderer/rygel-av-transport.vala:780
-#: ../src/librygel-renderer/rygel-av-transport.vala:859
+#: ../src/librygel-renderer/rygel-av-transport.vala:735
+#: ../src/librygel-renderer/rygel-av-transport.vala:779
+#: ../src/librygel-renderer/rygel-av-transport.vala:788
+#: ../src/librygel-renderer/rygel-av-transport.vala:867
 msgid "Resource not found"
 msgstr "Prostředek nebyl nalezen"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:769
+#: ../src/librygel-renderer/rygel-av-transport.vala:777
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "Problém při zpracování seznamu k přehrání: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: ../src/librygel-renderer/rygel-av-transport.vala:855
+#: ../src/librygel-renderer/rygel-av-transport.vala:863
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Selhal přístup k prostředku na %s: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:871
+#: ../src/librygel-renderer/rygel-av-transport.vala:879
 msgid "Illegal MIME-type"
 msgstr "Neplatný typ MIME"
 
@@ -400,6 +401,56 @@ msgstr "Neplatný kanál"
 msgid "Action Failed"
 msgstr "Akce selhala"
 
+#: ../src/librygel-ruih/rygel-ruih-icon-elem.vala:66
+#, c-format
+msgid "Unable to parse Icon data - unexpected node: %s"
+msgstr "Nelze zpracovat data ikony – neočekávaný uzel: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
+#, c-format
+msgid "Unable to parse Protocol data - unexpected attribute: %s"
+msgstr "Nelze zpracovat data protokolu – neočekávaný atribut: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
+#, c-format
+msgid "Unable to parse Protocol data - unexpected node: %s"
+msgstr "Nelze zpracovat data protokolu – neočekávaný uzel: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:90
+#, c-format
+msgid "Failed to set UIList for file %s - %s"
+msgstr "Selhalo nastavení seznamu UR pro soubor %s – %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:101
+#, c-format
+msgid "Failed to set initial UI list for file %s - %s"
+msgstr "Selhalo nastavení počátečního seznamu UR pro soubor %s – %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:105
+#, c-format
+msgid "Failed to monitor the file %s - %s"
+msgstr "Selhalo sledování souboru %s – %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:128
+#, c-format
+msgid "Unable to parse UI list file %s"
+msgstr "Selhalo zpracování seznamu UR pro souboru %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:156
+#, c-format
+msgid "Unable to parse device profile data: %s"
+msgstr "Selhalo zpracování dat profilu zařízení: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:255
+#, c-format
+msgid "Invalid UI filter: %s"
+msgstr "Neplatný filtr UR: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-ui-elem.vala:78
+#, c-format
+msgid "Unable to parse UI data - unexpected node: %s"
+msgstr "Nelze zpracovat data UR – neočekávaný uzel: %s"
+
 #: ../src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
 msgstr "Neplatné argumenty"
@@ -413,7 +464,7 @@ msgstr "Nelze procházet potomky položky"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Selhalo procházení „%s“: %s\n"
 
-#: ../src/librygel-server/rygel-client-hacks.vala:136
+#: ../src/librygel-server/rygel-client-hacks.vala:141
 msgid "Not Applicable"
 msgstr "Nepoužitelné"
 
@@ -790,7 +841,7 @@ msgstr "Žádný náhled není k dispozici"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 msgid "No thumbnail available. Generation requested."
-msgstr "Žádný generátor náhledů není k dispozici. Je požadováno generování."
+msgstr "Žádný náhled není k dispozici. Je požadováno generování."
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
