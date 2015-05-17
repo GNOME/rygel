@@ -7,11 +7,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: rygel\n"
+"Project-Id-Version: rygel rygel-0.24\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-21 22:17+0000\n"
-"PO-Revision-Date: 2014-09-22 08:07+0200\n"
+"POT-Creation-Date: 2015-05-16 23:22+0000\n"
+"PO-Revision-Date: 2015-05-17 09:34+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -119,22 +119,22 @@ msgstr "Selhalo vrácení transakce do předchozího stavu: %s"
 msgid "'%s' harvested"
 msgstr "Ze souboru „%s“ byl získána všechna metadata"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:185
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:191
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Chyba při získávání objektu „%s“ z databáze: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:193
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:199
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "Selhal dotaz na informace o souboru %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:228
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:234
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr "Nelze najít objekt %s nebo jeho předka. Databáze není konzistentní."
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:232
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:238
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Chyba při odstraňování objektu z databáze: %s"
@@ -448,14 +448,14 @@ msgstr "Stav „%s“ zabraňuje zrušení"
 #: ../src/librygel-core/rygel-connection-manager.vala:126
 #: ../src/librygel-renderer/rygel-av-transport.vala:198
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
-#: ../src/librygel-server/rygel-content-directory.vala:262
-#: ../src/librygel-server/rygel-content-directory.vala:290
-#: ../src/librygel-server/rygel-content-directory.vala:309
-#: ../src/librygel-server/rygel-content-directory.vala:344
-#: ../src/librygel-server/rygel-content-directory.vala:373
-#: ../src/librygel-server/rygel-content-directory.vala:398
-#: ../src/librygel-server/rygel-content-directory.vala:617
-#: ../src/librygel-server/rygel-content-directory.vala:768
+#: ../src/librygel-server/rygel-content-directory.vala:261
+#: ../src/librygel-server/rygel-content-directory.vala:289
+#: ../src/librygel-server/rygel-content-directory.vala:308
+#: ../src/librygel-server/rygel-content-directory.vala:343
+#: ../src/librygel-server/rygel-content-directory.vala:372
+#: ../src/librygel-server/rygel-content-directory.vala:397
+#: ../src/librygel-server/rygel-content-directory.vala:616
+#: ../src/librygel-server/rygel-content-directory.vala:767
 #: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Neplatný argument"
@@ -464,7 +464,7 @@ msgstr "Neplatný argument"
 msgid "Invalid connection reference"
 msgstr "Neplatný odkaz na připojení"
 
-#: ../src/librygel-core/rygel-description-file.vala:343
+#: ../src/librygel-core/rygel-description-file.vala:348
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Selhal zápis upraveného popisu do %s"
@@ -485,25 +485,25 @@ msgstr "Selhalo zjištění úrovně evidence z nastavení: %s"
 #: ../src/librygel-core/rygel-meta-config.vala:242
 #: ../src/librygel-core/rygel-meta-config.vala:261
 #: ../src/librygel-core/rygel-meta-config.vala:280
-#: ../src/rygel/rygel-cmdline-config.vala:168
-#: ../src/rygel/rygel-cmdline-config.vala:176
-#: ../src/rygel/rygel-cmdline-config.vala:185
-#: ../src/rygel/rygel-cmdline-config.vala:193
-#: ../src/rygel/rygel-cmdline-config.vala:201
-#: ../src/rygel/rygel-cmdline-config.vala:209
-#: ../src/rygel/rygel-cmdline-config.vala:217
-#: ../src/rygel/rygel-cmdline-config.vala:225
-#: ../src/rygel/rygel-cmdline-config.vala:264
-#: ../src/rygel/rygel-cmdline-config.vala:283
-#: ../src/rygel/rygel-cmdline-config.vala:289
+#: ../src/rygel/rygel-cmdline-config.vala:164
+#: ../src/rygel/rygel-cmdline-config.vala:172
+#: ../src/rygel/rygel-cmdline-config.vala:181
+#: ../src/rygel/rygel-cmdline-config.vala:189
+#: ../src/rygel/rygel-cmdline-config.vala:197
+#: ../src/rygel/rygel-cmdline-config.vala:205
+#: ../src/rygel/rygel-cmdline-config.vala:213
+#: ../src/rygel/rygel-cmdline-config.vala:221
+#: ../src/rygel/rygel-cmdline-config.vala:260
+#: ../src/rygel/rygel-cmdline-config.vala:279
+#: ../src/rygel/rygel-cmdline-config.vala:285
+#: ../src/rygel/rygel-cmdline-config.vala:292
 #: ../src/rygel/rygel-cmdline-config.vala:296
 #: ../src/rygel/rygel-cmdline-config.vala:300
-#: ../src/rygel/rygel-cmdline-config.vala:304
-#: ../src/rygel/rygel-cmdline-config.vala:327
-#: ../src/rygel/rygel-cmdline-config.vala:353
-#: ../src/rygel/rygel-cmdline-config.vala:382
-#: ../src/rygel/rygel-cmdline-config.vala:408
-#: ../src/rygel/rygel-cmdline-config.vala:433
+#: ../src/rygel/rygel-cmdline-config.vala:323
+#: ../src/rygel/rygel-cmdline-config.vala:349
+#: ../src/rygel/rygel-cmdline-config.vala:378
+#: ../src/rygel/rygel-cmdline-config.vala:404
+#: ../src/rygel/rygel-cmdline-config.vala:429
 #: ../src/rygel/rygel-environment-config.vala:105
 #: ../src/rygel/rygel-environment-config.vala:109
 #: ../src/rygel/rygel-environment-config.vala:113
@@ -660,7 +660,7 @@ msgstr "Selhalo procházení „%s“: %s\n"
 msgid "Not Applicable"
 msgstr "Nepoužitelné"
 
-#: ../src/librygel-server/rygel-content-directory.vala:638
+#: ../src/librygel-server/rygel-content-directory.vala:637
 msgid "No such file transfer"
 msgstr "Žádný takový přenos souboru neexistuje"
 
@@ -1011,11 +1011,14 @@ msgstr "Generování náhledů není podporováno"
 #. Thumbnailing failed previously, so there's no current thumbnail
 #. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
-#: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
 #: ../src/librygel-server/rygel-thumbnailer.vala:113
 msgid "No thumbnail available"
 msgstr "Žádný náhled není k dispozici"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:97
+msgid "No thumbnail available. Generation requested."
+msgstr "Žádný náhled není k dispozici. Je požadováno generování."
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
@@ -1031,38 +1034,38 @@ msgstr "Pro cílový formát „%s“ není k dispozici žádný převodník"
 msgid "Could not create GstElement for URI %s"
 msgstr "Nelze vytvořit GstElement pro adresu URI %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:94
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:95
 msgid "Failed to create pipeline"
 msgstr "Selhalo vytvoření roury"
 
 #. static pads? easy!
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:105
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:126
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:106
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:127
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Selhalo navázání %s na %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:140
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:141
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Selhalo napojení propojky %s na %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:195
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:196
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Chyba od roury %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:202
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:203
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Varování od roury %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:255
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:256
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Selhal posun na pozici %lld:%lld"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:259
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:260
 msgid "Failed to seek"
 msgstr "Selhal posun"
 
@@ -1088,67 +1091,67 @@ msgstr "Vyžadovaný prvek %s schází"
 msgid "Time-based seek not supported"
 msgstr "Posun podle časového údaje není podporován"
 
-#: ../src/rygel/rygel-cmdline-config.vala:80
+#: ../src/rygel/rygel-cmdline-config.vala:76
 msgid "Network Interfaces"
 msgstr "Síťová rozhraní"
 
-#: ../src/rygel/rygel-cmdline-config.vala:84
+#: ../src/rygel/rygel-cmdline-config.vala:80
 msgid "Disable transcoding"
 msgstr "Zakázat převod"
 
-#: ../src/rygel/rygel-cmdline-config.vala:86
+#: ../src/rygel/rygel-cmdline-config.vala:82
 msgid "Disallow upload"
 msgstr "Znemožnit odesílání"
 
-#: ../src/rygel/rygel-cmdline-config.vala:88
+#: ../src/rygel/rygel-cmdline-config.vala:84
 msgid "Disallow deletion"
 msgstr "Znemožnit mazání"
 
-#: ../src/rygel/rygel-cmdline-config.vala:90
+#: ../src/rygel/rygel-cmdline-config.vala:86
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr "Čárkami oddělovaný seznam párů doména:úroveň. Podrobnosti viz rygel(1)"
 
-#: ../src/rygel/rygel-cmdline-config.vala:92
+#: ../src/rygel/rygel-cmdline-config.vala:88
 msgid "Plugin Path"
 msgstr "Cesta k zásuvnému modulu"
 
-#: ../src/rygel/rygel-cmdline-config.vala:94
+#: ../src/rygel/rygel-cmdline-config.vala:90
 msgid "Engine Path"
 msgstr "Cesta k serveru"
 
-#: ../src/rygel/rygel-cmdline-config.vala:97
+#: ../src/rygel/rygel-cmdline-config.vala:93
 msgid "Disable plugin"
 msgstr "Zakázat zásuvný modul"
 
-#: ../src/rygel/rygel-cmdline-config.vala:99
+#: ../src/rygel/rygel-cmdline-config.vala:95
 msgid "Set plugin titles"
 msgstr "Nastavit názvy zásuvného modulu"
 
-#: ../src/rygel/rygel-cmdline-config.vala:101
+#: ../src/rygel/rygel-cmdline-config.vala:97
 msgid "Set plugin options"
 msgstr "Nastavit volby zásuvného modulu"
 
-#: ../src/rygel/rygel-cmdline-config.vala:103
+#: ../src/rygel/rygel-cmdline-config.vala:99
 msgid "Disable UPnP (streaming-only)"
 msgstr "Zakázat UPnP (pouze vysílání)"
 
-#: ../src/rygel/rygel-cmdline-config.vala:105
+#: ../src/rygel/rygel-cmdline-config.vala:101
 msgid "Use configuration file instead of user configuration"
 msgstr "Použít soubor s nastavením namísto uživatelského nastavení"
 
-#: ../src/rygel/rygel-cmdline-config.vala:107
+#: ../src/rygel/rygel-cmdline-config.vala:103
 msgid "Shutdown remote Rygel reference"
 msgstr "Ukončit vzdálenou instanci Rygel"
 
-#: ../src/rygel/rygel-cmdline-config.vala:109
+#: ../src/rygel/rygel-cmdline-config.vala:105
 msgid "Replace currently running instance of rygel"
 msgstr "Nahradit právě běžící instanci aplikace rygel"
 
-#: ../src/rygel/rygel-cmdline-config.vala:146
+#: ../src/rygel/rygel-cmdline-config.vala:142
 msgid "Shutting down remote Rygel instance\n"
 msgstr "Ukončuje se vzdálená instance Rygel\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:154
+#: ../src/rygel/rygel-cmdline-config.vala:150
 #, c-format
 msgid "Failed to shut-down other rygel instance: %s"
 msgstr "Selhalo zastavení jiné instance Rygel: %s"
