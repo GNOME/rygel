@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2015-04-22 11:34+0000\n"
-"PO-Revision-Date: 2015-04-22 19:27+0200\n"
+"PO-Revision-Date: 2015-05-17 09:34+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -790,7 +790,7 @@ msgstr "Žádný náhled není k dispozici"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
 msgid "No thumbnail available. Generation requested."
-msgstr "Žádný generátor náhledů není k dispozici. Je požadováno generování."
+msgstr "Žádný náhled není k dispozici. Je požadováno generování."
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
