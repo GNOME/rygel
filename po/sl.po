@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-28 12:09+0000\n"
+"POT-Creation-Date: 2015-05-13 23:19+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
@@ -588,12 +588,12 @@ msgstr ""
 msgid "Unknown"
 msgstr "Neznano"
 
-#: ../src/librygel-server/rygel-media-art-store.vala:105
+#: ../src/librygel-server/rygel-media-art-store.vala:111
 #, c-format
 msgid "Failed to add album art for %s: %s"
 msgstr "Dodajanje slike albuma za %s je spodletelo: %s"
 
-#: ../src/librygel-server/rygel-media-art-store.vala:119
+#: ../src/librygel-server/rygel-media-art-store.vala:125
 #, c-format
 msgid "Failed to find media art for %s: %s"
 msgstr "Iskanje grafičnih dodatkov predstavne vsebine za %s je spodletelo: %s"
@@ -783,11 +783,14 @@ msgstr "Ustvarjanje sličic ni podprto!"
 #. Thumbnailing failed previously, so there's no current thumbnail
 #. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
-#: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
 #: ../src/librygel-server/rygel-thumbnailer.vala:113
 msgid "No thumbnail available"
 msgstr "Sličice niso na voljo"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:97
+msgid "No thumbnail available. Generation requested."
+msgstr "Sličice niso na voljo. Njihova tvorba je zahtevana."
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
@@ -804,46 +807,46 @@ msgid "Playspeed not supported"
 msgstr "Spreminjanje hitrosti predvajanja ni podporto"
 
 #. Unknown/unsupported seek type
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:94
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:96
 msgid "HTTPSeekRequest type unsupported"
 msgstr "Zahteve iskanja HTTP niso podprte"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:136
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:138
 msgid "Failed to create pipeline"
 msgstr "Ustvarjanje cevovoda je spodletelo"
 
 #. static pads? easy!
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:147
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:168
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:149
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:170
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Povezovanje %s z %s je spodletelo"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:182
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:184
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Napaka med povezovanjem %s z %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:237
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:239
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Napaka iz cevovoda %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:244
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:246
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Opozorilo iz cevovoda %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:288
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:290
 msgid "Unsupported seek type"
 msgstr "Nepodprta vrsta iskanja"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:303
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:305
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Iskanje na odmik %lld:%lld je spodletelo"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:306
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:308
 msgid "Failed to seek"
 msgstr "Iskanje je spodletelo"
 
@@ -1296,48 +1299,3 @@ msgstr "Začenjanje storitve Rygel je spodletelo: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Zaustavljanje storitve Rygel je spodletelo: %s"
-
-#~ msgid "Invalid Range '%s'"
-#~ msgstr "Neveljaven obseg '%s'"
-
-#~ msgid "Invalid Request"
-#~ msgstr "Neveljavna zahteva"
-
-#~ msgid "Out Of Range Start '%ld'"
-#~ msgstr "Začetek '%ld' izven obsega"
-
-#~ msgid "Out Of Range Stop '%ld'"
-#~ msgstr "Konec '%ld' izven obsega"
-
-#~ msgid "No transcoder available for target format '%s'"
-#~ msgstr "Za ciljno obliko '%s' ni na voljo ustreznega prekodirnika"
-
-#~ msgid "Not Found"
-#~ msgstr "Ni najden"
-
-#~ msgid " %%% Object creation in %s not allowed"
-#~ msgstr "%%% Ustvarjanje predmeta v %s ni dovoljeno"
-
-#~ msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
-#~ msgstr ""
-#~ "Omogoči izmenjavo in souporabo predstavnih vsebin z DLNA, kot so slike, "
-#~ "video posnetki in glasba."
-
-#~ msgid ""
-#~ "Select the network interface that DLNA media will be shared on, or share "
-#~ "media on all interfaces"
-#~ msgstr ""
-#~ "Izbor vmesnika omrežja na katerem bodo predstavne datoteke DLNA s "
-#~ "souporabi ali pa uporabite vse vmesnike."
-
-#~ msgid "Any"
-#~ msgstr "Katerikoli"
-
-#~ msgid "XML node '%s' not found."
-#~ msgstr "XML vozlišča '%s' ni mogoče najti."
-
-#~ msgid "LibRygelRenderer"
-#~ msgstr "LibRygelRenderer"
-
-#~ msgid "LibRygelServer"
-#~ msgstr "LibRygelServer"
