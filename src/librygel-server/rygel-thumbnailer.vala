@@ -94,7 +94,7 @@ internal class Rygel.Thumbnailer : GLib.Object {
             this.thumbler.queue_thumbnail_task (uri, mime_type);
 
             throw new ThumbnailerError.NO_THUMBNAIL
-                                        (_("No thumbnail available. Generation requested."));
+                                        (_("No thumbnail available"));
         }
 
         if (path == null) {
