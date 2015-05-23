@@ -38,7 +38,7 @@ public errordomain Rygel.GstTranscoderError {
  * Each implementation derives from it and must
  * implement get_resources_for_item and get_encoding_profile methods.
  */
-public abstract class Rygel.GstTranscoder : GLib.Object {
+internal abstract class Rygel.GstTranscoder : GLib.Object {
     public string name { get; construct; }
     public string mime_type { get; construct; }
     public string dlna_profile { get; construct; }
@@ -122,7 +122,7 @@ public abstract class Rygel.GstTranscoder : GLib.Object {
      *
      * @return      the new transcoding source
      */
-    public DataSource create_source (MediaFileItem item, DataSource src) throws Error {
+    public GstDataSource create_source (MediaFileItem item, DataSource src) throws Error {
         // We can only link GStreamer data sources together
         assert (src is GstDataSource);
 

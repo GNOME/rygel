@@ -57,10 +57,11 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         var transcoding = true;
         var transcoder_list = new ArrayList<string> ();
 
-        /* Allow some transcoders to be disabled by the Rygel Server configuration.
-         * For instance, some DLNA Renderers might incorrectly prefer inferior transcoded formats,
-         * sometimes even preferring transcoded formats over the original data,
-         * so this forces them to use other formats.
+        /* Allow some transcoders to be disabled by the Rygel Server
+         * configuration.  For instance, some DLNA Renderers might incorrectly
+         * prefer inferior transcoded formats, sometimes even preferring
+         * transcoded formats over the original data, so this forces them to
+         * use other formats.
          */
         var config = MetaConfig.get_default ();
         try {
@@ -109,37 +110,41 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         return this.dlna_profiles;
     }
 
-    public override async Gee.List<MediaResource> ? get_resources_for_item (MediaObject object) {
-        if (! (object is MediaFileItem)) {
+    public override async Gee.List<MediaResource>? get_resources_for_item
+                                        (MediaObject object) {
+        if (!(object is MediaFileItem)) {
             warning ("Can only process file-based MediaObjects (MediaFileItems)");
+
             return null;
         }
 
         var item = object as MediaFileItem;
 
         // For MediaFileItems, the primary URI refers directly to the content
-        string source_uri = item.get_primary_uri ();
+        var source_uri = item.get_primary_uri ();
 
         debug ("get_resources_for_item(%s)", source_uri);
 
         if (!source_uri.has_prefix ("file://")) {
             warning ("Can't process non-file uri " + source_uri);
+
             return null;
         }
 
-        Gee.List<MediaResource> resources = new Gee.ArrayList<MediaResource> ();
-
+        var resources = new Gee.ArrayList<MediaResource> ();
         var primary_res = item.get_primary_resource ();
 
-        // The GstMediaEngine only supports byte-based seek on the primary resource currently
+        // The GstMediaEngine only supports byte-based seek on the primary
+        // resource currently
         primary_res.dlna_operation = DLNAOperation.RANGE;
 
-        // The GstMediaEngine supports connection stalling on the primary resource
+        // The GstMediaEngine supports connection stalling on the primary
+        // resource
         primary_res.dlna_flags |= DLNAFlags.CONNECTION_STALL;
 
         // Add a resource for http consumption
-        MediaResource http_res = new MediaResource.from_resource ("primary_http",
-                                                                  primary_res);
+        var http_res = new MediaResource.from_resource ("primary_http",
+                                                        primary_res);
         http_res.uri = ""; // The URI needs to be assigned by the MediaServer
         resources.add (http_res);
 
@@ -150,15 +155,16 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
             }
         }
         list.sort_with_data( (transcoder_1, transcoder_2) => {
-                                 return (int) ( transcoder_1.get_distance (item)
-                                                - transcoder_2.get_distance (item) );
-                             } );
+            return (int) (transcoder_1.get_distance (item) -
+                          transcoder_2.get_distance (item));
+        });
 
         // Put all Transcoders in the list according to their sorted rank
         foreach (var transcoder in list) {
-            MediaResource res = transcoder.get_resource_for_item (item);
-            if (res != null)
+            var res = transcoder.get_resource_for_item (item);
+            if (res != null) {
                 resources.add (res);
+            }
         }
 
         // Put the primary resource as most-preferred (front of the list)
@@ -167,40 +173,49 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         return resources;
     }
 
-    public override DataSource? create_data_source_for_resource ( MediaObject object,
-                                                                  MediaResource resource)
-        throws Error {
-        if (! (object is MediaFileItem)) {
+    public override DataSource? create_data_source_for_resource
+                                        (MediaObject   object,
+                                         MediaResource resource)
+                                        throws Error {
+        if (!(object is MediaFileItem)) {
             warning ("Can only process file-based MediaObjects (MediaFileItems)");
+
             return null;
         }
         var item = object as MediaFileItem;
 
         // For MediaFileItems, the primary URI refers directly to the content
-        string source_uri = item.get_primary_uri ();
+        var source_uri = item.get_primary_uri ();
         debug ("creating data source for %s", source_uri);
 
-        DataSource ds = new GstDataSource (source_uri, resource);
-        debug ("MediaResource %s, profile %s, mime_type %s", resource.get_name (),
-               resource.dlna_profile, resource.mime_type);
+        var data_source = new GstDataSource (source_uri, resource);
+        debug ("MediaResource %s, profile %s, mime_type %s",
+               resource.get_name (),
+               resource.dlna_profile,
+               resource.mime_type);
+
         if (resource.dlna_conversion == DLNAConversion.TRANSCODED) {
             foreach (var transcoder in transcoders) {
-                if (transcoder.name == resource.get_name()) {
-                    debug ("creating data source from transcoder %s (profile %s)",
-                            transcoder.name, transcoder.dlna_profile );
-                    ds = transcoder.create_source (item, ds);
+                if (transcoder.name == resource.get_name ()) {
+                    debug ("Creating data source from transcoder %s " +
+                           "with DLNA profile %s",
+                            transcoder.name,
+                            transcoder.dlna_profile);
+                    data_source = transcoder.create_source (item, data_source);
+
                     break;
                 }
             }
         }
-        return ds;
+
+        return data_source;
     }
 
     public override DataSource? create_data_source_for_uri (string source_uri) {
         try {
             debug("creating data source for %s", source_uri);
-            DataSource ds = new GstDataSource (source_uri, null);
-            return ds;
+
+            return new GstDataSource (source_uri, null);
         } catch (Error error) {
             warning (_("Failed to create GStreamer data source for %s: %s"),
                      source_uri,
