@@ -63,4 +63,7 @@ public class Rygel.BuildConfig {
 
     [CCode (cname = "ENGINE_DIR")]
     public static const string ENGINE_DIR;
+
+    [CCode (cname = "PRESET_DIR")]
+    public static const string PRESET_DIR;
 }

@@ -27,13 +27,6 @@ using Gst;
 using Gee;
 using GUPnP;
 
-// Remove for GStreamer 1.0
-[CCode (cname = "PRESET_DIR")]
-internal extern static const string PRESET_DIR;
-
-[CCode (cname="gst_preset_set_app_dir")]
-extern bool gst_preset_set_app_dir (string app_dir);
-
 public class Rygel.GstMediaEngine : Rygel.MediaEngine {
     private GLib.List<DLNAProfile> dlna_profiles = null;
     private GLib.List<GstTranscoder> transcoders = null;
@@ -42,7 +35,7 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         unowned string[] args = null;
 
         Gst.init (ref args);
-        gst_preset_set_app_dir (PRESET_DIR);
+        Gst.preset_set_app_dir (BuildConfig.PRESET_DIR);
 
         /* Get the possible DLNA profiles
          * to add to the list of DLNA profiles supported by
