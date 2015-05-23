@@ -342,7 +342,7 @@ public class Rygel.HTTPGet : HTTPRequest {
 
         debug ("Following HTTP headers appended to response:");
         this.msg.response_headers.foreach ((name, value) => {
-            debug ("%s : %s", name, value);
+            debug ("    %s : %s", name, value);
         });
 
         if (this.msg.method == "HEAD") {
