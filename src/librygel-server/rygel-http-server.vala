@@ -58,6 +58,8 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
         this.replacements = new HashTable <string, string> (str_hash, str_equal);
         this.replacements.insert ("@SERVICE_ADDRESS@",
                                   this.context.host_ip);
+        this.replacements.insert ("@ADDRESS@",
+                                  this.context.host_ip);
         this.replacements.insert ("@SERVICE_INTERFACE@",
                                   this.context.interface);
         this.replacements.insert ("@SERVICE_PORT@",
