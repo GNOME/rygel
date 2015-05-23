@@ -414,7 +414,9 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
         didl_container.id = this.id;
         didl_container.title = this.title;
-        didl_container.child_count = this.child_count;
+        if (this.child_count > -1) {
+            didl_container.child_count = this.child_count;
+        }
         didl_container.upnp_class = this.upnp_class;
         didl_container.searchable = this is SearchableContainer;
         if (this.upnp_class == STORAGE_FOLDER) {
