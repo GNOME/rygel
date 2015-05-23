@@ -123,10 +123,22 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         // For MediaFileItems, the primary URI refers directly to the content
         var source_uri = item.get_primary_uri ();
 
-        debug ("get_resources_for_item(%s)", source_uri);
+        var parts = source_uri.split ("://", 2);
+        if (parts == null || parts[0] == null) {
+            warning (_("Invalid uri without prefix: %s"), source_uri);
 
-        if (!source_uri.has_prefix ("file://")) {
-            warning ("Can't process non-file uri " + source_uri);
+            return null;
+        }
+
+
+        debug ("get_resources_for_item(%s), protocol: %s",
+               source_uri,
+               parts[0]);
+
+        if (!Gst.URI.protocol_is_supported (URIType.SRC, parts[0])) {
+            warning (_("Can't process uri %s with protocol %s"),
+                     source_uri,
+                     parts[0]);
 
             return null;
         }
