@@ -48,7 +48,11 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                       string     service_name,
                       string     path,
                       Container? parent = null) throws IOError {
-        base (id, parent, title, (int) child_count.clamp (0, int.MAX));
+        var tmp = (int) child_count.clamp (0, int.MAX);
+        if (tmp == int.MAX) {
+            tmp = -1;
+        }
+        base (id, parent, title, tmp);
 
         this.service_name = service_name;
         this.item_factory = new ItemFactory ();
@@ -331,7 +335,10 @@ public class Rygel.External.Container : Rygel.MediaContainer,
                                          DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
             var props = yield props_iface.get_all (MediaContainerProxy.IFACE);
             var child_count = (uint) props.lookup ("ChildCount");
-            this.child_count = (int) child_count;
+            // Check if peer knows its child count
+            if (child_count < int.MAX) {
+                this.child_count = (int) child_count;
+            }
             props = yield props_iface.get_all (MediaObjectProxy.IFACE);
 
             this.title = get_mandatory_string_value (props,
