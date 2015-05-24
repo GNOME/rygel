@@ -181,7 +181,12 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         }
 
         // Put the primary resource as most-preferred (front of the list)
-        resources.add (primary_res);
+        if (primary_res.uri != null &&
+            primary_res.uri.has_prefix ("http:")) {
+            resources.insert (0, primary_res);
+        } else {
+            resources.add (primary_res);
+        }
 
         return resources;
     }
