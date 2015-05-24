@@ -162,7 +162,8 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
 
         var list = new GLib.List<GstTranscoder> ();
         foreach (var transcoder in transcoders) {
-            if (transcoder.get_distance (item) != uint.MAX) {
+            if (transcoder.get_distance (item) != uint.MAX &&
+                transcoder.transcoding_necessary (item)) {
                 list.append (transcoder);
             }
         }
