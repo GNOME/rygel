@@ -71,11 +71,11 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     // Command-line options
     const OptionEntry[] OPTIONS = {
         { "version", 0, 0, OptionArg.NONE, ref version,
-          "Display version number", null },
+          N_("Display version number"), null },
         { "network-interface", 'n', 0, OptionArg.STRING_ARRAY, ref ifaces,
           N_("Network Interfaces"), "INTERFACE" },
         { "port", 'p', 0, OptionArg.INT, ref port,
-          "Port", "PORT" },
+          N_("Port"), "PORT" },
         { "disable-transcoding", 't', 0, OptionArg.NONE, ref no_transcoding,
           N_("Disable transcoding"), null },
         { "disallow-upload", 'U', 0, OptionArg.NONE,
@@ -100,9 +100,9 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
         { "config", 'c', 0, OptionArg.FILENAME, ref config_file,
           N_ ("Use configuration file instead of user configuration"), "FILE" },
         { "shutdown", 's', 0, OptionArg.NONE, ref shutdown,
-          N_ ("Shutdown remote Rygel reference"), null },
+          N_ ("Shut down remote Rygel reference"), null },
         { "replace", 'r', 0, OptionArg.NONE, ref replace,
-          N_ ("Replace currently running instance of rygel"), null },
+          N_ ("Replace currently running instance of Rygel"), null },
         { null }
     };
 
@@ -147,7 +147,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
                                          DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
                 rygel.shutdown ();
             } catch (Error error) {
-                warning (_("Failed to shut-down other rygel instance: %s"),
+                warning (_("Failed to shut down other Rygel instance: %s"),
                          error.message);
 
             }

@@ -64,7 +64,7 @@ internal class Rygel.SimpleMediaEngine : MediaEngine {
         // For MediaFileItems, uri 0 is the file URI referring directly to the content
         var source_uri = item.get_primary_uri ();
         if (!source_uri.has_prefix ("file://")) {
-            warning (_("Can't process non-file uri %s"), source_uri);
+            warning (_("Can't process non-file URI %s"), source_uri);
         }
 
         debug ("get_resources_for_item (%s)", source_uri);

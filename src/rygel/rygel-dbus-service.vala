@@ -78,7 +78,7 @@ internal class Rygel.DBusService : Object, DBusInterface {
             return;
         }
 
-        message (_("Another instance of rygel is already running. Not starting."));
+        message (_("Another instance of Rygel is already running. Not starting."));
         this.main.exit (-15);
     }
 }

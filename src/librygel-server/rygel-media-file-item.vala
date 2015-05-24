@@ -173,7 +173,7 @@ public abstract class Rygel.MediaFileItem : MediaItem {
         try {
             res.protocol = this.get_protocol_for_uri (res.uri);
         } catch (Error e) {
-            warning (_("Could not determine protocol for uri %s"),
+            warning (_("Could not determine protocol for URI %s"),
                      res.uri);
         }
 

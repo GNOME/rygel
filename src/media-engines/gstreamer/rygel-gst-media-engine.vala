@@ -125,7 +125,7 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
 
         var parts = source_uri.split ("://", 2);
         if (parts == null || parts[0] == null) {
-            warning (_("Invalid uri without prefix: %s"), source_uri);
+            warning (_("Invalid URI without prefix: %s"), source_uri);
 
             return null;
         }
@@ -136,7 +136,7 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
                parts[0]);
 
         if (!Gst.URI.protocol_is_supported (URIType.SRC, parts[0])) {
-            warning (_("Can't process uri %s with protocol %s"),
+            warning (_("Can't process URI %s with protocol %s"),
                      source_uri,
                      parts[0]);
 
