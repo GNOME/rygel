@@ -12,4 +12,4 @@ Version: @VERSION@
 Libs: -L${libdir} -lrygel-core-2.6
 Cflags: -I${includedir}/rygel-2.6
 Requires: gupnp-av-1.0 gee-0.8
-Requires.Private: uuid gmodule-2.0
+Requires.Private: gmodule-2.0
