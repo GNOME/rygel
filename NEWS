@@ -1,3 +1,149 @@
+0.27.1
+======
+
+A new unstable release of Rygel!
+
+- Coding style fixes.
+- Link plug-ins to only export the necessary symbols.
+- Use gupnp_get_uuid () instead of libuuid directly.
+- String updates.
+
+Core:
+ - Make it possible to change the device's serial number.
+
+Server:
+ - Fix output of to_string() method for HTTPByteSeekResponse.
+ - Make MP3 the preffered audio resource for LG devices.
+ - Fix mime-type rewriting.
+ - Do not add child count to DIDL-Lite if it's < 0.
+ - Do not add 1--1/* range response headers.
+ - Fix replacing of @ADDRESS@ variable in URIs.
+
+Renderer:
+ - Fix TransportActions for images.
+ - Fix slide-show feature handling.
+
+GStreamer renderer:
+ - Prevent a critical message.
+ - Remove deprecated API.
+ - Make it possible to override the User-Agent header.
+ - Remove obsolete helper code from GStreamer 0.10.
+
+RUIH:
+ - Check mandatory arguments.
+
+External Plug-in:
+ - Actually add resources to items.
+ - Use -1 as "unknown child count" instead of int.MAX.
+
+GStreamer media engine:
+ - Handle non-file uris.
+ - Do not add transcoder if the original resource is the same profile.
+ - Move URIs that are already HTTP to the top of the list.
+
+Simple media engine:
+ - Use a thread pool if available.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=731467
+ - https://bugzilla.gnome.org/show_bug.cgi?id=746679
+ - https://bugzilla.gnome.org/show_bug.cgi?id=748410
+ - https://bugzilla.gnome.org/show_bug.cgi?id=748628
+ - https://bugzilla.gnome.org/show_bug.cgi?id=748769
+ - https://bugzilla.gnome.org/show_bug.cgi?id=749771
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Marek Černocký <marek@manet.cz>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Richard Röjfors <richard.rojfors@gmail.com>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Jussi Kukkonen <jku@goto.fi>
+ - Tom Tryfonidis <tomtryf@gmail.com>
+ - Parthiban Balasubramanian <parthibanbalu1@gmail.com>
+ - Jordi Mas <jmas@softcatala.org>
+ - Inaki Larranaga Murgoitio <dooteo@zundan.com>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Aron Rosenberg <aronrosenberg@gmail.com>
+ - Alexandre Franke <alexandre.franke@gmail.com>
+
+Added/updated translations
+ - ca, courtesy of David
+ - cs, courtesy of Marek Černocký
+ - el, courtesy of Tom Tryfonidis
+ - eu, courtesy of Iñaki Larrañaga Murgoitio
+ - fr, courtesy of Alain Lojewski
+ - ko, courtesy of Changwoo Ryu
+ - pl, courtesy of Piotr Drąg
+ - sk, courtesy of Dušan Kazik
+ - sl, courtesy of Matej Urbančič
+
+Changes in dependencies:
+ - Drop direct dependency on e2fs uuid library.
+ - GUPnP dependency bumped to >= 0.20.14.
+
+0.26.1
+======
+
+A new maintenance release of Rygel!
+
+- Fix underlinking of RUIH library.
+
+Server:
+ - Prevent a crticial warning.
+ - Make Kodi a variant of XBMC in hacks,
+ - Prevent a crash on missing thumbnails.
+ - Fix npt= header parsing.
+
+Renderer:
+ - Fix wrong double escaping.
+
+GStreamer media engine:
+ - Fix time-based seeking.
+ - Fix resource duration handling for transcoded resources.
+
+Examples:
+ - Fix the C server example.
+
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=748410
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Tom Tryfonidis <tomtryf@gmail.com>
+ - Stas Solovey <whats_up@tut.by>
+ - Richard Röjfors <richard.rojfors@gmail.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Milo Casagrande <milo@ubuntu.com>
+ - Marek Černocký <marek@manet.cz>
+ - Inaki Larranaga Murgoitio <dooteo@zundan.com>
+ - Gábor Kelemen <kelemeng@openscope.org>
+ - Felipe Braga <fbobraga@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Alexandre Franke <alexandre.franke@gmail.com>
+
+Added/updated translations:
+ - cs, courtesy of Marek Černocký
+ - el, courtesy of Tom Tryfonidis
+ - es, courtesy of Daniel Mustieles
+ - eu, courtesy of Iñaki Larrañaga Murgoitio
+ - fr, courtesy of Alain Lojewski
+ - hu, courtesy of Gabor Kelemen
+ - it, courtesy of Milo Casagrande
+ - ko, courtesy of Changwoo Ryu
+ - lt, courtesy of Aurimas Černius
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Felipe Braga
+ - ru, courtesy of Stas Solovey
+ - sk, courtesy of Dušan Kazik
+ - sl, courtesy of Matej Urbančič
+
 0.26.0
 ======
 
