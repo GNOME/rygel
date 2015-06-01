@@ -2,9 +2,11 @@
  * Copyright (C) 2008 Zeeshan Ali <zeenix@gmail.com>.
  * Copyright (C) 2008 Nokia Corporation.
  * Copyright (C) 2012,2013 Intel Corporation.
+ * Copyright (C) 2015 Jens Georg
  *
  * Author: Zeeshan Ali <zeenix@gmail.com>
  *         Jens Georg <jensg@openismus.com>
+ *         Jens Georg <mail@jensge.org>
  *
  * This file is part of Rygel.
  *
@@ -137,12 +139,12 @@ namespace Rygel.MediaExport.ItemFactory {
 
         if (audio_streams == null && video_streams.data.is_image()) {
             item = new PhotoItem (id, parent, "");
-            return fill_photo_item (item as PhotoItem,
-                                    file,
-                                    info,
-                                    profile,
-                                    video_streams.data,
-                                    file_info);
+            return fill_visual_item (item as PhotoItem,
+                                     file,
+                                     info,
+                                     profile,
+                                     video_streams.data,
+                                     file_info);
         } else if (video_streams != null) {
             item = new VideoItem (id, parent, "");
 
@@ -189,7 +191,7 @@ namespace Rygel.MediaExport.ItemFactory {
           tags.get_uint (Tags.BITRATE, out tmp);
           item.bitrate = (int) tmp / 8;
         }
-        
+
         item.channels = (int) audio_info.get_channels ();
         item.sample_freq = (int) audio_info.get_sample_rate ();
     }
@@ -203,23 +205,22 @@ namespace Rygel.MediaExport.ItemFactory {
                                                   DiscovererAudioInfo? audio_info,
                                                   FileInfo             file_info) {
         fill_audio_item (item as AudioItem, info, audio_info);
-        fill_media_item (item, file, info, profile, file_info);
-
-        item.width = (int) video_info.get_width ();
-        item.height = (int) video_info.get_height ();
-
-        var color_depth = (int) video_info.get_depth ();
-        item.color_depth = (color_depth == 0) ? -1 : color_depth;
+        fill_visual_item (item as VisualItem,
+                          file,
+                          info,
+                          profile,
+                          video_info,
+                          file_info);
 
         return item;
     }
 
-    private static MediaFileItem fill_photo_item (PhotoItem           item,
-                                                  File                file,
-                                                  DiscovererInfo      info,
-                                                  GUPnPDLNA.Profile?  profile,
-                                                  DiscovererVideoInfo video_info,
-                                                  FileInfo            file_info) {
+    private static MediaFileItem fill_visual_item (VisualItem          item,
+                                                   File                file,
+                                                   DiscovererInfo      info,
+                                                   GUPnPDLNA.Profile?  profile,
+                                                   DiscovererVideoInfo video_info,
+                                                   FileInfo            file_info) {
         fill_media_item (item, file, info, profile, file_info);
 
         item.width = (int) video_info.get_width ();
