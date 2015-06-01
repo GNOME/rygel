@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-05-16 23:21+0000\n"
-"PO-Revision-Date: 2015-05-17 09:41+0200\n"
+"POT-Creation-Date: 2015-06-01 11:23+0000\n"
+"PO-Revision-Date: 2015-06-01 15:16+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -570,8 +570,8 @@ msgstr "Odstranění objektu v %s není dovoleno"
 
 #. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:74
-msgid "Object id missing"
-msgstr "Schází identifikátor objektu"
+msgid "Object ID missing"
+msgstr "Schází ID objektu"
 
 #: ../src/librygel-server/rygel-item-updater.vala:81
 #, c-format
@@ -660,7 +660,7 @@ msgstr "Rychlost není podporována"
 msgid "Failed to generate playlist"
 msgstr "Selhalo vygenerování seznamu k přehrání"
 
-#: ../src/librygel-server/rygel-media-container.vala:470
+#: ../src/librygel-server/rygel-media-container.vala:472
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
 msgstr "Neznámý prostředek MediaContainer: %s"
@@ -675,7 +675,7 @@ msgstr "Nebyla zavolána funkce MegiaEngine.init a proto nelze pokračovat."
 
 #: ../src/librygel-server/rygel-media-file-item.vala:176
 #, c-format
-msgid "Could not determine protocol for uri %s"
+msgid "Could not determine protocol for URI %s"
 msgstr "Nelze určit protokol pro adresu URI %s"
 
 #: ../src/librygel-server/rygel-media-object.vala:283
@@ -902,7 +902,17 @@ msgstr "Selhalo přeskočení na pozici %lld:%lld"
 msgid "Failed to seek"
 msgstr "Selhalo přeskočení"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:212
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:128
+#, c-format
+msgid "Invalid URI without prefix: %s"
+msgstr "Neplatná adresa URI bez předpony: %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:139
+#, c-format
+msgid "Can't process URI %s with protocol %s"
+msgstr "Nelze zpracovat adresu URI %s s protokolem %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:238
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Selhalo vytvoření datového zdroje GStreamer pro %s: %s"
@@ -931,7 +941,7 @@ msgstr "Zpracovat je možné jen MidiaObjects ze souboru (MediaFileItems)"
 
 #: ../src/media-engines/simple/rygel-simple-media-engine.vala:67
 #, c-format
-msgid "Can't process non-file uri %s"
+msgid "Can't process non-file URI %s"
 msgstr "Nelze zpracovat adresu URI %s neukazující na soubor"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
@@ -1063,7 +1073,7 @@ msgstr "Nebudou sledovány změny souborů"
 #. upload case.
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
-msgid "Failed to get file info for %s: %s"
+msgid "Failed to get file information for %s: %s"
 msgstr "Selhalo získání informací pro %s: %s"
 
 #. Titles and definitions of some virtual folders,
@@ -1211,9 +1221,17 @@ msgstr "Chyba při získávání počtu položek v kategorii „%s“: %s"
 msgid "Titles"
 msgstr "Názvy"
 
+#: ../src/rygel/rygel-cmdline-config.vala:74
+msgid "Display version number"
+msgstr "Zobrazit číslo verze"
+
 #: ../src/rygel/rygel-cmdline-config.vala:76
 msgid "Network Interfaces"
 msgstr "Síťová rozhraní"
+
+#: ../src/rygel/rygel-cmdline-config.vala:78
+msgid "Port"
+msgstr "Port"
 
 #: ../src/rygel/rygel-cmdline-config.vala:80
 msgid "Disable transcoding"
@@ -1260,12 +1278,12 @@ msgid "Use configuration file instead of user configuration"
 msgstr "Použít soubor s nastavením namísto uživatelského nastavení"
 
 #: ../src/rygel/rygel-cmdline-config.vala:103
-msgid "Shutdown remote Rygel reference"
+msgid "Shut down remote Rygel reference"
 msgstr "Ukončit vzdálenou instanci Rygel"
 
 #: ../src/rygel/rygel-cmdline-config.vala:105
-msgid "Replace currently running instance of rygel"
-msgstr "Nahradit právě běžící instanci aplikace rygel"
+msgid "Replace currently running instance of Rygel"
+msgstr "Nahradit právě běžící instanci Rygel"
 
 #: ../src/rygel/rygel-cmdline-config.vala:142
 msgid "Shutting down remote Rygel instance\n"
@@ -1273,12 +1291,12 @@ msgstr "Ukončuje se vzdálená instance Rygel\n"
 
 #: ../src/rygel/rygel-cmdline-config.vala:150
 #, c-format
-msgid "Failed to shut-down other rygel instance: %s"
+msgid "Failed to shut down other Rygel instance: %s"
 msgstr "Selhalo zastavení jiné instance Rygel: %s"
 
 #: ../src/rygel/rygel-dbus-service.vala:81
-msgid "Another instance of rygel is already running. Not starting."
-msgstr "Jiná instance aplikace rygel právě běží. Nebude spuštěno."
+msgid "Another instance of Rygel is already running. Not starting."
+msgstr "Jiná instance Rygel již běží. Nebude spuštěno."
 
 #: ../src/rygel/rygel-main.vala:83
 msgid "Rygel is running in streaming-only mode."
@@ -1291,8 +1309,8 @@ msgstr "Rygel v%s se spouští…"
 
 #: ../src/rygel/rygel-main.vala:115
 #, c-format
-msgid "No plugins found in %d second; giving up..."
-msgid_plural "No plugins found in %d seconds; giving up..."
+msgid "No plugins found in %d second; giving up…"
+msgid_plural "No plugins found in %d seconds; giving up…"
 msgstr[0] "Za %d sekundu nebyl nalezen žádný zásuvný modul; zanechává se toho…"
 msgstr[1] "Za %d sekundy nebyl nalezen žádný zásuvný modul; zanechává se toho…"
 msgstr[2] "Za %d sekund nebyl nalezen žádný zásuvný modul; zanechává se toho…"
