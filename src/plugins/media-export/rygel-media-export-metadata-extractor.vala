@@ -81,7 +81,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                 return;
             }
             this.file_hash.set (uri, file);
-            this.discoverer.discovered.connect (on_done);
+            this.discoverer.discovered.connect (this.on_done);
             this.discoverer.start ();
             this.discoverer.discover_uri_async (uri);
             this.guesser = new GUPnPDLNA.ProfileGuesser (true, true);
@@ -150,6 +150,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
             // signal error to parent
             this.error (file, error);
+
             return;
         }
 

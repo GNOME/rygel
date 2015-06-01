@@ -57,8 +57,7 @@ namespace Rygel.MediaExport.ItemFactory {
 
         item.mime_type = mime;
         item.size = (int64) info.get_size ();
-        item.modified = info.get_attribute_uint64
-                                        (FileAttribute.TIME_MODIFIED);
+        item.modified = info.get_attribute_uint64 (FileAttribute.TIME_MODIFIED);
         item.add_uri (file.get_uri ());
 
         return item;
@@ -137,7 +136,7 @@ namespace Rygel.MediaExport.ItemFactory {
             return null;
         }
 
-        if (audio_streams == null && video_streams.data.is_image()) {
+        if (audio_streams == null && video_streams.data.is_image ()) {
             item = new PhotoItem (id, parent, "");
             return fill_visual_item (item as PhotoItem,
                                      file,
@@ -182,14 +181,15 @@ namespace Rygel.MediaExport.ItemFactory {
             item.duration = -1;
         }
 
-        if (audio_info == null)
+        if (audio_info == null) {
             return;
+        }
   
         var tags = audio_info.get_tags ();
         if (tags != null) {
-          uint tmp;
-          tags.get_uint (Tags.BITRATE, out tmp);
-          item.bitrate = (int) tmp / 8;
+            uint tmp;
+            tags.get_uint (Tags.BITRATE, out tmp);
+            item.bitrate = (int) tmp / 8;
         }
 
         item.channels = (int) audio_info.get_channels ();
@@ -244,12 +244,12 @@ namespace Rygel.MediaExport.ItemFactory {
         if (audio_info == null) {
             return item;
         }
-        
+
         var tags = audio_info.get_tags ();
         if (tags == null) {
             return item;
         }
-        
+
         string artist;
         tags.get_string (Tags.ARTIST, out artist);
         item.artist = artist;
