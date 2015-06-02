@@ -142,11 +142,9 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         } catch (Error error) {
             var uri = file.get_uri ();
 
-            warning (_("Failed to query content type for '%s'"),
-                     uri);
-            debug ("Failed to extract basic metadata from %s: %s",
-                   uri,
-                   error.message);
+            warning (_("Failed to extract basic metadata from %s: %s"),
+                     uri,
+                     error.message);
 
             // signal error to parent
             this.error (file, error);
