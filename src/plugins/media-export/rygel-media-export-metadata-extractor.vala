@@ -29,133 +29,261 @@ using Gee;
 using GUPnP;
 using GUPnPDLNA;
 
+public errordomain MetadataExtractorError {
+    GENERAL,
+    BLACKLIST
+}
+
 /**
  * Metadata extractor based on Gstreamer. Just set the URI of the media on the
  * uri property, it will extact the metadata for you and emit signal
  * metadata_available for each key/value pair extracted.
  */
 public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
+    private static VariantType SERIALIZED_DATA_TYPE;
+
     /* Signals */
-    public signal void extraction_done (File               file,
-                                        DiscovererInfo?    info,
-                                        GUPnPDLNA.Profile? profile,
-                                        FileInfo           file_info);
+    public signal void extraction_done (File file, Variant info);
 
     /**
      * Signalize that an error occured during metadata extraction
      */
     public signal void error (File file, Error err);
 
-    private Discoverer discoverer;
-    private ProfileGuesser guesser;
-
-    /**
-     * We export a GLib.File-based API but GstDiscoverer works with URIs, so
-     * we store uri->GLib.File mappings in this hashmap, so that we can get
-     * the GLib.File back from the URI in on_discovered().
-     */
-    private HashMap<string, File> file_hash;
-    private uint timeout = 10; /* seconds */
-
+    /// Cache for the config value
     private bool extract_metadata;
 
+    /// Stream for feeding input to the child process.
+    private UnixOutputStream input_stream;
+
+    /// Stream for receiving normal input from the child
+    private DataInputStream output_stream;
+
+    /// Stream for receiving exception events from the child
+    private DataInputStream error_stream;
+
+    /// Cancellable for cancelling child I/O
+    private Cancellable child_io_cancellable;
+
+    /// Launcher for subprocesses
+    private SubprocessLauncher launcher;
+
+    /// URI that caused a fatal error in the extraction process
+    private string error_uri = null;
+
+    [CCode (cheader_filename = "glib-unix.h", cname = "g_unix_open_pipe")]
+    extern static bool open_pipe ([CCode (array_length = false)]int[] fds, int flags) throws GLib.Error;
+
+    static construct {
+        SERIALIZED_DATA_TYPE = new VariantType ("(smvmvmvmvmvmv)");
+    }
+
     public MetadataExtractor () {
-        this.file_hash = new HashMap<string, File> ();
+        this.child_io_cancellable = new Cancellable ();
 
         var config = MetaConfig.get_default ();
         config.setting_changed.connect (this.on_config_changed);
         this.on_config_changed (config, Plugin.NAME, "extract-metadata");
     }
 
-    public void extract (File file, string content_type) {
-        if (this.extract_metadata && !content_type.has_prefix ("text/")) {
-            string uri = file.get_uri ();
-            try {
-                var gst_timeout = (ClockTime) (this.timeout * Gst.SECOND);
+    [CCode (cname="MX_EXTRACT_PATH")]
+    private extern const string MX_EXTRACT_PATH;
 
-                this.discoverer = new Discoverer (gst_timeout);
-            } catch (Error error) {
-                debug ("Failed to create a discoverer. Doing basic extraction.");
-                this.extract_basic_information (file, null, null);
+    private const string[] MX_EXTRACT_ARGV = {
+        MX_EXTRACT_PATH,
+        "--input-fd=3",
+        "--output-fd=4",
+        "--error-fd=5",
+        null
+    };
 
-                return;
-            }
-            this.file_hash.set (uri, file);
-            this.discoverer.discovered.connect (this.on_done);
-            this.discoverer.start ();
-            this.discoverer.discover_uri_async (uri);
-            this.guesser = new GUPnPDLNA.ProfileGuesser (true, true);
-        } else {
-            this.extract_basic_information (file, null, null);
-        }
-    }
-
-    private void on_done (DiscovererInfo info, GLib.Error err) {
-        this.discoverer = null;
-        var file = this.file_hash.get (info.get_uri ());
-        if (file == null) {
-            warning ("File %s already handled, ignoring event",
-                     info.get_uri ());
-
-            return;
-        }
-
-        this.file_hash.unset (info.get_uri ());
-
-        if (info.get_result () == DiscovererResult.ERROR ||
-            info.get_result () == DiscovererResult.URI_INVALID) {
-            this.error (file, err);
-
-            return;
-        } else if (info.get_result () == DiscovererResult.TIMEOUT ||
-                   info.get_result () == DiscovererResult.BUSY ||
-                   info.get_result () == DiscovererResult.MISSING_PLUGINS) {
-            if (info.get_result () == DiscovererResult.MISSING_PLUGINS) {
-                debug ("Plugins are missing for extraction of file %s",
-                       file.get_uri ());
-            } else {
-                debug ("Extraction timed out on %s", file.get_uri ());
-            }
-            this.extract_basic_information (file, null, null);
-
-            return;
-        }
-
-        var dlna_info = GUPnPDLNAGst.utils_information_from_discoverer_info (info);
-        var dlna = this.guesser.guess_profile_from_info (dlna_info);
-        this.extract_basic_information (file, info, dlna);
-    }
-
-    private void extract_basic_information (File               file,
-                                            DiscovererInfo?    info,
-                                            GUPnPDLNA.Profile? dlna) {
-        FileInfo file_info;
-
+    public void stop () {
+        this.child_io_cancellable.cancel ();
         try {
-            file_info = file.query_info (FileAttribute.STANDARD_CONTENT_TYPE
-                                         + "," +
-                                         FileAttribute.STANDARD_SIZE + "," +
-                                         FileAttribute.TIME_MODIFIED + "," +
-                                         FileAttribute.STANDARD_DISPLAY_NAME,
-                                         FileQueryInfoFlags.NONE,
-                                         null);
+            var s = "QUIT\n";
+            this.input_stream.write_all (s.data, null, null);
+            this.input_stream.flush ();
         } catch (Error error) {
-            var uri = file.get_uri ();
+            warning (_("Failed to gracefully stop the process. Using KILL"));
+        }
+    }
 
-            warning (_("Failed to extract basic metadata from %s: %s"),
-                     uri,
-                     error.message);
+    public async void run () {
+        // We use dedicated fds for all of the communication, otherwise the
+        // commands/responses intermix with the debug output.
+        //
+        // This is still wip, we could also use a domain socket or a private
+        // DBus
 
-            // signal error to parent
-            this.error (file, error);
+        int[] pipe_in = { 0, 0 };
+        int[] pipe_out = { 0, 0 };
+        int[] pipe_err = { 0, 0 };
+
+        bool restart = false;
+        do {
+            restart = false;
+            try {
+                open_pipe (pipe_in, Posix.FD_CLOEXEC);
+                open_pipe (pipe_out, Posix.FD_CLOEXEC);
+                open_pipe (pipe_err, Posix.FD_CLOEXEC);
+
+                this.launcher = new SubprocessLauncher (SubprocessFlags.NONE);
+                this.launcher.take_fd (pipe_in[0], 3);
+                this.launcher.take_fd (pipe_out[1], 4);
+                this.launcher.take_fd (pipe_err[1], 5);
+
+                this.input_stream = new UnixOutputStream (pipe_in[1], true);
+                this.output_stream = new DataInputStream (
+                                                new UnixInputStream (pipe_out[0],
+                                                                     true));
+                this.error_stream = new DataInputStream (
+                                                new UnixInputStream (pipe_err[0],
+                                                                     true));
+
+                this.child_io_cancellable = new Cancellable ();
+
+                this.output_stream.read_line_async.begin (Priority.DEFAULT,
+                                                          this.child_io_cancellable,
+                                                          this.on_input);
+                this.error_uri = null;
+                this.error_stream.read_line_async.begin (Priority.DEFAULT,
+                                                         this.child_io_cancellable,
+                                                         this.on_child_error);
+
+                var subprocess = launcher.spawnv (MX_EXTRACT_ARGV);
+                try {
+                    yield subprocess.wait_check_async ();
+                    // Process exitted properly -> That shouldn't really
+                    // happen
+                } catch (Error error) {
+                    warning (_("Process check_async failed: %s"),
+                            error.message);
+
+                    // TODO: Handle error/crash/signal etc.
+                    restart = true;
+                    this.child_io_cancellable.cancel ();
+                    var msg = _("Process died while handling URI %s");
+                    this.error (File.new_for_uri (this.error_uri),
+                                new MetadataExtractorError.BLACKLIST (msg,
+                                                                      this.error_uri));
+                }
+            } catch (Error error) {
+                warning (_("Setting up extraction suprocess failed: %s"),
+                         error.message);
+            }
+        } while (restart);
+
+        debug ("Metadata extractor finished.");
+    }
+
+    private void on_child_error (GLib.Object? object, AsyncResult result) {
+        var stream = object as DataInputStream;
+        if (stream != null) {
+            try {
+                this.error_uri = stream.read_line_async.end (result);
+                warning (_("Child failed fatally. Last uri was %s"),
+                         this.error_uri);
+            } catch (Error error) {
+                if (error is IOError.CANCELLED) {
+                    debug ("Reading was cancelled...");
+                } else {
+                    warning (_("Reading from child's error stream failed: %s"),
+                             error.message);
+                }
+            }
+        }
+    }
+
+    private void on_input (GLib.Object? object, AsyncResult result) {
+        try {
+            var stream = object as DataInputStream;
+            var str = stream.read_line_async.end (result);
+
+            // XXX: While and Goto language are equivalent. Yuck.
+            do {
+                if (str == null) {
+                    break;
+                }
+
+                if (!str.has_prefix ("RESULT|") &&
+                    !str.has_prefix ("ERROR|")) {
+                    warning (_("Received invalid string from child: %s"), str);
+
+                    break;
+                }
+
+                var parts = str.split ("|");
+                if (parts.length != 4) {
+                    warning (_("Received ill-formed response string %s from child…"),
+                             str);
+
+                    break;
+                }
+
+                if (parts[0] == "ERROR") {
+                    this.error (File.new_for_uri (parts[1]),
+                                new MetadataExtractorError.GENERAL (parts[3]));
+
+                    break;
+                }
+
+                var uri = parts[1];
+                var length = uint64.parse (parts[2]);
+
+                debug ("Found serialized data for uri %s", uri);
+                var buf = new uint8[length];
+                size_t bytes;
+                this.output_stream.read_all (buf,
+                                             out bytes,
+                                             this.child_io_cancellable);
+                debug ("Expected %" + size_t.FORMAT + " bytes, got %" +
+                       size_t.FORMAT,
+                       length,
+                       bytes);
+
+                var v = Variant.new_from_data<void> (SERIALIZED_DATA_TYPE,
+                                                     (uchar[]) buf,
+                                                     true);
+                this.extraction_done (File.new_for_uri (uri), v);
+            } while (false);
+
+            this.output_stream.read_line_async.begin (Priority.DEFAULT,
+                                                      this.child_io_cancellable,
+                                                      this.on_input);
+        } catch (Error error) {
+            if (error is IOError.CANCELLED) {
+                debug ("Read was cancelled, process probably died…");
+                // No error signalling, this was done in the part that called
+                // cancel
+            } else {
+                warning (_("Read from child failed: %s"), error.message);
+                this.error (File.new_for_uri (this.error_uri),
+                            new MetadataExtractorError.GENERAL ("Failed"));
+
+            }
+        }
+    }
+
+    public void extract (File file, string content_type) {
+        if (this.child_io_cancellable.is_cancelled ()) {
+            debug ("Child apparently already died, scheduling command for later");
+            Idle.add (() => {
+                this.extract (file, content_type);
+
+                return false;
+            });
 
             return;
         }
 
-        this.extraction_done (file,
-                              info,
-                              dlna,
-                              file_info);
+        var s = "EXTRACT %s\n".printf (file.get_uri ());
+        try {
+            this.input_stream.write_all (s.data, null, this.child_io_cancellable);
+            this.input_stream.flush ();
+            debug ("Sent command to extractor process: %s", s);
+        } catch (Error error) {
+            warning (_("Failed to send command to child: %s"), error.message);
+        }
     }
 
     private void on_config_changed (Configuration config,

@@ -63,12 +63,16 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         this.parent = parent;
         this.cache = MediaCache.get_default ();
 
-        this.extractor.extraction_done.connect (on_extracted_cb);
-        this.extractor.error.connect (on_extractor_error_cb);
+        this.extractor.extraction_done.connect (this.on_extracted_cb);
+        this.extractor.error.connect (this.on_extractor_error_cb);
 
         this.files = new LinkedList<FileQueueEntry> ();
         this.containers = new GLib.Queue<MediaContainer> ();
         this.monitor = monitor;
+    }
+
+    ~HarvestingTask () {
+        this.extractor.stop ();
     }
 
     public void cancel () {
@@ -76,6 +80,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         // cancelled like file monitoring, other harvesters etc.
         this.cancellable = new Cancellable ();
         this.cancellable.cancel ();
+        this.extractor.stop ();
     }
 
     /**
@@ -95,6 +100,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
      */
     public async void run () {
         try {
+            this.extractor.run.begin ();
+
             var info = yield this.origin.query_info_async
                                         (HARVESTER_ATTRIBUTES,
                                          FileQueryInfoFlags.NONE,
@@ -110,6 +117,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                 this.completed ();
             }
         } catch (Error error) {
+            this.extractor.stop ();
             if (!(error is IOError.CANCELLED)) {
                 warning (_("Failed to harvest file %s: %s"),
                          this.origin.get_uri (),
@@ -283,25 +291,18 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
     }
 
     private void on_extracted_cb (File               file,
-                                  DiscovererInfo?    discoverer_info,
-                                  GUPnPDLNA.Profile? dlna_profile,
-                                  FileInfo           file_info) {
+                                  Variant            info) {
+        if (!file.equal (this.files.peek ().file)) {
+            debug ("Not for us, ignoring");
+        }
+
         if (this.cancellable.is_cancelled ()) {
             this.completed ();
         }
 
-        MediaFileItem item;
-        if (discoverer_info == null) {
-            item = ItemFactory.create_simple (this.containers.peek_head (),
-                                              file,
-                                              file_info);
-        } else {
-            item = ItemFactory.create_from_info (this.containers.peek_head (),
-                                                 file,
-                                                 discoverer_info,
-                                                 dlna_profile,
-                                                 file_info);
-        }
+        var item = ItemFactory.create_from_variant (this.containers.peek_head (),
+                                                    file,
+                                                    info);
 
         if (item != null) {
             item.parent_ref = this.containers.peek_head ();
@@ -324,9 +325,11 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         // failed; there's not much to do here, just print the information and
         // go to the next file
 
-        debug ("Skipping %s; extraction completely failed: %s",
+        warning ("Skipping %s; extraction completely failed: %s",
                file.get_uri (),
                error.message);
+
+        // TODO: Add to blacklist
 
         this.files.poll ();
         this.do_update ();

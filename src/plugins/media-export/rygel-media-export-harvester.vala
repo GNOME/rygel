@@ -74,6 +74,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                info.get_content_type () == "application/xml" ||
                info.get_content_type () == "text/xml" ||
                info.get_content_type () == "text/plain";
+        // Todo: Check blacklist
     }
 
     /**

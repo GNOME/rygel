@@ -182,6 +182,7 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
           [
             PKG_CHECK_MODULES([RYGEL_PLUGIN_MEDIA_EXPORT_DEPS],
                               [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED
+                               gio-unix-2.0 >= $GIO_REQUIRED
                                gupnp-dlna-2.0 >= $GUPNP_DLNA_REQUIRED
                                gupnp-dlna-gst-2.0 >= $GUPNP_DLNA_REQUIRED
                                gstreamer-app-1.0 >= $GSTREAMER_APP_REQUIRED
