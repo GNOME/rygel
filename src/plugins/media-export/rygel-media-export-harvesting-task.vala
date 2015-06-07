@@ -283,23 +283,23 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
     }
 
     private void on_extracted_cb (File               file,
-                                  DiscovererInfo?    dlna,
-                                  GUPnPDLNA.Profile? profile,
+                                  DiscovererInfo?    discoverer_info,
+                                  GUPnPDLNA.Profile? dlna_profile,
                                   FileInfo           file_info) {
         if (this.cancellable.is_cancelled ()) {
             this.completed ();
         }
 
         MediaFileItem item;
-        if (dlna == null) {
+        if (discoverer_info == null) {
             item = ItemFactory.create_simple (this.containers.peek_head (),
                                               file,
                                               file_info);
         } else {
             item = ItemFactory.create_from_info (this.containers.peek_head (),
                                                  file,
-                                                 dlna,
-                                                 profile,
+                                                 discoverer_info,
+                                                 dlna_profile,
                                                  file_info);
         }
 
