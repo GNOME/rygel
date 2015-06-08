@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-05-27 23:21+0000\n"
-"PO-Revision-Date: 2015-05-28 \n"
+"POT-Creation-Date: 2015-06-08 04:51+0000\n"
+"PO-Revision-Date: 2015-06-08 \n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -316,7 +316,6 @@ msgid "Could not load plugin: %s"
 msgstr "No se pudo cargar el complemento: %s"
 
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Falló al consultar el tipo de contenido para «%s»"
@@ -418,37 +417,31 @@ msgstr "No se pueden analizar los datos del protocolo; nodo no esperado: %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:90
 #, c-format
-#| msgid "Failed to harvest file %s: %s"
 msgid "Failed to set UIList for file %s - %s"
 msgstr "Falló al establecer el UIList para el archivo %s - %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:101
 #, c-format
-#| msgid "Failed to get original URI for '%s': %s"
 msgid "Failed to set initial UI list for file %s - %s"
 msgstr "Falló al establecer la lista de IU inicial para el archivo %s - %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:105
 #, c-format
-#| msgid "Failed to remove file %s: %s"
 msgid "Failed to monitor the file %s - %s"
 msgstr "Falló al monitorizar el archivo %s - %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:128
 #, c-format
-#| msgid "Failed to harvest file %s: %s"
 msgid "Unable to parse UI list file %s"
 msgstr "No se pudo analizar el archivo de lista de IU %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:156
 #, c-format
-#| msgid "Failed to remove file %s: %s"
 msgid "Unable to parse device profile data: %s"
 msgstr "No se pueden analizar los datos del perfil del dispositivo: %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:255
 #, c-format
-#| msgid "Invalid date: %s"
 msgid "Invalid UI filter: %s"
 msgstr "Filtro de IU no válido: %s"
 
@@ -576,7 +569,6 @@ msgstr "No se permite quitar objetos de %s"
 
 #. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:74
-#| msgid "Object id missing"
 msgid "Object ID missing"
 msgstr "Falta el ID del objeto"
 
@@ -682,7 +674,6 @@ msgstr "No se ha llamado a MediaEngine.init. No se puede continuar."
 
 #: ../src/librygel-server/rygel-media-file-item.vala:176
 #, c-format
-#| msgid "Could not determine protocol for %s"
 msgid "Could not determine protocol for URI %s"
 msgstr "No se pudo determinar el protocolo para el URI %s"
 
@@ -848,7 +839,6 @@ msgid "No thumbnail available"
 msgstr "No existe generador de miniaturas disponible"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
-#| msgid "No thumbnailer available: %s"
 msgid "No thumbnail available. Generation requested."
 msgstr "No hay ninguna miniatura disponible. Generación solicitada."
 
@@ -869,7 +859,6 @@ msgstr "No se soporta la velocidad de reproducción"
 #. Unknown/unsupported seek type
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:102
 #, c-format
-#| msgid "HTTPSeekRequest type unsupported"
 msgid "HTTPSeekRequest type %s unsupported"
 msgstr "Tipo %s de HTTPSeekRequest no soportado"
 
@@ -914,7 +903,6 @@ msgstr "Falló al buscar"
 
 #: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:128
 #, c-format
-#| msgid "Invalid URI '%s'"
 msgid "Invalid URI without prefix: %s"
 msgstr "URI no válido sin prefijo: %s"
 
@@ -953,7 +941,6 @@ msgstr ""
 
 #: ../src/media-engines/simple/rygel-simple-media-engine.vala:67
 #, c-format
-#| msgid "Can't remove containers in %s"
 msgid "Can't process non-file URI %s"
 msgstr "No se puede procesar el URI %s sin archivo"
 
@@ -1039,6 +1026,12 @@ msgstr "Falló al añadir el elemento con ID %s: %s"
 msgid "Cannot create references to containers"
 msgstr "No se pueden crear las referencias a los contenedores"
 
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
+#, c-format
+#| msgid "Failed to read standard output from %s: %s"
+msgid "Failed to extract basic metadata from %s: %s"
+msgstr "Falló al extraer los metadatos básicos de %s: %s"
+
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
 msgid "All"
@@ -1088,7 +1081,6 @@ msgstr "No se monitorizarán cambios en archivos"
 #. upload case.
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
-#| msgid "Failed to get file info for %s: %s"
 msgid "Failed to get file information for %s: %s"
 msgstr "Falló al obtener la información del archivo para %s: %s"
 
@@ -1246,7 +1238,6 @@ msgid "Network Interfaces"
 msgstr "Interfaces de red"
 
 #: ../src/rygel/rygel-cmdline-config.vala:78
-#| msgid "_Port"
 msgid "Port"
 msgstr "Puerto"
 
@@ -1298,12 +1289,10 @@ msgstr ""
 "Usar un archivo de configuración de lugar de la configuración del usuario"
 
 #: ../src/rygel/rygel-cmdline-config.vala:103
-#| msgid "Shutdown remote Rygel reference"
 msgid "Shut down remote Rygel reference"
 msgstr "Apagar la referencia remota de Rygel"
 
 #: ../src/rygel/rygel-cmdline-config.vala:105
-#| msgid "Replace currently running instance of rygel"
 msgid "Replace currently running instance of Rygel"
 msgstr "Reemplazar la instancia actual en ejecución de Rygel"
 
@@ -1313,12 +1302,10 @@ msgstr "Apagando la instancia remota de Rygel\n"
 
 #: ../src/rygel/rygel-cmdline-config.vala:150
 #, c-format
-#| msgid "Failed to shut-down other rygel instance: %s"
 msgid "Failed to shut down other Rygel instance: %s"
 msgstr "Falló al parar otra instancia de rygel: %s"
 
 #: ../src/rygel/rygel-dbus-service.vala:81
-#| msgid "Another instance of rygel is already running. Not starting."
 msgid "Another instance of Rygel is already running. Not starting."
 msgstr "Ya se está ejecutando otra instancia del Rygel. No se inicia."
 
@@ -1333,8 +1320,6 @@ msgstr "Iniciando Rygel v%s…"
 
 #: ../src/rygel/rygel-main.vala:115
 #, c-format
-#| msgid "No plugins found in %d second; giving up..."
-#| msgid_plural "No plugins found in %d seconds; giving up..."
 msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
 msgstr[0] "No se encontraron complementos en %d segundo, abortando…"
