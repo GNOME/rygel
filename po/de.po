@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-05-25 23:23+0000\n"
-"PO-Revision-Date: 2015-05-26 05:47+0100\n"
+"POT-Creation-Date: 2015-06-20 06:10+0000\n"
+"PO-Revision-Date: 2015-06-20 08:47+0100\n"
 "Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.7.5\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -320,7 +320,6 @@ msgid "Could not load plugin: %s"
 msgstr "Erweiterung konnte nicht geladen werden: %s"
 
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Typ des Inhalts konnte für »%s« nicht abgefragt werden"
@@ -1038,6 +1037,11 @@ msgstr "Hinzufügen des Objekts mit Kennung %s ist fehlgeschlagen: %s"
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:565
 msgid "Cannot create references to containers"
 msgstr "Referenzen zu den Containern konnten nicht erstellt werden"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
+#, c-format
+msgid "Failed to extract basic metadata from %s: %s"
+msgstr "Grundlegende Metainformationen konnten nicht aus »%s« gelesen werden: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
