@@ -32,6 +32,8 @@ src/librygel-core/rygel-root-device.vala
 src/librygel-core/rygel-state-machine.vala
 src/librygel-core/rygel-v1-hacks.vala
 src/librygel-core/rygel-xml-utils.vala
+src/librygel-db/database-cursor.vala
+src/librygel-db/database.vala
 src/librygel-renderer-gst/rygel-playbin-player.vala
 src/librygel-renderer-gst/rygel-playbin-renderer.vala
 src/librygel-renderer/rygel-av-transport.vala
@@ -164,10 +166,9 @@ src/plugins/gst-launch/rygel-gst-launch-item.vala
 src/plugins/gst-launch/rygel-gst-launch-plugin.vala
 src/plugins/gst-launch/rygel-gst-launch-root-container.vala
 src/plugins/gst-launch/rygel-gst-launch-video-item.vala
-src/plugins/media-export/rygel-media-export-database-cursor.vala
-src/plugins/media-export/rygel-media-export-database.vala
 src/plugins/media-export/rygel-media-export-db-container.vala
 src/plugins/media-export/rygel-media-export-dummy-container.vala
+src/plugins/media-export/rygel-media-export-extract.vala
 src/plugins/media-export/rygel-media-export-harvester.vala
 src/plugins/media-export/rygel-media-export-harvesting-task.vala
 src/plugins/media-export/rygel-media-export-item-factory.vala
@@ -189,9 +190,6 @@ src/plugins/media-export/rygel-media-export-query-container.vala
 src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala
 src/plugins/media-export/rygel-media-export-root-container.vala
 src/plugins/media-export/rygel-media-export-sql-factory.vala
-src/plugins/media-export/rygel-media-export-sql-function.vala
-src/plugins/media-export/rygel-media-export-sqlite-wrapper.vala
-src/plugins/media-export/rygel-media-export-sql-operator.vala
 src/plugins/media-export/rygel-media-export-trackable-db-container.vala
 src/plugins/media-export/rygel-media-export-updatable-object.vala
 src/plugins/media-export/rygel-media-export-video-item.vala

@@ -30,6 +30,8 @@ src/librygel-core/rygel-root-device-factory.c
 src/librygel-core/rygel-state-machine.c
 src/librygel-core/rygel-v1-hacks.c
 src/librygel-core/rygel-xml-utils.c
+src/librygel-db/database-cursor.c
+src/librygel-db/database.c
 src/librygel-renderer-gst/rygel-playbin-player.c
 src/librygel-renderer-gst/rygel-playbin-renderer.c
 src/librygel-renderer/rygel-av-transport.c
@@ -169,6 +171,7 @@ src/plugins/media-export/rygel-media-export-database.c
 src/plugins/media-export/rygel-media-export-database-cursor.c
 src/plugins/media-export/rygel-media-export-db-container.c
 src/plugins/media-export/rygel-media-export-dummy-container.c
+src/plugins/media-export/rygel-media-export-extract.c
 src/plugins/media-export/rygel-media-export-harvester.c
 src/plugins/media-export/rygel-media-export-harvesting-task.c
 src/plugins/media-export/rygel-media-export-item-factory.c
