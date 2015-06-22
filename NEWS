@@ -1,3 +1,37 @@
+0.27.2
+======
+
+A new unstable release of Rygel!
+
+- Make configure.ac a bit easier to read.
+
+Database:
+ - Move core database functionality into its own library so code may be shared
+   (e.g. LMS, ODID, …)
+
+MediaExport plugin:
+ - Refactor and style fixes.
+ - Split meta-data extraction into an external process.
+ - Move core database functionality into its own library.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=749790
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Benjamin Steinwender <b@stbe.at>
+ - Marek Černocký <marek@manet.cz>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Dimitris Spingos <dmtrs32@gmail.com>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - de, courtesy of Benjamin Steinwender
+ - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+ - es, courtesy of Daniel Mustieles
+ - sk, courtesy of Dušan Kazik
+
 0.27.1
 ======
 
