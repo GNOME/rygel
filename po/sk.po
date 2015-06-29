@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-06-09 23:24+0000\n"
-"PO-Revision-Date: 2015-06-10 10:02+0100\n"
+"POT-Creation-Date: 2015-06-28 23:26+0000\n"
+"PO-Revision-Date: 2015-06-29 12:50+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -337,6 +337,16 @@ msgstr "Nepodarilo sa načítať zásuvný modul: %s"
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Zlyhala žiadosť o typ obsahu pre „%s“"
+
+#: ../src/librygel-db/database-cursor.vala:81
+#, c-format
+msgid "Unsupported type %s"
+msgstr "Nepodporovaný typ %s"
+
+#: ../src/librygel-db/database.vala:215
+#, c-format
+msgid "Failed to roll back transaction: %s"
+msgstr "Zlyhalo vrátenie zmien transakcie: %s"
 
 #: ../src/librygel-renderer-gst/rygel-playbin-player.vala:367
 msgid ""
@@ -980,60 +990,84 @@ msgstr "Modulu „%s“ sa nepodarilo pripojiť k zbernici relácie D-Bus. Ignor
 msgid "External provider %s did not provide mandatory property \"%s\""
 msgstr "Externý poskytovateľ %s neposkytuje povinnú vlastnosť „%s“"
 
-#: ../src/plugins/media-export/rygel-media-export-database-cursor.vala:81
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:97
 #, c-format
-msgid "Unsupported type %s"
-msgstr "Nepodporovaný typ %s"
+msgid "Failed to discover uri %s: %s"
+msgstr "Zlyhalo preskúmanie uri %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:215
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:110
 #, c-format
-msgid "Failed to roll back transaction: %s"
-msgstr "Zlyhalo vrátenie zmien transakcie: %s"
+msgid "Failed to read from pipe: %s"
+msgstr "Zlyhalo čítanie zo zreťazenia: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:138
+#, c-format
+msgid "Failed to send error to parent: %s"
+msgstr "Zlyhalo odoslanie chyby pôvodcovi: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:179
+#, c-format
+msgid "Failed to extract basic metadata from %s: %s"
+msgstr "Zlyhalo extrahovanie základných metaúdajov z %s: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:198
+msgid "- helper binary for Rygel to extract meta-data"
+msgstr "- binárny pomocník pre aplikáciu Rygel na extrahovanie metaúdajov"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:205
+#, c-format
+msgid "Failed to parse commandline args: %s"
+msgstr "Zlyhala analýza parametrov príkazového riadku: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:228
+#, c-format
+msgid "Failed to start meta-data discoverer: %s"
+msgstr "Zlyhalo spustenie prieskumníka metaúdajov: %s"
 
 # %s je cesta k adresáru narp /home/user/hudba
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:135
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:136
 #, c-format
 msgid "'%s' harvested"
 msgstr "umiestnenie „%s“ vyťažené"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:191
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:192
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Vyskytla sa chyba pri získavaní objektu „%s“ z databázy: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:199
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:200
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "Zlyhal dopyt informácií o súbore %s: %s"
 
 # %d je identifikátor
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:234
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:235
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr ""
 "Nepodarilo sa nájsť objekt %s alebo jeho pôvodcu. Databáza nie je konzistentná."
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:238
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:239
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Vyskytla sa chyba pri odstraňovaní objektu z databázy: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:114
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:122
 #, c-format
 msgid "Failed to harvest file %s: %s"
 msgstr "Zlyhalo vyťaženie súboru %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:164
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:172
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "Zlyhal dopyt k databáze: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:247
 #, c-format
 msgid "Failed to enumerate folder \"%s\": %s"
 msgstr "Zlyhalo vymenovanie priečinka „%s“: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:257
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:265
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Zlyhalo získanie potomka kontainera %s: %s"
@@ -1043,19 +1077,67 @@ msgstr "Zlyhalo získanie potomka kontainera %s: %s"
 msgid "Failed to get child count of query container: %s"
 msgstr "Zlyhalo získanie počtu potomkov kontajnera dopytu: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:132
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:133
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Zlyhalo pridanie položky s identifikátorom %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:565
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:566
 msgid "Cannot create references to containers"
 msgstr "Nedajú sa vytvoriť odkazy na kontajery"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:107
+msgid "Failed to gracefully stop the process. Using KILL"
+msgstr "Zlyhalo nenásilné ukončenie procesu. Použije sa spôsob ukončenia KILL"
+
+#. Process exitted properly -> That shouldn't really
+#. happen
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:159
 #, c-format
-msgid "Failed to extract basic metadata from %s: %s"
-msgstr "Zlyhalo extrahovanie základných metaúdajov z %s: %s"
+msgid "Process check_async failed: %s"
+msgstr "Zlyhal proces check_async: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:165
+#, c-format
+msgid "Process died while handling URI %s"
+msgstr "Proces nečakane skončil počas analýzy URI %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:171
+#, c-format
+msgid "Setting up extraction suprocess failed: %s"
+msgstr "Zlyhalo nastavenie podprocesu extrahovania: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:184
+#, c-format
+msgid "Child failed fatally. Last uri was %s"
+msgstr "Potomok fatálne zlyhal. Posledná uri bola %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:190
+#, c-format
+msgid "Reading from child's error stream failed: %s"
+msgstr "Zlyhalo čítanie z chybového prúdu potomka: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:210
+#, c-format
+msgid "Received invalid string from child: %s"
+msgstr "Bol prijatý neplatný reťazec od potomka: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:217
+#, c-format
+msgid "Received ill-formed response string %s from child…"
+msgstr "Bol prijatý nevhodne sformovaný reťazec %s od potomka…"
+
+#. No error signalling, this was done in the part that called
+#. cancel
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:259
+#, c-format
+msgid "Read from child failed: %s"
+msgstr "Zlyhalo čítanie z potomka: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:285
+#, c-format
+msgid "Failed to send command to child: %s"
+msgstr "Zlyhalo odoslanie príkazu potomkovi: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
