@@ -24,6 +24,11 @@ using Gst.PbUtils;
 using GUPnPDLNA;
 using Gst;
 
+struct UriBuffer {
+    uint8 data[4096];
+    size_t length;
+}
+
 const string UPNP_CLASS_PHOTO = "object.item.imageItem.photo";
 const string UPNP_CLASS_MUSIC = "object.item.audioItem.musicTrack";
 const string UPNP_CLASS_VIDEO = "object.item.videoItem";
@@ -35,21 +40,19 @@ const string ERROR_LINE_TEMPLATE = "ERROR|%s|%d|%s\n";
 const string FATAL_ERROR_PREFIX = "FATAL_ERROR|";
 const string FATAL_ERROR_SUFFIX = "\n"; //|0|Killed by signal\n";
 
-namespace Global {
-    bool metadata = true;
-}
-
 static int in_fd = 0;
 static int out_fd = 1;
 static int err_fd = 2;
-
-MainLoop loop;
-
-DataInputStream input_stream;
-OutputStream output_stream;
-OutputStream error_stream;
-Rygel.InfoSerializer serializer;
-MediaArt.Process media_art;
+static bool metadata = false;
+static MainLoop loop;
+static DataInputStream input_stream;
+static OutputStream output_stream;
+static OutputStream error_stream;
+static Rygel.InfoSerializer serializer;
+static MediaArt.Process media_art;
+static Discoverer discoverer;
+static ProfileGuesser guesser;
+static UriBuffer last_uri;
 
 public errordomain MetadataExtractorError {
     GENERAL
@@ -64,14 +67,8 @@ static const OptionEntry[] options = {
     { null }
 };
 
-Discoverer discoverer;
-ProfileGuesser guesser;
-
-static uint8 last_uri_data[4096];
-size_t last_uri_data_length;
-
 static void segv_handler (int signal) {
-    Posix.write (err_fd, (void *) last_uri_data, last_uri_data_length);
+    Posix.write (err_fd, (void *) last_uri.data, last_uri.length);
     Posix.write (err_fd, (void *) FATAL_ERROR_SUFFIX, 1);
     Posix.fsync (err_fd);
 
@@ -93,12 +90,14 @@ async void run () {
                 try {
                     // Copy current URI to statically allocated memory area to
                     // dump to fd in the signal handler
-                    last_uri_data_length = uri.length;
-                    GLib.Memory.set (last_uri_data, 0, 4096);
-                    GLib.Memory.copy (last_uri_data, (void *) uri, uri.length);
-                    info = discoverer.discover_uri (uri);
+                    last_uri.length = uri.length;
+                    GLib.Memory.set (last_uri.data, 0, 4096);
+                    GLib.Memory.copy (last_uri.data, (void *) uri, uri.length);
+                    if (metadata) {
+                        info = discoverer.discover_uri (uri);
 
-                    debug ("Finished discover on uri %s", uri);
+                        debug ("Finished discover on uri %s", uri);
+                    }
                     yield process_meta_data (uri, info);
                 } catch (Error error) {
                     warning (_("Failed to discover uri %s: %s"),
