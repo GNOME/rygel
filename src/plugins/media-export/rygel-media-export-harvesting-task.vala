@@ -37,6 +37,7 @@ internal class FileQueueEntry {
 public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                                                 GLib.Object {
     public File origin;
+    private Timer timer;
     private MetadataExtractor extractor;
     private MediaCache cache;
     private GLib.Queue<MediaContainer> containers;
@@ -69,6 +70,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         this.files = new LinkedList<FileQueueEntry> ();
         this.containers = new GLib.Queue<MediaContainer> ();
         this.monitor = monitor;
+        this.timer = new Timer ();
     }
 
     ~HarvestingTask () {
@@ -99,6 +101,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
      * only one event is sent when all the children are done.
      */
     public async void run () {
+        this.timer.reset ();
         try {
             this.extractor.run.begin ();
 
@@ -285,6 +288,9 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         } else {
             // nothing to do
             this.completed ();
+            debug ("Harvesting of %s done in %f",
+                    origin.get_uri (),
+                    timer.elapsed ());
         }
 
         return false;
