@@ -28,7 +28,13 @@ internal errordomain InfoSerializerError {
     BAD_MIME
 }
 
-internal class Rygel.InfoSerializer {
+internal class Rygel.InfoSerializer : GLib.Object {
+    public MediaArt.Process? media_art { get; construct set; }
+
+    public InfoSerializer (MediaArt.Process? media_art) {
+        GLib.Object (media_art: media_art);
+    }
+
     public Variant serialize (File               file,
                               FileInfo           file_info,
                               DiscovererInfo?    info,
@@ -68,7 +74,7 @@ internal class Rygel.InfoSerializer {
                                                            audio_streams.data : null),
                                 this.serialize_video_info (video_streams != null ?
                                                            video_streams.data : null),
-                                this.serialize_meta_data (audio_streams != null ?
+                                this.serialize_meta_data (file, audio_streams != null ?
                                                           audio_streams.data : null));
         } else {
             string? upnp_class = null;
@@ -176,7 +182,8 @@ internal class Rygel.InfoSerializer {
 
     }
 
-    private Variant? serialize_meta_data (DiscovererAudioInfo? info) {
+    private Variant? serialize_meta_data (File file,
+                                          DiscovererAudioInfo? info) {
         if (info == null) {
             return null;
         }
@@ -203,6 +210,55 @@ internal class Rygel.InfoSerializer {
 
         uint bitrate = uint.MAX;
         tags.get_uint (Tags.BITRATE, out bitrate);
+
+        Sample sample;
+        tags.get_sample (Tags.IMAGE, out sample);
+        if (sample == null) {
+            tags.get_sample (Tags.PREVIEW_IMAGE, out sample);
+        }
+
+        if (sample == null) {
+            try {
+                if (artist != null || album != null) {
+                    this.media_art.file (MediaArt.Type.ALBUM,
+                                         MediaArt.ProcessFlags.NONE,
+                                         file,
+                                         artist,
+                                         album);
+                }
+            } catch (Error error) {
+                debug ("Failed to add external media art: %s", error.message);
+            }
+        } else {
+            unowned Structure structure = sample.get_caps ().get_structure (0);
+            int image_type;
+            structure.get_enum ("image-type",
+                                typeof (Gst.Tag.ImageType),
+                                out image_type);
+            if (image_type == Tag.ImageType.UNDEFINED ||
+                image_type == Tag.ImageType.FRONT_COVER) {
+                MapInfo map_info;
+                sample.get_buffer ().map (out map_info, Gst.MapFlags.READ);
+
+                // work-around for bgo#739915
+                weak uint8[] data = map_info.data;
+                data.length = (int) map_info.size;
+
+                try {
+                    this.media_art.buffer (MediaArt.Type.ALBUM,
+                                           MediaArt.ProcessFlags.NONE,
+                                           file,
+                                           data,
+                                           structure.get_name (),
+                                           artist,
+                                           album);
+                } catch (Error error) {
+                    debug ("Failed to add media art to cache: %s",
+                           error.message);
+                }
+                sample.get_buffer ().unmap (map_info);
+            }
+        }
 
         return new Variant ("(msmsmsiii)",
                             artist,

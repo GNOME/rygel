@@ -45,6 +45,7 @@ DataInputStream input_stream;
 OutputStream output_stream;
 OutputStream error_stream;
 Rygel.InfoSerializer serializer;
+MediaArt.Process media_art;
 
 public errordomain MetadataExtractorError {
     GENERAL
@@ -207,7 +208,13 @@ int main (string[] args) {
         return Posix.EXIT_FAILURE;
     }
 
-    serializer = new Rygel.InfoSerializer ();
+    try {
+        media_art = new MediaArt.Process ();
+    } catch (Error error) {
+        warning (_("Failed to create media art extractor: %s"),
+                error.message);
+    }
+    serializer = new Rygel.InfoSerializer (media_art);
     Posix.nice (19);
 
     var action = new Posix.sigaction_t ();
@@ -217,9 +224,9 @@ int main (string[] args) {
 
     message ("Started with descriptors %d %d %d", in_fd, out_fd, err_fd);
 
-    input_stream = new DataInputStream (new UnixInputStream (in_fd, false));
-    output_stream = new UnixOutputStream (out_fd, false);
-    error_stream = new UnixOutputStream (err_fd, false);
+    input_stream = new DataInputStream (new UnixInputStream (in_fd, true));
+    output_stream = new UnixOutputStream (out_fd, true);
+    error_stream = new UnixOutputStream (err_fd, true);
 
     loop = new MainLoop ();
     try {
