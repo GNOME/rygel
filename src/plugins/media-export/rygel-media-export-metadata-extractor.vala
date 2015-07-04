@@ -175,7 +175,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                                                                       this.error_uri));
                 }
             } catch (Error error) {
-                warning (_("Setting up extraction suprocess failed: %s"),
+                warning (_("Setting up extraction subprocess failed: %s"),
                          error.message);
             }
         } while (restart);
