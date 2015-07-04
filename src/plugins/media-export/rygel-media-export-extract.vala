@@ -35,6 +35,10 @@ const string ERROR_LINE_TEMPLATE = "ERROR|%s|%d|%s\n";
 const string FATAL_ERROR_PREFIX = "FATAL_ERROR|";
 const string FATAL_ERROR_SUFFIX = "\n"; //|0|Killed by signal\n";
 
+namespace Global {
+    bool metadata = true;
+}
+
 static int in_fd = 0;
 static int out_fd = 1;
 static int err_fd = 2;
@@ -55,6 +59,8 @@ static const OptionEntry[] options = {
     { "input-fd", 'i', 0, OptionArg.INT, ref in_fd, "File descriptor used for input", null },
     { "output-fd", 'o', 0, OptionArg.INT, ref out_fd, "File descriptor used for output", null },
     { "error-fd", 'e', 0, OptionArg.INT, ref err_fd, "File descriptor used for severe errors", null },
+    { "extract-metadata", 'm', 0, OptionArg.NONE, ref metadata,
+        "Whether to extract all meta-data from the files or just basic information", null },
     { null }
 };
 
@@ -93,7 +99,7 @@ async void run () {
                     info = discoverer.discover_uri (uri);
 
                     debug ("Finished discover on uri %s", uri);
-                    yield on_discovered (info);
+                    yield process_meta_data (uri, info);
                 } catch (Error error) {
                     warning (_("Failed to discover uri %s: %s"),
                              uri,
@@ -104,6 +110,11 @@ async void run () {
                     discoverer = new Discoverer (10 * Gst.SECOND);
                 }
                 //discoverer.discover_uri_async (uri);
+            } else if (line.has_prefix ("METADATA ")) {
+                var command = line.replace ("METADATA ", "").strip ();
+                metadata = bool.parse (command);
+                debug ("Meta-data extraction was %s",
+                       metadata ? "enabled" : "disabled");
             } else if (line.has_prefix ("QUIT")) {
                 break;
             }
@@ -140,26 +151,30 @@ static void send_error (File file, Error err) {
     }
 }
 
-static async void on_discovered (DiscovererInfo info) {
-    debug ("Discovered %s", info.get_uri ());
-    var file = File.new_for_uri (info.get_uri ());
-    if (info.get_result () == DiscovererResult.TIMEOUT ||
-        info.get_result () == DiscovererResult.BUSY ||
-        info.get_result () == DiscovererResult.MISSING_PLUGINS) {
-        if (info.get_result () == DiscovererResult.MISSING_PLUGINS) {
-            debug ("Plugins are missing for extraction of file %s",
-                   info.get_uri ());
-        } else {
-            debug ("Extraction timed out on %s", file.get_uri ());
+static async void process_meta_data (string uri, DiscovererInfo? info) {
+    debug ("Discovered %s", uri);
+    var file = File.new_for_uri (uri);
+    if (info != null) {
+        if (info.get_result () == DiscovererResult.TIMEOUT ||
+            info.get_result () == DiscovererResult.BUSY ||
+            info.get_result () == DiscovererResult.MISSING_PLUGINS) {
+            if (info.get_result () == DiscovererResult.MISSING_PLUGINS) {
+                debug ("Plugins are missing for extraction of file %s",
+                       info.get_uri ());
+            } else {
+                debug ("Extraction timed out on %s", file.get_uri ());
+            }
+            yield extract_basic_information (file, null, null);
+
+            return;
         }
+
+        var dlna_info = GUPnPDLNAGst.utils_information_from_discoverer_info (info);
+        var dlna = guesser.guess_profile_from_info (dlna_info);
+        yield extract_basic_information (file, info, dlna);
+    } else {
         yield extract_basic_information (file, null, null);
-
-        return;
     }
-
-    var dlna_info = GUPnPDLNAGst.utils_information_from_discoverer_info (info);
-    var dlna = guesser.guess_profile_from_info (dlna_info);
-    yield extract_basic_information (file, info, dlna);
 }
 
 static async void extract_basic_information (File               file,

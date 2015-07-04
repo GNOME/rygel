@@ -89,11 +89,12 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     [CCode (cname="MX_EXTRACT_PATH")]
     private extern const string MX_EXTRACT_PATH;
 
-    private const string[] MX_EXTRACT_ARGV = {
+    private string[] MX_EXTRACT_ARGV = {
         MX_EXTRACT_PATH,
         "--input-fd=3",
         "--output-fd=4",
         "--error-fd=5",
+        "--extract-metadata",
         null
     };
 
@@ -149,6 +150,12 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                 this.error_stream.read_line_async.begin (Priority.DEFAULT,
                                                          this.child_io_cancellable,
                                                          this.on_child_error);
+
+                if (this.extract_metadata) {
+                    MX_EXTRACT_ARGV[4] = "--extract-metadata";
+                } else {
+                    MX_EXTRACT_ARGV[4] = null;
+                }
 
                 var subprocess = launcher.spawnv (MX_EXTRACT_ARGV);
                 try {
@@ -298,6 +305,16 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                                                      "extract-metadata");
         } catch (Error error) {
             this.extract_metadata = true;
+        }
+
+        try {
+            var s = "METADATA %s\n".printf (this.extract_metadata.to_string ());
+            this.input_stream.write_all (s.data, null, null);
+            this.input_stream.flush ();
+            debug ("Sent config change to child: %s", s);
+        } catch (Error error) {
+            debug ("Failed to set meta-data extraction state: %s",
+                   error.message);
         }
     }
 }
