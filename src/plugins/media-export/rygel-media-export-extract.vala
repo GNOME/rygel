@@ -85,25 +85,34 @@ async void run () {
 
             if (line.has_prefix ("EXTRACT ")) {
                 debug ("Got command to extract file: %s", line);
-                var uri = line.replace ("EXTRACT ", "").strip ();
+                var data = line.replace ("EXTRACT ", "").strip ();
+                var parts = data.split ("|");
+                if (parts.length != 2) {
+                    warning (_("Invalid command received, ignoring"));
+
+                    continue;
+                }
                 DiscovererInfo? info = null;
                 try {
                     // Copy current URI to statically allocated memory area to
                     // dump to fd in the signal handler
-                    last_uri.length = uri.length;
+                    last_uri.length = parts[0].length;
                     GLib.Memory.set (last_uri.data, 0, 4096);
-                    GLib.Memory.copy (last_uri.data, (void *) uri, uri.length);
-                    if (metadata) {
-                        info = discoverer.discover_uri (uri);
+                    GLib.Memory.copy (last_uri.data,
+                                      (void *) parts[0],
+                                      parts[0].length);
+                    var is_text = parts[1].has_prefix ("text/");
+                    if (metadata && !is_text) {
+                        info = discoverer.discover_uri (parts[0]);
 
-                        debug ("Finished discover on uri %s", uri);
+                        debug ("Finished discover on uri %s", parts[0]);
                     }
-                    yield process_meta_data (uri, info);
+                    yield process_meta_data (parts[0], info);
                 } catch (Error error) {
                     warning (_("Failed to discover uri %s: %s"),
-                             uri,
+                             parts[0],
                              error.message);
-                    send_error (File.new_for_uri (uri), error);
+                    send_error (File.new_for_uri (parts[0]), error);
 
                     // Recreate the discoverer on error
                     discoverer = new Discoverer (10 * Gst.SECOND);

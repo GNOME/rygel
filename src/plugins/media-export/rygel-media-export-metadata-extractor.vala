@@ -283,7 +283,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             return;
         }
 
-        var s = "EXTRACT %s\n".printf (file.get_uri ());
+        var s = "EXTRACT %s|%s\n".printf (file.get_uri (), content_type);
         try {
             this.input_stream.write_all (s.data, null, this.child_io_cancellable);
             this.input_stream.flush ();
