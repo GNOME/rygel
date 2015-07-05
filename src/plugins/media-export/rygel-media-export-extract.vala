@@ -63,7 +63,7 @@ static const OptionEntry[] options = {
     { "output-fd", 'o', 0, OptionArg.INT, ref out_fd, "File descriptor used for output", null },
     { "error-fd", 'e', 0, OptionArg.INT, ref err_fd, "File descriptor used for severe errors", null },
     { "extract-metadata", 'm', 0, OptionArg.NONE, ref metadata,
-        "Whether to extract all meta-data from the files or just basic information", null },
+        "Whether to extract all metadata from the files or just basic information", null },
     { null }
 };
 
@@ -105,11 +105,11 @@ async void run () {
                     if (metadata && !is_text) {
                         info = discoverer.discover_uri (parts[0]);
 
-                        debug ("Finished discover on uri %s", parts[0]);
+                        debug ("Finished discover on URI %s", parts[0]);
                     }
                     yield process_meta_data (parts[0], info);
                 } catch (Error error) {
-                    warning (_("Failed to discover uri %s: %s"),
+                    warning (_("Failed to discover URI %s: %s"),
                              parts[0],
                              error.message);
                     send_error (File.new_for_uri (parts[0]), error);
@@ -219,7 +219,7 @@ static async void extract_basic_information (File               file,
 }
 
 int main (string[] args) {
-    var ctx = new OptionContext (_("- helper binary for Rygel to extract meta-data"));
+    var ctx = new OptionContext (_("- helper binary for Rygel to extract metadata"));
     ctx.add_main_entries (options, null);
     ctx.add_group (Gst.init_get_option_group ());
 
@@ -255,7 +255,7 @@ int main (string[] args) {
     try {
         discoverer = new Discoverer (10 * Gst.SECOND);
     } catch (Error error) {
-        warning (_("Failed to start meta-data discoverer: %s"),
+        warning (_("Failed to start metadata discoverer: %s"),
                  error.message);
     }
 

@@ -213,7 +213,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
             return;
         } catch (Error error) {
-            warning (_("Failed to get update ids: %s"), error.message);
+            warning (_("Failed to get update IDs: %s"), error.message);
         }
 
     }
@@ -602,7 +602,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             return this.query_value (SQLString.CHECK_BLACKLIST,
                                      values) == 1;
         } catch (DatabaseError error) {
-            warning (_("Failed to get whether uri %s is blacklisted: %s"),
+            warning (_("Failed to get whether URI %s is blacklisted: %s"),
                      file.get_uri (),
                      error.message);
 
