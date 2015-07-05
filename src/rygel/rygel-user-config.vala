@@ -42,7 +42,6 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
     public static const string IFACE_KEY = "interface";
     public static const string PORT_KEY = "port";
     public static const string ENABLED_KEY = "enabled";
-    public static const string UPNP_ENABLED_KEY = "upnp-" + ENABLED_KEY;
     public static const string TITLE_KEY = "title";
     public static const string TRANSCODING_KEY = "enable-transcoding";
     public static const string ALLOW_UPLOAD_KEY = "allow-upload";
@@ -105,10 +104,6 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         general_config_keys.set (PORT_KEY,
                                  new ConfigPair (ConfigurationEntry.PORT,
                                                  EntryType.INT));
-        general_config_keys.set (UPNP_ENABLED_KEY,
-                                 new ConfigPair
-                                        (ConfigurationEntry.UPNP_ENABLED,
-                                         EntryType.BOOL));
         general_config_keys.set (TRANSCODING_KEY,
                                  new ConfigPair (ConfigurationEntry.TRANSCODING,
                                                  EntryType.BOOL));
@@ -147,10 +142,6 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         section_keys.set (TITLE_KEY,
                           new SectionPair (SectionEntry.TITLE,
                                            EntryType.STRING));
-    }
-
-    public bool get_upnp_enabled () throws GLib.Error {
-        return this.get_bool (GENERAL_SECTION, UPNP_ENABLED_KEY);
     }
 
     [CCode (array_length=false, array_null_terminated = true)]

@@ -31,7 +31,6 @@ public errordomain Rygel.ConfigurationError {
 }
 
 public enum Rygel.ConfigurationEntry {
-    UPNP_ENABLED,
     INTERFACE,
     PORT,
     TRANSCODING,
@@ -72,8 +71,6 @@ public interface Rygel.Configuration : GLib.Object {
      * section_changed signal.
      */
     public signal void setting_changed (string section, string key);
-
-    public abstract bool get_upnp_enabled () throws GLib.Error;
 
     [Deprecated (since="0.19.2", replacement="get_interfaces")]
     public abstract string get_interface () throws GLib.Error;

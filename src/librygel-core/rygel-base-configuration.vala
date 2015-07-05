@@ -26,10 +26,6 @@
  * Mainly useful to only implement a small subset of the configuration.
  */
 public class Rygel.BaseConfiguration : Rygel.Configuration, Object {
-    public virtual bool get_upnp_enabled () throws GLib.Error {
-        throw new ConfigurationError.NO_VALUE_SET (_("Not implemented"));
-    }
-
     public virtual string get_interface () throws GLib.Error {
         throw new ConfigurationError.NO_VALUE_SET (_("Not implemented"));
     }

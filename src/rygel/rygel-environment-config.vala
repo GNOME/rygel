@@ -36,7 +36,6 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
     private static string ENABLED_KEY = "ENABLED";
     private static string INTERFACE_ENV = RYGEL_PREFIX + "_IFACE";
     private static string PORT_ENV = RYGEL_PREFIX + "_PORT";
-    private static string DISABLE_UPNP_ENV = DISABLE_PREFIX + "_UPNP";
     private static string TRANSCODING_ENV = DISABLE_PREFIX + "_TRANSCODING";
     private static string DISALLOW_UPLOAD_ENV = DISABLE_PREFIX + "_UPLOAD";
     private static string DISALLOW_DELETION_ENV = DISABLE_PREFIX + "_DELETION";
@@ -54,10 +53,6 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
         }
 
         return config;
-    }
-
-    public bool get_upnp_enabled () throws GLib.Error {
-        return !this.get_bool_variable (DISABLE_UPNP_ENV);
     }
 
     public string get_interface () throws GLib.Error {

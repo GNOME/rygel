@@ -78,12 +78,6 @@ internal class Rygel.Main : Object {
     }
 
     private int run () {
-        try {
-            if (!this.config.get_upnp_enabled ()) {
-                message (_("Rygel is running in streaming-only mode."));
-            }
-        } catch (Error error) { }
-
         message (_("Rygel v%s starting…"), BuildConfig.PACKAGE_VERSION);
 
         this.main_loop.run ();
@@ -219,8 +213,7 @@ internal class Rygel.Main : Object {
         try {
             var device = factory.create (plugin);
 
-            device.available = plugin.active &&
-                               this.config.get_upnp_enabled ();
+            device.available = plugin.active;
 
             // Due to pure evilness of unix sinals this might actually happen
             // if someone shuts down rygel while the call-back is running,

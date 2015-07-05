@@ -73,25 +73,6 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         }
     }
 
-    public bool get_upnp_enabled () throws GLib.Error {
-        bool val = true;
-        bool unavailable = true;
-
-        foreach (var config in MetaConfig.configs) {
-            try {
-                val = config.get_upnp_enabled ();
-                unavailable = false;
-                break;
-            } catch (GLib.Error err) {}
-        }
-
-        if (unavailable) {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
-        }
-
-        return val;
-    }
-
     public string get_interface () throws GLib.Error {
         string val = null;
         bool unavailable = true;
@@ -486,10 +467,6 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
                                                 ConfigurationEntry entry) {
         try {
             switch (entry) {
-            case ConfigurationEntry.UPNP_ENABLED:
-                config.get_upnp_enabled ();
-                break;
-
             case ConfigurationEntry.INTERFACE:
                 config.get_interfaces ();
                 break;

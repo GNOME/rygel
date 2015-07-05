@@ -60,11 +60,8 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
     public bool is_upnp_enabled () {
         try {
             var autostart_file = this.get_autostart_file ();
-            if (this.user_config.query_exists () && autostart_file.query_exists ()) {
-                return this.get_upnp_enabled ();
-            }
 
-            return false;
+            return autostart_file.query_exists ();
         } catch (Error error) {
             return false;
         }
@@ -192,16 +189,12 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
                 try {
                     dest.make_symbolic_link (source_path, null);
                 } catch (IOError.EXISTS err) {}
-
-                this.set_bool ("general", UPNP_ENABLED_KEY, true);
             } else {
                 // Stop service only if already running
                 // Then delete the symlink from user's autostart dir
                 try {
                     dest.delete (null);
                 } catch (IOError.NOT_FOUND err) {}
-
-                this.set_bool ("general", UPNP_ENABLED_KEY, false);
 
                 if (this.is_upnp_enabled ()) {
                     // Create proxy to Rygel

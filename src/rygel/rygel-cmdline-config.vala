@@ -40,7 +40,6 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
     private static string[] ifaces;
     private static int port;
 
-    private static bool no_upnp;
     private static bool no_transcoding;
 
     private static bool disallow_upload;
@@ -95,8 +94,6 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
           N_ ("Set plugin titles"), "PluginName:TITLE" },
         { "plugin-option", 'o', 0, OptionArg.STRING_ARRAY, ref plugin_options,
           N_ ("Set plugin options"), "PluginName:OPTION:VALUE1[,VALUE2,..]" },
-        { "disable-upnp", 'P', 0, OptionArg.NONE, ref no_upnp,
-          N_ ("Disable UPnP (streaming-only)"), null },
         { "config", 'c', 0, OptionArg.FILENAME, ref config_file,
           N_ ("Use configuration file instead of user configuration"), "FILE" },
         { "shutdown", 's', 0, OptionArg.NONE, ref shutdown,
@@ -156,14 +153,6 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
             if (shutdown) {
                 throw new CmdlineConfigError.VERSION_ONLY ("");
             }
-        }
-    }
-
-    public bool get_upnp_enabled () throws GLib.Error {
-        if (!no_upnp) {
-            throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
-        } else {
-            return false;
         }
     }
 
