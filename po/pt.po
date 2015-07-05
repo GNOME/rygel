@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-03 23:24+0000\n"
-"PO-Revision-Date: 2015-07-04 07:57+0100\n"
+"POT-Creation-Date: 2015-07-04 23:26+0000\n"
+"PO-Revision-Date: 2015-07-05 10:11+0100\n"
 "Last-Translator: Pedro Albuquerque <palbuquerque73@openmailbox.com>\n"
 "Language-Team: Português <palbuquerque73@openmailbox.com>\n"
 "Language: pt\n"
@@ -861,7 +861,6 @@ msgstr "Impossível criar GstElement para o URI %s"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:72
 #: ../src/media-engines/simple/rygel-simple-data-source.vala:84
-#| msgid "Play speed not supported"
 msgid "Playspeed not supported"
 msgstr "Velocidade de reprodução não suportada"
 
@@ -964,42 +963,43 @@ msgstr "Impossível ligar módulo \"%s\" ao canal de sessão D-Bus. A ignorar…
 msgid "External provider %s did not provide mandatory property \"%s\""
 msgstr "Fornecedor externo %s não especificou a propriedade obrigatória \"%s\""
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:97
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:103
 #, c-format
-#| msgid "Failed to remove file %s: %s"
 msgid "Failed to discover uri %s: %s"
 msgstr "Falha ao descobrir uri %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:110
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:121
 #, c-format
-#| msgid "Failed to read from URI: %s: %s"
 msgid "Failed to read from pipe: %s"
 msgstr "Falha ao ler do canal: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:138
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:149
 #, c-format
-#| msgid "Failed to read error output from %s: %s"
 msgid "Failed to send error to parent: %s"
 msgstr "Falha ao enviar erro ao pai: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:179
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:194
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr "Falha ao extrair metadados básicos de %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:198
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:213
 msgid "- helper binary for Rygel to extract meta-data"
 msgstr "- binário de ajuda de onde o Rygel extrair metadados"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:205
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:220
 #, c-format
-#| msgid "Failed to harvest file %s: %s"
 msgid "Failed to parse commandline args: %s"
 msgstr "Falha ao processar argumentos da linha de comando: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:228
 #, c-format
-#| msgid "Failed to start Rygel service: %s"
+#| msgid "Failed to create root device factory: %s"
+msgid "Failed to create media art extractor: %s"
+msgstr "Falha ao criar extrator de arte multimédia: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:249
+#, c-format
 msgid "Failed to start meta-data discoverer: %s"
 msgstr "Falha ao iniciar descobridor de metadados: %s"
 
@@ -1030,22 +1030,22 @@ msgstr ""
 msgid "Error removing object from database: %s"
 msgstr "Erro ao remover objeto da base de dados: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:122
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:125
 #, c-format
 msgid "Failed to harvest file %s: %s"
 msgstr "Falha ao recolher o ficheiro %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:172
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:175
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "Falha ao consultar a base de dados: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:247
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:250
 #, c-format
 msgid "Failed to enumerate folder \"%s\": %s"
 msgstr "Falha ao enumerar a pasta \"%s\": %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:265
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Falha ao obter os filhos do contentor %s: %s"
@@ -1064,57 +1064,57 @@ msgstr "Falha ao adicionar o item com ID %s: %s"
 msgid "Cannot create references to containers"
 msgstr "Impossível criar referências a contentores"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:107
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:108
 msgid "Failed to gracefully stop the process. Using KILL"
 msgstr "Falha ao terminar o processo com elegância. A usar KILL"
 
 #. Process exitted properly -> That shouldn't really
 #. happen
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:159
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:166
 #, c-format
 msgid "Process check_async failed: %s"
 msgstr "Processo check_async falhou: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:165
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:172
 #, c-format
 msgid "Process died while handling URI %s"
 msgstr "O processo morreu enquanto geria o URI %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:171
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:178
 #, c-format
-msgid "Setting up extraction suprocess failed: %s"
+#| msgid "Setting up extraction suprocess failed: %s"
+msgid "Setting up extraction subprocess failed: %s"
 msgstr "Falha ao configurar subprocesso de extração: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:184
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:191
 #, c-format
 msgid "Child failed fatally. Last uri was %s"
 msgstr "Filho teve falha fatal. Último URI foi %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:190
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:197
 #, c-format
 msgid "Reading from child's error stream failed: %s"
 msgstr "Falha na leitura do fluxo de erro do filh: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:210
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:217
 #, c-format
 msgid "Received invalid string from child: %s"
 msgstr "Recebida cadeia inválida do filho: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:217
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:224
 #, c-format
 msgid "Received ill-formed response string %s from child…"
 msgstr "Recebida cadeia de resposta mal formada %s do filho…"
 
 #. No error signalling, this was done in the part that called
 #. cancel
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:259
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:266
 #, c-format
 msgid "Read from child failed: %s"
 msgstr "Falha na leitura do filho: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:285
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:292
 #, c-format
-#| msgid "Failed to get child count: %s"
 msgid "Failed to send command to child: %s"
 msgstr "Falha ao enviar comando ao filho: %s"
 
@@ -1376,7 +1376,6 @@ msgid "Use configuration file instead of user configuration"
 msgstr "Utilizar ficheiro de configuração em vez da configuração do utilizador"
 
 #: ../src/rygel/rygel-cmdline-config.vala:103
-#| msgid "Shutdown remote Rygel reference"
 msgid "Shut down remote Rygel reference"
 msgstr "Desligar a referência remota do Rygel"
 
