@@ -49,7 +49,7 @@ public void module_init (PluginLoader loader) {
 
         loader.add_plugin (plugin);
     } catch (Error error) {
-        warning ("Failed to load %s: %s",
+        warning (_("Failed to load plugin %s: %s"),
                  MediaExport.Plugin.NAME,
                  error.message);
     }

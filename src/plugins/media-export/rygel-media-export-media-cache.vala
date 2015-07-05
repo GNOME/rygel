@@ -213,7 +213,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
             return;
         } catch (Error error) {
-            warning ("Failed to get update ids: %s", error.message);
+            warning (_("Failed to get update ids: %s"), error.message);
         }
 
     }
@@ -394,8 +394,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                               statement));
                 children.last ().parent_ref = parent;
             } else {
-                warning ("Inconsistent database: item %s " +
-                         "has no parent %s",
+                warning (_("Inconsistent database: item %s does not have parent %s"),
                          statement.column_text (DetailColumn.ID),
                          parent_id);
             }
@@ -518,7 +517,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
             return statement->column_text (0);
         } catch (DatabaseError error) {
-            warning ("Failed to get reset token");
+            warning (_("Failed to get reset token"));
 
             return GUPnP.get_uuid ();
         }
@@ -530,7 +529,8 @@ public class Rygel.MediaExport.MediaCache : Object {
 
             this.db.exec ("UPDATE schema_info SET reset_token = ?", args);
         } catch (DatabaseError error) {
-            warning ("Failed to persist ServiceResetToken: %s", error.message);
+            warning (_("Failed to persist ServiceResetToken: %s"),
+                     error.message);
         }
     }
 
@@ -539,7 +539,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             this.db.exec ("DELETE FROM object WHERE " +
                           "upnp_id LIKE 'virtual-parent:%'");
         } catch (DatabaseError error) {
-            warning ("Failed to drop virtual folders: %s", error.message);
+            warning (_("Failed to remove virtual folders: %s"), error.message);
         }
     }
 
@@ -553,7 +553,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
             this.db.exec (this.sql.make (SQLString.MAKE_GUARDED), values);
         } catch (DatabaseError error) {
-            warning ("Failed to mark item %s as guarded (%d): %s",
+            warning (_("Failed to mark item %s as guarded (%d): %s"),
                      object.id,
                      guarded_val,
                      error.message);
@@ -618,7 +618,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             return this.query_value (SQLString.IS_GUARDED,
                                      id_value) == 1;
         } catch (DatabaseError error) {
-            warning ("Failed to get whether item %s is guarded: %s",
+            warning (_("Failed to get whether item %s is guarded: %s"),
                      id,
                      error.message);
 
@@ -657,8 +657,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             } else if (old_version == current_version) {
                 upgrader.fix_schema ();
             } else {
-                warning ("The version \"%d\" of the detected database" +
-                         " is newer than our supported version \"%d\"",
+                warning (_("The version \"%d\" of the detected database is newer than our supported version \"%d\""),
                          old_version,
                          current_version);
                 this.db = null;
@@ -682,13 +681,14 @@ public class Rygel.MediaExport.MediaCache : Object {
                         return;
                     }
                 } else {
-                    warning ("Incompatible schema... cannot proceed");
+                    warning (_("Incompatible schema… cannot proceed"));
                     this.db = null;
 
                     return;
                 }
             } catch (DatabaseError error) {
-                warning ("Something weird going on: %s", error.message);
+                warning (_("Invalid database, cannot query sqlite_master table: %s"),
+                         error.message);
                 this.db = null;
 
                 throw new MediaCacheError.GENERAL_ERROR ("Invalid database");
@@ -888,7 +888,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
             return true;
         } catch (Error err) {
-            warning ("Failed to create schema: %s", err.message);
+            warning (_("Failed to create database schema: %s"), err.message);
             db.rollback ();
         }
 
@@ -1188,7 +1188,8 @@ public class Rygel.MediaExport.MediaCache : Object {
                 v = "%s%%".printf (exp.operand2);
                 break;
             default:
-                warning ("Unsupported op %d", exp.op);
+                debug (_("Unsupported search criteria op %d"), exp.op);
+
                 return null;
         }
 
@@ -1236,7 +1237,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                        field[0] == '-' ? "DESC" : "ASC");
                 column_builder.append (column);
             } catch (Error error) {
-                warning ("Skipping unsupported field: %s", field);
+                warning (_("Skipping unsupported sort field: %s"), field);
             }
         }
 

@@ -331,7 +331,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         // failed; there's not much to do here, just print the information and
         // go to the next file
 
-        warning ("Skipping %s; extraction completely failed: %s",
+        warning (_("Skipping URI %s; extraction completely failed: %s"),
                file.get_uri (),
                error.message);
 

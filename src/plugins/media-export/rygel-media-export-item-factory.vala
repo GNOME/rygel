@@ -117,17 +117,24 @@ namespace Rygel.MediaExport.ItemFactory {
                                                File           file,
                                                Variant        v) {
         if (!v.is_of_type (new VariantType ("(smvmvmvmvmvmv)"))) {
-            warning ("Invalid meta-data serialisation, cannot process %s",
+            warning (_("Invalid meta-data serialisation, cannot process %s"),
                      v.get_type_string ());
 
             return null;
         }
 
-        Variant? upnp_class, file_info, dlna_profile, info, video_info, audio_info, meta_data;
+        Variant? upnp_class,
+                 file_info,
+                 dlna_profile,
+                 info,
+                 video_info,
+                 audio_info,
+                 meta_data;
 
         var it = v.iterator ();
         if (it.n_children () != 7) {
-            warning ("Invalid meta-data serialisation: exprected 7 children, got %d", (int) it.n_children ());
+            warning (_("Invalid meta-data serialisation: exprected 7 children, got %d"),
+                     (int) it.n_children ());
 
             return null;
         }
@@ -219,7 +226,7 @@ namespace Rygel.MediaExport.ItemFactory {
 
     private static void apply_meta_data (MediaFileItem item, Variant v) {
         if (!v.is_of_type (new VariantType ("(msmsmsiii)"))) {
-            warning ("Invalid meta-data serialisation of meta-data; %s",
+            warning (_("Invalid meta-data serialisation of meta-data; %s"),
                      v.get_type_string ());
 
             return;
@@ -255,7 +262,7 @@ namespace Rygel.MediaExport.ItemFactory {
 
     private static void apply_video_info (MediaFileItem item, Variant v) {
         if (!v.is_of_type (new VariantType ("(iii)"))) {
-            warning ("Invalid meta-data serialisation of video info; %s",
+            warning (_("Invalid meta-data serialisation of video info; %s"),
                      v.get_type_string ());
 
             return;
@@ -274,7 +281,7 @@ namespace Rygel.MediaExport.ItemFactory {
 
     private static void apply_audio_info (MediaFileItem item, Variant v) {
         if (!v.is_of_type (new VariantType ("(ii)"))) {
-            warning ("Invalid meta-data serialisation of audio info; %s",
+            warning (_("Invalid meta-data serialisation of audio info; %s"),
                      v.get_type_string ());
 
             return;
@@ -292,7 +299,7 @@ namespace Rygel.MediaExport.ItemFactory {
 
     private static void apply_info (MediaFileItem item, Variant v) {
         if (!v.is_of_type (new VariantType ("(msmsi)"))) {
-            warning ("Invalid meta-data serialisation of general info");
+            warning (_("Invalid meta-data serialisation of general info"));
         }
 
         var it = v.iterator ();
@@ -313,7 +320,7 @@ namespace Rygel.MediaExport.ItemFactory {
 
     private static void apply_dlna_profile (MediaFileItem item, Variant v) {
         if (!v.is_of_type (new VariantType ("(ss)"))) {
-            warning ("Invalid meta-data serialisation of DLNA profile %s",
+            warning (_("Invalid meta-data serialisation of DLNA profile %s"),
                      v.get_type_string ());
 
             return;
@@ -326,7 +333,7 @@ namespace Rygel.MediaExport.ItemFactory {
 
     private static void apply_file_info (MediaFileItem item, Variant v) {
         if (!v.is_of_type (new VariantType ("(sstt)"))) {
-            warning ("Invalid meta-data serialisation of file info %s",
+            warning (_("Invalid meta-data serialisation of file info %s"),
                      v.get_type_string ());
 
             return;
@@ -334,7 +341,7 @@ namespace Rygel.MediaExport.ItemFactory {
 
         var it = v.iterator ();
         if (it.n_children () != 4) {
-            warning ("Invalid meta-data serialisation of file info");
+            warning (_("Invalid meta-data serialisation of file info"));
 
             return;
         }

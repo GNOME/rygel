@@ -64,8 +64,8 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                 database.commit ();
             } catch (Error error) {
                 database.rollback ();
-                warning ("Failed to force reindex to fix database: " +
-                        error.message);
+                warning (_("Failed to force reindex to fix database: %s"),
+                         error.message);
             }
         }
     }
@@ -75,7 +75,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             this.database.exec (this.sql.make (SQLString.INDEX_COMMON));
             this.database.analyze ();
         } catch (Error error) {
-            warning ("Failed to create indices: " +
+            warning (_("Failed to create indices: %s"),
                      error.message);
         }
     }
