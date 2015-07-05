@@ -128,8 +128,11 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
                 case 15:
                     this.update_v15_v16 ();
                     break;
+                case 16:
+                    this.update_v16_v17 ();
+                    break;
                 default:
-                    warning ("Cannot upgrade");
+                    warning (_("Cannot upgrade from version %d"), old_version);
                     database = null;
                     break;
             }
@@ -539,6 +542,20 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
         } catch (Database.DatabaseError error) {
             database.rollback ();
             warning ("Database upgrade failed: %s", error.message);
+            database = null;
+        }
+    }
+
+    private void update_v16_v17 () {
+        try {
+            this.database.begin ();
+            this.database.exec (this.sql.make (SQLString.CREATE_BLACKLIST_TABLE));
+            this.database.exec (this.sql.make (SQLString.CREATE_BLACKLIST_INDEX));
+            this.database.exec ("VACUUM");
+            this.database.analyze ();
+        } catch (Database.DatabaseError error) {
+            database.rollback ();
+            warning (_("Database upgrade failed: %s"), error.message);
             database = null;
         }
     }
