@@ -582,6 +582,34 @@ public class Rygel.MediaExport.MediaCache : Object {
         return object.id;
     }
 
+    public void blacklist (File file) {
+        try {
+            GLib.Value[] values = { file.get_uri (),
+                                    new GLib.DateTime.now_utc ().to_unix () };
+            this.db.exec (this.sql.make (SQLString.ADD_TO_BLACKLIST),
+                          values);
+        } catch (DatabaseError error) {
+            warning (_("Failed to add %s to file blacklist: %s"),
+                     file.get_uri (),
+                     error.message);
+        }
+    }
+
+    public bool is_blacklisted (File file) {
+        try {
+            GLib.Value[] values = { file.get_uri () };
+
+            return this.query_value (SQLString.CHECK_BLACKLIST,
+                                     values) == 1;
+        } catch (DatabaseError error) {
+            warning (_("Failed to get whether uri %s is blacklisted: %s"),
+                     file.get_uri (),
+                     error.message);
+
+            return false;
+        }
+    }
+
     // Private functions
     private bool is_object_guarded (string id) {
         try {

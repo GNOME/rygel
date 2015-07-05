@@ -204,7 +204,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         } else {
             // Check if the file needs to be harvested at all either because
             // it is denied by filter or it hasn't updated
-            if (Harvester.is_eligible (info)) {
+            if (Harvester.is_eligible (file, info)) {
                 return this.push_if_changed_or_unknown (file, info);
             }
 
@@ -335,7 +335,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                file.get_uri (),
                error.message);
 
-        // TODO: Add to blacklist
+        this.cache.blacklist (file);
 
         this.files.poll ();
         this.do_update ();

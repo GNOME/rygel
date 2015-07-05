@@ -66,15 +66,25 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
      * @param info a FileInfo
      * @return true if file should be extracted, false otherwise
      */
-    public static bool is_eligible (FileInfo info) {
-        return info.get_content_type ().has_prefix ("image/") ||
-               info.get_content_type ().has_prefix ("video/") ||
-               info.get_content_type ().has_prefix ("audio/") ||
-               info.get_content_type () == "application/ogg" ||
-               info.get_content_type () == "application/xml" ||
-               info.get_content_type () == "text/xml" ||
-               info.get_content_type () == "text/plain";
-        // Todo: Check blacklist
+    public static bool is_eligible (File file, FileInfo info) {
+        var is_supported_content_type =
+            info.get_content_type ().has_prefix ("image/") ||
+            info.get_content_type ().has_prefix ("video/") ||
+            info.get_content_type ().has_prefix ("audio/") ||
+            info.get_content_type () == "application/ogg" ||
+            info.get_content_type () == "application/xml" ||
+            info.get_content_type () == "text/xml" ||
+            info.get_content_type () == "text/plain";
+
+        var cache = MediaCache.get_default ();
+        var is_blacklisted = cache.is_blacklisted (file);
+
+        if (is_blacklisted) {
+            debug ("URI %s is not eligble due to blacklising",
+                   file.get_uri ());
+        }
+
+        return is_supported_content_type && ! is_blacklisted;
     }
 
     /**
@@ -182,7 +192,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                                         FileQueryInfoFlags.NONE,
                                         this.cancellable);
             if (info.get_file_type () == FileType.DIRECTORY ||
-                Harvester.is_eligible (info)) {
+                Harvester.is_eligible (file, info)) {
                 var id = MediaCache.get_id (file.get_parent ());
                 try {
                     var parent_container = cache.get_object (id)
