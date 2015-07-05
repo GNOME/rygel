@@ -307,14 +307,21 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             this.extract_metadata = true;
         }
 
-        try {
-            var s = "METADATA %s\n".printf (this.extract_metadata.to_string ());
-            this.input_stream.write_all (s.data, null, null);
-            this.input_stream.flush ();
-            debug ("Sent config change to child: %s", s);
-        } catch (Error error) {
-            debug ("Failed to set meta-data extraction state: %s",
-                   error.message);
+        // if input_stream is not set, then the child is not yet running.
+        // Otherwise, if the cancellable is cancelled, then the input stream
+        // will not be valid anymore, but the child will be restarted with the
+        // new setting anyway.
+        if (this.input_stream != null &&
+            !this.child_io_cancellable.is_cancelled ()) {
+            try {
+                var s = "METADATA %s\n".printf (this.extract_metadata.to_string ());
+                this.input_stream.write_all (s.data, null, null);
+                this.input_stream.flush ();
+                debug ("Sent config change to child: %s", s);
+            } catch (Error error) {
+                debug ("Failed to set meta-data extraction state: %s",
+                       error.message);
+            }
         }
     }
 }
