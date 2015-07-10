@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-08 23:28+0000\n"
-"PO-Revision-Date: 2015-07-09 15:07+0200\n"
+"POT-Creation-Date: 2015-07-09 23:26+0000\n"
+"PO-Revision-Date: 2015-07-10 09:19+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -1021,10 +1021,9 @@ msgid "Failed to parse commandline args: %s"
 msgstr "Zlyhala analýza parametrov príkazového riadku: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:237
-#, fuzzy, c-format
-#| msgid "Failed to create root device factory: %s"
+#, c-format
 msgid "Failed to create media art extractor: %s"
-msgstr "Zlyhalo vytvorenie rozhrania na tvorbu koreňového zariadenia: %s"
+msgstr "Zlyhalo vytvorenie nástroja na extrahovanie obalov médií: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:258
 #, c-format
@@ -1095,7 +1094,7 @@ msgstr "Neplatná serializácia metaúdajov, nedá sa spracovať %s"
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
 #, c-format
 msgid "Invalid metadata serialisation: exprected 7 children, got %d"
-msgstr ""
+msgstr "Neplatná serializácia metaúdajov: očakávaný potomok 7, získaný %d"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:229
 #, c-format
@@ -1136,10 +1135,9 @@ msgid "Failed to get child count of query container: %s"
 msgstr "Zlyhalo získanie počtu potomkov kontajnera dopytu: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
-#, fuzzy, c-format
-#| msgid "Failed to query database: %s"
+#, c-format
 msgid "Failed to force reindex to fix database: %s"
-msgstr "Zlyhal dopyt k databáze: %s"
+msgstr "Zlyhalo vynútenie znovu indexovania na opravu databázy: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
@@ -1176,10 +1174,9 @@ msgid "Failed to get reset token"
 msgstr "Zlyhalo získanie tokenu na vynulovanie"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:532
-#, fuzzy, c-format
-#| msgid "Failed to stop Rygel service: %s"
+#, c-format
 msgid "Failed to persist ServiceResetToken: %s"
-msgstr "Zlyhalo zastavenie služby Rygel: %s"
+msgstr "Zlyhalo zotrvanie tokenu ServiceResetToken: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:542
 #, c-format
@@ -1187,32 +1184,28 @@ msgid "Failed to remove virtual folders: %s"
 msgstr "Zlyhalo odstránenie virtuálnych priečinkov: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:556
-#, fuzzy, c-format
-#| msgid "Failed to create item under '%s': %s"
+#, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
-msgstr "Zlyhalo vytvorenie položky v „%s“: %s"
+msgstr "Zlyhalo označenie položky %s ako chránená (%d): %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:566
 msgid "Cannot create references to containers"
 msgstr "Nedajú sa vytvoriť odkazy na kontajery"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:592
-#, fuzzy, c-format
-#| msgid "Failed to harvest file %s: %s"
+#, c-format
 msgid "Failed to add %s to file blacklist: %s"
-msgstr "Zlyhalo vyťaženie súboru %s: %s"
+msgstr "Zlyhalo pridanie %s do súboru s čiernej listiny: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:605
-#, fuzzy, c-format
-#| msgid "Failed to shut down other Rygel instance: %s"
+#, c-format
 msgid "Failed to get whether URI %s is blacklisted: %s"
-msgstr "Zlyhalo vypnutie inej inštancie programu Rygel: %s"
+msgstr "Zlyhalo získanie informácie, či je URI %s na čiernej listine: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:621
-#, fuzzy, c-format
-#| msgid "Failed to create item under '%s': %s"
+#, c-format
 msgid "Failed to get whether item %s is guarded: %s"
-msgstr "Zlyhalo vytvorenie položky v „%s“: %s"
+msgstr "Zlyhalo získanie informácie, či je položka %s chránená: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:660
 #, c-format
@@ -1235,11 +1228,11 @@ msgstr "Neplatná databáza, nedá sa dopytovať tabuľka sqlite_master: %s"
 msgid "Failed to create database schema: %s"
 msgstr "Zlyhalo vytvorenie schémy databázy: %s"
 
+# DK: https://bugzilla.gnome.org/show_bug.cgi?id=752207
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1191
-#, fuzzy, c-format
-#| msgid "Unsupported seek type"
+#, c-format
 msgid "Unsupported search criteria op %d"
-msgstr "Nepodporovaný typ presúvania"
+msgstr ""
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
 #, c-format
