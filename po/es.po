@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-12 23:26+0000\n"
-"PO-Revision-Date: 2015-07-13 \n"
+"POT-Creation-Date: 2015-07-14 11:26+0000\n"
+"PO-Revision-Date: 2015-07-15 \n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
+"Language-Team: Spanish <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -968,19 +968,16 @@ msgstr "Comando recibido no válido, ignorando"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:112
 #, c-format
-#| msgid "Failed to remove URI: %s"
 msgid "Failed to discover URI %s: %s"
 msgstr "Falló al descubrir el URI %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:130
 #, c-format
-#| msgid "Failed to read from URI: %s: %s"
 msgid "Failed to read from pipe: %s"
 msgstr "Falló al leer de l tubería: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:158
 #, c-format
-#| msgid "Failed to read error output from %s: %s"
 msgid "Failed to send error to parent: %s"
 msgstr "Falló al enviar el error al padre: %s"
 
@@ -995,21 +992,20 @@ msgstr "- binario auxiliar de Rygel para extraer metadatos"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:229
 #, c-format
-#| msgid "Failed to parse query: %s"
 msgid "Failed to parse commandline args: %s"
 msgstr "Falló al analizar los argumentos de línea de comandos: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:237
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to create root device factory: %s"
 msgid "Failed to create media art extractor: %s"
-msgstr "Falló al crear la fábrica del dispositivo raíz: %s"
+msgstr "Falló al crear el extractor de arte de los medios: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:258
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to start Rygel service: %s"
 msgid "Failed to start metadata discoverer: %s"
-msgstr "Falló al iniciar el servicio Rygel: %s"
+msgstr "Falló al iniciar el descubridor de metadatos: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, c-format
@@ -1069,48 +1065,49 @@ msgstr "Omitiendo el URI %s; la extracción falló por completo: %s"
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:120
 #, c-format
 msgid "Invalid metadata serialisation, cannot process %s"
-msgstr "Serialización de metadatos no válidad, no se puede procesar %s"
+msgstr "Serialización de metadatos no válida, no se puede procesar %s"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
 #, c-format
+#| msgid "Invalid metadata serialisation of file info %s"
 msgid "Invalid metadata serialisation: expected 7 children, got %d"
 msgstr ""
+"Serialización de metadatos no válida: se esperaban 7 hijos, se obtuvieron %d"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:229
 #, c-format
 msgid "Invalid metadata serialisation of metadata; %s"
-msgstr "Serialización de metadatos no válidad para metadatos; %s"
+msgstr "Serialización de metadatos no válida para metadatos; %s"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:265
 #, c-format
 msgid "Invalid metadata serialisation of video info; %s"
-msgstr "Serialización de metadatos no válidad para la información de vídeo; %s"
+msgstr "Serialización de metadatos no válida para la información de vídeo; %s"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:284
 #, c-format
 msgid "Invalid metadata serialisation of audio info; %s"
-msgstr ""
-"Serialización de metadatos no válidad para la información de sonido; %s"
+msgstr "Serialización de metadatos no válida para la información de sonido; %s"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:302
 msgid "Invalid metadata serialisation of general info"
-msgstr "Serialización de metadatos no válidad para la información general"
+msgstr "Serialización de metadatos no válida para la información general"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:323
 #, c-format
 msgid "Invalid metadata serialisation of DLNA profile %s"
 msgstr ""
-"Serialización de metadatos no válidad para la información del perfil DLNA %s"
+"Serialización de metadatos no válida para la información del perfil DLNA %s"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:336
 #, c-format
 msgid "Invalid metadata serialisation of file info %s"
 msgstr ""
-"Serialización de metadatos no válidad para la información del archivo %s"
+"Serialización de metadatos no válida para la información del archivo %s"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:344
 msgid "Invalid metadata serialisation of file info"
-msgstr "Serialización de metadatos no válidad para la información del archivo"
+msgstr "Serialización de metadatos no válida para la información del archivo"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
@@ -1118,16 +1115,16 @@ msgid "Failed to get child count of query container: %s"
 msgstr "Falló al obtener el número de hijos del contenedor: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to query database: %s"
 msgid "Failed to force reindex to fix database: %s"
-msgstr "Falló al consultar la base de datos: %s"
+msgstr "Falló al forzar el reindexado para corregir la base de datos: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to create item under '%s': %s"
 msgid "Failed to create indices: %s"
-msgstr "Falló al crear un elemento bajo «%s»: %s"
+msgstr "Falló al crear los índices: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
 #, c-format
@@ -1136,7 +1133,6 @@ msgstr "No se puede actualizar desde la versión %d"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:113
 #, c-format
-#| msgid "Using database file %s"
 msgid "Database upgrade failed: %s"
 msgstr "Falló al actualizar la base de datos: %s"
 
@@ -1147,7 +1143,6 @@ msgstr "Falló al añadir el elemento con ID %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:216
 #, c-format
-#| msgid "Failed to get a socket: %s"
 msgid "Failed to get update IDs: %s"
 msgstr "Falló al obtenerlos ID actualizados: %s"
 
@@ -1157,26 +1152,23 @@ msgid "Inconsistent database: item %s does not have parent %s"
 msgstr "Base de datos inconsistemte: el elemento %s no tiene padre %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:520
-#, fuzzy
 #| msgid "Failed to get a socket: %s"
 msgid "Failed to get reset token"
-msgstr "Falló al obtener un socket: %s"
+msgstr "Falló al obtener un testigo restablecido"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:532
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to stop Rygel service: %s"
 msgid "Failed to persist ServiceResetToken: %s"
-msgstr "Falló al parar el servicio Rygel: %s"
+msgstr "Falló al persistir ServiceResetToken: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:542
 #, c-format
-#| msgid "Failed to remove file %s: %s"
 msgid "Failed to remove virtual folders: %s"
 msgstr "Falló al eliminar las carpetas virtuales: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:556
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to mark item %s as guarded (%d): %s"
 msgstr "Falló al marcar el elemento %s como guardado (%d): %s"
 
@@ -1186,19 +1178,16 @@ msgstr "No se pueden crear las referencias a los contenedores"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:592
 #, c-format
-#| msgid "Failed to harvest file %s: %s"
 msgid "Failed to add %s to file blacklist: %s"
 msgstr "Falló al añadir %s a la lista negra de archivos: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:605
 #, c-format
-#| msgid "Failed to shut down other Rygel instance: %s"
 msgid "Failed to get whether URI %s is blacklisted: %s"
 msgstr "Falló al consultar si el URI %s está en una lsita negra: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:621
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to get whether item %s is guarded: %s"
 msgstr "Falló al consultar si el elemento %s está guardado: %s"
 
@@ -1208,6 +1197,8 @@ msgid ""
 "The version \"%d\" of the detected database is newer than our supported "
 "version \"%d\""
 msgstr ""
+"La versión «%d» de la base de datos detectada es más reciente que la versión «%"
+"d» soportada"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:684
 msgid "Incompatible schema… cannot proceed"
@@ -1221,20 +1212,18 @@ msgstr ""
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:891
 #, c-format
-#| msgid "Failed to query database: %s"
 msgid "Failed to create database schema: %s"
 msgstr "Falló al crear el esqueda de la base de datos: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1191
 #, c-format
-#| msgid "Unsupported seek type"
 msgid "Unsupported search criteria op %d"
 msgstr "Criterio de búsqueda no soportado op %d"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
 #, c-format
 msgid "Skipping unsupported sort field: %s"
-msgstr ""
+msgstr "Omitiendo campo de ordenación no soportado: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:108
 msgid "Failed to gracefully stop the process. Using KILL"
@@ -1245,7 +1234,7 @@ msgstr "Falló al detener correctamente el proceso. Usando KILL"
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:166
 #, c-format
 msgid "Process check_async failed: %s"
-msgstr ""
+msgstr "Falló el proceso check_async: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:172
 #, c-format
@@ -1255,7 +1244,7 @@ msgstr "El proceso ha muerto al gestionar el URI %s"
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:178
 #, c-format
 msgid "Setting up extraction subprocess failed: %s"
-msgstr ""
+msgstr "Falló el subproceso de configuración de extracción: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:191
 #, c-format
@@ -1265,7 +1254,7 @@ msgstr "El hijo ha fallado. El último URI fue %s"
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:197
 #, c-format
 msgid "Reading from child's error stream failed: %s"
-msgstr ""
+msgstr "Falló al leer del flujo de error del hijo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:217
 #, c-format
@@ -1275,7 +1264,7 @@ msgstr "Cadena no válida recibida del hijo: %s"
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:224
 #, c-format
 msgid "Received ill-formed response string %s from child…"
-msgstr ""
+msgstr "Recibida una cadena de respuesta %s mal formada del hijo…"
 
 #. No error signalling, this was done in the part that called
 #. cancel
@@ -1286,7 +1275,6 @@ msgstr "Falló al leer del hijo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:292
 #, c-format
-#| msgid "Failed to get child count: %s"
 msgid "Failed to send command to child: %s"
 msgstr "Falló al enviar el comando al hijo: %s"
 
@@ -1333,7 +1321,6 @@ msgstr "upnp: clase no soportada en %s"
 
 #: ../src/plugins/media-export/rygel-media-export-plugin.vala:52
 #, c-format
-#| msgid "Could not load plugin: %s"
 msgid "Failed to load plugin %s: %s"
 msgstr "Falló al cargar el complemento %s: %s"
 
