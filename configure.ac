@@ -33,9 +33,9 @@ GOBJECT_INTROSPECTION_CHECK([1.33.4])
 
 dnl Required versions of library packages
 dnl Not all of these are actually used, depending on the configure options.
-GLIB_REQUIRED=2.34.0
+GLIB_REQUIRED=2.40.0
 LIBXML_REQUIRED=2.7
-VALA_REQUIRED=0.22.0
+VALA_REQUIRED=0.24.0
 VALADOC_REQUIRED=0.2
 GSSDP_REQUIRED=0.13.0
 GUPNP_REQUIRED=0.20.14
@@ -60,7 +60,7 @@ GSTREAMER_AUDIO_REQUIRED=1.0
 dnl Additional requirements for tracker plugin
 TRACKER_SPARQL_REQUIRED_MIN=0.14.0
 
-VALAFLAGS="--enable-deprecated --target-glib=2.32 $VALAFLAGS"
+VALAFLAGS="--enable-deprecated --target-glib=2.40 $VALAFLAGS"
 
 ########################################################
 ## Base
