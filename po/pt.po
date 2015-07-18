@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the rygel package.
 #
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2010, 2011, 2012, 2013, 2014.
-# Pedro Albuquerque <palbuquerque73@openmailbox.com>, 2015.
+# Pedro Albuquerque <palbuquerque73o@gmail.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-05 23:24+0000\n"
-"PO-Revision-Date: 2015-07-06 10:52+0100\n"
-"Last-Translator: Pedro Albuquerque <palbuquerque73@openmailbox.com>\n"
+"POT-Creation-Date: 2015-07-17 23:21+0000\n"
+"PO-Revision-Date: 2015-07-18 11:00+0100\n"
+"Last-Translator: Pedro Albuquerque <palbuquerque73o@gmail.com>\n"
 "Language-Team: Português <palbuquerque73@openmailbox.com>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -966,7 +966,6 @@ msgstr "Comando inválido recebido, a ignorar"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:112
 #, c-format
-#| msgid "Failed to discover uri %s: %s"
 msgid "Failed to discover URI %s: %s"
 msgstr "Falha ao descobrir uri %s: %s"
 
@@ -986,7 +985,6 @@ msgid "Failed to extract basic metadata from %s: %s"
 msgstr "Falha ao extrair metadados básicos de %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:222
-#| msgid "- helper binary for Rygel to extract meta-data"
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- binário de ajuda de onde o Rygel extrair metadados"
 
@@ -1002,7 +1000,6 @@ msgstr "Falha ao criar extrator de arte multimédia: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:258
 #, c-format
-#| msgid "Failed to start meta-data discoverer: %s"
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Falha ao iniciar descobridor de metadados: %s"
 
@@ -1058,7 +1055,6 @@ msgstr "Falha ao obter os filhos do contentor %s: %s"
 #. go to the next file
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:334
 #, c-format
-#| msgid "Setting up extraction subprocess failed: %s"
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "A saltar URI %s; extração completamente falhada: %s"
 
@@ -1069,8 +1065,9 @@ msgstr "Serialização de metadados inválida, impossível processar %s"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
 #, c-format
-msgid "Invalid metadata serialisation: exprected 7 children, got %d"
-msgstr "Serialização de metadados inválida, esperados 7 filhos, obtidos %d"
+#| msgid "Invalid metadata serialisation: exprected 7 children, got %d"
+msgid "Invalid metadata serialisation: expected 7 children, got %d"
+msgstr "Serialização de metadados inválida: esperados 7 filhos, obtidos %d"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:229
 #, c-format
@@ -1112,13 +1109,11 @@ msgstr "Falha ao obter a contagem de filhos do contentor de consulta: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
 #, c-format
-#| msgid "Failed to query database: %s"
 msgid "Failed to force reindex to fix database: %s"
 msgstr "Falha ao forçar reindexação para reparar a base de dados: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to create indices: %s"
 msgstr "Falha ao criar índices: %s"
 
@@ -1129,7 +1124,6 @@ msgstr "Impossível atualizar da versão %d"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:113
 #, c-format
-#| msgid "Using database file %s"
 msgid "Database upgrade failed: %s"
 msgstr "Atualização de base de dados falhou: %s"
 
@@ -1140,7 +1134,6 @@ msgstr "Falha ao adicionar item com ID %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:216
 #, c-format
-#| msgid "Failed to get a socket: %s"
 msgid "Failed to get update IDs: %s"
 msgstr "Falha ao obter IDs atualizadas: %s"
 
@@ -1150,25 +1143,21 @@ msgid "Inconsistent database: item %s does not have parent %s"
 msgstr "Base de dados inconsistente: o item %s não tem pai %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:520
-#| msgid "Failed to get a socket: %s"
 msgid "Failed to get reset token"
 msgstr "Falha ao obter um símbolo de reposição"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:532
 #, c-format
-#| msgid "Failed to stop Rygel service: %s"
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "Falha ao persistir no ServiceResetToken: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:542
 #, c-format
-#| msgid "Failed to remove file %s: %s"
 msgid "Failed to remove virtual folders: %s"
 msgstr "Falha ao remover pastas virtuais: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:556
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to mark item %s as guarded (%d): %s"
 msgstr "Falha ao marcar item %s como guardado (%d): %s"
 
@@ -1178,19 +1167,16 @@ msgstr "Impossível criar referências a contentores"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:592
 #, c-format
-#| msgid "Failed to harvest file %s: %s"
 msgid "Failed to add %s to file blacklist: %s"
 msgstr "Falha ao adicionar %s à lista negra de ficheiros: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:605
 #, c-format
-#| msgid "Failed to shut down other Rygel instance: %s"
 msgid "Failed to get whether URI %s is blacklisted: %s"
 msgstr "Falha ao verificar se  o URI %s está na lista negra: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:621
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to get whether item %s is guarded: %s"
 msgstr "Falha ao verificar se  o item %s está guardado: %s"
 
@@ -1214,13 +1200,11 @@ msgstr "Base de dados inválida, impossível consultar sqlite_master_table: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:891
 #, c-format
-#| msgid "Failed to query database: %s"
 msgid "Failed to create database schema: %s"
 msgstr "Falha ao criar esquema de base de dados: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1191
 #, c-format
-#| msgid "Unsupported seek type"
 msgid "Unsupported search criteria op %d"
 msgstr "Critério de procura %d não suportado"
 
@@ -1325,7 +1309,6 @@ msgstr "upnp:classe não suportada em %s"
 
 #: ../src/plugins/media-export/rygel-media-export-plugin.vala:52
 #, c-format
-#| msgid "Could not load plugin: %s"
 msgid "Failed to load plugin %s: %s"
 msgstr "Impossível carregar extensão %s: %s"
 
