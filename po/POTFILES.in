@@ -232,6 +232,7 @@ src/plugins/tracker/rygel-tracker-upnp-property-map.vala
 src/plugins/tracker/rygel-tracker-video-item-factory.vala
 src/plugins/tracker/rygel-tracker-videos.vala
 src/plugins/tracker/rygel-tracker-years.vala
+src/rygel/rygel-acl.vala
 src/rygel/rygel-cmdline-config.vala
 src/rygel/rygel-dbus-service.vala
 src/rygel/rygel-environment-config.vala

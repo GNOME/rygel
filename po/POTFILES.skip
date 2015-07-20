@@ -255,6 +255,7 @@ src/plugins/tracker/rygel-tracker-upnp-property-map.c
 src/plugins/tracker/rygel-tracker-video-item-factory.c
 src/plugins/tracker/rygel-tracker-videos.c
 src/plugins/tracker/rygel-tracker-years.c
+src/rygel/rygel-acl.c
 src/rygel/rygel-cmdline-config.c
 src/rygel/rygel-dbus-service.c
 src/rygel/rygel-environment-config.c
