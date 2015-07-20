@@ -1,3 +1,50 @@
+0.27.3
+======
+
+- Remove streaming only mode.
+- Switch DLNA version to 1.51 to accomodate for the long protocolInfo strings.
+- Bump GLib and Vala requirements.
+- Add an implementation for GUPnPACL based on a DBus interface.
+
+MediaExport plugin:
+ - Add back album art extraction.
+ - Add back possibility to not harvest meta-data.
+ - Add timing output for HarvestingTask.
+ - Add a blacklist database table and bump database schema to v17.
+ - Add back by-passing of text files for the extractor.
+ - Add blacklisting for broken URIs.
+ - Drop support for database schema upgrade for versions < v16.
+ - Translation and style fixes.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=747815
+ - https://bugzilla.gnome.org/show_bug.cgi?id=748404
+ - https://bugzilla.gnome.org/show_bug.cgi?id=751942
+ - https://bugzilla.gnome.org/show_bug.cgi?id=752207
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Pedro Albuquerque <palbuquerque73@gmail.com>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Parthiban Balasubramanian <parthiban.balasubramanian@cablelabs.com>
+ - Dimitris Spingos <dmtrs32@gmail.com>
+ - Cédric Valmary <cvalmary@yahoo.fr>
+ - Balázs Úr <urbalazs@gmail.com>
+
+Added/updated translations
+ - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+ - es, courtesy of Daniel Mustieles
+ - hu, courtesy of Balázs Úr
+ - oc, courtesy of Cédric Valmary (totenoc.eu)
+ - pt, courtesy of Pedro Albuquerque
+ - sk, courtesy of Dušan Kazik
+
+Updated dependencies:
+ - GLib 2.40 for GSubprocess and GSubprocessLauncher.
+ - Valac 0.24 for binding of GSubprocess and GSubprocessLauncher.
+
 0.27.2
 ======
 
