@@ -1188,7 +1188,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                 v = "%s%%".printf (exp.operand2);
                 break;
             default:
-                debug (_("Unsupported search criteria op %d"), exp.op);
+                debug ("Unsupported search criteria op %d", exp.op);
 
                 return null;
         }
