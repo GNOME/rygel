@@ -3,17 +3,17 @@
 # This file is distributed under the same license as the rygel package.
 #
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2010, 2011, 2012, 2013, 2014.
-# Pedro Albuquerque <palbuquerque73o@gmail.com>, 2015.
+# Pedro Albuquerque <palbuquerque73@gmail.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-17 23:21+0000\n"
-"PO-Revision-Date: 2015-07-18 11:00+0100\n"
-"Last-Translator: Pedro Albuquerque <palbuquerque73o@gmail.com>\n"
-"Language-Team: Português <palbuquerque73@openmailbox.com>\n"
+"POT-Creation-Date: 2015-07-23 23:26+0000\n"
+"PO-Revision-Date: 2015-07-24 08:30+0100\n"
+"Last-Translator: Pedro Albuquerque <palbuquerque73@gmail.com>\n"
+"Language-Team: Português <palbuquerque73@gmail.com>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1065,7 +1065,6 @@ msgstr "Serialização de metadados inválida, impossível processar %s"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
 #, c-format
-#| msgid "Invalid metadata serialisation: exprected 7 children, got %d"
 msgid "Invalid metadata serialisation: expected 7 children, got %d"
 msgstr "Serialização de metadados inválida: esperados 7 filhos, obtidos %d"
 
@@ -1202,11 +1201,6 @@ msgstr "Base de dados inválida, impossível consultar sqlite_master_table: %s"
 #, c-format
 msgid "Failed to create database schema: %s"
 msgstr "Falha ao criar esquema de base de dados: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1191
-#, c-format
-msgid "Unsupported search criteria op %d"
-msgstr "Critério de procura %d não suportado"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
 #, c-format
@@ -1470,6 +1464,26 @@ msgstr "Erro ao obter a contagem de itens sob a categoria \"%s\": %s"
 msgid "Titles"
 msgstr "Títulos"
 
+#: ../src/rygel/rygel-acl.vala:110
+#, c-format
+#| msgid "Failed to query database: %s"
+msgid "Failed to query ACL: %s"
+msgstr "Falha ao consultar ACL: %s"
+
+#: ../src/rygel/rygel-acl.vala:127
+#, c-format
+#| msgid "Error getting all values for '%s': %s"
+msgid "Error creating DBus proxy for ACL: %s"
+msgstr "Erro ao criar proxy DBus para ACL: %s"
+
+#: ../src/rygel/rygel-acl.vala:143
+msgid "No ACL fallback policy found. Using \"allow\""
+msgstr "Nenhuma política de recurso encontrada para ACL. A usar \"permitir\""
+
+#: ../src/rygel/rygel-acl.vala:145
+msgid "No ACL fallback policy found. Using \"deny\""
+msgstr "Nenhuma política de recurso encontrada para ACL. A usar \"negar\""
+
 #: ../src/rygel/rygel-cmdline-config.vala:73
 msgid "Display version number"
 msgstr "Mostrar número da versão"
@@ -1545,29 +1559,29 @@ msgstr "Falha ao desligar outra instância do Rygel: %s"
 msgid "Another instance of Rygel is already running. Not starting."
 msgstr "Já está em execução outra instância do Rygel. Não inicia."
 
-#: ../src/rygel/rygel-main.vala:81
+#: ../src/rygel/rygel-main.vala:85
 #, c-format
 msgid "Rygel v%s starting…"
 msgstr "Rygel v%s a iniciar…"
 
-#: ../src/rygel/rygel-main.vala:109
+#: ../src/rygel/rygel-main.vala:113
 #, c-format
 msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
 msgstr[0] "Nenhuma extensão encontrada em %d segundo; a desistir..."
 msgstr[1] "Nenhuma extensão encontrada em %d segundos; a desistir..."
 
-#: ../src/rygel/rygel-main.vala:170
+#: ../src/rygel/rygel-main.vala:176
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Falha ao criar a fábrica do dispositivo raíz: %s"
 
-#: ../src/rygel/rygel-main.vala:227
+#: ../src/rygel/rygel-main.vala:233
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Falha ao criar o RootDevice para %s. Motivo: %s"
 
-#: ../src/rygel/rygel-main.vala:264
+#: ../src/rygel/rygel-main.vala:270
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Falha ao ler a configuração do utilizador: %s"
@@ -1610,6 +1624,9 @@ msgstr "Falha ao iniciar o serviço Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Falha ao parar o serviço Rygel: %s"
+
+#~ msgid "Unsupported search criteria op %d"
+#~ msgstr "Critério de procura %d não suportado"
 
 #~ msgid "Disable UPnP (streaming-only)"
 #~ msgstr "Desativar UPnP (apenas fluxo)"
