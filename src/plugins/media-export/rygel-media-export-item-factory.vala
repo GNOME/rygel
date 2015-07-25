@@ -133,7 +133,9 @@ namespace Rygel.MediaExport.ItemFactory {
 
         var it = v.iterator ();
         if (it.n_children () != 7) {
-            warning (_("Invalid metadata serialisation: expected 7 children, got %d"),
+            warning (ngettext("Invalid metadata serialisation: expected 7 children, got %d",
+                              "Invalid metadata serialisation: expected 7 children, got %d",
+                              (int) it.n_children ()),
                      (int) it.n_children ());
 
             return null;
