@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-24 23:31+0000\n"
+"POT-Creation-Date: 2015-07-25 10:46+0000\n"
 "PO-Revision-Date: 2015-07-25 10:00+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
@@ -1063,40 +1063,43 @@ msgid "Invalid metadata serialisation, cannot process %s"
 msgstr "Neplatná serializace metadat, nelze zpracovat %s"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid metadata serialisation: expected 7 children, got %d"
-msgstr "Neplatná serializace metadat: očekáváno 7 potomků, získán %d"
+msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
+msgstr[0] "Neplatná serializace metadat: očekáváno 7 potomků, získán %d"
+msgstr[1] "Neplatná serializace metadat: očekáváno 7 potomků, získáni %d"
+msgstr[2] "Neplatná serializace metadat: očekáváno 7 potomků, získáno %d"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:229
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:231
 #, c-format
 msgid "Invalid metadata serialisation of metadata; %s"
 msgstr "Neplatná serializace metadat o metadatech; %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:265
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:267
 #, c-format
 msgid "Invalid metadata serialisation of video info; %s"
 msgstr "Neplatná serializace metadat s informacemi o videu; %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:284
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:286
 #, c-format
 msgid "Invalid metadata serialisation of audio info; %s"
 msgstr "Neplatná serializace metadat s informacemi o zvuku; %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:302
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:304
 msgid "Invalid metadata serialisation of general info"
 msgstr "Neplatná serializace metadat s obecnými informacemi"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:323
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:325
 #, c-format
 msgid "Invalid metadata serialisation of DLNA profile %s"
 msgstr "Neplatná serializace metadat s profilem DLNA %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:336
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:338
 #, c-format
 msgid "Invalid metadata serialisation of file info %s"
 msgstr "Neplatná serializace metadat s informacemi o souboru %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:344
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:346
 msgid "Invalid metadata serialisation of file info"
 msgstr "Neplatná serializace metadat s informacemi o souboru"
 
