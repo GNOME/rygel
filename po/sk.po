@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-09 23:26+0000\n"
-"PO-Revision-Date: 2015-07-10 09:19+0200\n"
+"POT-Creation-Date: 2015-07-26 23:29+0000\n"
+"PO-Revision-Date: 2015-07-27 10:35+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -1093,39 +1093,42 @@ msgstr "Neplatná serializácia metaúdajov, nedá sa spracovať %s"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
 #, c-format
-msgid "Invalid metadata serialisation: exprected 7 children, got %d"
-msgstr "Neplatná serializácia metaúdajov: očakávaný potomok 7, získaný %d"
+msgid "Invalid metadata serialisation: expected 7 children, got %d"
+msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
+msgstr[0] "Neplatná serializácia metaúdajov: očakávaný potomok 7, získaný %d"
+msgstr[1] "Neplatná serializácia metaúdajov: očakávaný potomok 7, získaný %d"
+msgstr[2] "Neplatná serializácia metaúdajov: očakávaný potomok 7, získaný %d"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:229
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:231
 #, c-format
 msgid "Invalid metadata serialisation of metadata; %s"
 msgstr "Neplatná serializácia metaúdajov; %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:265
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:267
 #, c-format
 msgid "Invalid metadata serialisation of video info; %s"
 msgstr "Neplatná serializácia metaúdajov informácií o videu; %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:284
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:286
 #, c-format
 msgid "Invalid metadata serialisation of audio info; %s"
 msgstr "Neplatná serializácia metaúdajov informácií o audiu; %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:302
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:304
 msgid "Invalid metadata serialisation of general info"
 msgstr "Neplatná serializácia metaúdajov všeobecných informácií"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:323
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:325
 #, c-format
 msgid "Invalid metadata serialisation of DLNA profile %s"
 msgstr "Neplatná serializácia metaúdajov profilu DLNA %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:336
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:338
 #, c-format
 msgid "Invalid metadata serialisation of file info %s"
 msgstr "Neplatná serializácia metaúdajov informácií o súbore %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:344
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:346
 msgid "Invalid metadata serialisation of file info"
 msgstr "Neplatná serializácia metaúdajov informácií o súbore"
 
@@ -1227,12 +1230,6 @@ msgstr "Neplatná databáza, nedá sa dopytovať tabuľka sqlite_master: %s"
 #, c-format
 msgid "Failed to create database schema: %s"
 msgstr "Zlyhalo vytvorenie schémy databázy: %s"
-
-# DK: https://bugzilla.gnome.org/show_bug.cgi?id=752207
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1191
-#, c-format
-msgid "Unsupported search criteria op %d"
-msgstr ""
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
 #, c-format
@@ -1500,6 +1497,24 @@ msgstr "Vyskytla sa chyba pri získavaní počtu položiek v kategórii „%s“
 msgid "Titles"
 msgstr "Tituly"
 
+#: ../src/rygel/rygel-acl.vala:110
+#, c-format
+msgid "Failed to query ACL: %s"
+msgstr "Zlyhal dopyt ACL: %s"
+
+#: ../src/rygel/rygel-acl.vala:127
+#, c-format
+msgid "Error creating DBus proxy for ACL: %s"
+msgstr "Chyba pri vytváraní sprostredkovateľa proxy zbernice DBus pre ACL: %s"
+
+#: ../src/rygel/rygel-acl.vala:143
+msgid "No ACL fallback policy found. Using \"allow\""
+msgstr "Nenašla sa žiadna záložná stratégia ACL. Používa sa stratégia „umožniť“"
+
+#: ../src/rygel/rygel-acl.vala:145
+msgid "No ACL fallback policy found. Using \"deny\""
+msgstr "Nenašla sa žiadna záložná stratégia ACL. Používa sa stratégia „odmietnuť“"
+
 #: ../src/rygel/rygel-cmdline-config.vala:73
 msgid "Display version number"
 msgstr "Vypíše číslo verzie"
@@ -1585,12 +1600,12 @@ msgstr "Zlyhalo vypnutie inej inštancie programu Rygel: %s"
 msgid "Another instance of Rygel is already running. Not starting."
 msgstr "Iná inštancia programu Rygel už je spustená, preto sa teraz nespustí."
 
-#: ../src/rygel/rygel-main.vala:81
+#: ../src/rygel/rygel-main.vala:85
 #, c-format
 msgid "Rygel v%s starting…"
 msgstr "Spúšťa sa Rygel v%s…"
 
-#: ../src/rygel/rygel-main.vala:109
+#: ../src/rygel/rygel-main.vala:113
 #, c-format
 msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
@@ -1598,17 +1613,17 @@ msgstr[0] "V priebehu %d sekundy sa nenašli žiadne zásuvné moduly; prerušuj
 msgstr[1] "V priebehu %d sekúnd sa nenašli žiadne zásuvné moduly; prerušuje sa…"
 msgstr[2] "V priebehu %d sekúnd sa nenašli žiadne zásuvné moduly; prerušuje sa…"
 
-#: ../src/rygel/rygel-main.vala:170
+#: ../src/rygel/rygel-main.vala:176
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Zlyhalo vytvorenie rozhrania na tvorbu koreňového zariadenia: %s"
 
-#: ../src/rygel/rygel-main.vala:227
+#: ../src/rygel/rygel-main.vala:233
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Zlyhalo vytvorenie koreňového zariadenia pre %s. Dôvod: %s"
 
-#: ../src/rygel/rygel-main.vala:264
+#: ../src/rygel/rygel-main.vala:270
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Zlyhalo načítanie konfigurácie používateľa: %s"
