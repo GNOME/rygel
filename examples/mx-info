@@ -1,0 +1,123 @@
+#!/usr/bin/env python
+
+# This file is part of Rygel.
+# Copyright (C) 2015 Jens Georg <mail@jensge.org>
+
+# Rygel is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+
+# Rygel is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+
+# You should have received a copy of the GNU Lesser General Public
+# License along with this library; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+import sqlite3
+import os.path
+import time
+from xdg import BaseDirectory
+import sys
+from urllib import pathname2url
+
+FILE_QUERY = """
+SELECT o.upnp_id, o.type_fk, o.timestamp, null,
+       m.size, m.mime_type, m.dlna_profile, m.duration, m.width, m.height,
+       m.class, m.author, m.album, m.genre, m.date, m.bitrate, m.sample_freq,
+       m.bits_per_sample, m.channels, m.track, m.color_depth, m.disc, o.title
+FROM Object o JOIN Meta_Data m on o.upnp_id = m.object_fk
+WHERE o.uri = :uri
+"""
+
+INFO_TEMPLATE = """Information about %(uri)s:
+    Id: %(id)s
+    Last Modified: %(mtime)u
+    Size: %(size)d
+    Content-Type: %(mime)s
+    DLNA Profile: %(dlna_profile)s
+    UPnP Class: %(class)s
+
+Media information:
+    Title: %(title)s
+    Duration: %(duration)d
+    Author: %(author)s
+    Album: %(album)s
+    Genre: %(genre)s
+    Created: %(date)s
+    Track: %(track)d
+    Disc: %(disc)d
+
+Technical information:
+    Width: %(width)d
+    Height: %(height)d
+    Bitrate: %(bitrate)d
+    Sample Freq: %(sample_freq)d
+    Bits/Sample: %(bits)d
+    Channels: %(channels)d
+    Color depths: %(depth)d
+"""
+BLACKLIST_QUERY = """
+SELECT b.timestamp FROM blacklist b WHERE b.uri = :uri
+"""
+
+BLACKLIST_TEMPLATE = 'File %(uri)s was blacklisted on %(date)s'
+
+if len (sys.argv) < 2:
+    me = os.path.basename (sys.argv[0])
+    print me + " - Dump information about files in Rygel's cache"
+    print "Usage: " + me + " file1 [file2 file3 ...]"
+    sys.exit (1)
+
+rygel_db = os.path.join (BaseDirectory.xdg_cache_home, "rygel", "media-export.db")
+conn = sqlite3.connect (rygel_db);
+
+c = conn.cursor ();
+c.execute ("SELECT version FROM schema_info");
+info = c.fetchone()
+if info[0] < 16:
+    print "Unsupported schema version or not a Rygel cache"
+    sys.exit (1)
+
+has_blackist = False
+if info[0] >= 17:
+    has_blackist = True
+
+for arg in sys.argv[1:]:
+    uri = arg
+    if not arg.startswith ("file://"):
+        uri = "file://" + pathname2url (arg)
+    c.execute (FILE_QUERY, {"uri": uri})
+    for row in c:
+        print (INFO_TEMPLATE % { "uri": uri,
+                                 "id" : row[0],
+                                 "mtime" : row[2],
+                                 "size" : row[4],
+                                 "mime" : row[5],
+                                 "dlna_profile" : row[6],
+                                 "class" : row[10],
+                                 "duration" : row[7],
+                                 "author" : row[11],
+                                 "album" : row[12],
+                                 "genre" : row[13],
+                                 "date" : row[14],
+                                 "track" : row[19],
+                                 "width" : row[8],
+                                 "height" : row[9],
+                                 "bitrate" : row[15],
+                                 "sample_freq" : row[16],
+                                 "bits" : row[17],
+                                 "channels" : row[18],
+                                 "depth" : row[20],
+                                 "disc" : row[21],
+                                 "title": row[22]})
+
+    if has_blackist:
+        c.execute (BLACKLIST_QUERY, {"uri": uri})
+        for row in c:
+            t = time.gmtime(row[0])
+            print (BLACKLIST_TEMPLATE % { "uri" : uri,
+                                          "date" : time.strftime("%a, %d %b %Y %H:%M:%S +0000", t)})
