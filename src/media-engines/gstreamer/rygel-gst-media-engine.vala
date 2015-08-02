@@ -160,23 +160,26 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         http_res.uri = ""; // The URI needs to be assigned by the MediaServer
         resources.add (http_res);
 
-        var list = new GLib.List<GstTranscoder> ();
-        foreach (var transcoder in transcoders) {
-            if (transcoder.get_distance (item) != uint.MAX &&
-                transcoder.transcoding_necessary (item)) {
-                list.append (transcoder);
+        if (!item.place_holder) {
+            var list = new GLib.List<GstTranscoder> ();
+            foreach (var transcoder in transcoders) {
+                if (transcoder.get_distance (item) != uint.MAX &&
+                    transcoder.transcoding_necessary (item)) {
+                    list.append (transcoder);
+                }
             }
-        }
-        list.sort_with_data( (transcoder_1, transcoder_2) => {
-            return (int) (transcoder_1.get_distance (item) -
-                          transcoder_2.get_distance (item));
-        });
 
-        // Put all Transcoders in the list according to their sorted rank
-        foreach (var transcoder in list) {
-            var res = transcoder.get_resource_for_item (item);
-            if (res != null) {
-                resources.add (res);
+            list.sort_with_data( (transcoder_1, transcoder_2) => {
+                return (int) (transcoder_1.get_distance (item) -
+                              transcoder_2.get_distance (item));
+            });
+
+            // Put all Transcoders in the list according to their sorted rank
+            foreach (var transcoder in list) {
+                var res = transcoder.get_resource_for_item (item);
+                if (res != null) {
+                    resources.add (res);
+                }
             }
         }
 
