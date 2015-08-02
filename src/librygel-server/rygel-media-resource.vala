@@ -69,7 +69,7 @@ public class Rygel.MediaResource : GLib.Object {
         this.name = name;
         // res block
         this.uri = that.uri;
-        this.import_uri = that.uri;
+        this.import_uri = that.import_uri;
         this.extension = that.extension;
         this.size = that.size;
         this.cleartext_size = that.cleartext_size;
