@@ -136,10 +136,19 @@ public class Rygel.MediaResource : GLib.Object {
                                       HashTable<string, string>? replacements) {
         // Note: For a DIDLLiteResource, a values -1/null also signal "not set"
         if (replacements == null) {
-            didl_resource.uri = this.uri;
+            if (this.import_uri != null) {
+                didl_resource.import_uri = this.import_uri;
+            } else {
+                didl_resource.uri = this.uri;
+            }
         } else {
-            didl_resource.uri = MediaObject.apply_replacements (replacements,
-                                                                this.uri);
+            if (this.import_uri != null) {
+                didl_resource.import_uri = MediaObject.apply_replacements
+                    (replacements, this.import_uri);
+            } else {
+                didl_resource.uri = MediaObject.apply_replacements (replacements,
+                                                                    this.uri);
+            }
         }
         didl_resource.size64 = this.size;
         didl_resource.cleartext_size = this.cleartext_size;
