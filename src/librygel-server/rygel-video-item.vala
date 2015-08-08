@@ -167,13 +167,13 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
                                                                       index,
                                                                       null);
                     subtitle.add_didl_node (didl_item);
-                    subtitle.uri = uri; // Now restore the original URI
 
                     if (main_subtitle == null) {
                         main_subtitle = new Subtitle (subtitle.mime_type,
                                                       subtitle.caption_type);
-                        main_subtitle.uri = uri;
+                        main_subtitle.uri = subtitle.uri;
                     }
+                    subtitle.uri = uri; // Now restore the original URI
                 } else if (main_subtitle == null) {
                     main_subtitle = subtitle;
                 }
