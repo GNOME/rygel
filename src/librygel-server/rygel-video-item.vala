@@ -186,14 +186,13 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
                 // Add resource-level subtitle metadata to all streamable
                 // video resources Note: All resources have already been
                 // serialized by the base
+
+                // Work-around bgo#753382 - add subtitle to all resources
                 var resources = didl_item.get_resources ();
                 foreach (var resource in resources) {
-                    if ( (resource.protocol_info.dlna_flags
-                          & DLNAFlags.STREAMING_TRANSFER_MODE) != 0) {
-                        resource.subtitle_file_type =
-                            main_subtitle.caption_type.up ();
-                        resource.subtitle_file_uri = main_subtitle.uri;
-                    }
+                    resource.subtitle_file_type =
+                        main_subtitle.caption_type.up ();
+                    resource.subtitle_file_uri = main_subtitle.uri;
                 }
             }
         }
