@@ -1,3 +1,41 @@
+0.27.4
+======
+
+Server:
+ - Fix MediaResource copy constructor to copy import_uri.
+ - Serialize import URI properlie in MediaResource.
+ - Fix rewriting of subtitle URIs in PV tag.
+ - Add PV subtitle to all resources.
+
+Database:
+ - Make it a little bit more generic
+ - Fix vala deps.
+
+GStreamer media engine:
+ - Do not add transcoded resources for place-holder items.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=753314
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Marek Černocký <marek@manet.cz>
+ - Pedro Albuquerque <palbuquerque73@gmail.com>
+ - Muhammet Kara <muhammetk@gmail.com>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Jordi Mas <jmas@softcatala.org>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+
+Added/updated translations
+ - ca, courtesy of David Medina
+ - cs, courtesy of Marek Černocký
+ - lt, courtesy of Aurimas Černius
+ - nb, courtesy of Kjartan Maraas
+ - pt, courtesy of Pedro Albuquerque
+ - sk, courtesy of Dušan Kazik
+ - tr, courtesy of Muhammet Kara
+
 0.27.3
 ======
 
