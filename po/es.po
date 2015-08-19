@@ -2,17 +2,18 @@
 # Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
 # Jorge González <jorgegonz@svn.gnome.org>, 2010, 2011.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2014, 2015.
+# 
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2014, 2015., 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-14 11:26+0000\n"
-"PO-Revision-Date: 2015-07-15 \n"
+"POT-Creation-Date: 2015-08-17 23:31+0000\n"
+"PO-Revision-Date: 2015-08-19 20:23+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Spanish <gnome-es-list@gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -183,7 +184,8 @@ msgstr "No se puede ejecutar la acción «Ping»: el campo «equipo» está vac�
 
 #: ../src/librygel-core/rygel-basic-management.vala:348
 msgid "Cannot run 'NSLookup' action: HostName is empty"
-msgstr "No se puede ejecutar la acción «NSLookup»: el campo «equipo» está vacío"
+msgstr ""
+"No se puede ejecutar la acción «NSLookup»: el campo «equipo» está vacío"
 
 #: ../src/librygel-core/rygel-basic-management.vala:430
 msgid "Cannot run 'Traceroute' action: Host is empty"
@@ -317,12 +319,18 @@ msgstr "No se pudo cargar el complemento: %s"
 msgid "Failed to query content type for '%s'"
 msgstr "Falló al consultar el tipo de contenido para «%s»"
 
-#: ../src/librygel-db/database-cursor.vala:81
+#: ../src/librygel-db/database-cursor.vala:82
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Tipo %s no soportado"
 
-#: ../src/librygel-db/database.vala:215
+#: ../src/librygel-db/database.vala:143
+#, c-format
+#| msgid "Error removing object from database: %s"
+msgid "Error while opening SQLite database %s: %s"
+msgstr "Error al abrir la base de datos SQLite %s: %s"
+
+#: ../src/librygel-db/database.vala:248
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Falló al deshacer la transacción: %s"
@@ -796,8 +804,8 @@ msgstr "No se puede crear el objeto de clase «%s»: no está soportado"
 #: ../src/librygel-server/rygel-object-creator.vala:740
 #, c-format
 msgid ""
-"Error from container '%s' on trying to find the newly added child object '%"
-"s' in it: %s"
+"Error from container '%s' on trying to find the newly added child object "
+"'%s' in it: %s"
 msgstr ""
 "Error desde el el contenedor «%s» al intentar buscar el objeto hijo «%s» "
 "recién añadido en él: %s"
@@ -918,7 +926,7 @@ msgstr "URI no válido sin prefijo: %s"
 msgid "Can't process URI %s with protocol %s"
 msgstr "No se puede procesar el URI %s con el protocolo %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:238
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:241
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Falló al crear la fuente de datos GStreamer para «%s»: %s"
@@ -997,13 +1005,11 @@ msgstr "Falló al analizar los argumentos de línea de comandos: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:237
 #, c-format
-#| msgid "Failed to create root device factory: %s"
 msgid "Failed to create media art extractor: %s"
 msgstr "Falló al crear el extractor de arte de los medios: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:258
 #, c-format
-#| msgid "Failed to start Rygel service: %s"
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Falló al iniciar el descubridor de metadatos: %s"
 
@@ -1069,43 +1075,46 @@ msgstr "Serialización de metadatos no válida, no se puede procesar %s"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
 #, c-format
-#| msgid "Invalid metadata serialisation of file info %s"
+#| msgid "Invalid metadata serialisation: expected 7 children, got %d"
 msgid "Invalid metadata serialisation: expected 7 children, got %d"
-msgstr ""
+msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
+msgstr[0] ""
+"Serialización de metadatos no válida: se esperaban 7 hijos, se obtuvo %d"
+msgstr[1] ""
 "Serialización de metadatos no válida: se esperaban 7 hijos, se obtuvieron %d"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:229
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:231
 #, c-format
 msgid "Invalid metadata serialisation of metadata; %s"
 msgstr "Serialización de metadatos no válida para metadatos; %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:265
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:267
 #, c-format
 msgid "Invalid metadata serialisation of video info; %s"
 msgstr "Serialización de metadatos no válida para la información de vídeo; %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:284
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:286
 #, c-format
 msgid "Invalid metadata serialisation of audio info; %s"
 msgstr "Serialización de metadatos no válida para la información de sonido; %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:302
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:304
 msgid "Invalid metadata serialisation of general info"
 msgstr "Serialización de metadatos no válida para la información general"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:323
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:325
 #, c-format
 msgid "Invalid metadata serialisation of DLNA profile %s"
 msgstr ""
 "Serialización de metadatos no válida para la información del perfil DLNA %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:336
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:338
 #, c-format
 msgid "Invalid metadata serialisation of file info %s"
 msgstr ""
 "Serialización de metadatos no válida para la información del archivo %s"
 
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:344
+#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:346
 msgid "Invalid metadata serialisation of file info"
 msgstr "Serialización de metadatos no válida para la información del archivo"
 
@@ -1116,13 +1125,11 @@ msgstr "Falló al obtener el número de hijos del contenedor: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
 #, c-format
-#| msgid "Failed to query database: %s"
 msgid "Failed to force reindex to fix database: %s"
 msgstr "Falló al forzar el reindexado para corregir la base de datos: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to create indices: %s"
 msgstr "Falló al crear los índices: %s"
 
@@ -1152,13 +1159,11 @@ msgid "Inconsistent database: item %s does not have parent %s"
 msgstr "Base de datos inconsistemte: el elemento %s no tiene padre %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:520
-#| msgid "Failed to get a socket: %s"
 msgid "Failed to get reset token"
 msgstr "Falló al obtener un testigo restablecido"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:532
 #, c-format
-#| msgid "Failed to stop Rygel service: %s"
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "Falló al persistir ServiceResetToken: %s"
 
@@ -1197,8 +1202,8 @@ msgid ""
 "The version \"%d\" of the detected database is newer than our supported "
 "version \"%d\""
 msgstr ""
-"La versión «%d» de la base de datos detectada es más reciente que la versión «%"
-"d» soportada"
+"La versión «%d» de la base de datos detectada es más reciente que la versión "
+"«%d» soportada"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:684
 msgid "Incompatible schema… cannot proceed"
@@ -1214,11 +1219,6 @@ msgstr ""
 #, c-format
 msgid "Failed to create database schema: %s"
 msgstr "Falló al crear el esqueda de la base de datos: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1191
-#, c-format
-msgid "Unsupported search criteria op %d"
-msgstr "Criterio de búsqueda no soportado op %d"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
 #, c-format
@@ -1480,6 +1480,27 @@ msgstr "Error al obtener la cuenta de elementos bajo la categoría «%s»: %s"
 msgid "Titles"
 msgstr "Títulos"
 
+#: ../src/rygel/rygel-acl.vala:110
+#, c-format
+#| msgid "Failed to query database: %s"
+msgid "Failed to query ACL: %s"
+msgstr "Falló al consultar la ACL: %s"
+
+#: ../src/rygel/rygel-acl.vala:127
+#, c-format
+#| msgid "Error creating URI from %s: %s"
+msgid "Error creating DBus proxy for ACL: %s"
+msgstr "Error al crear el proxy de DBus para la ACL: %s"
+
+#: ../src/rygel/rygel-acl.vala:143
+msgid "No ACL fallback policy found. Using \"allow\""
+msgstr ""
+"No se ha encontrado ninguna política de ACL alternativa. Usando «allow»"
+
+#: ../src/rygel/rygel-acl.vala:145
+msgid "No ACL fallback policy found. Using \"deny\""
+msgstr "No se ha encontrado ninguna política de ACL alternativa. Usando «deny»"
+
 #: ../src/rygel/rygel-cmdline-config.vala:73
 msgid "Display version number"
 msgstr "Mostrar el número de versión"
@@ -1556,29 +1577,29 @@ msgstr "Falló al parar otra instancia de rygel: %s"
 msgid "Another instance of Rygel is already running. Not starting."
 msgstr "Ya se está ejecutando otra instancia del Rygel. No se inicia."
 
-#: ../src/rygel/rygel-main.vala:81
+#: ../src/rygel/rygel-main.vala:85
 #, c-format
 msgid "Rygel v%s starting…"
 msgstr "Iniciando Rygel v%s…"
 
-#: ../src/rygel/rygel-main.vala:109
+#: ../src/rygel/rygel-main.vala:113
 #, c-format
 msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
 msgstr[0] "No se encontraron complementos en %d segundo, abortando…"
 msgstr[1] "No se encontraron complementos en %d segundos, abortando…"
 
-#: ../src/rygel/rygel-main.vala:170
+#: ../src/rygel/rygel-main.vala:176
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Falló al crear la fábrica del dispositivo raíz: %s"
 
-#: ../src/rygel/rygel-main.vala:227
+#: ../src/rygel/rygel-main.vala:233
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Falló al crear el DispositivoRaís para %s. Razón: %s."
 
-#: ../src/rygel/rygel-main.vala:264
+#: ../src/rygel/rygel-main.vala:270
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Falló al cargar la configuración del usuario: %s"
@@ -1621,6 +1642,9 @@ msgstr "Falló al iniciar el servicio Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Falló al parar el servicio Rygel: %s"
+
+#~ msgid "Unsupported search criteria op %d"
+#~ msgstr "Criterio de búsqueda no soportado op %d"
 
 #~ msgid "Disable UPnP (streaming-only)"
 #~ msgstr "Desactivar UPnP (sólo para «streaming»)"
@@ -1894,9 +1918,6 @@ msgstr "Falló al parar el servicio Rygel: %s"
 
 #~ msgid "Already harvesting; cancelling"
 #~ msgstr "Ya se está recolectando; cancelando"
-
-#~ msgid "Error creating URI from %s: %s"
-#~ msgstr "Error al cerar un URI desde %s: %s"
 
 #~ msgid "Failed to create HTTP server for %s: %s"
 #~ msgstr "Falló al crear el servidor HTTP para %s: %s"
