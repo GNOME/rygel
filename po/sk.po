@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-26 23:29+0000\n"
-"PO-Revision-Date: 2015-07-27 10:35+0200\n"
+"POT-Creation-Date: 2015-08-19 23:36+0000\n"
+"PO-Revision-Date: 2015-08-20 11:35+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 1.8.2\n"
+"X-Generator: Poedit 1.8.4\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -335,12 +335,17 @@ msgstr "Nepodarilo sa načítať zásuvný modul: %s"
 msgid "Failed to query content type for '%s'"
 msgstr "Zlyhala žiadosť o typ obsahu pre „%s“"
 
-#: ../src/librygel-db/database-cursor.vala:81
+#: ../src/librygel-db/database-cursor.vala:82
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Nepodporovaný typ %s"
 
-#: ../src/librygel-db/database.vala:215
+#: ../src/librygel-db/database.vala:143
+#, c-format
+msgid "Error while opening SQLite database %s: %s"
+msgstr "Vyskytla sa chyba pri otváraní databázy SQLite %s: %s"
+
+#: ../src/librygel-db/database.vala:248
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Zlyhalo vrátenie zmien transakcie: %s"
@@ -941,7 +946,7 @@ msgstr "Neplatná URI bez predpony: %s"
 msgid "Can't process URI %s with protocol %s"
 msgstr "Nedá sa spracovať URI %s s protokolom %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:238
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:241
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Zlyhalo vytvorenie dátového zdroja sady GStreamer pre %s: %s"
