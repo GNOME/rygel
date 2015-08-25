@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-25 23:32+0000\n"
-"PO-Revision-Date: 2015-07-26 08:11+0100\n"
+"POT-Creation-Date: 2015-08-24 23:37+0000\n"
+"PO-Revision-Date: 2015-08-25 07:04+0100\n"
 "Last-Translator: Pedro Albuquerque <palbuquerque73@gmail.com>\n"
 "Language-Team: Português <palbuquerque73@gmail.com>\n"
 "Language: pt\n"
@@ -317,12 +317,18 @@ msgstr "Impossível carregar extensão: %s"
 msgid "Failed to query content type for '%s'"
 msgstr "Falha ao consultar o tipo de conteúdo de \"%s\""
 
-#: ../src/librygel-db/database-cursor.vala:81
+#: ../src/librygel-db/database-cursor.vala:82
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Tipo %s não suportado"
 
-#: ../src/librygel-db/database.vala:215
+#: ../src/librygel-db/database.vala:143
+#, c-format
+#| msgid "Error removing object from database: %s"
+msgid "Error while opening SQLite database %s: %s"
+msgstr "Erro ao abrir base de dados SQLite %s: %s"
+
+#: ../src/librygel-db/database.vala:248
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Falha ao desfazer a transação: %s"
@@ -916,7 +922,7 @@ msgstr "URI sem prefixo inválido: %s"
 msgid "Can't process URI %s with protocol %s"
 msgstr "Impossível processar URI %s com protocolo %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:238
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:241
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Falha ao criar fonte de dados GStreamer para %s: %s"
@@ -1065,7 +1071,6 @@ msgstr "Serialização de metadados inválida, impossível processar %s"
 
 #: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
 #, c-format
-#| msgid "Invalid metadata serialisation: expected 7 children, got %d"
 msgid "Invalid metadata serialisation: expected 7 children, got %d"
 msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
 msgstr[0] "Serialização de metadados inválida: esperados 7 filhos, obtidos %d"
