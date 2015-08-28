@@ -6,7 +6,6 @@ plugin_DATA = gst-launch.plugin
 librygel_gst_launch_la_SOURCES = \
 	rygel-gst-launch-plugin.vala \
 	rygel-gst-launch-root-container.vala \
-	rygel-gst-launch-item.vala \
 	rygel-gst-launch-audio-item.vala \
 	rygel-gst-launch-video-item.vala
 

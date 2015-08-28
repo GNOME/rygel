@@ -28,9 +28,7 @@
 /**
  * Audio item that serves data from a gst-launch commandline.
  */
-public class Rygel.GstLaunch.AudioItem : Rygel.AudioItem, Item {
-    public string launch_line { get; protected set; }
-
+public class Rygel.GstLaunch.AudioItem : Rygel.AudioItem {
     public AudioItem (string         id,
                       MediaContainer parent,
                       string         title,
@@ -39,11 +37,21 @@ public class Rygel.GstLaunch.AudioItem : Rygel.AudioItem, Item {
         base (id, parent, title);
 
         this.mime_type = mime_type;
-        this.launch_line = launch_line;
-    }
+        this.add_uri ("gst-launch://" + launch_line);
 
-    public override DataSource? create_stream_source_for_resource (HTTPRequest request,
-                                                                   MediaResource resource) {
-        return this.create_source ();
+        // Call the MediaEngine to determine which item representations it can support
+        var media_engine = MediaEngine.get_default ( );
+        media_engine.get_resources_for_item.begin ( this,
+                                                    (obj, res) => {
+            var added_resources = media_engine
+                                  .get_resources_for_item.end (res);
+            debug ("Adding %d resources to item source %s",
+                   added_resources.size, this.get_primary_uri ());
+            foreach (var resrc in added_resources) {
+               debug ("Media-export item media resource %s",
+                      resrc.get_name ());
+            }
+            this.get_resource_list ().add_all (added_resources);
+          });
     }
 }

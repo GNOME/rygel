@@ -28,8 +28,7 @@
 /**
  * Video item that serves data from a gst-launch commandline.
  */
-public class Rygel.GstLaunch.VideoItem : Rygel.VideoItem, Item {
-    public string launch_line { get; protected set; }
+public class Rygel.GstLaunch.VideoItem : Rygel.VideoItem {
 
     public VideoItem (string         id,
                       MediaContainer parent,
@@ -39,11 +38,6 @@ public class Rygel.GstLaunch.VideoItem : Rygel.VideoItem, Item {
         base (id, parent, title);
 
         this.mime_type = mime_type;
-        this.launch_line = launch_line;
-    }
-
-    public override DataSource? create_stream_source_for_resource (HTTPRequest request,
-                                                                   MediaResource resource) {
-        return this.create_source ();
+        this.add_uri ("gst-launch://" + launch_line);
     }
 }
