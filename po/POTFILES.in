@@ -162,7 +162,6 @@ src/plugins/external/rygel-external-plugin.vala
 src/plugins/external/rygel-external-thumbnail-factory.vala
 src/plugins/external/rygel-external-variant-util.vala
 src/plugins/gst-launch/rygel-gst-launch-audio-item.vala
-src/plugins/gst-launch/rygel-gst-launch-item.vala
 src/plugins/gst-launch/rygel-gst-launch-plugin.vala
 src/plugins/gst-launch/rygel-gst-launch-root-container.vala
 src/plugins/gst-launch/rygel-gst-launch-video-item.vala

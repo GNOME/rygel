@@ -162,7 +162,6 @@ src/plugins/external/rygel-external-plugin-factory.c
 src/plugins/external/rygel-external-thumbnail-factory.c
 src/plugins/external/rygel-external-variant-util.c
 src/plugins/gst-launch/rygel-gst-launch-audio-item.c
-src/plugins/gst-launch/rygel-gst-launch-item.c
 src/plugins/gst-launch/rygel-gst-launch-plugin.c
 src/plugins/gst-launch/rygel-gst-launch-root-container.c
 src/plugins/gst-launch/rygel-gst-launch-video-item.c
