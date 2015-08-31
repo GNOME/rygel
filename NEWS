@@ -1,3 +1,30 @@
+0.27.5
+======
+
+Gst-Launch:
+ - Fix missing resources.
+
+All contributors to this release:
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Jens Georg <mail@jensge.org>
+ - Tom Tryfonidis <tomtryf@gmail.com>
+ - Stas Solovey <whats_up@tut.by>
+ - Pedro Albuquerque <palbuquerque73@gmail.com>
+ - Fran Dieguez <fran@openhost.es>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+
+Added/updated translations
+ - el, courtesy of Tom Tryfonidis
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - pl, courtesy of Piotr Drąg
+ - pt, courtesy of Pedro Albuquerque
+ - ru, courtesy of Stas Solovey
+ - sk, courtesy of Dušan Kazik
+ - zh_TW, courtesy of Chao-Hsiung Liao
+
 0.27.4
 ======
 
