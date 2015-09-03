@@ -195,6 +195,16 @@ public class Rygel.Database.Database : Object {
     public void exec (string        sql,
                       GLib.Value[]? arguments = null)
                       throws DatabaseError {
+        if (arguments == null) {
+            this.db.exec (sql);
+            if (this.db.errcode () != Sqlite.OK) {
+                var msg = "Failed to run query %s: %s";
+                throw new DatabaseError.SQLITE_ERROR (msg, sql, this.db.errmsg ());
+            }
+
+            return;
+        }
+
         var cursor = this.exec_cursor (sql, arguments);
         while (cursor.has_next ()) {
             cursor.next ();
