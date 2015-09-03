@@ -882,6 +882,8 @@ public class Rygel.MediaExport.MediaCache : Object {
             db.exec (this.sql.make (SQLString.INDEX_COMMON));
             db.exec (this.sql.make (SQLString.TRIGGER_CLOSURE));
             db.exec (this.sql.make (SQLString.TRIGGER_REFERENCE));
+            db.exec (this.sql.make (SQLString.CREATE_BLACKLIST_TABLE));
+            db.exec (this.sql.make (SQLString.CREATE_BLACKLIST_INDEX));
             db.commit ();
             db.analyze ();
             this.save_reset_token (GUPnP.get_uuid ());

@@ -73,6 +73,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
     public void ensure_indices () {
         try {
             this.database.exec (this.sql.make (SQLString.INDEX_COMMON));
+            this.database.exec (this.sql.make (SQLString.CREATE_BLACKLIST_INDEX));
             this.database.analyze ();
         } catch (Error error) {
             warning (_("Failed to create indices: %s"),
