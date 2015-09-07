@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-13 11:34+0000\n"
-"PO-Revision-Date: 2015-08-13 22:49+0300\n"
+"POT-Creation-Date: 2015-09-06 23:34+0000\n"
+"PO-Revision-Date: 2015-09-07 14:38+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -318,12 +318,18 @@ msgstr "Nepavyko įkelti įskiepio: %s"
 msgid "Failed to query content type for '%s'"
 msgstr "Nepavyko užklausti „%s“ turinio tipo"
 
-#: ../src/librygel-db/database-cursor.vala:81
+#: ../src/librygel-db/database-cursor.vala:82
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Nepalaikomas tipas %s"
 
-#: ../src/librygel-db/database.vala:215
+#: ../src/librygel-db/database.vala:143
+#, c-format
+#| msgid "Error removing object from database: %s"
+msgid "Error while opening SQLite database %s: %s"
+msgstr "Klaida atveriant SQLite duomenų bazę %s: %s"
+
+#: ../src/librygel-db/database.vala:258
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Nepavyko grąžinti operacijos: %s"
@@ -423,37 +429,31 @@ msgstr "Nepavyko perskaityti protokolo duomenų - nelaukta viršūnė: %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:90
 #, c-format
-#| msgid "Failed to harvest file %s: %s"
 msgid "Failed to set UIList for file %s - %s"
 msgstr "Nepavyko perskaityti UIList failui %s - %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:101
 #, c-format
-#| msgid "Failed to get original URI for '%s': %s"
 msgid "Failed to set initial UI list for file %s - %s"
 msgstr "Nepavyko nustatyti pradinio UI sąrašo failui %s - %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:105
 #, c-format
-#| msgid "Failed to remove file %s: %s"
 msgid "Failed to monitor the file %s - %s"
 msgstr "Nepavyko stebėti failo %s - %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:128
 #, c-format
-#| msgid "Failed to harvest file %s: %s"
 msgid "Unable to parse UI list file %s"
 msgstr "Nepavyko perskaityti UI sąrašo failo %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:156
 #, c-format
-#| msgid "Failed to remove file %s: %s"
 msgid "Unable to parse device profile data: %s"
 msgstr "Nepavyko perskaityti įrenginio profilio duomenų: %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:255
 #, c-format
-#| msgid "Invalid date: %s"
 msgid "Invalid UI filter: %s"
 msgstr "Netinkamas UI filtras: %s"
 
@@ -581,7 +581,6 @@ msgstr "Objekto pašalinimas iš %s neleidžiamas"
 
 #. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:74
-#| msgid "Object id missing"
 msgid "Object ID missing"
 msgstr "Trūksta objekto ID"
 
@@ -687,7 +686,6 @@ msgstr "MediaEngine.init nebuvo iškviestas. Negalima tęsti."
 
 #: ../src/librygel-server/rygel-media-file-item.vala:176
 #, c-format
-#| msgid "Could not determine protocol for %s"
 msgid "Could not determine protocol for URI %s"
 msgstr "Nepavyko nustatyti URI %s protokolo"
 
@@ -852,7 +850,6 @@ msgid "No thumbnail available"
 msgstr "Neprieinamos miniatiūros"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
-#| msgid "No thumbnailer available: %s"
 msgid "No thumbnail available. Generation requested."
 msgstr "Nėra prieinamų miniatiūrų. Prašomas generavimas."
 
@@ -873,7 +870,6 @@ msgstr "Nepalaikoma grojimo sparta"
 #. Unknown/unsupported seek type
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:102
 #, c-format
-#| msgid "HTTPSeekRequest type unsupported"
 msgid "HTTPSeekRequest type %s unsupported"
 msgstr "HTTPSeekRequest tipas %s nepalaikomas"
 
@@ -918,16 +914,15 @@ msgstr "Nepavyko ieškoti"
 
 #: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:128
 #, c-format
-#| msgid "Invalid URI '%s'"
 msgid "Invalid URI without prefix: %s"
 msgstr "Netinkamas URI be priešdėlio: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:139
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "Nepavyksta apdoroti URI %s su protokolu %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:241
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Nepavyko „%s“ sukurti GStreamer duomenų šaltinio: %s"
@@ -956,7 +951,6 @@ msgstr "Galima apdoroti tik failo pagrindo MediaObject (MediaFileItem)"
 
 #: ../src/media-engines/simple/rygel-simple-media-engine.vala:67
 #, c-format
-#| msgid "Can't remove containers in %s"
 msgid "Can't process non-file URI %s"
 msgstr "Nepavyksta apdoroti ne failo URI %s"
 
@@ -978,25 +972,21 @@ msgstr "Gauta netinkama komanda, nepaisoma"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:112
 #, c-format
-#| msgid "Failed to remove file %s: %s"
 msgid "Failed to discover URI %s: %s"
 msgstr "Nepavyko surasti URI %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:130
 #, c-format
-#| msgid "Failed to add object: %s"
 msgid "Failed to read from pipe: %s"
 msgstr "Nepavyko skaityti iš kanalo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:158
 #, c-format
-#| msgid "Failed to read error output from %s: %s"
 msgid "Failed to send error to parent: %s"
 msgstr "Nepavyko nusiųsti klaidos tėvui: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:203
 #, c-format
-#| msgid "Failed to read standard output from %s: %s"
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr "Nepavyko išgauti pagrindinių metaduomenų iš %s: %s"
 
@@ -1006,19 +996,16 @@ msgstr "- pagalbinė Rygel programa metaduomenų išgavimui"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:229
 #, c-format
-#| msgid "Failed to harvest file %s: %s"
 msgid "Failed to parse commandline args: %s"
 msgstr "Nepavyko perskaityti komandų eilutės argumentų: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:237
 #, c-format
-#| msgid "Failed to create root device factory: %s"
 msgid "Failed to create media art extractor: %s"
 msgstr "Nepavyko sukurti medijos viršelių išgavėjo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:258
 #, c-format
-#| msgid "Failed to start Rygel service: %s"
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Nepavyko paleisti metaduomenų suradėjo: %s"
 
@@ -1128,13 +1115,11 @@ msgstr "Nepavyko gauti užklausos konteinerio vaikų skaičiaus: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
 #, c-format
-#| msgid "Failed to query database: %s"
 msgid "Failed to force reindex to fix database: %s"
 msgstr "Nepavyko priverstinai perindeksuoti duomenų bazės pataisymui: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to create indices: %s"
 msgstr "Nepavyko sukurti indeksų: %s"
 
@@ -1155,7 +1140,6 @@ msgstr "Nepavyko pridėti elemento, turinčio ID %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:216
 #, c-format
-#| msgid "Failed to get a socket: %s"
 msgid "Failed to get update IDs: %s"
 msgstr "Nepavyko gauti atnaujinimų ID: %s"
 
@@ -1165,25 +1149,21 @@ msgid "Inconsistent database: item %s does not have parent %s"
 msgstr "Nevianalytė duomenų bazė: elementas %s neturi tėvo %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:520
-#| msgid "Failed to get a socket: %s"
 msgid "Failed to get reset token"
 msgstr "Nepavyko anuliuoti leksemos"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:532
 #, c-format
-#| msgid "Failed to stop Rygel service: %s"
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "Nepavyko įrašyti ServiceResetToken: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:542
 #, c-format
-#| msgid "Failed to remove file %s: %s"
 msgid "Failed to remove virtual folders: %s"
 msgstr "Nepavyko pašalinti virtualių aplankų %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:556
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to mark item %s as guarded (%d): %s"
 msgstr "Nepavyko pažymėti elemento %s saugomu (%d): %s"
 
@@ -1193,19 +1173,16 @@ msgstr "Negalima sukurti nuorodų į konteinerius"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:592
 #, c-format
-#| msgid "Failed to harvest file %s: %s"
 msgid "Failed to add %s to file blacklist: %s"
 msgstr "Nepavyko pridėti %s į failų juodąjį sąrašą: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:605
 #, c-format
-#| msgid "Failed to get a socket: %s"
 msgid "Failed to get whether URI %s is blacklisted: %s"
 msgstr "Nepavyko nustatyti, ar URI %s yra juodajame sąraše: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:621
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to get whether item %s is guarded: %s"
 msgstr "Nepavyko nustatyti, ar elementas %s yra apsaugotas: %s"
 
@@ -1228,7 +1205,6 @@ msgstr "Netinkama duomenų bazė, negalima užklausti sqlite_master lentelės: %
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:891
 #, c-format
-#| msgid "Failed to query database: %s"
 msgid "Failed to create database schema: %s"
 msgstr "Nepavyko sukurti duomenų bazės schemos: %s"
 
@@ -1287,7 +1263,6 @@ msgstr "Nepavyko skaityti iš vaiko: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:292
 #, c-format
-#| msgid "Failed to get child count: %s"
 msgid "Failed to send command to child: %s"
 msgstr "Nepavyko nusiųsti komandos vaikui: %s"
 
@@ -1334,7 +1309,6 @@ msgstr "%s nepalaiko upnp:class"
 
 #: ../src/plugins/media-export/rygel-media-export-plugin.vala:52
 #, c-format
-#| msgid "Could not load plugin: %s"
 msgid "Failed to load plugin %s: %s"
 msgstr "Nepavyko įkelti įskiepio %s: %s"
 
@@ -1346,7 +1320,6 @@ msgstr "Nestebės failo pasikeitimų"
 #. upload case.
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
-#| msgid "Failed to get file info for %s: %s"
 msgid "Failed to get file information for %s: %s"
 msgstr "Nepavyko gauti failo %s informacijos: %s"
 
@@ -1497,13 +1470,11 @@ msgstr "Pavadinimai"
 
 #: ../src/rygel/rygel-acl.vala:110
 #, c-format
-#| msgid "Failed to query database: %s"
 msgid "Failed to query ACL: %s"
 msgstr "Nepavyko užklausti ACL: %s"
 
 #: ../src/rygel/rygel-acl.vala:127
 #, c-format
-#| msgid "Error getting all values for '%s': %s"
 msgid "Error creating DBus proxy for ACL: %s"
 msgstr "Klaida kuriant ACL DBus tarpininką: %s"
 
@@ -1570,12 +1541,10 @@ msgid "Use configuration file instead of user configuration"
 msgstr "Naudoti konfigūracijos failą vietoj naudotojo konfigūracijos"
 
 #: ../src/rygel/rygel-cmdline-config.vala:100
-#| msgid "Shutdown remote Rygel reference"
 msgid "Shut down remote Rygel reference"
 msgstr "Išjungti nuotolinę Rygel nuoroda"
 
 #: ../src/rygel/rygel-cmdline-config.vala:102
-#| msgid "Replace currently running instance of rygel"
 msgid "Replace currently running instance of Rygel"
 msgstr "Pakeisti dabartinį veikiantį rygel"
 
@@ -1585,12 +1554,10 @@ msgstr "Išjungiama nuotolinė Rygel\n"
 
 #: ../src/rygel/rygel-cmdline-config.vala:147
 #, c-format
-#| msgid "Failed to shut-down other rygel instance: %s"
 msgid "Failed to shut down other Rygel instance: %s"
 msgstr "Nepavyko išjungti nuotolinės Rygel: %s"
 
 #: ../src/rygel/rygel-dbus-service.vala:81
-#| msgid "Another instance of rygel is already running. Not starting."
 msgid "Another instance of Rygel is already running. Not starting."
 msgstr "Rygel jau veikia. Nepaleidžiama."
 
@@ -1601,8 +1568,6 @@ msgstr "Paleidžiama Rygel v%s…"
 
 #: ../src/rygel/rygel-main.vala:113
 #, c-format
-#| msgid "No plugins found in %d second; giving up..."
-#| msgid_plural "No plugins found in %d seconds; giving up..."
 msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
 msgstr[0] "Per %d sekundę nerasta jokių įskiepių. Pasiduodama…"
