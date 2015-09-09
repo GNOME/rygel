@@ -95,8 +95,7 @@ internal class Rygel.InfoSerializer : GLib.Object {
                 throw new InfoSerializerError.BAD_MIME ("Not supported: %s", mime);
             }
 
-            return new Variant ("(ssmvmvmvmvmvmv)",
-                                file.get_uri (),
+            return new Variant ("(smvmvmvmvmvmv)",
                                 upnp_class,
                                 this.serialize_file_info (file_info),
                                 null,
