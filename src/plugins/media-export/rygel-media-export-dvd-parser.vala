@@ -29,29 +29,28 @@ internal class Rygel.DVDParser : GLib.Object {
     public File file { public get; construct; }
 
     private File cache_file;
-    private string id;
 
     public DVDParser (File file) {
         Object (file : file);
     }
 
-    public override void constructed () {
+    public static string get_cache_path (string image_path) {
         unowned string user_cache = Environment.get_user_cache_dir ();
-        this.id = this.get_id (this.file);
+        var id = Checksum.compute_for_string (ChecksumType.MD5, image_path);
         var cache_folder = Path.build_filename (user_cache,
                                                 "rygel",
                                                 "dvd-content");
         DirUtils.create_with_parents (cache_folder, 0700);
-        var cache_path = Path.build_filename (cache_folder, this.id);
+        return Path.build_filename (cache_folder, id);
+    }
 
-        this.cache_file = File.new_for_path (cache_path);
+    public override void constructed () {
+        var path = DVDParser.get_cache_path (this.file.get_path ());
+        this.cache_file = File.new_for_path (path);
     }
 
     public async void run () throws Error {
-        var doc = yield this.get_information ();
-        if (doc != null) {
-            doc->children;
-        }
+        yield this.get_information ();
     }
 
     public async Xml.Doc* get_information () throws Error {
@@ -80,10 +79,5 @@ internal class Rygel.DVDParser : GLib.Object {
                                      null,
                                      Xml.ParserOption.NOERROR |
                                      Xml.ParserOption.NOWARNING);
-    }
-
-    private string get_id (File file) {
-        return Checksum.compute_for_string (ChecksumType.MD5,
-                                            file.get_uri ());
     }
 }

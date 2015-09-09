@@ -33,7 +33,8 @@ const string UPNP_CLASS_PHOTO = "object.item.imageItem.photo";
 const string UPNP_CLASS_MUSIC = "object.item.audioItem.musicTrack";
 const string UPNP_CLASS_VIDEO = "object.item.videoItem";
 const string UPNP_CLASS_PLAYLIST = "object.item.playlistItem";
-const string UPNP_CLASS_PLAYLIST_CONTAINER = "object.container.playlistContainer";
+const string UPNP_CLASS_PLAYLIST_CONTAINER_DVD =
+                                      "object.container.playlistContainer.DVD";
 
 const string STATUS_LINE_TEMPLATE = "RESULT|%s|%" + size_t.FORMAT + "|%s\n";
 const string ERROR_LINE_TEMPLATE = "ERROR|%s|%d|%s\n";

@@ -100,10 +100,10 @@ namespace Rygel.MediaExport.ItemFactory {
         }
     }
 
-    static MediaFileItem? create_from_variant (MediaContainer parent,
-                                               File           file,
-                                               Variant        v)
-                                               throws Error {
+    static MediaObject? create_from_variant (MediaContainer parent,
+                                             File           file,
+                                             Variant        v)
+                                             throws Error {
         ItemFactory.check_variant_type (v,"(smvmvmvmvmvmv)");
 
         Variant? upnp_class,
@@ -151,6 +151,7 @@ namespace Rygel.MediaExport.ItemFactory {
         }
 
         MediaFileItem item = null;
+        MediaObject object = null;
         switch (upnp_class.get_string ()) {
             case Rygel.PhotoItem.UPNP_CLASS:
                 item = new PhotoItem (id, parent, "");
@@ -164,6 +165,10 @@ namespace Rygel.MediaExport.ItemFactory {
             case Rygel.PlaylistItem.UPNP_CLASS:
                 item = ItemFactory.create_playlist_item (file, parent, "");
                 break;
+            case DVDContainer.UPNP_CLASS:
+                object = new DVDContainer ("dvd:" + id, parent, "", file.get_path ());
+                object.add_uri (file.get_uri ());
+                return object;
             default:
                 return null;
         }

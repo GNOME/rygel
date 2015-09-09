@@ -33,10 +33,10 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
      * @param title title of the container
      * @param child_count number of children in the container
      */
-    public virtual DBContainer get_container (string     id,
-                                              string     title,
-                                              uint       child_count,
-                                              string?    uri) {
+    public virtual MediaContainer get_container (string     id,
+                                                 string     title,
+                                                 uint       child_count,
+                                                 string?    uri) {
         if (id == "0") {
             return RootContainer.get_instance ();
         } else if (id == RootContainer.FILESYSTEM_FOLDER_ID) {
@@ -63,6 +63,11 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
 
         if (uri == null) {
             return new TrackableDbContainer (id, title);
+        }
+
+        if (id.has_prefix ("dvd:")) {
+            var file = File.new_for_uri (uri);
+            return new DVDContainer (id, null, title, file.get_path ());
         }
 
         if (id.has_prefix ("playlist:")) {

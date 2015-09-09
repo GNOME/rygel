@@ -70,7 +70,7 @@ internal abstract class Rygel.GstUtils {
             }
 
             if (src.get_class ().find_property ("tcp-timeout") != null) {
-                // For rtspsrc since some RTSP sources takes a while to start
+   // For rtspsrc since some RTSP sources takes a while to start
                 // transmitting
                 src.tcp_timeout = (int64) 60000000;
             }

@@ -94,7 +94,17 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
             return object;
         }
 
-        if (id.has_prefix (QueryContainer.PREFIX)) {
+        if (id.has_prefix (DVDContainer.TRACK_PREFIX)) {
+            var parts = id.split (":");
+            var parent_id = DVDContainer.PREFIX + ":" + parts[1];
+            object = yield base.find_object (parent_id, cancellable);
+            var container = object as MediaContainer;
+            if (container != null) {
+                return yield container.find_object (id, cancellable);
+            }
+
+            return null;
+        } else  if (id.has_prefix (QueryContainer.PREFIX)) {
             var factory = QueryContainerFactory.get_default ();
             var container = factory.create_from_hashed_id (id);
             if (container != null) {
