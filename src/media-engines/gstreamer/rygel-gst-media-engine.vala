@@ -136,7 +136,8 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
                parts[0]);
 
         if (!Gst.URI.protocol_is_supported (URIType.SRC, parts[0]) &&
-            parts[0] != "gst-launch") {
+            parts[0] != "gst-launch" &&
+            parts[0] != "dvd") {
             warning (_("Can't process URI %s with protocol %s"),
                      source_uri,
                      parts[0]);

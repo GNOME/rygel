@@ -51,6 +51,14 @@ internal abstract class Rygel.GstUtils {
                 var description = uri.replace ("gst-launch://", "");
 
                 src = Gst.parse_bin_from_description (description, true);
+            } else if (uri.has_prefix ("dvd://")) {
+                var tmp = new Soup.URI (uri);
+                var query = Soup.Form.decode (tmp.query);
+                src = ElementFactory.make ("dvdreadsrc", null);
+                if (query.contains ("title")) {
+                    src.title = int.parse (query.lookup ("title"));
+                }
+                src.device = Soup.URI.decode (tmp.path);
             } else {
                 src = Element.make_from_uri (URIType.SRC, uri, null);
             }
