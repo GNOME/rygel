@@ -33,36 +33,6 @@ using Gst.PbUtils;
  * Represents MediaExport item.
  */
 namespace Rygel.MediaExport.ItemFactory {
-    public static MediaFileItem? create_simple (MediaContainer parent,
-                                                File           file,
-                                                FileInfo       info) {
-        var title = info.get_display_name ();
-        MediaFileItem item;
-        var mime = ContentType.get_mime_type (info.get_content_type ());
-
-        if (mime.has_prefix ("video/")) {
-            item = new VideoItem (MediaCache.get_id (file), parent, title);
-        } else if (mime.has_prefix ("image/")) {
-            item = new PhotoItem (MediaCache.get_id (file), parent, title);
-        } else if (mime.has_prefix ("audio/") || mime == "application/ogg") {
-            item = new MusicItem (MediaCache.get_id (file), parent, title);
-        } else { // application/xml or text/xml
-            item = ItemFactory.create_playlist_item (file, parent, title);
-            if (item == null) {
-                return null;
-            }
-            // DLNA requires that DIDL_S playlist have text/xml MIME type.
-            mime = "text/xml";
-        }
-
-        item.mime_type = mime;
-        item.size = (int64) info.get_size ();
-        item.modified = info.get_attribute_uint64 (FileAttribute.TIME_MODIFIED);
-        item.add_uri (file.get_uri ());
-
-        return item;
-    }
-
     private static MediaFileItem? create_playlist_item (File file,
                                                         MediaContainer parent,
                                                         string fallback_title) {
@@ -185,6 +155,9 @@ namespace Rygel.MediaExport.ItemFactory {
                 break;
             case Rygel.MusicItem.UPNP_CLASS:
                 item = new MusicItem (id, parent, "");
+                break;
+            case Rygel.PlaylistItem.UPNP_CLASS:
+                item = ItemFactory.create_playlist_item (file, parent, "");
                 break;
             default:
                 return null;

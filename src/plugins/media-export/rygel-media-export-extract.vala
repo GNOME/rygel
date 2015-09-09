@@ -101,7 +101,8 @@ async void run () {
                     GLib.Memory.copy (last_uri.data,
                                       (void *) parts[0],
                                       parts[0].length);
-                    var is_text = parts[1].has_prefix ("text/");
+                    var is_text = parts[1].has_prefix ("text/") ||
+                                  parts[1].has_suffix ("xml");
                     if (metadata && !is_text) {
                         info = discoverer.discover_uri (parts[0]);
 
