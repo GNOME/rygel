@@ -84,32 +84,12 @@ internal class Rygel.Mediathek.VideoItemFactory : Object {
     }
 
     private VideoItemFactory () {
-        var config = Rygel.MetaConfig.get_default ();
-        this.video_format = VIDEO_FORMAT_WMV;
+        this.video_format = VIDEO_FORMAT_MP4;
 
-        try {
-            this.video_format = config.get_string ("ZDFMediathek",
-                                                   "video-format");
-            this.video_format = this.video_format.casefold ();
-            if (this.video_format != VIDEO_FORMAT_WMV &&
-                this.video_format != VIDEO_FORMAT_MP4) {
-                this.video_format = VIDEO_FORMAT_WMV;
-            }
-        } catch (Error error) { }
-
-        debug ("Exposing mediathek items in format: %s", video_format);
+        debug ("Exposing mediathek items in format: mp4");
         var session = RootContainer.get_default_session ();
 
-        switch (video_format) {
-            case VIDEO_FORMAT_WMV:
-                this.playlist_parser = new AsxPlaylistParser (session);
-                break;
-            case VIDEO_FORMAT_MP4:
-                this.playlist_parser = new MovPlaylistParser (session);
-                break;
-            default:
-                assert_not_reached ();
-        }
+        this.playlist_parser = new MovPlaylistParser (session);
     }
 
     private bool namespace_ok (Xml.Node* node, string prefix = "media") {
