@@ -1,3 +1,40 @@
+0.27.6
+======
+
+Database:
+ - Fix issue introduced with 0.27.7 that caused exec() to only run the first
+   query of a list of ";"-separated queries.
+
+Media-Export:
+ - Fix extration with disabled meta-data.
+ - Fix extraction of DIDL_S playlists.
+ - Small simplification and removal of accidental debug warnings.
+
+Mediathek:
+ - Use new default feed because the old one does not exist anymore.
+ - Remove WMV support because it got removed from the service. This is a major
+   problem as the MP4 support is provided using RTSP and we need to fix
+   bgo#651535 to make it usable for all renderers again.
+ - Fix automatic resource generation.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=754420
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Jiri Grönroos <jiri.gronroos+l10n@iki.fi>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Balázs Meskó <meskobalazs@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Alexandre Franke <alexandre.franke@gmail.com>
+
+Added/updated translations
+ - fi, courtesy of Jiri Grönroos
+ - fr, courtesy of Alain Lojewski
+ - hu, courtesy of Meskó Balázs
+ - ko, courtesy of Changwoo Ryu
+ - lt, courtesy of Aurimas Černius
+
 0.27.5
 ======
 
