@@ -33,6 +33,23 @@ using Gst.PbUtils;
  * Represents MediaExport item.
  */
 namespace Rygel.MediaExport.ItemFactory {
+    internal errordomain ItemFactoryError {
+        DESERIALIZATION,
+        MISMATCH
+    }
+
+    private static bool check_variant_type (Variant v,
+                                            string typestring) throws Error {
+        if (!v.is_of_type (new VariantType (typestring))) {
+            var msg = "Variant type mismatch, expected %s, got %s";
+            throw new ItemFactoryError.DESERIALIZATION (msg,
+                                                        v.get_type_string (),
+                                                        typestring);
+        }
+
+        return true;
+    }
+
     private static MediaFileItem? create_playlist_item (File file,
                                                         MediaContainer parent,
                                                         string fallback_title) {
@@ -85,13 +102,9 @@ namespace Rygel.MediaExport.ItemFactory {
 
     static MediaFileItem? create_from_variant (MediaContainer parent,
                                                File           file,
-                                               Variant        v) {
-        if (!v.is_of_type (new VariantType ("(smvmvmvmvmvmv)"))) {
-            warning (_("Invalid metadata serialisation, cannot process %s"),
-                     v.get_type_string ());
-
-            return null;
-        }
+                                               Variant        v)
+                                               throws Error {
+        ItemFactory.check_variant_type (v,"(smvmvmvmvmvmv)");
 
         Variant? upnp_class,
                  file_info,
@@ -102,14 +115,6 @@ namespace Rygel.MediaExport.ItemFactory {
                  meta_data;
 
         var it = v.iterator ();
-        if (it.n_children () != 7) {
-            warning (ngettext("Invalid metadata serialisation: expected 7 children, got %d",
-                              "Invalid metadata serialisation: expected 7 children, got %d",
-                              (int) it.n_children ()),
-                     (int) it.n_children ());
-
-            return null;
-        }
 
         var id = MediaCache.get_id (file);
 
@@ -199,13 +204,9 @@ namespace Rygel.MediaExport.ItemFactory {
         return item as MediaFileItem;
     }
 
-    private static void apply_meta_data (MediaFileItem item, Variant v) {
-        if (!v.is_of_type (new VariantType ("(msmsmsiii)"))) {
-            warning (_("Invalid metadata serialisation of metadata; %s"),
-                     v.get_type_string ());
-
-            return;
-        }
+    private static void apply_meta_data (MediaFileItem item, Variant v)
+                                         throws Error {
+        ItemFactory.check_variant_type (v, "(msmsmsiii)");
 
         var it = v.iterator ();
         var val = it.next_value ().get_maybe ();
@@ -235,16 +236,13 @@ namespace Rygel.MediaExport.ItemFactory {
         }
     }
 
-    private static void apply_video_info (MediaFileItem item, Variant v) {
-        if (!v.is_of_type (new VariantType ("(iii)"))) {
-            warning (_("Invalid metadata serialisation of video info; %s"),
-                     v.get_type_string ());
-
-            return;
-        }
+    private static void apply_video_info (MediaFileItem item, Variant v)
+                                          throws Error {
+        ItemFactory.check_variant_type (v, "(iii)");
 
         if (!(item is VisualItem)) {
-            return;
+            var msg = "UPnP class does not match supplied meta data";
+            throw new ItemFactoryError.MISMATCH (msg);
         }
 
         var visual_item = item as VisualItem;
@@ -254,16 +252,13 @@ namespace Rygel.MediaExport.ItemFactory {
         visual_item.color_depth = it.next_value ().get_int32 ();
     }
 
-    private static void apply_audio_info (MediaFileItem item, Variant v) {
-        if (!v.is_of_type (new VariantType ("(ii)"))) {
-            warning (_("Invalid metadata serialisation of audio info; %s"),
-                     v.get_type_string ());
-
-            return;
-        }
+    private static void apply_audio_info (MediaFileItem item, Variant v)
+                                          throws Error {
+        ItemFactory.check_variant_type (v, "(ii)");
 
         if (!(item is AudioItem)) {
-            return;
+            var msg = "UPnP class does not match supplied meta data";
+            throw new ItemFactoryError.MISMATCH (msg);
         }
 
         var audio_item = item as AudioItem;
@@ -272,10 +267,9 @@ namespace Rygel.MediaExport.ItemFactory {
         audio_item.sample_freq = it.next_value ().get_int32 ();
     }
 
-    private static void apply_info (MediaFileItem item, Variant v) {
-        if (!v.is_of_type (new VariantType ("(msmsi)"))) {
-            warning (_("Invalid metadata serialisation of general info"));
-        }
+    private static void apply_info (MediaFileItem item, Variant v)
+                                    throws Error {
+        ItemFactory.check_variant_type (v, "(msmsi)");
 
         var it = v.iterator ();
         var val = it.next_value ().get_maybe ();
@@ -293,33 +287,20 @@ namespace Rygel.MediaExport.ItemFactory {
         }
     }
 
-    private static void apply_dlna_profile (MediaFileItem item, Variant v) {
-        if (!v.is_of_type (new VariantType ("(ss)"))) {
-            warning (_("Invalid metadata serialisation of DLNA profile %s"),
-                     v.get_type_string ());
-
-            return;
-        }
+    private static void apply_dlna_profile (MediaFileItem item, Variant v)
+                                            throws Error {
+        ItemFactory.check_variant_type (v, "(ss)");
 
         var it = v.iterator ();
         item.dlna_profile = it.next_value ().dup_string ();
         item.mime_type = it.next_value ().dup_string ();
     }
 
-    private static void apply_file_info (MediaFileItem item, Variant v) {
-        if (!v.is_of_type (new VariantType ("(sstt)"))) {
-            warning (_("Invalid metadata serialisation of file info %s"),
-                     v.get_type_string ());
-
-            return;
-        }
+    private static void apply_file_info (MediaFileItem item, Variant v)
+                                         throws Error {
+        ItemFactory.check_variant_type (v, "(sstt)");
 
         var it = v.iterator ();
-        if (it.n_children () != 4) {
-            warning (_("Invalid metadata serialisation of file info"));
-
-            return;
-        }
 
         Variant display_name;
         display_name = it.next_value ();

@@ -306,20 +306,26 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             this.completed ();
         }
 
-        var item = ItemFactory.create_from_variant (this.containers.peek_head (),
-                                                    file,
-                                                    info);
+        try {
+            var parent = this.containers.peek_head ();
+            var item = ItemFactory.create_from_variant (parent,
+                                                        file,
+                                                        info);
 
-        if (item != null) {
-            item.parent_ref = this.containers.peek_head ();
-            // This is only necessary to generate the proper <objAdd LastChange
-            // entry
-            if (this.files.peek ().known) {
-                (item as UpdatableObject).non_overriding_commit.begin ();
-            } else {
-                var container = item.parent as TrackableContainer;
-                container.add_child_tracked.begin (item) ;
+            if (item != null) {
+                item.parent_ref = parent;
+                // This is only necessary to generate the proper <objAdd LastChange
+                // entry
+                if (this.files.peek ().known) {
+                    (item as UpdatableObject).non_overriding_commit.begin ();
+                } else {
+                    var container = item.parent as TrackableContainer;
+                    container.add_child_tracked.begin (item) ;
+                }
             }
+        } catch (Error error) {
+            warning (/*_*/"Failed to extract meta-data for file %s",
+                     error.message);
         }
 
         this.files.poll ();
