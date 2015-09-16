@@ -21,7 +21,7 @@
 using Rygel;
 using Gee;
 
-internal class Rygel.MediaExport.DVDContainer : MediaContainer, UpdatableObject {
+internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject {
     public new const string UPNP_CLASS = MediaContainer.PLAYLIST + ".DVD";
     public const string PREFIX = "dvd";
     public const string TRACK_PREFIX = "dvd-track";
