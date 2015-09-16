@@ -56,7 +56,7 @@ internal class Rygel.HTTPMediaResourceHandler : HTTPGetHandler {
         var protocol_info = media_resource.get_protocol_info (replacements);
         if (protocol_info != null) {
             var pi_fields = protocol_info.to_string ().split (":", 4);
-            if (pi_fields[3] != null) {
+            if (pi_fields != null && pi_fields[3] != null) {
                 request.msg.response_headers.append ("contentFeatures.dlna.org",
                                                      pi_fields[3]);
             }
