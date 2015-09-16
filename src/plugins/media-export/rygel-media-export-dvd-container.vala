@@ -159,19 +159,35 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
         uri.set_scheme ("dvd");
         uri.set_query ("title=%d".printf (track + 1));
         item.add_uri (uri.to_string (false));
-                var media_engine = MediaEngine.get_default ( );
-                media_engine.get_resources_for_item.begin ( item,
-                                                            (obj, res) => {
-                    var added_resources = media_engine
-                                          .get_resources_for_item.end (res);
-                    debug ("Adding %d resources to item source %s",
-                           added_resources.size, item.get_primary_uri ());
-                    foreach (var resrc in added_resources) {
-                       debug ("Media-export item media resource %s",
-                              resrc.get_name ());
-                    }
-                    item.get_resource_list ().add_all (added_resources);
-                  });
+
+        item.dlna_profile = "MPEG_PS";
+        item.mime_type = "video/mpeg";
+
+        var it = node->children;
+        while (it != null) {
+            if (it->name == "length") {
+                item.duration = (int)double.parse (it->children->content);
+            } else if (it->name == "width") {
+                item.width = int.parse (it->children->content);
+            } else if (it->name == "height") {
+                item.height = int.parse (it->children->content);
+            }
+            it = it->next;
+        }
+
+        var media_engine = MediaEngine.get_default ( );
+        media_engine.get_resources_for_item.begin ( item,
+                                                    (obj, res) => {
+            var added_resources = media_engine
+                                  .get_resources_for_item.end (res);
+            debug ("Adding %d resources to item source %s",
+                   added_resources.size, item.get_primary_uri ());
+            foreach (var resrc in added_resources) {
+               debug ("Media-export item media resource %s",
+                      resrc.get_name ());
+            }
+            item.get_resource_list ().add_all (added_resources);
+          });
 
         return item;
     }
