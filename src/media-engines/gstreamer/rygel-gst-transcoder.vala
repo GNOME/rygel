@@ -150,7 +150,6 @@ internal abstract class Rygel.GstTranscoder : GLib.Object {
         orig_source.src.link (decoder);
 
         decoder.pad_added.connect (this.on_decoder_pad_added);
-        decoder.autoplug_continue.connect (this.on_autoplug_continue);
         decoder.no_more_pads.connect (this.on_no_more_pads);
 
         var pad = encoder.get_static_pad ("src");
@@ -170,19 +169,6 @@ internal abstract class Rygel.GstTranscoder : GLib.Object {
      * @return      the Gst.EncodingProfile for this transcoder.
      */
     protected abstract EncodingProfile get_encoding_profile ();
-
-    private bool on_autoplug_continue (Element decodebin,
-                                       Pad     new_pad,
-                                       Caps    caps) {
-        Gst.Pad sinkpad = null;
-
-        Signal.emit_by_name (this.encoder, "request-pad", caps, out sinkpad);
-        if (sinkpad == null) {
-            return true;
-        }
-
-        return false;
-    }
 
     private void on_decoder_pad_added (Element decodebin, Pad new_pad) {
         Gst.Pad sinkpad;
