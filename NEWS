@@ -2,7 +2,7 @@
 ======
 
 Database:
- - Fix issue introduced with 0.27.7 that caused exec() to only run the first
+ - Fix issue introduced with 0.27.5 that caused exec() to only run the first
    query of a list of ";"-separated queries.
 
 Media-Export:
