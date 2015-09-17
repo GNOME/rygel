@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-13 10:46+0000\n"
-"PO-Revision-Date: 2015-07-13 13:52+0300\n"
+"product=rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-09-17 11:53+0000\n"
+"PO-Revision-Date: 2015-09-17 20:08+0300\n"
 "Last-Translator: Stas Solovey <whats_up@tut.by>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -34,8 +34,7 @@ msgstr "Службы UPnP/DLNA"
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "медиасервер;медиаплеер;доступ;аудио;видео;фото;изображения;"
 
-#: ../data/rygel-preferences.desktop.in.in.h:1
-#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel-preferences.desktop.in.in.h:1 ../data/rygel-preferences.ui.h:1
 msgid "Rygel Preferences"
 msgstr "Параметры Rygel"
 
@@ -319,12 +318,18 @@ msgstr "Не удалось загрузить модуль: %s"
 msgid "Failed to query content type for '%s'"
 msgstr "Не удалось выполнить запрос о типе содержимого «%s»"
 
-#: ../src/librygel-db/database-cursor.vala:81
+#: ../src/librygel-db/database-cursor.vala:82
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Неподдерживаемый тип %s"
 
-#: ../src/librygel-db/database.vala:215
+#: ../src/librygel-db/database.vala:143
+#, c-format
+#| msgid "Error removing object from database: %s"
+msgid "Error while opening SQLite database %s: %s"
+msgstr "Ошибка открытия базы данных SQLite %s: %s"
+
+#: ../src/librygel-db/database.vala:258
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Не удалось откатить транзакцию: %s"
@@ -410,58 +415,58 @@ msgstr "Сбой выполнения действия"
 #: ../src/librygel-ruih/rygel-ruih-icon-elem.vala:66
 #, c-format
 msgid "Unable to parse Icon data - unexpected node: %s"
-msgstr ""
+msgstr "Не удалось обработать данные Icon — неожиданный узел: %s"
 
 #: ../src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
 #, c-format
 msgid "Unable to parse Protocol data - unexpected attribute: %s"
-msgstr ""
+msgstr "Не удалось разобрать данные протокола - неожиданный атрибут: %s"
 
 #: ../src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
 #, c-format
 msgid "Unable to parse Protocol data - unexpected node: %s"
-msgstr ""
+msgstr "Не удалось разобрать данные протокола - неожиданный узел: %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:90
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to harvest file %s: %s"
 msgid "Failed to set UIList for file %s - %s"
-msgstr "Не удалось обработать файл %s: %s"
+msgstr "Не удалось установить список UI для файла %s — %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:101
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to get original URI for '%s': %s"
 msgid "Failed to set initial UI list for file %s - %s"
-msgstr "Не удалось получить исходный URI для «%s»: %s"
+msgstr "Не удалось установить первоначальный список UI для файла %s — %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:105
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to remove file %s: %s"
 msgid "Failed to monitor the file %s - %s"
-msgstr "Не удалось удалить файл %s: %s"
+msgstr "Не удалось контролировать файл %s — %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:128
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to harvest file %s: %s"
 msgid "Unable to parse UI list file %s"
-msgstr "Не удалось обработать файл %s: %s"
+msgstr "Не удалось разобрать файл списка UI %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:156
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to remove file %s: %s"
 msgid "Unable to parse device profile data: %s"
-msgstr "Не удалось удалить файл %s: %s"
+msgstr "Не удалось разобрать данные профиля устройства: %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:255
-#, fuzzy, c-format
+#, c-format
 #| msgid "Invalid date: %s"
 msgid "Invalid UI filter: %s"
-msgstr "Неверная дата: «%s»"
+msgstr "Неверный фильтр UI: «%s»"
 
 #: ../src/librygel-ruih/rygel-ruih-ui-elem.vala:78
 #, c-format
 msgid "Unable to parse UI data - unexpected node: %s"
-msgstr ""
+msgstr "Не удалось разобрать данные UI — неожиданный узел: %s"
 
 #: ../src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -582,10 +587,9 @@ msgstr "Удаление объекта из %s запрещено"
 
 #. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:74
-#, fuzzy
 #| msgid "Object id missing"
 msgid "Object ID missing"
-msgstr "Отсутствует ObjectID"
+msgstr "Отсутствует ID объекта"
 
 #: ../src/librygel-server/rygel-item-updater.vala:81
 #, c-format
@@ -688,10 +692,10 @@ msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init не был вызван. Продолжение невозможно."
 
 #: ../src/librygel-server/rygel-media-file-item.vala:176
-#, fuzzy, c-format
+#, c-format
 #| msgid "Could not determine protocol for %s"
 msgid "Could not determine protocol for URI %s"
-msgstr "Не удалось определить протокол для %s"
+msgstr "Не удалось определить протокол для URI %s"
 
 #: ../src/librygel-server/rygel-media-object.vala:283
 #, c-format
@@ -855,10 +859,9 @@ msgid "No thumbnail available"
 msgstr "Нет доступных миниатюр"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
-#, fuzzy
 #| msgid "No thumbnailer available: %s"
 msgid "No thumbnail available. Generation requested."
-msgstr "Нет доступного компонента для создания миниатюр: %s"
+msgstr "Нет доступных миниатюр. Требуется создание."
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
@@ -876,10 +879,10 @@ msgstr "Скорость воспроизведения не поддержив�
 
 #. Unknown/unsupported seek type
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:102
-#, fuzzy, c-format
+#, c-format
 #| msgid "HTTPSeekRequest type unsupported"
 msgid "HTTPSeekRequest type %s unsupported"
-msgstr "Тип запроса HTTPSeekRequest не поддерживается"
+msgstr "Запрос HTTPSeekRequest типа %s не поддерживается"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:146
 msgid "Failed to create pipeline"
@@ -921,17 +924,17 @@ msgid "Failed to seek"
 msgstr "Не удалось переместиться"
 
 #: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:128
-#, fuzzy, c-format
+#, c-format
 #| msgid "Invalid URI '%s'"
 msgid "Invalid URI without prefix: %s"
-msgstr "Недопустимый URI «%s»"
+msgstr "Недопустимый URI без префикса %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:139
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, c-format
 msgid "Can't process URI %s with protocol %s"
-msgstr ""
+msgstr "Невозможно обработать URI %s с протоколом %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:238
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Не удалось создать источник данных GStreamer для %s: %s"
@@ -957,12 +960,13 @@ msgstr "Поддерживается только побайтное перем�
 #: ../src/media-engines/simple/rygel-simple-media-engine.vala:96
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
 msgstr ""
+"Можно обрабатывать MediaObject только на основе файлов (MediaFileItems)"
 
 #: ../src/media-engines/simple/rygel-simple-media-engine.vala:67
-#, fuzzy, c-format
+#, c-format
 #| msgid "Can't remove containers in %s"
 msgid "Can't process non-file URI %s"
-msgstr "Невозможно удалить контейнеры в %s"
+msgstr "Невозможно обработать нефайловый URI %s"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -978,53 +982,53 @@ msgstr "Внешний поставщик %s не предоставляет о�
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:91
 msgid "Invalid command received, ignoring"
-msgstr ""
+msgstr "Получена неверная команда, игнорируется"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:112
-#, fuzzy, c-format
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:113
+#, c-format
 #| msgid "Failed to remove file %s: %s"
 msgid "Failed to discover URI %s: %s"
-msgstr "Не удалось удалить файл %s: %s"
+msgstr "Не удалось обнаружить URI %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:130
-#, fuzzy, c-format
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:131
+#, c-format
 #| msgid "Failed to add object: %s"
 msgid "Failed to read from pipe: %s"
-msgstr "Не удалось добавить объект: %s"
+msgstr "Чтение из канала не удалось: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:158
-#, fuzzy, c-format
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:159
+#, c-format
 #| msgid "Failed to read error output from %s: %s"
 msgid "Failed to send error to parent: %s"
-msgstr "Не удалось прочитать вывод ошибок из %s: %s"
+msgstr "Отправка ошибки родительскому элементу не удалась: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:203
-#, fuzzy, c-format
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:204
+#, c-format
 #| msgid "Failed to read standard output from %s: %s"
 msgid "Failed to extract basic metadata from %s: %s"
-msgstr "Не удалось прочитать стандартный вывод из %s: %s"
+msgstr "Не удалось извлечь основные метаданные из %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:222
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:223
 msgid "- helper binary for Rygel to extract metadata"
-msgstr ""
+msgstr "— вспомогательный двоичный файл для Rygel длч извлеченич метаданных"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:229
-#, fuzzy, c-format
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:230
+#, c-format
 #| msgid "Failed to harvest file %s: %s"
 msgid "Failed to parse commandline args: %s"
-msgstr "Не удалось обработать файл %s: %s"
+msgstr "Не удалось разобрать аргументы командной строки: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:237
-#, fuzzy, c-format
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:238
+#, c-format
 #| msgid "Failed to create root device factory: %s"
 msgid "Failed to create media art extractor: %s"
-msgstr "Не удалось создать фабрику корневого устройства: %s"
+msgstr "Создание механизма для извлечения обложек не удалось: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:258
-#, fuzzy, c-format
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:259
+#, c-format
 #| msgid "Failed to start Rygel service: %s"
 msgid "Failed to start metadata discoverer: %s"
-msgstr "Не удалось запустить службу Rygel: %s"
+msgstr "Не удалось запустить службу просмотра метаданных: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, c-format
@@ -1075,53 +1079,10 @@ msgstr "Не удалось получить потомков в контейн�
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:334
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:340
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:120
-#, c-format
-msgid "Invalid metadata serialisation, cannot process %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
-#, c-format
-msgid "Invalid metadata serialisation: exprected 7 children, got %d"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:229
-#, c-format
-msgid "Invalid metadata serialisation of metadata; %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:265
-#, c-format
-msgid "Invalid metadata serialisation of video info; %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:284
-#, c-format
-msgid "Invalid metadata serialisation of audio info; %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:302
-msgid "Invalid metadata serialisation of general info"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:323
-#, c-format
-msgid "Invalid metadata serialisation of DLNA profile %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:336
-#, c-format
-msgid "Invalid metadata serialisation of file info %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:344
-msgid "Invalid metadata serialisation of file info"
-msgstr ""
+msgstr "Пропуск URI %s; извлечение полностью не удалось: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
@@ -1129,26 +1090,27 @@ msgid "Failed to get child count of query container: %s"
 msgstr "Не удалось получить количество потомков в контейнере запроса: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to query database: %s"
 msgid "Failed to force reindex to fix database: %s"
-msgstr "Не удалось запросить базу данных: %s"
+msgstr ""
+"Принудительная переиндексация для восстановления базы данных не удалась: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to create item under '%s': %s"
 msgid "Failed to create indices: %s"
-msgstr "Не удалось создать элемент под «%s»: %s"
+msgstr "Не удалось создать индексы: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
 #, c-format
 msgid "Cannot upgrade from version %d"
-msgstr ""
+msgstr "Невозможно обновить с версии %d"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:113
 #, c-format
 msgid "Database upgrade failed: %s"
-msgstr ""
+msgstr "Обновление базы данных не удалось: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:133
 #, c-format
@@ -1156,61 +1118,60 @@ msgid "Failed to add item with ID %s: %s"
 msgstr "Не удалось добавить элемент с ID %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:216
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to get a socket: %s"
 msgid "Failed to get update IDs: %s"
-msgstr "Не удалось получить сокет: %s"
+msgstr "Не удалось получить обновлённые ID: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:397
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
-msgstr ""
+msgstr "Непоследовательность базы данных: элемент %s не имеет родителя %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:520
-#, fuzzy
 #| msgid "Failed to get a socket: %s"
 msgid "Failed to get reset token"
-msgstr "Не удалось получить сокет: %s"
+msgstr "Не удалось получить сброшенный пароль"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:532
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to stop Rygel service: %s"
 msgid "Failed to persist ServiceResetToken: %s"
-msgstr "Не удалось остановить службу Rygel: %s"
+msgstr "Не удалось выполнить ServiceResetToken: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:542
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to remove file %s: %s"
 msgid "Failed to remove virtual folders: %s"
-msgstr "Не удалось удалить файл %s: %s"
+msgstr "Не удалось удалить виртуальные папки: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:556
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to create item under '%s': %s"
 msgid "Failed to mark item %s as guarded (%d): %s"
-msgstr "Не удалось создать элемент под «%s»: %s"
+msgstr "Не удалось пометить элемент %s как охраняемый (%d): %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:566
 msgid "Cannot create references to containers"
 msgstr "Невозможно создать ссылки на контейнеры"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:592
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to harvest file %s: %s"
 msgid "Failed to add %s to file blacklist: %s"
-msgstr "Не удалось обработать файл %s: %s"
+msgstr "Не удалось добавить %s в чёрный список файлов: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:605
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to get a socket: %s"
 msgid "Failed to get whether URI %s is blacklisted: %s"
-msgstr "Не удалось получить сокет: %s"
+msgstr "Не удалось получить информацию находится ли URI %s в чёрном списке: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:621
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to create item under '%s': %s"
 msgid "Failed to get whether item %s is guarded: %s"
-msgstr "Не удалось создать элемент под «%s»: %s"
+msgstr "Не удалось получить информацию охраняется ли элемент %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:660
 #, c-format
@@ -1218,86 +1179,81 @@ msgid ""
 "The version \"%d\" of the detected database is newer than our supported "
 "version \"%d\""
 msgstr ""
+"Версия «%d» обнаруженной базы данных новее, чем поддерживаемая версия «%d»"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:684
 msgid "Incompatible schema… cannot proceed"
-msgstr ""
+msgstr "Несовместимая схема… невозможно продолжить"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:690
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
-msgstr ""
+msgstr "Неверный базы данных, невозможно запросить таблицу sqlite_master: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:891
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to query database: %s"
 msgid "Failed to create database schema: %s"
-msgstr "Не удалось запросить базу данных: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1191
-#, fuzzy, c-format
-#| msgid "Unsupported seek type"
-msgid "Unsupported search criteria op %d"
-msgstr "Неподдерживаемый тип перемещения"
+msgstr "Не удалось создать схему базы данных: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
 #, c-format
 msgid "Skipping unsupported sort field: %s"
-msgstr ""
+msgstr "Пропуск не поддерживаемого поля сортировки: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:108
 msgid "Failed to gracefully stop the process. Using KILL"
-msgstr ""
+msgstr "Не удалось корректно остановить процесс. Использование команды KILL"
 
 #. Process exitted properly -> That shouldn't really
 #. happen
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:166
 #, c-format
 msgid "Process check_async failed: %s"
-msgstr ""
+msgstr "Процесс check_async не удался: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:172
 #, c-format
 msgid "Process died while handling URI %s"
-msgstr ""
+msgstr "Процесс завершился во время обработки URI %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:178
 #, c-format
 msgid "Setting up extraction subprocess failed: %s"
-msgstr ""
+msgstr "Установка подпроцесса извлечения не удалась: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:191
 #, c-format
 msgid "Child failed fatally. Last uri was %s"
-msgstr ""
+msgstr "Дочерний элемент завершился фатально. Последний URI %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:197
 #, c-format
 msgid "Reading from child's error stream failed: %s"
-msgstr ""
+msgstr "Чтение из потока ошибок дочернего элемента не удалось: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:217
 #, c-format
 msgid "Received invalid string from child: %s"
-msgstr ""
+msgstr "Получена неверная строка ответа от дочернего элемента: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:224
 #, c-format
 msgid "Received ill-formed response string %s from child…"
-msgstr ""
+msgstr "Получена плохо сформированная строка ответа %s от дочернего элемента…"
 
 #. No error signalling, this was done in the part that called
 #. cancel
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:266
 #, c-format
 msgid "Read from child failed: %s"
-msgstr ""
+msgstr "Не удалось считать с дочернего элемента: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:292
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to get child count: %s"
 msgid "Failed to send command to child: %s"
-msgstr "Не удалось получить количество потомков: %s"
+msgstr "Не удалось отправить команду дочернему элементу: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
@@ -1341,10 +1297,10 @@ msgid "upnp:class not supported in %s"
 msgstr "upnp:class не поддерживается в %s"
 
 #: ../src/plugins/media-export/rygel-media-export-plugin.vala:52
-#, fuzzy, c-format
+#, c-format
 #| msgid "Could not load plugin: %s"
 msgid "Failed to load plugin %s: %s"
-msgstr "Не удалось загрузить модуль: %s"
+msgstr "Не удалось загрузить модуль %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
 msgid "Will not monitor file changes"
@@ -1353,7 +1309,7 @@ msgstr "Не будет следить за изменениями файлов"
 #. Avoid warning when file is removed in the meantime, e.g. in
 #. upload case.
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to get file info for %s: %s"
 msgid "Failed to get file information for %s: %s"
 msgstr "Не удалось получить информацию о файле для %s: %s"
@@ -1503,6 +1459,26 @@ msgstr "Ошибка получения количества элементов 
 msgid "Titles"
 msgstr "Названия"
 
+#: ../src/rygel/rygel-acl.vala:110
+#, c-format
+#| msgid "Failed to query database: %s"
+msgid "Failed to query ACL: %s"
+msgstr "Не удалось запросить ACL: %s"
+
+#: ../src/rygel/rygel-acl.vala:127
+#, c-format
+#| msgid "Error getting all values for '%s': %s"
+msgid "Error creating DBus proxy for ACL: %s"
+msgstr "Ошибка создания прокси DBus для ACL: %s"
+
+#: ../src/rygel/rygel-acl.vala:143
+msgid "No ACL fallback policy found. Using \"allow\""
+msgstr "Не найдено запасной политики ACL. Используется «разрешить»"
+
+#: ../src/rygel/rygel-acl.vala:145
+msgid "No ACL fallback policy found. Using \"deny\""
+msgstr "Не найдено запасной политики ACL. Используется «отклонить»"
+
 #: ../src/rygel/rygel-cmdline-config.vala:73
 msgid "Display version number"
 msgstr "Показать номер версии"
@@ -1557,40 +1533,37 @@ msgstr ""
 "Использовать конфигурационный файл вместо пользовательской конфигурации"
 
 #: ../src/rygel/rygel-cmdline-config.vala:100
-#, fuzzy
 #| msgid "Shutdown remote Rygel reference"
 msgid "Shut down remote Rygel reference"
-msgstr "Остановить удалённый Rygel"
+msgstr "Остановить удалённый экземпляр Rygel"
 
 #: ../src/rygel/rygel-cmdline-config.vala:102
-#, fuzzy
 #| msgid "Replace currently running instance of rygel"
 msgid "Replace currently running instance of Rygel"
-msgstr "Заменить текущий запущенный экземпляр rygel"
+msgstr "Заменить текущий запущенный экземпляр Rygel"
 
 #: ../src/rygel/rygel-cmdline-config.vala:139
 msgid "Shutting down remote Rygel instance\n"
 msgstr "Завершение работы удалённого экземпляра Rygel\n"
 
 #: ../src/rygel/rygel-cmdline-config.vala:147
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to shut-down other rygel instance: %s"
 msgid "Failed to shut down other Rygel instance: %s"
-msgstr "Не удалось завершить работу другого экземпляра rygel: %s"
+msgstr "Не удалось завершить работу другого экземпляра Rygel: %s"
 
 #: ../src/rygel/rygel-dbus-service.vala:81
-#, fuzzy
 #| msgid "Another instance of rygel is already running. Not starting."
 msgid "Another instance of Rygel is already running. Not starting."
-msgstr "Другой экземпляр rygel уже запущен. Запуск отменён."
+msgstr "Другой экземпляр Rygel уже запущен. Запуск отменён."
 
-#: ../src/rygel/rygel-main.vala:81
+#: ../src/rygel/rygel-main.vala:85
 #, c-format
 msgid "Rygel v%s starting…"
 msgstr "Запуск Rygel v%s…"
 
-#: ../src/rygel/rygel-main.vala:109
-#, fuzzy, c-format
+#: ../src/rygel/rygel-main.vala:113
+#, c-format
 #| msgid "No plugins found in %d second; giving up..."
 #| msgid_plural "No plugins found in %d seconds; giving up..."
 msgid "No plugins found in %d second; giving up…"
@@ -1599,36 +1572,33 @@ msgstr[0] "За %d секунду не найдено ни одного моду
 msgstr[1] "За %d секунды не найдено ни одного модуля; отмена…"
 msgstr[2] "За %d секунд не найдено ни одного модуля; отмена…"
 
-#: ../src/rygel/rygel-main.vala:170
+#: ../src/rygel/rygel-main.vala:176
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Не удалось создать фабрику корневого устройства: %s"
 
-#: ../src/rygel/rygel-main.vala:227
+#: ../src/rygel/rygel-main.vala:233
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Не удалось создать RootDevice для %s. Причина: %s"
 
-#: ../src/rygel/rygel-main.vala:264
+#: ../src/rygel/rygel-main.vala:270
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Не удалось загрузить конфигурацию пользователя: %s"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
-#: ../src/rygel/rygel-user-config.vala:243
-#: ../src/ui/rygel-user-config.vala:243
+#: ../src/rygel/rygel-user-config.vala:243 ../src/ui/rygel-user-config.vala:243
 #, c-format
 msgid "Failed to load user configuration from file '%s': %s"
 msgstr "Не удалось загрузить конфигурацию пользователя из файла «%s»: %s"
 
-#: ../src/rygel/rygel-user-config.vala:296
-#: ../src/ui/rygel-user-config.vala:296
+#: ../src/rygel/rygel-user-config.vala:296 ../src/ui/rygel-user-config.vala:296
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Нет доступного значения для «%s»"
 
-#: ../src/rygel/rygel-user-config.vala:367
-#: ../src/ui/rygel-user-config.vala:367
+#: ../src/rygel/rygel-user-config.vala:367 ../src/ui/rygel-user-config.vala:367
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Значение «%s» вышло за пределы диапазона"
@@ -1652,13 +1622,3 @@ msgstr "Не удалось запустить службу Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Не удалось остановить службу Rygel: %s"
-
-#~| msgid "Could not determine protocol for %s"
-#~ msgid "Could not determine protocol for uri %s"
-#~ msgstr "Не удалось определить протокол для URI %s"
-
-#~ msgid "Disable UPnP (streaming-only)"
-#~ msgstr "Отключить UPnP (только потоковое воспроизведение)"
-
-#~ msgid "Rygel is running in streaming-only mode."
-#~ msgstr "Rygel работает в режиме только потоковое воспроизведение."
