@@ -167,6 +167,7 @@ public abstract class Rygel.MediaFileItem : MediaItem {
         res.mime_type = this.mime_type;
         res.dlna_profile = this.dlna_profile;
         res.dlna_flags = DLNAFlags.BACKGROUND_TRANSFER_MODE;
+        res.dlna_operation = DLNAOperation.RANGE;
 
         // MediaFileItems refer directly to the source URI
         res.uri = this.get_primary_uri ();

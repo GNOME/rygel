@@ -150,9 +150,9 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
     }
 
     private MediaFileItem get_item_for_xml (int track, Xml.Node *node) {
-        var item = new VideoItem (this.get_track_id (track),
-                                  this,
-                                  "Track %d".printf (track + 1));
+        var item = new DVDTrack (this.get_track_id (track),
+                                 this,
+                                 "Track %d".printf (track + 1));
         item.parent_ref = this;
 
         var uri = new Soup.URI (this.get_uris ()[0]);

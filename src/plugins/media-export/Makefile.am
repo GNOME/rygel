@@ -60,7 +60,8 @@ librygel_media_export_la_SOURCES = \
 	rygel-media-export-playlist-item.vala \
 	rygel-media-export-trackable-db-container.vala \
 	rygel-media-export-updatable-object.vala \
-	rygel-media-export-dvd-container.vala
+	rygel-media-export-dvd-container.vala \
+	rygel-media-export-dvd-track.vala
 
 librygel_media_export_la_VALAFLAGS = \
 	--enable-experimental \
