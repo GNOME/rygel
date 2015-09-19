@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-25 10:46+0000\n"
-"PO-Revision-Date: 2015-07-25 10:00+0200\n"
+"product=rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-09-18 23:47+0000\n"
+"PO-Revision-Date: 2015-09-19 11:59+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -319,12 +319,17 @@ msgstr "Nelze načíst zásuvný modul: %s"
 msgid "Failed to query content type for '%s'"
 msgstr "Selhal dotaz na typ obsahu pro „%s“"
 
-#: ../src/librygel-db/database-cursor.vala:81
+#: ../src/librygel-db/database-cursor.vala:82
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Nepodporovaný typ %s"
 
-#: ../src/librygel-db/database.vala:215
+#: ../src/librygel-db/database.vala:143
+#, c-format
+msgid "Error while opening SQLite database %s: %s"
+msgstr "Chyba při otevírání databáze SQLite %s: %s"
+
+#: ../src/librygel-db/database.vala:258
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Selhalo vrácení transakce do předchozího stavu: %s"
@@ -913,12 +918,12 @@ msgstr "Selhalo přeskočení"
 msgid "Invalid URI without prefix: %s"
 msgstr "Neplatná adresa URI bez předpony: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:139
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "Nelze zpracovat adresu URI %s s protokolem %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:238
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Selhalo vytvoření datového zdroje GStreamer pro %s: %s"
@@ -965,41 +970,41 @@ msgstr "Externí poskytovatel %s neposkytl povinnou vlastnost „%s“"
 msgid "Invalid command received, ignoring"
 msgstr "Přijat neplatný příkaz, ignoruje se"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:112
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:113
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Selhalo vyhledání adresy URI %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:130
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:131
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Selhalo čtení z roury: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:158
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:159
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Selhalo zaslání chyby rodiči: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:203
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:204
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr "Selhalo vybalení základních metadat z %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:222
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:223
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "– pomocný program pro Rygel na vybalování metadat"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:229
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:230
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Selhalo zpracování argumentů příkazového řádku: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:237
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:238
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Selhalo vytvoření procesu pro vybalování grafiky z multimédií: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:258
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:259
 #, c-format
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Selhalo spuštění vyhledávání metadat: %s"
@@ -1052,56 +1057,10 @@ msgstr "Selhalo získání potomků kontejneru %s: %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:334
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:340
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "Přeskakuje se adresa URI %s, vybalení zcela selhalo: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:120
-#, c-format
-msgid "Invalid metadata serialisation, cannot process %s"
-msgstr "Neplatná serializace metadat, nelze zpracovat %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
-#, c-format
-msgid "Invalid metadata serialisation: expected 7 children, got %d"
-msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
-msgstr[0] "Neplatná serializace metadat: očekáváno 7 potomků, získán %d"
-msgstr[1] "Neplatná serializace metadat: očekáváno 7 potomků, získáni %d"
-msgstr[2] "Neplatná serializace metadat: očekáváno 7 potomků, získáno %d"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:231
-#, c-format
-msgid "Invalid metadata serialisation of metadata; %s"
-msgstr "Neplatná serializace metadat o metadatech; %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:267
-#, c-format
-msgid "Invalid metadata serialisation of video info; %s"
-msgstr "Neplatná serializace metadat s informacemi o videu; %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:286
-#, c-format
-msgid "Invalid metadata serialisation of audio info; %s"
-msgstr "Neplatná serializace metadat s informacemi o zvuku; %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:304
-msgid "Invalid metadata serialisation of general info"
-msgstr "Neplatná serializace metadat s obecnými informacemi"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:325
-#, c-format
-msgid "Invalid metadata serialisation of DLNA profile %s"
-msgstr "Neplatná serializace metadat s profilem DLNA %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:338
-#, c-format
-msgid "Invalid metadata serialisation of file info %s"
-msgstr "Neplatná serializace metadat s informacemi o souboru %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:346
-msgid "Invalid metadata serialisation of file info"
-msgstr "Neplatná serializace metadat s informacemi o souboru"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
