@@ -7,10 +7,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: rygel 3.17.x\n"
+"Project-Id-Version: rygel 0.28.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-07 11:48+0200\n"
-"PO-Revision-Date: 2015-08-07 11:54+0200\n"
+"POT-Creation-Date: 2015-09-20 12:41+0200\n"
+"PO-Revision-Date: 2015-09-20 12:45+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -31,8 +31,7 @@ msgstr "UpnP/DLNA-tjenester"
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "mediatjener;mediavisning;del;lyd;video;bilder;"
 
-#: ../data/rygel-preferences.desktop.in.in.h:1
-#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel-preferences.desktop.in.in.h:1 ../data/rygel-preferences.ui.h:1
 msgid "Rygel Preferences"
 msgstr "Brukervalg for Rygel"
 
@@ -314,12 +313,17 @@ msgstr "Kunne ikke laste tillegg: %s"
 msgid "Failed to query content type for '%s'"
 msgstr "Klarte ikke å spørre etter innholdstype for «%s»"
 
-#: ../src/librygel-db/database-cursor.vala:81
+#: ../src/librygel-db/database-cursor.vala:82
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Ikke støttet type %s"
 
-#: ../src/librygel-db/database.vala:215
+#: ../src/librygel-db/database.vala:143
+#, c-format
+msgid "Error while opening SQLite database %s: %s"
+msgstr "Feil under åpning av SQLite-database %s: %s"
+
+#: ../src/librygel-db/database.vala:258
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Klarte ikke å rulle tilbake transaksjon: %s"
@@ -418,14 +422,14 @@ msgid "Unable to parse Protocol data - unexpected node: %s"
 msgstr ""
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:90
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to set UIList for file %s - %s"
-msgstr "Klarte ikke å høste fil %s: %s"
+msgstr "Klarte ikke å sette UIList for fil %s - %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:101
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to set initial UI list for file %s - %s"
-msgstr "Klarte ikke å hente original URI for «%s»: %s"
+msgstr "Klarte ikke å sette første UI-liste for fil %s - %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:105
 #, c-format
@@ -433,9 +437,9 @@ msgid "Failed to monitor the file %s - %s"
 msgstr "Klarte ikke å overvåke fil %s - %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:128
-#, fuzzy, c-format
+#, c-format
 msgid "Unable to parse UI list file %s"
-msgstr "Klarte ikke å høste fil %s: %s"
+msgstr "Klarte ikke å lese UI-listefil %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:156
 #, c-format
@@ -443,14 +447,14 @@ msgid "Unable to parse device profile data: %s"
 msgstr "Klarte ikke å lese profildata for enhet: %s"
 
 #: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:255
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid UI filter: %s"
-msgstr "Ugyldig dato: %s"
+msgstr "Ugyldig brukergrensesnittfilter: %s"
 
 #: ../src/librygel-ruih/rygel-ruih-ui-elem.vala:78
 #, c-format
 msgid "Unable to parse UI data - unexpected node: %s"
-msgstr ""
+msgstr "Kan ikke lese brukergrensesnittdata - uventet node: %s"
 
 #: ../src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -840,9 +844,8 @@ msgid "No thumbnail available"
 msgstr "Ingen miniatyr tilgjengelig"
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:97
-#, fuzzy
 msgid "No thumbnail available. Generation requested."
-msgstr "Ingen tjeneste for å lage miniatyrer tilgjengelig: %s"
+msgstr "Ingen miniatyr tilgjengelig. Oppretting forespurt."
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
@@ -908,12 +911,12 @@ msgstr "Klarte ikke å søke"
 msgid "Invalid URI without prefix: %s"
 msgstr "Ugyldig URI uten prefiks: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:139
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "Kan ikke prosessere URI %s med protokoll %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:241
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Klarte ikke å lage GStreamer datakilde for %s: %s"
@@ -941,9 +944,9 @@ msgid "Can only process file-based MediaObjects (MediaFileItems)"
 msgstr ""
 
 #: ../src/media-engines/simple/rygel-simple-media-engine.vala:67
-#, fuzzy, c-format
+#, c-format
 msgid "Can't process non-file URI %s"
-msgstr "Kan ikke fjerne kontainere i %s"
+msgstr "Kan ikke prosessere URI %s som ikke er fil"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -960,41 +963,41 @@ msgstr "Ekstern tilbyder %s oppga ikke obligatorisk egenskap «%s»"
 msgid "Invalid command received, ignoring"
 msgstr "Ugyldig kommando mottatt, ignorerer"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:112
-#, fuzzy, c-format
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:113
+#, c-format
 msgid "Failed to discover URI %s: %s"
-msgstr "Klarte ikke å fjerne fil %s: %s"
+msgstr "Klarte ikke å finne URI %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:130
-#, fuzzy, c-format
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:131
+#, c-format
 msgid "Failed to read from pipe: %s"
-msgstr "Klarte ikke å legge til objekt: %s"
+msgstr "Klarte ikke å lese fra rør: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:158
-#, fuzzy, c-format
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:159
+#, c-format
 msgid "Failed to send error to parent: %s"
-msgstr "Klarte ikke å laste feilutskrift fra %s: %s"
+msgstr "Klarte ikke å sende feil til opphav: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:203
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:204
 #, fuzzy, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr "Klarte ikke å lese standard utdata fra %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:222
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:223
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- hjelpekommando for Rygel for å hente ut metadata"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:229
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:230
 #, fuzzy, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Klarte ikke å høste fil %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:237
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:238
 #, fuzzy, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Klarte ikke å opprette fabrikk for rotenhet: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:258
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:259
 #, fuzzy, c-format
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Klarte ikke å starte Rygel-tjeneste: %s"
@@ -1047,54 +1050,9 @@ msgstr "Klarte ikke å hente barn av kontainer %s: %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:334
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:340
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:120
-#, c-format
-msgid "Invalid metadata serialisation, cannot process %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
-#, c-format
-msgid "Invalid metadata serialisation: expected 7 children, got %d"
-msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:231
-#, c-format
-msgid "Invalid metadata serialisation of metadata; %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:267
-#, c-format
-msgid "Invalid metadata serialisation of video info; %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:286
-#, c-format
-msgid "Invalid metadata serialisation of audio info; %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:304
-msgid "Invalid metadata serialisation of general info"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:325
-#, c-format
-msgid "Invalid metadata serialisation of DLNA profile %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:338
-#, c-format
-msgid "Invalid metadata serialisation of file info %s"
-msgstr ""
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:346
-msgid "Invalid metadata serialisation of file info"
 msgstr ""
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
@@ -1108,9 +1066,9 @@ msgid "Failed to force reindex to fix database: %s"
 msgstr "Klarte ikke å spørre database: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to create indices: %s"
-msgstr "Klarte ikke å opprette oppføring under «%s»: %s"
+msgstr "Klarte ikke å opprette indekser: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
 #, c-format
@@ -1576,20 +1534,17 @@ msgid "Failed to load user configuration: %s"
 msgstr "Klarte ikke å laste brukerkonfigurasjon: %s"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
-#: ../src/rygel/rygel-user-config.vala:243
-#: ../src/ui/rygel-user-config.vala:243
+#: ../src/rygel/rygel-user-config.vala:243 ../src/ui/rygel-user-config.vala:243
 #, c-format
 msgid "Failed to load user configuration from file '%s': %s"
 msgstr "Klarte ikke å laste brukerkonfigurasjon fra fil «%s»: %s"
 
-#: ../src/rygel/rygel-user-config.vala:296
-#: ../src/ui/rygel-user-config.vala:296
+#: ../src/rygel/rygel-user-config.vala:296 ../src/ui/rygel-user-config.vala:296
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Ingen verdi tilgjengelig for «%s»"
 
-#: ../src/rygel/rygel-user-config.vala:367
-#: ../src/ui/rygel-user-config.vala:367
+#: ../src/rygel/rygel-user-config.vala:367 ../src/ui/rygel-user-config.vala:367
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Verdi for «%s» utenfor gyldig område"
