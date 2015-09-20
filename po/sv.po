@@ -4,14 +4,15 @@
 # Daniel Nylander <po@danielnylander.se>, 2010, 2011, 2012.
 # Sebastian Rasmussen <sebras@gmail.com>, 2014, 2015.
 # Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015.
+# Marcus Gisslén <marcus.gisslen@gmail.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-17 11:45+0000\n"
-"PO-Revision-Date: 2015-03-17 18:39+0100\n"
+"product=rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-09-14 11:49+0000\n"
+"PO-Revision-Date: 2015-09-20 23:37+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.7.3\n"
+"X-Generator: Poedit 1.8.4\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -33,8 +34,7 @@ msgstr "UPnP/DLNA-tjänster"
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "mediaserver;mediavisare;dela;ljud;video;bilder;"
 
-#: ../data/rygel-preferences.desktop.in.in.h:1
-#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel-preferences.desktop.in.in.h:1 ../data/rygel-preferences.ui.h:1
 msgid "Rygel Preferences"
 msgstr "Inställningar för Rygel"
 
@@ -92,7 +92,7 @@ msgid "Select folders"
 msgstr "Välj mappar"
 
 #: ../src/librygel-core/rygel-base-configuration.vala:30
-#: ../src/librygel-core/rygel-base-configuration.vala:34
+#: ../src/librygel-core/rygel-base-configuration.vala:35
 #: ../src/librygel-core/rygel-base-configuration.vala:39
 #: ../src/librygel-core/rygel-base-configuration.vala:43
 #: ../src/librygel-core/rygel-base-configuration.vala:47
@@ -106,12 +106,11 @@ msgstr "Välj mappar"
 #: ../src/librygel-core/rygel-base-configuration.vala:79
 #: ../src/librygel-core/rygel-base-configuration.vala:83
 #: ../src/librygel-core/rygel-base-configuration.vala:87
-#: ../src/librygel-core/rygel-base-configuration.vala:91
-#: ../src/librygel-core/rygel-base-configuration.vala:97
-#: ../src/librygel-core/rygel-base-configuration.vala:103
-#: ../src/librygel-core/rygel-base-configuration.vala:111
-#: ../src/librygel-core/rygel-base-configuration.vala:117
-#: ../src/librygel-core/rygel-base-configuration.vala:123
+#: ../src/librygel-core/rygel-base-configuration.vala:93
+#: ../src/librygel-core/rygel-base-configuration.vala:99
+#: ../src/librygel-core/rygel-base-configuration.vala:107
+#: ../src/librygel-core/rygel-base-configuration.vala:113
+#: ../src/librygel-core/rygel-base-configuration.vala:119
 msgid "Not implemented"
 msgstr "Inte implementerad"
 
@@ -164,8 +163,9 @@ msgstr "Tillstånd ”%s” hindrar avbrott"
 #: ../src/librygel-core/rygel-connection-manager.vala:95
 #: ../src/librygel-core/rygel-connection-manager.vala:109
 #: ../src/librygel-core/rygel-connection-manager.vala:126
-#: ../src/librygel-renderer/rygel-av-transport.vala:190
+#: ../src/librygel-renderer/rygel-av-transport.vala:198
 #: ../src/librygel-renderer/rygel-rendering-control.vala:131
+#: ../src/librygel-ruih/rygel-ruih-service.vala:63
 #: ../src/librygel-server/rygel-content-directory.vala:261
 #: ../src/librygel-server/rygel-content-directory.vala:289
 #: ../src/librygel-server/rygel-content-directory.vala:308
@@ -194,7 +194,7 @@ msgstr "Kan inte köra ”Traceroute”-åtgärd: Värd är tom"
 msgid "Invalid connection reference"
 msgstr "Ogiltig anslutningsreferens"
 
-#: ../src/librygel-core/rygel-description-file.vala:474
+#: ../src/librygel-core/rygel-description-file.vala:483
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Misslyckades med att skriva ändrad beskrivning till %s"
@@ -219,7 +219,7 @@ msgid "Failed to get log level from configuration: %s"
 msgstr "Misslyckades med att få loggnivå från konfiguration: %s"
 
 #: ../src/librygel-core/rygel-meta-config.vala:89
-#: ../src/librygel-core/rygel-meta-config.vala:108
+#: ../src/librygel-core/rygel-meta-config.vala:109
 #: ../src/librygel-core/rygel-meta-config.vala:128
 #: ../src/librygel-core/rygel-meta-config.vala:147
 #: ../src/librygel-core/rygel-meta-config.vala:166
@@ -228,49 +228,47 @@ msgstr "Misslyckades med att få loggnivå från konfiguration: %s"
 #: ../src/librygel-core/rygel-meta-config.vala:223
 #: ../src/librygel-core/rygel-meta-config.vala:242
 #: ../src/librygel-core/rygel-meta-config.vala:261
-#: ../src/librygel-core/rygel-meta-config.vala:280
-#: ../src/rygel/rygel-cmdline-config.vala:164
-#: ../src/rygel/rygel-cmdline-config.vala:172
-#: ../src/rygel/rygel-cmdline-config.vala:181
-#: ../src/rygel/rygel-cmdline-config.vala:189
-#: ../src/rygel/rygel-cmdline-config.vala:197
-#: ../src/rygel/rygel-cmdline-config.vala:205
-#: ../src/rygel/rygel-cmdline-config.vala:213
-#: ../src/rygel/rygel-cmdline-config.vala:221
-#: ../src/rygel/rygel-cmdline-config.vala:260
-#: ../src/rygel/rygel-cmdline-config.vala:279
+#: ../src/rygel/rygel-cmdline-config.vala:161
+#: ../src/rygel/rygel-cmdline-config.vala:170
+#: ../src/rygel/rygel-cmdline-config.vala:178
+#: ../src/rygel/rygel-cmdline-config.vala:186
+#: ../src/rygel/rygel-cmdline-config.vala:194
+#: ../src/rygel/rygel-cmdline-config.vala:202
+#: ../src/rygel/rygel-cmdline-config.vala:210
+#: ../src/rygel/rygel-cmdline-config.vala:249
+#: ../src/rygel/rygel-cmdline-config.vala:268
+#: ../src/rygel/rygel-cmdline-config.vala:274
+#: ../src/rygel/rygel-cmdline-config.vala:281
 #: ../src/rygel/rygel-cmdline-config.vala:285
-#: ../src/rygel/rygel-cmdline-config.vala:292
-#: ../src/rygel/rygel-cmdline-config.vala:296
-#: ../src/rygel/rygel-cmdline-config.vala:300
-#: ../src/rygel/rygel-cmdline-config.vala:323
-#: ../src/rygel/rygel-cmdline-config.vala:349
-#: ../src/rygel/rygel-cmdline-config.vala:378
-#: ../src/rygel/rygel-cmdline-config.vala:404
-#: ../src/rygel/rygel-cmdline-config.vala:429
-#: ../src/rygel/rygel-environment-config.vala:105
-#: ../src/rygel/rygel-environment-config.vala:109
-#: ../src/rygel/rygel-environment-config.vala:113
+#: ../src/rygel/rygel-cmdline-config.vala:289
+#: ../src/rygel/rygel-cmdline-config.vala:312
+#: ../src/rygel/rygel-cmdline-config.vala:338
+#: ../src/rygel/rygel-cmdline-config.vala:367
+#: ../src/rygel/rygel-cmdline-config.vala:393
+#: ../src/rygel/rygel-cmdline-config.vala:418
+#: ../src/rygel/rygel-environment-config.vala:100
+#: ../src/rygel/rygel-environment-config.vala:104
+#: ../src/rygel/rygel-environment-config.vala:108
 msgid "No value available"
 msgstr "Inget värde tillgängligt"
 
 #. translators: "enabled" is part of the config key and must not be translated
-#: ../src/librygel-core/rygel-meta-config.vala:344
+#: ../src/librygel-core/rygel-meta-config.vala:325
 #, c-format
 msgid "No value set for '%s/enabled'"
 msgstr "Inget värde inställt för ”%s/enabled”"
 
 #. translators: "title" is part of the config key and must not be translated
-#: ../src/librygel-core/rygel-meta-config.vala:363
+#: ../src/librygel-core/rygel-meta-config.vala:344
 #, c-format
 msgid "No value set for '%s/title'"
 msgstr "Inget värde inställt för ”%s/enabled”"
 
-#: ../src/librygel-core/rygel-meta-config.vala:383
-#: ../src/librygel-core/rygel-meta-config.vala:405
-#: ../src/librygel-core/rygel-meta-config.vala:431
-#: ../src/librygel-core/rygel-meta-config.vala:453
-#: ../src/librygel-core/rygel-meta-config.vala:477
+#: ../src/librygel-core/rygel-meta-config.vala:364
+#: ../src/librygel-core/rygel-meta-config.vala:386
+#: ../src/librygel-core/rygel-meta-config.vala:412
+#: ../src/librygel-core/rygel-meta-config.vala:434
+#: ../src/librygel-core/rygel-meta-config.vala:458
 #, c-format
 msgid "No value available for '%s/%s'"
 msgstr "Inget värde tillgängligt för ”%s/%s”"
@@ -315,12 +313,26 @@ msgid "Could not load plugin: %s"
 msgstr "Kunde inte läsa insticksmodul: %s"
 
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:216
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:145
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Misslyckades med att fråga efter innehållstyp för ”%s”"
 
-#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:364
+#: ../src/librygel-db/database-cursor.vala:82
+#, c-format
+msgid "Unsupported type %s"
+msgstr "Typen %s stöds inte"
+
+#: ../src/librygel-db/database.vala:143
+#, c-format
+msgid "Error while opening SQLite database %s: %s"
+msgstr "Fel vid inläsning av SQLite-databas %s: %s"
+
+#: ../src/librygel-db/database.vala:258
+#, c-format
+msgid "Failed to roll back transaction: %s"
+msgstr "Misslyckades med att rulla tillbaka transaktion: %s"
+
+#: ../src/librygel-renderer-gst/rygel-playbin-player.vala:367
 msgid ""
 "Your GStreamer installation seems to be missing the \"playbin\" element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
@@ -328,59 +340,59 @@ msgstr ""
 "Din GStreamer-installation verkar sakna ”playbin”-elementet. Rygels "
 "GStreamer-visarimplementation fungerar inte utan den"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:196
+#: ../src/librygel-renderer/rygel-av-transport.vala:204
 #: ../src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Ogiltigt InstanceID"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:466
+#: ../src/librygel-renderer/rygel-av-transport.vala:474
 msgid "Play speed not supported"
 msgstr "Uppspelningshastigheten stöds inte"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:473
-#: ../src/librygel-renderer/rygel-av-transport.vala:491
+#: ../src/librygel-renderer/rygel-av-transport.vala:481
+#: ../src/librygel-renderer/rygel-av-transport.vala:499
 msgid "Transition not available"
 msgstr "Övergång finns inte tillgänglig"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:521
-#: ../src/librygel-renderer/rygel-av-transport.vala:546
-#: ../src/librygel-renderer/rygel-av-transport.vala:576
+#: ../src/librygel-renderer/rygel-av-transport.vala:529
+#: ../src/librygel-renderer/rygel-av-transport.vala:554
+#: ../src/librygel-renderer/rygel-av-transport.vala:584
 msgid "Seek mode not supported"
 msgstr "Spolningsläge stöds inte"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:527
-#: ../src/librygel-renderer/rygel-av-transport.vala:552
-#: ../src/librygel-renderer/rygel-av-transport.vala:565
-#: ../src/librygel-renderer/rygel-av-transport.vala:590
-#: ../src/librygel-renderer/rygel-av-transport.vala:602
+#: ../src/librygel-renderer/rygel-av-transport.vala:535
+#: ../src/librygel-renderer/rygel-av-transport.vala:560
+#: ../src/librygel-renderer/rygel-av-transport.vala:573
+#: ../src/librygel-renderer/rygel-av-transport.vala:598
+#: ../src/librygel-renderer/rygel-av-transport.vala:610
 msgid "Illegal seek target"
 msgstr "Felaktigt spolningsmål"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:651
+#: ../src/librygel-renderer/rygel-av-transport.vala:659
 msgid "Play mode not supported"
 msgstr "Uppspelningsläge stöds inte"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:727
-#: ../src/librygel-renderer/rygel-av-transport.vala:771
-#: ../src/librygel-renderer/rygel-av-transport.vala:780
-#: ../src/librygel-renderer/rygel-av-transport.vala:859
+#: ../src/librygel-renderer/rygel-av-transport.vala:735
+#: ../src/librygel-renderer/rygel-av-transport.vala:779
+#: ../src/librygel-renderer/rygel-av-transport.vala:788
+#: ../src/librygel-renderer/rygel-av-transport.vala:867
 msgid "Resource not found"
 msgstr "Resursen hittades inte"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:769
+#: ../src/librygel-renderer/rygel-av-transport.vala:777
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "Problem att tolka spellista: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: ../src/librygel-renderer/rygel-av-transport.vala:855
+#: ../src/librygel-renderer/rygel-av-transport.vala:863
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Misslyckades med att komma åt resurs på %s: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:871
+#: ../src/librygel-renderer/rygel-av-transport.vala:879
 msgid "Illegal MIME-type"
 msgstr "Felaktig MIME-typ"
 
@@ -398,20 +410,70 @@ msgstr "Ogiltig kanal"
 msgid "Action Failed"
 msgstr "Åtgärden misslyckades"
 
+#: ../src/librygel-ruih/rygel-ruih-icon-elem.vala:66
+#, c-format
+msgid "Unable to parse Icon data - unexpected node: %s"
+msgstr "Kunde inte tolka ikondata - oväntad nod: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
+#, c-format
+msgid "Unable to parse Protocol data - unexpected attribute: %s"
+msgstr "Kunde inte tolka protokolldata- oväntat attribut: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
+#, c-format
+msgid "Unable to parse Protocol data - unexpected node: %s"
+msgstr "Kunde inte tolka protokolldata - oväntad nod: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:90
+#, c-format
+msgid "Failed to set UIList for file %s - %s"
+msgstr "Misslyckades med att ställa in UIList för fil %s - %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:101
+#, c-format
+msgid "Failed to set initial UI list for file %s - %s"
+msgstr "Misslyckades med att ställa in ursprunglig UI-lista för fil %s - %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:105
+#, c-format
+msgid "Failed to monitor the file %s - %s"
+msgstr "Misslyckades med att övervaka filen %s - %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:128
+#, c-format
+msgid "Unable to parse UI list file %s"
+msgstr "Misslyckades med att tolka UI-listfil %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:156
+#, c-format
+msgid "Unable to parse device profile data: %s"
+msgstr "Kan inte tolka enhetens profildata: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-servicemanager.vala:255
+#, c-format
+msgid "Invalid UI filter: %s"
+msgstr "Ogiltigt UI-filter: %s"
+
+#: ../src/librygel-ruih/rygel-ruih-ui-elem.vala:78
+#, c-format
+msgid "Unable to parse UI data - unexpected node: %s"
+msgstr "Kunde inte tolka användargränssnittsdata - oväntad nod: %s"
+
 #: ../src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
 msgstr "Ogiltiga argument"
 
 #: ../src/librygel-server/rygel-browse.vala:94
 msgid "Cannot browse children on item"
-msgstr "Kan inte bläddra i barn på objekt"
+msgstr "Kan inte bläddra bland underordnade för objekt"
 
 #: ../src/librygel-server/rygel-browse.vala:130
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "Misslyckades med att bläddra i ”%s”: %s\n"
 
-#: ../src/librygel-server/rygel-client-hacks.vala:136
+#: ../src/librygel-server/rygel-client-hacks.vala:141
 msgid "Not Applicable"
 msgstr "Inte tillämpligt"
 
@@ -517,7 +579,7 @@ msgstr "Borttagning av objekt från %s tillåts inte"
 
 #. Sorry we can't do anything without the ID
 #: ../src/librygel-server/rygel-item-updater.vala:74
-msgid "Object id missing"
+msgid "Object ID missing"
 msgstr "Objekt-ID saknas"
 
 #: ../src/librygel-server/rygel-item-updater.vala:81
@@ -577,20 +639,20 @@ msgid ""
 "Metadata modification of object %s being a child of restricted object %s not "
 "allowed"
 msgstr ""
-"Metadatamodifiering av objekt %s som är ett barn till det begränsade "
-"objektet %s tillåts ej"
+"Metadatamodifiering av objekt %s som är underordnat det begränsade objektet "
+"%s tillåts ej"
 
 #: ../src/librygel-server/rygel-m3u-playlist.vala:67
 #: ../src/librygel-server/rygel-m3u-playlist.vala:70
 msgid "Unknown"
 msgstr "Okänd"
 
-#: ../src/librygel-server/rygel-media-art-store.vala:105
+#: ../src/librygel-server/rygel-media-art-store.vala:111
 #, c-format
 msgid "Failed to add album art for %s: %s"
 msgstr "Misslyckades med att lägga till omslagsbild för %s: %s"
 
-#: ../src/librygel-server/rygel-media-art-store.vala:119
+#: ../src/librygel-server/rygel-media-art-store.vala:125
 #, c-format
 msgid "Failed to find media art for %s: %s"
 msgstr "Misslyckades med att hitta omslagsbild för %s: %s"
@@ -607,7 +669,7 @@ msgstr "Hastighet stöds inte"
 msgid "Failed to generate playlist"
 msgstr "Misslyckades med att generera spellista"
 
-#: ../src/librygel-server/rygel-media-container.vala:470
+#: ../src/librygel-server/rygel-media-container.vala:472
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
 msgstr "Okänd MediaContainer-resurs: %s"
@@ -622,8 +684,8 @@ msgstr "MediaEngine.init anropades inte. Kan inte fortsätta."
 
 #: ../src/librygel-server/rygel-media-file-item.vala:176
 #, c-format
-msgid "Could not determine protocol for uri %s"
-msgstr "Kunde inte avgöra protokoll för URI %s"
+msgid "Could not determine protocol for URI %s"
+msgstr "Kunde inte fastställa protokoll för URI %s"
 
 #: ../src/librygel-server/rygel-media-object.vala:283
 #, c-format
@@ -740,7 +802,7 @@ msgid ""
 "'%s' in it: %s"
 msgstr ""
 "Fel från behållare ”%s” vid försök att hitta det nyligen tillagda "
-"barnobjektet ”%s” i den: %s"
+"underordnade objektet ”%s” i den: %s"
 
 #: ../src/librygel-server/rygel-reference-creator.vala:50
 msgid "'ContainerID' agument missing."
@@ -780,11 +842,14 @@ msgstr "Miniatyrbilder stöds inte"
 #. Thumbnailing failed previously, so there's no current thumbnail
 #. and it doesn't make any sense to request one.
 #: ../src/librygel-server/rygel-thumbnailer.vala:88
-#: ../src/librygel-server/rygel-thumbnailer.vala:97
 #: ../src/librygel-server/rygel-thumbnailer.vala:102
 #: ../src/librygel-server/rygel-thumbnailer.vala:113
 msgid "No thumbnail available"
 msgstr "Ingen miniatyrbild tillgänglig"
+
+#: ../src/librygel-server/rygel-thumbnailer.vala:97
+msgid "No thumbnail available. Generation requested."
+msgstr "Ingen miniatyrbild tillgänglig. Skapandet av sådan begärd."
 
 #: ../src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
@@ -795,56 +860,67 @@ msgstr "Ingen D-bus miniatyrbildsskapare tillgänglig"
 msgid "Could not create GstElement for URI %s"
 msgstr "Kunde inte skapa GstElement för URI %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:71
-#: ../src/media-engines/simple/rygel-simple-data-source.vala:79
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:72
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
 msgstr "Uppspelningshastighet stöds inte"
 
 #. Unknown/unsupported seek type
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:94
-msgid "HTTPSeekRequest type unsupported"
-msgstr "HTTPSeekRequest-typ stöds inte"
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:102
+#, c-format
+msgid "HTTPSeekRequest type %s unsupported"
+msgstr "HTTPSeekRequest-typen %s stöds inte"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:136
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:146
 msgid "Failed to create pipeline"
 msgstr "Misslyckades med att skapa objekt under ”%s”: %s"
 
 #. static pads? easy!
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:147
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:168
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:157
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:178
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Misslyckades med att länka %s till %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:182
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:192
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Misslyckades med att länka pad %s till %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:237
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:247
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Fel från rörledningen %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:244
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:254
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Varning från rörledningen %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:288
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:302
 msgid "Unsupported seek type"
 msgstr "Spolningstyp stöds inte"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:303
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:319
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Misslyckades med att spola till positionerna %lld:%lld"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:306
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:321
 msgid "Failed to seek"
 msgstr "Misslyckades med att spola"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:212
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:128
+#, c-format
+msgid "Invalid URI without prefix: %s"
+msgstr "Ogiltig URI utan prefix: %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
+#, c-format
+msgid "Can't process URI %s with protocol %s"
+msgstr "Kan inte bearbeta URI %s med protokollet %s"
+
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Misslyckades med att skapa objekt under ”%s”: %s"
@@ -862,9 +938,19 @@ msgstr ""
 msgid "Required element %s missing"
 msgstr "Nödvändiga elementet %s saknas"
 
-#: ../src/media-engines/simple/rygel-simple-data-source.vala:61
+#: ../src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
 msgstr "Endast byte-baserad spolning stöds"
+
+#: ../src/media-engines/simple/rygel-simple-media-engine.vala:57
+#: ../src/media-engines/simple/rygel-simple-media-engine.vala:96
+msgid "Can only process file-based MediaObjects (MediaFileItems)"
+msgstr "Kan bara bearbeta filbaserade mediaobjekt (MediaFileItems)"
+
+#: ../src/media-engines/simple/rygel-simple-media-engine.vala:67
+#, c-format
+msgid "Can't process non-file URI %s"
+msgstr "Kan inte bearbeta URI %s till icke-fil"
 
 #: ../src/plugins/external/rygel-external-plugin-factory.vala:35
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -878,75 +964,261 @@ msgstr ""
 msgid "External provider %s did not provide mandatory property \"%s\""
 msgstr "Extern leverantör %s erbjöd inte obligatorisk egenskap ”%s”"
 
-#: ../src/plugins/media-export/rygel-media-export-database-cursor.vala:81
-#, c-format
-msgid "Unsupported type %s"
-msgstr "Typen %s stöds inte"
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:91
+msgid "Invalid command received, ignoring"
+msgstr "Ogiltigt kommando mottaget, ignorerar"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:215
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:113
 #, c-format
-msgid "Failed to roll back transaction: %s"
-msgstr "Misslyckades med att rulla tillbaka transaktion: %s"
+msgid "Failed to discover URI %s: %s"
+msgstr "Misslyckades med att finna URI %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:135
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:131
+#, c-format
+msgid "Failed to read from pipe: %s"
+msgstr "Misslyckades med att läsa från rör: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:159
+#, c-format
+msgid "Failed to send error to parent: %s"
+msgstr "Misslyckades med att skicka fel till överordnad: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:204
+#, c-format
+msgid "Failed to extract basic metadata from %s: %s"
+msgstr "Misslyckades med att extrahera grundmetadata från %s: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:223
+msgid "- helper binary for Rygel to extract metadata"
+msgstr "- binär hjälpfil till Rygel för att extrahera metadata"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:230
+#, c-format
+msgid "Failed to parse commandline args: %s"
+msgstr "Misslyckades med att tolka kommandoradsargument: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:238
+#, c-format
+msgid "Failed to create media art extractor: %s"
+msgstr "Misslyckades med att skapa omslagsbildsextraherare: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:259
+#, c-format
+msgid "Failed to start metadata discoverer: %s"
+msgstr "Misslyckades med att starta metadataupptäckare: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, c-format
 msgid "'%s' harvested"
 msgstr "”%s” insamlad"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:191
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:202
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
 msgstr "Fel vid hämtning av objektet ”%s” från databasen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:199
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:210
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "Misslyckades att fråga om information om en fil %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:234
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:245
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr ""
-"Kunde inte hitta objekt %s eller dess förälder. Databasen är motstridig"
+"Kunde inte hitta objektet %s eller dess överordnade. Databasen är motstridig"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:238
+#: ../src/plugins/media-export/rygel-media-export-harvester.vala:249
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Fel vid borttagning av objekt från databasen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:114
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:125
 #, c-format
 msgid "Failed to harvest file %s: %s"
 msgstr "Misslyckades med att samla in filen %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:164
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:175
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "Misslyckades med att fråga databas: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:239
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:250
 #, c-format
 msgid "Failed to enumerate folder \"%s\": %s"
 msgstr "Misslyckades med att lista mapp ”%s”: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:257
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
 #, c-format
 msgid "Failed to get children of container %s: %s"
-msgstr "Misslyckades med att hämta barn för behållare %s: %s"
+msgstr "Misslyckades med att hämta underordnade för behållare %s: %s"
+
+#. error is only emitted if even the basic information extraction
+#. failed; there's not much to do here, just print the information and
+#. go to the next file
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:340
+#, c-format
+msgid "Skipping URI %s; extraction completely failed: %s"
+msgstr "Hoppar över URI %s; extrahering misslyckades totalt: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
 msgid "Failed to get child count of query container: %s"
-msgstr "Misslyckades med att hämta antal barn för frågebehållare: %s"
+msgstr "Misslyckades med att hämta antal underordnade för frågebehållare: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:132
+#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
+#, c-format
+msgid "Failed to force reindex to fix database: %s"
+msgstr "Misslyckades med att tvinga fram omindexering för att laga databas: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
+#, c-format
+msgid "Failed to create indices: %s"
+msgstr "Misslyckades med att skapa index: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
+#, c-format
+msgid "Cannot upgrade from version %d"
+msgstr "Kan inte uppgradera från version %d"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:113
+#, c-format
+msgid "Database upgrade failed: %s"
+msgstr "Databasuppgradering misslyckades: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:133
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Misslyckades med att lägga till objekt med ID %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:565
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:216
+#, c-format
+msgid "Failed to get update IDs: %s"
+msgstr "Misslyckades med att erhålla uppdaterings-ID:n: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:397
+#, c-format
+msgid "Inconsistent database: item %s does not have parent %s"
+msgstr "Inkonsekvent databas: objektet %s har inget överordnat %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:520
+msgid "Failed to get reset token"
+msgstr "Misslyckades med att erhålla återställningstecken"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:532
+#, c-format
+msgid "Failed to persist ServiceResetToken: %s"
+msgstr "Misslyckades med att hålla kvar ServiceResetToken: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:542
+#, c-format
+msgid "Failed to remove virtual folders: %s"
+msgstr "Misslyckades med att ta bort virtuella mappar: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:556
+#, c-format
+msgid "Failed to mark item %s as guarded (%d): %s"
+msgstr "Misslyckades med att markera objekt %s som skyddat (%d): %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:566
 msgid "Cannot create references to containers"
 msgstr "Kan inte skapa referenser till behållare"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:592
+#, c-format
+msgid "Failed to add %s to file blacklist: %s"
+msgstr "Misslyckades med att lägga till %s till svartlistade filer: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:605
+#, c-format
+msgid "Failed to get whether URI %s is blacklisted: %s"
+msgstr "Misslyckades med att erhålla huruvida URI %s är svartlistad: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:621
+#, c-format
+msgid "Failed to get whether item %s is guarded: %s"
+msgstr "Misslyckades med att läsa av ifall objekt %s är skyddat: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:660
+#, c-format
+msgid ""
+"The version \"%d\" of the detected database is newer than our supported "
+"version \"%d\""
+msgstr ""
+"Versionen ”%d” på den funna databasen är nyare än versionen ”%d” som vi "
+"stöder"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:684
+msgid "Incompatible schema… cannot proceed"
+msgstr "Oförenligt schema… kan inte fortsätta"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:690
+#, c-format
+msgid "Invalid database, cannot query sqlite_master table: %s"
+msgstr "Ogiltig databas, kan inte fråga sqlite_master-tabell: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:891
+#, c-format
+msgid "Failed to create database schema: %s"
+msgstr "Misslyckades med att skapa databasschema: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
+#, c-format
+msgid "Skipping unsupported sort field: %s"
+msgstr "Hoppar över sorteringsfält som inte stöds: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:108
+msgid "Failed to gracefully stop the process. Using KILL"
+msgstr "Kunde inte stoppa processen på ett graciöst sätt. Använder KILL"
+
+#. Process exitted properly -> That shouldn't really
+#. happen
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:166
+#, c-format
+msgid "Process check_async failed: %s"
+msgstr "Processen check_async misslyckades: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:172
+#, c-format
+msgid "Process died while handling URI %s"
+msgstr "Processen dog när URI %s behandlades"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:178
+#, c-format
+msgid "Setting up extraction subprocess failed: %s"
+msgstr "Konfiguration av extraheringsunderprocess misslyckades: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:191
+#, c-format
+msgid "Child failed fatally. Last uri was %s"
+msgstr "Underordnad misslyckades ödesdigert. Senaste URI var %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:197
+#, c-format
+msgid "Reading from child's error stream failed: %s"
+msgstr "Läsning från underordnades felström misslyckades: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:217
+#, c-format
+msgid "Received invalid string from child: %s"
+msgstr "Mottog ogiltig sträng från underordnad: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:224
+#, c-format
+msgid "Received ill-formed response string %s from child…"
+msgstr "Mottog otydlig svarssträng %s från underordnad…"
+
+#. No error signalling, this was done in the part that called
+#. cancel
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:266
+#, c-format
+msgid "Read from child failed: %s"
+msgstr "Läsning från underordnad misslyckades: %s"
+
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:292
+#, c-format
+msgid "Failed to send command to child: %s"
+msgstr "Misslyckades med att skicka kommando till underordnad: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
@@ -956,7 +1228,7 @@ msgstr "Alla"
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
 msgid "Failed to get child count: %s"
-msgstr "Misslyckades med att hämta antal barn: %s"
+msgstr "Misslyckades med att hämta antal underordnade: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
@@ -989,6 +1261,11 @@ msgstr "Kan inte ta bort objekt i %s"
 msgid "upnp:class not supported in %s"
 msgstr "upnp:klass stöds inte i %s"
 
+#: ../src/plugins/media-export/rygel-media-export-plugin.vala:52
+#, c-format
+msgid "Failed to load plugin %s: %s"
+msgstr "Kunde inte läsa in insticksmodul %s: %s"
+
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
 msgid "Will not monitor file changes"
 msgstr "Kommer inte att övervaka filändringar"
@@ -997,7 +1274,7 @@ msgstr "Kommer inte att övervaka filändringar"
 #. upload case.
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
-msgid "Failed to get file info for %s: %s"
+msgid "Failed to get file information for %s: %s"
 msgstr "Misslyckades med att hämta filinformation för %s: %s"
 
 #. Titles and definitions of some virtual folders,
@@ -1146,88 +1423,106 @@ msgstr "Fel vid hämtning av objektantal under kategorin ”%s”: %s"
 msgid "Titles"
 msgstr "Titlar"
 
-#: ../src/rygel/rygel-cmdline-config.vala:76
+#: ../src/rygel/rygel-acl.vala:110
+#, c-format
+msgid "Failed to query ACL: %s"
+msgstr "Misslyckades med att fråga ACL: %s"
+
+#: ../src/rygel/rygel-acl.vala:127
+#, c-format
+msgid "Error creating DBus proxy for ACL: %s"
+msgstr "Fel vid skapandet av DBus-proxy för ACL: %s"
+
+#: ../src/rygel/rygel-acl.vala:143
+msgid "No ACL fallback policy found. Using \"allow\""
+msgstr "Ingen ACL-reservpolicy funnen. Använder ”tillåt”"
+
+#: ../src/rygel/rygel-acl.vala:145
+msgid "No ACL fallback policy found. Using \"deny\""
+msgstr "Ingen ACL-reservpolicy funnen. Använder ”neka”"
+
+#: ../src/rygel/rygel-cmdline-config.vala:73
+msgid "Display version number"
+msgstr "Visa versionsnummer"
+
+#: ../src/rygel/rygel-cmdline-config.vala:75
 msgid "Network Interfaces"
 msgstr "Nätverksgränssnitt"
 
-#: ../src/rygel/rygel-cmdline-config.vala:80
+#: ../src/rygel/rygel-cmdline-config.vala:77
+msgid "Port"
+msgstr "Port"
+
+#: ../src/rygel/rygel-cmdline-config.vala:79
 msgid "Disable transcoding"
 msgstr "Inaktivera omkodning"
 
-#: ../src/rygel/rygel-cmdline-config.vala:82
+#: ../src/rygel/rygel-cmdline-config.vala:81
 msgid "Disallow upload"
 msgstr "Tillåt ej skickning"
 
-#: ../src/rygel/rygel-cmdline-config.vala:84
+#: ../src/rygel/rygel-cmdline-config.vala:83
 msgid "Disallow deletion"
 msgstr "Tillåt ej borttagning"
 
-#: ../src/rygel/rygel-cmdline-config.vala:86
+#: ../src/rygel/rygel-cmdline-config.vala:85
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr "Kommaseparerad lista över domän:nivå-par. Se rygel(1) för detaljer"
 
-#: ../src/rygel/rygel-cmdline-config.vala:88
+#: ../src/rygel/rygel-cmdline-config.vala:87
 msgid "Plugin Path"
 msgstr "Sökväg för insticksmoduler"
 
-#: ../src/rygel/rygel-cmdline-config.vala:90
+#: ../src/rygel/rygel-cmdline-config.vala:89
 msgid "Engine Path"
 msgstr "Motorsökväg"
 
-#: ../src/rygel/rygel-cmdline-config.vala:93
+#: ../src/rygel/rygel-cmdline-config.vala:92
 msgid "Disable plugin"
 msgstr "Inaktivera insticksmodul"
 
-#: ../src/rygel/rygel-cmdline-config.vala:95
+#: ../src/rygel/rygel-cmdline-config.vala:94
 msgid "Set plugin titles"
 msgstr "Ställ in insticksmodulstitlar"
 
-#: ../src/rygel/rygel-cmdline-config.vala:97
+#: ../src/rygel/rygel-cmdline-config.vala:96
 msgid "Set plugin options"
 msgstr "Ställ in insticksmodulsalternativ"
 
-#: ../src/rygel/rygel-cmdline-config.vala:99
-msgid "Disable UPnP (streaming-only)"
-msgstr "Inaktivera UPnP (enbart strömning)"
-
-#: ../src/rygel/rygel-cmdline-config.vala:101
+#: ../src/rygel/rygel-cmdline-config.vala:98
 msgid "Use configuration file instead of user configuration"
 msgstr "Använd konfigurationsfil istället för användarkonfiguration"
 
-#: ../src/rygel/rygel-cmdline-config.vala:103
-msgid "Shutdown remote Rygel reference"
+#: ../src/rygel/rygel-cmdline-config.vala:100
+msgid "Shut down remote Rygel reference"
 msgstr "Referens för att fjärrstänga Rygel"
 
-#: ../src/rygel/rygel-cmdline-config.vala:105
-msgid "Replace currently running instance of rygel"
-msgstr "Ersätt aktuell körande instans av rygel"
+#: ../src/rygel/rygel-cmdline-config.vala:102
+msgid "Replace currently running instance of Rygel"
+msgstr "Ersätt aktuell körande instans av Rygel"
 
-#: ../src/rygel/rygel-cmdline-config.vala:142
+#: ../src/rygel/rygel-cmdline-config.vala:139
 msgid "Shutting down remote Rygel instance\n"
 msgstr "Stäng ner Rygel fjärrinstans\n"
 
-#: ../src/rygel/rygel-cmdline-config.vala:150
+#: ../src/rygel/rygel-cmdline-config.vala:147
 #, c-format
-msgid "Failed to shut-down other rygel instance: %s"
-msgstr "Misslyckades med att stoppa annan Rygel-instans: %s"
+msgid "Failed to shut down other Rygel instance: %s"
+msgstr "Misslyckades med att stänga annan Rygel-instans: %s"
 
 #: ../src/rygel/rygel-dbus-service.vala:81
-msgid "Another instance of rygel is already running. Not starting."
-msgstr "En annan instans av rygel kör redan. Startar inte."
+msgid "Another instance of Rygel is already running. Not starting."
+msgstr "En annan instans av Rygel körs redan. Startar inte."
 
-#: ../src/rygel/rygel-main.vala:83
-msgid "Rygel is running in streaming-only mode."
-msgstr "Rygel kör i enbart strömningsläge."
-
-#: ../src/rygel/rygel-main.vala:87
+#: ../src/rygel/rygel-main.vala:85
 #, c-format
 msgid "Rygel v%s starting…"
 msgstr "Rygel v%s startar…"
 
-#: ../src/rygel/rygel-main.vala:115
+#: ../src/rygel/rygel-main.vala:113
 #, c-format
-msgid "No plugins found in %d second; giving up..."
-msgid_plural "No plugins found in %d seconds; giving up..."
+msgid "No plugins found in %d second; giving up…"
+msgid_plural "No plugins found in %d seconds; giving up…"
 msgstr[0] "Inga insticksmoduler hittades inom %d sekund, ger upp…"
 msgstr[1] "Inga insticksmoduler hittades inom %d sekunder, ger upp…"
 
@@ -1236,31 +1531,28 @@ msgstr[1] "Inga insticksmoduler hittades inom %d sekunder, ger upp…"
 msgid "Failed to create root device factory: %s"
 msgstr "Misslyckades med att skapa rotenhetsfabrik: %s"
 
-#: ../src/rygel/rygel-main.vala:234
+#: ../src/rygel/rygel-main.vala:233
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Misslyckades med att skapa RootDevice för %s. Anledning: %s"
 
-#: ../src/rygel/rygel-main.vala:271
+#: ../src/rygel/rygel-main.vala:270
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Misslyckades med att läsa in användarkonfiguration: %s"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
-#: ../src/rygel/rygel-user-config.vala:252
-#: ../src/ui/rygel-user-config.vala:252
+#: ../src/rygel/rygel-user-config.vala:243 ../src/ui/rygel-user-config.vala:243
 #, c-format
 msgid "Failed to load user configuration from file '%s': %s"
 msgstr "Misslyckades med att läsa in användarkonfiguration från fil ”%s”: %s"
 
-#: ../src/rygel/rygel-user-config.vala:305
-#: ../src/ui/rygel-user-config.vala:305
+#: ../src/rygel/rygel-user-config.vala:296 ../src/ui/rygel-user-config.vala:296
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Inget värde tillgängligt för ”%s”"
 
-#: ../src/rygel/rygel-user-config.vala:376
-#: ../src/ui/rygel-user-config.vala:376
+#: ../src/rygel/rygel-user-config.vala:367 ../src/ui/rygel-user-config.vala:367
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Värdet för ”%s” är utanför intervallet"
@@ -1270,20 +1562,60 @@ msgstr "Värdet för ”%s” är utanför intervallet"
 msgid "Failed to create preferences dialog: %s"
 msgstr "Misslyckades med att skapa inställningsdialog: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:122
+#: ../src/ui/rygel-writable-user-config.vala:119
 #, c-format
 msgid "Failed to save configuration data to file '%s': %s"
 msgstr "Misslyckades med att spara konfigurationsdata till filen ”%s”: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:221
+#: ../src/ui/rygel-writable-user-config.vala:214
 #, c-format
 msgid "Failed to start Rygel service: %s"
 msgstr "Misslyckades med att starta Rygel-tjänsten: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:223
+#: ../src/ui/rygel-writable-user-config.vala:216
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Misslyckades med att stoppa Rygel-tjänsten: %s"
+
+#~ msgid "Invalid metadata serialisation, cannot process %s"
+#~ msgstr "Ogiltig metadataserialisering, kan inte bearbeta %s"
+
+#~ msgid "Invalid metadata serialisation: expected 7 children, got %d"
+#~ msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
+#~ msgstr[0] ""
+#~ "Ogiltig metadata-serialisering: förväntade 7 underordnade, har %d"
+#~ msgstr[1] ""
+#~ "Ogiltig metadata-serialisering: förväntade 7 underordnade, har %d"
+
+#~ msgid "Invalid metadata serialisation of metadata; %s"
+#~ msgstr "Ogiltig metadataserialisering av metadata; %s"
+
+#~ msgid "Invalid metadata serialisation of video info; %s"
+#~ msgstr "Ogiltig metadataserialisering av videoinformation; %s"
+
+#~ msgid "Invalid metadata serialisation of audio info; %s"
+#~ msgstr "Ogiltig metadataserialisering av ljudinformation; %s"
+
+#~ msgid "Invalid metadata serialisation of general info"
+#~ msgstr "Ogiltig metadataserialisering av allmän information"
+
+#~ msgid "Invalid metadata serialisation of DLNA profile %s"
+#~ msgstr "Ogiltig metadataserialisering av DLNA-profil %s"
+
+#~ msgid "Invalid metadata serialisation of file info %s"
+#~ msgstr "Ogiltig metadataserialisering av filinformation %s"
+
+#~ msgid "Invalid metadata serialisation of file info"
+#~ msgstr "Ogiltig metadataserialisering av filinformation"
+
+#~ msgid "Could not determine protocol for uri %s"
+#~ msgstr "Kunde inte avgöra protokoll för URI %s"
+
+#~ msgid "Disable UPnP (streaming-only)"
+#~ msgstr "Inaktivera UPnP (enbart strömning)"
+
+#~ msgid "Rygel is running in streaming-only mode."
+#~ msgstr "Rygel kör i enbart strömningsläge."
 
 #~ msgid "Invalid Range '%s'"
 #~ msgstr "Ogiltigt intervall ”%s”"
