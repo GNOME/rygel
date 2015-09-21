@@ -1,12 +1,45 @@
+0.28.0
+======
+
+A new stable release of Rygel to accompany GNOME 3.18
+
+- Translation updates
+
+All contributors to this release:
+ - Stas Solovey <whats_up@tut.by>
+ - Rafael Fontenelle <rffontenelle@gmail.com>
+ - Muhammet Kara <muhammetk@gmail.com>
+ - Marek Černocký <marek@manet.cz>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Fran Dieguez <fran@openhost.es>
+ - Ask Hjorth Larsen <asklarsen@gmail.com>
+ - Arash Mousavi <mousavi.arash@gmail.com>
+ - Andika Triwidada <andika@gmail.com>
+ - Anders Jonsson <anders.jonsson@norsjovallen.se>
+ - Alain Lojewski <allomervan@gmail.com>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - da, courtesy of Ask Hjorth Larsen
+ - fa, courtesy of Amir Farsi
+ - fr, courtesy of Alain Lojewski
+ - gl, courtesy of Fran Dieguez
+ - id, courtesy of Andika Triwidada
+ - nb, courtesy of Kjartan Maraas
+ - pt_BR, courtesy of Rafael Fontenelle
+ - ru, courtesy of Stas Solovey
+ - sv, courtesy of Anders Jonsson
+ - tr, courtesy of Muhammet Kara
+
 0.27.6
 ======
 
 Database:
- - Fix issue introduced with 0.27.7 that caused exec() to only run the first
+ - Fix issue introduced with 0.27.5 that caused exec() to only run the first
    query of a list of ";"-separated queries.
 
 Media-Export:
- - Fix extration with disabled meta-data.
+ - Fix extraction with disabled meta-data.
  - Fix extraction of DIDL_S playlists.
  - Small simplification and removal of accidental debug warnings.
 
