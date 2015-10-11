@@ -525,7 +525,6 @@ data/icons/32x32/Makefile
 data/icons/48x48/Makefile
 data/icons/120x120/Makefile
 data/icons/128x128/Makefile
-data/icons/scalable/Makefile
 data/rygel.desktop.in
 data/rygel-preferences.desktop.in
 doc/Makefile
