@@ -1,7 +1,7 @@
 if UNINSTALLED
 MX_EXTRACT_PATH=$(abs_builddir)/mx-extract
 else
-MX_EXTRACT_PATH=$(libexecdir)/mx-extract
+MX_EXTRACT_PATH=$(pkglibexecdir)/mx-extract
 endif
 
 include $(top_srcdir)/common.am
