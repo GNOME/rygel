@@ -106,6 +106,8 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             this.database.begin ();
             this.database.exec (this.sql.make (SQLString.CREATE_BLACKLIST_TABLE));
             this.database.exec (this.sql.make (SQLString.CREATE_BLACKLIST_INDEX));
+            database.exec ("UPDATE schema_info SET version = '17'");
+            this.database.commit ();
             this.database.exec ("VACUUM");
             this.database.analyze ();
         } catch (Database.DatabaseError error) {
