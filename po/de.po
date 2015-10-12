@@ -4,7 +4,7 @@
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2010-2013.
 # Christian Kirbach <Christian.Kirbach@googlemail.com>, 2010, 2012.
 # Wolfgang Stöggl <c72578@yahoo.de>, 2013, 2015.
-# Benjamin Steinwender <b@stbe.at>, 2013.
+# Benjamin Steinwender <b@stbe.at>, 2013, 2015.
 # Tobias Endrigkeit <tobiasendrigkeit@outlook.com>, 2013.
 # Bernd Homuth <dev@hmt.im>, 2014, 2015.
 #
@@ -13,16 +13,16 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-10-02 00:18+0000\n"
-"PO-Revision-Date: 2015-10-02 09:02+0200\n"
-"Last-Translator: Bernd Homuth <dev@hmt.im>\n"
+"POT-Creation-Date: 2015-10-11 18:19+0000\n"
+"PO-Revision-Date: 2015-10-11 14:46+0100\n"
+"Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Poedit 1.7.1\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -987,10 +987,9 @@ msgid "Invalid command received, ignoring"
 msgstr "Ungültiger Befehl empfangen, wird ignoriert"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:113
-#, fuzzy, c-format
-#| msgid "Failed to remove URI: %s"
+#, c-format
 msgid "Failed to discover URI %s: %s"
-msgstr "Entfernen der Adresse ist fehlgeschlagen: %s"
+msgstr "Erkennen der Adresse »%s« ist fehlgeschlagen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:131
 #, c-format
@@ -1023,10 +1022,9 @@ msgid "Failed to create media art extractor: %s"
 msgstr "Cover für %s konnte nicht gefunden werden: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:259
-#, fuzzy, c-format
-#| msgid "Failed to start Rygel service: %s"
+#, c-format
 msgid "Failed to start metadata discoverer: %s"
-msgstr "Starten des Rygel-Dienstes ist fehlgeschlagen: %s"
+msgstr "Starten der Metadaten-Erkennung ist fehlgeschlagen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, c-format
@@ -1081,7 +1079,7 @@ msgstr "Unterelemente von Container %s konnten nicht ermittelt werden: %s"
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:340
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
-msgstr ""
+msgstr "Adresse »%s« wird übersprungen. Auslesen ist fehlgeschlagen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
@@ -1091,10 +1089,11 @@ msgstr ""
 "werden: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
-#, fuzzy, c-format
-#| msgid "Failed to query database: %s"
+#, c-format
 msgid "Failed to force reindex to fix database: %s"
-msgstr "Datenbank konnte nicht abgefragt werden: %s"
+msgstr ""
+"Erzwingen einer ﻿Neuindizierung zum Beheben der Datenbank ist fehlgeschlagen: "
+"%s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
@@ -1106,7 +1105,7 @@ msgstr "Erstellen der Indizes fehlgeschlagen: %s"
 msgid "Cannot upgrade from version %d"
 msgstr "Aktualisierung von Version %d ist nicht möglich"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:113
+#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
 #, c-format
 msgid "Database upgrade failed: %s"
 msgstr "Aktualisierung der Datenbank ist fehlgeschlagen: %s"
@@ -1127,16 +1126,13 @@ msgid "Inconsistent database: item %s does not have parent %s"
 msgstr "Inkonsistente Datenbank: Objekt %s hat kein übergeordnetes %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:520
-#, fuzzy
-#| msgid "Failed to get a socket: %s"
 msgid "Failed to get reset token"
-msgstr "Ein Socket konnte nicht erhalten werden: %s"
+msgstr "Abrufen des Zurücksetzen-Tokens ist fehlgeschlagen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:532
-#, fuzzy, c-format
-#| msgid "Failed to stop Rygel service: %s"
+#, c-format
 msgid "Failed to persist ServiceResetToken: %s"
-msgstr "Beenden des Rygel-Dienstes ist fehlgeschlagen: %s"
+msgstr "﻿Beibehalten des Dienstrücksetzungs-Token ist fehlgeschlagen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:542
 #, c-format
@@ -1154,16 +1150,17 @@ msgid "Cannot create references to containers"
 msgstr "Referenzen zu den Containern konnten nicht erstellt werden"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:592
-#, fuzzy, c-format
-#| msgid "Failed to harvest file %s: %s"
+#, c-format
 msgid "Failed to add %s to file blacklist: %s"
-msgstr "Datei »%s« konnte nicht verarbeitet werden: %s"
+msgstr ""
+"»%s« konnte nicht zur schwarzen Liste der Dateien hinzugefügt werden: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:605
-#, fuzzy, c-format
-#| msgid "Failed to shut down other Rygel instance: %s"
+#, c-format
 msgid "Failed to get whether URI %s is blacklisted: %s"
-msgstr "Beenden des Rygel-Dienstes ist fehlgeschlagen: %s"
+msgstr ""
+"﻿Auslesen, ob die Adresse »%s« auf der schwarzen Liste ist, ist "
+"fehlgeschlagen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:621
 #, c-format
@@ -1187,6 +1184,7 @@ msgstr "Inkompatibles Schema. Fortsetzen ist nicht möglich."
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr ""
+"Ungültige Datenbank. SQLite-Master-Tabelle kann nicht abgefragt werden: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:891
 #, c-format
@@ -1213,22 +1211,22 @@ msgstr "Prozess »check_async« schlug fehl: %s"
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:172
 #, c-format
 msgid "Process died while handling URI %s"
-msgstr ""
+msgstr "Prozess beendete während der Verarbeitung der Adresse %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:178
 #, c-format
 msgid "Setting up extraction subprocess failed: %s"
-msgstr ""
+msgstr "Einrichten von Auslesen-Unterprozess fehlgeschlagen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:191
-#, c-format
+#, fuzzy, c-format
 msgid "Child failed fatally. Last uri was %s"
-msgstr ""
+msgstr "Kind fehlgeschlagen. Letzte Adresse war %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:197
 #, c-format
 msgid "Reading from child's error stream failed: %s"
-msgstr ""
+msgstr "Lesen der Fehlerausgabe des Kindes fehlgeschlagen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:217
 #, c-format
@@ -1238,14 +1236,14 @@ msgstr "Ungültige Zeichenkette von Kindelement erhalten: %s"
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:224
 #, c-format
 msgid "Received ill-formed response string %s from child…"
-msgstr ""
+msgstr "Fehlerhafte Antwort »%s« von Kind erhalten …"
 
 #. No error signalling, this was done in the part that called
 #. cancel
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:266
 #, c-format
 msgid "Read from child failed: %s"
-msgstr ""
+msgstr "﻿Lesen von Kind ist fehlgeschlagen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:292
 #, c-format
@@ -1469,12 +1467,18 @@ msgid "Error creating DBus proxy for ACL: %s"
 msgstr "Fehler beim Anlegen des DBus-Proxy für ACL: %s"
 
 #: ../src/rygel/rygel-acl.vala:143
+#, fuzzy
 msgid "No ACL fallback policy found. Using \"allow\""
 msgstr ""
+"Eine alternative Zugriffslistenrichtlinie konnte nicht gefunden werden. "
+"Zugriff wird gewährt."
 
 #: ../src/rygel/rygel-acl.vala:145
+#, fuzzy
 msgid "No ACL fallback policy found. Using \"deny\""
 msgstr ""
+"Eine alternative Zugriffslistenrichtlinie konnte nicht gefunden werden. "
+"Zugriff wird verweigert."
 
 #: ../src/rygel/rygel-cmdline-config.vala:73
 msgid "Display version number"
