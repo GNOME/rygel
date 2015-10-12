@@ -1,3 +1,34 @@
+0.28.1
+======
+
+Server:
+ - Fix a potential crash if there is no protocol info provided.
+
+MediaExport:
+ - Fix database upgrade from v16 to v17.
+ - Use correct install path for out-of-process helper binary.
+
+GStreamer Media Engine:
+ - Remove failed attempt to do transmuxing.
+
+Bugs adressed or fixed in this release:
+ - https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=801521
+ - https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=800896
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Милош Поповић <gpopac@gmail.com>
+ - Марко Костић <marko.m.kostic@gmail.com>
+ - Roderich Schupp <roderich.schupp@gmail.com>
+ - Claudio Arseni <claudio.arseni@gmail.com>
+ - Christian Kirbach <Christian.Kirbach@gmail.com>
+
+Added/updated translations
+ - de, courtesy of Bernd Homuth
+ - it, courtesy of Claudio Arseni
+ - sr, courtesy of Марко М. Костић (Marko M. Kostić)
+ - sr@latin, courtesy of Marko M. Kostić (Marko M. Kostić)
+
 0.28.0
 ======
 
