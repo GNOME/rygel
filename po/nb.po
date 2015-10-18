@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel 0.28.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-20 12:41+0200\n"
-"PO-Revision-Date: 2015-09-20 12:45+0200\n"
+"POT-Creation-Date: 2015-10-18 19:06+0200\n"
+"PO-Revision-Date: 2015-10-18 19:11+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -979,28 +979,28 @@ msgid "Failed to send error to parent: %s"
 msgstr "Klarte ikke å sende feil til opphav: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:204
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to extract basic metadata from %s: %s"
-msgstr "Klarte ikke å lese standard utdata fra %s: %s"
+msgstr "Klarte ikke å hente grunnleggende metadata fra %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:223
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- hjelpekommando for Rygel for å hente ut metadata"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:230
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to parse commandline args: %s"
-msgstr "Klarte ikke å høste fil %s: %s"
+msgstr "Klarte ikke å lese kommandolinjeargumenter: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:238
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to create media art extractor: %s"
-msgstr "Klarte ikke å opprette fabrikk for rotenhet: %s"
+msgstr "Klarte ikke å lage program for å hente ut mediekunst: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:259
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to start metadata discoverer: %s"
-msgstr "Klarte ikke å starte Rygel-tjeneste: %s"
+msgstr "Klarte ikke å starte metadataoppdager: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, c-format
@@ -1061,9 +1061,9 @@ msgid "Failed to get child count of query container: %s"
 msgstr "Klarte ikke å hente barn av kontainer for spørring: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to force reindex to fix database: %s"
-msgstr "Klarte ikke å spørre database: %s"
+msgstr "Klarte ikke å tvinge gjennom reindeksering for å fikse databasen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
@@ -1075,7 +1075,7 @@ msgstr "Klarte ikke å opprette indekser: %s"
 msgid "Cannot upgrade from version %d"
 msgstr "Kan ikke oppgradere fra versjon %d"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:113
+#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
 #, c-format
 msgid "Database upgrade failed: %s"
 msgstr "Oppgradering av database feilet: %s"
@@ -1086,9 +1086,9 @@ msgid "Failed to add item with ID %s: %s"
 msgstr "Klarte ikke å legge til oppføring med ID %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:216
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get update IDs: %s"
-msgstr "Klarte ikke å hente en plugg: %s"
+msgstr "Klarte ikke å hente IDer for oppdatering: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:397
 #, c-format
@@ -1096,33 +1096,32 @@ msgid "Inconsistent database: item %s does not have parent %s"
 msgstr "Ukonsistent database: oppføring %s har ikke opphav %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:520
-#, fuzzy
 msgid "Failed to get reset token"
-msgstr "Klarte ikke å hente en plugg: %s"
+msgstr "Klarte ikke å hente tegn for nullstilling: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:532
-#, fuzzy, c-format
+#, c-format, fuzzy
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "Klarte ikke å stoppe Rygel-tjeneste: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:542
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to remove virtual folders: %s"
-msgstr "Klarte ikke å fjerne fil %s: %s"
+msgstr "Klarte ikke å fjerne virtuelle mapper: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:556
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
-msgstr "Klarte ikke å opprette oppføring under «%s»: %s"
+msgstr "Klarte ikke å merke oppføring %s som bevoktet (%d): %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:566
 msgid "Cannot create references to containers"
 msgstr "Kan ikke lage referanser til kontainere"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:592
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to add %s to file blacklist: %s"
-msgstr "Klarte ikke å høste fil %s: %s"
+msgstr "Klarte ikke å legge til %s i sorteliste for filer: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:605
 #, fuzzy, c-format
@@ -1143,17 +1142,17 @@ msgstr ""
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:684
 msgid "Incompatible schema… cannot proceed"
-msgstr ""
+msgstr "Inkompatibelt skjema … kan ikke fortsette"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:690
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
-msgstr ""
+msgstr "Ugyldig database, kan ikke spørre tabell sqlite_master: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:891
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to create database schema: %s"
-msgstr "Klarte ikke å spørre database: %s"
+msgstr "Klarte ikke å lage databaseskjema: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
 #, c-format
@@ -1169,7 +1168,7 @@ msgstr ""
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:166
 #, c-format
 msgid "Process check_async failed: %s"
-msgstr ""
+msgstr "Prosessen check_async feilet: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:172
 #, c-format
@@ -1206,12 +1205,12 @@ msgstr ""
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:266
 #, c-format
 msgid "Read from child failed: %s"
-msgstr ""
+msgstr "Lesing fra barn feilet: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:292
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send command to child: %s"
-msgstr "Klarte ikke å hente antall barn: %s"
+msgstr "Klarte ikke å sende kommando til barn: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
