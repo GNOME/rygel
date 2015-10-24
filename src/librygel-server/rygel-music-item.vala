@@ -87,8 +87,13 @@ public class Rygel.MusicItem : AudioItem {
         base.apply_didl_lite (didl_object);
 
         this.track_number = didl_object.track_number;
-        // TODO: Not sure about it.
-        //this.album_art.uri = didl_object.album_art
+
+        if (didl_object.album_art.length > 0) {
+            if (this.album_art == null)
+                this.album_art = new Thumbnail ();
+            this.album_art.uri = didl_object.album_art;
+        } else if (this.album_art != null)
+            this.album_art = null;
     }
 
     internal override DIDLLiteObject? serialize (Serializer serializer,
