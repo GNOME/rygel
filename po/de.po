@@ -13,16 +13,16 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-10-11 18:19+0000\n"
-"PO-Revision-Date: 2015-10-11 14:46+0100\n"
-"Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
+"POT-Creation-Date: 2015-10-25 14:10+0000\n"
+"PO-Revision-Date: 2015-10-26 06:30+0100\n"
+"Last-Translator: Wolfgang Stoeggl <c72578@yahoo.de>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -423,8 +423,7 @@ msgstr "Symboldaten konnten nicht gelesen werden - unerwarteter Knoten: %s"
 #: ../src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
 #, c-format
 msgid "Unable to parse Protocol data - unexpected attribute: %s"
-msgstr ""
-"Protokolldaten konnten nicht gelesen werden - unerwartetes Attribut: %s"
+msgstr "Protokolldaten konnten nicht gelesen werden - unerwartetes Attribut: %s"
 
 #: ../src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
 #, c-format
@@ -811,8 +810,8 @@ msgstr "Erzeugen eines Objektes der Klasse »%s« wird nicht unterstützt."
 #: ../src/librygel-server/rygel-object-creator.vala:740
 #, c-format
 msgid ""
-"Error from container '%s' on trying to find the newly added child object "
-"'%s' in it: %s"
+"Error from container '%s' on trying to find the newly added child object '%s' "
+"in it: %s"
 msgstr ""
 "Fehler von Container »%s« beim Versuch, das jüngst hinzugefügte Unterobjekt "
 "»%s« in diesem zu finden: %s"
@@ -959,8 +958,7 @@ msgstr "Nur bytebasierte Suche wird unterstützt"
 #: ../src/media-engines/simple/rygel-simple-media-engine.vala:57
 #: ../src/media-engines/simple/rygel-simple-media-engine.vala:96
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
-msgstr ""
-"Nur Datei-basierte Medienobjekte (MediaFileItems) können gelesen werden"
+msgstr "Nur Datei-basierte Medienobjekte (MediaFileItems) können gelesen werden"
 
 #: ../src/media-engines/simple/rygel-simple-media-engine.vala:67
 #, c-format
@@ -1017,9 +1015,9 @@ msgid "Failed to parse commandline args: %s"
 msgstr "Verarbeiten der Parameter der Befehlszeile fehlgeschlagen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:238
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to create media art extractor: %s"
-msgstr "Cover für %s konnte nicht gefunden werden: %s"
+msgstr "Ausleser des Covers konnte nicht erstellt werden: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:259
 #, c-format
@@ -1085,8 +1083,8 @@ msgstr "Adresse »%s« wird übersprungen. Auslesen ist fehlgeschlagen: %s"
 #, c-format
 msgid "Failed to get child count of query container: %s"
 msgstr ""
-"Anzahl der Unterelemente der Container-Abfrage konnte nicht ermittelt "
-"werden: %s"
+"Anzahl der Unterelemente der Container-Abfrage konnte nicht ermittelt werden: "
+"%s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
 #, c-format
@@ -1140,10 +1138,9 @@ msgid "Failed to remove virtual folders: %s"
 msgstr "Entfernen des virtuellen Ordners fehlgeschlagen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:556
-#, fuzzy, c-format
-#| msgid "Failed to create item under '%s': %s"
+#, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
-msgstr "Objekt unter »%s« konnte nicht erstellt werden: %s"
+msgstr "Markieren des Objekts »%s« als geschützt (%d) ist fehlgeschlagen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:566
 msgid "Cannot create references to containers"
@@ -1189,17 +1186,16 @@ msgstr ""
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:891
 #, c-format
 msgid "Failed to create database schema: %s"
-msgstr "Erstellen des Datenbankschamas ist fehlgeschlagen: %s"
+msgstr "Erstellen des Datenbankschemas ist fehlgeschlagen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
 #, c-format
 msgid "Skipping unsupported sort field: %s"
-msgstr "Nicht unterstütztes Sortierungfeld wird übersprungen: %s"
+msgstr "Nicht unterstütztes Sortierungsfeld wird übersprungen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:108
 msgid "Failed to gracefully stop the process. Using KILL"
-msgstr ""
-"Ordnungsgemäßes Anhalten des Prozesses schlug fehl. KILL wird verwendet"
+msgstr "Ordnungsgemäßes Anhalten des Prozesses schlug fehl. KILL wird verwendet"
 
 #. Process exitted properly -> That shouldn't really
 #. happen
@@ -1219,7 +1215,7 @@ msgid "Setting up extraction subprocess failed: %s"
 msgstr "Einrichten von Auslesen-Unterprozess fehlgeschlagen: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:191
-#, fuzzy, c-format
+#, c-format
 msgid "Child failed fatally. Last uri was %s"
 msgstr "Kind fehlgeschlagen. Letzte Adresse war %s"
 
@@ -1467,18 +1463,16 @@ msgid "Error creating DBus proxy for ACL: %s"
 msgstr "Fehler beim Anlegen des DBus-Proxy für ACL: %s"
 
 #: ../src/rygel/rygel-acl.vala:143
-#, fuzzy
 msgid "No ACL fallback policy found. Using \"allow\""
 msgstr ""
-"Eine alternative Zugriffslistenrichtlinie konnte nicht gefunden werden. "
-"Zugriff wird gewährt."
+"Es wurde keine alternative Zugriffslistenrichtlinie gefunden. Zugriff wird "
+"gewährt."
 
 #: ../src/rygel/rygel-acl.vala:145
-#, fuzzy
 msgid "No ACL fallback policy found. Using \"deny\""
 msgstr ""
-"Eine alternative Zugriffslistenrichtlinie konnte nicht gefunden werden. "
-"Zugriff wird verweigert."
+"Es wurde keine alternative Zugriffslistenrichtlinie gefunden. Zugriff wird "
+"verweigert."
 
 #: ../src/rygel/rygel-cmdline-config.vala:73
 msgid "Display version number"
