@@ -68,9 +68,7 @@ public class Rygel.External.ItemFactory {
             item.parent_ref = parent;
         }
 
-        var media_engine = MediaEngine.get_default ( );
-        var resources = yield media_engine.get_resources_for_item (item);
-        item.get_resource_list ().add_all (resources);
+        yield item.add_engine_resources ();
 
         return item;
     }

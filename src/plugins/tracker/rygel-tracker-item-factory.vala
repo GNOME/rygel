@@ -138,19 +138,9 @@ public abstract class Rygel.Tracker.ItemFactory {
         item.add_uri (uri);
     }
 
-    protected virtual void add_resources (MediaItem item) throws GLib.Error {
-        // Call the MediaEngine to determine which item representations it can support
-        var media_engine = MediaEngine.get_default ( );
-        media_engine.get_resources_for_item.begin (item,
-                                                   (obj, res) => {
-                var added_resources = media_engine.get_resources_for_item.end (res);
-                debug ("Adding %d resources to item source %s",
-                       added_resources.size, item.get_primary_uri () );
-                foreach (var resrc in added_resources) {
-                    debug ("Tracker item media resource %s", resrc.get_name ());
-                }
-                item.get_resource_list ().add_all (added_resources);
-            });
+    protected virtual void add_resources (MediaFileItem item)
+                                          throws GLib.Error {
+        item.add_engine_resources.begin ();
     }
 }
 

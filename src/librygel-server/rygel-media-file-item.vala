@@ -249,6 +249,22 @@ public abstract class Rygel.MediaFileItem : MediaItem {
         return "";
     }
 
+    /**
+     * Request the media engine for the resources it can provide for this
+     * item. Typically these are the transcoded resources.
+     */
+    public virtual async void add_engine_resources () {
+        var media_engine = MediaEngine.get_default ( );
+        var added_resources = yield media_engine.get_resources_for_item (this);
+        debug ("Adding %d resources to item source %s:",
+               added_resources.size,
+               this.get_primary_uri ());
+
+        foreach (var resource in added_resources) {
+            debug ("    %s", resource.get_name ());
+        }
+        this.get_resource_list ().add_all (added_resources);
+    }
 
     /**
      * Subclasses can override this method to augment the MediaObject MediaResource
