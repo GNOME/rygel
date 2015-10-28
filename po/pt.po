@@ -9,17 +9,19 @@ msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-10-28 14:10+0000\n"
-"PO-Revision-Date: 2015-10-28 16:20+0000\n"
-"Last-Translator:  <>\n"
-"Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
+"POT-Creation-Date: 2015-10-28 16:33+0000\n"
+"PO-Revision-Date: 2015-10-28 16:45+0000\n"
+"Last-Translator: Pedro Albuquerque <palbuquerque73@gmail.com>\n"
+"Language-Team: Português <palbuquerque73@gmail.com>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\\n\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
-#: ../data/rygel-preferences.ui.h:1 ../data/rygel-preferences.desktop.in.in.h:1
+#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel-preferences.desktop.in.in.h:1
 msgid "Rygel Preferences"
 msgstr "Preferências do Rygel"
 
@@ -125,10 +127,12 @@ msgid "Failed to query info of a file %s: %s"
 msgstr "Falha ao consultar a informação de um ficheiro %s: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:234
-#, fuzzy, c-format
+#, c-format
 #| msgid "Could not find object %d in cache"
 msgid "Could not find object %s or its parent. Database is inconsistent"
-msgstr "Impossível encontrar o objeto %d na cache"
+msgstr ""
+"Impossível encontrar o objeto %s ou o seu pai. A base de dados é "
+"inconsistente"
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:238
 #, c-format
@@ -204,7 +208,7 @@ msgstr "Impossível remover contentores em %s"
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:590
 msgid "Playlists"
-msgstr "Listas de Reprodução"
+msgstr "Listas de reprodução"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
@@ -223,10 +227,10 @@ msgstr "Não monitorizará alterações de ficheiros"
 #. Avoid warning when file is removed in the meantime, e.g. in
 #. upload case.
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to get file info for %s"
 msgid "Failed to get file info for %s: %s"
-msgstr "Falha ao obter a informação do ficheiro %s"
+msgstr "Falha ao obter a informação do ficheiro para %s: %s"
 
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
@@ -282,22 +286,22 @@ msgstr "Vídeos"
 
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to update object '%s': %s"
 msgid "Failed to save object: %s"
-msgstr "Falha ao atualizar o objeto '%s': %s"
+msgstr "Falha ao gravar o objeto %s"
 
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:79
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to update object '%s': %s"
 msgid "Failed to add object: %s"
-msgstr "Falha ao atualizar o objeto '%s': %s"
+msgstr "Falha ao adicionar o objeto %s"
 
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:87
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to remove entry: %s"
 msgid "Failed to remove object: %s"
-msgstr "Falha ao remover a entrada: %s"
+msgstr "Falha ao remover o objeto: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
 #, c-format
@@ -319,7 +323,6 @@ msgid "GStreamer Player"
 msgstr "Reprodutor GStreamer"
 
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:43
-#| msgid "Could not create GstElement for URI %s"
 msgid "Could not create GStreamer player"
 msgstr "Impossível criar reprodutor GStreamer"
 
@@ -344,7 +347,7 @@ msgstr "Falha ao construir o URI para a pasta \"%s\": %s"
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:77
 #, c-format
 msgid "Could not subscribe to Tracker signals: %s"
-msgstr "Incapaz de subscrever sinais tracker: %s"
+msgstr "Impossível subscrever sinais tracker: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:95
 msgid "Not supported"
@@ -730,12 +733,12 @@ msgstr "Item \"%s\" pedido não encontrado"
 #: ../src/librygel-server/rygel-http-seek.vala:95
 #, c-format
 msgid "Out Of Range Start '%ld'"
-msgstr "Início \"%ld\" Fora do Intervalo"
+msgstr "Início \"%ld\" fora do intervalo"
 
 #: ../src/librygel-server/rygel-http-seek.vala:99
 #, c-format
 msgid "Out Of Range Stop '%ld'"
-msgstr "Final \"%ld\" Fora do Intervalo"
+msgstr "Final \"%ld\" fora do intervalo"
 
 #: ../src/librygel-server/rygel-import-resource.vala:124
 #, c-format
@@ -749,7 +752,6 @@ msgstr "URI \"%s\" inválido como destino de importação"
 
 #: ../src/librygel-server/rygel-import-resource.vala:271
 #, c-format
-#| msgid "Failed to remove file %s: %s"
 msgid "Failed to import file from %s: %s"
 msgstr "Falha ao importar o ficheiro de %s: %s"
 
@@ -1033,7 +1035,7 @@ msgstr "Nenhum transcodificador disponível para processar o formato \"%s\""
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:39
 #, c-format
 msgid "Could not create GstElement for URI %s"
-msgstr "Incapaz de criar GstElement para o URI %s"
+msgstr "Impossível criar GstElement para o URI %s"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:95
 msgid "Failed to create pipeline"
@@ -1161,7 +1163,7 @@ msgstr "Falha ao desligar outra instância rygel: %s"
 
 #: ../src/rygel/rygel-dbus-service.vala:81
 msgid "Another instance of rygel is already running. Not starting."
-msgstr ""
+msgstr "Já está em execução outra instância do Rygel. A ignorar."
 
 #: ../src/rygel/rygel-main.vala:83
 msgid "Rygel is running in streaming-only mode."
@@ -1195,17 +1197,20 @@ msgid "Failed to load user configuration: %s"
 msgstr "Falha ao ler a configuração do utilizador: %s"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
-#: ../src/rygel/rygel-user-config.vala:252 ../src/ui/rygel-user-config.vala:252
+#: ../src/rygel/rygel-user-config.vala:252
+#: ../src/ui/rygel-user-config.vala:252
 #, c-format
 msgid "Failed to load user configuration from file '%s': %s"
 msgstr "Falha ao ler a configuração do utilizador do ficheiro \"%s\": %s"
 
-#: ../src/rygel/rygel-user-config.vala:305 ../src/ui/rygel-user-config.vala:305
+#: ../src/rygel/rygel-user-config.vala:305
+#: ../src/ui/rygel-user-config.vala:305
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Nenhum valor disponível para \"%s\""
 
-#: ../src/rygel/rygel-user-config.vala:376 ../src/ui/rygel-user-config.vala:376
+#: ../src/rygel/rygel-user-config.vala:376
+#: ../src/ui/rygel-user-config.vala:376
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Valor de \"%s\" fora do intervalo"
