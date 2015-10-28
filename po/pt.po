@@ -11,8 +11,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=Rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2015-08-24 23:37+0000\n"
-"PO-Revision-Date: 2015-10-04 09:35+0100\n"
-"Last-Translator: Pedro Albuquerque <palbuquerque73o@gmail.com>\n"
+"PO-Revision-Date: 2015-10-28 16:38+0000\n"
+"Last-Translator: Pedro Albuquerque <palbuquerque73@gmail.com>\n"
 "Language-Team: Português <palbuquerque73@gmail.com>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -150,7 +150,7 @@ msgstr "Falha ao abrir a base de dados: %s"
 #, c-format
 #| msgid "Failed to remove entry: %s"
 msgid "failed to enumerate folder: %s"
-msgstr "Falha ao remover a entrada: %s"
+msgstr "Falha ao enumerar a pasta: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:255
 #, c-format
@@ -211,7 +211,7 @@ msgstr "Impossível remover contentores em %s"
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:590
 msgid "Playlists"
-msgstr "Listas de Reprodução"
+msgstr "Listas de reprodução"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
@@ -328,7 +328,7 @@ msgstr "Falha ao construir o URI para a pasta \"%s\": %s"
 #, c-format
 #| msgid "Could not subscribe to tracker signals: %s"
 msgid "Could not subscribe to Tracker signals: %s"
-msgstr "Incapaz de subscrever sinais tracker: %s"
+msgstr "Impossível subscrever sinais tracker: %s"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:95
 #| msgid "Seek mode not supported"
@@ -658,12 +658,12 @@ msgstr "Item \"%s\" pedido não encontrado"
 #: ../src/librygel-server/rygel-http-seek.vala:95
 #, c-format
 msgid "Out Of Range Start '%ld'"
-msgstr "Início \"%ld\" Fora do Intervalo"
+msgstr "Início \"%ld\" fora do intervalo"
 
 #: ../src/librygel-server/rygel-http-seek.vala:99
 #, c-format
 msgid "Out Of Range Stop '%ld'"
-msgstr "Final \"%ld\" Fora do Intervalo"
+msgstr "Final \"%ld\" fora do intervalo"
 
 #: ../src/librygel-server/rygel-import-resource.vala:124
 #, c-format
@@ -970,7 +970,7 @@ msgstr "Nenhum transcodificador disponível para processar o formato \"%s\""
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:39
 #, c-format
 msgid "Could not create GstElement for URI %s"
-msgstr "Incapaz de criar GstElement para o URI %s"
+msgstr "Impossível criar GstElement para o URI %s"
 
 #: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:92
 msgid "Failed to create pipeline"
@@ -1096,11 +1096,11 @@ msgstr "A desligar a instância remota do Rygel\n"
 #, c-format
 #| msgid "Failed to stop Rygel service: %s"
 msgid "Failed to shut-down other rygel instance: %s"
-msgstr "Falha ao parar o serviço Rygel: %s"
+msgstr "Falha ao desligar outra instância rygel: %s"
 
 #: ../src/rygel/rygel-main.vala:83
 msgid "Rygel is running in streaming-only mode."
-msgstr "O Rygel esta em execução em modo só de fluxo."
+msgstr "O Rygel está em execução em modo só de fluxo."
 
 #: ../src/rygel/rygel-main.vala:109
 #, c-format
@@ -1108,8 +1108,8 @@ msgstr "O Rygel esta em execução em modo só de fluxo."
 #| msgid_plural "No plugins found in %d seconds; giving up.."
 msgid "No plugins found in %d second; giving up..."
 msgid_plural "No plugins found in %d seconds; giving up..."
-msgstr[0] "Nenhum plugin encontrado em %d segundo; a desistir."
-msgstr[1] "Nenhum plugin encontrado em %d segundos; a desistir."
+msgstr[0] "Nenhuma extensão encontrada em %d segundo; a desistir."
+msgstr[1] "Nenhuma extensão encontrada em %d segundos; a desistir."
 
 #: ../src/rygel/rygel-main.vala:170
 #, c-format
