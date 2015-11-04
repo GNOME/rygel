@@ -66,7 +66,12 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
         assert (Module.supported());
 
         var folder = File.new_for_path (this.base_path);
-        assert (folder != null && this.is_folder (folder));
+        if (folder == null || !this.is_folder (folder)) {
+            warning (_("Failed to open plugins folder: '%s'"),
+                     this.base_path);
+
+            return;
+        }
 
         this.load_modules_from_folder.begin (folder);
     }
