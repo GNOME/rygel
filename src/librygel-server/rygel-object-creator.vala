@@ -255,6 +255,12 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
                                         (_("Invalid upnp:class given in CreateObject"));
         }
 
+        if (!didl_object.is_restricted_set ()) {
+            var msg = _("Object is missing the @restricted attribute");
+            throw new ContentDirectoryError.BAD_METADATA (msg);
+        }
+
+
         if (didl_object.restricted) {
             throw new ContentDirectoryError.BAD_METADATA
                                         (_("Cannot create restricted item"));
