@@ -13,8 +13,8 @@
    height="48px"
    id="svg2995"
    version="1.1"
-   inkscape:version="0.48.2 r9819"
-   sodipodi:docname="rygel-small.svg"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="rygel.svg"
    inkscape:export-filename="/home/jens/Projects/Rygel/rygel-32x32.png"
    inkscape:export-xdpi="60"
    inkscape:export-ydpi="60">
@@ -51,7 +51,7 @@
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
         <dc:title>Rygel Icon</dc:title>
         <cc:license
-           rdf:resource="http://creativecommons.org/licenses/by-nd/3.0/" />
+           rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
         <dc:creator>
           <cc:Agent>
             <dc:title>Chris Kühl</dc:title>
@@ -59,7 +59,7 @@
         </dc:creator>
       </cc:Work>
       <cc:License
-         rdf:about="http://creativecommons.org/licenses/by-nd/3.0/">
+         rdf:about="http://creativecommons.org/licenses/by-sa/3.0/">
         <cc:permits
            rdf:resource="http://creativecommons.org/ns#Reproduction" />
         <cc:permits
@@ -68,6 +68,10 @@
            rdf:resource="http://creativecommons.org/ns#Notice" />
         <cc:requires
            rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
       </cc:License>
     </rdf:RDF>
   </metadata>
