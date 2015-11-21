@@ -47,4 +47,12 @@ public class Rygel.PlaylistItem : MediaFileItem {
 
         return didl_item;
     }
+
+    internal override MediaResource get_primary_resource () {
+        var res = base.get_primary_resource ();
+
+        res.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
+
+        return res;
+    }
 }
