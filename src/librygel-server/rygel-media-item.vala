@@ -104,16 +104,4 @@ public abstract class Rygel.MediaItem : MediaObject {
 
         return didl_item;
     }
-
-    protected virtual ProtocolInfo get_protocol_info (string? uri,
-                                                      string  protocol) {
-        var protocol_info = new ProtocolInfo ();
-
-        protocol_info.protocol = protocol;
-        protocol_info.dlna_flags = DLNAFlags.DLNA_V15 |
-                                   DLNAFlags.CONNECTION_STALL |
-                                   DLNAFlags.BACKGROUND_TRANSFER_MODE;
-
-        return protocol_info;
-    }
 }

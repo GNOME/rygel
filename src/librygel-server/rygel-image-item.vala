@@ -96,15 +96,6 @@ public class Rygel.ImageItem : MediaFileItem, VisualItem {
         return res;
     }
 
-    protected override ProtocolInfo get_protocol_info (string? uri,
-                                                       string  protocol) {
-        var protocol_info = base.get_protocol_info (uri, protocol);
-
-        protocol_info.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
-
-        return protocol_info;
-    }
-
     internal override void add_additional_resources (HTTPServer server) {
         base.add_additional_resources (server);
 
