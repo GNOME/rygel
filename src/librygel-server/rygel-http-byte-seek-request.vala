@@ -99,7 +99,7 @@ public class Rygel.HTTPByteSeekRequest : Rygel.HTTPSeekRequest {
         }
 
         if (range_tokens[1] == null || (range_tokens[1].length == 0)) {
-            end_byte = total_size;
+            end_byte = total_size - 1;
             if (total_size != UNSPECIFIED) {
                 range_length = end_byte - start_byte + 1; // range is inclusive
             } else {
