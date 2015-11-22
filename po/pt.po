@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-24 23:37+0000\n"
-"PO-Revision-Date: 2015-08-25 07:04+0100\n"
-"Last-Translator: Pedro Albuquerque <palbuquerque73@gmail.com>\n"
+"product=rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-11-22 02:15+0000\n"
+"PO-Revision-Date: 2015-11-22 09:01+0000\n"
+"Last-Translator:  <>\n"
 "Language-Team: Português <palbuquerque73@gmail.com>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -33,8 +33,7 @@ msgstr "Serviços UPnP/DLNA"
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "servidor;suporte;análise;partilhar;áudio;vídeo;imagens;"
 
-#: ../data/rygel-preferences.desktop.in.in.h:1
-#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel-preferences.desktop.in.in.h:1 ../data/rygel-preferences.ui.h:1
 msgid "Rygel Preferences"
 msgstr "Preferências do Rygel"
 
@@ -302,17 +301,23 @@ msgstr "Falha ao ler o módulo do caminho \"%s\": %s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Falha ao localizar a função de ponto de entrada \"%s\" em \"%s\": %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:144
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:70
+#, c-format
+#| msgid "Failed to load plugin %s: %s"
+msgid "Failed to open plugins folder: '%s'"
+msgstr "Falha ao abrir a pasta de extensões: \"%s\""
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Erro ao listar o conteúdo da pasta \"%s\": %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:188
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:193
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "Impossível carregar extensão: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:221
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Falha ao consultar o tipo de conteúdo de \"%s\""
@@ -324,11 +329,10 @@ msgstr "Tipo %s não suportado"
 
 #: ../src/librygel-db/database.vala:143
 #, c-format
-#| msgid "Error removing object from database: %s"
 msgid "Error while opening SQLite database %s: %s"
 msgstr "Erro ao abrir base de dados SQLite %s: %s"
 
-#: ../src/librygel-db/database.vala:248
+#: ../src/librygel-db/database.vala:258
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Falha ao desfazer a transação: %s"
@@ -525,7 +529,7 @@ msgstr "Falha ao mover o ficheiro %s: %s"
 msgid "Requested item '%s' not found"
 msgstr "Item \"%s\" pedido não encontrado"
 
-#: ../src/librygel-server/rygel-http-resource-handler.vala:86
+#: ../src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
 msgid "Couldn't create data source for %s"
 msgstr "Falha ao criar fonte de dados para %s"
@@ -917,12 +921,12 @@ msgstr "Falha ao procurar"
 msgid "Invalid URI without prefix: %s"
 msgstr "URI sem prefixo inválido: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:139
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "Impossível processar URI %s com protocolo %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:241
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Falha ao criar fonte de dados GStreamer para %s: %s"
@@ -970,41 +974,41 @@ msgstr "Fornecedor externo %s não especificou a propriedade obrigatória \"%s\"
 msgid "Invalid command received, ignoring"
 msgstr "Comando inválido recebido, a ignorar"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:112
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:113
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Falha ao descobrir uri %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:130
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:131
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Falha ao ler do canal: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:158
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:159
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Falha ao enviar erro ao pai: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:203
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:204
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr "Falha ao extrair metadados básicos de %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:222
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:223
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- binário de ajuda de onde o Rygel extrair metadados"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:229
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:230
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Falha ao processar argumentos da linha de comando: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:237
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:238
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Falha ao criar extrator de arte multimédia: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:258
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:259
 #, c-format
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Falha ao iniciar descobridor de metadados: %s"
@@ -1059,55 +1063,10 @@ msgstr "Falha ao obter os filhos do contentor %s: %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:334
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:340
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "A saltar URI %s; extração completamente falhada: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:120
-#, c-format
-msgid "Invalid metadata serialisation, cannot process %s"
-msgstr "Serialização de metadados inválida, impossível processar %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
-#, c-format
-msgid "Invalid metadata serialisation: expected 7 children, got %d"
-msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
-msgstr[0] "Serialização de metadados inválida: esperados 7 filhos, obtidos %d"
-msgstr[1] "Serialização de metadados inválida: esperados 7 filhos, obtidos %d"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:231
-#, c-format
-msgid "Invalid metadata serialisation of metadata; %s"
-msgstr "Serialização de metadados inválida; %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:267
-#, c-format
-msgid "Invalid metadata serialisation of video info; %s"
-msgstr "Serialização de metadados de informação do vídeo inválida; %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:286
-#, c-format
-msgid "Invalid metadata serialisation of audio info; %s"
-msgstr "Serialização de metadados de informação do áudio inválida; %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:304
-msgid "Invalid metadata serialisation of general info"
-msgstr "Serialização de metadados de informação geral inválida"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:325
-#, c-format
-msgid "Invalid metadata serialisation of DLNA profile %s"
-msgstr "Serialização de metadados de perfil DLNA inválida %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:338
-#, c-format
-msgid "Invalid metadata serialisation of file info %s"
-msgstr "Serialização de metadados de informação do ficheiro inválida %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:346
-msgid "Invalid metadata serialisation of file info"
-msgstr "Serialização de metadados de informação do ficheiro inválida"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
@@ -1129,7 +1088,7 @@ msgstr "Falha ao criar índices: %s"
 msgid "Cannot upgrade from version %d"
 msgstr "Impossível atualizar da versão %d"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:113
+#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
 #, c-format
 msgid "Database upgrade failed: %s"
 msgstr "Atualização de base de dados falhou: %s"
@@ -1210,7 +1169,7 @@ msgstr "Base de dados inválida, impossível consultar sqlite_master_table: %s"
 msgid "Failed to create database schema: %s"
 msgstr "Falha ao criar esquema de base de dados: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1227
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "A saltar campo de ordenação não suportado: %s"
@@ -1593,20 +1552,17 @@ msgid "Failed to load user configuration: %s"
 msgstr "Falha ao ler a configuração do utilizador: %s"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
-#: ../src/rygel/rygel-user-config.vala:243
-#: ../src/ui/rygel-user-config.vala:243
+#: ../src/rygel/rygel-user-config.vala:243 ../src/ui/rygel-user-config.vala:243
 #, c-format
 msgid "Failed to load user configuration from file '%s': %s"
 msgstr "Falha ao ler a configuração do utilizador do ficheiro \"%s\": %s"
 
-#: ../src/rygel/rygel-user-config.vala:296
-#: ../src/ui/rygel-user-config.vala:296
+#: ../src/rygel/rygel-user-config.vala:296 ../src/ui/rygel-user-config.vala:296
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Nenhum valor disponível para \"%s\""
 
-#: ../src/rygel/rygel-user-config.vala:367
-#: ../src/ui/rygel-user-config.vala:367
+#: ../src/rygel/rygel-user-config.vala:367 ../src/ui/rygel-user-config.vala:367
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Valor de \"%s\" fora do intervalo"
@@ -1630,6 +1586,37 @@ msgstr "Falha ao iniciar o serviço Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Falha ao parar o serviço Rygel: %s"
+
+#~ msgid "Invalid metadata serialisation, cannot process %s"
+#~ msgstr "Serialização de metadados inválida, impossível processar %s"
+
+#~ msgid "Invalid metadata serialisation: expected 7 children, got %d"
+#~ msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
+#~ msgstr[0] ""
+#~ "Serialização de metadados inválida: esperados 7 filhos, obtidos %d"
+#~ msgstr[1] ""
+#~ "Serialização de metadados inválida: esperados 7 filhos, obtidos %d"
+
+#~ msgid "Invalid metadata serialisation of metadata; %s"
+#~ msgstr "Serialização de metadados inválida; %s"
+
+#~ msgid "Invalid metadata serialisation of video info; %s"
+#~ msgstr "Serialização de metadados de informação do vídeo inválida; %s"
+
+#~ msgid "Invalid metadata serialisation of audio info; %s"
+#~ msgstr "Serialização de metadados de informação do áudio inválida; %s"
+
+#~ msgid "Invalid metadata serialisation of general info"
+#~ msgstr "Serialização de metadados de informação geral inválida"
+
+#~ msgid "Invalid metadata serialisation of DLNA profile %s"
+#~ msgstr "Serialização de metadados de perfil DLNA inválida %s"
+
+#~ msgid "Invalid metadata serialisation of file info %s"
+#~ msgstr "Serialização de metadados de informação do ficheiro inválida %s"
+
+#~ msgid "Invalid metadata serialisation of file info"
+#~ msgstr "Serialização de metadados de informação do ficheiro inválida"
 
 #~ msgid "Unsupported search criteria op %d"
 #~ msgstr "Critério de procura %d não suportado"
