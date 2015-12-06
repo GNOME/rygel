@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-19 23:36+0000\n"
-"PO-Revision-Date: 2015-08-20 11:35+0200\n"
+"product=rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-12-06 02:10+0000\n"
+"PO-Revision-Date: 2015-12-06 13:36+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -31,8 +31,8 @@ msgstr "Služby UPnP/DLNA"
 #: ../data/rygel.desktop.in.in.h:3
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
-"multimediálny server;multimediálny vykresľovač;sprístupnenie;audio;zvuk;video;"
-"obrázky;"
+"multimediálny server;multimediálny vykresľovač;sprístupnenie;audio;zvuk;"
+"video;obrázky;"
 
 # GtkDialog title
 #: ../data/rygel-preferences.desktop.in.in.h:1 ../data/rygel-preferences.ui.h:1
@@ -320,17 +320,22 @@ msgstr "Zlyhalo načítanie modulu z cesty „%s“: %s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Zlyhalo nájdenie funkcie vstupného bodu položky „%s“ v „%s“: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:144
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:70
+#, c-format
+msgid "Failed to open plugins folder: '%s'"
+msgstr "Zlyhalo otvorenie priečinku zásuvných modulov: „%s“"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Vyskytla sa chyba pri prehľadávaní obsahu priečinka „%s“: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:188
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:193
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "Nepodarilo sa načítať zásuvný modul: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:221
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Zlyhala žiadosť o typ obsahu pre „%s“"
@@ -345,7 +350,7 @@ msgstr "Nepodporovaný typ %s"
 msgid "Error while opening SQLite database %s: %s"
 msgstr "Vyskytla sa chyba pri otváraní databázy SQLite %s: %s"
 
-#: ../src/librygel-db/database.vala:248
+#: ../src/librygel-db/database.vala:258
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Zlyhalo vrátenie zmien transakcie: %s"
@@ -529,7 +534,8 @@ msgstr "Nenájdený"
 #: ../src/librygel-server/rygel-import-resource.vala:189
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
-msgstr "Posielanie údajov do položky „%s“, ktorá nie je prázdna, nie je povolené"
+msgstr ""
+"Posielanie údajov do položky „%s“, ktorá nie je prázdna, nie je povolené"
 
 #: ../src/librygel-server/rygel-http-post.vala:71
 #, c-format
@@ -547,7 +553,7 @@ msgstr "Zlyhal presun súboru začínajúceho bodkou %s: %s"
 msgid "Requested item '%s' not found"
 msgstr "Požadovaná položka „%s“ sa nenašla"
 
-#: ../src/librygel-server/rygel-http-resource-handler.vala:86
+#: ../src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
 msgid "Couldn't create data source for %s"
 msgstr "Nepodarilo sa vytvoriť dátový zdroj pre %s"
@@ -726,7 +732,8 @@ msgstr "Zlý identifikátor URI: %s"
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr ""
-"Zlyhalo odskúšanie protokolu pre identifikátor URI %s. Očakával sa protokol „%s“"
+"Zlyhalo odskúšanie protokolu pre identifikátor URI %s. Očakával sa protokol "
+"„%s“"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:100
 msgid "Invalid number of arguments"
@@ -823,8 +830,8 @@ msgstr "Nedá sa vytvoriť objekt triedy „%s“: Nie je podporovaný"
 #: ../src/librygel-server/rygel-object-creator.vala:740
 #, c-format
 msgid ""
-"Error from container '%s' on trying to find the newly added child object '%s' "
-"in it: %s"
+"Error from container '%s' on trying to find the newly added child object "
+"'%s' in it: %s"
 msgstr ""
 "Chyba od kontajnera „%s“ pri pokuse o nájdenie svojho novo pridaného objektu "
 "potomka „%s“: %s"
@@ -941,20 +948,20 @@ msgstr "Zlyhalo presunutie"
 msgid "Invalid URI without prefix: %s"
 msgstr "Neplatná URI bez predpony: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:139
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "Nedá sa spracovať URI %s s protokolom %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:241
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Zlyhalo vytvorenie dátového zdroja sady GStreamer pre %s: %s"
 
 #: ../src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
 msgid ""
-"Could not create a transcoder configuration. Your GStreamer installation might "
-"be missing a plug-in"
+"Could not create a transcoder configuration. Your GStreamer installation "
+"might be missing a plug-in"
 msgstr ""
 "Nepodarilo sa vytvoriť konfigurácia transkódera. V inštalácii sady Gstreamer "
 "môžno chýba zásuvný modul"
@@ -984,7 +991,8 @@ msgstr "Nedá sa spracovať URI %s netýkajúcu sa súboru"
 #: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
 msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
-msgstr "Modulu „%s“ sa nepodarilo pripojiť k zbernici relácie D-Bus. Ignoruje sa…"
+msgstr ""
+"Modulu „%s“ sa nepodarilo pripojiť k zbernici relácie D-Bus. Ignoruje sa…"
 
 # https://bugzilla.gnome.org/show_bug.cgi?id=705899
 #: ../src/plugins/external/rygel-external-variant-util.vala:23
@@ -996,41 +1004,41 @@ msgstr "Externý poskytovateľ %s neposkytuje povinnú vlastnosť „%s“"
 msgid "Invalid command received, ignoring"
 msgstr "Bol prijatý neplatný príkaz, ignoruje sa"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:112
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:113
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Zlyhalo preskúmanie URI %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:130
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:131
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Zlyhalo čítanie zo zreťazenia: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:158
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:159
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Zlyhalo odoslanie chyby pôvodcovi: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:203
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:204
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr "Zlyhalo extrahovanie základných metaúdajov z %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:222
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:223
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- binárny pomocník pre aplikáciu Rygel na extrahovanie metaúdajov"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:229
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:230
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Zlyhala analýza parametrov príkazového riadku: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:237
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:238
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Zlyhalo vytvorenie nástroja na extrahovanie obalov médií: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:258
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:259
 #, c-format
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Zlyhalo spustenie prieskumníka metaúdajov: %s"
@@ -1056,7 +1064,8 @@ msgstr "Zlyhal dopyt informácií o súbore %s: %s"
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr ""
-"Nepodarilo sa nájsť objekt %s alebo jeho pôvodcu. Databáza nie je konzistentná."
+"Nepodarilo sa nájsť objekt %s alebo jeho pôvodcu. Databáza nie je "
+"konzistentná."
 
 #: ../src/plugins/media-export/rygel-media-export-harvester.vala:249
 #, c-format
@@ -1086,56 +1095,10 @@ msgstr "Zlyhalo získanie potomka kontainera %s: %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:334
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:340
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "Vynecháva sa URI %s; extrahovanie úplne zlyhalo: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:120
-#, c-format
-msgid "Invalid metadata serialisation, cannot process %s"
-msgstr "Neplatná serializácia metaúdajov, nedá sa spracovať %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
-#, c-format
-msgid "Invalid metadata serialisation: expected 7 children, got %d"
-msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
-msgstr[0] "Neplatná serializácia metaúdajov: očakávaný potomok 7, získaný %d"
-msgstr[1] "Neplatná serializácia metaúdajov: očakávaný potomok 7, získaný %d"
-msgstr[2] "Neplatná serializácia metaúdajov: očakávaný potomok 7, získaný %d"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:231
-#, c-format
-msgid "Invalid metadata serialisation of metadata; %s"
-msgstr "Neplatná serializácia metaúdajov; %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:267
-#, c-format
-msgid "Invalid metadata serialisation of video info; %s"
-msgstr "Neplatná serializácia metaúdajov informácií o videu; %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:286
-#, c-format
-msgid "Invalid metadata serialisation of audio info; %s"
-msgstr "Neplatná serializácia metaúdajov informácií o audiu; %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:304
-msgid "Invalid metadata serialisation of general info"
-msgstr "Neplatná serializácia metaúdajov všeobecných informácií"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:325
-#, c-format
-msgid "Invalid metadata serialisation of DLNA profile %s"
-msgstr "Neplatná serializácia metaúdajov profilu DLNA %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:338
-#, c-format
-msgid "Invalid metadata serialisation of file info %s"
-msgstr "Neplatná serializácia metaúdajov informácií o súbore %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:346
-msgid "Invalid metadata serialisation of file info"
-msgstr "Neplatná serializácia metaúdajov informácií o súbore"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
@@ -1157,7 +1120,7 @@ msgstr "Zlyhalo vytvorenie indícií: %s"
 msgid "Cannot upgrade from version %d"
 msgstr "Nedá sa aktualizovať z verzie %d"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:113
+#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
 #, c-format
 msgid "Database upgrade failed: %s"
 msgstr "Aktualizácia databázy zlyhala: %s"
@@ -1218,9 +1181,10 @@ msgstr "Zlyhalo získanie informácie, či je položka %s chránená: %s"
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:660
 #, c-format
 msgid ""
-"The version \"%d\" of the detected database is newer than our supported version "
-"\"%d\""
-msgstr "Verzia „%d“ zistenej databázy je novšia ako nami podporovaná verzia „%d“"
+"The version \"%d\" of the detected database is newer than our supported "
+"version \"%d\""
+msgstr ""
+"Verzia „%d“ zistenej databázy je novšia ako nami podporovaná verzia „%d“"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:684
 msgid "Incompatible schema… cannot proceed"
@@ -1236,7 +1200,7 @@ msgstr "Neplatná databáza, nedá sa dopytovať tabuľka sqlite_master: %s"
 msgid "Failed to create database schema: %s"
 msgstr "Zlyhalo vytvorenie schémy databázy: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1227
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Vynecháva sa nepodporované pole usporiadania: %s"
@@ -1485,8 +1449,8 @@ msgstr "Vyskytla sa chyba pri získavaní všetkých hodnôt pre „%s“: %s"
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
-"Zlyhalo spustenie služby vyhľadávacieho nástroja Tracker: %s. Zásuvný modul je "
-"zakázaný."
+"Zlyhalo spustenie služby vyhľadávacieho nástroja Tracker: %s. Zásuvný modul "
+"je zakázaný."
 
 #: ../src/plugins/tracker/rygel-tracker-search-container.vala:104
 #, c-format
@@ -1514,11 +1478,13 @@ msgstr "Chyba pri vytváraní sprostredkovateľa proxy zbernice DBus pre ACL: %s
 
 #: ../src/rygel/rygel-acl.vala:143
 msgid "No ACL fallback policy found. Using \"allow\""
-msgstr "Nenašla sa žiadna záložná stratégia ACL. Používa sa stratégia „umožniť“"
+msgstr ""
+"Nenašla sa žiadna záložná stratégia ACL. Používa sa stratégia „umožniť“"
 
 #: ../src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using \"deny\""
-msgstr "Nenašla sa žiadna záložná stratégia ACL. Používa sa stratégia „odmietnuť“"
+msgstr ""
+"Nenašla sa žiadna záložná stratégia ACL. Používa sa stratégia „odmietnuť“"
 
 #: ../src/rygel/rygel-cmdline-config.vala:73
 msgid "Display version number"
@@ -1614,9 +1580,12 @@ msgstr "Spúšťa sa Rygel v%s…"
 #, c-format
 msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
-msgstr[0] "V priebehu %d sekundy sa nenašli žiadne zásuvné moduly; prerušuje sa…"
-msgstr[1] "V priebehu %d sekúnd sa nenašli žiadne zásuvné moduly; prerušuje sa…"
-msgstr[2] "V priebehu %d sekúnd sa nenašli žiadne zásuvné moduly; prerušuje sa…"
+msgstr[0] ""
+"V priebehu %d sekundy sa nenašli žiadne zásuvné moduly; prerušuje sa…"
+msgstr[1] ""
+"V priebehu %d sekúnd sa nenašli žiadne zásuvné moduly; prerušuje sa…"
+msgstr[2] ""
+"V priebehu %d sekúnd sa nenašli žiadne zásuvné moduly; prerušuje sa…"
 
 #: ../src/rygel/rygel-main.vala:176
 #, c-format
@@ -1668,6 +1637,39 @@ msgstr "Zlyhalo spustenie služby Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Zlyhalo zastavenie služby Rygel: %s"
+
+#~ msgid "Invalid metadata serialisation, cannot process %s"
+#~ msgstr "Neplatná serializácia metaúdajov, nedá sa spracovať %s"
+
+#~ msgid "Invalid metadata serialisation: expected 7 children, got %d"
+#~ msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
+#~ msgstr[0] ""
+#~ "Neplatná serializácia metaúdajov: očakávaný potomok 7, získaný %d"
+#~ msgstr[1] ""
+#~ "Neplatná serializácia metaúdajov: očakávaný potomok 7, získaný %d"
+#~ msgstr[2] ""
+#~ "Neplatná serializácia metaúdajov: očakávaný potomok 7, získaný %d"
+
+#~ msgid "Invalid metadata serialisation of metadata; %s"
+#~ msgstr "Neplatná serializácia metaúdajov; %s"
+
+#~ msgid "Invalid metadata serialisation of video info; %s"
+#~ msgstr "Neplatná serializácia metaúdajov informácií o videu; %s"
+
+#~ msgid "Invalid metadata serialisation of audio info; %s"
+#~ msgstr "Neplatná serializácia metaúdajov informácií o audiu; %s"
+
+#~ msgid "Invalid metadata serialisation of general info"
+#~ msgstr "Neplatná serializácia metaúdajov všeobecných informácií"
+
+#~ msgid "Invalid metadata serialisation of DLNA profile %s"
+#~ msgstr "Neplatná serializácia metaúdajov profilu DLNA %s"
+
+#~ msgid "Invalid metadata serialisation of file info %s"
+#~ msgstr "Neplatná serializácia metaúdajov informácií o súbore %s"
+
+#~ msgid "Invalid metadata serialisation of file info"
+#~ msgstr "Neplatná serializácia metaúdajov informácií o súbore"
 
 # cmd line desc
 #~ msgid "Disable UPnP (streaming-only)"
