@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-14 11:49+0000\n"
-"PO-Revision-Date: 2015-09-20 23:37+0200\n"
-"Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
+"POT-Creation-Date: 2015-11-22 14:19+0000\n"
+"PO-Revision-Date: 2015-11-22 21:47+0100\n"
+"Last-Translator: Sebastian Rasmussen <sebras@gmail.com>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -302,17 +302,22 @@ msgstr "Misslyckades med att läsa in modul från sökvägen ”%s” : %s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Misslyckades med att hitta ”entry point”-funktionen ”%s” i ”%s”: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:144
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:70
+#, c-format
+msgid "Failed to open plugins folder: '%s'"
+msgstr "Misslyckades med att öppna mapp för insticksmoduler: ”%s”"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Fel vid innehållslistning av mappen ”%s”: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:188
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:193
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "Kunde inte läsa insticksmodul: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:221
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Misslyckades med att fråga efter innehållstyp för ”%s”"
@@ -524,7 +529,7 @@ msgstr "Misslyckades med att flytta punktfilen %s: %s"
 msgid "Requested item '%s' not found"
 msgstr "Begärt objekt ”%s” hittades inte"
 
-#: ../src/librygel-server/rygel-http-resource-handler.vala:86
+#: ../src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
 msgid "Couldn't create data source for %s"
 msgstr "Kunde ej skapa datakälla för %s"
@@ -1081,7 +1086,7 @@ msgstr "Misslyckades med att skapa index: %s"
 msgid "Cannot upgrade from version %d"
 msgstr "Kan inte uppgradera från version %d"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:113
+#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
 #, c-format
 msgid "Database upgrade failed: %s"
 msgstr "Databasuppgradering misslyckades: %s"
@@ -1162,7 +1167,7 @@ msgstr "Ogiltig databas, kan inte fråga sqlite_master-tabell: %s"
 msgid "Failed to create database schema: %s"
 msgstr "Misslyckades med att skapa databasschema: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1227
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Hoppar över sorteringsfält som inte stöds: %s"
