@@ -266,6 +266,8 @@ src/ui/rygel-preferences-dialog.c
 src/ui/rygel-preferences-section.c
 src/ui/rygel-user-config.c
 src/ui/rygel-writable-user-config.c
+sub/data/rygel-preferences.desktop.in
+sub/data/rygel.desktop.in
 tests/plugins/media-export/regression.c
 tests/rygel-album-art-spec-test.c
 tests/rygel-configuration.c
