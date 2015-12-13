@@ -1,3 +1,28 @@
+0.28.2
+======
+
+- Include SVG logo again with updated license.
+
+Server:
+ - Properly calculate end byte of partial requests. Fixes a lot of weird
+   issues with Samsungs and Kodi.
+ - Make generated playlists support INTERACTIVE transfer mode.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=756823
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Inaki Larranaga Murgoitio <dooteo@zundan.com>
+ - Christian Kirbach <Christian.Kirbach@gmail.com>
+ - Benjamin Steinwender <b@stbe.at>
+
+Added/updated translations
+ - de, courtesy of Wolfgang Stoeggl
+ - eu, courtesy of Iñaki Larrañaga Murgoitio
+ - nb, courtesy of Kjartan Maraas
+
 0.28.1
 ======
 
