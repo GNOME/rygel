@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-06 23:34+0000\n"
-"PO-Revision-Date: 2015-09-07 14:38+0300\n"
+"product=rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-12-17 14:24+0000\n"
+"PO-Revision-Date: 2015-12-19 21:51+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -35,8 +35,7 @@ msgstr ""
 "daugialypės terpės serveris;daugialypės terpės piešėjas;dalinimasis;garsas;"
 "vaizdas;paveikslėliai;"
 
-#: ../data/rygel-preferences.desktop.in.in.h:1
-#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel-preferences.desktop.in.in.h:1 ../data/rygel-preferences.ui.h:1
 msgid "Rygel Preferences"
 msgstr "Rygel nustatymai"
 
@@ -303,17 +302,22 @@ msgstr "Nepavyko iš „%s“ įkelti modulio: %s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Nepavyko rasti įėjimo taško funkcijos „%s“ vietoje „%s“: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:144
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:70
+#, c-format
+msgid "Failed to open plugins folder: '%s'"
+msgstr "Nepavyko atverti įskiepių aplanko: „%s“"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Klaida rodant aplanko „%s“ turinį: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:188
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:193
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "Nepavyko įkelti įskiepio: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:221
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Nepavyko užklausti „%s“ turinio tipo"
@@ -325,7 +329,6 @@ msgstr "Nepalaikomas tipas %s"
 
 #: ../src/librygel-db/database.vala:143
 #, c-format
-#| msgid "Error removing object from database: %s"
 msgid "Error while opening SQLite database %s: %s"
 msgstr "Klaida atveriant SQLite duomenų bazę %s: %s"
 
@@ -526,7 +529,7 @@ msgstr "Nepavyko perkelti failo %s: %s"
 msgid "Requested item '%s' not found"
 msgstr "Pageidaujamas elementas „%s“ nerastas"
 
-#: ../src/librygel-server/rygel-http-resource-handler.vala:86
+#: ../src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
 msgid "Couldn't create data source for %s"
 msgstr "Nepavyko sukurti duomenų šaltinio %s"
@@ -970,41 +973,41 @@ msgstr "Išorinis tiekėjas %s nepateikė būtinos savybės „%s“"
 msgid "Invalid command received, ignoring"
 msgstr "Gauta netinkama komanda, nepaisoma"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:112
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:113
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Nepavyko surasti URI %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:130
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:131
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Nepavyko skaityti iš kanalo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:158
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:159
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Nepavyko nusiųsti klaidos tėvui: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:203
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:204
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr "Nepavyko išgauti pagrindinių metaduomenų iš %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:222
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:223
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- pagalbinė Rygel programa metaduomenų išgavimui"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:229
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:230
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Nepavyko perskaityti komandų eilutės argumentų: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:237
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:238
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Nepavyko sukurti medijos viršelių išgavėjo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:258
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:259
 #, c-format
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Nepavyko paleisti metaduomenų suradėjo: %s"
@@ -1057,56 +1060,10 @@ msgstr "Nepavyko konteinerio %s vaikų: %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:334
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:340
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "Praleidžiamas URI %s; išgavimas visiškai nepavyko: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:120
-#, c-format
-msgid "Invalid metadata serialisation, cannot process %s"
-msgstr "Netinkama metaduomenų serializacija, negalima apdoroti %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
-#, c-format
-msgid "Invalid metadata serialisation: expected 7 children, got %d"
-msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
-msgstr[0] "Netinkama metaduomenų serializacija: tikėtasi 7 vaikų, gautas %d"
-msgstr[1] "Netinkama metaduomenų serializacija: tikėtasi 7 vaikų, gauti %d"
-msgstr[2] "Netinkama metaduomenų serializacija: tikėtasi 7 vaikų, gauta %d"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:231
-#, c-format
-msgid "Invalid metadata serialisation of metadata; %s"
-msgstr "Netinkama metaduomenų serializacija metaduomenims; %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:267
-#, c-format
-msgid "Invalid metadata serialisation of video info; %s"
-msgstr "Netinkama metaduomenų serializacija vaizdo įrašo informacijai; %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:286
-#, c-format
-msgid "Invalid metadata serialisation of audio info; %s"
-msgstr "Netinkama metaduomenų serializacija garso informacijai; %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:304
-msgid "Invalid metadata serialisation of general info"
-msgstr "Netinkama metaduomenų serializacija bendriesiems duomenims"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:325
-#, c-format
-msgid "Invalid metadata serialisation of DLNA profile %s"
-msgstr "Netinkama metaduomenų serializacija DLNA profiliui %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:338
-#, c-format
-msgid "Invalid metadata serialisation of file info %s"
-msgstr "Netinkama metaduomenų serializacija failo informacijai %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:346
-msgid "Invalid metadata serialisation of file info"
-msgstr "Netinkama metaduomenų serializacija failo informacijai"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
@@ -1128,7 +1085,7 @@ msgstr "Nepavyko sukurti indeksų: %s"
 msgid "Cannot upgrade from version %d"
 msgstr "Nepavyko atnaujinti iš versijos %d"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:113
+#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
 #, c-format
 msgid "Database upgrade failed: %s"
 msgstr "Nepavyko atnaujinti duomenų bazės: %s"
@@ -1208,7 +1165,7 @@ msgstr "Netinkama duomenų bazė, negalima užklausti sqlite_master lentelės: %
 msgid "Failed to create database schema: %s"
 msgstr "Nepavyko sukurti duomenų bazės schemos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1227
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Praleidžiamas nepalaikomas rikiavimo laukas: %s"
@@ -1590,20 +1547,17 @@ msgid "Failed to load user configuration: %s"
 msgstr "Nepavyko įkelti naudotojo nustatymų: %s"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
-#: ../src/rygel/rygel-user-config.vala:243
-#: ../src/ui/rygel-user-config.vala:243
+#: ../src/rygel/rygel-user-config.vala:243 ../src/ui/rygel-user-config.vala:243
 #, c-format
 msgid "Failed to load user configuration from file '%s': %s"
 msgstr "Nepavyko įkelti naudotojo konfigūracijos iš failo „%s“: %s"
 
-#: ../src/rygel/rygel-user-config.vala:296
-#: ../src/ui/rygel-user-config.vala:296
+#: ../src/rygel/rygel-user-config.vala:296 ../src/ui/rygel-user-config.vala:296
 #, c-format
 msgid "No value available for '%s'"
 msgstr "„%s“ neprieinama jokia reikšmė"
 
-#: ../src/rygel/rygel-user-config.vala:367
-#: ../src/ui/rygel-user-config.vala:367
+#: ../src/rygel/rygel-user-config.vala:367 ../src/ui/rygel-user-config.vala:367
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "„%s“ reikšmė viršija ribas"
@@ -1627,6 +1581,36 @@ msgstr "Nepavyko paleisti Rygel tarnybos: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Nepavyko sustabdyti Rygel tarnybos: %s"
+
+#~ msgid "Invalid metadata serialisation, cannot process %s"
+#~ msgstr "Netinkama metaduomenų serializacija, negalima apdoroti %s"
+
+#~ msgid "Invalid metadata serialisation: expected 7 children, got %d"
+#~ msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
+#~ msgstr[0] "Netinkama metaduomenų serializacija: tikėtasi 7 vaikų, gautas %d"
+#~ msgstr[1] "Netinkama metaduomenų serializacija: tikėtasi 7 vaikų, gauti %d"
+#~ msgstr[2] "Netinkama metaduomenų serializacija: tikėtasi 7 vaikų, gauta %d"
+
+#~ msgid "Invalid metadata serialisation of metadata; %s"
+#~ msgstr "Netinkama metaduomenų serializacija metaduomenims; %s"
+
+#~ msgid "Invalid metadata serialisation of video info; %s"
+#~ msgstr "Netinkama metaduomenų serializacija vaizdo įrašo informacijai; %s"
+
+#~ msgid "Invalid metadata serialisation of audio info; %s"
+#~ msgstr "Netinkama metaduomenų serializacija garso informacijai; %s"
+
+#~ msgid "Invalid metadata serialisation of general info"
+#~ msgstr "Netinkama metaduomenų serializacija bendriesiems duomenims"
+
+#~ msgid "Invalid metadata serialisation of DLNA profile %s"
+#~ msgstr "Netinkama metaduomenų serializacija DLNA profiliui %s"
+
+#~ msgid "Invalid metadata serialisation of file info %s"
+#~ msgstr "Netinkama metaduomenų serializacija failo informacijai %s"
+
+#~ msgid "Invalid metadata serialisation of file info"
+#~ msgstr "Netinkama metaduomenų serializacija failo informacijai"
 
 #~| msgid "Could not determine protocol for %s"
 #~ msgid "Could not determine protocol for uri %s"
