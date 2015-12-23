@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-18 23:47+0000\n"
-"PO-Revision-Date: 2015-09-19 11:59+0200\n"
+"POT-Creation-Date: 2015-12-23 14:21+0000\n"
+"PO-Revision-Date: 2015-12-24 00:41+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -35,8 +35,7 @@ msgstr ""
 "mediaserver;mediarenderer;multimediální server;vysílání;sdílení;zvuk;audio;"
 "video;obrázky;"
 
-#: ../data/rygel-preferences.desktop.in.in.h:1
-#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel-preferences.desktop.in.in.h:1 ../data/rygel-preferences.ui.h:1
 msgid "Rygel Preferences"
 msgstr "Předvolby Rygel"
 
@@ -304,17 +303,22 @@ msgstr "Selhalo načtení modulu z cesty „%s“: %s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Selhalo vyhledání vstupního bodu funkce „%s“ v „%s“: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:144
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:70
+#, c-format
+msgid "Failed to open plugins folder: '%s'"
+msgstr "Selhalo otevření složky se zásuvnými moduly: „%s“"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Chyba při výpisu obsahu složky „%s“: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:188
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:193
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "Nelze načíst zásuvný modul: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:221
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Selhal dotaz na typ obsahu pro „%s“"
@@ -526,7 +530,7 @@ msgstr "Selhal přesun souboru s tečkou na začátku %s: %s"
 msgid "Requested item '%s' not found"
 msgstr "Vyžadovaná položka „%s“ nenalezena"
 
-#: ../src/librygel-server/rygel-http-resource-handler.vala:86
+#: ../src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
 msgid "Couldn't create data source for %s"
 msgstr "Nelze vytvořit datový zdroj pro %s"
@@ -1082,7 +1086,7 @@ msgstr "Selhalo vytvoření indexů: %s"
 msgid "Cannot upgrade from version %d"
 msgstr "Nelze povýšit z verze %d"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:113
+#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
 #, c-format
 msgid "Database upgrade failed: %s"
 msgstr "Povýšení databáze selhalo: %s"
@@ -1161,7 +1165,7 @@ msgstr "Neplatná databáze, nelze se dotázat tabulky sqlite_master: %s"
 msgid "Failed to create database schema: %s"
 msgstr "Selhalo vytvoření databázového schématu: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1227
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Přeskakuje se pole nepodporované pro řazení: %s"
@@ -1541,20 +1545,17 @@ msgid "Failed to load user configuration: %s"
 msgstr "Selhalo načtení uživatelského nastavení: %s"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
-#: ../src/rygel/rygel-user-config.vala:243
-#: ../src/ui/rygel-user-config.vala:243
+#: ../src/rygel/rygel-user-config.vala:243 ../src/ui/rygel-user-config.vala:243
 #, c-format
 msgid "Failed to load user configuration from file '%s': %s"
 msgstr "Selhalo načtení uživatelského nastavení ze souboru „%s“: %s"
 
-#: ../src/rygel/rygel-user-config.vala:296
-#: ../src/ui/rygel-user-config.vala:296
+#: ../src/rygel/rygel-user-config.vala:296 ../src/ui/rygel-user-config.vala:296
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Pro „%s“ není dostupná žádná hodnota"
 
-#: ../src/rygel/rygel-user-config.vala:367
-#: ../src/ui/rygel-user-config.vala:367
+#: ../src/rygel/rygel-user-config.vala:367 ../src/ui/rygel-user-config.vala:367
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Hodnota „%s“ je mimo rozsah"
