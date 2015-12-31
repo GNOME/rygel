@@ -14,16 +14,16 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-20 18:30-0300\n"
-"PO-Revision-Date: 2015-09-20 18:30-0300\n"
-"Last-Translator: Rafael Fontenelle <rffontenelle@gmail.com>\n"
+"POT-Creation-Date: 2015-12-29 14:20+0000\n"
+"PO-Revision-Date: 2015-12-31 14:08-0300\n"
+"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.7.3\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -308,17 +308,22 @@ msgstr "Falha ao carregar o módulo do caminho \"%s\": %s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Falha ao localizar função de ponto de entrada \"%s\" em \"%s\": %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:144
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:70
+#, c-format
+msgid "Failed to open plugins folder: '%s'"
+msgstr "Ocorreu falha ao abrir a pasta de plugins: \"%s\""
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Erro ao listar o conteúdo da pasta \"%s\": %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:188
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:193
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "Não foi possível carregar o plug-in: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:221
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Falha ao consultar o tipo de conteúdo para \"%s\""
@@ -531,7 +536,7 @@ msgstr "Falha ao mover o arquivo ponto %s: %s"
 msgid "Requested item '%s' not found"
 msgstr "Item requisitado \"%s\" não encontrado"
 
-#: ../src/librygel-server/rygel-http-resource-handler.vala:86
+#: ../src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
 msgid "Couldn't create data source for %s"
 msgstr "Não foi possível criar fonte de dados para %s"
@@ -1092,7 +1097,7 @@ msgstr "Falha ao criar índices: %s"
 msgid "Cannot upgrade from version %d"
 msgstr "Não é possível atualizar da versão %d"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:113
+#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
 #, c-format
 msgid "Database upgrade failed: %s"
 msgstr "Atualização do banco de dados falhou: %s"
@@ -1174,7 +1179,7 @@ msgstr ""
 msgid "Failed to create database schema: %s"
 msgstr "Falha ao criar esquema de banco de dados: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1227
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Ignorando campo ordenado sem suporte: %s"
