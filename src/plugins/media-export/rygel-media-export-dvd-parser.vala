@@ -29,9 +29,20 @@ internal class Rygel.DVDParser : GLib.Object {
     public File file { public get; construct; }
 
     private File cache_file;
+    private static string? lsdvd_binary_path;
 
     public DVDParser (File file) {
         Object (file : file);
+    }
+
+    static construct {
+        string? path = Environment.find_program_in_path ("lsdvd");
+        if (path == null) {
+            var msg = _("Failed to find lsdvd binary in path. DVD extraction will not be available");
+            warning (msg);
+        }
+
+        DVDParser.lsdvd_binary_path = path;
     }
 
     public static string get_cache_path (string image_path) {
@@ -50,6 +61,10 @@ internal class Rygel.DVDParser : GLib.Object {
     }
 
     public async void run () throws Error {
+        if (DVDParser.lsdvd_binary_path == null) {
+            throw new DVDParserError.GENERAL ("No DVD extractor found");
+        }
+
         yield this.get_information ();
     }
 
@@ -58,7 +73,7 @@ internal class Rygel.DVDParser : GLib.Object {
             var launcher = new SubprocessLauncher (SubprocessFlags.STDERR_SILENCE);
             launcher.set_stdout_file_path (this.cache_file.get_path ());
             string[] args = {
-                "/usr/bin/lsdvd",
+                DVDParser.lsdvd_binary_path,
                 "-Ox",
                 "-x",
                 "-q",
