@@ -231,6 +231,12 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
                 }
             }
 
+            var filename = "rygel_media_engine_%d_%d".printf (old_state,
+                                                               new_state);
+            Debug.bin_to_dot_file_with_ts (this.pipeline,
+                                           DebugGraphDetails.ALL,
+                                           filename);
+
             if (this.seek != null) {
                 if (old_state == State.READY && new_state == State.PAUSED) {
                     if (this.perform_seek ()) {
@@ -243,6 +249,10 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
             string err_msg;
 
             if (message.type == MessageType.ERROR) {
+                Debug.bin_to_dot_file_with_ts (this.pipeline,
+                                               DebugGraphDetails.ALL,
+                                               "rygel_media_engine_error");
+
                 message.parse_error (out err, out err_msg);
                 critical (_("Error from pipeline %s: %s"),
                           this.pipeline.name,
