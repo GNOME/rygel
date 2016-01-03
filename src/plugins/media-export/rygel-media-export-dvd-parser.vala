@@ -87,6 +87,11 @@ internal class Rygel.DVDParser : GLib.Object {
             if (!(process.get_if_exited () &&
                 process.get_exit_status () == 0)) {
                 throw new DVDParserError.GENERAL ("lsdvd did die or file is not a DVD");
+                try {
+                    this.cache_file.delete (null);
+                } catch (Error error) {
+                    debug ("Failed to delete cache file: %s", error.message);
+                }
             }
         }
 
