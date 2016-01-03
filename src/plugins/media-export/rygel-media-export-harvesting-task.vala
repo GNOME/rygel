@@ -185,6 +185,15 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             return false;
         }
 
+
+        if (info.get_file_type () == FileType.DIRECTORY) {
+            // Check if we have an "exploded" DVD structure
+            if (file.get_child ("VIDEO_TS").query_exists ()) {
+                info.set_file_type (FileType.REGULAR);
+                info.set_content_type ("application/x-cd-image");
+            }
+        }
+
         if (info.get_file_type () == FileType.DIRECTORY) {
             // queue directory for processing later
             this.monitor.add.begin (file);

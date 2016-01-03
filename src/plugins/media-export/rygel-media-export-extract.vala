@@ -200,7 +200,8 @@ static async void extract_basic_information (File               file,
     FileInfo file_info;
 
     try {
-        file_info = yield file.query_info_async (FileAttribute.STANDARD_CONTENT_TYPE
+        file_info = yield file.query_info_async (FileAttribute.STANDARD_TYPE + "," +
+                                                 FileAttribute.STANDARD_CONTENT_TYPE
                                                  + "," +
                                                  FileAttribute.STANDARD_SIZE + "," +
                                                  FileAttribute.TIME_MODIFIED + "," +
@@ -217,6 +218,11 @@ static async void extract_basic_information (File               file,
         send_error (file, error);
 
         return;
+    }
+
+    if (file_info.get_file_type () == FileType.DIRECTORY) {
+        file_info.set_file_type (FileType.REGULAR);
+        file_info.set_content_type ("application/x-cd-image");
     }
 
     try {
