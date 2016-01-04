@@ -167,6 +167,7 @@ src/plugins/gst-launch/rygel-gst-launch-root-container.vala
 src/plugins/gst-launch/rygel-gst-launch-video-item.vala
 src/plugins/media-export/rygel-media-export-db-container.vala
 src/plugins/media-export/rygel-media-export-dummy-container.vala
+src/plugins/media-export/rygel-media-export-dvd-parser.vala
 src/plugins/media-export/rygel-media-export-extract.vala
 src/plugins/media-export/rygel-media-export-harvester.vala
 src/plugins/media-export/rygel-media-export-harvesting-task.vala
