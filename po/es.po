@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the rygel package.
 # Jorge González <jorgegonz@svn.gnome.org>, 2010, 2011.
 # 
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2014, 2015., 2015.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013, 2014, 2015., 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-11-23 02:12+0000\n"
-"PO-Revision-Date: 2015-11-23 10:28+0100\n"
+"POT-Creation-Date: 2016-01-07 02:22+0000\n"
+"PO-Revision-Date: 2016-01-07 09:22+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -306,7 +306,6 @@ msgstr "Falló al encontrar la función del punto de entrada «%s» en «%s»: %
 
 #: ../src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
-#| msgid "Failed to load plugin %s: %s"
 msgid "Failed to open plugins folder: '%s'"
 msgstr "Falló al abrir la carpeta de complementos: «%s»"
 
@@ -692,7 +691,7 @@ msgstr "No se ha encontrado un motor de medios."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "No se ha llamado a MediaEngine.init. No se puede continuar."
 
-#: ../src/librygel-server/rygel-media-file-item.vala:176
+#: ../src/librygel-server/rygel-media-file-item.vala:177
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "No se pudo determinar el protocolo para el URI %s"
@@ -898,26 +897,26 @@ msgstr "Falló al enlazar %s con %s"
 msgid "Failed to link pad %s to %s"
 msgstr "Falló al enlazar el relleno de %s a %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:247
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:257
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Error de la tubería %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:254
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:264
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Advertencia de la tubería %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:302
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:312
 msgid "Unsupported seek type"
 msgstr "Tipo de búsqueda no soportado"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:319
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:329
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Falló al buscar hasta los desplazamientos %lld:%lld"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:321
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:331
 msgid "Failed to seek"
 msgstr "Falló al buscar"
 
@@ -926,7 +925,7 @@ msgstr "Falló al buscar"
 msgid "Invalid URI without prefix: %s"
 msgstr "URI no válido sin prefijo: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "No se puede procesar el URI %s con el protocolo %s"
@@ -975,45 +974,52 @@ msgstr "El módulo «%s» no se pudo conectar al bus de D-Bus. Ignorando…"
 msgid "External provider %s did not provide mandatory property \"%s\""
 msgstr "El proveedor externo %s no ha proporcionado el «%s» obligatorio "
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:91
+#: ../src/plugins/media-export/rygel-media-export-dvd-parser.vala:41
+msgid ""
+"Failed to find lsdvd binary in path. DVD extraction will not be available"
+msgstr ""
+"Falló al buscar el binario lsdvd en la ruta. La extracción de DVD no estará "
+"disponible."
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:93
 msgid "Invalid command received, ignoring"
 msgstr "Comando recibido no válido, ignorando"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:113
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:121
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Falló al descubrir el URI %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:131
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:139
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Falló al leer de l tubería: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:159
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:167
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Falló al enviar el error al padre: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:204
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:213
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr "Falló al extraer los metadatos básicos de %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:223
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:237
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- binario auxiliar de Rygel para extraer metadatos"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:230
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:244
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Falló al analizar los argumentos de línea de comandos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:238
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:252
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Falló al crear el extractor de arte de los medios: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:259
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:273
 #, c-format
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Falló al iniciar el descubridor de metadatos: %s"
@@ -1055,12 +1061,12 @@ msgstr "Falló al recolectar el archivo %s: %s"
 msgid "Failed to query database: %s"
 msgstr "Falló al consultar la base de datos: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:250
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:259
 #, c-format
 msgid "Failed to enumerate folder \"%s\": %s"
 msgstr "Falló al enumerar la carpeta «%s»: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:277
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Falló al obtener el hijo del contenedor %s: %s"
@@ -1068,7 +1074,7 @@ msgstr "Falló al obtener el hijo del contenedor %s: %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:340
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "Omitiendo el URI %s; la extracción falló por completo: %s"
@@ -1260,7 +1266,7 @@ msgid "Can't remove containers in %s"
 msgstr "No se pueden quitar contenedores en %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:593
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:603
 msgid "Playlists"
 msgstr "Listas de reproducción"
 
@@ -1317,26 +1323,26 @@ msgid "Files & Folders"
 msgstr "Archivos y carpetas"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:349
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:359
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@'s media"
 msgstr "Multimedia de @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:440
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:507
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:450
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:517
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Falló al quitar la entrada: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:596
 msgid "Music"
 msgstr "Música"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:589
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:599
 msgid "Pictures"
 msgstr "Imágenes"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:591
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:601
 msgid "Videos"
 msgstr "Vídeos"
 
