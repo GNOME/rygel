@@ -1,7 +1,7 @@
 # Norwegian bokmål translation of rygel.
 # Copyright (C) Kjartan Maraas
 # This file is distributed under the same license as the rygel package.
-# Kjartan Maraas <kmaraas@gnome.org>, 2002-2015.
+# Kjartan Maraas <kmaraas@gnome.org>, 2002-2016.
 # Terance Edward Sola <terance@lyse.net>, 2005.
 # Øivind Hoel <oivind.hoel@gmail.com>, 2007.
 #
@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel 0.28.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-18 19:06+0200\n"
-"PO-Revision-Date: 2015-10-18 19:11+0200\n"
+"POT-Creation-Date: 2016-01-10 20:38+0100\n"
+"PO-Revision-Date: 2016-01-10 20:40+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -298,17 +298,22 @@ msgstr "Klarte ikke å laste modul fra sti «%s»: %s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Klarte ikke å finne inngangsfunksjon «%s» i «%s»: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:144
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:70
+#, c-format
+msgid "Failed to open plugins folder: '%s'"
+msgstr "Kunne ikke åpne mappe for tillegg: «%s»"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "Feil under listing av innhold i mappe «%s»: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:188
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:193
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "Kunne ikke laste tillegg: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:221
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "Klarte ikke å spørre etter innholdstype for «%s»"
@@ -520,7 +525,7 @@ msgstr "Klarte ikke å flytte skjult fil %s: %s"
 msgid "Requested item '%s' not found"
 msgstr "Forespurt oppføring «%s» ble ikke funnet"
 
-#: ../src/librygel-server/rygel-http-resource-handler.vala:86
+#: ../src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
 msgid "Couldn't create data source for %s"
 msgstr "Klarte ikke å lage datakilde for %s"
@@ -678,7 +683,7 @@ msgstr "Ingen mediemotor funnet."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init ble ikke kalt. Kan ikke fortsette."
 
-#: ../src/librygel-server/rygel-media-file-item.vala:176
+#: ../src/librygel-server/rygel-media-file-item.vala:177
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "Klarte ikke å bestemme protokoll for URI %s"
@@ -883,26 +888,26 @@ msgstr "Kunne ikke å lenke %s til %s"
 msgid "Failed to link pad %s to %s"
 msgstr "Kunne ikke å lenke pad %s til %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:247
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:257
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Feil fra rør %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:254
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:264
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Advarsel fra rør %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:302
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:312
 msgid "Unsupported seek type"
 msgstr "Ikke støttet søketype"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:319
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:329
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Klarte ikke å søke til avstand %lld:%lld"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:321
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:331
 msgid "Failed to seek"
 msgstr "Klarte ikke å søke"
 
@@ -911,7 +916,7 @@ msgstr "Klarte ikke å søke"
 msgid "Invalid URI without prefix: %s"
 msgstr "Ugyldig URI uten prefiks: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "Kan ikke prosessere URI %s med protokoll %s"
@@ -959,45 +964,50 @@ msgstr "Modul «%s» klarte ikke å koble til D-Bus-sesjonsbussen. Ignorerer …
 msgid "External provider %s did not provide mandatory property \"%s\""
 msgstr "Ekstern tilbyder %s oppga ikke obligatorisk egenskap «%s»"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:91
+#: ../src/plugins/media-export/rygel-media-export-dvd-parser.vala:41
+msgid ""
+"Failed to find lsdvd binary in path. DVD extraction will not be available"
+msgstr ""
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:93
 msgid "Invalid command received, ignoring"
 msgstr "Ugyldig kommando mottatt, ignorerer"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:113
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:121
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Klarte ikke å finne URI %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:131
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:139
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Klarte ikke å lese fra rør: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:159
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:167
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Klarte ikke å sende feil til opphav: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:204
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:213
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr "Klarte ikke å hente grunnleggende metadata fra %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:223
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:237
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- hjelpekommando for Rygel for å hente ut metadata"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:230
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:244
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Klarte ikke å lese kommandolinjeargumenter: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:238
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:252
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Klarte ikke å lage program for å hente ut mediekunst: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:259
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:273
 #, c-format
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Klarte ikke å starte metadataoppdager: %s"
@@ -1037,12 +1047,12 @@ msgstr "Klarte ikke å høste fil %s: %s"
 msgid "Failed to query database: %s"
 msgstr "Klarte ikke å spørre database: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:250
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:259
 #, c-format
 msgid "Failed to enumerate folder \"%s\": %s"
 msgstr "Klarte ikke å liste mappe «%s»: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:277
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Klarte ikke å hente barn av kontainer %s: %s"
@@ -1050,7 +1060,7 @@ msgstr "Klarte ikke å hente barn av kontainer %s: %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:340
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr ""
@@ -1100,7 +1110,7 @@ msgid "Failed to get reset token"
 msgstr "Klarte ikke å hente tegn for nullstilling: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:532
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "Klarte ikke å stoppe Rygel-tjeneste: %s"
 
@@ -1124,9 +1134,9 @@ msgid "Failed to add %s to file blacklist: %s"
 msgstr "Klarte ikke å legge til %s i sorteliste for filer: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:605
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get whether URI %s is blacklisted: %s"
-msgstr "Klarte ikke å hente en plugg: %s"
+msgstr "Klarte ikke å sjekke om URI %s er sortelistet: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:621
 #, fuzzy, c-format
@@ -1154,7 +1164,7 @@ msgstr "Ugyldig database, kan ikke spørre tabell sqlite_master: %s"
 msgid "Failed to create database schema: %s"
 msgstr "Klarte ikke å lage databaseskjema: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1227
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr ""
@@ -1239,7 +1249,7 @@ msgid "Can't remove containers in %s"
 msgstr "Kan ikke fjerne kontainere i %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:593
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:603
 msgid "Playlists"
 msgstr "Spillelister"
 
@@ -1296,26 +1306,26 @@ msgid "Files & Folders"
 msgstr "Filer og mapper"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:349
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:359
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@ sine medier"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:440
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:507
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:450
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:517
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Klarte ikke å fjerne oppføring: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:596
 msgid "Music"
 msgstr "Musikk"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:589
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:599
 msgid "Pictures"
 msgstr "Bilder"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:591
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:601
 msgid "Videos"
 msgstr "Videoer"
 
@@ -1415,9 +1425,9 @@ msgid "Titles"
 msgstr "Titler"
 
 #: ../src/rygel/rygel-acl.vala:110
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to query ACL: %s"
-msgstr "Klarte ikke å spørre database: %s"
+msgstr "Klarte ikke å spørre ACL: %s"
 
 #: ../src/rygel/rygel-acl.vala:127
 #, fuzzy, c-format
