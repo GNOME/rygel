@@ -2,15 +2,15 @@
 # Copyright (C) 2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the rygel package.
 # Žygimantas Beručka <zygis@gnome.org>, 2010.
-# Aurimas Černius <aurisc4@gmail.com>, 2013, 2014, 2015.
+# Aurimas Černius <aurisc4@gmail.com>, 2013, 2014, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-12-17 14:24+0000\n"
-"PO-Revision-Date: 2015-12-19 21:51+0200\n"
+"POT-Creation-Date: 2016-01-05 02:24+0000\n"
+"PO-Revision-Date: 2016-01-10 17:33+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -37,11 +37,11 @@ msgstr ""
 
 #: ../data/rygel-preferences.desktop.in.in.h:1 ../data/rygel-preferences.ui.h:1
 msgid "Rygel Preferences"
-msgstr "Rygel nustatymai"
+msgstr "Rygel nuostatos"
 
 #: ../data/rygel-preferences.desktop.in.in.h:2
 msgid "UPnP/DLNA Preferences"
-msgstr "UPnP/DLNA nustatymai"
+msgstr "UPnP/DLNA nuostatos"
 
 #: ../data/rygel-preferences.ui.h:2
 msgid "column"
@@ -687,7 +687,7 @@ msgstr "Nerastas medijos variklis."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init nebuvo iškviestas. Negalima tęsti."
 
-#: ../src/librygel-server/rygel-media-file-item.vala:176
+#: ../src/librygel-server/rygel-media-file-item.vala:177
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "Nepavyko nustatyti URI %s protokolo"
@@ -892,26 +892,26 @@ msgstr "Nepavyko susieti %s su %s"
 msgid "Failed to link pad %s to %s"
 msgstr "Nepavyko susieti pagrindo %s su %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:247
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:257
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Klaida konvejeryje %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:254
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:264
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Įspėjimas konvejeryje %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:302
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:312
 msgid "Unsupported seek type"
 msgstr "Nepalaikomas slinkimo tipas"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:319
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:329
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Nepavyko rasti poslinkių %lld:%lld"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:321
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:331
 msgid "Failed to seek"
 msgstr "Nepavyko ieškoti"
 
@@ -920,7 +920,7 @@ msgstr "Nepavyko ieškoti"
 msgid "Invalid URI without prefix: %s"
 msgstr "Netinkamas URI be priešdėlio: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "Nepavyksta apdoroti URI %s su protokolu %s"
@@ -969,45 +969,50 @@ msgstr ""
 msgid "External provider %s did not provide mandatory property \"%s\""
 msgstr "Išorinis tiekėjas %s nepateikė būtinos savybės „%s“"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:91
+#: ../src/plugins/media-export/rygel-media-export-dvd-parser.vala:41
+msgid ""
+"Failed to find lsdvd binary in path. DVD extraction will not be available"
+msgstr "Nepavyko rasti lsdvd programos kelyje. DVD išgavimas nebus galimas"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:93
 msgid "Invalid command received, ignoring"
 msgstr "Gauta netinkama komanda, nepaisoma"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:113
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:121
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Nepavyko surasti URI %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:131
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:139
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Nepavyko skaityti iš kanalo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:159
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:167
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Nepavyko nusiųsti klaidos tėvui: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:204
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:213
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr "Nepavyko išgauti pagrindinių metaduomenų iš %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:223
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:237
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- pagalbinė Rygel programa metaduomenų išgavimui"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:230
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:244
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Nepavyko perskaityti komandų eilutės argumentų: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:238
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:252
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Nepavyko sukurti medijos viršelių išgavėjo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:259
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:273
 #, c-format
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Nepavyko paleisti metaduomenų suradėjo: %s"
@@ -1047,12 +1052,12 @@ msgstr "Nepavyko perskaityti failo %s: %s"
 msgid "Failed to query database: %s"
 msgstr "Nepavyko užklausti duomenų bazės: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:250
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:259
 #, c-format
 msgid "Failed to enumerate folder \"%s\": %s"
 msgstr "Nepavyko išvardinti aplanko „%s“ turinio: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:277
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Nepavyko konteinerio %s vaikų: %s"
@@ -1060,7 +1065,7 @@ msgstr "Nepavyko konteinerio %s vaikų: %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:340
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "Praleidžiamas URI %s; išgavimas visiškai nepavyko: %s"
@@ -1250,7 +1255,7 @@ msgid "Can't remove containers in %s"
 msgstr "%s negalima pašalinti konteinerių"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:593
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:603
 msgid "Playlists"
 msgstr "Grojaraščiai"
 
@@ -1307,26 +1312,26 @@ msgid "Files & Folders"
 msgstr "Failai ir aplankai"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:349
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:359
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@ medija"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:440
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:507
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:450
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:517
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Nepavyko pašalinti įrašo: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:596
 msgid "Music"
 msgstr "Muzika"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:589
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:599
 msgid "Pictures"
 msgstr "Nuotraukos"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:591
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:601
 msgid "Videos"
 msgstr "Vaizdo įrašai"
 
@@ -1491,7 +1496,7 @@ msgstr "Nustatyti įskiepių pavadinimus"
 
 #: ../src/rygel/rygel-cmdline-config.vala:96
 msgid "Set plugin options"
-msgstr "Nustatyti įskiepio parinktis"
+msgstr "Nustatyti įskiepio parametrus"
 
 #: ../src/rygel/rygel-cmdline-config.vala:98
 msgid "Use configuration file instead of user configuration"
@@ -1565,7 +1570,7 @@ msgstr "„%s“ reikšmė viršija ribas"
 #: ../src/ui/rygel-preferences-dialog.vala:109
 #, c-format
 msgid "Failed to create preferences dialog: %s"
-msgstr "Nepavyko sukurti nustatymų dialogo: %s"
+msgstr "Nepavyko sukurti nuostatų dialogo: %s"
 
 #: ../src/ui/rygel-writable-user-config.vala:119
 #, c-format
