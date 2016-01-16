@@ -23,6 +23,7 @@ import time
 from xdg import BaseDirectory
 import sys
 from urllib import pathname2url
+import argparse
 
 FILE_QUERY = """
 SELECT o.upnp_id, o.type_fk, o.timestamp, null,
@@ -66,11 +67,18 @@ SELECT b.timestamp FROM blacklist b WHERE b.uri = :uri
 
 BLACKLIST_TEMPLATE = 'File %(uri)s was blacklisted on %(date)s'
 
-if len (sys.argv) < 2:
-    me = os.path.basename (sys.argv[0])
-    print me + " - Dump information about files in Rygel's cache"
-    print "Usage: " + me + " file1 [file2 file3 ...]"
-    sys.exit (1)
+def ensure_uri(string):
+    if not string.startswith ('file://'):
+        return 'file://' + pathname2url (string)
+    return string
+
+parser = argparse.ArgumentParser (description = "MediaExport database tool")
+parser.add_argument ('uris', metavar='URI', nargs = '+', type = ensure_uri,
+                     help = 'URIs to dump infos for')
+parser.add_argument ('-u, --unblacklist', action = 'store_true',
+                     dest = 'unblacklist',
+                     help = 'Remove uris from database\'s blacklist')
+args = parser.parse_args ()
 
 rygel_db = os.path.join (BaseDirectory.xdg_cache_home, "rygel", "media-export.db")
 conn = sqlite3.connect (rygel_db);
@@ -82,42 +90,47 @@ if info[0] < 16:
     print "Unsupported schema version or not a Rygel cache"
     sys.exit (1)
 
-has_blackist = False
+has_blacklist = False
 if info[0] >= 17:
-    has_blackist = True
+    has_blacklist = True
 
-for arg in sys.argv[1:]:
-    uri = arg
-    if not arg.startswith ("file://"):
-        uri = "file://" + pathname2url (arg)
-    c.execute (FILE_QUERY, {"uri": uri})
-    for row in c:
-        print (INFO_TEMPLATE % { "uri": uri,
-                                 "id" : row[0],
-                                 "mtime" : row[2],
-                                 "size" : row[4],
-                                 "mime" : row[5],
-                                 "dlna_profile" : row[6],
-                                 "class" : row[10],
-                                 "duration" : row[7],
-                                 "author" : row[11],
-                                 "album" : row[12],
-                                 "genre" : row[13],
-                                 "date" : row[14],
-                                 "track" : row[19],
-                                 "width" : row[8],
-                                 "height" : row[9],
-                                 "bitrate" : row[15],
-                                 "sample_freq" : row[16],
-                                 "bits" : row[17],
-                                 "channels" : row[18],
-                                 "depth" : row[20],
-                                 "disc" : row[21],
-                                 "title": row[22]})
+if not has_blacklist and args.unblacklist:
+    print ('Database version is too old for blacklists, cannot unblacklist')
+    sys.exit (1)
 
-    if has_blackist:
-        c.execute (BLACKLIST_QUERY, {"uri": uri})
+if has_blacklist and args.unblacklist:
+    for arg in args.uris:
+        c.execute (UNBLACKLIST_QUERY, { 'uri' : uri })
+else:
+    for uri in args.uris:
+        c.execute (FILE_QUERY, {"uri": uri})
         for row in c:
-            t = time.gmtime(row[0])
-            print (BLACKLIST_TEMPLATE % { "uri" : uri,
+            print (INFO_TEMPLATE % { "uri": uri,
+                                     "id" : row[0],
+                                     "mtime" : row[2],
+                                     "size" : row[4],
+                                     "mime" : row[5],
+                                     "dlna_profile" : row[6],
+                                     "class" : row[10],
+                                     "duration" : row[7],
+                                     "author" : row[11],
+                                     "album" : row[12],
+                                     "genre" : row[13],
+                                     "date" : row[14],
+                                     "track" : row[19],
+                                     "width" : row[8],
+                                     "height" : row[9],
+                                     "bitrate" : row[15],
+                                     "sample_freq" : row[16],
+                                     "bits" : row[17],
+                                     "channels" : row[18],
+                                     "depth" : row[20],
+                                     "disc" : row[21],
+                                     "title": row[22]})
+
+        if has_blacklist:
+            c.execute (BLACKLIST_QUERY, {"uri": uri})
+            for row in c:
+                t = time.gmtime(row[0])
+                print (BLACKLIST_TEMPLATE % { "uri" : uri,
                                           "date" : time.strftime("%a, %d %b %Y %H:%M:%S +0000", t)})
