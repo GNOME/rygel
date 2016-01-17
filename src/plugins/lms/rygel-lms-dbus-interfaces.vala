@@ -23,6 +23,7 @@
 [DBus (name = "org.lightmediascanner.Scanner1")]
 interface Rygel.LMS.DBus : DBusProxy {
     public abstract string data_base_path { owned get; }
+
     [DBus (name = "UpdateID")]
     public abstract uint64 update_id { get; }
 

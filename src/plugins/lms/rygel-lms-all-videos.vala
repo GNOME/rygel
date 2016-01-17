@@ -52,11 +52,12 @@ public class Rygel.LMS.AllVideos : Rygel.LMS.CategoryContainer {
         "WHERE dtime <> 0 AND videos.id = files.id " +
         "AND update_id > ? AND update_id <= ?;";
 
-    protected override MediaObject? object_from_statement (Statement statement) {
-        var id = statement.column_int(0);
-        var mime_type = statement.column_text(8);
-        var path = statement.column_text(4);
-        var file = File.new_for_path(path);
+    protected override MediaObject? object_from_statement
+                                        (Statement statement) {
+        var id = statement.column_int (0);
+        var mime_type = statement.column_text (8);
+        var path = statement.column_text (4);
+        var file = File.new_for_path (path);
 
         /* TODO: Temporary code to extract the MIME TYPE.  LMS does not seem
            to compute the mime type of videos.  Don't know why. */
@@ -75,16 +76,16 @@ public class Rygel.LMS.AllVideos : Rygel.LMS.CategoryContainer {
             debug ("Video item %d (%s) has no MIME type",
                    id,
                    path);
-            }
+        }
 
-        var title = statement.column_text(1);
-        var video = new VideoItem(this.build_child_id (id), this, title);
-        video.creator = statement.column_text(2);
-        video.duration = statement.column_int(3);
-        TimeVal tv = { (long) statement.column_int(5), (long) 0 };
+        var title = statement.column_text (1);
+        var video = new VideoItem (this.build_child_id (id), this, title);
+        video.creator = statement.column_text (2);
+        video.duration = statement.column_int (3);
+        TimeVal tv = { (long) statement.column_int (5), (long) 0 };
         video.date = tv.to_iso8601 ();
-        video.size = statement.column_int(6);
-        video.dlna_profile = statement.column_text(7);
+        video.size = statement.column_int (6);
+        video.dlna_profile = statement.column_text (7);
         video.mime_type = mime_type;
         video.add_uri (file.get_uri ());
 
@@ -94,13 +95,13 @@ public class Rygel.LMS.AllVideos : Rygel.LMS.CategoryContainer {
             "from videos, videos_audios, videos_videos where videos.id = ? " +
             "and videos.id = videos_audios.video_id and videos.id = videos_videos.video_id;";
         try {
-            var stmt = this.lms_db.prepare(video_data);
-            Rygel.LMS.Database.find_object("%d".printf(id), stmt);
-            video.bitrate = stmt.column_int(0) / 8; //convert bits per second into bytes per second
-            video.width = stmt.column_int(1);
-            video.height = stmt.column_int(2);
-            video.channels = stmt.column_int(3);
-            video.sample_freq = stmt.column_int(4);
+            var stmt = this.lms_db.prepare (video_data);
+            Rygel.LMS.Database.find_object ("%d".printf (id), stmt);
+            video.bitrate = stmt.column_int (0) / 8; //convert bits per second into bytes per second
+            video.width = stmt.column_int (1);
+            video.height = stmt.column_int (2);
+            video.channels = stmt.column_int (3);
+            video.sample_freq = stmt.column_int (4);
         } catch (DatabaseError e) {
             warning ("Query failed: %s", e.message);
         }
@@ -108,7 +109,10 @@ public class Rygel.LMS.AllVideos : Rygel.LMS.CategoryContainer {
         return video;
     }
 
-    public AllVideos (string id, MediaContainer parent, string title, LMS.Database lms_db){
+    public AllVideos (string         id,
+                      MediaContainer parent,
+                      string         title,
+                      LMS.Database   lms_db){
         base (id,
               parent,
               title,

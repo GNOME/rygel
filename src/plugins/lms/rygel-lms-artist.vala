@@ -50,9 +50,11 @@ public class Rygel.LMS.Artist : Rygel.LMS.CategoryContainer {
         return (SQL_COUNT_TEMPLATE.printf (id));
     }
 
-    protected override MediaObject? object_from_statement (Statement statement) {
+    protected override MediaObject? object_from_statement
+                                        (Statement statement) {
         var db_id = "%d".printf (statement.column_int (0));
         var title = statement.column_text (1);
+
         return new LMS.Album (db_id, this, title, this.lms_db);
     }
 

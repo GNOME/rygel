@@ -205,18 +205,21 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
             if (stmt.step () != Sqlite.ROW) {
                 return 0;
             }
+
             return stmt.column_int (0);
         } catch (DatabaseError e) {
             warning ("Query failed: %s", e.message);
+
             return 0;
         }
     }
 
-    protected virtual MediaObjects? get_children_with_filter (string     where_filter,
-                                                              ValueArray args,
-                                                              string     sort_criteria,
-                                                              uint       offset,
-                                                              uint       max_count) {
+    protected virtual MediaObjects? get_children_with_filter
+                                        (string     where_filter,
+                                         ValueArray args,
+                                         string     sort_criteria,
+                                         uint       offset,
+                                         uint       max_count) {
         var children = new MediaObjects ();
         GLib.Value v = max_count;
         args.append (v);
@@ -259,6 +262,7 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
             if (max_count == 0) {
                 max_count = uint.MAX;
             }
+
             return this.get_children_with_filter (filter,
                                                   args,
                                                   sort_criteria,
@@ -266,6 +270,7 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
                                                   max_count);
         } catch (Error e) {
             debug ("  Falling back to simple_search(): %s", e.message);
+
             return yield this.simple_search (expression,
                                              offset,
                                              max_count,
@@ -295,7 +300,7 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
 
     public async override MediaObject? find_object (string id,
                                                     Cancellable? cancellable)
-                                        throws Error {
+                                                    throws Error {
         if (!id.has_prefix (this.child_prefix)) {
             /* can't match anything in this container */
             return null;
@@ -359,14 +364,16 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
                                                        old_id,
                                                        new_id);
             while (Database.get_children_step (this.stmt_added)) {
-                this.add_child_tracked.begin(this.object_from_statement (this.stmt_added));
+                var object = this.object_from_statement (this.stmt_added);
+                this.add_child_tracked.begin (object);
             }
 
             Database.get_children_with_update_id_init (this.stmt_removed,
                                                        old_id,
                                                        new_id);
             while (Database.get_children_step (this.stmt_removed)) {
-                this.remove_child_tracked.begin(this.object_from_statement (this.stmt_removed));
+                var object = this.object_from_statement (this.stmt_removed);
+                this.remove_child_tracked.begin (object);
             }
 
         } catch (DatabaseError e) {
@@ -419,7 +426,7 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
             if (this.sql_added != null && this.sql_removed != null) {
                 this.stmt_added = this.lms_db.prepare (this.sql_added);
                 this.stmt_removed = this.lms_db.prepare (this.sql_removed);
-                lms_db.db_updated.connect(this.on_db_updated);
+                lms_db.db_updated.connect (this.on_db_updated);
             }
         } catch (DatabaseError e) {
             warning ("Container %s: %s", this.title, e.message);

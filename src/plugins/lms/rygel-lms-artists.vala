@@ -38,16 +38,17 @@ public class Rygel.LMS.Artists : Rygel.LMS.CategoryContainer {
         "FROM audio_artists " +
         "WHERE audio_artists.id = ?;";
 
-    protected override MediaObject? object_from_statement (Statement statement) {
+    protected override MediaObject? object_from_statement
+                                        (Statement statement) {
         var db_id = "%d".printf (statement.column_int (0));
         var title = statement.column_text (1);
 
         return new LMS.Artist (db_id, this, title, this.lms_db);
     }
 
-    public Artists (string id,
+    public Artists (string         id,
                     MediaContainer parent,
-                    string title,
+                    string         title,
                     LMS.Database   lms_db) {
         base (id,
               parent,
@@ -56,7 +57,7 @@ public class Rygel.LMS.Artists : Rygel.LMS.CategoryContainer {
               Artists.SQL_ALL,
               Artists.SQL_FIND_OBJECT,
               Artists.SQL_COUNT,
-              null, null
-             );
+              null,
+              null);
     }
 }

@@ -30,7 +30,10 @@ public class Rygel.LMS.MusicRoot : Rygel.SimpleContainer {
         base (id, parent, title);
 
         this.add_child_container (new AllMusic (this, lms_db));
-        this.add_child_container (new Artists ("artists", this, _("Artists"), lms_db));
+        this.add_child_container (new Artists ("artists",
+                                               this,
+                                               _("Artists"),
+                                               lms_db));
         this.add_child_container (new Albums (this, lms_db));
     }
 }

@@ -35,13 +35,15 @@ public class Rygel.LMS.ImageYears : Rygel.LMS.CategoryContainer {
 
     /* actually returns multiple times the same result (because no DISTINCT) */
     /* Casting the year is a workaround so we can keep using
-     * Database.find_object() without making the argument a variant or something like it*/
+     * Database.find_object() without making the argument a variant or
+     * something like it */
     private static const string SQL_FIND_OBJECT =
         "SELECT strftime('%Y', images.date, 'unixepoch') as year " +
         "FROM images " +
         "WHERE year = CAST(? AS TEXT)";
 
-    protected override MediaObject? object_from_statement (Statement statement) {
+    protected override MediaObject? object_from_statement
+                                        (Statement statement) {
         return new LMS.ImageYear (this, statement.column_text (0), this.lms_db);
     }
 
@@ -53,7 +55,7 @@ public class Rygel.LMS.ImageYears : Rygel.LMS.CategoryContainer {
               ImageYears.SQL_ALL,
               ImageYears.SQL_FIND_OBJECT,
               ImageYears.SQL_COUNT,
-              null, null
-             );
+              null,
+              null);
     }
 }

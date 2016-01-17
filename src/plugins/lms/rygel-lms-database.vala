@@ -51,11 +51,11 @@ public class Rygel.LMS.Database {
             debug ("Got db path %s from LMS over dbus", db_path);
             update_id = lms_proxy.update_id;
             debug ("Got updated id %lld from LMS over dbus", update_id);
-            lms_proxy.g_properties_changed.connect (this.on_lms_properties_changed);
-
+            lms_proxy.g_properties_changed.connect
+                                        (this.on_lms_properties_changed);
         } catch (IOError e) {
-            warning("Couldn't get LMS Dbus proxy: %s", e.message);
-            db_path = Environment.get_user_config_dir() +
+            warning ("Couldn't get LMS Dbus proxy: %s", e.message);
+            db_path = Environment.get_user_config_dir () +
                       "/lightmediascannerd/db.sqlite3";
             debug  ("Using default sqlite database location %s", db_path);
         }

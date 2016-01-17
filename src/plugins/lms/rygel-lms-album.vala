@@ -26,7 +26,9 @@ using Sqlite;
 public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
     private static const string SQL_ALL_TEMPLATE =
         "SELECT files.id, files.path, files.size, " +
-               "audios.title as title, audios.trackno, audios.length, audios.channels, audios.sampling_rate, audios.bitrate, audios.dlna_profile, audios.dlna_mime, " +
+               "audios.title as title, audios.trackno, audios.length, " +
+               "audios.channels, audios.sampling_rate, audios.bitrate, " +
+               "audios.dlna_profile, audios.dlna_mime, " +
                "audio_artists.name as artist, " +
                "audio_albums.name " +
         "FROM audios, files " +
@@ -55,7 +57,9 @@ public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
 
     private static const string SQL_FIND_OBJECT_TEMPLATE =
         "SELECT files.id, files.path, files.size, " +
-               "audios.title, audios.trackno, audios.length, audios.channels, audios.sampling_rate, audios.bitrate, audios.dlna_profile, audios.dlna_mime, " +
+               "audios.title, audios.trackno, audios.length, " +
+               "audios.channels, audios.sampling_rate, audios.bitrate, " +
+               "audios.dlna_profile, audios.dlna_mime, " +
                "audio_artists.name, " +
                "audio_albums.name " +
         "FROM audios, files " +
@@ -63,11 +67,14 @@ public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
         "ON audios.artist_id = audio_artists.id " +
         "LEFT JOIN audio_albums " +
         "ON audios.album_id = audio_albums.id " +
-        "WHERE dtime = 0 AND files.id = ? AND audios.id = files.id AND audios.album_id = %s;";
+        "WHERE dtime = 0 AND files.id = ? AND audios.id = files.id " +
+                        "AND audios.album_id = %s;";
 
     private static const string SQL_ADDED_TEMPLATE =
         "SELECT files.id, files.path, files.size, " +
-               "audios.title as title, audios.trackno, audios.length, audios.channels, audios.sampling_rate, audios.bitrate, audios.dlna_profile, audios.dlna_mime, " +
+               "audios.title as title, audios.trackno, audios.length, " +
+               "audios.channels, audios.sampling_rate, audios.bitrate, " +
+               "audios.dlna_profile, audios.dlna_mime, " +
                "audio_artists.name as artist, " +
                "audio_albums.name " +
         "FROM audios, files " +
@@ -80,7 +87,9 @@ public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
 
     private static const string SQL_REMOVED_TEMPLATE =
         "SELECT files.id, files.path, files.size, " +
-               "audios.title as title, audios.trackno, audios.length, audios.channels, audios.sampling_rate, audios.bitrate, audios.dlna_profile, audios.dlna_mime, " +
+               "audios.title as title, audios.trackno, audios.length, " +
+               "audios.channels, audios.sampling_rate, audios.bitrate, " +
+               "audios.dlna_profile, audios.dlna_mime, " +
                "audio_artists.name as artist, " +
                "audio_albums.name " +
         "FROM audios, files " +
@@ -91,33 +100,32 @@ public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
         "WHERE dtime <> 0 AND audios.id = files.id AND audios.album_id = %s " +
         "AND update_id > ? AND update_id <= ?;";
 
-    protected override MediaObject? object_from_statement (Statement statement) {
+    protected override MediaObject? object_from_statement
+                                        (Statement statement) {
         var id = statement.column_int (0);
         var path = statement.column_text (1);
-        var mime_type = statement.column_text(10);
+        var mime_type = statement.column_text (10);
 
         if (mime_type == null || mime_type.length == 0) {
             /* TODO is this correct? */
-            debug ("Music item %d (%s) has no MIME type",
-                   id,
-                   path);
+            debug ("Music item %d (%s) has no MIME type", id, path);
         }
 
-        var title = statement.column_text(3);
+        var title = statement.column_text (3);
         var song_id = this.build_child_id (id);
         var song = new MusicItem (song_id, this, title);
         song.ref_id = this.build_reference_id (id);
-        song.size = statement.column_int(2);
-        song.track_number = statement.column_int(4);
-        song.duration = statement.column_int(5);
-        song.channels = statement.column_int(6);
-        song.sample_freq = statement.column_int(7);
-        song.bitrate = statement.column_int(8);
-        song.dlna_profile = statement.column_text(9);
+        song.size = statement.column_int (2);
+        song.track_number = statement.column_int (4);
+        song.duration = statement.column_int (5);
+        song.channels = statement.column_int (6);
+        song.sample_freq = statement.column_int (7);
+        song.bitrate = statement.column_int (8);
+        song.dlna_profile = statement.column_text (9);
         song.mime_type = mime_type;
-        song.artist = statement.column_text(11);
-        song.album = statement.column_text(12);
-        File file = File.new_for_path (path);
+        song.artist = statement.column_text (11);
+        song.album = statement.column_text (12);
+        var file = File.new_for_path (path);
         song.add_uri (file.get_uri ());
 
         return song;
@@ -143,7 +151,9 @@ public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
         if (filter.length == 0) {
             return this.sql_all;
         }
+
         var filter_str = "%s AND %s".printf (this.db_id, filter);
+
         return (SQL_ALL_TEMPLATE.printf (filter_str));
     }
 
@@ -151,7 +161,9 @@ public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
         if (filter.length == 0) {
             return this.sql_count;
         }
+
         var filter_str = "%s AND %s".printf (this.db_id, filter);
+
         return (SQL_COUNT_WITH_FILTER_TEMPLATE.printf (filter_str));
     }
 
@@ -167,7 +179,6 @@ public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
               get_sql_find_object (db_id),
               get_sql_count (db_id),
               get_sql_added (db_id),
-              get_sql_removed (db_id)
-             );
+              get_sql_removed (db_id));
     }
 }

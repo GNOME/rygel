@@ -28,7 +28,7 @@ public class Rygel.LMS.RootContainer : Rygel.SimpleContainer {
 
     private LMS.Database lms_db = null;
 
-    public RootContainer() {
+    public RootContainer () {
         var config = MetaConfig.get_default ();
 
         var title = _("Shared media");
@@ -36,14 +36,23 @@ public class Rygel.LMS.RootContainer : Rygel.SimpleContainer {
             title = config.get_string ("LightMediaScanner", "title");
         } catch (GLib.Error error) {}
 
-        base.root(title);
+        base.root (title);
 
         try {
             this.lms_db = new LMS.Database ();
 
-            this.add_child_container (new MusicRoot ("music", this, _("Music"), this.lms_db));
-            this.add_child_container (new AllVideos ("all-videos", this, _("Videos"), this.lms_db));
-            this.add_child_container (new ImageRoot ("images", this, _("Pictures"), this.lms_db));
+            this.add_child_container (new MusicRoot ("music",
+                                                     this,
+                                                     _("Music"),
+                                                     this.lms_db));
+            this.add_child_container (new AllVideos ("all-videos",
+                                                     this,
+                                                     _("Videos"),
+                                                     this.lms_db));
+            this.add_child_container (new ImageRoot ("images",
+                                                     this,
+                                                     _("Pictures"),
+                                                     this.lms_db));
 
         } catch (DatabaseError e) {
             warning ("%s\n", e.message);

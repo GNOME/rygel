@@ -95,8 +95,7 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
     }
 
     protected override uint get_child_count_with_filter (string     where_filter,
-                                                        ValueArray args)
-    {
+                                                         ValueArray args) {
 
         /* search the children (albums) as usual */
         var count = base.get_child_count_with_filter (where_filter, args);
@@ -119,11 +118,12 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
         return count;
     }
 
-    protected override MediaObjects? get_children_with_filter (string     where_filter,
-                                                               ValueArray args,
-                                                               string     sort_criteria,
-                                                               uint       offset,
-                                                               uint       max_count) {
+    protected override MediaObjects? get_children_with_filter
+                                            (string     where_filter,
+                                             ValueArray args,
+                                             string     sort_criteria,
+                                             uint       offset,
+                                             uint       max_count) {
         var children = base. get_children_with_filter (where_filter,
                                                        args,
                                                        sort_criteria,
