@@ -84,8 +84,7 @@ librygel_media_export_la_CFLAGS = \
 librygel_media_export_la_LIBADD = \
 	$(RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_LIBS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS) \
-	$(RYGEL_COMMON_LIBRYGEL_DB_LIBS) \
-	$(UNISTRING_LIBS)
+	$(RYGEL_COMMON_LIBRYGEL_DB_LIBS)
 
 librygel_media_export_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
