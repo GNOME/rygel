@@ -165,6 +165,13 @@ src/plugins/gst-launch/rygel-gst-launch-audio-item.vala
 src/plugins/gst-launch/rygel-gst-launch-plugin.vala
 src/plugins/gst-launch/rygel-gst-launch-root-container.vala
 src/plugins/gst-launch/rygel-gst-launch-video-item.vala
+src/plugins/lms/rygel-lms-albums.vala
+src/plugins/lms/rygel-lms-all-images.vala
+src/plugins/lms/rygel-lms-all-music.vala
+src/plugins/lms/rygel-lms-database.vala
+src/plugins/lms/rygel-lms-image-years.vala
+src/plugins/lms/rygel-lms-music-root.vala
+src/plugins/lms/rygel-lms-root-container.vala
 src/plugins/media-export/rygel-media-export-db-container.vala
 src/plugins/media-export/rygel-media-export-dummy-container.vala
 src/plugins/media-export/rygel-media-export-dvd-parser.vala
