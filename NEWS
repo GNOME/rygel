@@ -1,3 +1,84 @@
+0.29.1
+======
+
+- Fix license text of code to be LGPLv2.1+ proper.
+- Fix license of logo to be CC-BY-SA-3.0.
+- Add a plugin to support LightweightMediaScanner.
+
+Core:
+ - Avoid crash if plugin folder is missing.
+
+Server:
+ - Avoid a crash on empty protocol info.
+ - Fix issue with calculating end byte in partial request.
+ - Playlists need to support INTERACTIVE transport mode.
+ - Some code cleanup.
+ - Set albumArtURI when applying DIDL on UpdateObject call.
+
+GStreamer media engine:
+ - Remove broken transmuxing.
+
+MediaExport:
+ - Some code cleanup.
+ - Add support for .iso files and VIDEO_TS folders.
+
+Examples:
+ - Add option to unblacklist files from MediaExport database to mx-info.
+
+Bugs fixed in this release:
+ - https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=801521
+ - https://bugzilla.gnome.org/show_bug.cgi?id=756823
+ - https://bugzilla.gnome.org/show_bug.cgi?id=757056
+ - https://bugzilla.gnome.org/show_bug.cgi?id=757570
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Alexander Kanavin <alex.kanavin@gmail.com>
+ - Mario Blättermann <mario.blaettermann@gmail.com>
+ - Marek Černocký <marek@manet.cz>
+ - Christian Kirbach <Christian.Kirbach@gmail.com>
+ - Rafael Fontenelle <rffontenelle@gmail.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Милош Поповић <gpopac@gmail.com>
+ - Wolfgang Stöggl <c72578@yahoo.de>
+ - Stas Solovey <whats_up@tut.by>
+ - Sebastian Rasmussen <sebras@gmail.com>
+ - Roderich Schupp <roderich.schupp@gmail.com>
+ - Richard Röjfors <richard.rojfors@gmail.com>
+ - Pedro Albuquerque <palbuquerque73@gmail.com>
+ - Muhammet Kara <muhammetk@gmail.com>
+ - Marcus Gisslén <marcus.gisslen@gmail.com>
+ - Manuel Bachmann <manuel.bachmann@iot.bzh>
+ - Jussi Kukkonen <jussi.kukkonen@intel.com>
+ - Jens Georg <jensg@openismus.com>
+ - Inaki Larranaga Murgoitio <dooteo@zundan.com>
+ - Enrico Nicoletto <liverig@gmail.com>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Claudio Arseni <claudio.arseni@gmail.com>
+ - Ask Hjorth Larsen <asklarsen@gmail.com>
+ - Arash Mousavi <mousavi.arash@gmail.com>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - da, courtesy of Ask Hjorth Larsen
+ - de, courtesy of Mario Blättermann
+ - es, courtesy of Daniel Mustieles
+ - eu, courtesy of Iñaki Larrañaga Murgoitio
+ - fa, courtesy of Amir Farsi
+ - it, courtesy of Claudio Arseni
+ - lt, courtesy of Aurimas Černius
+ - nb, courtesy of Kjartan Maraas
+ - pt_BR, courtesy of Rafael Fontenelle
+ - pt, courtesy of
+ - ru, courtesy of Stas Solovey
+ - sk, courtesy of Dušan Kazik
+ - sr, courtesy of Марко М. Костић (Marko M. Kostić)
+ - sv, courtesy of Sebastian Rasmussen
+ - tr, courtesy of Muhammet Kara
+
 0.27.6
 ======
 
