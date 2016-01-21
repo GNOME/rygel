@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-12-06 02:10+0000\n"
-"PO-Revision-Date: 2015-12-06 13:36+0100\n"
+"POT-Creation-Date: 2016-01-21 02:26+0000\n"
+"PO-Revision-Date: 2016-01-21 08:58+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -341,6 +341,7 @@ msgid "Failed to query content type for '%s'"
 msgstr "Zlyhala žiadosť o typ obsahu pre „%s“"
 
 #: ../src/librygel-db/database-cursor.vala:82
+#: ../src/plugins/lms/rygel-lms-database.vala:176
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Nepodporovaný typ %s"
@@ -712,7 +713,7 @@ msgstr "Nenašiel sa žiadny nástroj pre multimédiá (media-engine)."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init nebol zavolaný. Nedá sa pokračovať."
 
-#: ../src/librygel-server/rygel-media-file-item.vala:176
+#: ../src/librygel-server/rygel-media-file-item.vala:177
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "Nepodarilo sa určiť protokol pre URI %s"
@@ -920,26 +921,26 @@ msgstr "Zlyhalo spojenie %s s %s"
 msgid "Failed to link pad %s to %s"
 msgstr "Zlyhalo spojenie vložky %s s %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:247
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:257
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Chyba zo zreťazenia %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:254
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:264
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Upozornenie zo zreťazenia %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:302
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:312
 msgid "Unsupported seek type"
 msgstr "Nepodporovaný typ presúvania"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:319
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:329
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Zlyhalo presunutie na ofsety %lld:%lld"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:321
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:331
 msgid "Failed to seek"
 msgstr "Zlyhalo presunutie"
 
@@ -948,7 +949,7 @@ msgstr "Zlyhalo presunutie"
 msgid "Invalid URI without prefix: %s"
 msgstr "Neplatná URI bez predpony: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "Nedá sa spracovať URI %s s protokolom %s"
@@ -1000,45 +1001,92 @@ msgstr ""
 msgid "External provider %s did not provide mandatory property \"%s\""
 msgstr "Externý poskytovateľ %s neposkytuje povinnú vlastnosť „%s“"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:91
+#: ../src/plugins/lms/rygel-lms-albums.vala:168
+#: ../src/plugins/tracker/rygel-tracker-albums.vala:31
+msgid "Albums"
+msgstr "Albumy"
+
+#: ../src/plugins/lms/rygel-lms-all-images.vala:89
+#: ../src/plugins/lms/rygel-lms-all-music.vala:171
+#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
+msgid "All"
+msgstr "Všetko"
+
+#: ../src/plugins/lms/rygel-lms-image-years.vala:53
+msgid "Years"
+msgstr "Roky"
+
+#: ../src/plugins/lms/rygel-lms-music-root.vala:35
+#: ../src/plugins/tracker/rygel-tracker-artists.vala:31
+msgid "Artists"
+msgstr "Umelci"
+
+#: ../src/plugins/lms/rygel-lms-root-container.vala:34
+msgid "Shared media"
+msgstr "Sprístupnené médiá"
+
+#: ../src/plugins/lms/rygel-lms-root-container.vala:46
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:596
+msgid "Music"
+msgstr "Hudba"
+
+#: ../src/plugins/lms/rygel-lms-root-container.vala:50
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:601
+msgid "Videos"
+msgstr "Videá"
+
+#: ../src/plugins/lms/rygel-lms-root-container.vala:54
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:599
+msgid "Pictures"
+msgstr "Obrázky"
+
+#: ../src/plugins/media-export/rygel-media-export-dvd-parser.vala:41
+msgid ""
+"Failed to find lsdvd binary in path. DVD extraction will not be available"
+msgstr ""
+"Zlyhalo nájdenie binárneho súboru lsdvd v premennej prostredia path. "
+"Extrahovanie diskov DVD nebude dostupné."
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:93
 msgid "Invalid command received, ignoring"
 msgstr "Bol prijatý neplatný príkaz, ignoruje sa"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:113
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:121
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Zlyhalo preskúmanie URI %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:131
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:139
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Zlyhalo čítanie zo zreťazenia: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:159
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:167
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Zlyhalo odoslanie chyby pôvodcovi: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:204
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:213
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr "Zlyhalo extrahovanie základných metaúdajov z %s: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:223
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:237
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- binárny pomocník pre aplikáciu Rygel na extrahovanie metaúdajov"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:230
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:244
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Zlyhala analýza parametrov príkazového riadku: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:238
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:252
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Zlyhalo vytvorenie nástroja na extrahovanie obalov médií: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:259
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:273
 #, c-format
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Zlyhalo spustenie prieskumníka metaúdajov: %s"
@@ -1082,12 +1130,12 @@ msgstr "Zlyhalo vyťaženie súboru %s: %s"
 msgid "Failed to query database: %s"
 msgstr "Zlyhal dopyt k databáze: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:250
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:259
 #, c-format
 msgid "Failed to enumerate folder \"%s\": %s"
 msgstr "Zlyhalo vymenovanie priečinka „%s“: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:277
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Zlyhalo získanie potomka kontainera %s: %s"
@@ -1095,7 +1143,7 @@ msgstr "Zlyhalo získanie potomka kontainera %s: %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:340
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "Vynecháva sa URI %s; extrahovanie úplne zlyhalo: %s"
@@ -1258,11 +1306,6 @@ msgstr "Zlyhalo čítanie z potomka: %s"
 msgid "Failed to send command to child: %s"
 msgstr "Zlyhalo odoslanie príkazu potomkovi: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
-msgid "All"
-msgstr "Všetko"
-
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
 msgid "Failed to get child count: %s"
@@ -1285,7 +1328,7 @@ msgid "Can't remove containers in %s"
 msgstr "Nedajú sa odstrániť kontajnery v %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:593
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:603
 msgid "Playlists"
 msgstr "Zoznamy skladieb"
 
@@ -1343,28 +1386,16 @@ msgid "Files & Folders"
 msgstr "Súbory a priečinky"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:349
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:359
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@'s media"
 msgstr "Multimédiá používateľa @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:440
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:507
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:450
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:517
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Zlyhalo odstránenie položky: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
-msgid "Music"
-msgstr "Hudba"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:589
-msgid "Pictures"
-msgstr "Obrázky"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:591
-msgid "Videos"
-msgstr "Videá"
 
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
@@ -1406,14 +1437,6 @@ msgstr "Prehrávač GStreamer"
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:43
 msgid "Could not create GStreamer player"
 msgstr "Nepodarilo sa vytvoriť prehrávač GStreamer"
-
-#: ../src/plugins/tracker/rygel-tracker-albums.vala:31
-msgid "Albums"
-msgstr "Albumy"
-
-#: ../src/plugins/tracker/rygel-tracker-artists.vala:31
-msgid "Artists"
-msgstr "Umelci"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
