@@ -21,7 +21,8 @@
  */
 
 internal errordomain DVDParserError {
-    GENERAL;
+    GENERAL,
+    NOT_AVAILABLE;
 }
 
 internal class Rygel.DVDParser : GLib.Object {
@@ -62,7 +63,7 @@ internal class Rygel.DVDParser : GLib.Object {
 
     public async void run () throws Error {
         if (DVDParser.lsdvd_binary_path == null) {
-            throw new DVDParserError.GENERAL ("No DVD extractor found");
+            throw new DVDParserError.NOT_AVAILABLE ("No DVD extractor found");
         }
 
         yield this.get_information ();

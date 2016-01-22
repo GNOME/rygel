@@ -102,8 +102,13 @@ namespace Rygel.MediaExport.ItemFactory {
 
     static MediaObject? create_from_variant (MediaContainer parent,
                                              File           file,
-                                             Variant        v)
+                                             Variant?       v)
                                              throws Error {
+
+        if (v == null) {
+            return null;
+        }
+
         ItemFactory.check_variant_type (v,"(smvmvmvmvmvmv)");
 
         Variant? upnp_class,

@@ -43,7 +43,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     private static VariantType SERIALIZED_DATA_TYPE;
 
     /* Signals */
-    public signal void extraction_done (File file, Variant info);
+    public signal void extraction_done (File file, Variant? info);
 
     /**
      * Signalize that an error occured during metadata extraction
@@ -213,7 +213,8 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                 }
 
                 if (!str.has_prefix ("RESULT|") &&
-                    !str.has_prefix ("ERROR|")) {
+                    !str.has_prefix ("ERROR|") &&
+                    !str.has_prefix ("SKIP|")) {
                     warning (_("Received invalid string from child: %s"), str);
 
                     break;
@@ -236,6 +237,14 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
                 var uri = parts[1];
                 var length = uint64.parse (parts[2]);
+
+                if (parts[0] == "SKIP") {
+                    debug ("Extractor binary told us to skip %s",
+                           uri);
+                    this.extraction_done (File.new_for_uri (uri), null);
+
+                    break;
+                }
 
                 debug ("Found serialized data for uri %s", uri);
                 var buf = new uint8[length];

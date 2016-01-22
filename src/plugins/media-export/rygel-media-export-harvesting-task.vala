@@ -306,7 +306,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
     }
 
     private void on_extracted_cb (File               file,
-                                  Variant            info) {
+                                  Variant?           info) {
         if (!file.equal (this.files.peek ().file)) {
             debug ("Not for us, ignoring");
         }

@@ -38,6 +38,7 @@ const string UPNP_CLASS_PLAYLIST_CONTAINER_DVD =
 
 const string STATUS_LINE_TEMPLATE = "RESULT|%s|%" + size_t.FORMAT + "|%s\n";
 const string ERROR_LINE_TEMPLATE = "ERROR|%s|%d|%s\n";
+const string SKIPPED_LINE_TEMPLATE = "SKIP|%s|-1|0\n";
 
 const string FATAL_ERROR_PREFIX = "FATAL_ERROR|";
 const string FATAL_ERROR_SUFFIX = "\n"; //|0|Killed by signal\n";
@@ -118,13 +119,17 @@ async void run () {
                     }
                     yield process_meta_data (parts[0], info);
                 } catch (Error error) {
-                    warning (_("Failed to discover URI %s: %s"),
-                             parts[0],
-                             error.message);
-                    send_error (File.new_for_uri (parts[0]), error);
+                    if (error is DVDParserError.NOT_AVAILABLE) {
+                        send_skip (File.new_for_uri (parts[0]));
+                    } else {
+                        warning (_("Failed to discover URI %s: %s"),
+                                 parts[0],
+                                 error.message);
+                        send_error (File.new_for_uri (parts[0]), error);
 
-                    // Recreate the discoverer on error
-                    discoverer = new Discoverer (10 * Gst.SECOND);
+                        // Recreate the discoverer on error
+                        discoverer = new Discoverer (10 * Gst.SECOND);
+                    }
                 }
                 //discoverer.discover_uri_async (uri);
             } else if (line.has_prefix ("METADATA ")) {
@@ -154,6 +159,17 @@ static void send_extraction_done (File file, Variant v) throws Error {
 
     output_stream.write_all (status.data, out bytes_written);
     output_stream.write_all (data.get_data (), out bytes_written);
+}
+
+static void send_skip (File file) {
+    size_t bytes_written = 0;
+    var status = SKIPPED_LINE_TEMPLATE.printf (file.get_uri ());
+
+    try {
+        output_stream.write_all (status.data, out bytes_written);
+    } catch (Error error) {
+        warning (_("Failed to send error to parent: %s"), error.message);
+    }
 }
 
 static void send_error (File file, Error err) {
