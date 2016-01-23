@@ -24,6 +24,18 @@ using GUPnP;
 internal class Rygel.SamsungTVHacks : ClientHacks {
     private const string AGENT = ".*SEC_HHP.*|.*SEC HHP.*";
 
+    private static Regex mime_regex;
+    private static Regex dlna_regex;
+
+    static construct {
+        try {
+            mime_regex = new Regex ("png");
+            dlna_regex = new Regex ("PNG");
+        } catch (RegexError error) {
+            assert_not_reached ();
+        }
+    }
+
     public SamsungTVHacks (Message? message = null) throws ClientHacksError {
         base (AGENT, message);
     }
@@ -42,6 +54,32 @@ internal class Rygel.SamsungTVHacks : ClientHacks {
                 // D-Series TV (E-Series still don't work)
                 // Example: http://s3.amazonaws.com/movies.dpreview.com/canon_eos60d/MVI_1326.MOV
                 resource.mime_type = "video/mp4";
+            }
+        }
+
+        if (!(object is MediaFileItem)) {
+            return;
+        }
+
+        var item = object as MediaFileItem;
+
+        if (!(item is VisualItem)) {
+            return;
+        }
+
+        // Samsung TVs only accept thumbnails with DLNA profile and mime
+        // type JPEG. This is correct from a DLNA pov, but we usually only
+        // supply PNG. When fooled into accepting it, they're rendered fine,
+        // however.
+        // TODO: Unifiy with Panasonic hack!
+        foreach (var thumbnail in (item as VisualItem).thumbnails) {
+            try {
+                thumbnail.mime_type = mime_regex.replace_literal
+                                        (thumbnail.mime_type, -1, 0, "jpeg");
+                thumbnail.dlna_profile = dlna_regex.replace_literal
+                                        (thumbnail.dlna_profile, -1, 0, "JPEG");
+            } catch (RegexError error) {
+                assert_not_reached ();
             }
         }
     }
