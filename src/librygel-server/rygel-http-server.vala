@@ -157,7 +157,7 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
                msg.method,
                msg.get_uri ().to_string (false));
         msg.request_headers.foreach ((name, value) => {
-                debug ("%s : %s", name, value);
+                debug ("    %s : %s", name, value);
         });
 
         this.queue_request (new HTTPGet (this, server, msg));
