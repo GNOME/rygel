@@ -92,6 +92,11 @@ internal class Rygel.DataSink : Object {
         }
 
         var request = offsets as HTTPByteSeekRequest;
+        if (request.range_length == -1) {
+            debug ("Setting max_bytes to MAX");
+
+            return int64.MAX;
+        }
         debug ("Setting max_bytes to %lld", request.range_length);
 
         return request.range_length;
