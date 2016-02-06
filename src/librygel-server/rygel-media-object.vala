@@ -274,7 +274,8 @@ public abstract class Rygel.MediaObject : GLib.Object {
             } else {
                 try {
                     var protocol = this.get_protocol_for_uri (res.uri);
-                    if (protocol != "internal" || http_server.is_local ()) {
+                    if (protocol != null &&
+                        (protocol != "internal" || http_server.is_local ())) {
                         // Exclude internal resources when request is non-local
                         var didl_resource = didl_object.add_resource ();
                         res.serialize (didl_resource, replacements);
@@ -502,10 +503,16 @@ public abstract class Rygel.MediaObject : GLib.Object {
         return "";
     }
 
-    internal string get_protocol_for_uri (string uri) throws Error {
+    internal string? get_protocol_for_uri (string uri) throws Error {
         var scheme = Uri.parse_scheme (uri);
         if (scheme == null) {
             throw new MediaItemError.BAD_URI (_("Bad URI: %s"), uri);
+        }
+
+        var engine = MediaEngine.get_default ();
+        var schemes = engine.get_internal_protocol_schemes ();
+        if (schemes.find_custom (scheme, strcmp) != null) {
+            return null;
         }
 
         if (scheme == "http") {

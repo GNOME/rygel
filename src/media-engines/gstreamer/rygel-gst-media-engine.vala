@@ -250,6 +250,14 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
     public DataSource create_data_source_from_element (Element element) {
         return new GstDataSource.from_element (element);
     }
+
+    public override GLib.List<string> get_internal_protocol_schemes () {
+        var list = new GLib.List<string> ();
+        list.prepend ("dvd");
+        list.prepend ("gst-launch");
+
+        return list;
+    }
 }
 
 public static Rygel.MediaEngine module_get_instance () {

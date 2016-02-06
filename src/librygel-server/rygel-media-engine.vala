@@ -136,4 +136,13 @@ public abstract class Rygel.MediaEngine : GLib.Object {
      * @return A #DataSource representing the uri
      */
     public abstract DataSource? create_data_source_for_uri (string uri) throws Error;
+
+    /**
+     * Get a list of URI schemes that are internal to the engine.
+     *
+     * @return A list of strings considered protocol schemees
+     */
+    public virtual List<string> get_internal_protocol_schemes () {
+        return new List<string> ();
+    }
 }
