@@ -78,6 +78,8 @@ public class Rygel.GstLaunch.RootContainer : SimpleContainer {
                 if (dlna_profile != null) {
                     item.dlna_profile = dlna_profile;
                 }
+
+                item.add_engine_resources.begin ();
                 this.add_child_item (item);
             }
         } catch (GLib.Error err) {

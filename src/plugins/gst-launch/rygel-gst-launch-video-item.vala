@@ -39,7 +39,5 @@ public class Rygel.GstLaunch.VideoItem : Rygel.VideoItem {
 
         this.mime_type = mime_type;
         this.add_uri ("gst-launch://" + launch_line);
-
-        this.add_engine_resources.begin ();
     }
 }
