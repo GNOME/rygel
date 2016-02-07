@@ -293,16 +293,4 @@ public class Rygel.Database.Database : Object, Initable {
                       error.message);
         }
     }
-
-    public Statement prepare (string sql) throws DatabaseError {
-        Statement statement;
-
-        var err = this.db.prepare_v2 (sql, -1, out statement);
-        if (err != Sqlite.OK) {
-            var msg = "Unable to prepare statement '%s' : %s";
-            throw new DatabaseError.PREPARE (msg, sql, this.db.errmsg ());
-        }
-
-        return statement;
-    }
 }

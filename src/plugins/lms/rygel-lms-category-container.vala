@@ -48,10 +48,10 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
     public string sql_added { get; construct; }
     public string sql_removed { get; construct; }
 
-    protected Statement stmt_all;
-    protected Statement stmt_find_object;
-    protected Statement stmt_added;
-    protected Statement stmt_removed;
+    protected Cursor cursor_all;
+    protected Cursor cursor_find_object;
+    protected Cursor cursor_added;
+    protected Cursor cursor_removed;
 
     protected string child_prefix;
     protected string ref_prefix;
@@ -282,12 +282,12 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
                                         throws Error {
         MediaObjects retval = new MediaObjects ();
 
-        Database.get_children_init (this.stmt_all,
-                                    offset,
-                                    max_count,
-                                    sort_criteria);
-        while (Database.get_children_step (this.stmt_all)) {
-            retval.add (this.object_from_statement (this.stmt_all));
+        // FIXME: sort_criteria is ignored
+        GLib.Value[] args = { max_count, offset };
+
+        this.cursor_all.bind (args);
+        foreach (var stmt in cursor_all) {
+            retval.add (this.object_from_statement (stmt));
         }
 
         return retval;
@@ -312,18 +312,21 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
         }
 
         try {
-            Database.find_object (real_id, this.stmt_find_object);
-            var child = this.object_from_statement (this.stmt_find_object);
-            if (index < 0) {
-                object = child;
-            } else {
-                /* try grandchildren */
-                var container = child as CategoryContainer;
-                object = yield container.find_object (id, cancellable);
+            GLib.Value[] args = { int.parse (real_id) };
+            this.cursor_find_object.bind (args);
+            foreach (var statement in this.cursor_find_object) {
+                var child = this.object_from_statement (statement);
+                if (index < 0) {
+                    object = child;
+                } else {
+                    /* try grandchildren */
+                    var container = child as CategoryContainer;
+                    object = yield container.find_object (id, cancellable);
 
-                /* tell object to keep a reference to the parent --
-                 * otherwise parent is freed before object is serialized */
-                object.parent_ref = object.parent;
+                    /* tell object to keep a reference to the parent --
+                     * otherwise parent is freed before object is serialized */
+                    object.parent_ref = object.parent;
+                }
             }
         } catch (DatabaseError e) {
             debug ("find_object %s in %s: %s", id, this.id, e.message);
@@ -349,25 +352,19 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
 
     private void on_db_updated(uint64 old_id, uint64 new_id) {
         try {
-            var stmt_count = this.lms_db.prepare (this.sql_count);
+            this.lms_db.query_value (this.sql_count);
 
-            if (stmt_count.step () == Sqlite.ROW) {
-                this.child_count = stmt_count.column_int (0);
-            }
-
-            Database.get_children_with_update_id_init (this.stmt_added,
-                                                       old_id,
-                                                       new_id);
-            while (Database.get_children_step (this.stmt_added)) {
-                var object = this.object_from_statement (this.stmt_added);
+            GLib.Value[] args = { new_id < old_id ? 0 : old_id,
+                                  new_id };
+            this.cursor_added.bind (args);
+            foreach (var stmt in this.cursor_added) {
+                var object = this.object_from_statement (stmt);
                 this.add_child_tracked.begin (object);
             }
 
-            Database.get_children_with_update_id_init (this.stmt_removed,
-                                                       old_id,
-                                                       new_id);
-            while (Database.get_children_step (this.stmt_removed)) {
-                var object = this.object_from_statement (this.stmt_removed);
+            this.cursor_removed.bind (args);
+            foreach (var stmt in this.cursor_removed) {
+                var object = this.object_from_statement (stmt);
                 this.remove_child_tracked.begin (object);
             }
 
@@ -409,18 +406,16 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
         this.ref_prefix = this.id.slice (0, index) + ":all:";
 
         try {
-            this.stmt_all = this.lms_db.prepare (this.sql_all);
-            this.stmt_find_object = this.lms_db.prepare (this.sql_find_object);
-            var stmt_count = this.lms_db.prepare (this.sql_count);
+            this.cursor_all = this.lms_db.exec_cursor (this.sql_all);
+            this.cursor_find_object = this.lms_db.exec_cursor
+                                        (this.sql_find_object);
 
-            if (stmt_count.step () == Sqlite.ROW) {
-                this.child_count = stmt_count.column_int (0);
-            }
+            this.child_count = this.lms_db.query_value (this.sql_count);
             // some container implementations don't have a reasonable way to provide
             // id-based statements to fetch added or removed items
             if (this.sql_added != null && this.sql_removed != null) {
-                this.stmt_added = this.lms_db.prepare (this.sql_added);
-                this.stmt_removed = this.lms_db.prepare (this.sql_removed);
+                this.cursor_added = this.lms_db.exec_cursor (this.sql_added);
+                this.cursor_removed = this.lms_db.exec_cursor (this.sql_removed);
                 lms_db.db_updated.connect (this.on_db_updated);
             }
         } catch (DatabaseError e) {

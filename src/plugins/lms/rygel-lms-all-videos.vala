@@ -96,13 +96,15 @@ public class Rygel.LMS.AllVideos : Rygel.LMS.CategoryContainer {
             "from videos, videos_audios, videos_videos where videos.id = ? " +
             "and videos.id = videos_audios.video_id and videos.id = videos_videos.video_id;";
         try {
-            var stmt = this.lms_db.prepare (video_data);
-            Rygel.LMS.Database.find_object ("%d".printf (id), stmt);
-            video.bitrate = stmt.column_int (0) / 8; //convert bits per second into bytes per second
-            video.width = stmt.column_int (1);
-            video.height = stmt.column_int (2);
-            video.channels = stmt.column_int (3);
-            video.sample_freq = stmt.column_int (4);
+            GLib.Value[] args = { id };
+            var cursor = this.lms_db.exec_cursor (video_data, args);
+            foreach (var stmt in cursor) {
+                video.bitrate = stmt.column_int (0) / 8; //convert bits per second into bytes per second
+                video.width = stmt.column_int (1);
+                video.height = stmt.column_int (2);
+                video.channels = stmt.column_int (3);
+                video.sample_freq = stmt.column_int (4);
+            }
         } catch (DatabaseError e) {
             warning ("Query failed: %s", e.message);
         }

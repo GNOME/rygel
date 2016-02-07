@@ -101,8 +101,9 @@ public class Rygel.Database.Cursor : Object {
             }
 
             if (this.db.errcode () != Sqlite.OK) {
-                throw new DatabaseError.BIND ("Failed to bind value %d: %s",
+                throw new DatabaseError.BIND ("Failed to bind value %d in %s: %s",
                                               i,
+                                              this.statement.sql (),
                                               this.db.errmsg ());
             }
         }
