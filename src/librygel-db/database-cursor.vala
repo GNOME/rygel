@@ -31,16 +31,11 @@ public class Rygel.Database.Cursor : Object {
     /**
      * Prepare a SQLite statement from a SQL string
      *
-     * This function uses the type of the GValue passed in values to determine
-     * which _bind function to use.
-     *
-     * Supported types are: int, long, int64, uint64, string and pointer.
-     * @note the only pointer supported is the null pointer as provided by
-     * Database.@null. This is a special value to bind a column to NULL
+     * If @arguments is non-null, it will call bind()
      *
      * @param db SQLite database this cursor belongs to
      * @param sql statement to execute
-     * @param values array of values to bind to the SQL statement or null if
+     * @param arguments array of values to bind to the SQL statement or null if
      * none
      */
     public Cursor (Sqlite.Database   db,
@@ -55,6 +50,28 @@ public class Rygel.Database.Cursor : Object {
         if (arguments == null) {
             return;
         }
+
+        this.bind (arguments);
+    }
+
+    /**
+     * Bind new values to a cursor.
+     *
+     * The cursor will be reset.
+     *
+     * This function uses the type of the GValue passed in values to determine
+     * which _bind function to use.
+     *
+     * Supported types are: int, long, int64, uint64, string and pointer.
+     * @note the only pointer supported is the null pointer as provided by
+     * Database.@null. This is a special value to bind a column to NULL
+     * @param arguments array of values to bind to the SQL statement or null if
+     * none
+     */
+    public void bind (GLib.Value[]? arguments) throws DatabaseError {
+        this.statement.reset ();
+        this.dirty = true;
+        this.current_state = -1;
 
         for (var i = 1; i <= arguments.length; ++i) {
             unowned GLib.Value current_value = arguments[i - 1];
@@ -83,7 +100,11 @@ public class Rygel.Database.Cursor : Object {
                 assert_not_reached ();
             }
 
-            this.throw_if_db_has_error ();
+            if (this.db.errcode () != Sqlite.OK) {
+                throw new DatabaseError.BIND ("Failed to bind value %d: %s",
+                                              i,
+                                              this.db.errmsg ());
+            }
         }
     }
 
