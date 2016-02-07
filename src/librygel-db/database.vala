@@ -30,8 +30,9 @@ namespace Rygel.Database {
     }
 
     public enum Flavor {
-        CACHE, /// Database is a cache (will be placed in XDG_USER_CACHE
-        CONFIG /// Database is configuration (will be placed in XDG_USER_CONFIG)
+        CACHE,  /// Database is a cache (will be placed in XDG_USER_CACHE
+        CONFIG, /// Database is configuration (will be placed in XDG_USER_CONFIG)
+        FOREIGN /// Database is at a custom location
     }
 
     public enum Flags {
@@ -65,7 +66,15 @@ namespace Rygel.Database {
  * It adds statement preparation based on GValue and a cancellable exec
  * function.
  */
-public class Rygel.Database.Database : Object {
+public class Rygel.Database.Database : Object, Initable {
+
+    public string name { private get; construct set; }
+    public Flavor flavor { private get; construct set; default = Flavor.CACHE; }
+    public Flags  flags {
+        private get;
+        construct set;
+        default = Flags.READ_WRITE;
+    }
 
     /**
      * Function to implement the custom SQL function 'contains'
@@ -106,18 +115,24 @@ public class Rygel.Database.Database : Object {
         return utf8_collate_str (_a, _b);
     }
 
-    private static string build_path (string name, Flavor flavor) {
-        if (name != ":memory:" && !Path.is_absolute (name)) {
+    private string build_path () {
+        var name_is_path = this.name == ":memory:" ||
+                           Path.is_absolute (this.name) ||
+                           this.flavor == Flavor.FOREIGN;
+
+        if (!name_is_path) {
             var dirname = Path.build_filename (
-                                        flavor == Flavor.CACHE
+                                        this.flavor == Flavor.CACHE
                                             ? Environment.get_user_cache_dir ()
                                             : Environment.get_user_config_dir (),
                                         "rygel");
             DirUtils.create_with_parents (dirname, 0750);
 
-            return Path.build_filename (dirname, "%s.db".printf (name));
+            return Path.build_filename (dirname, "%s.db".printf (this.name));
         } else {
-            return name;
+            this.flavor = Flavor.FOREIGN;
+
+            return this.name;
         }
     }
 
@@ -132,13 +147,27 @@ public class Rygel.Database.Database : Object {
      */
     public Database (string name,
                      Flavor flavor = Flavor.CACHE,
-                     Flags  flags = Flags.READ_WRITE) throws DatabaseError {
-        var path = Database.build_path (name, flavor);
+                     Flags  flags = Flags.READ_WRITE)
+                     throws DatabaseError, Error {
+        Object (name : name, flavor : flavor, flags : flags);
+        init ();
+    }
+
+    /**
+     * Initialize database. Implemented for Initiable interface.
+     *
+     * @param cancellable a cancellable (unused)
+     * @return true on success, false on error
+     * @throws DatabaseError if anything goes wrong
+     */
+    public bool init (Cancellable? cancellable = null) throws Error {
+        var path = this.build_path ();
         if (flags == Flags.READ_ONLY) {
             Sqlite.Database.open_v2 (path, out this.db, Sqlite.OPEN_READONLY);
         } else {
             Sqlite.Database.open (path, out this.db);
         }
+
         if (this.db.errcode () != Sqlite.OK) {
             var msg = _("Error while opening SQLite database %s: %s");
             throw new DatabaseError.OPEN (msg, path, this.db.errmsg ());
@@ -166,6 +195,8 @@ public class Rygel.Database.Database : Object {
         this.db.create_collation ("CASEFOLD",
                                   Sqlite.UTF8,
                                   Database.utf8_collate);
+
+        return true;
     }
 
     /**
