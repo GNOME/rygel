@@ -219,14 +219,17 @@ public abstract class Rygel.MediaFileItem : MediaItem {
                 mime_to_ext.set ("video/" + video, video);
             }
             mime_to_ext.set ("video/x-matroska", "mkv");
+            mime_to_ext.set ("video/x-mkv", "mkv");
 
             // audios
             mime_to_ext.set ("audio/x-wav", "wav");
             mime_to_ext.set ("audio/x-matroska", "mka");
-            mime_to_ext.set ("audio/L16","pcm");
-            mime_to_ext.set ("audio/vnd.dlna.adts","adts");
-            mime_to_ext.set ("audio/mpeg","mp3");
-            mime_to_ext.set ("audio/3gpp","3gp");
+            mime_to_ext.set ("audio/x-mkv", "mka");
+            mime_to_ext.set ("audio/x-mka", "mka");
+            mime_to_ext.set ("audio/L16", "lpcm");
+            mime_to_ext.set ("audio/vnd.dlna.adts", "adts");
+            mime_to_ext.set ("audio/mpeg", "mp3");
+            mime_to_ext.set ("audio/3gpp", "3gp");
 
             // images
             string[] images = {"jpeg", "png"};
@@ -243,8 +246,11 @@ public abstract class Rygel.MediaFileItem : MediaItem {
             mime_to_ext.set ("application/ogg", "ogg");
         }
 
-        if (MediaFileItem.mime_to_ext.has_key (mime_type)) {
-            return mime_to_ext.get (mime_type);
+        // Use first path of mime type to accomodate for audio/L16 variats
+        var short_mime = mime_type.split (";")[0];
+
+        if (MediaFileItem.mime_to_ext.has_key (short_mime)) {
+            return mime_to_ext.get (short_mime);
         }
 
         return "";
