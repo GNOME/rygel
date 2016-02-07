@@ -201,12 +201,7 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
     {
         var query = this.get_sql_count_with_filter (where_filter);
         try {
-            var stmt = this.lms_db.prepare_and_init (query, args.values);
-            if (stmt.step () != Sqlite.ROW) {
-                return 0;
-            }
-
-            return stmt.column_int (0);
+            return this.lms_db.query_value (query, args.values);
         } catch (DatabaseError e) {
             warning ("Query failed: %s", e.message);
 
@@ -228,8 +223,8 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
 
         var query = this.get_sql_all_with_filter (where_filter);
         try {
-            var stmt = this.lms_db.prepare_and_init (query, args.values);
-            while (Database.get_children_step (stmt)) {
+            var cursor = this.lms_db.exec_cursor (query, args.values);
+            foreach (var stmt in cursor) {
                 children.add (this.object_from_statement (stmt));
             }
         } catch (DatabaseError e) {

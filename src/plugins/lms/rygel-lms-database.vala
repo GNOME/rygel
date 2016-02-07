@@ -85,66 +85,6 @@ public class Rygel.LMS.Database : Rygel.Database.Database, Initable {
         }
     }
 
-
-    public Statement prepare_and_init (string   query,
-                                       GLib.Value[]? arguments)
-                                        throws DatabaseError {
-
-        var statement = this.prepare (query);
-
-        for (var i = 1; i <= arguments.length; ++i) {
-            int sqlite_err;
-            unowned GLib.Value current_value = arguments[i - 1];
-
-            if (current_value.holds (typeof (int))) {
-                sqlite_err = statement.bind_int (i, current_value.get_int ());
-                if (sqlite_err != Sqlite.OK)
-                    throw new DatabaseError.BIND("Unable to bind value %d",
-                                                 sqlite_err);
-            } else if (current_value.holds (typeof (int64))) {
-                sqlite_err = statement.bind_int64 (i, current_value.get_int64 ());
-                if (sqlite_err != Sqlite.OK)
-                    throw new DatabaseError.BIND("Unable to bind value %d",
-                                                 sqlite_err);
-            } else if (current_value.holds (typeof (uint64))) {
-                sqlite_err = statement.bind_int64 (i, (int64) current_value.get_uint64 ());
-                if (sqlite_err != Sqlite.OK)
-                    throw new DatabaseError.BIND("Unable to bind value %d",
-                                                 sqlite_err);
-            } else if (current_value.holds (typeof (long))) {
-                sqlite_err = statement.bind_int64 (i, current_value.get_long ());
-                if (sqlite_err != Sqlite.OK)
-                    throw new DatabaseError.BIND("Unable to bind value %d",
-                                                 sqlite_err);
-            } else if (current_value.holds (typeof (uint))) {
-                sqlite_err = statement.bind_int64 (i, current_value.get_uint ());
-                if (sqlite_err != Sqlite.OK)
-                    throw new DatabaseError.BIND("Unable to bind value %d",
-                                                 sqlite_err);
-            } else if (current_value.holds (typeof (string))) {
-                sqlite_err = statement.bind_text (i, current_value.get_string ());
-                if (sqlite_err != Sqlite.OK)
-                    throw new DatabaseError.BIND("Unable to bind value %d",
-                                                 sqlite_err);
-            } else if (current_value.holds (typeof (void *))) {
-                if (current_value.peek_pointer () == null) {
-                    sqlite_err = statement.bind_null (i);
-                    if (sqlite_err != Sqlite.OK)
-                        throw new DatabaseError.BIND("Unable to bind value %d",
-                                                     sqlite_err);
-                } else {
-                    assert_not_reached ();
-                }
-            } else {
-                var type = current_value.type ();
-                warning (_("Unsupported type %s"), type.name ());
-                assert_not_reached ();
-            }
-        }
-
-        return statement;
-    }
-
     public static void find_object(string id, Statement stmt) throws DatabaseError {
 
         (void) stmt.reset();

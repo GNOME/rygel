@@ -108,10 +108,7 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
         }
         var query = Albums.SQL_CHILD_COUNT_WITH_FILTER_TEMPLATE.printf (filter);
         try {
-            var stmt = this.lms_db.prepare_and_init (query, args.values);
-            if (stmt.step () == Sqlite.ROW) {
-                count += stmt.column_int (0);
-            }
+            count += this.lms_db.query_value (query, args.values);
         } catch (DatabaseError e) {
             warning ("Query failed: %s", e.message);
         }
@@ -136,8 +133,8 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
         }
         var query = Albums.SQL_CHILD_ALL_WITH_FILTER_TEMPLATE.printf (filter);
         try {
-            var stmt = this.lms_db.prepare_and_init (query, args.values);
-            while (Database.get_children_step (stmt)) {
+            var cursor = this.lms_db.exec_cursor (query, args.values);
+            foreach (var stmt in cursor) {
                 var album_id = stmt.column_text (13);
                 var album = new Album (album_id, this, "", this.lms_db);
 
