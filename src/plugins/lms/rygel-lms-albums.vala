@@ -21,6 +21,7 @@
  */
 
 using Rygel;
+using Rygel.Database;
 using Sqlite;
 
 public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {

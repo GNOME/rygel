@@ -54,7 +54,7 @@ public class Rygel.LMS.RootContainer : Rygel.SimpleContainer {
                                                      _("Pictures"),
                                                      this.lms_db));
 
-        } catch (DatabaseError e) {
+        } catch (Error e) {
             warning ("%s\n", e.message);
 
             /* TODO if db does not exist we should

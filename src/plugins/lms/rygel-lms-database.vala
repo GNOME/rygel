@@ -1,8 +1,9 @@
 /*
- * Copyright (C) 2009,2011 Jens Georg <mail@jensge.org>,
+ * Copyright (C) 2009,2011,2016 Jens Georg <mail@jensge.org>,
  *           (C) 2013 Intel Corporation.
  *
  * Author: Jussi Kukkonen <jussi.kukkonen@intel.com>
+ *         Jens Georg <mail@jensge.org>
  *
  * This file is part of Rygel.
  *
@@ -22,26 +23,23 @@
  */
 
 using Rygel;
+using Rygel.Database;
 using Gee;
 using Sqlite;
 
-public errordomain Rygel.LMS.DatabaseError {
-    OPEN,
-    PREPARE,
-    BIND,
-    STEP,
-    NOT_FOUND
-}
-
-public class Rygel.LMS.Database {
+public class Rygel.LMS.Database : Rygel.Database.Database, Initable {
 
     public signal void db_updated(uint64 old_update_id, uint64 new_update_id);
 
-    private Sqlite.Database db;
     private LMS.DBus lms_proxy;
     private uint64 update_id;
 
-    public Database () throws DatabaseError {
+    public Database () throws DatabaseError, Error {
+        Object (name: ":memory:");
+        init ();
+    }
+
+    public bool init (Cancellable? cancellable = null) throws Error {
         string db_path;
         try {
             lms_proxy = Bus.get_proxy_sync (BusType.SESSION,
@@ -60,25 +58,9 @@ public class Rygel.LMS.Database {
             debug  ("Using default sqlite database location %s", db_path);
         }
 
-        Sqlite.Database.open (db_path, out this.db);
-        if (this.db.errcode () != Sqlite.OK) {
-            throw new DatabaseError.OPEN ("Failed to open '%s': %d",
-                                          db_path,
-                                          this.db.errcode () );
-        }
+        this.name = db_path;
 
-        this.db.create_function ("contains",
-                                 2,
-                                 Sqlite.UTF8,
-                                 null,
-                                 Rygel.Database.Database.utf8_contains,
-                                 null,
-                                 null);
-
-        this.db.create_collation ("CASEFOLD",
-                                  Sqlite.UTF8,
-                                  Rygel.Database.Database.utf8_collate);
-
+        return base.init ();
     }
 
     private void on_lms_properties_changed (DBusProxy lms_proxy,
@@ -104,29 +86,11 @@ public class Rygel.LMS.Database {
     }
 
 
-    public Statement prepare (string query_string) throws DatabaseError {
-        Statement statement;
-
-        var err = this.db.prepare_v2 (query_string, -1, out statement);
-        if (err != Sqlite.OK)
-            throw new DatabaseError.PREPARE ("Unable to create statement '%s': %d",
-                                             query_string,
-                                             err);
-        return statement;
-    }
-
-
     public Statement prepare_and_init (string   query,
                                        GLib.Value[]? arguments)
                                         throws DatabaseError {
 
-        Statement statement;
-
-        var err = this.db.prepare_v2 (query, -1, out statement);
-        if (err != Sqlite.OK)
-            throw new DatabaseError.PREPARE ("Unable to create statement '%s': %d",
-                                             query,
-                                             err);
+        var statement = this.prepare (query);
 
         for (var i = 1; i <= arguments.length; ++i) {
             int sqlite_err;

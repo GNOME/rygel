@@ -21,6 +21,7 @@
  */
 
 using Rygel;
+using Rygel.Database;
 using Sqlite;
 
 public class Rygel.LMS.AllVideos : Rygel.LMS.CategoryContainer {
