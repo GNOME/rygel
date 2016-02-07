@@ -26,7 +26,10 @@ namespace Rygel.Database {
 
     public errordomain DatabaseError {
         SQLITE_ERROR, /// Error code translated from SQLite
-        OPEN          /// Error while opening database file
+        OPEN,         /// Error while opening database file
+        PREPARE,      /// Error while preparing a statement
+        BIND,         /// Error while binding values to a statement
+        STEP          /// Error while running through a result set
     }
 
     public enum Flavor {
@@ -209,8 +212,8 @@ public class Rygel.Database.Database : Object, Initable {
      * @throws DatabaseError if the underlying SQLite operation fails.
      */
     public Cursor exec_cursor (string        sql,
-                                       GLib.Value[]? arguments = null)
-                                       throws DatabaseError {
+                               GLib.Value[]? arguments = null)
+                               throws DatabaseError {
         return new Cursor (this.db, sql, arguments);
     }
 
@@ -289,5 +292,17 @@ public class Rygel.Database.Database : Object, Initable {
             critical (_("Failed to roll back transaction: %s"),
                       error.message);
         }
+    }
+
+    public Statement prepare (string sql) throws DatabaseError {
+        Statement statement;
+
+        var err = this.db.prepare_v2 (sql, -1, out statement);
+        if (err != Sqlite.OK) {
+            var msg = "Unable to prepare statement '%s' : %s";
+            throw new DatabaseError.PREPARE (msg, sql, this.db.errmsg ());
+        }
+
+        return statement;
     }
 }
