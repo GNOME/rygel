@@ -296,7 +296,8 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         } else if (this.seek is HTTPByteSeekRequest) {
             var byte_seek = this.seek as HTTPByteSeekRequest;
             if (byte_seek.range_length >= byte_seek.total_size) {
-                // How/why would this happen?
+                // Can happen on (invalid) seeks on resources with unspecified
+                // size
                 return true;
             }
 
