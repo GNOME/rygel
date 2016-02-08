@@ -1,3 +1,48 @@
+0.29.2
+======
+
+Database:
+ - Use GObject-style construction for Database
+ - Add possibility to re-bind a Cursor
+
+Server:
+ - Fix thumbnails with some Samsung TVs
+ - Hide engine-internal URIs
+ - Indent request headers for better readability
+ - Fix Range header of resources with unknown length
+ - Improve MIME -> extension mapping
+ - Add explicit check for @restricted
+
+MediaExport:
+ - Really remove broken/empty cache DVD file
+ - Skip DVD if lsdvd isn't available instead of blacklisting
+
+GStreamer Media Engine:
+ - Fix serving resources with unspecified length
+
+Gst-Launch:
+ - Fix setting of DLNA profile
+
+ LMS:
+  - Replace custom database functions with implementations from Rygel.Database
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=721312
+ - https://bugzilla.gnome.org/show_bug.cgi?id=740266
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+
+Added/updated translations
+ - es, courtesy of Daniel Mustieles
+ - lv, courtesy of Rūdolfs Mazurs
+ - pl, courtesy of Piotr Drąg
+ - sk, courtesy of Dušan Kazik
+
 0.29.1
 ======
 
