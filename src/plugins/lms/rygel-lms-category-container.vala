@@ -352,7 +352,7 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
 
     private void on_db_updated(uint64 old_id, uint64 new_id) {
         try {
-            this.lms_db.query_value (this.sql_count);
+            this.child_count = this.lms_db.query_value (this.sql_count);
 
             GLib.Value[] args = { new_id < old_id ? 0 : old_id,
                                   new_id };
