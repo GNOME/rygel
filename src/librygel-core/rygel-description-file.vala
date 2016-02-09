@@ -318,7 +318,10 @@ public class Rygel.DescriptionFile : Object {
         // Check if the X_DLNADOC node has already dev_cap
         // dlnadoc_xpath checks for a X_DLNADOC element that contains a
         // capablity. We can return if that's the case.
-        if (this.apply_xpath (dlnadoc_xpath, null)) {
+        Xml.XPath.Object *tmp;
+        if (this.apply_xpath (dlnadoc_xpath, out tmp)) {
+            delete tmp;
+
             return;
         }
 
