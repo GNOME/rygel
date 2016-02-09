@@ -385,8 +385,12 @@ public class Rygel.DescriptionFile : Object {
         var retval = result != null &&
                      result->type == XPath.ObjectType.NODESET &&
                      !result->nodesetval->is_empty ();
-
-        xpo = result;
+        if (!retval && result != null) {
+            xpo = null;
+            delete result;
+        } else {
+            xpo = result;
+        }
 
         return retval;
     }
