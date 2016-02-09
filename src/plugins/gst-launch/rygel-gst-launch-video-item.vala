@@ -38,7 +38,7 @@ public class Rygel.GstLaunch.VideoItem : Rygel.VideoItem {
         base (id, parent, title);
 
         this.mime_type = mime_type;
-        this.add_uri ("gst-launch://" + launch_line);
+        this.add_uri ("gst-launch://" + Soup.URI.encode (launch_line, ".!"));
 
         // Call the MediaEngine to determine which item representations it can support
         var media_engine = MediaEngine.get_default ( );
