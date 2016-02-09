@@ -49,6 +49,7 @@ internal abstract class Rygel.GstUtils {
 
             if (uri.has_prefix ("gst-launch://")) {
                 var description = uri.replace ("gst-launch://", "");
+                description = Soup.URI.decode (description);
 
                 src = Gst.parse_bin_from_description (description, true);
             } else if (uri.has_prefix ("dvd://")) {

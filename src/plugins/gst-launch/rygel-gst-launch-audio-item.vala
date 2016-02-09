@@ -37,6 +37,6 @@ public class Rygel.GstLaunch.AudioItem : Rygel.AudioItem {
         base (id, parent, title);
 
         this.mime_type = mime_type;
-        this.add_uri ("gst-launch://" + launch_line);
+        this.add_uri ("gst-launch://" + Soup.URI.encode (launch_line, ".!"));
     }
 }
