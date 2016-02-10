@@ -34,6 +34,7 @@ internal class Rygel.MediaExport.DVDTrack : Rygel.VideoItem {
 
         // We don't have proper access to tbe bytes, but time seek should week
         res.dlna_operation = DLNAOperation.TIMESEEK;
+        res.extension = "mpg";
 
         return res;
     }

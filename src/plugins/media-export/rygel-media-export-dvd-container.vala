@@ -171,7 +171,12 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
                 item.width = int.parse (it->children->content);
             } else if (it->name == "height") {
                 item.height = int.parse (it->children->content);
+            } else if (it->name == "PAL") {
+                item.dlna_profile = "MPEG_PS_PAL";
+            } else if (it->name == "NTSC") {
+                item.dlna_profile = "MPEG_PS_NTSC";
             }
+            // TODO: Japanese formats...
             it = it->next;
         }
 
