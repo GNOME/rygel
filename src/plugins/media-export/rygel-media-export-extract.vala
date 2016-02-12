@@ -24,11 +24,6 @@ using Gst.PbUtils;
 using GUPnPDLNA;
 using Gst;
 
-struct UriBuffer {
-    uint8 data[4096];
-    size_t length;
-}
-
 const string UPNP_CLASS_PHOTO = "object.item.imageItem.photo";
 const string UPNP_CLASS_MUSIC = "object.item.audioItem.musicTrack";
 const string UPNP_CLASS_VIDEO = "object.item.videoItem";
@@ -37,22 +32,16 @@ const string UPNP_CLASS_PLAYLIST = "object.item.playlistItem";
 const string STATUS_LINE_TEMPLATE = "RESULT|%s|%" + size_t.FORMAT + "|%s\n";
 const string ERROR_LINE_TEMPLATE = "ERROR|%s|%d|%s\n";
 
-const string FATAL_ERROR_PREFIX = "FATAL_ERROR|";
-const string FATAL_ERROR_SUFFIX = "\n"; //|0|Killed by signal\n";
-
 static int in_fd = 0;
 static int out_fd = 1;
-static int err_fd = 2;
 static bool metadata = false;
 static MainLoop loop;
 static DataInputStream input_stream;
 static OutputStream output_stream;
-static OutputStream error_stream;
 static Rygel.InfoSerializer serializer;
 static MediaArt.Process media_art;
 static Discoverer discoverer;
 static ProfileGuesser guesser;
-static UriBuffer last_uri;
 
 public errordomain MetadataExtractorError {
     GENERAL
@@ -61,19 +50,10 @@ public errordomain MetadataExtractorError {
 static const OptionEntry[] options = {
     { "input-fd", 'i', 0, OptionArg.INT, ref in_fd, "File descriptor used for input", null },
     { "output-fd", 'o', 0, OptionArg.INT, ref out_fd, "File descriptor used for output", null },
-    { "error-fd", 'e', 0, OptionArg.INT, ref err_fd, "File descriptor used for severe errors", null },
     { "extract-metadata", 'm', 0, OptionArg.NONE, ref metadata,
         "Whether to extract all metadata from the files or just basic information", null },
     { null }
 };
-
-static void segv_handler (int signal) {
-    Posix.write (err_fd, (void *) last_uri.data, last_uri.length);
-    Posix.write (err_fd, (void *) FATAL_ERROR_SUFFIX, 1);
-    Posix.fsync (err_fd);
-
-    Posix.exit(-1);
-}
 
 async void run () {
     while (true) {
@@ -96,11 +76,6 @@ async void run () {
                 try {
                     // Copy current URI to statically allocated memory area to
                     // dump to fd in the signal handler
-                    last_uri.length = parts[0].length;
-                    GLib.Memory.set (last_uri.data, 0, 4096);
-                    GLib.Memory.copy (last_uri.data,
-                                      (void *) parts[0],
-                                      parts[0].length);
                     var is_text = parts[1].has_prefix ("text/") ||
                                   parts[1].has_suffix ("xml");
                     if (metadata && !is_text) {
@@ -241,16 +216,10 @@ int main (string[] args) {
     serializer = new Rygel.InfoSerializer (media_art);
     Posix.nice (19);
 
-    var action = new Posix.sigaction_t ();
-    action.sa_handler = segv_handler;
-    Posix.sigaction (Posix.SIGSEGV, action, null);
-    Posix.sigaction (Posix.SIGABRT, action, null);
-
-    message ("Started with descriptors %d %d %d", in_fd, out_fd, err_fd);
+    message ("Started with descriptors %d (in) %d (out)", in_fd, out_fd);
 
     input_stream = new DataInputStream (new UnixInputStream (in_fd, true));
     output_stream = new UnixOutputStream (out_fd, true);
-    error_stream = new UnixOutputStream (err_fd, true);
 
     loop = new MainLoop ();
     try {

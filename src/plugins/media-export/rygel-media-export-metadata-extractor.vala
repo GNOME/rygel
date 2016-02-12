@@ -59,9 +59,6 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     /// Stream for receiving normal input from the child
     private DataInputStream output_stream;
 
-    /// Stream for receiving exception events from the child
-    private DataInputStream error_stream;
-
     /// Cancellable for cancelling child I/O
     private Cancellable child_io_cancellable;
 
@@ -93,7 +90,6 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         MX_EXTRACT_PATH,
         "--input-fd=3",
         "--output-fd=4",
-        "--error-fd=5",
         "--extract-metadata",
         null
     };
@@ -118,7 +114,6 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
 
         int[] pipe_in = { 0, 0 };
         int[] pipe_out = { 0, 0 };
-        int[] pipe_err = { 0, 0 };
 
         bool restart = false;
         do {
@@ -126,30 +121,21 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             try {
                 open_pipe (pipe_in, Posix.FD_CLOEXEC);
                 open_pipe (pipe_out, Posix.FD_CLOEXEC);
-                open_pipe (pipe_err, Posix.FD_CLOEXEC);
 
                 this.launcher = new SubprocessLauncher (SubprocessFlags.NONE);
                 this.launcher.take_fd (pipe_in[0], 3);
                 this.launcher.take_fd (pipe_out[1], 4);
-                this.launcher.take_fd (pipe_err[1], 5);
 
                 this.input_stream = new UnixOutputStream (pipe_in[1], true);
                 this.output_stream = new DataInputStream (
                                                 new UnixInputStream (pipe_out[0],
                                                                      true));
-                this.error_stream = new DataInputStream (
-                                                new UnixInputStream (pipe_err[0],
-                                                                     true));
-
                 this.child_io_cancellable = new Cancellable ();
 
                 this.output_stream.read_line_async.begin (Priority.DEFAULT,
                                                           this.child_io_cancellable,
                                                           this.on_input);
                 this.error_uri = null;
-                this.error_stream.read_line_async.begin (Priority.DEFAULT,
-                                                         this.child_io_cancellable,
-                                                         this.on_child_error);
 
                 if (this.extract_metadata) {
                     MX_EXTRACT_ARGV[4] = "--extract-metadata";
@@ -181,24 +167,6 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
         } while (restart);
 
         debug ("Metadata extractor finished.");
-    }
-
-    private void on_child_error (GLib.Object? object, AsyncResult result) {
-        var stream = object as DataInputStream;
-        if (stream != null) {
-            try {
-                this.error_uri = stream.read_line_async.end (result);
-                warning (_("Child failed fatally. Last uri was %s"),
-                         this.error_uri);
-            } catch (Error error) {
-                if (error is IOError.CANCELLED) {
-                    debug ("Reading was cancelled...");
-                } else {
-                    warning (_("Reading from child's error stream failed: %s"),
-                             error.message);
-                }
-            }
-        }
     }
 
     private void on_input (GLib.Object? object, AsyncResult result) {
@@ -283,6 +251,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
             return;
         }
 
+        this.error_uri = file.get_uri ();
         var s = "EXTRACT %s|%s\n".printf (file.get_uri (), content_type);
         try {
             this.input_stream.write_all (s.data, null, this.child_io_cancellable);
