@@ -221,6 +221,8 @@ public class Rygel.HTTPGet : HTTPRequest {
 
         // Add headers
         this.handler.add_response_headers (this);
+        this.msg.response_headers.append ("Server",
+                                          this.http_server.server_name);
 
         var response = this.handler.render_body (this);
 

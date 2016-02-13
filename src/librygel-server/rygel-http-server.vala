@@ -31,6 +31,7 @@ using Gee;
 
 public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
     public string path_root { get; private set; }
+    public string server_name { get; set; }
 
     // Reference to root container of associated ContentDirectory
     public MediaContainer root_container;
@@ -41,9 +42,22 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
 
     public Cancellable cancellable { get; set; }
 
+    private const string SERVER_TEMPLATE = "%s/%s %s/%s DLNA/1.51 UPnP/1.0";
+
     public HTTPServer (ContentDirectory content_dir,
                        string           name) {
         base ();
+
+        try {
+            var config = MetaConfig.get_default ();
+            this.server_name = config.get_string (name, "server-name");
+        } catch (Error error) {
+            this.server_name = SERVER_TEMPLATE.printf
+                                        (name,
+                                         BuildConfig.PACKAGE_VERSION,
+                                         Environment.get_prgname (),
+                                         BuildConfig.PACKAGE_VERSION);
+        }
 
         this.root_container = content_dir.root_container;
         this.context = content_dir.context;
