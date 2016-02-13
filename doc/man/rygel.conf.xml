@@ -109,18 +109,6 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
     <variablelist>
       <varlistentry>
         <term>
-          <option>upnp-enabled</option>
-        </term>
-        <listitem>
-          <para>Enable/disable UPnP sharing of the media files. If set to
-            <userinput>false</userinput>, <application>&dhpackage;</application>  will
-            still offer HTTP proxy URLs for its media files but not actively
-            advertise them via UPnP.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
           <option>interface=<replaceable>INTERFACE</replaceable></option>
         </term>
         <listitem>
@@ -294,6 +282,14 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           </para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <option>server-name</option>
+        </term>
+        <listitem>
+          <para>A string that will be sent as the &quot;Server:&quot; header in a HTTP response.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsect1>
   <refsect1>
@@ -305,7 +301,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>mode-on-suspend</option>
         </term>
         <listitem>
-          <para>The <code>NetworkInterfaceMode</code> that should be used when suspended. Default is "Unimplemented", other valid values are "IP-up-Periodic”, "IP-down-no-Wake", "IP-down-with-WakeOn", "IP-down-with-WakeAuto", "IP-down-with-WakeOnAuto".</para>
+          <para>The <code>NetworkInterfaceMode</code> that should be used when suspended. Default is &quot;Unimplemented&quot;, other valid values are &quot;IP-up-Periodic”, &quot;IP-down-no-Wake&quot;, &quot;IP-down-with-WakeOn&quot;, &quot;IP-down-with-WakeAuto&quot;, &quot;IP-down-with-WakeOnAuto&quot;.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -313,7 +309,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>supported-transport</option>
         </term>
         <listitem>
-          <para>Optional <code>WakeSupportedTransport</code> that the service should advertize. Valid values are "UDP-Broadcast", "UDP-Unicast", "TCP-Unicast", "Other".</para>
+          <para>Optional <code>WakeSupportedTransport</code> that the service should advertize. Valid values are &quot;UDP-Broadcast&quot;, &quot;UDP-Unicast&quot;, &quot;TCP-Unicast&quot;, &quot;Other&quot;.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
