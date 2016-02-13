@@ -22,7 +22,8 @@
 
 internal errordomain DVDParserError {
     GENERAL,
-    NOT_AVAILABLE;
+    NOT_AVAILABLE,
+    GSTREAMER_NOT_AVAILABLE;
 }
 
 internal class Rygel.MediaExport.DVDParser : Extractor {
@@ -174,10 +175,61 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
             }
         }
 
+        yield this.query_length ();
+
         return Xml.Parser.read_file (this.cache_file.get_path (),
                                      null,
                                      Xml.ParserOption.NOERROR |
                                      Xml.ParserOption.NOWARNING |
                                      Xml.ParserOption.NONET);
+    }
+
+    private async int64 query_length () throws Error {
+        bool failed = false;
+
+        var pipeline = new Gst.Pipeline ("DVD title size query");
+        dynamic Gst.Element? src = Gst.ElementFactory.make ("dvdreadsrc", "src");
+        var sink = Gst.ElementFactory.make ("fakesink", "sink");
+
+        if (src == null) {
+            var msg = _("The dvdreadsrc plugin is not installed. DVD support will not work");
+            throw new DVDParserError.GSTREAMER_NOT_AVAILABLE (msg);
+        }
+
+        pipeline.add_many (src, sink);
+        src.link (sink);
+        src.device = file.get_path ();
+
+        var bus = pipeline.get_bus ();
+        bus.add_signal_watch ();
+        bus.message["state-changed"].connect ( (b, msg) => {
+            if (msg.src == pipeline) {
+                Gst.State new_state;
+                msg.parse_state_changed (null, out new_state, null);
+                if (new_state == Gst.State.PAUSED) {
+                    query_length.callback ();
+                }
+            }
+        });
+
+        bus.message["error"].connect ( () => {
+            failed = true;
+            query_length.callback ();
+        });
+
+        pipeline.set_state (Gst.State.PAUSED);
+        yield;
+        bus.remove_signal_watch ();
+
+        if (failed) {
+            throw new DVDParserError.GENERAL (_("Querying the size of the tile failed"));
+        }
+
+        int64 duration;
+        pipeline.query_duration (Gst.Format.BYTES, out duration);
+
+        warning ("DVD title has %lld bytes", duration);
+
+        return duration;
     }
 }
