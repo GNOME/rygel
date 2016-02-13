@@ -22,7 +22,7 @@
 
 using GUPnP;
 
-internal class Rygel.MediaExport.DVDTrack : Rygel.VideoItem {
+internal class Rygel.MediaExport.DVDTrack : VideoItem {
     public Xml.Node* node { private get; construct set; }
     public int track { private get; construct set; }
 
@@ -87,5 +87,12 @@ internal class Rygel.MediaExport.DVDTrack : Rygel.VideoItem {
         res.extension = "mpg";
 
         return res;
+    }
+
+    public override async void commit_custom (bool override_guarded)
+                                              throws Error {
+        if (this.node == null) {
+            yield base.commit_custom (override_guarded);
+        }
     }
 }

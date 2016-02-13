@@ -35,7 +35,7 @@ internal class Rygel.MediaExport.VideoItem : Rygel.VideoItem,
         yield this.commit_custom (true);
     }
 
-    public async void commit_custom (bool override_guarded) throws Error {
+    public virtual async void commit_custom (bool override_guarded) throws Error {
         this.changed ();
         var cache = MediaCache.get_default ();
         cache.save_item (this, override_guarded);
