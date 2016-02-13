@@ -179,6 +179,7 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
                                               buffer.length,
                                               null,
                                               "UTF-8",
+                                              Xml.ParserOption.NOBLANKS |
                                               Xml.ParserOption.NOERROR |
                                      Xml.ParserOption.NOWARNING |
                                      Xml.ParserOption.NONET);
@@ -204,7 +205,7 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
                 delete result;
             }
 
-            doc->dump_memory_enc_format (out buffer, null, "UTF-8", true);
+            doc->dump_memory_enc_format (out buffer, null, "UTF-8", false);
             delete doc;
 
             yield this.cache_file.replace_contents_async (buffer.data,

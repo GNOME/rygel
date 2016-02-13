@@ -57,14 +57,17 @@ internal class Rygel.MediaExport.DVDTrack : VideoItem {
 
             var it = node->children;
             while (it != null) {
+            warning ("name: %s", it->name);
                 if (it->name == "length") {
                     this.duration = (int) double.parse (it->children->content);
                 } else if (it->name == "width") {
                     this.width = int.parse (it->children->content);
                 } else if (it->name == "height") {
                     this.height = int.parse (it->children->content);
-                } else if (it->name == "format") {
-                    this.dlna_profile += "_" + it->children->content;
+            } else if (it->name == "format") {
+                this.dlna_profile += "_" + it->children->content;
+ /*           } else if (it->name == "rygel:bytelength") {
+                this.size = int64.parse (it->children->content); */
                 }
                 // TODO: Japanese formats...
                 it = it->next;
@@ -88,6 +91,9 @@ internal class Rygel.MediaExport.DVDTrack : VideoItem {
 
         // We don't have proper access to tbe bytes, but time seek should week
         res.dlna_operation = DLNAOperation.TIMESEEK;
+        if (this.size > 0) {
+            res.dlna_operation |= DLNAOperation.RANGE;
+        }
         res.extension = "mpg";
 
         return res;
