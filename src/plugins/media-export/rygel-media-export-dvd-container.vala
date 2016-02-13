@@ -55,9 +55,7 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
         var child_count = 0;
 
         while (it != null) {
-            if (it->name == "title") {
-                this.title = it->children->content;
-            } else if (it->name == "track") {
+            if (it->name == "track") {
                 child_count++;
             }
 
