@@ -45,24 +45,28 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
     public override void constructed () {
         base.constructed ();
 
+        this.add_uri (File.new_for_path (path).get_uri ());
+
         var cache_path = this.get_cache_path (this.path);
         var doc = Xml.Parser.read_file (cache_path,
                                         null,
                                         Xml.ParserOption.NOERROR |
                                         Xml.ParserOption.NOWARNING);
         this.doc = new GUPnP.XMLDoc (doc);
-        var it = doc->get_root_element ()->children;
-        var child_count = 0;
 
-        while (it != null) {
-            if (it->name == "track") {
-                child_count++;
+        var context = new Xml.XPath.Context (this.doc.doc);
+        var xpo = context.eval ("/lsdvd/track");
+        if (xpo->type != Xml.XPath.ObjectType.NODESET) {
+            warning ("No tracks found in DVD");
+        } else {
+            for (int i = 0; i < xpo->nodesetval->length (); i++) {
+                var node = xpo->nodesetval->item (i);
+                var item = this.get_item_for_xml (i, node);
+                this.add_child_item (item);
             }
-
-            it = it->next;
         }
 
-        this.child_count = child_count;
+        delete xpo;
     }
 
     public override async MediaObjects? get_children (
@@ -72,23 +76,6 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
                                                      Cancellable? cancellable)
                                                      throws Error {
         var children = new MediaObjects ();
-
-        var context = new Xml.XPath.Context (this.doc.doc);
-        var xpo = context.eval ("/lsdvd/track");
-        if (xpo->type != Xml.XPath.ObjectType.NODESET) {
-            delete xpo;
-            warning ("No tracks found in DVD");
-
-            return children;
-        }
-
-        for (int i = 0; i < xpo->nodesetval->length (); i++) {
-            var node = xpo->nodesetval->item (i);
-            var item = this.get_item_for_xml (i, node);
-            children.add (item);
-        }
-
-        delete xpo;
 
         return children;
     }
@@ -150,7 +137,7 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
     private MediaFileItem get_item_for_xml (int track, Xml.Node *node) {
         var item = new DVDTrack (this.get_track_id (track),
                                  this,
-                                 track,
+                                 _("Title %d").printf (track + 1),
                                  node);
         item.parent_ref = this;
 

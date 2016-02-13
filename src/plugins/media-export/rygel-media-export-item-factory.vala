@@ -192,12 +192,23 @@ namespace Rygel.MediaExport.ItemFactory {
                 item = ItemFactory.create_playlist_item (file, parent, "");
                 break;
             case DVDContainer.UPNP_CLASS:
-                object = new DVDContainer ("dvd:" + id, parent, "", file.get_path ());
-                object.add_uri (file.get_uri ());
+                var container = new DVDContainer ("dvd:" + id, parent, "", file.get_path ());
+                object = container;
 
                 if (file_info != null) {
                     apply_file_info (object, file_info);
-                    object.title =  strip_invalid_entities (object.title);
+                    object.title = strip_invalid_entities (object.title);
+                }
+
+                // If the DVD has a single track, just export that as a plain
+                // video. Copy over all important information such as
+                // modified, the uri and the title.
+                if (container.child_count == 1) {
+                    object = container.children.get (0);
+                    object.title = container.title;
+                    object.modified = container.modified;
+                    object.get_uris ().clear ();
+                    object.add_uri (container.get_primary_uri ());
                 }
 
                 return object;
@@ -335,15 +346,16 @@ namespace Rygel.MediaExport.ItemFactory {
 
     private static void apply_file_info (MediaObject object, Variant v)
                                          throws Error {
-        ItemFactory.check_variant_type (v, "(sstt)");
+        ItemFactory.check_variant_type (v, "(stst)");
 
         var it = v.iterator ();
 
-        Variant display_name;
-        display_name = it.next_value ();
+        var display_name = it.next_value ();
         if (object.title == null || object.title == "") {
             object.title = display_name.dup_string ();
         }
+
+        object.modified = (int64) it.next_value ().get_uint64 ();
 
         if (object is MediaFileItem) {
             var item = object as MediaFileItem;
@@ -353,7 +365,6 @@ namespace Rygel.MediaExport.ItemFactory {
                 item.mime_type = mime.dup_string ();
             }
 
-            item.modified = (int64) it.next_value ().get_uint64 ();
             if (item.date == null) {
                 TimeVal tv = { (long) item.modified, 0 };
                 item.date = tv.to_iso8601 ();

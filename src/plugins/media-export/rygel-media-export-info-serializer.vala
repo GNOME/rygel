@@ -109,12 +109,12 @@ internal class Rygel.InfoSerializer : GLib.Object {
     }
 
     private Variant serialize_file_info (FileInfo info) {
-        return new Variant ("(sstt)",
+        return new Variant ("(stst)",
                             info.get_display_name (),
-                            ContentType.get_mime_type
-                                        (info.get_content_type ()),
                             info.get_attribute_uint64
                                         (FileAttribute.TIME_MODIFIED),
+                            ContentType.get_mime_type
+                                        (info.get_content_type ()),
                             info.get_size ());
     }
 

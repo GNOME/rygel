@@ -28,54 +28,57 @@ internal class Rygel.MediaExport.DVDTrack : Rygel.VideoItem {
 
     public DVDTrack (string         id,
                      MediaContainer parent,
-                     int            track,
+                     string         title,
                      Xml.Node*      node) {
         Object (id : id,
                 parent : parent,
                 node : node,
-                title : _("Title %d").printf (track + 1),
-                upnp_class : Rygel.VideoItem.UPNP_CLASS,
-                track : track);
+                title : title,
+                upnp_class : Rygel.VideoItem.UPNP_CLASS);
     }
 
     public override void constructed () {
         base.constructed ();
 
-        var uri = new Soup.URI (this.parent.get_uris ()[0]);
-        uri.set_scheme ("dvd");
-        uri.set_query ("title=%d".printf (track + 1));
-        this.add_uri (uri.to_string (false));
+        // If we are created with a null node, then we are created from the
+        // database and all the information is already there.
+        if (this.node != null) {
+            var uri = new Soup.URI (this.parent.get_primary_uri ());
+            uri.set_scheme ("dvd");
+            uri.set_query ("title=%d".printf (track + 1));
+            this.add_uri (uri.to_string (false));
 
-        this.dlna_profile = "MPEG_PS";
-        this.mime_type = "video/mpeg";
+            this.dlna_profile = "MPEG_PS";
+            this.mime_type = "video/mpeg";
 
-        var it = node->children;
-        while (it != null) {
-            if (it->name == "length") {
-                this.duration = (int)double.parse (it->children->content);
-            } else if (it->name == "width") {
-                this.width = int.parse (it->children->content);
-            } else if (it->name == "height") {
-                this.height = int.parse (it->children->content);
-            } else if (it->name == "PAL") {
-                this.dlna_profile = "MPEG_PS_PAL";
-            } else if (it->name == "NTSC") {
-                this.dlna_profile = "MPEG_PS_NTSC";
+            var it = node->children;
+            while (it != null) {
+                if (it->name == "length") {
+                    this.duration = (int) double.parse (it->children->content);
+                } else if (it->name == "width") {
+                    this.width = int.parse (it->children->content);
+                } else if (it->name == "height") {
+                    this.height = int.parse (it->children->content);
+                } else if (it->name == "PAL") {
+                    this.dlna_profile = "MPEG_PS_PAL";
+                } else if (it->name == "NTSC") {
+                    this.dlna_profile = "MPEG_PS_NTSC";
+                }
+                // TODO: Japanese formats...
+                it = it->next;
             }
-            // TODO: Japanese formats...
-            it = it->next;
-        }
 
-        var media_engine = MediaEngine.get_default ();
-        media_engine.get_resources_for_item.begin (this,
-                                                   (obj, res) => {
-            var added_resources = media_engine
-                                        .get_resources_for_item.end (res);
-            debug ("Adding %d resources to this source %s",
-                   added_resources.size,
-                   this.get_primary_uri ());
-            this.get_resource_list ().add_all (added_resources);
-        });
+            var media_engine = MediaEngine.get_default ();
+            media_engine.get_resources_for_item.begin (this,
+                                                       (obj, res) => {
+                var added_resources = media_engine
+                                            .get_resources_for_item.end (res);
+                debug ("Adding %d resources to this source %s",
+                       added_resources.size,
+                       this.get_primary_uri ());
+                this.get_resource_list ().add_all (added_resources);
+            });
+        }
     }
 
     public override MediaResource get_primary_resource () {
