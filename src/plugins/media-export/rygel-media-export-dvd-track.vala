@@ -59,10 +59,8 @@ internal class Rygel.MediaExport.DVDTrack : Rygel.VideoItem {
                     this.width = int.parse (it->children->content);
                 } else if (it->name == "height") {
                     this.height = int.parse (it->children->content);
-                } else if (it->name == "PAL") {
-                    this.dlna_profile = "MPEG_PS_PAL";
-                } else if (it->name == "NTSC") {
-                    this.dlna_profile = "MPEG_PS_NTSC";
+                } else if (it->name == "format") {
+                    this.dlna_profile += "_" + it->children->content;
                 }
                 // TODO: Japanese formats...
                 it = it->next;
