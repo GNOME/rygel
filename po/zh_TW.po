@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-25 14:33+0800\n"
-"PO-Revision-Date: 2015-08-25 14:33+0800\n"
+"product=rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2016-02-09 08:57+0000\n"
+"PO-Revision-Date: 2016-02-10 11:10+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Taiwan) <zh-l10n@lists.linux.org.tw>\n"
 "Language: zh_TW\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -301,32 +301,37 @@ msgstr "無法從路徑「%s」載入模組：%s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "無法在「%2$s」中找到進入點函數「%1$s」：%3$s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:144
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:70
+#, c-format
+msgid "Failed to open plugins folder: '%s'"
+msgstr "開啟外掛程式資料夾失敗：「%s」"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "列出資料夾「%s」的內容時發生錯誤：%s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:188
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:193
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "無法載入外掛程式：%s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:221
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "無法查詢「%s」的內容類型"
 
-#: ../src/librygel-db/database-cursor.vala:82
+#: ../src/librygel-db/database-cursor.vala:99
 #, c-format
 msgid "Unsupported type %s"
 msgstr "不支援類型 %s"
 
-#: ../src/librygel-db/database.vala:143
+#: ../src/librygel-db/database.vala:175
 #, c-format
 msgid "Error while opening SQLite database %s: %s"
 msgstr "開啟 SQLite 資料庫 %s時發生錯誤：%s"
 
-#: ../src/librygel-db/database.vala:248
+#: ../src/librygel-db/database.vala:292
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "無法退回處理：%s"
@@ -523,7 +528,7 @@ msgstr "無法移動以點為前綴的檔案 %s：%s"
 msgid "Requested item '%s' not found"
 msgstr "找不到要求的項目「%s」"
 
-#: ../src/librygel-server/rygel-http-resource-handler.vala:86
+#: ../src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
 msgid "Couldn't create data source for %s"
 msgstr "無法為 %s 建立資料來源"
@@ -592,13 +597,13 @@ msgid "Failed to update object '%s': %s"
 msgstr "無法更新物件「%s」：%s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:162
-#: ../src/librygel-server/rygel-object-creator.vala:600
+#: ../src/librygel-server/rygel-object-creator.vala:606
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "無效的日期格式：%s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:171
-#: ../src/librygel-server/rygel-object-creator.vala:609
+#: ../src/librygel-server/rygel-object-creator.vala:615
 #, c-format
 msgid "Invalid date: %s"
 msgstr "無效的日期：%s"
@@ -679,23 +684,23 @@ msgstr "找不到媒體引擎。"
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init 沒有呼叫。不能繼續。"
 
-#: ../src/librygel-server/rygel-media-file-item.vala:176
+#: ../src/librygel-server/rygel-media-file-item.vala:177
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "無法決定 URI %s 的通訊協定"
 
-#: ../src/librygel-server/rygel-media-object.vala:283
+#: ../src/librygel-server/rygel-media-object.vala:284
 #, c-format
 msgid "Could not determine protocol for %s"
 msgstr "無法決定 %s 的通訊協定"
 
-#: ../src/librygel-server/rygel-media-object.vala:508
+#: ../src/librygel-server/rygel-media-object.vala:509
 #, c-format
 msgid "Bad URI: %s"
 msgstr "錯誤的 URI：%s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-object.vala:520
+#: ../src/librygel-server/rygel-media-object.vala:527
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "無法偵測 URI %s 的通訊協定。猜測為「%s」"
@@ -718,7 +723,7 @@ msgid "Missing filter"
 msgstr "缺少過濾條件"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:197
-#: ../src/librygel-server/rygel-object-creator.vala:406
+#: ../src/librygel-server/rygel-object-creator.vala:412
 msgid "No such container"
 msgstr "沒有這個容器"
 
@@ -760,39 +765,43 @@ msgstr "在「dlnaManaged」中發現不該設定的旗標"
 msgid "Invalid upnp:class given in CreateObject"
 msgstr "無效的 upnp：類別在 CreateObject 中提供"
 
-#: ../src/librygel-server/rygel-object-creator.vala:260
+#: ../src/librygel-server/rygel-object-creator.vala:259
+msgid "Object is missing the @restricted attribute"
+msgstr "物件遺失 @restricted 屬性"
+
+#: ../src/librygel-server/rygel-object-creator.vala:266
 msgid "Cannot create restricted item"
 msgstr "不能建立限制的項目"
 
-#: ../src/librygel-server/rygel-object-creator.vala:377
+#: ../src/librygel-server/rygel-object-creator.vala:383
 #, c-format
 msgid "UPnP class '%s' not supported"
 msgstr "UPnP 類別「%s」不支援"
 
-#: ../src/librygel-server/rygel-object-creator.vala:411
-#: ../src/librygel-server/rygel-object-creator.vala:423
-#: ../src/librygel-server/rygel-object-creator.vala:709
+#: ../src/librygel-server/rygel-object-creator.vala:417
+#: ../src/librygel-server/rygel-object-creator.vala:429
+#: ../src/librygel-server/rygel-object-creator.vala:715
 #: ../src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "在 %s 中建立物件是不允許的"
 
-#: ../src/librygel-server/rygel-object-creator.vala:468
+#: ../src/librygel-server/rygel-object-creator.vala:474
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "無法在「%s」下建立項目：%s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:542
+#: ../src/librygel-server/rygel-object-creator.vala:548
 #, c-format
 msgid "DLNA profile '%s' not supported"
 msgstr "DLNA 設定檔「%s」不支援"
 
-#: ../src/librygel-server/rygel-object-creator.vala:642
+#: ../src/librygel-server/rygel-object-creator.vala:648
 #, c-format
 msgid "Cannot create object of class '%s': Not supported"
 msgstr "不能建立類別「%s」的物件：不支援"
 
-#: ../src/librygel-server/rygel-object-creator.vala:740
+#: ../src/librygel-server/rygel-object-creator.vala:746
 #, c-format
 msgid ""
 "Error from container '%s' on trying to find the newly added child object "
@@ -882,26 +891,26 @@ msgstr "無法連結 %s 到 %s"
 msgid "Failed to link pad %s to %s"
 msgstr "無法連接 pad %s 至 %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:247
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:257
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "來自管線 %s 的錯誤：%s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:254
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:264
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "來自管線 %s 的警告：%s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:302
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:313
 msgid "Unsupported seek type"
 msgstr "不支援的搜尋類型"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:319
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:330
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "無法以搜索補償 %lld:%lld"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:321
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:332
 msgid "Failed to seek"
 msgstr "無法搜索"
 
@@ -910,12 +919,12 @@ msgstr "無法搜索"
 msgid "Invalid URI without prefix: %s"
 msgstr "無效的無前綴 URI：%s」"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:139
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "無法處理通訊協定 %2$s 的 URI %1$s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:241
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "無法為 %s 建立 GStreamer 資料來源：%s"
@@ -956,45 +965,91 @@ msgstr "模組「%s」無法連線至 D-Bus 匯流排。略過…"
 msgid "External provider %s did not provide mandatory property \"%s\""
 msgstr "外部提供者 %s 不提供必要的屬性「%s」"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:91
+#: ../src/plugins/lms/rygel-lms-albums.vala:166
+#: ../src/plugins/tracker/rygel-tracker-albums.vala:31
+msgid "Albums"
+msgstr "專輯"
+
+#: ../src/plugins/lms/rygel-lms-all-images.vala:89
+#: ../src/plugins/lms/rygel-lms-all-music.vala:171
+#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
+msgid "All"
+msgstr "全部"
+
+#: ../src/plugins/lms/rygel-lms-image-years.vala:53
+msgid "Years"
+msgstr "年"
+
+#: ../src/plugins/lms/rygel-lms-music-root.vala:35
+#: ../src/plugins/tracker/rygel-tracker-artists.vala:31
+msgid "Artists"
+msgstr "演出者"
+
+#: ../src/plugins/lms/rygel-lms-root-container.vala:34
+msgid "Shared media"
+msgstr "分享的媒體"
+
+#: ../src/plugins/lms/rygel-lms-root-container.vala:46
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:596
+msgid "Music"
+msgstr "音樂"
+
+#: ../src/plugins/lms/rygel-lms-root-container.vala:50
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:601
+msgid "Videos"
+msgstr "影片"
+
+#: ../src/plugins/lms/rygel-lms-root-container.vala:54
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:599
+msgid "Pictures"
+msgstr "影像"
+
+#: ../src/plugins/media-export/rygel-media-export-dvd-parser.vala:42
+msgid ""
+"Failed to find lsdvd binary in path. DVD extraction will not be available"
+msgstr "在路徑中找不到 lsdvd 二元檔。DVD 提取將無法使用"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:94
 msgid "Invalid command received, ignoring"
 msgstr "收到無效的指令，忽略"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:112
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:125
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "無法發現 URI %s： %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:130
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:144
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "無法從管道讀取：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:158
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:171
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:183
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "無法傳送錯誤到母元件：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:203
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:229
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr "無法從 %s 提取基礎詮釋資料：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:222
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:253
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- Rygel 用以提取縮詮釋資料的協助程式二進位檔"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:229
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:260
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "分析命令列引數失敗：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:237
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:268
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "無法建立媒體藝術提取器：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:258
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:289
 #, c-format
 msgid "Failed to start metadata discoverer: %s"
 msgstr "無法啟動詮釋資料發現器：%s"
@@ -1034,12 +1089,12 @@ msgstr "無法收取檔案 %s：%s"
 msgid "Failed to query database: %s"
 msgstr "查詢資料庫失敗：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:250
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:259
 #, c-format
 msgid "Failed to enumerate folder \"%s\": %s"
 msgstr "無法列舉資料夾「%s」：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:277
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "無法取得容器 %s 的子項：%s"
@@ -1047,54 +1102,10 @@ msgstr "無法取得容器 %s 的子項：%s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:334
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "略過 URI %s；提取已完全失敗：%s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:120
-#, c-format
-msgid "Invalid metadata serialisation, cannot process %s"
-msgstr "無效的詮釋資料序列化，不能處理 %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
-#, c-format
-msgid "Invalid metadata serialisation: expected 7 children, got %d"
-msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
-msgstr[0] "無效的詮釋資料序列化：預期有 7 個子元件，得到 %d"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:231
-#, c-format
-msgid "Invalid metadata serialisation of metadata; %s"
-msgstr "無效的詮釋資料序列化詮釋資料；%s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:267
-#, c-format
-msgid "Invalid metadata serialisation of video info; %s"
-msgstr "無效的詮釋資料序列化影片資訊；%s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:286
-#, c-format
-msgid "Invalid metadata serialisation of audio info; %s"
-msgstr "無效的詮釋資料序列化音效資訊；%s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:304
-msgid "Invalid metadata serialisation of general info"
-msgstr "無效的詮釋資料序列化一般資訊"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:325
-#, c-format
-msgid "Invalid metadata serialisation of DLNA profile %s"
-msgstr "無效的詮釋資料序列化 DLNA 設定檔 %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:338
-#, c-format
-msgid "Invalid metadata serialisation of file info %s"
-msgstr "無效的詮釋資料序列化檔案資訊 %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:346
-msgid "Invalid metadata serialisation of file info"
-msgstr "無效的詮釋資料序列化檔案資訊"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
@@ -1116,7 +1127,7 @@ msgstr "無法建立索引：%s"
 msgid "Cannot upgrade from version %d"
 msgstr "不能從版本 %d 升級"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:113
+#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
 #, c-format
 msgid "Database upgrade failed: %s"
 msgstr "資料庫升級失敗：%s"
@@ -1195,7 +1206,7 @@ msgstr "無效的資料庫，不能查詢 sqlite_master 表格：%s"
 msgid "Failed to create database schema: %s"
 msgstr "無法建立資料庫基模：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1227
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "略過不支援的排序欄位：%s"
@@ -1231,32 +1242,27 @@ msgstr "子元件嚴重錯誤。最後的 uri 為 %s"
 msgid "Reading from child's error stream failed: %s"
 msgstr "從子元件的錯誤串流讀取失敗：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:217
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:218
 #, c-format
 msgid "Received invalid string from child: %s"
 msgstr "從子元件收到無效的字串：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:224
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:225
 #, c-format
 msgid "Received ill-formed response string %s from child…"
 msgstr "從子元件收到格式不良的回應字串 %s…"
 
 #. No error signalling, this was done in the part that called
 #. cancel
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:266
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:275
 #, c-format
 msgid "Read from child failed: %s"
 msgstr "從子元件讀取失敗：%s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:292
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:301
 #, c-format
 msgid "Failed to send command to child: %s"
 msgstr "無法傳送指令到子元件：%s"
-
-#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
-msgid "All"
-msgstr "全部"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
@@ -1280,7 +1286,7 @@ msgid "Can't remove containers in %s"
 msgstr "不能在 %s 中移除容器"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:593
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:603
 msgid "Playlists"
 msgstr "播放清單"
 
@@ -1337,28 +1343,16 @@ msgid "Files & Folders"
 msgstr "檔案 & 資料夾"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:349
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:359
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@ 的媒體"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:440
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:507
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:450
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:517
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "無法移除項目：%s"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
-msgid "Music"
-msgstr "音樂"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:589
-msgid "Pictures"
-msgstr "影像"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:591
-msgid "Videos"
-msgstr "影片"
 
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
@@ -1398,14 +1392,6 @@ msgstr "GStreamer 播放程式"
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:43
 msgid "Could not create GStreamer player"
 msgstr "無法建立 GStreamer 播放程式"
-
-#: ../src/plugins/tracker/rygel-tracker-albums.vala:31
-msgid "Albums"
-msgstr "專輯"
-
-#: ../src/plugins/tracker/rygel-tracker-artists.vala:31
-msgid "Artists"
-msgstr "演出者"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
@@ -1607,6 +1593,34 @@ msgstr "無法啟動 Rygel 服務：%s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "無法停止 Rygel 服務：%s"
+
+#~ msgid "Invalid metadata serialisation, cannot process %s"
+#~ msgstr "無效的詮釋資料序列化，不能處理 %s"
+
+#~ msgid "Invalid metadata serialisation: expected 7 children, got %d"
+#~ msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
+#~ msgstr[0] "無效的詮釋資料序列化：預期有 7 個子元件，得到 %d"
+
+#~ msgid "Invalid metadata serialisation of metadata; %s"
+#~ msgstr "無效的詮釋資料序列化詮釋資料；%s"
+
+#~ msgid "Invalid metadata serialisation of video info; %s"
+#~ msgstr "無效的詮釋資料序列化影片資訊；%s"
+
+#~ msgid "Invalid metadata serialisation of audio info; %s"
+#~ msgstr "無效的詮釋資料序列化音效資訊；%s"
+
+#~ msgid "Invalid metadata serialisation of general info"
+#~ msgstr "無效的詮釋資料序列化一般資訊"
+
+#~ msgid "Invalid metadata serialisation of DLNA profile %s"
+#~ msgstr "無效的詮釋資料序列化 DLNA 設定檔 %s"
+
+#~ msgid "Invalid metadata serialisation of file info %s"
+#~ msgstr "無效的詮釋資料序列化檔案資訊 %s"
+
+#~ msgid "Invalid metadata serialisation of file info"
+#~ msgstr "無效的詮釋資料序列化檔案資訊"
 
 #~ msgid "Could not determine protocol for uri %s"
 #~ msgstr "無法判定 URI %s 的通訊協定"
