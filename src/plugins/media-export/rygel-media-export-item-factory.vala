@@ -226,8 +226,21 @@ namespace Rygel.MediaExport.ItemFactory {
             apply_info (item, info);
         }
 
+        var strip_title = item.title == null || item.title == "";
+
         if (file_info != null) {
             apply_file_info (item, file_info);
+
+            // If AVI, don't trust the meta-data as it is not easily
+            // modifiable
+            if (item.mime_type == "video/x-msvideo") {
+                item.title = "";
+                apply_file_info (item, file_info);
+            }
+
+            if (strip_title) {
+                item.title = strip_invalid_entities (item.title);
+            }
         }
 
         if (audio_info != null) {
