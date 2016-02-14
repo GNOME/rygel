@@ -350,6 +350,13 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         return true;
     }
 
+    public override int count_children () {
+        if (!this.initialized) {
+            return 0;
+        } else {
+            return base.count_children ();
+        }
+    }
 
     /**
      * Create a new root container.
