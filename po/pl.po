@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-06 15:59+0100\n"
-"PO-Revision-Date: 2016-02-06 16:00+0100\n"
+"POT-Creation-Date: 2016-02-14 18:44+0100\n"
+"PO-Revision-Date: 2016-02-14 18:45+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -200,7 +200,7 @@ msgstr "Nie można wykonać działania „Traceroute”: komputer jest pusty"
 msgid "Invalid connection reference"
 msgstr "Nieprawidłowe odwołanie do połączenia"
 
-#: ../src/librygel-core/rygel-description-file.vala:483
+#: ../src/librygel-core/rygel-description-file.vala:490
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Zapisanie zmodyfikowanego opisu do %s się nie powiodło"
@@ -328,18 +328,17 @@ msgstr "Nie można wczytać wtyczki: %s"
 msgid "Failed to query content type for '%s'"
 msgstr "Odpytanie typu zawartości dla „%s” się nie powiodło"
 
-#: ../src/librygel-db/database-cursor.vala:82
-#: ../src/plugins/lms/rygel-lms-database.vala:176
+#: ../src/librygel-db/database-cursor.vala:99
 #, c-format
 msgid "Unsupported type %s"
 msgstr "Nieobsługiwany typ %s"
 
-#: ../src/librygel-db/database.vala:143
+#: ../src/librygel-db/database.vala:175
 #, c-format
 msgid "Error while opening SQLite database %s: %s"
 msgstr "Błąd podczas otwierania bazy danych SQLite %s: %s"
 
-#: ../src/librygel-db/database.vala:258
+#: ../src/librygel-db/database.vala:292
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Przywrócenie transakcji się nie powiodło: %s"
@@ -609,13 +608,13 @@ msgid "Failed to update object '%s': %s"
 msgstr "Zaktualizowanie obiektu „%s” się nie powiodło: %s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:162
-#: ../src/librygel-server/rygel-object-creator.vala:600
+#: ../src/librygel-server/rygel-object-creator.vala:606
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "Nieprawidłowy format daty: %s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:171
-#: ../src/librygel-server/rygel-object-creator.vala:609
+#: ../src/librygel-server/rygel-object-creator.vala:615
 #, c-format
 msgid "Invalid date: %s"
 msgstr "Nieprawidłowa data: %s"
@@ -738,7 +737,7 @@ msgid "Missing filter"
 msgstr "Brak filtru"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:197
-#: ../src/librygel-server/rygel-object-creator.vala:406
+#: ../src/librygel-server/rygel-object-creator.vala:412
 msgid "No such container"
 msgstr "Nie ma takiego kontenera"
 
@@ -780,39 +779,43 @@ msgstr "W „dlnaManaged” odnaleziono flagi, które nie mogą być ustawione"
 msgid "Invalid upnp:class given in CreateObject"
 msgstr "W CreateObject podano nieprawidłowe upnp:class"
 
-#: ../src/librygel-server/rygel-object-creator.vala:260
+#: ../src/librygel-server/rygel-object-creator.vala:259
+msgid "Object is missing the @restricted attribute"
+msgstr "Brak atrybutu „@restricted” w obiekcie"
+
+#: ../src/librygel-server/rygel-object-creator.vala:266
 msgid "Cannot create restricted item"
 msgstr "Nie można utworzyć ograniczonego elementu"
 
-#: ../src/librygel-server/rygel-object-creator.vala:377
+#: ../src/librygel-server/rygel-object-creator.vala:383
 #, c-format
 msgid "UPnP class '%s' not supported"
 msgstr "Klasa UPnP „%s” nie jest obsługiwana"
 
-#: ../src/librygel-server/rygel-object-creator.vala:411
-#: ../src/librygel-server/rygel-object-creator.vala:423
-#: ../src/librygel-server/rygel-object-creator.vala:709
+#: ../src/librygel-server/rygel-object-creator.vala:417
+#: ../src/librygel-server/rygel-object-creator.vala:429
+#: ../src/librygel-server/rygel-object-creator.vala:715
 #: ../src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Utworzenie obiektu w %s nie jest dozwolone"
 
-#: ../src/librygel-server/rygel-object-creator.vala:468
+#: ../src/librygel-server/rygel-object-creator.vala:474
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "Utworzenie elementu w „%s” się nie powiodło: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:542
+#: ../src/librygel-server/rygel-object-creator.vala:548
 #, c-format
 msgid "DLNA profile '%s' not supported"
 msgstr "Profil DLNA „%s” nie jest obsługiwany"
 
-#: ../src/librygel-server/rygel-object-creator.vala:642
+#: ../src/librygel-server/rygel-object-creator.vala:648
 #, c-format
 msgid "Cannot create object of class '%s': Not supported"
 msgstr "Nie można utworzyć obiektu klasy „%s”: nieobsługiwane"
 
-#: ../src/librygel-server/rygel-object-creator.vala:740
+#: ../src/librygel-server/rygel-object-creator.vala:746
 #, c-format
 msgid ""
 "Error from container '%s' on trying to find the newly added child object "
@@ -914,16 +917,16 @@ msgstr "Błąd z potoku %s: %s"
 msgid "Warning from pipeline %s: %s"
 msgstr "Ostrzeżenie z potoku %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:312
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:313
 msgid "Unsupported seek type"
 msgstr "Nieobsługiwany typ przewijania"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:329
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:330
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Przewinięcie do przesunięcia %lld:%lld się nie powiodło"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:331
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:332
 msgid "Failed to seek"
 msgstr "Przewinięcie się nie powiodło"
 
@@ -983,7 +986,7 @@ msgstr ""
 msgid "External provider %s did not provide mandatory property \"%s\""
 msgstr "Zewnętrzny dostawca %s nie dostarcza wymaganej właściwości „%s”"
 
-#: ../src/plugins/lms/rygel-lms-albums.vala:168
+#: ../src/plugins/lms/rygel-lms-albums.vala:166
 #: ../src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
 msgstr "Albumy"
@@ -1023,6 +1026,11 @@ msgstr "Wideo"
 msgid "Pictures"
 msgstr "Obrazy"
 
+#: ../src/plugins/media-export/rygel-media-export-dvd-container.vala:140
+#, c-format
+msgid "Title %d"
+msgstr "Tytuł %d"
+
 #: ../src/plugins/media-export/rygel-media-export-dvd-parser.vala:42
 msgid ""
 "Failed to find lsdvd binary in path. DVD extraction will not be available"
@@ -1030,46 +1038,46 @@ msgstr ""
 "Odnalezienie pliku binarnego „lsdvd” w ścieżce się nie powiodło. Wydobywanie "
 "płyt DVD nie będzie dostępne"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:94
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:74
 msgid "Invalid command received, ignoring"
 msgstr "Otrzymano nieprawidłowe polecenie, ignorowanie"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:125
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:100
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Wykrycie adresu URI %s się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:144
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:119
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Odczytanie z potoku się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:171
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:183
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:146
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:158
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Wysłanie błędu do elementu nadrzędnego się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:229
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:204
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr "Wydobycie podstawowych metadanych z %s się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:253
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:228
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "— pomocniczy plik binarny usługi Rygel do wydobywania metadanych"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:260
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:235
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Przetworzenie parametrów wiersza poleceń się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:268
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:243
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Utworzenie mechanizmu wydobywającego okładek się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:289
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:258
 #, c-format
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Uruchomienie mechanizmu wykrywania metadanych się nie powiodło: %s"
@@ -1239,45 +1247,34 @@ msgstr "Utworzenie schematu bazy danych się nie powiodło: %s"
 msgid "Skipping unsupported sort field: %s"
 msgstr "Pomijanie nieobsługiwanego pola porządkowania: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:108
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:104
 msgid "Failed to gracefully stop the process. Using KILL"
 msgstr "Zatrzymanie procesu się nie powiodło. Używanie sygnału KILL"
 
 #. Process exitted properly -> That shouldn't really
 #. happen
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:166
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:152
 #, c-format
 msgid "Process check_async failed: %s"
 msgstr "„check_async” procesu się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:172
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #, c-format
 msgid "Process died while handling URI %s"
 msgstr ""
 "Proces nieoczekiwanie zakończył działanie podczas obsługiwania adresu URI %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:178
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
 #, c-format
 msgid "Setting up extraction subprocess failed: %s"
 msgstr "Ustawienie podprocesu wydobywania się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:191
-#, c-format
-msgid "Child failed fatally. Last uri was %s"
-msgstr ""
-"Element potomny uległ krytycznemu niepowodzeniu. Ostatni adres URI to %s"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:197
-#, c-format
-msgid "Reading from child's error stream failed: %s"
-msgstr "Odczytanie z potoku błędów elementu potomnego się nie powiodło: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:218
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
 #, c-format
 msgid "Received invalid string from child: %s"
 msgstr "Otrzymano nieprawidłowy ciąg od elementu potomnego: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:225
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received ill-formed response string %s from child…"
 msgstr ""
@@ -1285,12 +1282,12 @@ msgstr ""
 
 #. No error signalling, this was done in the part that called
 #. cancel
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:275
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:243
 #, c-format
 msgid "Read from child failed: %s"
 msgstr "Odczytanie od elementu potomnego się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:301
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:270
 #, c-format
 msgid "Failed to send command to child: %s"
 msgstr "Wysłanie polecenia do elementu potomnego się nie powiodło: %s"
