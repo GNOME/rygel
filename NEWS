@@ -1,3 +1,44 @@
+0.29.3
+======
+
+Core:
+ - Fix a small memory leak with DescriptionDocument handling
+
+Server:
+ - Add "Server:" HTTP header
+
+MediaExport:
+ - Fix DLNA profile and extension for DVD isos to improve compatibility with
+   more renderers
+ - Some code refactoring
+ - Remove UNIX signal handling from mx-extract
+ - Get the tile of the DVD from the file name, not from the volume title
+ - If the DVD has only one title, export it directly
+ - Try to make nice movie titles for videos
+ - Avoid a potential race condition and crash on slow startup
+
+GstLaunch:
+ - Fix URI generation
+
+GStreamer media engine:
+ - Fix URI generation
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=747816
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Rafael Fontenelle <rffontenelle@gmail.com>
+ - Mario Blättermann <mario.blaettermann@gmail.com>
+ - Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+
+Added/updated translations
+ - de, courtesy of Mario Blättermann
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Rafael Fontenelle
+ - zh_TW, courtesy of Chao-Hsiung Liao
+
 0.29.2
 ======
 
