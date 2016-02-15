@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-02-09 02:27+0000\n"
-"PO-Revision-Date: 2016-02-09 09:56+0100\n"
+"POT-Creation-Date: 2016-02-15 14:25+0000\n"
+"PO-Revision-Date: 2016-02-15 19:58+0100\n"
 "Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
@@ -199,7 +199,7 @@ msgstr "»Traceroute«-Aktion kann nicht ausgeführt werden: Rechnername ist lee
 msgid "Invalid connection reference"
 msgstr "Ungültige Verbindungsreferenz"
 
-#: ../src/librygel-core/rygel-description-file.vala:483
+#: ../src/librygel-core/rygel-description-file.vala:490
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Geänderte Beschreibung konnte nicht in %s gespeichert werden"
@@ -1017,19 +1017,24 @@ msgid "Shared media"
 msgstr "Freigegebene Medien"
 
 #: ../src/plugins/lms/rygel-lms-root-container.vala:46
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:596
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:603
 msgid "Music"
 msgstr "Musik"
 
 #: ../src/plugins/lms/rygel-lms-root-container.vala:50
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:601
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:608
 msgid "Videos"
 msgstr "Videos"
 
 #: ../src/plugins/lms/rygel-lms-root-container.vala:54
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:599
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:606
 msgid "Pictures"
 msgstr "Bilder"
+
+#: ../src/plugins/media-export/rygel-media-export-dvd-container.vala:140
+#, c-format
+msgid "Title %d"
+msgstr "Titel %d"
 
 #: ../src/plugins/media-export/rygel-media-export-dvd-parser.vala:42
 msgid ""
@@ -1038,47 +1043,47 @@ msgstr ""
 "Die lsdvd-Binärdatei konnte im Suchpfad nicht gefunden werden. Das Auslesen "
 "von DVDs wird nicht möglich sein."
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:94
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:74
 msgid "Invalid command received, ignoring"
 msgstr "Ungültiger Befehl empfangen, wird ignoriert"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:125
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:100
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Erkennen der Adresse »%s« ist fehlgeschlagen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:144
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:119
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Lesen aus Weiterleitung gescheitert: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:171
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:183
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:146
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:158
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Senden des Fehlers an Elternelement ist fehlgeschlagen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:229
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:204
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr ""
 "Grundlegende Metainformationen konnten nicht aus »%s« gelesen werden: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:253
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:228
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "– Hilfsprogramm für Rygel zum Auslesen von Metadaten"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:260
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:235
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Verarbeiten der Parameter der Befehlszeile fehlgeschlagen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:268
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:243
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Ausleser des Covers konnte nicht erstellt werden: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:289
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:258
 #, c-format
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Starten der Metadaten-Erkennung ist fehlgeschlagen: %s"
@@ -1252,56 +1257,46 @@ msgstr "Erstellen des Datenbankschemas ist fehlgeschlagen: %s"
 msgid "Skipping unsupported sort field: %s"
 msgstr "Nicht unterstütztes Sortierungsfeld wird übersprungen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:108
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:104
 msgid "Failed to gracefully stop the process. Using KILL"
 msgstr ""
 "Ordnungsgemäßes Anhalten des Prozesses schlug fehl. KILL wird verwendet"
 
 #. Process exitted properly -> That shouldn't really
 #. happen
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:166
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:152
 #, c-format
 msgid "Process check_async failed: %s"
 msgstr "Prozess »check_async« schlug fehl: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:172
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #, c-format
 msgid "Process died while handling URI %s"
 msgstr "Prozess beendete während der Verarbeitung der Adresse %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:178
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
 #, c-format
 msgid "Setting up extraction subprocess failed: %s"
 msgstr "Einrichten von Auslesen-Unterprozess fehlgeschlagen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:191
-#, c-format
-msgid "Child failed fatally. Last uri was %s"
-msgstr "Unterprozess fehlgeschlagen. Letzte Adresse war %s"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:197
-#, c-format
-msgid "Reading from child's error stream failed: %s"
-msgstr "Lesen der Fehlerausgabe des Unterprozesses fehlgeschlagen: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:218
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
 #, c-format
 msgid "Received invalid string from child: %s"
 msgstr "Ungültige Zeichenkette vom Unterelement erhalten: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:225
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received ill-formed response string %s from child…"
 msgstr "Fehlerhafte Antwort »%s« vom Unterelement erhalten …"
 
 #. No error signalling, this was done in the part that called
 #. cancel
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:275
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:243
 #, c-format
 msgid "Read from child failed: %s"
 msgstr "﻿Lesen vom Unterelement ist fehlgeschlagen: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:301
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:270
 #, c-format
 msgid "Failed to send command to child: %s"
 msgstr "Senden des Befehls an Unterelement ist fehlgeschlagen: %s"
@@ -1328,7 +1323,7 @@ msgid "Can't remove containers in %s"
 msgstr "Container in »%s« können nicht entfernt werden"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:603
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:610
 msgid "Playlists"
 msgstr "Wiedergabelisten"
 
@@ -1385,13 +1380,13 @@ msgid "Files & Folders"
 msgstr "Dateien und Ordner"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:359
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:366
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@'s media"
 msgstr "Medien von @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:450
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:517
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:457
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:524
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Entfernen des Eintrags ist fehlgeschlagen: %s"
@@ -1647,6 +1642,12 @@ msgstr "Starten des Rygel-Dienstes ist fehlgeschlagen: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Beenden des Rygel-Dienstes ist fehlgeschlagen: %s"
+
+#~ msgid "Child failed fatally. Last uri was %s"
+#~ msgstr "Unterprozess fehlgeschlagen. Letzte Adresse war %s"
+
+#~ msgid "Reading from child's error stream failed: %s"
+#~ msgstr "Lesen der Fehlerausgabe des Unterprozesses fehlgeschlagen: %s"
 
 #~ msgid "Disable UPnP (streaming-only)"
 #~ msgstr "UPnP (nur Streaming) deaktivieren"
