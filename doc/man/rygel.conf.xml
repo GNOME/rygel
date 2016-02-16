@@ -221,8 +221,22 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
     </variablelist>
   </refsect1>
   <refsect1>
+    <title>Database settings</title>
+    <para>The settings in the <code>[Database]</code>section are for the database support library. </para>
+    <para><variablelist>
+        <varlistentry>
+          <term>
+            <option>debug</option>
+          </term>
+          <listitem>
+            <para>Set to <option>true</option> to show the SQL statements used.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist></para>
+  </refsect1>
+  <refsect1>
     <title>GStreamer Media Engine settings</title>
-    <para>The settings in the <code>[GstMediaEngine]</code> section are specific to the Gstreamer media engine, which is the default media engine. See the media-engine setting. These following options are available for the <ulink url="http://gstreamer.freedesktop.org">GStreamer</ulink> media engine.</para>
+    <para>The settings in the <code>[GstMediaEngine]</code> section are specific to the GStreamer media engine, which is the default media engine. See the media-engine setting. These following options are available for the <ulink url="http://gstreamer.freedesktop.org">GStreamer</ulink> media engine.</para>
     <variablelist>
       <varlistentry>
         <term>

@@ -199,7 +199,20 @@ public class Rygel.Database.Database : Object, Initable {
                                   Sqlite.UTF8,
                                   Database.utf8_collate);
 
+        try {
+            var config = MetaConfig.get_default ();
+            if (config.get_bool ("Database", "Debug")) {
+                this.db.trace (this.on_trace);
+            }
+        } catch (Error error) {
+            debug ("Not setting up SQL tracing");
+        }
+
         return true;
+    }
+
+    private void on_trace (string message) {
+        debug ("SQLITE: %s", message);
     }
 
     /**

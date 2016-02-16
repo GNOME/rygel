@@ -427,6 +427,14 @@ handling.</para>
           <para>Set the time-out for finding the plugins. Useful to increase when running inside valgrind.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <envar>RYGEL_DATABASE_DEBUG</envar>
+        </term>
+        <listitem>
+          <para>If set to 1, the database library will print the used SQL statements.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
     <para>Also for every plugin you can set the following environment variables:</para>
     <para><variablelist>
