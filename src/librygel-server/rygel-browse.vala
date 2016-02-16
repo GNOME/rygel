@@ -106,12 +106,16 @@ internal class Rygel.Browse: Rygel.MediaQueryAction {
             this.requested_count = this.total_matches;
         }
 
-        debug ("Fetching %u children of container '%s' from index %u..",
+        var sort_criteria = this.sort_criteria ?? container.sort_criteria;
+
+        debug ("Fetching %u children of container '%s' from index %u " +
+               "with sort criteria %s",
                this.requested_count,
                this.object_id,
-               this.index);
-
-        var sort_criteria = this.sort_criteria ?? container.sort_criteria;
+               this.index,
+               this.sort_criteria == null
+                    ? "none, using default: %s".printf (container.sort_criteria)
+                    : this.sort_criteria);
 
         var children = yield container.get_children (this.index,
                                                      this.requested_count,
