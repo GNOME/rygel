@@ -165,7 +165,7 @@ public class Rygel.MediaExport.MediaCache : Object {
     public MediaContainer? get_container (string container_id)
                                           throws DatabaseError,
                                                  MediaCacheError {
-        var object = get_object (container_id);
+        var object = this.get_object (container_id);
         if (object != null && !(object is MediaContainer)) {
             throw new MediaCacheError.INVALID_TYPE ("Object with id %s is " +
                                                     "not a MediaContainer",
@@ -185,7 +185,9 @@ public class Rygel.MediaExport.MediaCache : Object {
         // Return the highest object ID in the database so far.
         try {
             return this.query_value (SQLString.MAX_UPDATE_ID);
-        } catch (Error error) { }
+        } catch (Error error) {
+            debug ("Failed to query max update id: %s", error.message);
+        }
 
         return 0;
     }
@@ -210,12 +212,9 @@ public class Rygel.MediaExport.MediaCache : Object {
             object_update_id = (uint32) statement->column_int64 (0);
             container_update_id = (uint32) statement->column_int64 (1);
             total_deleted_child_count = (uint32) statement->column_int64 (2);
-
-            return;
         } catch (Error error) {
             warning (_("Failed to get update IDs: %s"), error.message);
         }
-
     }
 
     public bool exists (File      file,
@@ -412,7 +411,9 @@ public class Rygel.MediaExport.MediaCache : Object {
                        statement.column_text (0),
                        statement.column_int (1));
             }
-        } catch (Error error) { }
+        } catch (Error error) {
+            debug ("Failed to get database statistics: %s", error.message);
+        }
     }
 
     public ArrayList<string> get_child_ids (string container_id)
