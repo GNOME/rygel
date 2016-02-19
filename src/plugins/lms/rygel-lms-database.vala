@@ -35,7 +35,7 @@ public class Rygel.LMS.Database : Rygel.Database.Database, Initable {
     private uint64 update_id;
 
     public Database () throws DatabaseError, Error {
-        Object (name: ":memory:");
+        Object (name: ":memory:", flags : Rygel.Database.Flags.READ_ONLY);
         init ();
     }
 
