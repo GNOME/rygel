@@ -397,45 +397,20 @@ fi
 RYGEL_ADD_PLUGIN([tracker],[Tracker],[yes])
 AS_IF([test "x$enable_tracker_plugin" = "xyes"],
   [
-    PKG_CHECK_MODULES([RYGEL_PLUGIN_TRACKER_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED])
+    # Search available Tracker version
+    trackerpkg=""
+    m4_foreach([VERSION], [[1.0], [0.16], [0.15], [0.14]],
+                 [PKG_CHECK_EXISTS([tracker-sparql-VERSION >= $TRACKER_SPARQL_REQUIRED_MIN],
+                                   [ trackerpkg="tracker-sparql-VERSION" ])
+                 ])
 
-    tracker_api_version="0.14"
-    PKG_CHECK_MODULES(TRACKER_SPARQL,
-                      tracker-sparql-0.14 >= $TRACKER_SPARQL_REQUIRED_MIN,
-                      [tracker_api_version="0.14"],
-                      [tracker_api_version=""])
-    AS_IF([test "x$[]tracker_api_version" = "x"],
-          [
-            PKG_CHECK_MODULES(TRACKER_SPARQL,
-                              tracker-sparql-0.15 >=  $TRACKER_SPARQL_REQUIRED_MIN,
-                              [tracker_api_version="0.15"],
-                              [tracker_api_version=""])
-          ])
-    AS_IF([test "x$[]tracker_api_version" = "x"],
-          [
-            PKG_CHECK_MODULES(TRACKER_SPARQL,
-                              tracker-sparql-0.16 >=  $TRACKER_SPARQL_REQUIRED_MIN,
-                              [tracker_api_version="0.16"],
-                              [tracker_api_version=""])
-          ])
-    AS_IF([test "x$[]tracker_api_version" = "x"],
-          [
-            PKG_CHECK_MODULES(TRACKER_SPARQL,
-                              tracker-sparql-0.18 >=  $TRACKER_SPARQL_REQUIRED_MIN,
-                              [tracker_api_version="0.18"],
-                              [tracker_api_version=""])
-          ])
-     AS_IF([test "x$[]tracker_api_version" = "x"],
-	  [
-            PKG_CHECK_MODULES(TRACKER_SPARQL,
-                              tracker-sparql-1.0 >=  $TRACKER_SPARQL_REQUIRED_MIN,
-                              [tracker_api_version="1.0"],
-	                      [])
-	  ])
+    PKG_CHECK_MODULES([RYGEL_PLUGIN_TRACKER_DEPS],
+                      [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED ${trackerpkg}])
+
     AS_IF([test "x$enable_vala" = "xyes"],
-          [VALA_CHECK_PACKAGES([tracker-sparql-$tracker_api_version])])
+          [VALA_CHECK_PACKAGES([${trackerpkg}])])
 
-    RYGEL_PLUGIN_TRACKER_DEPS_VALAFLAGS="--pkg tracker-sparql-$tracker_api_version"
+    RYGEL_PLUGIN_TRACKER_DEPS_VALAFLAGS="--pkg ${trackerpkg}"
     AC_SUBST([RYGEL_PLUGIN_TRACKER_DEPS_VALAFLAGS])
   ])
 
