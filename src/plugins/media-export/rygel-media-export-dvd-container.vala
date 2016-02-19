@@ -69,17 +69,6 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
         delete xpo;
     }
 
-    public override async MediaObjects? get_children (
-                                                     uint         offset,
-                                                     uint         max_count,
-                                                     string       sort_criteria,
-                                                     Cancellable? cancellable)
-                                                     throws Error {
-        var children = new MediaObjects ();
-
-        return children;
-    }
-
     public override async MediaObject? find_object (string id,
                                                     Cancellable? cancellable)
                                                     throws Error {
