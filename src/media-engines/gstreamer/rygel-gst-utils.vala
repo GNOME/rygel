@@ -53,9 +53,15 @@ internal abstract class Rygel.GstUtils {
 
                 src = Gst.parse_bin_from_description (description, true);
             } else if (uri.has_prefix ("dvd://")) {
+                src = ElementFactory.make ("dvdreadsrc", null);
+                if (src == null) {
+                    warning (_("GStreamer element 'dvdreadsrc' not found. DVD support does not work"));
+
+                    return null;
+                }
+
                 var tmp = new Soup.URI (uri);
                 var query = Soup.Form.decode (tmp.query);
-                src = ElementFactory.make ("dvdreadsrc", null);
                 if (query.contains ("title")) {
                     src.title = int.parse (query.lookup ("title"));
                 }
