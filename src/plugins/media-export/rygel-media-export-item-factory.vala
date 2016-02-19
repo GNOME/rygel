@@ -235,6 +235,7 @@ namespace Rygel.MediaExport.ItemFactory {
             // modifiable
             if (item.mime_type == "video/x-msvideo") {
                 item.title = "";
+                strip_title = true;
                 apply_file_info (item, file_info);
             }
 
