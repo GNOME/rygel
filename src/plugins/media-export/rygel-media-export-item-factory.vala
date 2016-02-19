@@ -207,8 +207,6 @@ namespace Rygel.MediaExport.ItemFactory {
                     object = container.children.get (0);
                     object.title = container.title;
                     object.modified = container.modified;
-                    object.get_uris ().clear ();
-                    object.add_uri (container.get_primary_uri ());
                 }
 
                 return object;
