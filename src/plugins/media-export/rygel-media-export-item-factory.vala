@@ -190,6 +190,9 @@ namespace Rygel.MediaExport.ItemFactory {
                 break;
             case Rygel.PlaylistItem.UPNP_CLASS:
                 item = ItemFactory.create_playlist_item (file, parent, "");
+                if (item == null) {
+                    return null;
+                }
                 break;
             case DVDContainer.UPNP_CLASS:
                 var container = new DVDContainer ("dvd:" + id, parent, "", file.get_path ());
