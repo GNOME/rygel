@@ -163,6 +163,9 @@ namespace Rygel.MediaExport.ItemFactory {
                 break;
             case Rygel.PlaylistItem.UPNP_CLASS:
                 item = ItemFactory.create_playlist_item (file, parent, "");
+                if (item == null) {
+                    return null;
+                }
                 break;
             default:
                 return null;
