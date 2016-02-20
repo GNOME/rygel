@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-14 18:44+0100\n"
-"PO-Revision-Date: 2016-02-14 18:45+0100\n"
+"POT-Creation-Date: 2016-02-20 16:19+0100\n"
+"PO-Revision-Date: 2016-02-20 16:20+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -338,7 +338,7 @@ msgstr "Nieobsługiwany typ %s"
 msgid "Error while opening SQLite database %s: %s"
 msgstr "Błąd podczas otwierania bazy danych SQLite %s: %s"
 
-#: ../src/librygel-db/database.vala:292
+#: ../src/librygel-db/database.vala:305
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "Przywrócenie transakcji się nie powiodło: %s"
@@ -483,7 +483,7 @@ msgstr "Nieprawidłowe parametry"
 msgid "Cannot browse children on item"
 msgstr "Nie można przeglądać potomka elementu"
 
-#: ../src/librygel-server/rygel-browse.vala:130
+#: ../src/librygel-server/rygel-browse.vala:134
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "Przeglądanie „%s” się nie powiodło: %s\n"
@@ -959,6 +959,12 @@ msgstr ""
 msgid "Required element %s missing"
 msgstr "Brak wymaganego elementu %s"
 
+#: ../src/media-engines/gstreamer/rygel-gst-utils.vala:58
+msgid "GStreamer element 'dvdreadsrc' not found. DVD support does not work"
+msgstr ""
+"Nie odnaleziono elementu „dvdreadsrc” biblioteki GStreamer. Obsługa płyt DVD "
+"nie działa"
+
 #: ../src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
 msgstr "Obsługiwane jest tylko przewijanie oparte na bajtach"
@@ -1012,21 +1018,21 @@ msgid "Shared media"
 msgstr "Współdzielone multimedia"
 
 #: ../src/plugins/lms/rygel-lms-root-container.vala:46
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:596
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:603
 msgid "Music"
 msgstr "Muzyka"
 
 #: ../src/plugins/lms/rygel-lms-root-container.vala:50
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:601
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:608
 msgid "Videos"
 msgstr "Wideo"
 
 #: ../src/plugins/lms/rygel-lms-root-container.vala:54
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:599
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:606
 msgid "Pictures"
 msgstr "Obrazy"
 
-#: ../src/plugins/media-export/rygel-media-export-dvd-container.vala:140
+#: ../src/plugins/media-export/rygel-media-export-dvd-container.vala:129
 #, c-format
 msgid "Title %d"
 msgstr "Tytuł %d"
@@ -1175,51 +1181,51 @@ msgstr "Dodanie elementu z identyfikatorem %s się nie powiodło: %s"
 msgid "Failed to get update IDs: %s"
 msgstr "Uzyskanie identyfikatorów aktualizacji się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:397
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:396
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
 msgstr "Niespójna baza danych: element %s nie posiada elementu nadrzędnego %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:520
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:521
 msgid "Failed to get reset token"
 msgstr "Uzyskanie tokena przywrócenia się nie powiodło"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:532
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:533
 #, c-format
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "Utrwalenie „ServiceResetToken” się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:542
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:543
 #, c-format
 msgid "Failed to remove virtual folders: %s"
 msgstr "Usunięcie katalogów wirtualnych się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:556
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:557
 #, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
 msgstr "Oznaczenie elementu %s jako chronionego (%d) się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:566
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:567
 msgid "Cannot create references to containers"
 msgstr "Nie można utworzyć odniesień do kontenerów"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:592
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:593
 #, c-format
 msgid "Failed to add %s to file blacklist: %s"
 msgstr "Dodanie pliku %s do listy blokowania się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:605
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:606
 #, c-format
 msgid "Failed to get whether URI %s is blacklisted: %s"
 msgstr ""
 "Sprawdzenie, czy adres URI %s jest na liście blokowania, się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:621
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:622
 #, c-format
 msgid "Failed to get whether item %s is guarded: %s"
 msgstr "Sprawdzenie, czy element %s jest chroniony, się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:660
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:661
 #, c-format
 msgid ""
 "The version \"%d\" of the detected database is newer than our supported "
@@ -1227,22 +1233,22 @@ msgid ""
 msgstr ""
 "Wersja „%d” wykrytej bazy danych jest nowsza niż obsługiwana wersja „%d”"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:684
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:685
 msgid "Incompatible schema… cannot proceed"
 msgstr "Niezgodny schemat… nie można kontynuować"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:690
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:691
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr ""
 "Nieprawidłowa baza danych, nie można odpytać tablicy „sqlite_master”: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:891
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:892
 #, c-format
 msgid "Failed to create database schema: %s"
 msgstr "Utworzenie schematu bazy danych się nie powiodło: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1227
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1228
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Pomijanie nieobsługiwanego pola porządkowania: %s"
@@ -1314,7 +1320,7 @@ msgid "Can't remove containers in %s"
 msgstr "Nie można usunąć kontenerów w %s"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:603
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:610
 msgid "Playlists"
 msgstr "Listy odtwarzania"
 
@@ -1371,13 +1377,13 @@ msgid "Files & Folders"
 msgstr "Pliki i katalogi"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:359
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:366
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@'s media"
 msgstr "Multimedia użytkownika @REALNAME@"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:450
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:517
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:457
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:524
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Usunięcie wpisu się nie powiodło: %s"
