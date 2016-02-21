@@ -66,7 +66,7 @@ internal class Rygel.DVDParser : GLib.Object {
             throw new DVDParserError.NOT_AVAILABLE ("No DVD extractor found");
         }
 
-        var doc = this.get_information ();
+        var doc = yield this.get_information ();
         if (doc == null) {
             throw new DVDParserError.GENERAL ("Failed to read cache file");
         }
