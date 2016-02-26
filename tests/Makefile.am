@@ -8,13 +8,13 @@ AUTOMAKE_OPTIONS = subdir-objects
 #		 rygel-http-time-seek-test \
 #		 rygel-http-get-test \
 #		 rygel-http-post-test \
-#		 rygel-searchable-container-test \
 #		 rygel-user-config-test \
 #		 rygel-regression \
 #		 rygel-media-engine-test
 
 check_PROGRAMS = rygel-regression \
 				 rygel-user-config-test \
+				 rygel-searchable-container-test \
 				 rygel-object-creator-test
 
 TESTS = $(check_PROGRAMS)
@@ -117,17 +117,17 @@ test_server_libs = \
 #rygel_http_post_test_LDADD = \
 #	$(test_libs)
 #
-#rygel_searchable_container_test_SOURCES = \
-#	rygel-searchable-container.vala \
-#	rygel-searchable-container-test.vala
-#rygel_searchable_container_test_VALAFLAGS = \
-#	$(test_valaflags) \
-#	--pkg gupnp-av-1.0
-#rygel_searchable_container_test_CFLAGS =  \
-#	$(test_cflags)
-#rygel_searchable_container_test_LDADD = \
-#	$(test_libs)
-#
+rygel_searchable_container_test_SOURCES = \
+	searchable-container/rygel-searchable-container.vala \
+	searchable-container/test.vala
+rygel_searchable_container_test_VALAFLAGS = \
+	$(test_valaflags) \
+	--pkg gupnp-av-1.0
+rygel_searchable_container_test_CFLAGS =  \
+	$(test_cflags)
+rygel_searchable_container_test_LDADD = \
+	$(test_libs)
+
 rygel_object_creator_test_SOURCES = object-creator/test.vala \
 				  object-creator/rygel-object-creator.vala \
 				  object-creator/rygel-dlna-profile.vala \
