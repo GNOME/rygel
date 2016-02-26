@@ -1,1 +1,0 @@
-../src/librygel-server/rygel-http-response.vala

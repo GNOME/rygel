@@ -1,1 +1,0 @@
-../src/librygel-server/rygel-thumbnail.vala

@@ -1,1 +1,0 @@
-../src/librygel-server/rygel-http-byte-seek.vala

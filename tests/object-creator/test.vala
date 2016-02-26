@@ -21,17 +21,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-/* This is not used.
-[CCode (cname = "uuid_generate", cheader_filename = "uuid/uuid.h")]
-internal extern static void uuid_generate ([CCode (array_length = false)]
-                                           uchar[] uuid);
-[CCode (cname = "uuid_unparse", cheader_filename = "uuid/uuid.h")]
-internal extern static void uuid_unparse ([CCode (array_length = false)]
-                                          uchar[] uuid,
-                                          [CCode (array_length = false)]
-                                          uchar[] output);
-*/
-
 public const string DIDL_ITEM = """<?xml version="1.0" encoding="UTF-8"?>
 <DIDL-Lite
     xmlns:dc="http://purl.org/dc/elements/1.1/"
