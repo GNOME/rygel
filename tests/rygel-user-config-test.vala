@@ -68,7 +68,6 @@ public class Rygel.UserConfigTest : GLib.Object {
     private class Settings : GLib.Object {
         public string? general_title;
         public bool? general_enabled;
-        public bool? general_upnp_enabled;
         public string? general_iface;
         public int? general_port;
         public string? foo_title;
@@ -77,7 +76,6 @@ public class Rygel.UserConfigTest : GLib.Object {
 
         private void initialize (string? general_title = null,
                                  bool? general_enabled = null,
-                                 bool? general_upnp_enabled = null,
                                  string? general_iface = null,
                                  int? general_port = null,
                                  string? foo_title = null,
@@ -85,7 +83,6 @@ public class Rygel.UserConfigTest : GLib.Object {
                                  bool? foo_setting = null) {
             this.general_title = general_title;
             this.general_enabled = general_enabled;
-            this.general_upnp_enabled = general_upnp_enabled;
             this.general_iface = general_iface;
             this.general_port = general_port;
             this.foo_title = foo_title;
@@ -95,7 +92,6 @@ public class Rygel.UserConfigTest : GLib.Object {
 
         public Settings (string? general_title = null,
                          bool? general_enabled = null,
-                         bool? general_upnp_enabled = null,
                          string? general_iface = null,
                          int? general_port = null,
                          string? foo_title = null,
@@ -103,7 +99,6 @@ public class Rygel.UserConfigTest : GLib.Object {
                          bool? foo_setting = null) {
             this.initialize (general_title,
                              general_enabled,
-                             general_upnp_enabled,
                              general_iface,
                              general_port,
                              foo_title,
@@ -113,7 +108,6 @@ public class Rygel.UserConfigTest : GLib.Object {
 
         public Settings.default () {
             this.initialize ("General",
-                             true,
                              true,
                              "eth0",
                              42,
@@ -302,11 +296,6 @@ public class Rygel.UserConfigTest : GLib.Object {
         }
         if (settings.general_enabled != null) {
             key_file.set_boolean (GENERAL, "enabled", settings.general_enabled);
-        }
-        if (settings.general_upnp_enabled != null) {
-            key_file.set_boolean (GENERAL,
-                                  "upnp-enabled",
-                                  settings.general_upnp_enabled);
         }
         if (settings.general_iface != null) {
             key_file.set_string (GENERAL, "interface", settings.general_iface);
@@ -533,7 +522,6 @@ public class Rygel.UserConfigTest : GLib.Object {
                 "lots of changes";
             var config = new ConfigSet ();
 
-            config.gee.add (ConfigurationEntry.UPNP_ENABLED);
             config.gee.add (ConfigurationEntry.INTERFACE);
             config.gee.add (ConfigurationEntry.PORT);
 
@@ -554,7 +542,6 @@ public class Rygel.UserConfigTest : GLib.Object {
             var new_local = new SettingsReplace
                                         (this,
                                          new Settings ("Changed!",
-                                                       false,
                                                        false,
                                                        "Changed!",
                                                        13,
@@ -605,7 +592,6 @@ public class Rygel.UserConfigTest : GLib.Object {
                                         (this,
                                          new Settings (null,
                                                        false,
-                                                       false,
                                                        null,
                                                        13,
                                                        "Changed!",
@@ -626,7 +612,6 @@ public class Rygel.UserConfigTest : GLib.Object {
                 "settings";
             var config = new ConfigSet ();
 
-            config.gee.add (ConfigurationEntry.UPNP_ENABLED);
             config.gee.add (ConfigurationEntry.PORT);
 
             var section = new SectionMap ();

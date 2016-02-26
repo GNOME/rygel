@@ -544,6 +544,7 @@ examples/server-plugins/vala/Makefile
 examples/server-plugins/vala/example-server-vala.plugin
 examples/server-plugins/C/Makefile
 examples/server-plugins/C/example-server-c.plugin
+tests/Makefile
 ])
 AC_OUTPUT
 
