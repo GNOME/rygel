@@ -291,6 +291,10 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
             format = Format.TIME;
             flags |= SeekFlags.KEY_UNIT;
             start = time_seek.start_time * Gst.USECOND;
+            // Work-around for https://bugzilla.gnome.org/show_bug.cgi?id=762787
+            if (this.src.name == "dvdreadsrc" && start == 0) {
+                start += 1 * Gst.SECOND;
+            }
             stop = time_seek.end_time * Gst.USECOND;
             debug ("Performing time-range seek: %lldns to %lldns", start, stop);
         } else if (this.seek is HTTPByteSeekRequest) {
