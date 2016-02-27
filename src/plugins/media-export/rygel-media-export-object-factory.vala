@@ -100,7 +100,7 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
                 return new MusicItem (id, parent, title);
             case Rygel.VideoItem.UPNP_CLASS:
                 if (id.has_prefix ("dvd-track")) {
-                    return new DVDTrack (id, parent, title, null);
+                    return new DVDTrack (id, parent, title, 0, null);
                 }
                 return new VideoItem (id, parent, title);
             case Rygel.PhotoItem.UPNP_CLASS:

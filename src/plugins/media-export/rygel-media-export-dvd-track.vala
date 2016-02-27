@@ -29,11 +29,13 @@ internal class Rygel.MediaExport.DVDTrack : VideoItem {
     public DVDTrack (string         id,
                      MediaContainer parent,
                      string         title,
+                     int            track,
                      Xml.Node*      node) {
         Object (id : id,
                 parent : parent,
                 node : node,
                 title : title,
+                track : track,
                 upnp_class : Rygel.VideoItem.UPNP_CLASS);
     }
 

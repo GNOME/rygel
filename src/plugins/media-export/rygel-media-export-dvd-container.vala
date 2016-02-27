@@ -130,6 +130,7 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
         var item = new DVDTrack (this.get_track_id (track),
                                  this,
                                  _("Title %d").printf (track + 1),
+                                 track,
                                  node);
         item.parent_ref = this;
 
