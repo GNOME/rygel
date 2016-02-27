@@ -15,7 +15,8 @@ AUTOMAKE_OPTIONS = subdir-objects
 check_PROGRAMS = rygel-regression \
 				 rygel-user-config-test \
 				 rygel-searchable-container-test \
-				 rygel-object-creator-test
+				 rygel-object-creator-test \
+				 rygel-database-test
 
 TESTS = $(check_PROGRAMS)
 
@@ -164,6 +165,18 @@ rygel_regression_CFLAGS = \
 	$(test_server_cflags)
 rygel_regression_LDADD = \
 	$(test_server_libs)
+
+rygel_database_test_SOURCES = \
+	rygel-database-test.vala
+rygel_database_test_VALAFLAGS = \
+	$(test_valaflags) \
+	$(RYGEL_COMMON_LIBRYGEL_DB_VALAFLAGS)
+rygel_database_test_CFLAGS = \
+	$(test_cflags) \
+	$(RYGEL_COMMON_LIBRYGEL_DB_CFLAGS)
+rygel_database_test_LDADD = \
+	$(test_libs) \
+	$(RYGEL_COMMON_LIBRYGEL_DB_LIBS)
 
 #rygel_media_engine_test_SOURCES = \
 #	rygel-media-engine-test.vala
