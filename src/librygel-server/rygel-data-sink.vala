@@ -67,6 +67,7 @@ internal class Rygel.DataSink : Object {
         var left = this.max_bytes - this.bytes_sent;
 
         if (left <= 0) {
+            this.source.stop ();
             return;
         }
 
