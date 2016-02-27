@@ -51,7 +51,10 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
         var doc = Xml.Parser.read_file (cache_path,
                                         null,
                                         Xml.ParserOption.NOERROR |
-                                        Xml.ParserOption.NOWARNING);
+                                        Xml.ParserOption.NOWARNING |
+                                        Xml.ParserOption.RECOVER |
+                                        Xml.ParserOption.NOENT |
+                                        Xml.ParserOption.NONET);
         this.doc = new GUPnP.XMLDoc (doc);
 
         var context = new Xml.XPath.Context (this.doc.doc);

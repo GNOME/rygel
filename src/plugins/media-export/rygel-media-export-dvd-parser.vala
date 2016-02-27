@@ -81,7 +81,8 @@ internal class Rygel.DVDParser : GLib.Object {
             string[] args = {
                 DVDParser.lsdvd_binary_path,
                 "-Ox",
-                "-x",
+                "-a",
+                "-v",
                 "-q",
                 this.file.get_path (),
                 null
@@ -104,6 +105,9 @@ internal class Rygel.DVDParser : GLib.Object {
         return Xml.Parser.read_file (this.cache_file.get_path (),
                                      null,
                                      Xml.ParserOption.NOERROR |
-                                     Xml.ParserOption.NOWARNING);
+                                     Xml.ParserOption.NOWARNING |
+                                     Xml.ParserOption.RECOVER |
+                                     Xml.ParserOption.NOENT |
+                                     Xml.ParserOption.NONET);
     }
 }
