@@ -57,7 +57,6 @@ internal class Rygel.MediaExport.DVDTrack : VideoItem {
 
             var it = node->children;
             while (it != null) {
-            warning ("name: %s", it->name);
                 if (it->name == "length") {
                     this.duration = (int) double.parse (it->children->content);
                 } else if (it->name == "width") {
@@ -66,8 +65,8 @@ internal class Rygel.MediaExport.DVDTrack : VideoItem {
                     this.height = int.parse (it->children->content);
             } else if (it->name == "format") {
                 this.dlna_profile += "_" + it->children->content;
- /*           } else if (it->name == "rygel:bytelength") {
-                this.size = int64.parse (it->children->content); */
+            } else if (it->name == "rygel:bytelength") {
+                this.size = int64.parse (it->children->content);
                 }
                 // TODO: Japanese formats...
                 it = it->next;

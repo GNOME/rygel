@@ -69,11 +69,7 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
             throw new DVDParserError.NOT_AVAILABLE ("No DVD extractor found");
         }
 
-        var doc = yield this.get_information ();
-        if (doc == null) {
-            throw new DVDParserError.GENERAL ("Failed to read cache file");
-        }
-
+        yield this.get_information ();
         var id = this.serialized_info.lookup_value (Serializer.ID,
                                                     VariantType.STRING);
         var uri = this.serialized_info.lookup_value (Serializer.URI,
@@ -144,7 +140,6 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
             delete xpo;
         }
 
-        delete doc;
     }
 
     public async void get_information () throws Error {
@@ -161,9 +156,9 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
 
             var process = new Subprocess.newv (args, SubprocessFlags.STDOUT_PIPE);
 
-            string buffer;
+            Bytes bytes = null;
 
-            yield process.communicate_utf8_async (null, null, out buffer, null);
+            yield process.communicate_async (null, null, out bytes, null);
 
             if (!(process.get_if_exited () &&
                 process.get_exit_status () == 0)) {
@@ -175,8 +170,8 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
                 throw new DVDParserError.GENERAL ("lsdvd did die or file is not a DVD");
             }
 
-            var doc = Xml.Parser.read_memory (buffer,
-                                              buffer.length,
+            var doc = Xml.Parser.read_memory ((string) bytes.get_data (),
+                                              (int) bytes.get_size (),
                                               null,
                                               "UTF-8",
                                               Xml.ParserOption.NOBLANKS |
@@ -187,24 +182,26 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
             var result = context.eval_expression ("/lsdvd/track");
 
             if (result != null) {
-                if (result->type == Xml.XPath.ObjectType.NODESET &&
-                    result->nodesetval->length () == 1) {
-                    var node = result->nodesetval->item (0);
-                    try {
-                        var duration = yield this.query_length ();
-                        var duration_node = doc->new_node (null,
-                                                           "rygel:bytelength",
-                                                           "%lld".printf (duration));
-                        node->add_child (duration_node);
-                    } catch (Error error) {
-                        warning (_("Failed to query length from DVD: %s"),
-                                 error.message);
+                if (result->type == Xml.XPath.ObjectType.NODESET) {
+                    for (int i = 0; i < result->nodesetval->length (); i++) {
+                        var it = result->nodesetval->item (i);
+                        try {
+                            var duration = yield this.query_length (i + 1);
+                            var node = doc->new_node (null,
+                                                      "rygel:bytelength",
+                                                      "%lld".printf (duration));
+                            it->add_child (node);
+                        } catch (Error error) {
+                            warning (_("Failed to query length from DVD: %s"),
+                                     error.message);
+                        }
                     }
                 }
 
                 delete result;
             }
 
+            string buffer;
             doc->dump_memory_enc_format (out buffer, null, "UTF-8", false);
             delete doc;
 
@@ -217,8 +214,19 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
          }
     }
 
-    private async int64 query_length () throws Error {
+    // Work-Around for https://bugzilla.gnome.org/show_bug.cgi?id=762795
+    [CCode (cname="gst_element_query_convert")]
+    extern static bool element_query_convert (Gst.Element element,
+                                       Gst.Format src_format,
+                                       int64 src_val,
+                                       Gst.Format dest_format,
+                                       out int64 dst_val);
+
+    private async int64 query_length (int title)
+                                      throws Error {
         bool failed = false;
+
+        warning ("Guessing length from track");
 
         var pipeline = new Gst.Pipeline ("DVD title size query");
         dynamic Gst.Element? src = Gst.ElementFactory.make ("dvdreadsrc", "src");
@@ -232,6 +240,7 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
         pipeline.add_many (src, sink);
         src.link (sink);
         src.device = file.get_path ();
+        src.title = title;
 
         var bus = pipeline.get_bus ();
         bus.add_signal_watch ();
@@ -258,11 +267,18 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
             throw new DVDParserError.GENERAL (_("Querying the size of the tile failed"));
         }
 
-        int64 duration;
-        pipeline.query_duration (Gst.Format.BYTES, out duration);
+        int64 end;
+        pipeline.query_duration (Gst.Format.TIME, out end);
 
-        warning ("DVD title has %lld bytes", duration);
+        int64 start;
+        element_query_convert (pipeline, Gst.Format.TIME, 1 * Gst.SECOND,
+                               Gst.Format.BYTES, out start);
 
-        return duration;
+
+        int64 stop;
+        element_query_convert (pipeline, Gst.Format.TIME, end / 2,
+                               Gst.Format.BYTES, out stop);
+
+        return (stop * 2) - start;
     }
 }

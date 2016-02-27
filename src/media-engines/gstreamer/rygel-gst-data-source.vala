@@ -280,6 +280,14 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         return ret;
     }
 
+    // Work-Around for https://bugzilla.gnome.org/show_bug.cgi?id=762795
+    [CCode (cname="gst_element_query_convert")]
+    extern static bool element_query_convert (Gst.Element element,
+                                       Gst.Format src_format,
+                                       int64 src_val,
+                                       Gst.Format dest_format,
+                                       out int64 dst_val);
+
     private bool perform_seek () {
         var stop_type = Gst.SeekType.NONE;
         Format format;
@@ -312,6 +320,16 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
             debug ("Performing byte-range seek: bytes %lld to %lld",
                    start,
                    stop);
+            if (this.src.name == "dvdreadsrc") {
+                int64 offset;
+                element_query_convert (this.src,
+                                                Gst.Format.TIME,
+                                                1 * Gst.SECOND,
+                                                Gst.Format.BYTES,
+                                                out offset);
+                start += offset;
+                stop = 0;
+            }
         } else {
             var result = new DataSourceError.SEEK_FAILED
                                         (_("Unsupported seek type"));
