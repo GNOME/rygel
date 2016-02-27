@@ -71,23 +71,47 @@ internal class Rygel.DataSourceTestConfig : Rygel.BaseConfiguration {
     }
 }
 
+internal class Rygel.FakeHandler : Rygel.HTTPGetHandler {
+    private int64 length;
+
+    public FakeHandler(int64 length) {
+        this.length = length;
+    }
+    public override bool supports_byte_seek () {
+        return true;
+    }
+
+    public override int64 get_resource_size () {
+        return this.length;
+    }
+
+    public override HTTPResponse render_body (HTTPGet request)
+                                              throws HTTPRequestError {
+        throw new HTTPRequestError.NOT_FOUND ("Not found");
+    }
+
+    public override bool supports_transfer_mode (string mode) {
+        return true;
+    }
+
+}
+
 /**
  * Stub implementation of Rygel.HTTPSeek
  */
-internal class Rygel.ByteSeek : Rygel.HTTPSeek {
+internal class Rygel.ByteSeek : Rygel.HTTPByteSeekRequest {
     public ByteSeek (int64 first, int64 last, int64 length) {
         var msg = new Soup.Message ("GET", "http://example.com/");
+        msg.request_headers.set_content_length (length);
+        msg.request_headers.set_range (first, last);
+        var handler = new Rygel.FakeHandler (length);
 
         try {
-            base (msg, first, last, 1, length);
-        } catch (HTTPSeekError error) {
+            base (msg, handler);
+        } catch (Error error) {
             assert_not_reached ();
         }
-
-        this.seek_type = HTTPSeekType.BYTE;
     }
-
-    public override void add_response_headers () {}
 }
 
 /**
@@ -157,9 +181,9 @@ public class Rygel.DataSourceTest : Object {
     }
 
     /// Get the whole file
-    private void test_simple_streaming () {
+    private void test_simple_streaming () throws Error {
         debug ("test_simple_streaming");
-        var source = MediaEngine.get_default ().create_data_source
+        var source = MediaEngine.get_default ().create_data_source_for_uri
                                         (this.test_data_file.get_uri ());
         // Sources should support file:// urls
         assert (source != null);
@@ -176,7 +200,8 @@ public class Rygel.DataSourceTest : Object {
         
         Idle.add ( () => {
             try {
-                source.start (null);
+                source.preroll (null, null);
+                source.start ();
                 return false;
             } catch (GLib.Error error) {
                 assert_not_reached ();
@@ -190,9 +215,9 @@ public class Rygel.DataSourceTest : Object {
     }
 
     /// Simple byte range request tests
-    private void test_byte_range_request () {
+    private void test_byte_range_request () throws Error {
         debug ("test_byte_range_request");
-        var source = MediaEngine.get_default ().create_data_source
+        var source = MediaEngine.get_default ().create_data_source_for_uri
                                         (this.test_data_file.get_uri ());
         // Sources should support file:// urls
         assert (source != null);
@@ -210,7 +235,8 @@ public class Rygel.DataSourceTest : Object {
                 loop.quit ();
             });
             source.error.connect ( () => { assert_not_reached (); });
-            source.start (seek);
+            source.preroll (seek, null);
+            source.start ();
             loop.run ();
             assert (received_data.total_size () == 10);
             Memory.cmp (this.test_data_mapped.get_contents (),
@@ -225,7 +251,7 @@ public class Rygel.DataSourceTest : Object {
             received_data = new DataPool ();
             loop = new MainLoop (null, false);
 
-            source = MediaEngine.get_default ().create_data_source
+            source = MediaEngine.get_default ().create_data_source_for_uri
                                         (this.test_data_file.get_uri ());
             source.data_available.connect ( (data) => {
                 received_data.add (new DataBlock (data));
@@ -234,7 +260,8 @@ public class Rygel.DataSourceTest : Object {
                 loop.quit ();
             });
             source.error.connect ( () => { assert_not_reached (); });
-            source.start (seek);
+            source.preroll (seek, null);
+            source.start ();
             loop.run ();
 
             assert (received_data.total_size () == 10);
@@ -251,7 +278,7 @@ public class Rygel.DataSourceTest : Object {
             received_data = new DataPool ();
             loop = new MainLoop (null, false);
 
-            source = MediaEngine.get_default ().create_data_source
+            source = MediaEngine.get_default ().create_data_source_for_uri
                                         (this.test_data_file.get_uri ());
             source.data_available.connect ( (data) => {
                 received_data.add (new DataBlock (data));
@@ -261,7 +288,8 @@ public class Rygel.DataSourceTest : Object {
                 loop.quit ();
             });
             source.error.connect ( () => { assert_not_reached (); });
-            source.start (seek);
+            source.preroll (seek, null);
+            source.start ();
             loop.run ();
 
             assert (received_data.total_size () == 10);
@@ -281,9 +309,9 @@ public class Rygel.DataSourceTest : Object {
 
     // Check that calling start() after stop() starts at the beginning of the
     // data
-    private void test_stop_start () {
+    private void test_stop_start () throws Error {
         debug ("test_stop_start");
-        var source = MediaEngine.get_default ().create_data_source
+        var source = MediaEngine.get_default ().create_data_source_for_uri
                                         (this.test_data_file.get_uri ());
         // Sources should support file:// urls
         assert (source != null);
@@ -300,7 +328,8 @@ public class Rygel.DataSourceTest : Object {
 
         Idle.add ( () => {
             try {
-                source.start (null);
+                source.preroll (null, null);
+                source.start ();
                 return false;
             } catch (GLib.Error error) {
                 assert_not_reached ();
@@ -313,7 +342,8 @@ public class Rygel.DataSourceTest : Object {
 
         Idle.add ( () => {
             try {
-                source.start (null);
+                source.preroll (null, null);
+                source.start ();
                 return false;
             } catch (GLib.Error error) {
                 assert_not_reached ();
@@ -331,10 +361,10 @@ public class Rygel.DataSourceTest : Object {
 
     // Check that calling freeze multiple times only needs one thaw to get the
     // data again
-    private void test_multiple_freeze () {
+    private void test_multiple_freeze () throws Error {
         debug ("test_multiple_freeze");
 
-        var source = MediaEngine.get_default ().create_data_source
+        var source = MediaEngine.get_default ().create_data_source_for_uri
                                         (this.test_data_file.get_uri ());
         // Sources should support file:// urls
         assert (source != null);
@@ -343,7 +373,8 @@ public class Rygel.DataSourceTest : Object {
         });
 
         try {
-            source.start (null);
+            source.preroll (null, null);
+            source.start ();
         } catch (GLib.Error error) {
             assert_not_reached ();
         }
@@ -376,15 +407,16 @@ public class Rygel.DataSourceTest : Object {
 
     // Check that it is possible to call stop() when the source is frozen and
     // still get a done() signal
-    private void test_freeze_stop () {
+    private void test_freeze_stop () throws Error {
         debug ("test_freeze_stop");
-        var source = MediaEngine.get_default ().create_data_source
+        var source = MediaEngine.get_default ().create_data_source_for_uri
                                         (this.test_data_file.get_uri ());
         // Sources should support file:// urls
         assert (source != null);
 
         try {
-            source.start (null);
+            source.preroll (null, null);
+            source.start ();
         } catch (GLib.Error error) {
             assert_not_reached ();
         }
@@ -405,18 +437,19 @@ public class Rygel.DataSourceTest : Object {
     }
 
     // Check that it is possible to stream to two targets in parallel
-    public void test_parallel_streaming () {
+    public void test_parallel_streaming () throws Error {
         debug ("test_parallel_streaming");
-        var source1 = MediaEngine.get_default ().create_data_source
+        var source1 = MediaEngine.get_default ().create_data_source_for_uri
                                         (this.test_data_file.get_uri ());
         assert (source1 != null);
         // Sources should support file:// urls
-        var source2 = MediaEngine.get_default ().create_data_source
+        var source2 = MediaEngine.get_default ().create_data_source_for_uri
                                         (this.test_data_file.get_uri ());
         assert (source2 != null);
 
         try {
-            source1.start (null);
+            source1.preroll (null, null);
+            source1.start ();
         } catch (GLib.Error error) {
             assert_not_reached ();
         }
@@ -427,7 +460,8 @@ public class Rygel.DataSourceTest : Object {
         assert (seek != null);
 
         try {
-            source2.start (null);
+            source2.preroll (null, null);
+            source2.start ();
         } catch (GLib.Error error) {
             assert_not_reached ();
         }
@@ -453,12 +487,16 @@ public class Rygel.DataSourceTest : Object {
     }
 
     public int run () {
-        this.test_simple_streaming ();
-        this.test_byte_range_request ();
-        this.test_stop_start ();
-        this.test_multiple_freeze ();
-        this.test_freeze_stop ();
-        this.test_parallel_streaming ();
+        try {
+            this.test_simple_streaming ();
+            this.test_byte_range_request ();
+            this.test_stop_start ();
+            this.test_multiple_freeze ();
+            this.test_freeze_stop ();
+            this.test_parallel_streaming ();
+        } catch (Error error) {
+            assert_not_reached ();
+        }
 
         return 0;
     }

@@ -9,14 +9,14 @@ AUTOMAKE_OPTIONS = subdir-objects
 #		 rygel-http-get-test \
 #		 rygel-http-post-test \
 #		 rygel-user-config-test \
-#		 rygel-regression \
-#		 rygel-media-engine-test
+#		 rygel-regression
 
 check_PROGRAMS = rygel-regression \
 				 rygel-user-config-test \
 				 rygel-searchable-container-test \
 				 rygel-object-creator-test \
-				 rygel-database-test
+				 rygel-database-test \
+				 rygel-media-engine-test
 
 TESTS = $(check_PROGRAMS)
 
@@ -178,18 +178,18 @@ rygel_database_test_LDADD = \
 	$(test_libs) \
 	$(RYGEL_COMMON_LIBRYGEL_DB_LIBS)
 
-#rygel_media_engine_test_SOURCES = \
-#	rygel-media-engine-test.vala
-#rygel_media_engine_test_VALAFLAGS = \
-#	$(test_server_valaflags)
-#rygel_media_engine_test_CFLAGS = \
-#	$(test_server_cflags) \
-#	-DTEST_DATA_FOLDER='"$(abs_srcdir)/data"' \
-#	-DTEST_ENGINE_PATH='"$(abs_top_builddir)/src/media-engines"' \
-#	-DBUILT_ENGINES='"@BUILT_ENGINES@"'
-#rygel_media_engine_test_LDADD = \
-#	$(test_server_libs)
-#
+rygel_media_engine_test_SOURCES = \
+	rygel-media-engine-test.vala
+rygel_media_engine_test_VALAFLAGS = \
+	$(test_server_valaflags)
+rygel_media_engine_test_CFLAGS = \
+	$(test_server_cflags) \
+	-DTEST_DATA_FOLDER='"$(abs_srcdir)/data"' \
+	-DTEST_ENGINE_PATH='"$(abs_top_builddir)/src/media-engines"' \
+	-DBUILT_ENGINES='"@BUILT_ENGINES@"'
+rygel_media_engine_test_LDADD = \
+	$(test_server_libs)
+
 if HAVE_GSTREAMER
 check_PROGRAMS += \
 	rygel-playbin-renderer-test \
