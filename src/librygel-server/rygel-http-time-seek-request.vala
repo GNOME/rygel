@@ -68,19 +68,21 @@ public class Rygel.HTTPTimeSeekRequest : Rygel.HTTPSeekRequest {
      * @param request The HTTP GET/HEAD request
      * @param speed An associated speed request
      */
-    internal HTTPTimeSeekRequest (HTTPGet request, PlaySpeed ? speed)
+    internal HTTPTimeSeekRequest (Soup.Message message,
+                                  HTTPGetHandler handler,
+                                  PlaySpeed? speed)
                                   throws HTTPSeekRequestError {
         base ();
 
         bool positive_rate = (speed == null) || speed.is_positive ();
         bool trick_mode = (speed != null) && !speed.is_normal_rate ();
 
-        this.total_duration = request.handler.get_resource_duration ();
+        this.total_duration = handler.get_resource_duration ();
         if (this.total_duration <= 0) {
             this.total_duration = UNSPECIFIED;
         }
 
-        var range = request.msg.request_headers.get_one (TIMESEEKRANGE_HEADER);
+        var range = message.request_headers.get_one (TIMESEEKRANGE_HEADER);
 
         if (range == null) {
             throw new HTTPSeekRequestError.INVALID_RANGE ("%s not present",
@@ -203,22 +205,23 @@ public class Rygel.HTTPTimeSeekRequest : Rygel.HTTPSeekRequest {
      * This method utilizes elements associated with the request to determine if
      * a TimeSeekRange request is supported for the given request/resource.
      */
-    public static bool supported (HTTPGet request) {
+    public static bool supported (Soup.Message message,
+                                  HTTPGetHandler handler) {
         bool force_seek = false;
 
         try {
-            var hack = ClientHacks.create (request.msg);
+            var hack = ClientHacks.create (message);
             force_seek = hack.force_seek ();
         } catch (Error error) { /* Exception means no hack needed */ }
 
-        return force_seek || request.handler.supports_time_seek ();
+        return force_seek || handler.supports_time_seek ();
     }
 
     /**
      * Return true of the HTTPGet contains a TimeSeekRange request.
      */
-    public static bool requested (HTTPGet request) {
-        var header = request.msg.request_headers.get_one (TIMESEEKRANGE_HEADER);
+    public static bool requested (Soup.Message message) {
+        var header = message.request_headers.get_one (TIMESEEKRANGE_HEADER);
 
         return (header != null);
     }

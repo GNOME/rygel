@@ -35,11 +35,12 @@ public class Rygel.DLNAAvailableSeekRangeRequest : Rygel.HTTPSeekRequest {
      *
      * @param request The HTTP GET/HEAD request
      */
-    internal DLNAAvailableSeekRangeRequest (HTTPGet request)
-            throws HTTPSeekRequestError {
+    internal DLNAAvailableSeekRangeRequest (Soup.Message message,
+                                            Rygel.HTTPGetHandler handler)
+                                           throws HTTPSeekRequestError {
         base ();
 
-        var params = request.msg.request_headers.get_one
+        var params = message.request_headers.get_one
                                         (GET_AVAILABLE_SEEK_RANGE_HEADER);
 
         if (params == null) {
@@ -58,14 +59,15 @@ public class Rygel.DLNAAvailableSeekRangeRequest : Rygel.HTTPSeekRequest {
     /**
      * Return true if getAvailableSeekRange is supported.
      */
-    public static bool supported (HTTPGet request) {
+    public static bool supported (Soup.Message message,
+                                  Rygel.HTTPGetHandler handler) {
         return true;
     }
 
     /**
      * Return true of the HTTPGet contains a getAvailableSeekRange request.
      */
-    public static bool requested (HTTPGet request) {
-        return (request.msg.request_headers.get_one (GET_AVAILABLE_SEEK_RANGE_HEADER) != null);
+    public static bool requested (Soup.Message message) {
+        return (message.request_headers.get_one (GET_AVAILABLE_SEEK_RANGE_HEADER) != null);
     }
 }

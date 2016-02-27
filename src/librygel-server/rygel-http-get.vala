@@ -117,12 +117,16 @@ public class Rygel.HTTPGet : HTTPRequest {
     }
 
     private async void handle_item_request () throws Error {
-        var supports_time_seek = HTTPTimeSeekRequest.supported (this);
-        var requested_time_seek = HTTPTimeSeekRequest.requested (this);
-        var supports_byte_seek = HTTPByteSeekRequest.supported (this);
-        var requested_byte_seek = HTTPByteSeekRequest.requested (this);
-        var supports_cleartext_seek = DTCPCleartextRequest.supported (this);
-        var requested_cleartext_seek = DTCPCleartextRequest.requested (this);
+        var supports_time_seek = HTTPTimeSeekRequest.supported (this.msg,
+                this.handler);
+        var requested_time_seek = HTTPTimeSeekRequest.requested (this.msg);
+        var supports_byte_seek = HTTPByteSeekRequest.supported (this.msg,
+                this.handler);
+        var requested_byte_seek = HTTPByteSeekRequest.requested (this.msg);
+        var supports_cleartext_seek = DTCPCleartextRequest.supported
+            (this.msg, this.handler);
+        var requested_cleartext_seek = DTCPCleartextRequest.requested
+            (this.msg);
 
         var response_headers = this.msg.response_headers;
 
@@ -191,12 +195,13 @@ public class Rygel.HTTPGet : HTTPRequest {
         try {
             // Order is intentional here
             if (supports_cleartext_seek && requested_cleartext_seek) {
-                var cleartext_seek = new DTCPCleartextRequest (this);
+                var cleartext_seek = new DTCPCleartextRequest (this.msg,
+                        this.handler);
                 debug ("Processing DTCP cleartext byte range request (bytes %lld to %lld)",
                        cleartext_seek.start_byte, cleartext_seek.end_byte);
                 this.seek = cleartext_seek;
             } else if (supports_byte_seek && requested_byte_seek) {
-                var byte_seek = new HTTPByteSeekRequest (this);
+                var byte_seek = new HTTPByteSeekRequest (this.msg, this.handler);
                 debug ("Processing byte range request (bytes %lld to %lld)",
                        byte_seek.start_byte, byte_seek.end_byte);
                 this.seek = byte_seek;
@@ -204,7 +209,8 @@ public class Rygel.HTTPGet : HTTPRequest {
                 // Assert: speed_request has been checked/processed
                 var speed = this.speed_request == null ? null
                             : this.speed_request.speed;
-                var time_seek = new HTTPTimeSeekRequest (this, speed);
+                var time_seek = new HTTPTimeSeekRequest (this.msg,
+                        this.handler, speed);
                 debug ("Processing time seek %s", time_seek.to_string ());
                 this.seek = time_seek;
             } else {

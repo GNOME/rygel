@@ -48,16 +48,18 @@ public class Rygel.DTCPCleartextRequest : Rygel.HTTPSeekRequest {
      */
     public int64 total_size { get; private set; }
 
-    public DTCPCleartextRequest (HTTPGet request) throws HTTPSeekRequestError,
-                                                         HTTPRequestError {
+    public DTCPCleartextRequest (Soup.Message message,
+                                 Rygel.HTTPGetHandler handler)
+                                throws HTTPSeekRequestError,
+                                       HTTPRequestError {
         base ();
 
         int64 start, end, total_size;
 
         // It's only possible to get the cleartext size from a MediaResource
         //  (and only if it is link protected)
-        if (request.handler is HTTPMediaResourceHandler) {
-            var resource = (request.handler as HTTPMediaResourceHandler)
+        if (handler is HTTPMediaResourceHandler) {
+            var resource = (handler as HTTPMediaResourceHandler)
                                         .media_resource;
             total_size = resource.cleartext_size;
             if (total_size <= 0) {
@@ -71,7 +73,7 @@ public class Rygel.DTCPCleartextRequest : Rygel.HTTPSeekRequest {
             total_size = UNSPECIFIED;
         }
 
-        unowned string range = request.msg.request_headers.get_one
+        unowned string range = message.request_headers.get_one
                                         (DTCP_RANGE_HEADER);
 
         if (range == null) {
@@ -144,13 +146,14 @@ public class Rygel.DTCPCleartextRequest : Rygel.HTTPSeekRequest {
         this.total_size = total_size;
     }
 
-    public static bool supported (HTTPGet request) {
-        return (request.handler is HTTPMediaResourceHandler)
-               && (request.handler as HTTPMediaResourceHandler)
+    public static bool supported (Soup.Message message,
+                                  Rygel.HTTPGetHandler handler) {
+        return (handler is HTTPMediaResourceHandler)
+               && (handler as HTTPMediaResourceHandler)
                   .media_resource.is_cleartext_range_support_enabled ();
     }
 
-    public static bool requested (HTTPGet request) {
-        return (request.msg.request_headers.get_one (DTCP_RANGE_HEADER) != null);
+    public static bool requested (Soup.Message message) {
+        return (message.request_headers.get_one (DTCP_RANGE_HEADER) != null);
     }
 }
