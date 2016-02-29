@@ -1,3 +1,64 @@
+0.29.4
+======
+
+- Simplify detection of tracker on compile time
+
+
+Server:
+ - Print sort critera usewd for the browse request in debug
+
+Database:
+ - Add possibilty to dump the SQL using an environment variable
+
+GStreamer Media Engine:
+ - Do not crash if dvdreadsrc is not available
+ - Fix time-based seeking on DVDs
+
+Rygel:
+ - Improve signalling for changes in config files
+
+MediaExport:
+ - Some style fixes
+ - Fix DVD containers
+ - Really clean AVI titles
+ - Switch back to dvd:// URI scheme
+ - Prevent criticals when parsing playlists
+ - Don't leak XML doc in DVD parser
+ - Don't break on broken XML files lsdvd may produce
+ - Fix setting the track id for multi-track DVDs
+
+Lightmediascanner:
+ - Switch to use the database in read-only mode
+
+Tests:
+ - Reenable some of them
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Мирослав Николић <miroslavnikolic@rocketmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Artur de Aquino Morais <aamorais93.estudos@gmail.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Mario Blättermann <mario.blaettermann@gmail.com>
+ - Marek Černocký <marek@manet.cz>
+ - Fran Dieguez <fran.dieguez@mabishu.com>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Cédric Valmary <cvalmary@yahoo.fr>
+ - Anders Jonsson <anders.jonsson@norsjovallen.se>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - de, courtesy of Mario Blättermann
+ - es, courtesy of Daniel Mustieles
+ - gl, courtesy of Fran Dieguez
+ - oc, courtesy of Cédric Valmary (totenoc.eu)
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Artur de Aquino Morais
+ - sk, courtesy of Dušan Kazik
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+ - sv, courtesy of Anders Jonsson
+
 0.29.3
 ======
 
