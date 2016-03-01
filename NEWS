@@ -1,3 +1,36 @@
+0.28.3
+======
+
+- Simplify Tracker detection during build
+
+Core:
+ - Fix small memory leak with XPath use in descrption document
+
+Server:
+ - Fix thumbnails for some Samsung TVs
+ - Fix Range header for resources with unknown length
+
+GStreamer media engine:
+ - Fix serving of resources with unknown length
+ - Fix handling of gst-launch:// pseudo-uris
+
+GstLaunch:
+ - Fix handling of gst-launch:// pseud-uris
+
+MediaExport:
+ - Remove Unix signal handling in external extractor process. Did not work
+ - Prevent criticals if playlist parsing fails
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=721312
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+
+Added/updated translations
+ - lv, courtesy of Rūdolfs Mazurs
+
 0.28.2
 ======
 
