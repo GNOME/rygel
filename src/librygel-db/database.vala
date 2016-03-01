@@ -179,7 +179,6 @@ public class Rygel.Database.Database : Object, Initable {
         debug ("Using database file %s", path);
 
         this.exec ("PRAGMA synchronous = OFF");
-        this.exec ("PRAGMA count_changes = OFF");
 
         if (Flags.SHARED in flags) {
             this.exec ("PRAGMA journal_mode = WAL");
