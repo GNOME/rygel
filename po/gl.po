@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-24 19:54+0100\n"
-"PO-Revision-Date: 2016-02-24 20:05+0200\n"
+"POT-Creation-Date: 2016-03-01 22:20+0100\n"
+"PO-Revision-Date: 2016-03-01 22:21+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -913,16 +913,16 @@ msgstr "Erro desde a tubería %s: %s"
 msgid "Warning from pipeline %s: %s"
 msgstr "Aviso desde a tubería %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:313
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:317
 msgid "Unsupported seek type"
 msgstr "Tipo de busca non admitida"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:330
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:334
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Produciuse un erro ao buscar ao desprazamento %lld:%lld"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:332
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:336
 msgid "Failed to seek"
 msgstr "Produciuse un fallo ao buscar"
 
@@ -1026,7 +1026,7 @@ msgstr "Vídeos"
 msgid "Pictures"
 msgstr "Imaxes"
 
-#: ../src/plugins/media-export/rygel-media-export-dvd-container.vala:129
+#: ../src/plugins/media-export/rygel-media-export-dvd-container.vala:132
 #, c-format
 msgid "Title %d"
 msgstr "Título %d"
@@ -1214,7 +1214,7 @@ msgstr "Produciuse un fallo ao saber se o URI %s está nunha lista negra: %s"
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:622
 #, c-format
 msgid "Failed to get whether item %s is guarded: %s"
-msgstr ""
+msgstr "Produciuse un fallo saber se o elemento %s está gardado: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:661
 #, c-format
@@ -1222,8 +1222,8 @@ msgid ""
 "The version \"%d\" of the detected database is newer than our supported "
 "version \"%d\""
 msgstr ""
-"A versión «%d» da base de datos detectada é máis nova que a nosa versión «%d»"
-" admitida"
+"A versión «%d» da base de datos detectada é máis nova que a nosa versión "
+"«%d» admitida"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:685
 msgid "Incompatible schema… cannot proceed"
@@ -1247,7 +1247,8 @@ msgstr "Omitindo o campo de ordenacion non admitido: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:104
 msgid "Failed to gracefully stop the process. Using KILL"
-msgstr "Produciuse un fallo ao parar o proceso de forma non brusca. Usando KILL"
+msgstr ""
+"Produciuse un fallo ao parar o proceso de forma non brusca. Usando KILL"
 
 #. Process exitted properly -> That shouldn't really
 #. happen
@@ -1589,19 +1590,19 @@ msgid "Failed to load user configuration: %s"
 msgstr "Produciuse un erro ao cargar a configuración do usuario: %s"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
-#: ../src/rygel/rygel-user-config.vala:243 ../src/ui/rygel-user-config.vala:243
+#: ../src/rygel/rygel-user-config.vala:246 ../src/ui/rygel-user-config.vala:246
 #, c-format
 msgid "Failed to load user configuration from file '%s': %s"
 msgstr ""
 "Produciuse un erro ao cargar a configuración do usuario desde o ficheiro "
 "«%s»: %s"
 
-#: ../src/rygel/rygel-user-config.vala:296 ../src/ui/rygel-user-config.vala:296
+#: ../src/rygel/rygel-user-config.vala:299 ../src/ui/rygel-user-config.vala:299
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Non existe un valor dispoñíbel para «%s»"
 
-#: ../src/rygel/rygel-user-config.vala:367 ../src/ui/rygel-user-config.vala:367
+#: ../src/rygel/rygel-user-config.vala:370 ../src/ui/rygel-user-config.vala:370
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "O valor «%s» está fora de rango"
