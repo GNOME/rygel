@@ -446,6 +446,9 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
   <refsect1>
     <title>ZDFMediathek</title>
     <para>The  <ulink url="http://www.zdf.de/ZDFmediathek">ZDF Mediathek</ulink> is an online archive of broadcasts from the second german television. This plugin can be used to subscribes to the RSS feeds of this service and expose the broadcasts via UPnP.</para>
+    <para><note>
+        <para>The support for the WMV streaming format was removed from the server, only RTSP support remains. Rygel has issues proxying this via HTTP so your client has to support RTSP in order to be able to view the streams without transcoding.</para>
+      </note></para>
     <variablelist>
       <varlistentry>
         <term>
@@ -461,17 +464,6 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
         </term>
         <listitem>
           <para>Time in seconds after which the plugin checks for new content. The default interval is 1800 seconds (30 minutes), the minimum interval 10 minutes.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>video-format</option>
-        </term>
-        <listitem>
-          <para>The mediathek usually offers the videos in two formats, WMV and H.264. Possible values here are wmv and mp4. The default video format is wmv.</para>
-          <note>
-            <para>Proxying of general RTSP in <application>&dhpackage;</application> as used by the H.264 streams is currently not working very well. Please enable mp4 only if your renderer can handle RTSP by itself.</para>
-          </note>
         </listitem>
       </varlistentry>
     </variablelist>
