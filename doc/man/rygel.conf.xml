@@ -477,6 +477,11 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
     </variablelist>
   </refsect1>
   <refsect1>
+    <title>LightMediaScanner Plugin</title>
+    <para>The LightMediaScanner plugin exports the contents of the <ulink url="https://github.com/profusion/lightmediascanner">lightmediascanner daemon</ulink> </para>
+    <para>This plugin does not have any special options.</para>
+  </refsect1>
+  <refsect1>
     <title>GstLaunch Plugin</title>
     <para>The GstLaunch plugin allows to expose GStreamer pipelines using the same syntax as the gst-launch utilty. You can configure several items in this plugins.</para>
     <variablelist>
