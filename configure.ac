@@ -194,8 +194,9 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
                            gstreamer-pbutils-1.0 >= $GSTPBU_REQUIRED
                            gstreamer-app-1.0 >= $GSTREAMER_APP_REQUIRED
                            gupnp-dlna-2.0 >= $GUPNP_DLNA_REQUIRED
+                           libsoup-2.4 >= $LIBSOUP_REQUIRED
                            gio-2.0 >= $GIO_REQUIRED])
-        RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gstreamer-base-1.0 --pkg gstreamer-pbutils-1.0 --pkg gupnp-dlna-2.0"
+        RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg gstreamer-base-1.0 --pkg gstreamer-pbutils-1.0 --pkg gupnp-dlna-2.0 --pkg libsoup-2.4"
         AC_SUBST([RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_VALAFLAGS])
 
         PKG_CHECK_MODULES([LIBRYGEL_RENDERER_GST_DEPS], [$RYGEL_COMMON_MODULES gstreamer-1.0 >= $GSTREAMER_REQUIRED gstreamer-audio-1.0 >= $GSTREAMER_AUDIO_REQUIRED gio-2.0 >= $GIO_REQUIRED])
@@ -281,8 +282,10 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
         RYGEL_ADD_PLUGIN([gst-launch],[GStreamer launchline],[no])
         AS_IF([test "x$enable_gst_launch_plugin" = "xyes"],
           [
-            PKG_CHECK_MODULES([RYGEL_PLUGIN_GST_LAUNCH_DEPS], [$RYGEL_COMMON_MODULES])
-            RYGEL_PLUGIN_GST_LAUNCH_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS"
+            PKG_CHECK_MODULES([RYGEL_PLUGIN_GST_LAUNCH_DEPS],
+                              [$RYGEL_COMMON_MODULES
+                              libsoup-2.4 >= $LIBSOUP_REQUIRED])
+            RYGEL_PLUGIN_GST_LAUNCH_DEPS_VALAFLAGS="$RYGEL_COMMON_MODULES_VALAFLAGS --pkg libsoup-2.4"
             AC_SUBST([RYGEL_PLUGIN_GST_LAUNCH_DEPS_VALAFLAGS])
           ])
 
