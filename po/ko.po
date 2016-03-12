@@ -1,10 +1,8 @@
-#  -*- compile-command: "ko-po-check ko.po" -*-
-#
 # Korean translation for rygel.
 # This file is distributed under the same license as the rygel package.
 #
 # Homin Lee <ff4500@gmail.com>, 2010
-# Changwoo Ryu <cwryu@debian.org>, 2010-2015.
+# Changwoo Ryu <cwryu@debian.org>, 2010-2016.
 #
 # - 이 프로그램의 이름인 Rygel은 "라이겔"로 음역
 #
@@ -12,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=Rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-07 11:40+0000\n"
-"PO-Revision-Date: 2015-09-08 01:50+0900\n"
+"product=rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2016-03-12 14:27+0000\n"
+"PO-Revision-Date: 2016-03-13 04:03+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: Korean\n"
@@ -37,8 +35,7 @@ msgstr ""
 "mediaserver;미디어서버;mediarenderer;미디어렌더러;share;공유;audio;오디오;음"
 "악;video;비디오;동영상;영화;pictures;사진;이미지;"
 
-#: ../data/rygel-preferences.desktop.in.in.h:1
-#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel-preferences.desktop.in.in.h:1 ../data/rygel-preferences.ui.h:1
 msgid "Rygel Preferences"
 msgstr "라이겔 기본 설정"
 
@@ -197,7 +194,7 @@ msgstr "'Traceroute' 동작을 실행할 수 없습니다: 호스트 항목이 �
 msgid "Invalid connection reference"
 msgstr "잘못된 연결 참조"
 
-#: ../src/librygel-core/rygel-description-file.vala:483
+#: ../src/librygel-core/rygel-description-file.vala:490
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "변경된 설명을 %s에 쓰기 실패"
@@ -305,32 +302,37 @@ msgstr "경로 '%s'에서 모듈 읽어오기 실패: %s"
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "'%s2$d'의 엔트리 포인트 펑션 '%s1$d' 찾기 실패: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:144
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:70
+#, c-format
+msgid "Failed to open plugins folder: '%s'"
+msgstr "플러그인 폴더를 열 수 없습니다: '%s'"
+
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
 msgstr "폴더 '%s'의 내용 나열 중 오류: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:188
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:193
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "플러그인을 읽어들일 수 없습니다: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:216
+#: ../src/librygel-core/rygel-recursive-module-loader.vala:221
 #, c-format
 msgid "Failed to query content type for '%s'"
 msgstr "'%s'의 컨텐츠 타입 쿼리 실패"
 
-#: ../src/librygel-db/database-cursor.vala:82
+#: ../src/librygel-db/database-cursor.vala:99
 #, c-format
 msgid "Unsupported type %s"
 msgstr "지원하지 않는 종류, %s"
 
-#: ../src/librygel-db/database.vala:143
+#: ../src/librygel-db/database.vala:175
 #, c-format
 msgid "Error while opening SQLite database %s: %s"
 msgstr "SQLite %s 데이터베이스를 여는 중 오류: %s"
 
-#: ../src/librygel-db/database.vala:258
+#: ../src/librygel-db/database.vala:306
 #, c-format
 msgid "Failed to roll back transaction: %s"
 msgstr "트렌젝션 롤백 실패: %s"
@@ -474,7 +476,7 @@ msgstr "잘못된 인자"
 msgid "Cannot browse children on item"
 msgstr "항목의 하위 항목을 살펴볼 수 없습니다."
 
-#: ../src/librygel-server/rygel-browse.vala:130
+#: ../src/librygel-server/rygel-browse.vala:134
 #, c-format
 msgid "Failed to browse '%s': %s\n"
 msgstr "'%s' 검색 실패: %s\n"
@@ -531,7 +533,7 @@ msgstr "점으로 시작하는 %s 파일을 옮기는데 실패: %s"
 msgid "Requested item '%s' not found"
 msgstr "요청한 항목 '%s'(을)를 찾지 못했습니다"
 
-#: ../src/librygel-server/rygel-http-resource-handler.vala:86
+#: ../src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
 msgid "Couldn't create data source for %s"
 msgstr "%s에 대한 데이터 소스를 만들 수 없습니다"
@@ -600,13 +602,13 @@ msgid "Failed to update object '%s': %s"
 msgstr "'%s' 오브젝트 업데이트에 실패: %s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:162
-#: ../src/librygel-server/rygel-object-creator.vala:600
+#: ../src/librygel-server/rygel-object-creator.vala:606
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "날짜 형식이 잘못되었습니다: %s"
 
 #: ../src/librygel-server/rygel-item-updater.vala:171
-#: ../src/librygel-server/rygel-object-creator.vala:609
+#: ../src/librygel-server/rygel-object-creator.vala:615
 #, c-format
 msgid "Invalid date: %s"
 msgstr "날짜 잘못됨: %s"
@@ -689,23 +691,23 @@ msgstr "미디어 엔진이 없습니다."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init을 부르지 않았습니다. 계속할 수 없습니다."
 
-#: ../src/librygel-server/rygel-media-file-item.vala:176
+#: ../src/librygel-server/rygel-media-file-item.vala:177
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "%s URI의 프로토콜을 결정할 수 없습니다"
 
-#: ../src/librygel-server/rygel-media-object.vala:283
+#: ../src/librygel-server/rygel-media-object.vala:284
 #, c-format
 msgid "Could not determine protocol for %s"
 msgstr "%s에 대한 프로토콜을 결정할 수 없습니다"
 
-#: ../src/librygel-server/rygel-media-object.vala:508
+#: ../src/librygel-server/rygel-media-object.vala:509
 #, c-format
 msgid "Bad URI: %s"
 msgstr "잘못된 URI: %s"
 
 #. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-object.vala:520
+#: ../src/librygel-server/rygel-media-object.vala:527
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
 msgstr "URI %s의 프로토콜 검사 실패. '%s' 가정합니다"
@@ -728,7 +730,7 @@ msgid "Missing filter"
 msgstr "필터가 없습니다"
 
 #: ../src/librygel-server/rygel-media-query-action.vala:197
-#: ../src/librygel-server/rygel-object-creator.vala:406
+#: ../src/librygel-server/rygel-object-creator.vala:412
 msgid "No such container"
 msgstr "그런 컨테이너가 없습니다"
 
@@ -770,39 +772,43 @@ msgstr "설정하지 말아야 하는 플래그가 'dlnaManaged'에 있습니다
 msgid "Invalid upnp:class given in CreateObject"
 msgstr "CreateObject에서 주어진 upnp:class가 잘못되었습니다"
 
-#: ../src/librygel-server/rygel-object-creator.vala:260
+#: ../src/librygel-server/rygel-object-creator.vala:259
+msgid "Object is missing the @restricted attribute"
+msgstr "오브젝트에 @restricted 속성이 없습니다"
+
+#: ../src/librygel-server/rygel-object-creator.vala:266
 msgid "Cannot create restricted item"
 msgstr "제한 항목을 만들 수 없습니다"
 
-#: ../src/librygel-server/rygel-object-creator.vala:377
+#: ../src/librygel-server/rygel-object-creator.vala:383
 #, c-format
 msgid "UPnP class '%s' not supported"
 msgstr "'%s' UPnP 클래스를 지원하지 않음"
 
-#: ../src/librygel-server/rygel-object-creator.vala:411
-#: ../src/librygel-server/rygel-object-creator.vala:423
-#: ../src/librygel-server/rygel-object-creator.vala:709
+#: ../src/librygel-server/rygel-object-creator.vala:417
+#: ../src/librygel-server/rygel-object-creator.vala:429
+#: ../src/librygel-server/rygel-object-creator.vala:715
 #: ../src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "%s에 오브젝트를 만들기할 권한이 없습니다"
 
-#: ../src/librygel-server/rygel-object-creator.vala:468
+#: ../src/librygel-server/rygel-object-creator.vala:474
 #, c-format
 msgid "Failed to create item under '%s': %s"
 msgstr "'%s' 하위에 항목 만들기 실패: %s"
 
-#: ../src/librygel-server/rygel-object-creator.vala:542
+#: ../src/librygel-server/rygel-object-creator.vala:548
 #, c-format
 msgid "DLNA profile '%s' not supported"
 msgstr "'%s' DLNA 프로파일 지원하지 않음"
 
-#: ../src/librygel-server/rygel-object-creator.vala:642
+#: ../src/librygel-server/rygel-object-creator.vala:648
 #, c-format
 msgid "Cannot create object of class '%s': Not supported"
 msgstr "'%s' 클래스의 오브젝트를 만들 수 없습니다: 지원하지 않습니다"
 
-#: ../src/librygel-server/rygel-object-creator.vala:740
+#: ../src/librygel-server/rygel-object-creator.vala:746
 #, c-format
 msgid ""
 "Error from container '%s' on trying to find the newly added child object "
@@ -892,26 +898,26 @@ msgstr "'%s'(을)를 '%s'(으)로 링크 실패"
 msgid "Failed to link pad %s to %s"
 msgstr "패드 '%s'(을)를 '%s'(으)로 링크 실패"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:247
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:257
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "파이프라인 %s(으)로부터의 오류: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:254
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:264
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "파이프라인 %s(으)로부터의 경고: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:302
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:317
 msgid "Unsupported seek type"
 msgstr "지원하지 않는 이동 타입"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:319
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:334
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "%lld:%lld 오프셋으로 탐색에 실패했습니다"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:321
+#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:336
 msgid "Failed to seek"
 msgstr "탐색에 실패했습니다"
 
@@ -920,7 +926,7 @@ msgstr "탐색에 실패했습니다"
 msgid "Invalid URI without prefix: %s"
 msgstr "접두어가 없는 잘못된 URI: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
+#: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "%2$s 프로토콜의 %1$s URI를 처리할 수 없습니다"
@@ -942,6 +948,10 @@ msgstr ""
 #, c-format
 msgid "Required element %s missing"
 msgstr "필요한 요소 %s(을)를 찾을 수 없습니다"
+
+#: ../src/media-engines/gstreamer/rygel-gst-utils.vala:58
+msgid "GStreamer element 'dvdreadsrc' not found. DVD support does not work"
+msgstr "지스트리머 엘리먼트 'dvdreadsrc'가 없습니다. DVD 기능이 동작하지 않습니다"
 
 #: ../src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
@@ -968,40 +978,91 @@ msgstr "'%s' 모듈에서 D-버스 세션 버스에 연결할 수 없습니다. 
 msgid "External provider %s did not provide mandatory property \"%s\""
 msgstr "외부 프로바이더 %s에 필수 속성 \"%s\"이(가) 없습니다"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:91
+#: ../src/plugins/lms/rygel-lms-albums.vala:166
+#: ../src/plugins/tracker/rygel-tracker-albums.vala:31
+msgid "Albums"
+msgstr "앨범"
+
+#: ../src/plugins/lms/rygel-lms-all-images.vala:89
+#: ../src/plugins/lms/rygel-lms-all-music.vala:171
+#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
+msgid "All"
+msgstr "모두"
+
+#: ../src/plugins/lms/rygel-lms-image-years.vala:53
+msgid "Years"
+msgstr "연도"
+
+#: ../src/plugins/lms/rygel-lms-music-root.vala:35
+#: ../src/plugins/tracker/rygel-tracker-artists.vala:31
+msgid "Artists"
+msgstr "아티스트"
+
+#: ../src/plugins/lms/rygel-lms-root-container.vala:34
+msgid "Shared media"
+msgstr "공유 미디어"
+
+#: ../src/plugins/lms/rygel-lms-root-container.vala:46
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:603
+msgid "Music"
+msgstr "음악"
+
+#: ../src/plugins/lms/rygel-lms-root-container.vala:50
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:608
+msgid "Videos"
+msgstr "비디오"
+
+#: ../src/plugins/lms/rygel-lms-root-container.vala:54
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:606
+msgid "Pictures"
+msgstr "사진"
+
+#: ../src/plugins/media-export/rygel-media-export-dvd-container.vala:133
+#, c-format
+msgid "Title %d"
+msgstr "제목 %d"
+
+#: ../src/plugins/media-export/rygel-media-export-dvd-parser.vala:42
+msgid ""
+"Failed to find lsdvd binary in path. DVD extraction will not be available"
+msgstr "실행 경로에 lsdvd 실행 파일이 없습니다. DVD 추출 기능을 사용할 수 없습니다"
+
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:74
 msgid "Invalid command received, ignoring"
 msgstr "잘못된 명령어를 받았습니다. 무시합니다"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:112
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:100
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "%s URI를 발견하는데 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:130
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:119
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "파이프에서 읽는데 실패: %s"
 
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:146
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:158
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "상위 프로세스에 오류를 보내는데 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:203
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:204
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr "%s에서 기본 메타데이터를 추출하는데 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:222
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:228
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- 메타데이터 추출 용도의 라이겔 보조 바이너리"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:229
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:235
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "명령행 인자를 파싱하는데 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-extract.vala:237
+#: ../src/plugins/media-export/rygel-media-export-extract.vala:243
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "미디어아트 추출을 준비하는데 실패: %s"
@@ -1047,12 +1108,12 @@ msgstr "%s 파일을 수집하는데 실패: %s"
 msgid "Failed to query database: %s"
 msgstr "데이터 베이스 질의 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:250
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:259
 #, c-format
 msgid "Failed to enumerate folder \"%s\": %s"
 msgstr "\"%s\" 폴더 열거하기 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:277
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "%s 컨테이너의 하위 항목을 알아보는데 실패: %s"
@@ -1060,54 +1121,10 @@ msgstr "%s 컨테이너의 하위 항목을 알아보는데 실패: %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:334
+#: ../src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "%s URI 건너뜀. 메타데이터 추출이 완전히 실패했습니다: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:120
-#, c-format
-msgid "Invalid metadata serialisation, cannot process %s"
-msgstr "잘못된 메타데이터 직렬화. %s 처리할 수 없습니다"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:136
-#, c-format
-msgid "Invalid metadata serialisation: expected 7 children, got %d"
-msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
-msgstr[0] "잘못된 메타데이터 직렬화. 하위 프로세스 7개를 기대했지만 %d개를 받았습니다"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:231
-#, c-format
-msgid "Invalid metadata serialisation of metadata; %s"
-msgstr "다음 메타데이터의 잘못된 메타데이터 직렬화: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:267
-#, c-format
-msgid "Invalid metadata serialisation of video info; %s"
-msgstr "다음 비디오 정보의 잘못된 메타데이터 직렬화: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:286
-#, c-format
-msgid "Invalid metadata serialisation of audio info; %s"
-msgstr "다음 오디오 정보의 잘못된 메타데이터 직렬화: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:304
-msgid "Invalid metadata serialisation of general info"
-msgstr "일반 정보의 잘못된 메타데이터 직렬화"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:325
-#, c-format
-msgid "Invalid metadata serialisation of DLNA profile %s"
-msgstr "DLNA 프로파일 %s의 잘못된 메타데이터 직렬화"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:338
-#, c-format
-msgid "Invalid metadata serialisation of file info %s"
-msgstr "파일 정보 %s의 잘못된 메타데이터 직렬화"
-
-#: ../src/plugins/media-export/rygel-media-export-item-factory.vala:346
-msgid "Invalid metadata serialisation of file info"
-msgstr "파일 정보의 잘못된 메타데이터 직렬화"
 
 #: ../src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
@@ -1129,7 +1146,7 @@ msgstr "인덱스를 만드는데 실패: %s"
 msgid "Cannot upgrade from version %d"
 msgstr "%d 버전에서 업그레이드할 수 없습니다"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:113
+#: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
 #, c-format
 msgid "Database upgrade failed: %s"
 msgstr "데이터베이스 업그레이드 실패: %s"
@@ -1144,132 +1161,118 @@ msgstr "ID %s(으)로 항목 추가 실패: %s"
 msgid "Failed to get update IDs: %s"
 msgstr "업데이트 아이디를 가져오는데 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:397
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:396
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
 msgstr "데이터베이스 불일치: %s 항목에 %s 상위 항목이 없습니다"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:520
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:521
 msgid "Failed to get reset token"
 msgstr "초기화 토큰 가져오기 실패"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:532
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:533
 #, c-format
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "ServiceResetToken 유지 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:542
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:543
 #, c-format
 msgid "Failed to remove virtual folders: %s"
 msgstr "가상 폴더 제거에 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:556
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:557
 #, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
 msgstr "%s 항목을 보호(%d) 표시하는데 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:566
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:567
 msgid "Cannot create references to containers"
 msgstr "컨테이너에 대한 레퍼런스를 만들 수 없습니다"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:592
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:593
 #, c-format
 msgid "Failed to add %s to file blacklist: %s"
 msgstr "파일 블랙리스트에 %s 추가에 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:605
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:606
 #, c-format
 msgid "Failed to get whether URI %s is blacklisted: %s"
 msgstr "%s URI가 블랙리스트에 있는지 알아내기 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:621
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:622
 #, c-format
 msgid "Failed to get whether item %s is guarded: %s"
 msgstr "%s 항목이 보호인지 알아내기 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:660
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:661
 #, c-format
 msgid ""
 "The version \"%d\" of the detected database is newer than our supported "
 "version \"%d\""
-msgstr "발견한 데이터베이스의 \"%d\" 버전은 지원하는 \"%d\" 버전보다 더 최신입니다."
+msgstr ""
+"발견한 데이터베이스의 \"%d\" 버전은 지원하는 \"%d\" 버전보다 더 최신입니다."
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:684
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:685
 msgid "Incompatible schema… cannot proceed"
 msgstr "호환되지 않는 스키마… 진행 불가"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:690
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:691
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr "잘못된 데이터베이스, sqlite_master 테이블에 질의할 수 없습니다: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:891
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:892
 #, c-format
 msgid "Failed to create database schema: %s"
 msgstr "데이터베이스 스키마 만들기 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
+#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1228
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "지원하지 않는 정렬 필드: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:108
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:104
 msgid "Failed to gracefully stop the process. Using KILL"
 msgstr "프로세스를 적절하게 중지하는데 실패했습니다. KILL 시그널을 사용합니다."
 
 #. Process exitted properly -> That shouldn't really
 #. happen
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:166
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:152
 #, c-format
 msgid "Process check_async failed: %s"
 msgstr "check_async 처리 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:172
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #, c-format
 msgid "Process died while handling URI %s"
 msgstr "%s URI 처리 중에 프로세스가 죽었습니다"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:178
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
 #, c-format
 msgid "Setting up extraction subprocess failed: %s"
 msgstr "메타데이터 추출 하위 프로세스 설정에 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:191
-#, c-format
-msgid "Child failed fatally. Last uri was %s"
-msgstr "하위 프로세스 치명적인 실패. 최근 URI는 %s입니다"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:197
-#, c-format
-msgid "Reading from child's error stream failed: %s"
-msgstr "하위 프로세스의 오류 스트림 읽기 실패: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:217
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
 #, c-format
 msgid "Received invalid string from child: %s"
 msgstr "하위 프로세스에서 잘못된 스트링을 받음: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:224
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received ill-formed response string %s from child…"
 msgstr "하위 프로세스에서 잘못된 형식의 응답 문자열 %s을(를) 받았습니다…"
 
 #. No error signalling, this was done in the part that called
 #. cancel
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:266
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:243
 #, c-format
 msgid "Read from child failed: %s"
 msgstr "하위 프로세스에서 읽기 실패: %s"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:292
+#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:270
 #, c-format
 msgid "Failed to send command to child: %s"
 msgstr "하위 프로세스에 명령어를 보내는데 실패: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
-msgid "All"
-msgstr "모두"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
@@ -1293,7 +1296,7 @@ msgid "Can't remove containers in %s"
 msgstr "%s에 컨테이너를 제거할 수 없습니다"
 
 #: ../src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:593
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:610
 msgid "Playlists"
 msgstr "재생 목록"
 
@@ -1350,28 +1353,16 @@ msgid "Files & Folders"
 msgstr "파일 및 폴더"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:349
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:366
 #: ../src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@'s media"
 msgstr "@REALNAME@의 미디어"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:440
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:507
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:457
+#: ../src/plugins/media-export/rygel-media-export-root-container.vala:524
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "항목 제거 실패: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:586
-msgid "Music"
-msgstr "음악"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:589
-msgid "Pictures"
-msgstr "사진"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:591
-msgid "Videos"
-msgstr "비디오"
 
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: ../src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
@@ -1411,14 +1402,6 @@ msgstr "GStreamer 재생 프로그램"
 #: ../src/plugins/playbin/rygel-playbin-plugin.vala:43
 msgid "Could not create GStreamer player"
 msgstr "GStreamer 플레이어를 만들 수 없습니다"
-
-#: ../src/plugins/tracker/rygel-tracker-albums.vala:31
-msgid "Albums"
-msgstr "앨범"
-
-#: ../src/plugins/tracker/rygel-tracker-artists.vala:31
-msgid "Artists"
-msgstr "아티스트"
 
 #: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
@@ -1588,20 +1571,17 @@ msgid "Failed to load user configuration: %s"
 msgstr "사용자 설정 읽어오기 실패: %s"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
-#: ../src/rygel/rygel-user-config.vala:243
-#: ../src/ui/rygel-user-config.vala:243
+#: ../src/rygel/rygel-user-config.vala:246 ../src/ui/rygel-user-config.vala:246
 #, c-format
 msgid "Failed to load user configuration from file '%s': %s"
 msgstr "사용자 설정을 '%s' 파일에서 읽어오는데 실패: %s"
 
-#: ../src/rygel/rygel-user-config.vala:296
-#: ../src/ui/rygel-user-config.vala:296
+#: ../src/rygel/rygel-user-config.vala:299 ../src/ui/rygel-user-config.vala:299
 #, c-format
 msgid "No value available for '%s'"
 msgstr "'%s'에 사용가능한 값이 없습니다"
 
-#: ../src/rygel/rygel-user-config.vala:367
-#: ../src/ui/rygel-user-config.vala:367
+#: ../src/rygel/rygel-user-config.vala:370 ../src/ui/rygel-user-config.vala:370
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "값 '%s'(이)가 범위를 벗어났습니다"
