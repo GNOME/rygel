@@ -8,6 +8,7 @@ pkgconfig_DATA += rygel-renderer-gst-2.6.pc
 endif
 
 EXTRA_DIST = rygel-core-2.6.pc.in rygel-renderer-2.6.pc.in \
+             build-aux/config.rpath \
              rygel-server-2.6.pc.in .version \
              build-aux/git-version-gen
 

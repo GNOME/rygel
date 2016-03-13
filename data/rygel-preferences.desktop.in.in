@@ -1,6 +1,6 @@
 [Desktop Entry]
-_Name=Rygel Preferences
-_GenericName=UPnP/DLNA Preferences
+Name=Rygel Preferences
+GenericName=UPnP/DLNA Preferences
 Categories=Settings;X-GNOME-PersonalSettings;
 Icon=rygel
 Exec=rygel-preferences

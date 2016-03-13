@@ -1,8 +1,8 @@
 [Desktop Entry]
-_Name=Rygel
-_GenericName=UPnP/DLNA Services
-_Comment=UPnP/DLNA Services
-_Keywords=mediaserver;mediarenderer;share;audio;video;pictures;
+Name=Rygel
+GenericName=UPnP/DLNA Services
+Comment=UPnP/DLNA Services
+Keywords=mediaserver;mediarenderer;share;audio;video;pictures;
 Categories=
 Exec=rygel
 Terminal=false

@@ -19,8 +19,14 @@ $(dbusservice_DATA): $(dbusservice_in_files) Makefile
 
 # Rule to create the .desktop files
 desktop_in_files = rygel.desktop.in rygel-preferences.desktop.in
-desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
-@INTLTOOL_DESKTOP_RULE@
+desktop_DATA = rygel.desktop rygel-preferences.desktop
+
+$(desktop_in_files): rygel.desktop.in.in rygel-preferences.desktop.in.in
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
+
+# Substitute variables in a Desktop Entry file.
+$(desktop_DATA): $(desktop_in_files)
+	$(AM_V_GEN) sed -e 's|@VERSION[@]|$(VERSION)|g' $< > $@
 
 preset_DATA = $(srcdir)/presets/avenc_aac.prs \
 	$(srcdir)/presets/avenc_mp2.prs \
@@ -39,4 +45,3 @@ EXTRA_DIST = $(dbusservice_in_files) \
 	     $(sysconf_DATA) \
 	     $(pixmaps_DATA) \
 	     $(preset_DATA)
-

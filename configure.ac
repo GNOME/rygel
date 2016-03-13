@@ -444,13 +444,13 @@ RYGEL_CHECK_VALA([$VALA_REQUIRED],
                   posix])
 
 dnl Gettext
+AM_GNU_GETTEXT_VERSION([0.19.7])
+AM_GNU_GETTEXT([external])
+
 GETTEXT_PACKAGE=rygel
 AC_SUBST(GETTEXT_PACKAGE)
 AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE, ["$GETTEXT_PACKAGE"], 
   [Define the gettext package to be used])
-
-AM_GLIB_GNU_GETTEXT
-IT_PROG_INTLTOOL([0.40.0])
 
 dnl Shave the output
 AM_SILENT_RULES([yes])
@@ -522,8 +522,6 @@ data/icons/48x48/Makefile
 data/icons/120x120/Makefile
 data/icons/128x128/Makefile
 data/icons/scalable/Makefile
-data/rygel.desktop.in
-data/rygel-preferences.desktop.in
 doc/Makefile
 doc/reference/Makefile
 doc/reference/librygel-core/Makefile

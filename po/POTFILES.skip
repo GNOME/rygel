@@ -1,5 +1,3 @@
-data/rygel.desktop.in
-data/rygel-preferences.desktop.in
 data/xml/AVTransport2.xml
 data/xml/ConnectionManager.xml
 data/xml/ContentDirectory.xml
@@ -275,8 +273,6 @@ src/ui/rygel-preferences-dialog.c
 src/ui/rygel-preferences-section.c
 src/ui/rygel-user-config.c
 src/ui/rygel-writable-user-config.c
-sub/data/rygel-preferences.desktop.in
-sub/data/rygel.desktop.in
 tests/object-creator/rygel-m3u-playlist.c
 tests/object-creator/rygel-object-creator.c
 tests/plugins/media-export/regression.c
