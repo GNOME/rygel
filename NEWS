@@ -1,3 +1,21 @@
+0.30.0
+======
+
+- Replace glib-gettext and intltool with gettext
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=763586
+
+All contributors to this release:
+ - Yuri Myasoedov <ymyasoedov@yandex.ru>
+ - Jens Georg <mail@jensge.org>
+ - Javier Jardón <jjardon@gnome.org>
+ - Ask Hjorth Larsen <asklarsen@gmail.com>
+
+Added/updated translations
+ - da, courtesy of Ask Hjorth Larsen
+ - ru, courtesy of Yuri Myasoedov
+
 0.29.5
 ======
 
@@ -13,6 +31,38 @@ MediaExport:
 
 LightMediaScanner:
  - Add config to template and docs for the config
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Stas Solovey <whats_up@tut.by>
+ - Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Jiri Grönroos <jiri.gronroos@iki.fi>
+ - Gianvito Cavasoli <gianvito@gmx.it>
+ - Gábor Kelemen <kelemeng@openscope.org>
+ - Fran Dieguez <fran.dieguez@mabishu.com>
+ - Efstathios Iosifidis <eiosifidis@gnome.org>
+ - Duarte Loreto <happyguy_pt@hotmail.com>
+ - Daniel Korostil <ted.korostiled@gmail.com>
+ - Claude Paroz <claude@2xlibre.net>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Andreas Henriksson <andreas@fatal.se>
+
+Added/updated translations
+ - el, courtesy of Tom Tryfonidis
+ - fi, courtesy of Jiri Grönroos
+ - fr, courtesy of Alain Lojewski
+ - gl, courtesy of Fran Dieguez
+ - hu, courtesy of Gabor Kelemen
+ - it, courtesy of Gianvito Cavasoli
+ - ko, courtesy of Changwoo Ryu
+ - lt, courtesy of Aurimas Černius
+ - lv, courtesy of Rūdolfs Mazurs
+ - pt, courtesy of Sérgio Cardeira
+ - ru, courtesy of Stas Solovey
+ - sl, courtesy of Matej Urbančič
+ - uk, courtesy of Daniel Korostil
 
 0.29.4
 ======
