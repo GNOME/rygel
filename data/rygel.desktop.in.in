@@ -3,7 +3,6 @@ Name=Rygel
 GenericName=UPnP/DLNA Services
 Comment=UPnP/DLNA Services
 Keywords=mediaserver;mediarenderer;share;audio;video;pictures;
-Categories=
 Exec=rygel
 Terminal=false
 Type=Application
