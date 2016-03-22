@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-06 23:15+0200\n"
+"POT-Creation-Date: 2016-03-22 23:05+0200\n"
 "PO-Revision-Date: 2016-03-07 02:16+0300\n"
 "Last-Translator: Daniel Korostil <ted.korostiled@gmail.com>\n"
 "Language-Team: linux.org.ua\n"
@@ -15,80 +15,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Virtaal 0.7.1\n"
 "X-Project-Style: gnome\n"
-
-#: ../data/rygel.desktop.in.in.h:1
-msgid "Rygel"
-msgstr "Rygel"
-
-#: ../data/rygel.desktop.in.in.h:2
-msgid "UPnP/DLNA Services"
-msgstr "Служби UPnP/DLNA"
-
-#: ../data/rygel.desktop.in.in.h:3
-msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
-msgstr "медіасервер;медіаплеєр;спільний;аудіо;відео;фото;зображення;"
-
-#: ../data/rygel-preferences.desktop.in.in.h:1 ../data/rygel-preferences.ui.h:1
-msgid "Rygel Preferences"
-msgstr "Налаштування Rygel"
-
-#: ../data/rygel-preferences.desktop.in.in.h:2
-msgid "UPnP/DLNA Preferences"
-msgstr "Налаштування UPnP/DLNA"
-
-#: ../data/rygel-preferences.ui.h:2
-msgid "column"
-msgstr "стовпчик"
-
-#: ../data/rygel-preferences.ui.h:3
-msgid "Add a directory to the list of shared directories"
-msgstr "Додати теку в перелік спільних тек"
-
-#: ../data/rygel-preferences.ui.h:4
-msgid "Add shared directory"
-msgstr "Додати спільний каталог"
-
-#: ../data/rygel-preferences.ui.h:5
-msgid "Remove a directory from the list of shared directories"
-msgstr "Вилучити каталог з переліку спільних каталогів"
-
-#: ../data/rygel-preferences.ui.h:6
-msgid "Remove shared directory"
-msgstr "Вилучити спільний каталог"
-
-#: ../data/rygel-preferences.ui.h:7
-msgid "_Share media through DLNA"
-msgstr "_Оприлюднити матеріал через DLNA"
-
-#: ../data/rygel-preferences.ui.h:8
-msgid "Add a network interface Rygel should serve files on"
-msgstr "Додати мережевий інтерфейс, через який Rygel буде обслуговувати файли"
-
-#: ../data/rygel-preferences.ui.h:9
-msgid "Add network interface"
-msgstr "Додати мережевий інтерфейс"
-
-#: ../data/rygel-preferences.ui.h:10
-msgid "Remove a network interface Rygel should no longer serve files on"
-msgstr ""
-"Вилучити мережевий інтерфейс, через який Rygel більше не буде обслуговувати "
-"файли"
-
-#: ../data/rygel-preferences.ui.h:11
-msgid "Remove network interface"
-msgstr "Вилучити мережевий інтерфейс"
-
-#: ../data/rygel-preferences.ui.h:12
-msgid "Networks:"
-msgstr "Мережі:"
-
-#: ../data/rygel-preferences.ui.h:13
-msgid "Select folders"
-msgstr "Вибрати теки"
 
 #: ../src/librygel-core/rygel-base-configuration.vala:30
 #: ../src/librygel-core/rygel-base-configuration.vala:35
@@ -951,7 +881,8 @@ msgstr "Бракує потрібного елементу %s"
 
 #: ../src/media-engines/gstreamer/rygel-gst-utils.vala:58
 msgid "GStreamer element 'dvdreadsrc' not found. DVD support does not work"
-msgstr "Елемент GStreamer «dvdreadsrc» не знайдено. Підтримування DVD не працює"
+msgstr ""
+"Елемент GStreamer «dvdreadsrc» не знайдено. Підтримування DVD не працює"
 
 #: ../src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
@@ -960,7 +891,8 @@ msgstr "Тільки байтове переміщення підтримуєт�
 #: ../src/media-engines/simple/rygel-simple-media-engine.vala:57
 #: ../src/media-engines/simple/rygel-simple-media-engine.vala:96
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
-msgstr "Можна обробити тільки основаного на файлі MediaObjects (MediaFileItems)"
+msgstr ""
+"Можна обробити тільки основаного на файлі MediaObjects (MediaFileItems)"
 
 #: ../src/media-engines/simple/rygel-simple-media-engine.vala:67
 #, c-format
@@ -1604,6 +1536,60 @@ msgstr "Не вдалось запустити службу Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Не вдалось зупинити службу Rygel: %s"
+
+#~ msgid "Rygel"
+#~ msgstr "Rygel"
+
+#~ msgid "UPnP/DLNA Services"
+#~ msgstr "Служби UPnP/DLNA"
+
+#~ msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
+#~ msgstr "медіасервер;медіаплеєр;спільний;аудіо;відео;фото;зображення;"
+
+#~ msgid "Rygel Preferences"
+#~ msgstr "Налаштування Rygel"
+
+#~ msgid "UPnP/DLNA Preferences"
+#~ msgstr "Налаштування UPnP/DLNA"
+
+#~ msgid "column"
+#~ msgstr "стовпчик"
+
+#~ msgid "Add a directory to the list of shared directories"
+#~ msgstr "Додати теку в перелік спільних тек"
+
+#~ msgid "Add shared directory"
+#~ msgstr "Додати спільний каталог"
+
+#~ msgid "Remove a directory from the list of shared directories"
+#~ msgstr "Вилучити каталог з переліку спільних каталогів"
+
+#~ msgid "Remove shared directory"
+#~ msgstr "Вилучити спільний каталог"
+
+#~ msgid "_Share media through DLNA"
+#~ msgstr "_Оприлюднити матеріал через DLNA"
+
+#~ msgid "Add a network interface Rygel should serve files on"
+#~ msgstr ""
+#~ "Додати мережевий інтерфейс, через який Rygel буде обслуговувати файли"
+
+#~ msgid "Add network interface"
+#~ msgstr "Додати мережевий інтерфейс"
+
+#~ msgid "Remove a network interface Rygel should no longer serve files on"
+#~ msgstr ""
+#~ "Вилучити мережевий інтерфейс, через який Rygel більше не буде "
+#~ "обслуговувати файли"
+
+#~ msgid "Remove network interface"
+#~ msgstr "Вилучити мережевий інтерфейс"
+
+#~ msgid "Networks:"
+#~ msgstr "Мережі:"
+
+#~ msgid "Select folders"
+#~ msgstr "Вибрати теки"
 
 #~ msgid "Disable UPnP (streaming-only)"
 #~ msgstr "Вимкнути UPnP (лише потокове відтворення)"
