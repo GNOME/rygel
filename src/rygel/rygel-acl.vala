@@ -104,7 +104,7 @@ internal class Rygel.Acl : GLib.Object, GUPnP.Acl
                                                      service_hash,
                                                      path,
                                                      address,
-                                                     agent);
+                                                     agent ?? "");
             return allowed;
         } catch (Error error) {
             warning (_("Failed to query ACL: %s"), error.message);
