@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-22 20:22+0000\n"
-"PO-Revision-Date: 2016-03-22 22:45+0100\n"
+"POT-Creation-Date: 2016-04-07 14:05+0000\n"
+"PO-Revision-Date: 2016-04-07 20:44+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -35,8 +35,8 @@ msgstr "Usługi UPnP/DLNA"
 #: data/rygel.desktop.in.in:6
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
-"upnp;dlna;media;serwer multimediów;renderer;współdzielenie;dźwięk;audio;"
-"wideo;video;zdjęcia;obraz;obrazy;obrazki;obrazek;"
+"upnp;dlna;media;serwer multimediów;renderer;udostępnianie;współdzielenie;"
+"dźwięk;audio;wideo;video;zdjęcia;obraz;obrazy;obrazki;obrazek;"
 
 #: data/rygel-preferences.desktop.in.in:3 data/rygel-preferences.ui:24
 msgid "Rygel Preferences"
@@ -56,23 +56,23 @@ msgstr "kolumna"
 
 #: data/rygel-preferences.ui:94
 msgid "Add a directory to the list of shared directories"
-msgstr "Dodaje katalog do listy katalogów współdzielonych"
+msgstr "Dodaje katalog do listy udostępnianych katalogów"
 
 #: data/rygel-preferences.ui:95
 msgid "Add shared directory"
-msgstr "Dodaje katalog współdzielony"
+msgstr "Dodaje udostępniany katalog"
 
 #: data/rygel-preferences.ui:107
 msgid "Remove a directory from the list of shared directories"
-msgstr "Usuwa katalog z listy katalogów współdzielonych"
+msgstr "Usuwa katalog z listy udostępnianych katalogów"
 
 #: data/rygel-preferences.ui:108
 msgid "Remove shared directory"
-msgstr "Usuwa katalog współdzielony"
+msgstr "Usuwa udostępniany katalog"
 
 #: data/rygel-preferences.ui:153
 msgid "_Share media through DLNA"
-msgstr "W_spółdzielenie multimediów przez DLNA"
+msgstr "_Udostępnianie multimediów przez DLNA"
 
 #: data/rygel-preferences.ui:230 data/rygel-preferences.ui:231
 msgid "Add a network interface Rygel should serve files on"
@@ -1019,7 +1019,7 @@ msgstr "Wykonawcy"
 
 #: src/plugins/lms/rygel-lms-root-container.vala:34
 msgid "Shared media"
-msgstr "Współdzielone multimedia"
+msgstr "Udostępniane multimedia"
 
 #: src/plugins/lms/rygel-lms-root-container.vala:46
 #: src/plugins/media-export/rygel-media-export-root-container.vala:603
