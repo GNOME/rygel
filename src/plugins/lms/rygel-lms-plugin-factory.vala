@@ -22,19 +22,6 @@
 
 using Rygel;
 
-private Rygel.LMS.PluginFactory plugin_factory;
-
 public void module_init (PluginLoader loader) {
-    plugin_factory = new Rygel.LMS.PluginFactory (loader);
-}
-
-public class Rygel.LMS.PluginFactory {
-
-    PluginLoader loader;
-
-    public PluginFactory (PluginLoader loader) {
-        this.loader = loader;
-        this.loader.add_plugin (new LMS.Plugin ());
-    }
-
+    loader.add_plugin (new LMS.Plugin ());
 }
