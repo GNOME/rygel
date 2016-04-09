@@ -24,13 +24,6 @@ using Rygel;
 using Gst;
 
 public void module_init (PluginLoader loader) {
-    if (loader.plugin_disabled (Playbin.Plugin.NAME)) {
-        message ("Plugin '%s' disabled by user, ignoring..",
-                 Playbin.Plugin.NAME);
-
-        return;
-    }
-
     unowned string[] args = null;
 
     Gst.init (ref args);

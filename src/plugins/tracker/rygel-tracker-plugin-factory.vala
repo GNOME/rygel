@@ -29,13 +29,6 @@ using Gee;
 private Rygel.Tracker.PluginFactory plugin_factory;
 
 public void module_init (PluginLoader loader) {
-    if (loader.plugin_disabled (Rygel.Tracker.Plugin.NAME)) {
-        message ("Plugin '%s' disabled by user, ignoring..",
-                 Rygel.Tracker.Plugin.NAME);
-
-        return;
-    }
-
     try {
         plugin_factory = new Rygel.Tracker.PluginFactory (loader);
     } catch (Error err) {
