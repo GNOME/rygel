@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-20 23:19+0100\n"
-"PO-Revision-Date: 2016-03-20 21:46+0100\n"
+"POT-Creation-Date: 2016-04-10 23:11+0200\n"
+"PO-Revision-Date: 2016-04-10 21:45+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -20,75 +20,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: ../data/rygel.desktop.in.in.h:1
-msgid "Rygel"
-msgstr "Rygel"
-
-#: ../data/rygel.desktop.in.in.h:2
-msgid "UPnP/DLNA Services"
-msgstr "UPnP/DLNA-tjenester"
-
-#: ../data/rygel.desktop.in.in.h:3
-msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
-msgstr "medieserver;medieoptegner;medierendering;del;lyd;video;billeder;"
-
-#: ../data/rygel-preferences.desktop.in.in.h:1
-#: ../data/rygel-preferences.ui.h:1
-msgid "Rygel Preferences"
-msgstr "Indstillinger for Rygel"
-
-#: ../data/rygel-preferences.desktop.in.in.h:2
-msgid "UPnP/DLNA Preferences"
-msgstr "UPnP/DLNA-indstillinger"
-
-#: ../data/rygel-preferences.ui.h:2
-msgid "column"
-msgstr "kolonne"
-
-#: ../data/rygel-preferences.ui.h:3
-msgid "Add a directory to the list of shared directories"
-msgstr "Tilføj en mappe til listen over delte mapper"
-
-#: ../data/rygel-preferences.ui.h:4
-msgid "Add shared directory"
-msgstr "Tilføj delt mappe"
-
-#: ../data/rygel-preferences.ui.h:5
-msgid "Remove a directory from the list of shared directories"
-msgstr "Fjern en mappe fra listen over delte mapper"
-
-#: ../data/rygel-preferences.ui.h:6
-msgid "Remove shared directory"
-msgstr "Fjern delt mappe"
-
-#: ../data/rygel-preferences.ui.h:7
-msgid "_Share media through DLNA"
-msgstr "_Del medie via DLNA"
-
-#: ../data/rygel-preferences.ui.h:8
-msgid "Add a network interface Rygel should serve files on"
-msgstr "Tilføj en netværksgrænseflade, som Rygel skal dele filer på"
-
-#: ../data/rygel-preferences.ui.h:9
-msgid "Add network interface"
-msgstr "Tilføj netværksgrænseflade"
-
-#: ../data/rygel-preferences.ui.h:10
-msgid "Remove a network interface Rygel should no longer serve files on"
-msgstr "Fjern en netværksgrænseflade, så Rygel ikke længere deler filer på den"
-
-#: ../data/rygel-preferences.ui.h:11
-msgid "Remove network interface"
-msgstr "Fjern netværksgrænseflade"
-
-#: ../data/rygel-preferences.ui.h:12
-msgid "Networks:"
-msgstr "Netværk:"
-
-#: ../data/rygel-preferences.ui.h:13
-msgid "Select folders"
-msgstr "Vælg mapper"
 
 #: ../src/librygel-core/rygel-base-configuration.vala:30
 #: ../src/librygel-core/rygel-base-configuration.vala:35
@@ -1620,6 +1551,61 @@ msgstr "Kunne ikke starte Rygel-tjeneste: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Kunne ikke stoppe Rygel-tjeneste: %s"
+
+#~ msgid "Rygel"
+#~ msgstr "Rygel"
+
+#~ msgid "UPnP/DLNA Services"
+#~ msgstr "UPnP/DLNA-tjenester"
+
+#~ msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
+#~ msgstr "medieserver;medieoptegner;medierendering;del;lyd;video;billeder;"
+
+#~ msgid "Rygel Preferences"
+#~ msgstr "Indstillinger for Rygel"
+
+#~ msgid "UPnP/DLNA Preferences"
+#~ msgstr "UPnP/DLNA-indstillinger"
+
+#~ msgid "rygel"
+#~ msgstr "rygel"
+
+#~ msgid "column"
+#~ msgstr "kolonne"
+
+#~ msgid "Add a directory to the list of shared directories"
+#~ msgstr "Tilføj en mappe til listen over delte mapper"
+
+#~ msgid "Add shared directory"
+#~ msgstr "Tilføj delt mappe"
+
+#~ msgid "Remove a directory from the list of shared directories"
+#~ msgstr "Fjern en mappe fra listen over delte mapper"
+
+#~ msgid "Remove shared directory"
+#~ msgstr "Fjern delt mappe"
+
+#~ msgid "_Share media through DLNA"
+#~ msgstr "_Del medie via DLNA"
+
+#~ msgid "Add a network interface Rygel should serve files on"
+#~ msgstr "Tilføj en netværksgrænseflade, som Rygel skal dele filer på"
+
+#~ msgid "Add network interface"
+#~ msgstr "Tilføj netværksgrænseflade"
+
+#~ msgid "Remove a network interface Rygel should no longer serve files on"
+#~ msgstr ""
+#~ "Fjern en netværksgrænseflade, så Rygel ikke længere deler filer på den"
+
+#~ msgid "Remove network interface"
+#~ msgstr "Fjern netværksgrænseflade"
+
+#~ msgid "Networks:"
+#~ msgstr "Netværk:"
+
+#~ msgid "Select folders"
+#~ msgstr "Vælg mapper"
 
 #~ msgid "Child failed fatally. Last uri was %s"
 #~ msgstr "Underproces fejlede fatalt. Sidste URI var %s"
