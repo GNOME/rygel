@@ -33,7 +33,7 @@ public class Rygel.LMS.RootContainer : Rygel.SimpleContainer {
 
         var title = _("Shared media");
         try {
-            title = config.get_string ("LightMediaScanner", "title");
+            title = config.get_string (LMS.Plugin.NAME, "title");
         } catch (GLib.Error error) {}
 
         base.root (title);
