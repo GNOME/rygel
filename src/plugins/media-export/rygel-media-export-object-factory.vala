@@ -79,7 +79,16 @@ internal class Rygel.MediaExport.ObjectFactory : Object {
         // to allow uploads.
         // See https://bugzilla.gnome.org/show_bug.cgi?id=676379 to
         // give more control over this.
-        return new WritableDbContainer (id, title);
+        var allow_upload = false;
+        try {
+            allow_upload = MetaConfig.get_default ().get_allow_upload ();
+        } catch (Error error) { /* Using default */ }
+
+        if (allow_upload) {
+            return new WritableDbContainer (id, title);
+        } else {
+            return new TrackableDbContainer (id, title);
+        }
     }
 
     /**
