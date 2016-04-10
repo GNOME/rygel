@@ -528,7 +528,9 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
         this.harvester.locations.remove_all (old_uris);
 
         if (!new_uris.is_empty) {
-            this.filesystem_container.disconnect (this.filesystem_signal_id);
+            if (this.filesystem_signal_id != 0) {
+                this.filesystem_container.disconnect (this.filesystem_signal_id);
+            }
             this.filesystem_signal_id = 0;
             this.harvester_signal_id = this.harvester.done.connect
                                             (on_initial_harvesting_done);
