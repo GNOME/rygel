@@ -748,46 +748,30 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
                                            File file,
                                            File? other_file,
                                            FileMonitorEvent event_type) {
-        if (event_type == FileMonitorEvent.CHANGES_DONE_HINT) {
-            if (this.system_config_timer_id != 0) {
-                Source.remove (this.system_config_timer_id);
-                this.system_config_timer_id = 0;
-            }
-            this.reload_compare_and_notify_system (file);
-        } else {
-            if (this.system_config_timer_id != 0) {
-                Source.remove (this.system_config_timer_id);
-            }
-            this.system_config_timer_id = Timeout.add (500, () => {
-                this.system_config_timer_id = 0;
-                this.reload_compare_and_notify_system (file);
-
-                return false;
-            });
+        if (this.system_config_timer_id != 0) {
+            Source.remove (this.system_config_timer_id);
         }
+        this.system_config_timer_id = Timeout.add (500, () => {
+            this.system_config_timer_id = 0;
+            this.reload_compare_and_notify_system (file);
+
+            return false;
+        });
     }
 
     private void on_local_config_changed (FileMonitor monitor,
                                           File file,
                                           File? other_file,
                                           FileMonitorEvent event_type) {
-        if (event_type == FileMonitorEvent.CHANGES_DONE_HINT) {
-            if (this.local_config_timer_id != 0) {
-                Source.remove (this.local_config_timer_id);
-                this.local_config_timer_id = 0;
-            }
-            this.reload_compare_and_notify_local (file);
-        } else {
-            if (this.local_config_timer_id != 0) {
-                Source.remove (this.local_config_timer_id);
-            }
-
-            this.local_config_timer_id = Timeout.add (500, () => {
-                this.local_config_timer_id = 0;
-                this.reload_compare_and_notify_local (file);
-
-                return false;
-            });
+        if (this.local_config_timer_id != 0) {
+            Source.remove (this.local_config_timer_id);
         }
+
+        this.local_config_timer_id = Timeout.add (500, () => {
+            this.local_config_timer_id = 0;
+            this.reload_compare_and_notify_local (file);
+
+            return false;
+        });
     }
 }
