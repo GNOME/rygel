@@ -1,3 +1,66 @@
+0.30.1
+======
+
+LMS:
+ - Use "LMS" as section for the plugin consistently.
+
+Core:
+ - Always delay reload of config file to prevent double change notifications.
+
+Rygel:
+ - Fix an issue with passing NULL to Vala DBus functions
+
+MediaExport:
+ - If "allow-upload" is set to false, don't create writable containers to
+   prevent filesystem modifications.
+ - Prevent a critical when "uris" configuration is changed due to non-existing
+   timer.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=764016
+ - https://bugzilla.gnome.org/show_bug.cgi?id=764829
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Марко М. Костић <marko.m.kostic@gmail.com>
+ - Tom Tryfonidis <tomtryf@gnome.org>
+ - Stas Solovey <whats_up@tut.by>
+ - Rafael Fontenelle <rafaelff@gnome.org>
+ - Mario Blättermann <mario.blaettermann@gmail.com>
+ - Marek Černocký <marek@manet.cz>
+ - Kalev Lember <klember@redhat.com>
+ - Inaki Larranaga Murgoitio <dooteo@zundan.com>
+ - Gianvito Cavasoli <gianvito@gmx.it>
+ - Fran Dieguez <frandieguez@gnome.org>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Daniel Korostil <ted.korostiled@gmail.com>
+ - Balázs Úr <urbalazs@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Ask Hjorth Larsen <asklarsen@gmail.com>
+ - Anders Jonsson <anders.jonsson@norsjovallen.se>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - da, courtesy of Ask Hjorth Larsen
+ - de, courtesy of Mario Blättermann
+ - el, courtesy of Tom Tryfonidis
+ - es, courtesy of Daniel Mustieles
+ - eu, courtesy of dooteo
+ - gl, courtesy of Fran Dieguez
+ - hu, courtesy of Balázs Úr
+ - it, courtesy of Gianvito Cavasoli
+ - lt, courtesy of Aurimas Černius
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Rafael Fontenelle
+ - ru, courtesy of Stas Solovey
+ - sk, courtesy of Dušan Kazik
+ - sr, courtesy of Марко М. Костић
+ - sr@latin, courtesy of Marko M. Kostić
+ - sv, courtesy of Anders Jonsson
+ - uk, courtesy of Daniel Korostil
+
 0.30.0
 ======
 
