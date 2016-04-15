@@ -525,6 +525,7 @@ data/icons/scalable/Makefile
 doc/Makefile
 doc/reference/Makefile
 doc/reference/librygel-core/Makefile
+doc/reference/librygel-db/Makefile
 doc/reference/librygel-renderer/Makefile
 doc/reference/librygel-server/Makefile
 doc/reference/librygel-renderer-gst/Makefile

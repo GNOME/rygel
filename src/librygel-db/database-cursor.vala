@@ -63,7 +63,7 @@ public class Rygel.Database.Cursor : Object {
      * which _bind function to use.
      *
      * Supported types are: int, long, int64, uint64, string and pointer.
-     * @note the only pointer supported is the null pointer as provided by
+     * Note: The only pointer supported is the null pointer as provided by
      * Database.@null. This is a special value to bind a column to NULL
      * @param arguments array of values to bind to the SQL statement or null if
      * none

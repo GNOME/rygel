@@ -144,9 +144,9 @@ public class Rygel.Database.Database : Object, Initable {
     /**
      * Connect to a SQLite database file
      *
-     * @param name: Name of the database which is used to create the file-name
-     * @param flavor: Specifies the flavor of the database
-     * @param flags: How to open the database
+     * @param name Name of the database which is used to create the file-name
+     * @param flavor Specifies the flavor of the database
+     * @param flags How to open the database
      */
     public Database (string name,
                      Flavor flavor = Flavor.CACHE,
@@ -222,7 +222,7 @@ public class Rygel.Database.Database : Object, Initable {
      * Use for all queries that return a result set.
      *
      * @param sql The SQL query to run.
-     * @param args Values to bind in the SQL query or null.
+     * @param arguments Values to bind in the SQL query or null.
      * @throws DatabaseError if the underlying SQLite operation fails.
      */
     public Cursor exec_cursor (string        sql,
@@ -237,7 +237,7 @@ public class Rygel.Database.Database : Object, Initable {
      * Use for all queries that don't return anything.
      *
      * @param sql The SQL query to run.
-     * @param args Values to bind in the SQL query or null.
+     * @param arguments Values to bind in the SQL query or null.
      * @throws DatabaseError if the underlying SQLite operation fails.
      */
     public void exec (string        sql,
