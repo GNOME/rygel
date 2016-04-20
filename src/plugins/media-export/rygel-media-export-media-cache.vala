@@ -676,9 +676,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             debug ("Could not find schema version;" +
                    " checking for empty database...");
             try {
-                var rows = this.db.query_value ("SELECT count(type) FROM " +
-                                                "sqlite_master WHERE rowid=1");
-                if (rows == 0) {
+                if (this.db.is_empty ()) {
                     debug ("Empty database, creating new schema version %s",
                             SQLFactory.SCHEMA_VERSION);
                     if (!create_schema ()) {

@@ -307,4 +307,15 @@ public class Rygel.Database.Database : Object, Initable {
                       error.message);
         }
     }
+
+    /**
+     * Check for an empty SQLite database.
+     * @return true if the file is an empty SQLite database, false otherwise
+     * @throws DatabaseError if the SQLite meta table does not exist which
+     * usually indicates that the file is not a databsae
+     */
+    public bool is_empty () throws DatabaseError {
+        return this.query_value ("SELECT count(type) FROM " +
+                                 "sqlite_master WHERE rowid = 1") == 0;
+    }
 }
