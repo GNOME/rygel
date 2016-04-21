@@ -56,7 +56,7 @@ rygel_energy_management_get_mac_and_network_type (const char *iface,
         goto out;
     }
 
-    strncpy (ifr.ifr_name, iface, IFNAMSIZ);
+    strncpy (ifr.ifr_name, iface, IFNAMSIZ - 1);
     if (ioctl (fd, SIOCGIFHWADDR, &ifr) < 0) {
         g_warning (_("Failed to get MAC address for %s: %s"),
                    iface,
