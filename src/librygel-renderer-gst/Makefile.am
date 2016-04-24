@@ -21,13 +21,13 @@ librygel_renderer_gst_2_6_la_VALAFLAGS = \
 	$(RYGEL_COMMON_VALAFLAGS)
 librygel_renderer_gst_2_6_la_CFLAGS = \
 	$(LIBRYGEL_RENDERER_GST_DEPS_CFLAGS) \
-	$(RYGEL_COMMON_LIBRYGEL_RENDERER_CFLAGS)
+	$(RYGEL_COMMON_LIBRYGEL_RENDERER_CFLAGS) \
+	-DG_LOG_DOMAIN=\"RygelRendererGst\"
 librygel_renderer_gst_2_6_la_LIBADD = \
 	$(LIBRYGEL_RENDERER_GST_DEPS_LIBS) \
 	$(RYGEL_COMMON_LIBRYGEL_RENDERER_LIBS)
 librygel_renderer_gst_2_6_la_LDFLAGS = \
-	-version-info $(LIBRYGEL_RENDERER_GST_VERSION) \
-	-DG_LOG_DOMAIN=\"RygelRendererGst\"
+	-version-info $(LIBRYGEL_RENDERER_GST_VERSION)
 
 rygel-renderer-gst.h rygel-renderer-gst-2.6.vapi Rygel-2.6.gir: librygel_renderer_gst_2_6_la_vala.stamp
 
