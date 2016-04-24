@@ -1,8 +1,14 @@
+data/xml/AVTransport2.xml.in
 data/xml/AVTransport2.xml
+data/xml/ConnectionManager.xml.in
 data/xml/ConnectionManager.xml
+data/xml/ContentDirectory.xml.in
 data/xml/ContentDirectory.xml
+data/xml/MediaRenderer2.xml.in
 data/xml/MediaRenderer2.xml
+data/xml/MediaServer2.xml.in
 data/xml/MediaServer2.xml
+data/xml/RenderingControl2.xml.in
 data/xml/RenderingControl2.xml
 doc/reference/librygel-core/gtkdoc/ccomments/rygel-energy-management-helper.c
 src/librygel-core/rygel-base-configuration.c

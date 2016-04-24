@@ -3,12 +3,6 @@
 data/rygel.desktop.in.in
 data/rygel-preferences.desktop.in.in
 data/rygel-preferences.ui
-data/xml/AVTransport2.xml.in
-data/xml/ConnectionManager.xml.in
-data/xml/ContentDirectory.xml.in
-data/xml/MediaRenderer2.xml.in.in
-data/xml/MediaServer3.xml.in.in
-data/xml/RenderingControl2.xml.in
 src/librygel-core/rygel-base-configuration.vala
 src/librygel-core/rygel-basic-management-test.vala
 src/librygel-core/rygel-basic-management.vala
