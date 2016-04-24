@@ -422,7 +422,9 @@ AS_IF([test "x$enable_tracker_plugin" = "xyes"],
     trackerpkg=""
     m4_foreach([VERSION], [[1.0], [0.16], [0.15], [0.14]],
                  [PKG_CHECK_EXISTS([tracker-sparql-VERSION >= $TRACKER_SPARQL_REQUIRED_MIN],
-                                   [ trackerpkg="tracker-sparql-VERSION" ])
+                                   [ trackerpkg="tracker-sparql-VERSION"
+                                     tracker_api_version="VERSION"
+                                   ])
                  ])
 
     PKG_CHECK_MODULES([RYGEL_PLUGIN_TRACKER_DEPS],
