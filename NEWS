@@ -1,3 +1,95 @@
+0.31.0
+======
+
+- Fix desktop.in files to which created invalid desktop files after being
+  processed
+- Disable upload and remove file removal in default configuration
+- Minor documentation updates
+- Fix output of build summary to show proper tracker version
+
+Core:
+ - Always delay reload of config files to prevent reading empty files
+ - Make plugin loader watch the config making it possible to enable/disable
+   plugins on-the-fly
+ - Fix a possible strncpy overflow in ARP lookup
+
+Server:
+ - Clean up HTTP GET request handling
+
+Rygel:
+ - Fix an issue where we pass NULL to a DBus function causing criticals
+
+LMS:
+ - Fix plugin name and make it possible to actually deactivate it
+
+Tracker:
+ - Clean up plugin startup
+
+GStreamer renderer:
+ - Fix log domain
+
+Playbin:
+ - Clean up plugin startup
+
+MediaExport:
+ - If allow-upload is not set, then make it impossible for MediaExport to
+   remove files from the disk
+ - Fix a critical when disconnecting a non-existing signal
+
+Db:
+ - Generate api documentation
+
+Tests:
+ - Reenable MediaEngine tests
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=764016
+ - https://bugzilla.gnome.org/show_bug.cgi?id=764829
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Марко М. Костић <marko.m.kostic@gmail.com>
+ - Марко Костић <marko.m.kostic@gmail.com>
+ - Tom Tryfonidis <tomtryf@gnome.org>
+ - Stas Solovey <whats_up@tut.by>
+ - Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+ - Rafael Fontenelle <rafaelff@gnome.org>
+ - Mario Blättermann <mario.blaettermann@gmail.com>
+ - Marek Černocký <marek@manet.cz>
+ - Kalev Lember <klember@redhat.com>
+ - Inaki Larranaga Murgoitio <dooteo@zundan.com>
+ - Gianvito Cavasoli <gianvito@gmx.it>
+ - Fran Dieguez <frandieguez@gnome.org>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Daniel Korostil <ted.korostiled@gmail.com>
+ - Balázs Úr <urbalazs@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Ask Hjorth Larsen <asklarsen@gmail.com>
+ - Anders Jonsson <anders.jonsson@norsjovallen.se>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - da, courtesy of Ask Hjorth Larsen
+ - de, courtesy of Mario Blättermann
+ - el, courtesy of Tom Tryfonidis
+ - es, courtesy of Daniel Mustieles
+ - eu, courtesy of dooteo
+ - gl, courtesy of Fran Dieguez
+ - hu, courtesy of Balázs Úr
+ - it, courtesy of Gianvito Cavasoli
+ - lt, courtesy of Aurimas Černius
+ - lv, courtesy of Rūdolfs Mazurs
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Rafael Fontenelle
+ - ru, courtesy of Stas Solovey
+ - sk, courtesy of Dušan Kazik
+ - sr, courtesy of Марко М. Костић
+ - sr@latin, courtesy of Marko M. Kostić
+ - sv, courtesy of Anders Jonsson
+ - uk, courtesy of Daniel Korostil
+
 0.30.0
 ======
 
