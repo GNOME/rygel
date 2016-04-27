@@ -41,6 +41,8 @@ public class Rygel.Tracker.SelectionQuery : Query {
     private const string AVAILABLE_FILTER = "(tracker:available(" +
                                             ITEM_VARIABLE + ") = true)";
 
+    private string uri_filter;
+
     public ArrayList<string> variables;
     public ArrayList<string> filters;
 
@@ -68,6 +70,59 @@ public class Rygel.Tracker.SelectionQuery : Query {
         this.order_by = order_by;
         this.offset = offset;
         this.max_count = max_count;
+
+        ArrayList<string> uris;
+        ArrayList<File> actual_uris;
+
+        var config = MetaConfig.get_default ();
+
+        try {
+            uris = config.get_string_list ("Tracker", "only-export-from");
+        } catch (Error error) {
+            uris = new ArrayList<string> ();
+        }
+
+        actual_uris = new ArrayList<File> ((EqualDataFunc<File>) File.equal);
+
+        var home_dir = File.new_for_path (Environment.get_home_dir ());
+        unowned string pictures_dir = Environment.get_user_special_dir
+                                        (UserDirectory.PICTURES);
+        unowned string videos_dir = Environment.get_user_special_dir
+                                        (UserDirectory.VIDEOS);
+        unowned string music_dir = Environment.get_user_special_dir
+                                        (UserDirectory.MUSIC);
+
+        uri_filter = "(";
+        foreach (var uri in uris) {
+            var file = File.new_for_commandline_arg (uri);
+            if (!file.equal (home_dir)) {
+                var actual_uri = uri;
+
+                if (pictures_dir != null) {
+                    actual_uri = actual_uri.replace ("@PICTURES@", pictures_dir);
+                }
+                if (videos_dir != null) {
+                    actual_uri = actual_uri.replace ("@VIDEOS@", videos_dir);
+                }
+                if (music_dir != null) {
+                    actual_uri = actual_uri.replace ("@MUSIC@", music_dir);
+                }
+
+                // protect against special directories expanding to $HOME
+                file = File.new_for_commandline_arg (actual_uri);
+                if (file.equal (home_dir)) {
+                    continue;
+                }
+
+                uri_filter += "tracker:uri-is-descendant(\"%s\", nie:url(%s))".printf
+                                (file.get_uri (), ITEM_VARIABLE);
+            }
+        }
+        if (uri_filter != "(") {
+            uri_filter += ")";
+        } else {
+            uri_filter = null;
+        }
     }
 
     public SelectionQuery.clone (SelectionQuery query) {
@@ -117,6 +172,9 @@ public class Rygel.Tracker.SelectionQuery : Query {
                 filters.add (STRICT_SHARED_FILTER);
             }
         } catch (Error error) {};
+
+        // Limit the files to a set of folders that may have been configured
+        filters.add (uri_filter);
 
         if (filters.size > 0) {
             query += " FILTER (";
