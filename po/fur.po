@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2016-04-28 17:49+0000\n"
-"PO-Revision-Date: 2016-04-28 21:58+0200\n"
+"PO-Revision-Date: 2016-04-28 22:08+0200\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
@@ -211,16 +211,17 @@ msgstr "No si è rivâts a otignî un socket: %s"
 #: src/librygel-core/rygel-energy-management-helper.c:61
 #, c-format
 msgid "Failed to get MAC address for %s: %s"
-msgstr ""
+msgstr "No si è rivâts a otignî la direzion MAC par %s: %s"
 
 #: src/librygel-core/rygel-energy-management-helper.c:103
 msgid "MAC and network type querying not implemented"
-msgstr ""
+msgstr "Interogazion dal MAC e dal gjenar di rêt no implementade"
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
 msgid "Failed to get log level from configuration: %s"
 msgstr ""
+"No si è rivâts a recuperâ il nivel di regjistrazion de configurazion: %s"
 
 #: src/librygel-core/rygel-meta-config.vala:89
 #: src/librygel-core/rygel-meta-config.vala:109
@@ -254,19 +255,19 @@ msgstr ""
 #: src/rygel/rygel-environment-config.vala:104
 #: src/rygel/rygel-environment-config.vala:108
 msgid "No value available"
-msgstr ""
+msgstr "Nissun valôr disponibil"
 
 #. translators: "enabled" is part of the config key and must not be translated
 #: src/librygel-core/rygel-meta-config.vala:325
 #, c-format
 msgid "No value set for '%s/enabled'"
-msgstr ""
+msgstr "Nissun valôr stabilît par '%s/enabled'"
 
 #. translators: "title" is part of the config key and must not be translated
 #: src/librygel-core/rygel-meta-config.vala:344
 #, c-format
 msgid "No value set for '%s/title'"
-msgstr ""
+msgstr "Nissun valôr stabilît par '%s/title'"
 
 #: src/librygel-core/rygel-meta-config.vala:364
 #: src/librygel-core/rygel-meta-config.vala:386
@@ -275,31 +276,31 @@ msgstr ""
 #: src/librygel-core/rygel-meta-config.vala:458
 #, c-format
 msgid "No value available for '%s/%s'"
-msgstr ""
+msgstr "Nissun valôr disponibil par '%s/%s'"
 
 #: src/librygel-core/rygel-plugin-information.vala:59
 msgid "[Plugin] group not found"
-msgstr ""
+msgstr "[Plugin] grup no cjatât"
 
 #: src/librygel-core/rygel-plugin-information.vala:77
 #, c-format
 msgid "Plugin module %s does not exist"
-msgstr ""
+msgstr "Il modul dal plugin %s nol esist"
 
 #: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
 msgid "New plugin '%s' available"
-msgstr ""
+msgstr "Gnûf plugin '%s' disponibil"
 
 #: src/librygel-core/rygel-plugin-loader.vala:104
 #, c-format
 msgid "A module named %s is already loaded"
-msgstr ""
+msgstr "Un modul clamât %s al è za cjariât"
 
 #: src/librygel-core/rygel-plugin-loader.vala:113
 #, c-format
 msgid "Failed to load module from path '%s': %s"
-msgstr ""
+msgstr "No si è rivâts a cjariâ il modul dal percors '%s': %s"
 
 #: src/librygel-core/rygel-plugin-loader.vala:123
 #, c-format
@@ -309,7 +310,7 @@ msgstr ""
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
 msgid "Failed to open plugins folder: '%s'"
-msgstr ""
+msgstr "No si è rivâts a vierzi la cartele dai plugin: '%s'"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
@@ -319,22 +320,22 @@ msgstr ""
 #: src/librygel-core/rygel-recursive-module-loader.vala:193
 #, c-format
 msgid "Could not load plugin: %s"
-msgstr ""
+msgstr "Impussibil cjariâ il plugin: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:221
 #, c-format
 msgid "Failed to query content type for '%s'"
-msgstr ""
+msgstr "No si è rivâts a interogâ il gjenar di contignût par '%s'"
 
 #: src/librygel-db/database-cursor.vala:99
 #, c-format
 msgid "Unsupported type %s"
-msgstr ""
+msgstr "Gjenar %s no supuartât"
 
 #: src/librygel-db/database.vala:175
 #, c-format
 msgid "Error while opening SQLite database %s: %s"
-msgstr ""
+msgstr "Erôr tal vierzi i dâts di base SQLite %s: %s"
 
 #: src/librygel-db/database.vala:306
 #, c-format
