@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2016-04-28 17:49+0000\n"
-"PO-Revision-Date: 2016-04-29 14:52+0200\n"
+"PO-Revision-Date: 2016-04-29 16:20+0200\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
@@ -635,16 +635,16 @@ msgstr "Si è tentade la modifiche di une proprietât in dome-leture."
 
 #: src/librygel-server/rygel-item-updater.vala:269
 msgid "Parameter count mismatch."
-msgstr ""
+msgstr "Conte parametris no juste."
 
 #: src/librygel-server/rygel-item-updater.vala:272
 msgid "Unknown error."
-msgstr ""
+msgstr "Erôr no cognossût."
 
 #: src/librygel-server/rygel-item-updater.vala:285
 #, c-format
 msgid "Metadata modification of object %s not allowed"
-msgstr ""
+msgstr "Modifiche dai meta-dâts dal ogjet %s no permetude"
 
 #: src/librygel-server/rygel-item-updater.vala:290
 #, c-format
@@ -652,84 +652,86 @@ msgid ""
 "Metadata modification of object %s being a child of restricted object %s not "
 "allowed"
 msgstr ""
+"Modifiche dai meta-dâts dal ogjet %s, fi di un ogjet cun restrizions %s, no "
+"permetude"
 
 #: src/librygel-server/rygel-m3u-playlist.vala:67
 #: src/librygel-server/rygel-m3u-playlist.vala:70
 msgid "Unknown"
-msgstr ""
+msgstr "No cognossût"
 
 #: src/librygel-server/rygel-media-art-store.vala:111
 #, c-format
 msgid "Failed to add album art for %s: %s"
-msgstr ""
+msgstr "No si è rivâts a zontâ la cuvierte par %s: %s"
 
 #: src/librygel-server/rygel-media-art-store.vala:125
 #, c-format
 msgid "Failed to find media art for %s: %s"
-msgstr ""
+msgstr "No si è rivâts a cjatâ i dâts multimediâi par %s: %s"
 
 #: src/librygel-server/rygel-media-container.vala:67
 msgid "Seeking not supported"
-msgstr ""
+msgstr "Ricercje posizionament no supuartade"
 
 #: src/librygel-server/rygel-media-container.vala:72
 msgid "Speed not supported"
-msgstr ""
+msgstr "Velocitât no supuartade"
 
 #: src/librygel-server/rygel-media-container.vala:123
 msgid "Failed to generate playlist"
-msgstr ""
+msgstr "No si è rivâts a gjenerâ la liste di riproduzion"
 
 #: src/librygel-server/rygel-media-container.vala:472
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
-msgstr ""
+msgstr "Risorse MediaContainer no cognossude: %s"
 
 #: src/librygel-server/rygel-media-engine.vala:62
 msgid "No media engine found."
-msgstr ""
+msgstr "Nol è stât cjatât nissun motôr multimediâl."
 
 #: src/librygel-server/rygel-media-engine.vala:73
 msgid "MediaEngine.init was not called. Cannot continue."
-msgstr ""
+msgstr "MediaEngine.init nol è stât clamât. No si pues continuâ."
 
 #: src/librygel-server/rygel-media-file-item.vala:177
 #, c-format
 msgid "Could not determine protocol for URI %s"
-msgstr ""
+msgstr "Impussibil determinâ il protocol pal URI %s"
 
 #: src/librygel-server/rygel-media-object.vala:284
 #, c-format
 msgid "Could not determine protocol for %s"
-msgstr ""
+msgstr "Impussibil determinâ il protocol par %s"
 
 #: src/librygel-server/rygel-media-object.vala:509
 #, c-format
 msgid "Bad URI: %s"
-msgstr ""
+msgstr "Direzion sbaliade: %s"
 
 #. Assume the protocol to be the scheme of the URI
 #: src/librygel-server/rygel-media-object.vala:527
 #, c-format
 msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr ""
+msgstr "No si è rivâts a esaminâ il protocol pe direzion %s. Si supon '%s'"
 
 #: src/librygel-server/rygel-media-query-action.vala:100
 msgid "Invalid number of arguments"
-msgstr ""
+msgstr "Numar di argoments no valit"
 
 #. Sorry we can't do anything without ObjectID
 #: src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
-msgstr ""
+msgstr "Al mancje l'argoment ObjectID"
 
 #: src/librygel-server/rygel-media-query-action.vala:127
 msgid "Invalid range"
-msgstr ""
+msgstr "Interval no valit"
 
 #: src/librygel-server/rygel-media-query-action.vala:131
 msgid "Missing filter"
-msgstr ""
+msgstr "Al mancje il filtri"
 
 #: src/librygel-server/rygel-media-query-action.vala:197
 #: src/librygel-server/rygel-object-creator.vala:412
