@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2016-04-28 17:49+0000\n"
-"PO-Revision-Date: 2016-04-28 22:08+0200\n"
+"PO-Revision-Date: 2016-04-29 14:52+0200\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
@@ -306,6 +306,7 @@ msgstr "No si è rivâts a cjariâ il modul dal percors '%s': %s"
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr ""
+"No si è rivâts a cjatâ la funzion dal pont di jentrade '%s' in '%s': %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
@@ -315,7 +316,7 @@ msgstr "No si è rivâts a vierzi la cartele dai plugin: '%s'"
 #: src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
 msgid "Error listing contents of folder '%s': %s"
-msgstr ""
+msgstr "Erôr tal listâ il contignût de cartele '%s': %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:193
 #, c-format
@@ -340,33 +341,36 @@ msgstr "Erôr tal vierzi i dâts di base SQLite %s: %s"
 #: src/librygel-db/database.vala:306
 #, c-format
 msgid "Failed to roll back transaction: %s"
-msgstr ""
+msgstr "No si è rivâts a tornâ indaûr de transazion: %s"
 
 #: src/librygel-renderer-gst/rygel-playbin-player.vala:367
 msgid ""
 "Your GStreamer installation seems to be missing the \"playbin\" element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
+"Al semee che al mancji l'element \"playbin\" te instalazion di GStreamer. La "
+"implementazion pe rapresentazion di GStreamer in Rygel no pues funzionâ "
+"cence chel element."
 
 #: src/librygel-renderer/rygel-av-transport.vala:204
 #: src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
-msgstr ""
+msgstr "InstanceID no valit"
 
 #: src/librygel-renderer/rygel-av-transport.vala:474
 msgid "Play speed not supported"
-msgstr ""
+msgstr "Velocitât di riproduzion no supuartade"
 
 #: src/librygel-renderer/rygel-av-transport.vala:481
 #: src/librygel-renderer/rygel-av-transport.vala:499
 msgid "Transition not available"
-msgstr ""
+msgstr "Transizion no disponibil"
 
 #: src/librygel-renderer/rygel-av-transport.vala:529
 #: src/librygel-renderer/rygel-av-transport.vala:554
 #: src/librygel-renderer/rygel-av-transport.vala:584
 msgid "Seek mode not supported"
-msgstr ""
+msgstr "Modalitât di ricercje/posizionament no supuartade"
 
 #: src/librygel-renderer/rygel-av-transport.vala:535
 #: src/librygel-renderer/rygel-av-transport.vala:560
@@ -374,11 +378,11 @@ msgstr ""
 #: src/librygel-renderer/rygel-av-transport.vala:598
 #: src/librygel-renderer/rygel-av-transport.vala:610
 msgid "Illegal seek target"
-msgstr ""
+msgstr "Obietîf di posizionament ilegâl"
 
 #: src/librygel-renderer/rygel-av-transport.vala:659
 msgid "Play mode not supported"
-msgstr ""
+msgstr "Modalitât di riproduzion no supuartade"
 
 #. FIXME: Return a more sensible error here.
 #: src/librygel-renderer/rygel-av-transport.vala:735
@@ -386,112 +390,113 @@ msgstr ""
 #: src/librygel-renderer/rygel-av-transport.vala:788
 #: src/librygel-renderer/rygel-av-transport.vala:867
 msgid "Resource not found"
-msgstr ""
+msgstr "Risorse no cjatade"
 
 #: src/librygel-renderer/rygel-av-transport.vala:777
 #, c-format
 msgid "Problem parsing playlist: %s"
-msgstr ""
+msgstr "Probleme tal analizâ la liste di riproduzion: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
 #: src/librygel-renderer/rygel-av-transport.vala:863
 #, c-format
 msgid "Failed to access resource at %s: %s"
-msgstr ""
+msgstr "No si è rivâts a acedi ae risorse in %s: %s"
 
 #: src/librygel-renderer/rygel-av-transport.vala:879
 msgid "Illegal MIME-type"
-msgstr ""
+msgstr "Gjenar MIME ilegâl"
 
 #: src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
-msgstr ""
+msgstr "Non no valit"
 
 #: src/librygel-renderer/rygel-rendering-control.vala:182
 msgid "Invalid Channel"
-msgstr ""
+msgstr "Canâl no valit"
 
 #: src/librygel-renderer/rygel-rendering-control.vala:218
 #: src/librygel-renderer/rygel-rendering-control.vala:260
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
-msgstr ""
+msgstr "Azion falide"
 
 #: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
 #, c-format
 msgid "Unable to parse Icon data - unexpected node: %s"
-msgstr ""
+msgstr "Impussibil analizâ i dâts de icone - grop inspietât: %s"
 
 #: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
 #, c-format
 msgid "Unable to parse Protocol data - unexpected attribute: %s"
-msgstr ""
+msgstr "Impussibil analizâ i dâts dal Protocol - atribûts inspietâts %s"
 
 #: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
 #, c-format
 msgid "Unable to parse Protocol data - unexpected node: %s"
-msgstr ""
+msgstr "Impussibil analizâ i dâts dal Protocol - grop inspietât: %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
 #, c-format
 msgid "Failed to set UIList for file %s - %s"
-msgstr ""
+msgstr "Impostazion di UIList pal file %s falide - %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
 #, c-format
 msgid "Failed to set initial UI list for file %s - %s"
 msgstr ""
+"Impostazion de liste iniziâl de Interface Utent pal file %s falide - %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
 #, c-format
 msgid "Failed to monitor the file %s - %s"
-msgstr ""
+msgstr "No si è rivâts a tignî di voli il file %s - %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
 #, c-format
 msgid "Unable to parse UI list file %s"
-msgstr ""
+msgstr "Impussibil analizâ il file de liste de Interface Utent %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
 #, c-format
 msgid "Unable to parse device profile data: %s"
-msgstr ""
+msgstr "Impussibil analizâ i dâts dal profîl dal dispositîf: %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
 #, c-format
 msgid "Invalid UI filter: %s"
-msgstr ""
+msgstr "Filtri de Interface Utent no valit: %s"
 
 #: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
 #, c-format
 msgid "Unable to parse UI data - unexpected node: %s"
-msgstr ""
+msgstr "Impussibil analizâ i dâts de IU - grop inspietât: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
-msgstr ""
+msgstr "Argoments no valits"
 
 #: src/librygel-server/rygel-browse.vala:94
 msgid "Cannot browse children on item"
-msgstr ""
+msgstr "Impussibil esplorâ i fîs dal element"
 
 #: src/librygel-server/rygel-browse.vala:134
 #, c-format
 msgid "Failed to browse '%s': %s\n"
-msgstr ""
+msgstr "No si è rivâts a esplorâ '%s': %s\n"
 
 #: src/librygel-server/rygel-client-hacks.vala:141
 msgid "Not Applicable"
-msgstr ""
+msgstr "No aplicabil"
 
 #: src/librygel-server/rygel-content-directory.vala:637
 msgid "No such file transfer"
-msgstr ""
+msgstr "Nol esist chel trasferiment di file"
 
 #: src/librygel-server/rygel-dbus-thumbnailer.vala:116
 msgid "No D-Bus thumbnailer service available"
-msgstr ""
+msgstr "Nissun servizi D-Bus pes miniaturis disponibil"
 
 #: src/librygel-server/rygel-http-get.vala:52
 msgid "Invalid Request (only GET and HEAD supported)"
@@ -499,73 +504,73 @@ msgstr ""
 
 #: src/librygel-server/rygel-http-get.vala:60
 msgid " must be 1"
-msgstr ""
+msgstr " scugne sei 1"
 
 #: src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI '%s'"
-msgstr ""
+msgstr "Direzion '%s' no valide"
 
 #: src/librygel-server/rygel-http-item-uri.vala:192
 msgid "Not found"
-msgstr ""
+msgstr "No cjatât"
 
 #: src/librygel-server/rygel-http-post.vala:62
 #: src/librygel-server/rygel-import-resource.vala:189
 #, c-format
 msgid "Pushing data to non-empty item '%s' not allowed"
-msgstr ""
+msgstr "Nol è permetût sbruntâ dâts tal element '%s' no vueit"
 
 #: src/librygel-server/rygel-http-post.vala:71
 #, c-format
 msgid "No writable URI for %s available"
-msgstr ""
+msgstr "No esist une direzion scrivibil par %s"
 
 #. translators: Dotfile is the filename with prefix "."
 #: src/librygel-server/rygel-http-post.vala:186
 #, c-format
 msgid "Failed to move dotfile %s: %s"
-msgstr ""
+msgstr "No si è rivâts a spostâ il dotfile %s: %s"
 
 #: src/librygel-server/rygel-http-request.vala:95
 #, c-format
 msgid "Requested item '%s' not found"
-msgstr ""
+msgstr "L'element domandât '%s' nol è stât cjatât"
 
 #: src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
 msgid "Couldn't create data source for %s"
-msgstr ""
+msgstr "Impussibil creâ la sorzint dâts par %s"
 
 #: src/librygel-server/rygel-import-resource.vala:124
 #, c-format
 msgid "Failed to get original URI for '%s': %s"
-msgstr ""
+msgstr "No si è rivâts a otinî la direzion origjinâl par '%s': %s"
 
 #: src/librygel-server/rygel-import-resource.vala:186
 #, c-format
 msgid "URI '%s' invalid for importing contents to"
-msgstr ""
+msgstr "Direzion '%s' dulà impuartâ i contignûts no valide"
 
 #: src/librygel-server/rygel-import-resource.vala:272
 #, c-format
 msgid "Failed to import file from %s: %s"
-msgstr ""
+msgstr "No si è rivâts a impuartâ il file di %s: %s"
 
 #. Sorry we can't do anything without the ID
 #: src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
-msgstr ""
+msgstr "Al mancje ContainerID"
 
 #: src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
 msgid "Successfully destroyed object '%s'"
-msgstr ""
+msgstr "Ogjet '%s' distrut cun sucès"
 
 #: src/librygel-server/rygel-item-destroyer.vala:68
 #, c-format
 msgid "Failed to destroy object '%s': %s"
-msgstr ""
+msgstr "No si è rivâts a distruzi l'ogjet '%s': %s"
 
 #: src/librygel-server/rygel-item-destroyer.vala:104
 #: src/librygel-server/rygel-item-updater.vala:283
@@ -573,60 +578,60 @@ msgstr ""
 #: src/librygel-server/rygel-reference-creator.vala:68
 #: src/librygel-server/rygel-reference-creator.vala:115
 msgid "No such object"
-msgstr ""
+msgstr "L'ogjet nol esist"
 
 #: src/librygel-server/rygel-item-destroyer.vala:107
 #, c-format
 msgid "Removal of object %s not allowed"
-msgstr ""
+msgstr "Nol è permetût gjavâ l'ogjet %s"
 
 #: src/librygel-server/rygel-item-destroyer.vala:110
 #, c-format
 msgid "Object removal from %s not allowed"
-msgstr ""
+msgstr "Nol è permetût gjavâ l'ogjet di %s"
 
 #. Sorry we can't do anything without the ID
 #: src/librygel-server/rygel-item-updater.vala:74
 msgid "Object ID missing"
-msgstr ""
+msgstr "Al mancje il ID ogjet"
 
 #: src/librygel-server/rygel-item-updater.vala:81
 #, c-format
 msgid "Successfully updated object '%s'"
-msgstr ""
+msgstr "Ogjet '%s' inzornât cun sucès"
 
 #: src/librygel-server/rygel-item-updater.vala:89
 #, c-format
 msgid "Failed to update object '%s': %s"
-msgstr ""
+msgstr "No si è rivâts a inzornâ l'ogjet '%s': %s"
 
 #: src/librygel-server/rygel-item-updater.vala:162
 #: src/librygel-server/rygel-object-creator.vala:606
 #, c-format
 msgid "Invalid date format: %s"
-msgstr ""
+msgstr "Formât date no valit: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:171
 #: src/librygel-server/rygel-object-creator.vala:615
 #, c-format
 msgid "Invalid date: %s"
-msgstr ""
+msgstr "Date no valide: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:256
 msgid "Bad current tag value."
-msgstr ""
+msgstr "Valôr atuâl de etichete no just."
 
 #: src/librygel-server/rygel-item-updater.vala:260
 msgid "Bad new tag value."
-msgstr ""
+msgstr "Gnûf valôr de etichete no just."
 
 #: src/librygel-server/rygel-item-updater.vala:263
 msgid "Tried to delete required tag."
-msgstr ""
+msgstr "Si è tentade la eliminazion di une etichete domandade."
 
 #: src/librygel-server/rygel-item-updater.vala:266
 msgid "Tried to change read-only property."
-msgstr ""
+msgstr "Si è tentade la modifiche di une proprietât in dome-leture."
 
 #: src/librygel-server/rygel-item-updater.vala:269
 msgid "Parameter count mismatch."
