@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2016-04-28 17:49+0000\n"
-"PO-Revision-Date: 2016-04-30 16:01+0200\n"
+"PO-Revision-Date: 2016-04-30 16:30+0200\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
@@ -1085,7 +1085,7 @@ msgstr "No si è rivâts a inviâ il rilevament dai meta-dâts: %s"
 #: src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, c-format
 msgid "'%s' harvested"
-msgstr "'%s' cjapât sù"
+msgstr "'%s' analizât"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:202
 #, c-format
@@ -1101,31 +1101,33 @@ msgstr "No si è rivâts a interogâ informazions di un file %s: %s"
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr ""
+"Impussibil cjatâ l'ogjet %s o il so gjenitôr. La base di dâts e je "
+"inconsistente"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:249
 #, c-format
 msgid "Error removing object from database: %s"
-msgstr ""
+msgstr "Erôr tal gjavâ l'ogjet de base di dâts: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:125
 #, c-format
 msgid "Failed to harvest file %s: %s"
-msgstr ""
+msgstr "No si è rivâts a analizâ il file %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:175
 #, c-format
 msgid "Failed to query database: %s"
-msgstr ""
+msgstr "No si è rivâts a interogâ la base di dâts: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:259
 #, c-format
 msgid "Failed to enumerate folder \"%s\": %s"
-msgstr ""
+msgstr "No si è rivâts a enumerâ la cartele \"%s\": %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:277
 #, c-format
 msgid "Failed to get children of container %s: %s"
-msgstr ""
+msgstr "No si è rivâts a otignî i fîs dal contignidôr %s: %s"
 
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
@@ -1133,12 +1135,13 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
-msgstr ""
+msgstr "URI %s saltât; estrazion falide dal dut: %s"
 
 #: src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
 msgid "Failed to get child count of query container: %s"
 msgstr ""
+"No si è rivâts a otignî la conte dai fîs te interogazion dal contignidôr: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
 #, c-format
@@ -1148,70 +1151,70 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
 msgid "Failed to create indices: %s"
-msgstr ""
+msgstr "No si è rivâts a creâ i indiçs: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
 #, c-format
 msgid "Cannot upgrade from version %d"
-msgstr ""
+msgstr "Impussibil inzornâ de version %d"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
 #, c-format
 msgid "Database upgrade failed: %s"
-msgstr ""
+msgstr "No si è rivâts a inzornâ la base di dâts: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:133
 #, c-format
 msgid "Failed to add item with ID %s: %s"
-msgstr ""
+msgstr "No si è rivâts a zontâ l'element cun ID %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:216
 #, c-format
 msgid "Failed to get update IDs: %s"
-msgstr ""
+msgstr "No si è rivâts a otignî i ID di inzornament: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:396
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
-msgstr ""
+msgstr "Base di dâts inconsistente: l'element %s nol à gjenitôr %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:521
 msgid "Failed to get reset token"
-msgstr ""
+msgstr "No si è rivâts a otignî il gjeton di risistemazion"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:533
 #, c-format
 msgid "Failed to persist ServiceResetToken: %s"
-msgstr ""
+msgstr "No si è rivâts a persisti ServiceResetToken: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:543
 #, c-format
 msgid "Failed to remove virtual folders: %s"
-msgstr ""
+msgstr "No si è rivâts a gjavâ lis cartelis virtuâi: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:557
 #, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
-msgstr ""
+msgstr "No si è rivâts a segnâ l'element %s come protet (%d): %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:567
 msgid "Cannot create references to containers"
-msgstr ""
+msgstr "Impussibil creâ i riferiments ai contignidôrs"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:593
 #, c-format
 msgid "Failed to add %s to file blacklist: %s"
-msgstr ""
+msgstr "No si è rivâts a zontâ %s al file de liste nere: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:606
 #, c-format
 msgid "Failed to get whether URI %s is blacklisted: %s"
-msgstr ""
+msgstr "No si è rivâts a verificâ se l'URI %s al è te liste nere: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:622
 #, c-format
 msgid "Failed to get whether item %s is guarded: %s"
-msgstr ""
+msgstr "No si è rivâts a verificâ se l'element %s al è protet: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:661
 #, c-format
@@ -1219,10 +1222,12 @@ msgid ""
 "The version \"%d\" of the detected database is newer than our supported "
 "version \"%d\""
 msgstr ""
+"La version \"%d\" de base di dâts rilevade e je plui resinte di chê \"%d\" "
+"supuartade"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:685
 msgid "Incompatible schema… cannot proceed"
-msgstr ""
+msgstr "Scheme incompatibil... impussibil procedi"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:691
 #, c-format
@@ -1339,26 +1344,26 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
-msgstr ""
+msgstr "An"
 
 #. Titles and definitions of virtual folders for Music,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
-msgstr ""
+msgstr "Artist"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:40
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
 #: src/plugins/tracker/rygel-tracker-genre.vala:31
 msgid "Genre"
-msgstr ""
+msgstr "Gjenar"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:56
 msgid "Files & Folders"
-msgstr ""
+msgstr "File e cartelis"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
@@ -1457,7 +1462,7 @@ msgstr ""
 
 #: src/plugins/tracker/rygel-tracker-titles.vala:58
 msgid "Titles"
-msgstr ""
+msgstr "Titui"
 
 #: src/rygel/rygel-acl.vala:110
 #, c-format
