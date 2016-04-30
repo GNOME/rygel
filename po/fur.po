@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2016-04-28 17:49+0000\n"
-"PO-Revision-Date: 2016-04-29 16:20+0200\n"
+"PO-Revision-Date: 2016-04-30 15:39+0200\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
@@ -736,58 +736,58 @@ msgstr "Al mancje il filtri"
 #: src/librygel-server/rygel-media-query-action.vala:197
 #: src/librygel-server/rygel-object-creator.vala:412
 msgid "No such container"
-msgstr ""
+msgstr "Nol esist chel contignidôr"
 
 #: src/librygel-server/rygel-object-creator.vala:150
 msgid "upnp:createClass value not supported"
-msgstr ""
+msgstr "valôr di upnp:createClass no supuartât"
 
 #: src/librygel-server/rygel-object-creator.vala:191
 msgid "'Elements' argument missing."
-msgstr ""
+msgstr "Al mancje l'argoment 'Elements'"
 
 #: src/librygel-server/rygel-object-creator.vala:194
 msgid "Comments not allowed in XML"
-msgstr ""
+msgstr "Coments no permetûts in XML"
 
 #. Sorry we can't do anything without ContainerID
 #: src/librygel-server/rygel-object-creator.vala:200
 msgid "Missing ContainerID argument"
-msgstr ""
+msgstr "Al mancje l'argoment ContainerID"
 
 #: src/librygel-server/rygel-object-creator.vala:224
 #, c-format
 msgid "No objects in DIDL-Lite from client: '%s'"
-msgstr ""
+msgstr "Nissun ogjet in DIDL-Lite dal client: '%s'"
 
 #: src/librygel-server/rygel-object-creator.vala:231
 msgid "@id must be set to \"\" in CreateObject call"
-msgstr ""
+msgstr "@id al à di jessi metût a \"\" te clamade CreateObject"
 
 #: src/librygel-server/rygel-object-creator.vala:236
 msgid "dc:title must not be empty in CreateObject call"
-msgstr ""
+msgstr "dc:title nol à di jessi vueit inte clamade CreateObject"
 
 #: src/librygel-server/rygel-object-creator.vala:247
 msgid "Flags that must not be set were found in 'dlnaManaged'"
-msgstr ""
+msgstr "Cjatâts parametris che no vevin di jessi metûts in 'dlnaManaged'"
 
 #: src/librygel-server/rygel-object-creator.vala:255
 msgid "Invalid upnp:class given in CreateObject"
-msgstr ""
+msgstr "Furnît upnp:class no valit in CreateObject"
 
 #: src/librygel-server/rygel-object-creator.vala:259
 msgid "Object is missing the @restricted attribute"
-msgstr ""
+msgstr "Al ogjet al mancje l'atribût @restricted"
 
 #: src/librygel-server/rygel-object-creator.vala:266
 msgid "Cannot create restricted item"
-msgstr ""
+msgstr "Impussibil creâ l'element strent/ristret"
 
 #: src/librygel-server/rygel-object-creator.vala:383
 #, c-format
 msgid "UPnP class '%s' not supported"
-msgstr ""
+msgstr "Classe UPnP '%s' no supuartade"
 
 #: src/librygel-server/rygel-object-creator.vala:417
 #: src/librygel-server/rygel-object-creator.vala:429
@@ -795,22 +795,22 @@ msgstr ""
 #: src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
-msgstr ""
+msgstr "Creazion dal ogjet in %s no permetude"
 
 #: src/librygel-server/rygel-object-creator.vala:474
 #, c-format
 msgid "Failed to create item under '%s': %s"
-msgstr ""
+msgstr "No si è rivâts a creâ l'element sot di '%s': %s"
 
 #: src/librygel-server/rygel-object-creator.vala:548
 #, c-format
 msgid "DLNA profile '%s' not supported"
-msgstr ""
+msgstr "Profîl DLNA '%s' no supuartât"
 
 #: src/librygel-server/rygel-object-creator.vala:648
 #, c-format
 msgid "Cannot create object of class '%s': Not supported"
-msgstr ""
+msgstr "Impussibil creâ l'ogjet de classe '%s': No supuartât"
 
 #: src/librygel-server/rygel-object-creator.vala:746
 #, c-format
@@ -818,41 +818,43 @@ msgid ""
 "Error from container '%s' on trying to find the newly added child object "
 "'%s' in it: %s"
 msgstr ""
+"Erôr dal contignidôr '%s' tal cirî di cjatâ il gnûf ogjet fi '%s' apene "
+"zontât lì dentri: %s"
 
 #: src/librygel-server/rygel-reference-creator.vala:50
 msgid "'ContainerID' agument missing."
-msgstr ""
+msgstr "Al mancje l'argoment 'ContainerID'"
 
 #: src/librygel-server/rygel-reference-creator.vala:55
 msgid "'ObjectID' argument missing."
-msgstr ""
+msgstr "Al mancje l'argoment 'ObjectID'"
 
 #: src/librygel-server/rygel-reference-creator.vala:86
 #, c-format
 msgid "Failed to create object under '%s': %s"
-msgstr ""
+msgstr "No si è rivâts a creâ l'ogjet sot di '%s': %s"
 
 #: src/librygel-server/rygel-search.vala:70
 msgid "Invalid search criteria given"
-msgstr ""
+msgstr "Furnît un criteri di ricercje no valit"
 
 #: src/librygel-server/rygel-search.vala:94
 #, c-format
 msgid "Failed to search in '%s': %s"
-msgstr ""
+msgstr "No si è rivâts a cirî in '%s': %s"
 
 #: src/librygel-server/rygel-subtitle-manager.vala:92
 msgid "No subtitle available"
-msgstr ""
+msgstr "Nissun sot-titul disponibil"
 
 #: src/librygel-server/rygel-thumbnailer.vala:61
 #, c-format
 msgid "No thumbnailer available: %s"
-msgstr ""
+msgstr "Nissune miniature disponibil: %s"
 
 #: src/librygel-server/rygel-thumbnailer.vala:74
 msgid "Thumbnailing not supported"
-msgstr ""
+msgstr "Miniaturis no supuartadis"
 
 #. Thumbnailing failed previously, so there's no current thumbnail
 #. and it doesn't make any sense to request one.
@@ -860,85 +862,85 @@ msgstr ""
 #: src/librygel-server/rygel-thumbnailer.vala:102
 #: src/librygel-server/rygel-thumbnailer.vala:113
 msgid "No thumbnail available"
-msgstr ""
+msgstr "Nissune miniature disponibil"
 
 #: src/librygel-server/rygel-thumbnailer.vala:97
 msgid "No thumbnail available. Generation requested."
-msgstr ""
+msgstr "Nissune miniature disponibil. Gjenerazion domandade."
 
 #: src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
-msgstr ""
+msgstr "Nissun servizi D-Bus pes miniaturis disponibil"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:44
 #, c-format
 msgid "Could not create GstElement for URI %s"
-msgstr ""
+msgstr "Impussibil creâ GstElement pe direzion %s"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:72
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
-msgstr ""
+msgstr "Velocitât di riproduzion no supuartade"
 
 #. Unknown/unsupported seek type
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:102
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
-msgstr ""
+msgstr "Gjenar di HTTPSeekRequest %s no supuartât"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:146
 msgid "Failed to create pipeline"
-msgstr ""
+msgstr "Impussibil creâ la pipeline"
 
 #. static pads? easy!
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:157
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:178
 #, c-format
 msgid "Failed to link %s to %s"
-msgstr ""
+msgstr "No si è rivâts a colegâ %s a %s"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:192
 #, c-format
 msgid "Failed to link pad %s to %s"
-msgstr ""
+msgstr "No si è rivâts a colegâ il pad %s a %s"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:257
 #, c-format
 msgid "Error from pipeline %s: %s"
-msgstr ""
+msgstr "Erôr de pipeline %s: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:264
 #, c-format
 msgid "Warning from pipeline %s: %s"
-msgstr ""
+msgstr "Avertence de pipeline %s: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:317
 msgid "Unsupported seek type"
-msgstr ""
+msgstr "Gjenar di ricercje posizionament no supuartade"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:334
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
-msgstr ""
+msgstr "No si è rivâts a cirî il posizionament a lis posizions %lld:%lld"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:336
 msgid "Failed to seek"
-msgstr ""
+msgstr "No si è rivâts a cirî il posizionament"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:128
 #, c-format
 msgid "Invalid URI without prefix: %s"
-msgstr ""
+msgstr "URI no valid cence prefìs: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
 #, c-format
 msgid "Can't process URI %s with protocol %s"
-msgstr ""
+msgstr "Impussibil processâ l'URI %s cul protocol %s"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
-msgstr ""
+msgstr "No si è rivâts a creâ la sorzint di dâts di GStreamer par %s: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
 msgid ""
