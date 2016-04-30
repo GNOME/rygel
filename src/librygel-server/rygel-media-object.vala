@@ -524,9 +524,10 @@ public abstract class Rygel.MediaObject : GLib.Object {
             return "rtsp-rtp-udp";
         } else {
             // Assume the protocol to be the scheme of the URI
-            warning (_("Failed to probe protocol for URI %s. Assuming '%s'"),
-                     uri,
-                     scheme);
+            debug ("Could not translate protocol scheme for  %s. " +
+                   " Using '%s' as-is",
+                   uri,
+                   scheme);
 
             return scheme;
         }
