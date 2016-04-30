@@ -67,7 +67,15 @@ internal abstract class Rygel.GstUtils {
                 }
                 src.device = Soup.URI.decode (tmp.path);
             } else {
-                src = Element.make_from_uri (URIType.SRC, uri, null);
+                var file = File.new_for_uri (uri);
+                var path = file.get_path ();
+                if (path != null) {
+                    src = Element.make_from_uri (URIType.SRC,
+                                                 Filename.to_uri (path),
+                                                 null);
+                } else {
+                    src = Element.make_from_uri (URIType.SRC, uri, null);
+                }
             }
 
             if (src.get_class ().find_property ("blocksize") != null) {
