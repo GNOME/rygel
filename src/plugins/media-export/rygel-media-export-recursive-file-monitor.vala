@@ -84,23 +84,27 @@ public class Rygel.MediaExport.RecursiveFileMonitor : Object {
                                          FileQueryInfoFlags.NONE,
                                          Priority.DEFAULT,
                                          null);
-            if (info.get_file_type () == FileType.DIRECTORY) {
-                var file_monitor = file.monitor_directory
-                                        (FileMonitorFlags.NONE,
-                                         this.cancellable);
-                this.monitors.set (file, file_monitor);
-                file_monitor.changed.connect (this.on_monitor_changed);
+            if (info.get_file_type () != FileType.DIRECTORY) {
+                return;
             }
+
+            var file_monitor = file.monitor_directory (FileMonitorFlags.NONE,
+                                                       this.cancellable);
+            this.monitors.set (file, file_monitor);
+            file_monitor.changed.connect (this.on_monitor_changed);
         } catch (Error err) {
-            if (!(err is IOError.NOT_FOUND)) {
-                // Avoid warning when file is removed in the meantime, e.g. in
-                // upload case.
-                warning (_("Failed to get file information for %s: %s"),
-                         file.get_uri (),
-                         err.message);
-            } else {
+            if (err is IOError.NOT_FOUND) {
                 debug ("File %s disappeared while trying to get information",
                        file.get_uri ());
+            } else if (err is IOError.NOT_SUPPORTED) {
+                debug ("File monitoring is not supported for %s",
+                       file.get_uri ());
+            } else {
+                // Avoid warning when file is removed in the meantime, e.g. in
+                // upload case.
+                warning (("Failed to setup up file monitor for %s: %s"),
+                         file.get_uri (),
+                         err.message);
             }
         }
     }
