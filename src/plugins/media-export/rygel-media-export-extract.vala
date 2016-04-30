@@ -87,7 +87,17 @@ async void run () {
                             var parser = new Rygel.DVDParser (file);
                             yield parser.run ();
                         } else if (!is_text) {
-                            info = discoverer.discover_uri (parts[0]);
+                            var file = File.new_for_uri (parts[0]);
+                            var path = file.get_path ();
+                            var uri = parts[0];
+
+                            if (path != null) {
+                                warning ("Using local path %s instead of %s",
+                                         path, uri);
+                                uri = Filename.to_uri (path);
+                            }
+
+                            info = discoverer.discover_uri (uri);
 
                             debug ("Finished discover on URI %s", parts[0]);
                         }
