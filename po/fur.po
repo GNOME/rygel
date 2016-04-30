@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2016-04-28 17:49+0000\n"
-"PO-Revision-Date: 2016-04-30 15:39+0200\n"
+"PO-Revision-Date: 2016-04-30 16:01+0200\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
@@ -947,124 +947,130 @@ msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation "
 "might be missing a plug-in"
 msgstr ""
+"Impussibil creâ la configurazion dal codificadôr. Al podarès mancjâ un plug-"
+"in ae instalazion di GStreamer"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
 msgid "Required element %s missing"
-msgstr ""
+msgstr "Al mancje l'element necessari %s"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:58
 msgid "GStreamer element 'dvdreadsrc' not found. DVD support does not work"
 msgstr ""
+"L'element di GStreamer 'dvdreadsrc' nol è stât cjatât. Il supuart pai DVD "
+"nol va"
 
 #: src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
-msgstr ""
+msgstr "Al è supuartât nome la ricercje di posizionament basade sui byte"
 
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
 #: src/media-engines/simple/rygel-simple-media-engine.vala:96
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
-msgstr ""
+msgstr "Si pues nome processâ i MediaObjects (MediaFileItems) basâts sui file"
 
 #: src/media-engines/simple/rygel-simple-media-engine.vala:67
 #, c-format
 msgid "Can't process non-file URI %s"
-msgstr ""
+msgstr "Impussibil processâ URI %s diviers dai file"
 
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
 msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
-msgstr ""
+msgstr "Il modul '%s' nol pues tacâsi al bus D-Bus di session. Si ignore..."
 
 #: src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
 msgid "External provider %s did not provide mandatory property \"%s\""
-msgstr ""
+msgstr "Il furnidôr esterni %s nol furnìs la proprietât obligatorie \"%s\""
 
 #: src/plugins/lms/rygel-lms-albums.vala:166
 #: src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
-msgstr ""
+msgstr "Album"
 
 #: src/plugins/lms/rygel-lms-all-images.vala:89
 #: src/plugins/lms/rygel-lms-all-music.vala:171
 #: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: src/plugins/media-export/rygel-media-export-root-container.vala:33
 msgid "All"
-msgstr ""
+msgstr "Ducj"
 
 #: src/plugins/lms/rygel-lms-image-years.vala:53
 msgid "Years"
-msgstr ""
+msgstr "Agns"
 
 #: src/plugins/lms/rygel-lms-music-root.vala:35
 #: src/plugins/tracker/rygel-tracker-artists.vala:31
 msgid "Artists"
-msgstr ""
+msgstr "Artiscj"
 
 #: src/plugins/lms/rygel-lms-root-container.vala:34
 msgid "Shared media"
-msgstr ""
+msgstr "File multimediâi condividûts"
 
 #: src/plugins/lms/rygel-lms-root-container.vala:46
 #: src/plugins/media-export/rygel-media-export-root-container.vala:605
 msgid "Music"
-msgstr ""
+msgstr "Musiche"
 
 #: src/plugins/lms/rygel-lms-root-container.vala:50
 #: src/plugins/media-export/rygel-media-export-root-container.vala:610
 msgid "Videos"
-msgstr ""
+msgstr "Video"
 
 #: src/plugins/lms/rygel-lms-root-container.vala:54
 #: src/plugins/media-export/rygel-media-export-root-container.vala:608
 msgid "Pictures"
-msgstr ""
+msgstr "Imagjins"
 
 #: src/plugins/media-export/rygel-media-export-dvd-container.vala:133
 #, c-format
 msgid "Title %d"
-msgstr ""
+msgstr "Titul %d"
 
 #: src/plugins/media-export/rygel-media-export-dvd-parser.vala:42
 msgid ""
 "Failed to find lsdvd binary in path. DVD extraction will not be available"
 msgstr ""
+"No si è rivâts a cjatâ il binari lsdvd tal percors. La estrazion di DVD no "
+"sarà disponibil"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:74
 msgid "Invalid command received, ignoring"
-msgstr ""
+msgstr "Comant ricevût no valit, si ignore"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:100
 #, c-format
 msgid "Failed to discover URI %s: %s"
-msgstr ""
+msgstr "No si è rivâts a scuvierzi l'URI %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:119
 #, c-format
 msgid "Failed to read from pipe: %s"
-msgstr ""
+msgstr "No si è rivâts a lei de pipe: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:146
 #: src/plugins/media-export/rygel-media-export-extract.vala:158
 #, c-format
 msgid "Failed to send error to parent: %s"
-msgstr ""
+msgstr "No si è rivâts a inviâ l'erôr al gjenitôr: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:204
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
-msgstr ""
+msgstr "No si è rivâts a estrai i meta-dâts di base di %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:228
 msgid "- helper binary for Rygel to extract metadata"
-msgstr ""
+msgstr "- binari di jutori par Rygel pe estrazion dai meta-dâts"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:235
 #, c-format
 msgid "Failed to parse commandline args: %s"
-msgstr ""
+msgstr "No si è rivâts a analizâ i argoments de rie di comant: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:243
 #, c-format
@@ -1074,22 +1080,22 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-extract.vala:258
 #, c-format
 msgid "Failed to start metadata discoverer: %s"
-msgstr ""
+msgstr "No si è rivâts a inviâ il rilevament dai meta-dâts: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, c-format
 msgid "'%s' harvested"
-msgstr ""
+msgstr "'%s' cjapât sù"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:202
 #, c-format
 msgid "Error fetching object '%s' from database: %s"
-msgstr ""
+msgstr "Erôr tal recuperâ l'ogjet '%s' de base di dâts: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:210
 #, c-format
 msgid "Failed to query info of a file %s: %s"
-msgstr ""
+msgstr "No si è rivâts a interogâ informazions di un file %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:245
 #, c-format
