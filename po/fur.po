@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2016-04-28 17:49+0000\n"
-"PO-Revision-Date: 2016-04-30 16:30+0200\n"
+"PO-Revision-Date: 2016-05-01 16:10+0200\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
@@ -1233,111 +1233,112 @@ msgstr "Scheme incompatibil... impussibil procedi"
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr ""
+"Base di dâts no valide, impussibil interogâ la tabele sqlite_master: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:892
 #, c-format
 msgid "Failed to create database schema: %s"
-msgstr ""
+msgstr "No si è rivâts a creâ il scheme de base di dâts: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:1228
 #, c-format
 msgid "Skipping unsupported sort field: %s"
-msgstr ""
+msgstr "Cjamp di ordenament no supuartât saltât: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:104
 msgid "Failed to gracefully stop the process. Using KILL"
-msgstr ""
+msgstr "No si è rivâts a fermâ cun gracie il procès. Al ven doprât KILL"
 
 #. Process exitted properly -> That shouldn't really
 #. happen
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:152
 #, c-format
 msgid "Process check_async failed: %s"
-msgstr ""
+msgstr "Procès check_async falît: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #, c-format
 msgid "Process died while handling URI %s"
-msgstr ""
+msgstr "Procès terminât dilunc la gjestion dal URI %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
 #, c-format
 msgid "Setting up extraction subprocess failed: %s"
-msgstr ""
+msgstr "No si è rivâts a impuestâ il procès secondari di estrazion: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
 #, c-format
 msgid "Received invalid string from child: %s"
-msgstr ""
+msgstr "Ricevude stringhe no valide dal fi: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received ill-formed response string %s from child…"
-msgstr ""
+msgstr "Ricevude une mal formade stringhe di rispueste %s dal fi..."
 
 #. No error signalling, this was done in the part that called
 #. cancel
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:243
 #, c-format
 msgid "Read from child failed: %s"
-msgstr ""
+msgstr "No si è rivâts a lei dal fi: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:270
 #, c-format
 msgid "Failed to send command to child: %s"
-msgstr ""
+msgstr "No si è rivâts a inviâ il comant al fi: %s"
 
 #: src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
 msgid "Failed to get child count: %s"
-msgstr ""
+msgstr "No si è rivâts a otignî la conte dai fîs: %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
 #, c-format
 msgid "Can't create items in %s"
-msgstr ""
+msgstr "Impussibil creâ i elements in %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:91
 #, c-format
 msgid "Can't add containers in %s"
-msgstr ""
+msgstr "Impussibil zontâ i contignidôrs in %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:99
 #, c-format
 msgid "Can't remove containers in %s"
-msgstr ""
+msgstr "Impussibil gjavâ i contignidôrs in %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
 #: src/plugins/media-export/rygel-media-export-root-container.vala:612
 msgid "Playlists"
-msgstr ""
+msgstr "Listis di riproduzion"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
 msgid "Can't remove items in %s"
-msgstr ""
+msgstr "Impussibil gjavâ i elements in %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
 #, c-format
 msgid "upnp:class not supported in %s"
-msgstr ""
+msgstr "upnp:class no supuartade in %s"
 
 #: src/plugins/media-export/rygel-media-export-plugin.vala:52
 #, c-format
 msgid "Failed to load plugin %s: %s"
-msgstr ""
+msgstr "No si è rivâts a cjariâ il plugin %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
 msgid "Will not monitor file changes"
-msgstr ""
+msgstr "Nol tignarà di voli lis modifichis dai file"
 
 #. Avoid warning when file is removed in the meantime, e.g. in
 #. upload case.
 #: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
 #, c-format
 msgid "Failed to get file information for %s: %s"
-msgstr ""
+msgstr "No si è rivâts a otignî lis informazions dal file par %s: %s"
 
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
@@ -1369,57 +1370,57 @@ msgstr "File e cartelis"
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
 #: src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@'s media"
-msgstr ""
+msgstr "File multimediâi di @REALNAME@"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:457
 #: src/plugins/media-export/rygel-media-export-root-container.vala:524
 #, c-format
 msgid "Failed to remove entry: %s"
-msgstr ""
+msgstr "No si è rivâts a gjavâ la vôs: %s"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
 #, c-format
 msgid "Failed to save object: %s"
-msgstr ""
+msgstr "No si è rivâts a salvâ l'ogjet: %s"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:79
 #, c-format
 msgid "Failed to add object: %s"
-msgstr ""
+msgstr "No si è rivâts a zontâ l'ogjet: %s"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:87
 #, c-format
 msgid "Failed to remove object: %s"
-msgstr ""
+msgstr "No si è rivâts a gjavâ l'ogjet: %s"
 
 #: src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
 #, c-format
 msgid "Failed to remove file %s: %s"
-msgstr ""
+msgstr "No si è rivâts a gjavâ il file %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-writable-db-container.vala:120
 #, c-format
 msgid "Could not find object %d in cache"
-msgstr ""
+msgstr "Impussibil cjatâ l'ogjet %d te cache"
 
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
 #, c-format
 msgid "MPRIS interface at %s is read-only. Ignoring."
-msgstr ""
+msgstr "La interface MPRIS a %s e je in modalitât nome-leture. Si ignore."
 
 #: src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
-msgstr ""
+msgstr "Riprodutôr GStreamer"
 
 #: src/plugins/playbin/rygel-playbin-plugin.vala:43
 msgid "Could not create GStreamer player"
-msgstr ""
+msgstr "Impussibil creâ il riprodutôr GStreamer"
 
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
 msgid "Failed to create a Tracker connection: %s"
-msgstr ""
+msgstr "No si è rivâts a creâ une conession a Tracker: %s"
 
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:62
 #, c-format
