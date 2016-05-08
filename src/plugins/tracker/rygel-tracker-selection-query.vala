@@ -174,7 +174,9 @@ public class Rygel.Tracker.SelectionQuery : Query {
         } catch (Error error) {};
 
         // Limit the files to a set of folders that may have been configured
-        filters.add (uri_filter);
+        if (uri_filter != null) {
+            filters.add (uri_filter);
+        }
 
         if (filters.size > 0) {
             query += " FILTER (";
