@@ -403,6 +403,15 @@ AS_IF([test "x$enable_coverage" != "xno"],
   ]
 )
 
+dnl systemd user unit directory
+AC_ARG_WITH([systemduserunitdir],
+	    AS_HELP_STRING([--with-systemduserunitdir=DIR], [Directory for systemd user service files]),
+	    [],
+	    [with_systemduserunitdir=$($PKG_CONFIG --variable=systemduserunitdir systemd)])
+if test x$with_systemduserunitdir != xno; then
+	AC_SUBST([systemduserunitdir], [$with_systemduserunitdir])
+fi
+
 dnl Check additional requirements for MediaExport plugins
 if test "x$enable_media_export_plugin" = "xyes";
 then

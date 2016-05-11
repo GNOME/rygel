@@ -1,0 +1,8 @@
+[Unit]
+Description=Rygel DLNA/UPnP server
+
+[Service]
+Type=dbus
+BusName=org.gnome.Rygel1
+ExecStart=@bindir@/rygel
+Restart=on-failure
