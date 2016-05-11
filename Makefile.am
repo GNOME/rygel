@@ -12,7 +12,7 @@ EXTRA_DIST = rygel-core-2.6.pc.in rygel-renderer-2.6.pc.in \
              rygel-server-2.6.pc.in .version \
              build-aux/git-version-gen
 
-DISTCHECK_CONFIGURE_FLAGS =
+AM_DISTCHECK_CONFIGURE_FLAGS = --with-systemduserunitdir='$${libdir}/systemd/user-distcheck'
 
 # Extra clean files so that maintainer-clean removes *everything*
 MAINTAINERCLEANFILES = aclocal.m4 compile config.guess config.sub configure depcomp install-sh ltmain.sh Makefile.in missing config.h.in

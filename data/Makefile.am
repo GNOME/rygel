@@ -17,6 +17,15 @@ dbusservice_DATA = $(dbusservice_in_files:.service.in=.service)
 $(dbusservice_DATA): $(dbusservice_in_files) Makefile
 	@sed -e "s|\@bindir\@|$(bindir)|" $< > $@
 
+# systemd service file
+systemdservicedir = $(systemduserunitdir)
+systemdservice_in_files = rygel.service.in
+systemdservice_DATA = rygel.service
+
+# Rule to make the systemd service file with bindir expanded
+$(systemdservice_DATA): rygel.service.in Makefile
+	$(AM_V_GEN) $(SED) -e "s|\@bindir\@|$(bindir)|" $< > $@
+
 # Rule to create the .desktop files
 desktop_in_files = $(srcdir)/rygel.desktop.in $(srcdir)/rygel-preferences.desktop.in
 desktop_DATA = rygel.desktop rygel-preferences.desktop
@@ -39,10 +48,11 @@ preset_DATA = $(srcdir)/presets/avenc_aac.prs \
 	$(srcdir)/presets/GstTwoLame.prs \
 	$(srcdir)/presets/GstX264Enc.prs
 
-CLEANFILES = $(dbusservice_DATA) $(desktop_DATA)
+CLEANFILES = $(dbusservice_DATA) $(desktop_DATA) $(systemdservice_DATA)
 EXTRA_DIST = $(dbusservice_in_files) \
 	     $(desktop_in_files) \
 		 rygel.desktop.in.in rygel-preferences.desktop.in.in \
 	     $(sysconf_DATA) \
 	     $(pixmaps_DATA) \
-	     $(preset_DATA)
+	     $(preset_DATA) \
+	     $(systemdservice_in_files)
