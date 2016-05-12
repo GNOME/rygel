@@ -81,6 +81,7 @@ LIBRYGEL_SERVER_NONVAPI_SOURCE_FILES = \
 	rygel-wmp-hacks.vala \
 	rygel-xbmc-hacks.vala \
 	rygel-xbox-hacks.vala \
+	rygel-phillips-hacks.vala \
 	rygel-data-sink.vala \
 	rygel-playspeed.vala \
 	rygel-playspeed-request.vala \
