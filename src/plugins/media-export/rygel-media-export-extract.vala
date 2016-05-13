@@ -79,22 +79,11 @@ async void run () {
 
                 try {
                     var file = File.new_for_uri (parts[0]);
-                    Extractor extractor;
                     // Copy current URI to statically allocated memory area to
                     // dump to fd in the signal handler
-                    if (metadata) {
-                        var is_text = parts[1].has_prefix ("text/") ||
-                                      parts[1].has_suffix ("xml");
-                        if (parts[1] == "application/x-cd-image") {
-                            extractor = new DVDParser (file);
-                        } else if (!is_text) {
-                            extractor = new GenericExtractor (file);
-                        } else {
-                            extractor = new PlaylistExtractor (file);
-                        }
-                    } else {
-                        extractor = new Extractor (file);
-                    }
+                    var extractor = Extractor.create_for_file (file,
+                                                               parts[1],
+                                                               metadata);
                     yield extractor.run ();
 
                     send_extraction_done (file, extractor.get ());

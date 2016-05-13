@@ -51,7 +51,31 @@ public class Rygel.MediaExport.Extractor : Object {
 
     protected VariantDict serialized_info;
 
-    public Extractor (File file) {
+    /**
+     * Factory method for creating specific extractors depending on the
+     * content type of the file
+     */
+    public static Extractor create_for_file (File   file,
+                                             string content_type,
+                                             bool   extract_metadata) {
+        if (!extract_metadata) {
+            return new Extractor (file);
+        }
+
+        var is_text = content_type.has_prefix ("text/") ||
+                      content_type.has_suffix ("xml");
+        if (content_type == "application/x-cd-image") {
+            return new DVDParser (file);
+        }
+
+        if (is_text) {
+            return new PlaylistExtractor (file);
+        }
+
+        return new GenericExtractor (file);
+    }
+
+    private Extractor (File file) {
         Object (file: file);
     }
 
