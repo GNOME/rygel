@@ -43,9 +43,6 @@ static bool metadata = false;
 static MainLoop loop;
 static DataInputStream input_stream;
 static OutputStream output_stream;
-static MediaArt.Process media_art;
-static Discoverer discoverer;
-static ProfileGuesser guesser;
 
 public errordomain MetadataExtractorError {
     GENERAL
@@ -162,12 +159,6 @@ int main (string[] args) {
         return Posix.EXIT_FAILURE;
     }
 
-    try {
-        media_art = new MediaArt.Process ();
-    } catch (Error error) {
-        warning (_("Failed to create media art extractor: %s"),
-                error.message);
-    }
     Posix.nice (19);
 
     message ("Started with descriptors %d (in) %d (out)", in_fd, out_fd);
@@ -176,14 +167,6 @@ int main (string[] args) {
     output_stream = new UnixOutputStream (out_fd, true);
 
     loop = new MainLoop ();
-    try {
-        discoverer = new Discoverer (10 * Gst.SECOND);
-    } catch (Error error) {
-        warning (_("Failed to start metadata discoverer: %s"),
-                 error.message);
-    }
-
-    guesser = new ProfileGuesser (true, true);
 
     run.begin ();
     loop.run ();
