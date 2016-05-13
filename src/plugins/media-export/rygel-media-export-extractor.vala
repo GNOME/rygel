@@ -21,7 +21,8 @@
  */
 
 public errordomain ExtractorError {
-    GENERAL
+    GENERAL,
+    INVALID
 }
 
 public class Rygel.MediaExport.Extractor : Object {

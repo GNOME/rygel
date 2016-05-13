@@ -90,7 +90,7 @@ async void run () {
                         } else if (!is_text) {
                             extractor = new GenericExtractor (file);
                         } else {
-                            extractor = new Extractor (file);
+                            extractor = new PlaylistExtractor (file);
                         }
                     } else {
                         extractor = new Extractor (file);
