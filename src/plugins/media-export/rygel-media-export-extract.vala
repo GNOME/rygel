@@ -76,8 +76,6 @@ async void run () {
 
                 try {
                     var file = File.new_for_uri (parts[0]);
-                    // Copy current URI to statically allocated memory area to
-                    // dump to fd in the signal handler
                     var extractor = Extractor.create_for_file (file,
                                                                parts[1],
                                                                metadata);
