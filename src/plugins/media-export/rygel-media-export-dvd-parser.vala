@@ -78,7 +78,9 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
         if ((xpo != null) &&
             (xpo->type == Xml.XPath.ObjectType.NODESET) &&
             (xpo->nodesetval->length () == 1)) {
-            this.serialized_info.insert ("UPnPClass", "s", UPNP_CLASS_VIDEO);
+            this.serialized_info.insert ("UPnPClass",
+                                         "s",
+                                         UPNP_CLASS_DVD_TRACK);
             this.serialized_info.insert ("MimeType", "s", "video/mpeg");
 
             var node = xpo->nodesetval->item (0);

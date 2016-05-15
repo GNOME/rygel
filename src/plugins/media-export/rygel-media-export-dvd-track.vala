@@ -23,6 +23,8 @@
 using GUPnP;
 
 internal class Rygel.MediaExport.DVDTrack : VideoItem {
+    public new const string UPNP_CLASS = Rygel.VideoItem.UPNP_CLASS + ".dvdTrack";
+
     public Xml.Node* node { private get; construct set; }
     public int track { private get; construct set; }
 
