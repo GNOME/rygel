@@ -72,6 +72,11 @@ public class Rygel.MediaExport.Extractor : Object {
             return new PlaylistExtractor (file);
         }
 
+        if (content_type == "image/jpeg" ||
+            content_type == "image/png") {
+            return new ImageExtractor (file);
+        }
+
         return new GenericExtractor (file);
     }
 

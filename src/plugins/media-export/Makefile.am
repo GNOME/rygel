@@ -12,6 +12,7 @@ mx_extract_SOURCES = \
 	rygel-media-export-extract.vala \
 	rygel-media-export-dvd-parser.vala \
 	rygel-media-export-playlist-extractor.vala \
+	rygel-media-export-image-extractor.vala \
 	rygel-media-export-extractor.vala \
 	rygel-media-export-generic-extractor.vala
 
@@ -19,6 +20,7 @@ mx_extract_VALAFLAGS = \
 	--enable-experimental \
 	--pkg posix \
 	--pkg gio-unix-2.0 \
+	--pkg gdk-pixbuf-2.0 \
 	$(RYGEL_PLUGIN_MEDIA_EXPORT_DEPS_VALAFLAGS) \
 	$(RYGEL_COMMON_VALAFLAGS)
 
