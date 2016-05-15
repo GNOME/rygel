@@ -72,7 +72,7 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
     extern static bool open_pipe ([CCode (array_length = false)]int[] fds, int flags) throws GLib.Error;
 
     static construct {
-        SERIALIZED_DATA_TYPE = new VariantType ("(smvmvmvmvmvmv)");
+        SERIALIZED_DATA_TYPE = new VariantType ("a{sv}");
     }
 
     public MetadataExtractor () {

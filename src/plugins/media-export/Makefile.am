@@ -15,8 +15,7 @@ mx_extract_SOURCES = \
 	rygel-media-export-playlist-extractor.vala \
 	rygel-media-export-image-extractor.vala \
 	rygel-media-export-extractor.vala \
-	rygel-media-export-generic-extractor.vala \
-	rygel-media-export-info-serializer.vala
+	rygel-media-export-generic-extractor.vala
 
 mx_extract_VALAFLAGS = \
 	--enable-experimental \
@@ -67,7 +66,8 @@ librygel_media_export_la_SOURCES = \
 	rygel-media-export-trackable-db-container.vala \
 	rygel-media-export-updatable-object.vala \
 	rygel-media-export-dvd-container.vala \
-	rygel-media-export-dvd-track.vala
+	rygel-media-export-dvd-track.vala \
+	constants.vala
 
 librygel_media_export_la_VALAFLAGS = \
 	--enable-experimental \

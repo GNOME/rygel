@@ -33,6 +33,7 @@ using Gst.PbUtils;
  * Represents MediaExport item.
  */
 namespace Rygel.MediaExport.ItemFactory {
+
     internal errordomain ItemFactoryError {
         DESERIALIZATION,
         MISMATCH
@@ -50,193 +51,133 @@ namespace Rygel.MediaExport.ItemFactory {
         return true;
     }
 
-    private static MediaFileItem? create_playlist_item (File file,
-                                                        MediaContainer parent,
-                                                        string fallback_title) {
-        try {
-            uint8[] contents;
+    static MediaObject? create (MediaContainer parent, VariantDict vd) {
+        VariantType? expected = null;
+        MediaObject? object = null;
 
-            if (!file.load_contents (null, out contents, null)) {
-                return null;
-            }
+        var upnp_class = vd.lookup_value (Serializer.UPNP_CLASS, expected);
+        var id = vd.lookup_value (Serializer.ID, expected);
+        var title = vd.lookup_value (Serializer.TITLE, expected);
+        var uri = vd.lookup_value (Serializer.URI, expected);
 
-            /* Do some heuristic check if this file looks like XML */
-            var i = 0;
-            while (((char) contents[i]).isspace () && i < contents.length) {
-                i++;
-            }
-
-            if (contents[i] != '<') {
-                return null;
-            }
-
-            var didl_s = new MediaCollection.from_string ((string) contents);
-            var author = didl_s.author;
-            var title = didl_s.title;
-
-            if (author == null &&
-                title == null &&
-                didl_s.get_items () == null) {
-                return null;
-            }
-
-            if (title == null) {
-                title = fallback_title;
-            }
-
-            var item = new PlaylistItem (MediaCache.get_id (file),
-                                         parent,
-                                         title);
-
-            if (author != null) {
-                item.creator = author;
-            }
-
-            item.dlna_profile = "DIDL_S";
-
-            return item;
-        } catch (Error e) {
-            return null;
+        var factory = new ObjectFactory ();
+        if (upnp_class.get_string ().has_prefix (MediaContainer.UPNP_CLASS)) {
+            object = factory.get_container (id.get_string (),
+                                            title.get_string (),
+                                            0,
+                                            uri.get_string ());
+        } else {
+            object = factory.get_item (parent,
+                                       id.get_string (),
+                                       title.get_string (),
+                                       upnp_class.get_string ());
         }
+
+        object.add_uri (uri.get_string ());
+
+        return object;
     }
+
+    static int64 get_int64 (VariantDict vd, string key) {
+        var val = vd.lookup_value (key, VariantType.UINT64);
+        if (val != null) {
+            return (int64) val.get_uint64 ();
+        }
+
+        return -1;
+    }
+
+    static int32 get_int32 (VariantDict vd, string key) {
+        var val = vd.lookup_value (key, VariantType.INT32);
+        if (val != null) {
+            return val.get_int32 ();
+        }
+
+        return -1;
+    }
+
 
     static MediaObject? create_from_variant (MediaContainer parent,
                                              File           file,
                                              Variant?       v)
                                              throws Error {
-
+        VariantType? expected = null;
         if (v == null) {
             return null;
         }
 
-        ItemFactory.check_variant_type (v,"(smvmvmvmvmvmv)");
+        ItemFactory.check_variant_type (v,"a{sv}");
 
-        Variant? upnp_class,
-                 file_info,
-                 dlna_profile,
-                 info,
-                 video_info,
-                 audio_info,
-                 meta_data;
+        VariantDict vd = new VariantDict (v);
 
-        var it = v.iterator ();
+        var upnp_class = vd.lookup_value (Serializer.UPNP_CLASS, expected);
+        if (upnp_class == null) {
+            debug ("Did not find a UPnP class for item, ignoring");
 
-        var id = MediaCache.get_id (file);
-
-        upnp_class = it.next_value ();
-
-        file_info = it.next_value ().get_maybe ();
-        if (file_info != null) {
-            file_info = file_info.get_variant ();
+            return null;
         }
 
-        dlna_profile = it.next_value ().get_maybe ();
-        if (dlna_profile != null) {
-            dlna_profile = dlna_profile.get_variant ();
+        var object = create (parent, vd);
+        if (object is MediaContainer) {
+            return object;
         }
 
-        info = it.next_value ().get_maybe ();
-        if (info != null) {
-            info = info.get_variant ();
+        var item = object as MediaFileItem;
+
+        // Fill general things
+        var val = vd.lookup_value (Serializer.MIME_TYPE, expected);
+        item.mime_type = val.get_string ();
+
+        item.size = get_int64 (vd, Serializer.SIZE);
+
+        val = vd.lookup_value (Serializer.MODIFIED, expected);
+        item.modified = val.get_uint64 ();
+
+        val = vd.lookup_value (Serializer.DLNA_PROFILE, expected);
+        if (val != null) {
+            item.dlna_profile = val.get_string ();
         }
 
-        audio_info = it.next_value ().get_maybe ();
-        if (audio_info != null) {
-            audio_info = audio_info.get_variant ();
+        val = vd.lookup_value (Serializer.DATE, expected);
+        if (val != null) {
+            item.date = val.get_string ();
         }
 
-        video_info = it.next_value ().get_maybe ();
-        if (video_info != null) {
-            video_info = video_info.get_variant ();
-        }
+        if (item is AudioItem) {
+            var audio_item = item as AudioItem;
+            audio_item.duration = get_int32 (vd, Serializer.DURATION);
+            audio_item.bitrate = get_int32 (vd, Serializer.AUDIO_BITRATE);
+            audio_item.channels = get_int32 (vd, Serializer.AUDIO_CHANNELS);
+            audio_item.sample_freq = get_int32 (vd, Serializer.AUDIO_RATE);
 
-        meta_data = it.next_value ().get_maybe ();
-        if (meta_data != null) {
-            meta_data = meta_data.get_variant ();
-        }
-
-        MediaFileItem item = null;
-        MediaObject object = null;
-        switch (upnp_class.get_string ()) {
-            case Rygel.PhotoItem.UPNP_CLASS:
-                item = new PhotoItem (id, parent, "");
-                break;
-            case Rygel.VideoItem.UPNP_CLASS:
-                item = new VideoItem (id, parent, "");
-                break;
-            case Rygel.MusicItem.UPNP_CLASS:
-                item = new MusicItem (id, parent, "");
-                break;
-            case Rygel.PlaylistItem.UPNP_CLASS:
-                item = ItemFactory.create_playlist_item (file, parent, "");
-                if (item == null) {
-                    return null;
-                }
-                break;
-            case DVDContainer.UPNP_CLASS:
-                var container = new DVDContainer ("dvd:" + id, parent, "", file.get_path ());
-                object = container;
-
-                if (file_info != null) {
-                    apply_file_info (object, file_info);
+            if (item is MusicItem) {
+                var music_item = item as MusicItem;
+                val = vd.lookup_value (Serializer.ARTIST, expected);
+                if (val != null) {
+                    music_item.artist = val.get_string ();
                 }
 
-                // If the DVD has a single track, just export that as a plain
-                // video. Copy over all important information such as
-                // modified, the uri and the title.
-                if (container.child_count == 1) {
-                    object = container.children.get (0);
-                    object.title = container.title;
-                    object.modified = container.modified;
+                val = vd.lookup_value (Serializer.ALBUM, expected);
+                if (val != null) {
+                    music_item.album = val.get_string ();
                 }
 
-                return object;
-            default:
-                return null;
-        }
+                val = vd.lookup_value (Serializer.GENRE, expected);
+                if (val != null) {
+                    music_item.genre = val.get_string ();
+                }
 
-        item.add_uri (file.get_uri ());
-
-        if (dlna_profile != null) {
-            apply_dlna_profile (item, dlna_profile);
-        }
-
-        if (info != null) {
-            apply_info (item, info);
-        }
-
-        var strip_title = item.title == null || item.title == "";
-
-        if (file_info != null) {
-            apply_file_info (item, file_info);
-
-            // If AVI, don't trust the meta-data as it is not easily
-            // modifiable
-            if (item.mime_type == "video/x-msvideo") {
-                item.title = "";
-                strip_title = true;
-                apply_file_info (item, file_info);
+                music_item.track_number = get_int32 (vd,
+                                                     Serializer.TRACK_NUMBER);
+                music_item.disc = get_int32 (vd, Serializer.VOLUME_NUMBER);
             }
-
         }
 
-        if (audio_info != null) {
-            apply_audio_info (item, audio_info);
-        }
-
-        if (video_info != null) {
-            apply_video_info (item, video_info);
-        }
-
-        if (meta_data != null) {
-            apply_meta_data (item, meta_data);
-        }
-
-        // If the date has a timezone offset, make sure it contains a
-        // colon bgo#702231, DLNA 7.3.21.1
-        if ("T" in item.date) {
-            var date = new Soup.Date.from_string (item.date);
-            item.date = date.to_string (Soup.DateFormat.ISO8601_FULL);
+        if (item is VisualItem) {
+            var visual_item = item as VisualItem;
+            visual_item.width = get_int32 (vd, Serializer.VIDEO_WIDTH);
+            visual_item.height = get_int32 (vd, Serializer.VIDEO_HEIGHT);
+            visual_item.color_depth = get_int32 (vd, Serializer.VIDEO_DEPTH);
         }
 
         return item as MediaFileItem;

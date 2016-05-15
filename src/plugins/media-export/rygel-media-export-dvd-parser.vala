@@ -73,15 +73,30 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
             throw new DVDParserError.GENERAL ("Failed to read cache file");
         }
 
+        var id = this.serialized_info.lookup_value (Serializer.ID,
+                                                    VariantType.STRING);
+        var uri = this.serialized_info.lookup_value (Serializer.URI,
+                                                     VariantType.STRING);
+
+        // Unset size
+        this.serialized_info.insert (Serializer.SIZE, "i", -1);
+
         var context = new Xml.XPath.Context (doc);
         var xpo = context.eval ("/lsdvd/track");
         if ((xpo != null) &&
             (xpo->type == Xml.XPath.ObjectType.NODESET) &&
             (xpo->nodesetval->length () == 1)) {
+            var new_uri = new Soup.URI (uri.get_string ());
+            new_uri.set_scheme ("dvd");
+            new_uri.set_query ("title=1");
             this.serialized_info.insert (Serializer.UPNP_CLASS,
                                          "s",
-                                         UPNP_CLASS_DVD_TRACK);
+                                         UPNP_CLASS_VIDEO);
+            this.serialized_info.insert (Serializer.ID, "s",
+                                         "dvd-track:" + id.get_string () + ":0");
             this.serialized_info.insert (Serializer.MIME_TYPE, "s", "video/mpeg");
+            this.serialized_info.insert (Serializer.URI, "s",
+                                         new_uri.to_string (false));
 
             var node = xpo->nodesetval->item (0);
 
@@ -114,6 +129,8 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
                 it = it->next;
             }
         } else {
+            this.serialized_info.insert (Serializer.ID, "s",
+                                         "dvd:" + id.get_string ());
             this.serialized_info.insert (Serializer.UPNP_CLASS,
                                          "s",
                                          UPNP_CLASS_PLAYLIST_CONTAINER_DVD);

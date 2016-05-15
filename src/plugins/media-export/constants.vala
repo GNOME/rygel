@@ -21,23 +21,36 @@
  */
 
 namespace Rygel.MediaExport.Serializer {
+    // Generic things - always set
+    public const string UPNP_CLASS = "UPnPClass";
+    public const string ID = "Id";
+    public const string URI = "Uri";
     public const string TITLE = "Title";
+    public const string DATE = "Date";
+
+    // Item things - always set
     public const string MODIFIED = "MTime";
     public const string MIME_TYPE = "MimeType";
     public const string SIZE = "Size";
-    public const string UPNP_CLASS = "UPnPClass";
-    public const string DURATION = "Duration";
-    public const string VIDEO_WIDTH = "VideoWidth";
-    public const string VIDEO_HEIGHT = "VideoHeight";
+
+    // Item things
     public const string DLNA_PROFILE = "DLNAProfile";
-    public const string ARTIST = "Artist";
-    public const string DATE = "Date";
-    public const string VIDEO_DEPTH = "VideoDepth";
+
+    // AudioItem
+    public const string DURATION = "Duration";
     public const string AUDIO_CHANNELS = "AudioChannels";
     public const string AUDIO_RATE = "AudioRate";
+    public const string AUDIO_BITRATE = "AudioBitrate";
+
+    // VisualItem
+    public const string VIDEO_WIDTH = "VideoWidth";
+    public const string VIDEO_HEIGHT = "VideoHeight";
+    public const string VIDEO_DEPTH = "VideoDepth";
+
+    // MusicItem
+    public const string ARTIST = "Artist";
     public const string ALBUM = "Album";
     public const string GENRE = "Genre";
     public const string VOLUME_NUMBER = "VolumeNumber";
     public const string TRACK_NUMBER = "TrackNumber";
-    public const string AUDIO_BITRATE = "AudioBitrate";
 }
