@@ -38,6 +38,7 @@ private errordomain Rygel.MediaItemError {
  * MediaItems must live in a container and may not contain other MediaItems
  */
 public abstract class Rygel.MediaItem : MediaObject {
+    public const string UPNP_CLASS = "objec.item";
 
     public string description { get; set; default = null; }
 
