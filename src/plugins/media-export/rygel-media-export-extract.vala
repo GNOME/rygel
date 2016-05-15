@@ -92,8 +92,6 @@ async void run () {
                             var uri = parts[0];
 
                             if (path != null) {
-                                warning ("Using local path %s instead of %s",
-                                         path, uri);
                                 uri = Filename.to_uri (path);
                             }
 
