@@ -22,6 +22,7 @@
 
 using Gst;
 using Gst.PbUtils;
+using Rygel.MediaExport;
 
 internal errordomain InfoSerializerError {
     INVALID_STREAM,
@@ -29,130 +30,53 @@ internal errordomain InfoSerializerError {
 }
 
 internal class Rygel.InfoSerializer : GLib.Object {
-    public MediaArt.Process? media_art { get; construct set; }
+    private VariantType? t = null;
 
-    public InfoSerializer (MediaArt.Process? media_art) {
-        GLib.Object (media_art: media_art);
+    public Variant serialize (VariantDict in_v) throws Error {
+        return new Variant ("(smvmvmvmvmvmv)",
+                            in_v.lookup_value
+                            (Serializer.UPNP_CLASS, this.t).get_string (),
+                            this.serialize_file_info (in_v),
+                            this.serialize_dlna_profile (in_v),
+                            this.serialize_info (in_v),
+                            this.serialize_audio_info (in_v),
+                            this.serialize_video_info (in_v),
+                            this.serialize_meta_data (in_v));
     }
 
-    public Variant serialize (File               file,
-                              FileInfo           file_info,
-                              DiscovererInfo?    info,
-                              GUPnPDLNA.Profile? dlna_profile) throws Error {
-        // Guess UPnP class
-        if (info != null) {
-            string? upnp_class = null;
-
-            var audio_streams = (GLib.List<DiscovererAudioInfo>)
-                                            info.get_audio_streams ();
-            var video_streams = (GLib.List<DiscovererVideoInfo>)
-                                            info.get_video_streams ();
-            if (audio_streams == null && video_streams == null) {
-                debug ("%s had neither audio nor video/picture " +
-                       "streams. Ignoring.",
-                       file.get_uri ());
-
-                throw new InfoSerializerError.INVALID_STREAM ("No stream information");
-            }
-
-            if (audio_streams == null && video_streams.data.is_image ()) {
-                upnp_class = UPNP_CLASS_PHOTO;
-            } else if (video_streams != null) {
-                upnp_class = UPNP_CLASS_VIDEO;
-            } else if (audio_streams != null) {
-                upnp_class = UPNP_CLASS_MUSIC;
-            } else {
-                // Uh...
-            }
-
-            return new Variant ("(smvmvmvmvmvmv)",
-                                upnp_class,
-                                this.serialize_file_info (file_info),
-                                this.serialize_dlna_profile (dlna_profile),
-                                this.serialize_info (info),
-                                this.serialize_audio_info (audio_streams != null ?
-                                                           audio_streams.data : null),
-                                this.serialize_video_info (video_streams != null ?
-                                                           video_streams.data : null),
-                                this.serialize_meta_data (file, audio_streams != null ?
-                                                          audio_streams.data : null));
-        } else {
-            string? upnp_class = null;
-            var mime = ContentType.get_mime_type (file_info.get_content_type ());
-            if (mime.has_prefix ("video/")) {
-                upnp_class = UPNP_CLASS_VIDEO;
-            } else if (mime.has_prefix ("image/")) {
-                upnp_class = UPNP_CLASS_PHOTO;
-            } else if (mime.has_prefix ("audio/") || mime == "application/ogg") {
-                upnp_class = UPNP_CLASS_MUSIC;
-            } else if (mime.has_suffix ("/xml")) { // application/xml or text/xml
-                upnp_class = UPNP_CLASS_PLAYLIST;
-            } else if (mime == "application/x-cd-image") {
-                upnp_class = UPNP_CLASS_PLAYLIST_CONTAINER_DVD;
-            } else {
-                debug ("Unsupported content-type %s, skipping %s…",
-                       mime,
-                       file.get_uri ());
-
-                throw new InfoSerializerError.BAD_MIME ("Not supported: %s", mime);
-            }
-
-            return new Variant ("(smvmvmvmvmvmv)",
-                                upnp_class,
-                                this.serialize_file_info (file_info),
-                                null,
-                                null,
-                                null,
-                                null,
-                                null);
-        }
-    }
-
-    private Variant serialize_file_info (FileInfo info) {
+    private Variant serialize_file_info (VariantDict in_v) {
         return new Variant ("(stst)",
-                            info.get_display_name (),
-                            info.get_attribute_uint64
-                                        (FileAttribute.TIME_MODIFIED),
-                            ContentType.get_mime_type
-                                        (info.get_content_type ()),
-                            info.get_size ());
+                            in_v.lookup_value (Serializer.TITLE,
+                                this.t).get_string (),
+                            in_v.lookup_value (Serializer.MODIFIED,
+                                this.t).get_uint64 (),
+                            in_v.lookup_value (Serializer.MIME_TYPE,
+                                this.t).get_string (),
+                            in_v.lookup_value (Serializer.SIZE,
+                                this.t).get_uint64 ());
     }
 
-    private Variant? serialize_dlna_profile (GUPnPDLNA.Profile? profile) {
-        if (profile == null) {
+    private Variant? serialize_dlna_profile (VariantDict in_v) {
+        var val = in_v.lookup_value (Serializer.DLNA_PROFILE, this.t);
+        if (val == null) {
             return null;
         }
 
-        return new Variant ("(ss)", profile.name, profile.mime);
+        return new Variant ("(ss)",
+                            val.get_string (),
+                            in_v.lookup_value
+                            (Serializer.MIME_TYPE, this.t).get_string ());
     }
 
-    private Variant? serialize_info (DiscovererInfo? info) {
+    private Variant? serialize_info (VariantDict in_v) {
         long duration = -1;
-        if (info.get_duration () > 0) {
-            duration = (long) (info.get_duration () / Gst.SECOND);
-        }
+        in_v.lookup (Serializer.DURATION, "i", out duration);
 
-        var tags = info.get_tags ();
         string? title = null;
-        if (tags != null) {
-            tags.get_string (Tags.TITLE, out title);
-        }
+        in_v.lookup (Serializer.TITLE, "s", out title);
 
-        string date = null;
-        Gst.DateTime? dt = null;
-        if (tags != null && tags.get_date_time (Tags.DATE_TIME, out dt)) {
-            // Make a minimal valid iso8601 date - bgo#702231
-            // This mostly happens with MP3 files which only have a year
-            if (!dt.has_day () || !dt.has_month ()) {
-                date = "%d-%02d-%02d".printf (dt.get_year (),
-                                              dt.has_month () ?
-                                                  dt.get_month () : 1,
-                                              dt.has_day () ?
-                                                  dt.get_day () : 1);
-            } else {
-                date = dt.to_iso8601_string ();
-            }
-        }
+        string? date = null;
+        in_v.lookup (Serializer.DATE, "s", out date);
 
         return new Variant ("(msmsi)",
                             title,
@@ -160,105 +84,59 @@ internal class Rygel.InfoSerializer : GLib.Object {
                             duration);
     }
 
-    private Variant? serialize_video_info (DiscovererVideoInfo? info) {
-        if (info == null) {
+    private Variant? serialize_video_info (VariantDict in_v) {
+        int width = -1;
+        int height = -1;
+        int depth = -1;
+
+        in_v.lookup (Serializer.VIDEO_WIDTH, "i", out width);
+        in_v.lookup (Serializer.VIDEO_HEIGHT, "i", out height);
+        in_v.lookup (Serializer.VIDEO_DEPTH, "i", out depth);
+
+
+        if (width == -1 && height == -1) {
             return null;
         }
 
-        return new Variant ("(iii)",
-                            (int) info.get_width (),
-                            (int) info.get_height (),
-                            info.get_depth () > 0 ?
-                                info.get_depth () : -1);
+        return new Variant ("(iii)", width, height, depth);
     }
 
-    private Variant? serialize_audio_info (DiscovererAudioInfo? info) {
-        if (info == null) {
+    private Variant? serialize_audio_info (VariantDict in_v) {
+        int channels = -1;
+        int rate = -1;
+
+        in_v.lookup (Serializer.AUDIO_CHANNELS, "i", out channels);
+        in_v.lookup (Serializer.AUDIO_RATE, "i", out rate);
+
+        if (channels == -1 && rate == -1) {
             return null;
         }
 
-        return new Variant ("(ii)",
-                            (int) info.get_channels (),
-                            (int) info.get_sample_rate ());
-
+        return new Variant ("(ii)", channels, rate);
     }
 
-    private Variant? serialize_meta_data (File file,
-                                          DiscovererAudioInfo? info) {
-        if (info == null) {
-            return null;
-        }
-
-        var tags = info.get_tags ();
-        if (tags == null) {
-            return null;
-        }
-
+    private Variant? serialize_meta_data (VariantDict in_v) {
         string artist = null;
-        tags.get_string (Tags.ARTIST, out artist);
+        in_v.lookup (Serializer.ARTIST, "s", out artist);
 
         string album = null;
-        tags.get_string (Tags.ALBUM, out album);
+        in_v.lookup (Serializer.ALBUM, "s", out album);
 
         string genre = null;
-        tags.get_string (Tags.GENRE, out genre);
+        in_v.lookup (Serializer.GENRE, "s", out genre);
 
-        uint volume = uint.MAX;
-        tags.get_uint (Tags.ALBUM_VOLUME_NUMBER, out volume);
+        int volume = -1;
+        in_v.lookup (Serializer.VOLUME_NUMBER, "i", out volume);
 
-        uint track = uint.MAX;
-        tags.get_uint (Tags.TRACK_NUMBER, out track);
+        int track = -1;
+        in_v.lookup (Serializer.TRACK_NUMBER, "i", out track);
 
-        uint bitrate = uint.MAX;
-        tags.get_uint (Tags.BITRATE, out bitrate);
+        int bitrate = -1;
+        in_v.lookup (Serializer.AUDIO_BITRATE, "i", out bitrate);
 
-        Sample sample;
-        tags.get_sample (Tags.IMAGE, out sample);
-        if (sample == null) {
-            tags.get_sample (Tags.PREVIEW_IMAGE, out sample);
-        }
-
-        if (sample == null) {
-            try {
-                if (artist != null || album != null) {
-                    this.media_art.file (MediaArt.Type.ALBUM,
-                                         MediaArt.ProcessFlags.NONE,
-                                         file,
-                                         artist,
-                                         album);
-                }
-            } catch (Error error) {
-                debug ("Failed to add external media art: %s", error.message);
-            }
-        } else {
-            unowned Structure structure = sample.get_caps ().get_structure (0);
-            int image_type;
-            structure.get_enum ("image-type",
-                                typeof (Gst.Tag.ImageType),
-                                out image_type);
-            if (image_type == Tag.ImageType.UNDEFINED ||
-                image_type == Tag.ImageType.FRONT_COVER) {
-                MapInfo map_info;
-                sample.get_buffer ().map (out map_info, Gst.MapFlags.READ);
-
-                // work-around for bgo#739915
-                weak uint8[] data = map_info.data;
-                data.length = (int) map_info.size;
-
-                try {
-                    this.media_art.buffer (MediaArt.Type.ALBUM,
-                                           MediaArt.ProcessFlags.NONE,
-                                           file,
-                                           data,
-                                           structure.get_name (),
-                                           artist,
-                                           album);
-                } catch (Error error) {
-                    debug ("Failed to add media art to cache: %s",
-                           error.message);
-                }
-                sample.get_buffer ().unmap (map_info);
-            }
+        if (artist == null && album == null && genre == null &&
+            volume == -1 && track == -1 && bitrate == -1) {
+            return null;
         }
 
         return new Variant ("(msmsmsiii)",
@@ -267,6 +145,6 @@ internal class Rygel.InfoSerializer : GLib.Object {
                             genre,
                             volume,
                             track,
-                            ((int) bitrate) / 8);
+                            bitrate);
     }
 }

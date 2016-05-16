@@ -28,6 +28,8 @@ internal class Rygel.MediaExport.ImageExtractor : Extractor {
     }
 
     public override async void run () throws Error {
+        yield base.run ();
+
         int width;
         int height;
 
@@ -38,30 +40,33 @@ internal class Rygel.MediaExport.ImageExtractor : Extractor {
 
         var mime = format.get_mime_types ()[0];
         // TODO: Use enhanced EXIF information?
-        this.serialized_info.insert ("UPnPClass", "s", UPNP_CLASS_PHOTO);
-        this.serialized_info.insert ("MimeType", "s", mime);
+        this.serialized_info.insert (Serializer.UPNP_CLASS, "s",
+                                     UPNP_CLASS_PHOTO);
 
-        this.serialized_info.insert ("VideoWidth", "i", width);
-        this.serialized_info.insert ("VideoHeight", "i", height);
+        this.serialized_info.insert (Serializer.MIME_TYPE, "s", mime);
+        this.serialized_info.insert (Serializer.VIDEO_WIDTH, "i", width);
+        this.serialized_info.insert (Serializer.VIDEO_HEIGHT, "i", height);
+
+        string? profile = null;
 
         if (mime == "image/png") {
             if (width <= 4096 && height <= 4096) {
-                this.serialized_info.insert ("DLNAProfile", "s", "PNG_LRG");
+                profile = "PNG_LRG";
             } else {
-                var profile = "PNG_RES_%d_%d".printf (width, height);
-                this.serialized_info.insert ("DLNAProfile", "s", profile);
+                profile = "PNG_RES_%d_%d".printf (width, height);
             }
         } else {
             if (width <= 640 && height <= 480) {
-                this.serialized_info.insert ("DLNAProfile", "s", "JPG_SM");
+                profile = "JPEG_SM";
             } else if (width <= 1024 && height <= 768) {
-                this.serialized_info.insert ("DLNAProfile", "s", "JPG_MED");
+                profile = "JPEG_MED";
             } else if (width <= 4096 && height <= 4096) {
-                this.serialized_info.insert ("DLNAProfile", "s", "JPEG_LRG");
+                profile = "JPEG_LRG";
             } else {
-                var profile = "JPEG_RES_%d_%d".printf (width, height);
-                this.serialized_info.insert ("DLNAProfile", "s", profile);
+                profile = "JPEG_RES_%d_%d".printf (width, height);
             }
         }
+
+        this.serialized_info.insert (Serializer.DLNA_PROFILE, "s", profile);
     }
 }

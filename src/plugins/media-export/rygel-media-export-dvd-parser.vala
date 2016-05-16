@@ -78,10 +78,10 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
         if ((xpo != null) &&
             (xpo->type == Xml.XPath.ObjectType.NODESET) &&
             (xpo->nodesetval->length () == 1)) {
-            this.serialized_info.insert ("UPnPClass",
+            this.serialized_info.insert (Serializer.UPNP_CLASS,
                                          "s",
                                          UPNP_CLASS_DVD_TRACK);
-            this.serialized_info.insert ("MimeType", "s", "video/mpeg");
+            this.serialized_info.insert (Serializer.MIME_TYPE, "s", "video/mpeg");
 
             var node = xpo->nodesetval->item (0);
 
@@ -90,22 +90,22 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
                 if (it->name == "length") {
                     var duration =  (int) double.parse (it->children->content);
 
-                    this.serialized_info.insert ("Duration",
+                    this.serialized_info.insert (Serializer.DURATION,
                                                  "i",
                                                  duration);
                 } else if (it->name == "width") {
                     var width = int.parse (it->children->content);
-                    this.serialized_info.insert ("VideoWidth",
+                    this.serialized_info.insert (Serializer.VIDEO_WIDTH,
                                                  "i",
                                                  width);
                 } else if (it->name == "height") {
                     var height = int.parse (it->children->content);
-                    this.serialized_info.insert ("VideoHeight",
+                    this.serialized_info.insert (Serializer.VIDEO_HEIGHT,
                                                  "i",
                                                  height);
                 } else if (it->name == "format") {
                     var dlna_profile = "MPEG_PS_" + it->children->content;
-                    this.serialized_info.insert ("DLNAProfile",
+                    this.serialized_info.insert (Serializer.DLNA_PROFILE,
                                                  "s",
                                                  dlna_profile);
                 }
@@ -114,10 +114,10 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
                 it = it->next;
             }
         } else {
-            this.serialized_info.insert ("UPnPClass",
+            this.serialized_info.insert (Serializer.UPNP_CLASS,
                                          "s",
                                          UPNP_CLASS_PLAYLIST_CONTAINER_DVD);
-            this.serialized_info.insert ("MimeType",
+            this.serialized_info.insert (Serializer.MIME_TYPE,
                                          "s",
                                          "application/x-cd-image");
         }

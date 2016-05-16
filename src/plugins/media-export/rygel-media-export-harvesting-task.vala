@@ -297,7 +297,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         } else {
             // nothing to do
             this.completed ();
-            debug ("Harvesting of %s done in %f",
+            message ("Harvesting of %s done in %f",
                     origin.get_uri (),
                     timer.elapsed ());
         }

@@ -9,12 +9,14 @@ include $(top_srcdir)/common.am
 ## Extraction helper
 pkglibexec_PROGRAMS = mx-extract
 mx_extract_SOURCES = \
+	constants.vala \
 	rygel-media-export-extract.vala \
 	rygel-media-export-dvd-parser.vala \
 	rygel-media-export-playlist-extractor.vala \
 	rygel-media-export-image-extractor.vala \
 	rygel-media-export-extractor.vala \
-	rygel-media-export-generic-extractor.vala
+	rygel-media-export-generic-extractor.vala \
+	rygel-media-export-info-serializer.vala
 
 mx_extract_VALAFLAGS = \
 	--enable-experimental \

@@ -100,18 +100,24 @@ public class Rygel.MediaExport.Extractor : Object {
         this.serialized_info.insert ("DisplayName", "s", display_name);
 
         var title = this.strip_invalid_entities (display_name);
-        this.serialized_info.insert ("Title", "s", title);
+        this.serialized_info.insert (Serializer.TITLE, "s", title);
 
-        this.serialized_info.insert ("MTime", "t", file_info.get_attribute_uint64
-                                        (FileAttribute.TIME_MODIFIED));
+        var mtime = file_info.get_attribute_uint64
+                                    (FileAttribute.TIME_MODIFIED);
+        this.serialized_info.insert (Serializer.MODIFIED, "t", mtime);
         var content_type = ContentType.get_mime_type
                                         (file_info.get_content_type ());
-        this.serialized_info.insert ("MimeType", "s", content_type);
-        this.serialized_info.insert ("Size", "t", file_info.get_size ());
+        this.serialized_info.insert (Serializer.MIME_TYPE, "s", content_type);
+        this.serialized_info.insert (Serializer.SIZE, "t", file_info.get_size ());
      }
 
     public new Variant? @get () {
-        return this.serialized_info.end ();
+        var s = new Rygel.InfoSerializer ();
+        try {
+            return s.serialize (this.serialized_info);
+        } catch (Error error) {
+            return null;
+        }
     }
 
     private string strip_invalid_entities (string original) {

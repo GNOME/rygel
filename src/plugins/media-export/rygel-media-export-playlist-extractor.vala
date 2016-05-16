@@ -6,6 +6,8 @@ internal class Rygel.MediaExport.PlaylistExtractor : Extractor {
     }
 
     public override async void run () throws Error {
+        yield base.run ();
+
         uint8[] contents;
 
         if (!yield file.load_contents_async (null, out contents, null)) {
@@ -33,15 +35,15 @@ internal class Rygel.MediaExport.PlaylistExtractor : Extractor {
         }
 
         if (title != null) {
-            this.serialized_info.insert ("Title", "s", title);
+            this.serialized_info.insert (Serializer.TITLE, "s", title);
         }
 
         if (author != null) {
-            this.serialized_info.insert ("Creator", author);
+            this.serialized_info.insert (Serializer.ARTIST, "s", author);
         }
 
-        this.serialized_info.insert ("DLNAProfile", "s", "DIDL_S");
-        this.serialized_info.insert ("UPnPClass",
+        this.serialized_info.insert (Serializer.DLNA_PROFILE, "s", "DIDL_S");
+        this.serialized_info.insert (Serializer.UPNP_CLASS,
                                      "s",
                                      UPNP_CLASS_PLAYLIST);
     }

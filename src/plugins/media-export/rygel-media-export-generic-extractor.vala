@@ -73,8 +73,6 @@ internal class Rygel.MediaExport.GenericExtractor: Extractor {
         var uri = this.file.get_uri ();
 
         if (path != null) {
-            warning ("Using local path %s instead of %s",
-                    path, uri);
             uri = Filename.to_uri (path);
         }
 
@@ -122,7 +120,7 @@ internal class Rygel.MediaExport.GenericExtractor: Extractor {
             this.upnp_class = UPNP_CLASS_MUSIC;
         }
 
-        this.serialized_info.insert ("UPnPClass", "s", upnp_class);
+        this.serialized_info.insert (Serializer.UPNP_CLASS, "s", upnp_class);
 
         var dlna_info = GUPnPDLNAGst.utils_information_from_discoverer_info
                                         (info);
@@ -130,15 +128,15 @@ internal class Rygel.MediaExport.GenericExtractor: Extractor {
                                         (dlna_info);
 
         if (dlna != null) {
-            this.serialized_info.insert ("DLNAProfile", "s", dlna.name,
-                                         "MimeType", "s", dlna.mime);
+            this.serialized_info.insert (Serializer.DLNA_PROFILE, "s", dlna.name);
+            this.serialized_info.insert (Serializer.MIME_TYPE, "s", dlna.mime);
         }
-        this.serialized_info.lookup ("MimeType", "s", out this.mime_type);
+        this.serialized_info.lookup (Serializer.MIME_TYPE, "s", out this.mime_type);
 
         long duration = -1;
         if (info.get_duration () > 0) {
             duration = (long) (info.get_duration () / Gst.SECOND);
-            this.serialized_info.insert ("Duration", "i", duration);
+            this.serialized_info.insert (Serializer.DURATION, "i", duration);
         }
 
         // Info has several tags, general and on audio info for music files
@@ -148,7 +146,7 @@ internal class Rygel.MediaExport.GenericExtractor: Extractor {
             if (tags.get_string (Tags.TITLE, out title)) {
                 // If not AVI file, replace title we guessed from filename
                 if (this.mime_type != "video/x-msvideo" && title != null) {
-                    this.serialized_info.insert ("Title", "s", title);
+                    this.serialized_info.insert (Serializer.TITLE, "s", title);
                 }
             }
 
@@ -167,58 +165,60 @@ internal class Rygel.MediaExport.GenericExtractor: Extractor {
                     date = dt.to_iso8601_string ();
                 }
 
-                this.serialized_info.insert ("Date", "s", date);
+                this.serialized_info.insert (Serializer.DATE, "s", date);
             }
         }
 
         if (video_streams != null && video_streams.data != null) {
             var vinfo = (DiscovererVideoInfo) video_streams.data;
-            this.serialized_info.insert ("VideoWidth", "i",
+            this.serialized_info.insert (Serializer.VIDEO_WIDTH, "i",
                                          (int) vinfo.get_width ());
-            this.serialized_info.insert ("VideoHeight", "i",
+            this.serialized_info.insert (Serializer.VIDEO_HEIGHT, "i",
                                          (int) vinfo.get_height ());
-            this.serialized_info.insert ("VideoDepth", "i",
+            this.serialized_info.insert (Serializer.VIDEO_DEPTH, "i",
                                          vinfo.get_depth () > 0 ?
                                          vinfo.get_depth () : -1);
         }
 
         if (audio_streams != null && audio_streams.data != null) {
             var ainfo = (DiscovererAudioInfo) audio_streams.data;
-            this.serialized_info.insert ("AudioChannels", "i",
+            this.serialized_info.insert (Serializer.AUDIO_CHANNELS, "i",
                                          (int) ainfo.get_channels ());
-            this.serialized_info.insert ("AudioRate", "i",
+            this.serialized_info.insert (Serializer.AUDIO_RATE, "i",
                                          (int) ainfo.get_sample_rate ());
             var atags = ainfo.get_tags ();
             if (atags != null) {
                 string artist = null;
                 if (atags.get_string (Tags.ARTIST, out artist) &&
                     this.mime_type != "video/x-msvideo") {
-                    this.serialized_info.insert ("Artist", "s", artist);
+                    this.serialized_info.insert (Serializer.ARTIST, "s", artist);
                 }
 
                 string album = null;
                 if (atags.get_string (Tags.ALBUM, out album)) {
-                    this.serialized_info.insert ("Album", "s", album);
+                    this.serialized_info.insert (Serializer.ALBUM, "s", album);
                 }
 
                 string genre = null;
                 if (atags.get_string (Tags.GENRE, out genre)) {
-                    this.serialized_info.insert ("Genre", "s", genre);
+                    this.serialized_info.insert (Serializer.GENRE, "s", genre);
                 }
 
                 uint volume = uint.MAX;
                 if (atags.get_uint (Tags.ALBUM_VOLUME_NUMBER, out volume)) {
-                    this.serialized_info.insert ("VolumeNumber", "i", volume);
+                    this.serialized_info.insert (Serializer.VOLUME_NUMBER,
+                                                 "i",
+                                                 volume);
                 }
 
                 uint track = uint.MAX;
                 if (atags.get_uint (Tags.TRACK_NUMBER, out track)) {
-                    this.serialized_info.insert ("Track", "i", track);
+                    this.serialized_info.insert (Serializer.TRACK_NUMBER, "i", track);
                 }
 
                 uint bitrate = uint.MAX;
                 if (atags.get_uint (Tags.BITRATE, out bitrate)) {
-                    this.serialized_info.insert ("AudioBitrate", "i",
+                    this.serialized_info.insert (Serializer.AUDIO_BITRATE, "i",
                                                  ((int) bitrate) / 8);
                 }
 
