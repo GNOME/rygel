@@ -1,7 +1,7 @@
 #!/bin/sh
 # Run this to generate all the initial makefiles, etc.
 
-DEFAULT_ARGS="--enable-vala --enable-maintainer-mode  --enable-debug  --enable-example-plugins --enable-mediathek-plugin --enable-gst-launch-plugin --disable-strict-valac"
+DEFAULT_ARGS="--enable-vala --enable-maintainer-mode  --enable-debug  --enable-example-plugins --enable-gst-launch-plugin --disable-strict-valac"
 
 mkdir -p m4
 

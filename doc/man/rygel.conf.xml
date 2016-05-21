@@ -444,31 +444,6 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
     <para>This plugin has no special options.</para>
   </refsect1>
   <refsect1>
-    <title>ZDFMediathek</title>
-    <para>The  <ulink url="http://www.zdf.de/ZDFmediathek">ZDF Mediathek</ulink> is an online archive of broadcasts from the second german television. This plugin can be used to subscribes to the RSS feeds of this service and expose the broadcasts via UPnP.</para>
-    <para><note>
-        <para>The support for the WMV streaming format was removed from the server, only RTSP support remains. Rygel has issues proxying this via HTTP so your client has to support RTSP in order to be able to view the streams without transcoding.</para>
-      </note></para>
-    <variablelist>
-      <varlistentry>
-        <term>
-          <option>rss</option>
-        </term>
-        <listitem>
-          <para>A list of broadcast ids. How to get the broadcast ids from the web site is described in the file <filename>README.Mediathek</filename> (in german only).</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>
-          <option>update-interval</option>
-        </term>
-        <listitem>
-          <para>Time in seconds after which the plugin checks for new content. The default interval is 1800 seconds (30 minutes), the minimum interval 10 minutes.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsect1>
-  <refsect1>
     <title>LightMediaScanner Plugin</title>
     <para>The LightMediaScanner plugin exports the contents of the <ulink url="https://github.com/profusion/lightmediascanner">lightmediascanner daemon</ulink> </para>
     <para>This plugin does not have any special options.</para>
@@ -551,7 +526,7 @@ title=@REALNAME@&apos;s Banshee on @HOSTNAME@</programlisting></para>
 <!-- In alpabetical order. -->    <para><citerefentry>
         <refentrytitle>rygel</refentrytitle>
         <manvolnum>1</manvolnum>
-      </citerefentry>, <filename>README.Mediathek</filename>, <citerefentry>
+      </citerefentry>, <citerefentry>
         <refentrytitle>gst-launch</refentrytitle>
         <manvolnum>1</manvolnum>
       </citerefentry></para>

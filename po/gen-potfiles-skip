@@ -12,6 +12,5 @@ data/xml/RenderingControl2.xml
 __EOF__
 ) > POTFILES.skip
 
-(cd .. && find src/plugins/mediathek -name "*.vala" | sort) >> POTFILES.skip
 (cd .. && find src -name "*.c" | sort ) >> POTFILES.skip
 (cd .. && find tests -name "*.c" | sort ) >> POTFILES.skip

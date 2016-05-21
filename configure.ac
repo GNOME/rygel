@@ -220,16 +220,6 @@ AS_IF([test "x$enable_mpris_plugin" = "xyes"],
     PKG_CHECK_MODULES([RYGEL_PLUGIN_MPRIS_DEPS], [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED])
   ])
 
-RYGEL_ADD_PLUGIN([mediathek],[ZDF Mediathek],[no])
-AS_IF([test "x$enable_mediathek_plugin" = "xyes"],
-  [
-    PKG_CHECK_MODULES([RYGEL_PLUGIN_MEDIATHEK_DEPS],
-                      [$RYGEL_COMMON_MODULES
-                       gio-2.0 >= $GIO_REQUIRED
-                       libsoup-2.4 >= $LIBSOUP_REQUIRED
-                       libxml-2.0 >= $LIBXML_REQUIRED])
-  ])
-
 RYGEL_ADD_PLUGIN([ruih],[Ruih],[yes])
 AS_IF([test "x$enable_ruih_plugin" = "xyes"],
   [
@@ -582,7 +572,6 @@ echo "
         examples:               ${enable_example_plugins}
         tracker:                ${enable_tracker_plugin}
             version:            ${tracker_api_version}
-        mediathek:              ${enable_mediathek_plugin}
         media-export            ${enable_media_export_plugin}
         lightmediascanner       ${enable_lms_plugin}
         external:               ${enable_external_plugin}
