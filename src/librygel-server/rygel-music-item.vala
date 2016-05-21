@@ -88,7 +88,7 @@ public class Rygel.MusicItem : AudioItem {
 
         this.track_number = didl_object.track_number;
 
-        if (didl_object.album_art.length > 0) {
+        if (didl_object.album_art != null && didl_object.album_art.length > 0) {
             if (this.album_art == null)
                 this.album_art = new Thumbnail ();
             this.album_art.uri = didl_object.album_art;
