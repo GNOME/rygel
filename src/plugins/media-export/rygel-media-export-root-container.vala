@@ -258,15 +258,15 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
             string id = SEARCH_CONTAINER_PREFIX;
             switch (expression.operand2) {
                 case MediaContainer.MUSIC_ALBUM:
-                    id += "upnp:album,?";
+                    id += VIRTUAL_FOLDERS_MUSIC[1].definition;
 
                     break;
                 case MediaContainer.MUSIC_ARTIST:
-                    id += "dc:creator,?,upnp:album,?";
+                    id += VIRTUAL_FOLDERS_MUSIC[0].definition;
 
                     break;
                 case MediaContainer.MUSIC_GENRE:
-                    id += "dc:genre,?";
+                    id += VIRTUAL_FOLDERS_MUSIC[2].definition;
 
                     break;
                 case MediaContainer.PLAYLIST:
