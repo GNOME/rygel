@@ -1,3 +1,50 @@
+0.31.1
+======
+
+Rygel:
+ - Add a way for Rygel to be started on user bus
+
+Server:
+ - Remove some annoying warnings
+ - Add hack to suport AVI playback on Philips TVs
+ - Fix potential issue with calling strlen on a NULL pointer
+
+GStreamer media engine:
+ - Use local path instead of FUSE uri
+
+Tracker:
+ - Add an option to limit the exposed files to a set of directories
+
+MediaExport:
+ - Use local path instead of FUSE uri to fool GStreamer in not using giosrc
+ - Drop some annoying warnings
+ - Fix artist view in XBox 360
+
+LMS:
+ - Fix license text
+
+Mediathek:
+ - Removed.
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=685800
+ - https://bugzilla.gnome.org/show_bug.cgi?id=765898
+ - https://bugzilla.gnome.org/show_bug.cgi?id=766332
+ - https://bugzilla.gnome.org/show_bug.cgi?id=766757
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Fabio Tomat <f.t.public@gmail.com>
+ - Tiago Santos <tiagofsantos81@sapo.pt>
+ - Richard Röjfors <richard.rojfors@gmail.com>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Bastien Nocera <hadess@hadess.net>
+
+Added/updated translations
+ - fur, courtesy of Fabio Tomat
+ - pt, courtesy of Tiago Santos
+ - sl, courtesy of Matej Urbančič
+
 0.31.0
 ======
 
