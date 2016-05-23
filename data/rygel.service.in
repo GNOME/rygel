@@ -6,3 +6,6 @@ Type=dbus
 BusName=org.gnome.Rygel1
 ExecStart=@bindir@/rygel
 Restart=on-failure
+
+[Install]
+WantedBy=default.target
