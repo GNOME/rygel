@@ -1,3 +1,30 @@
+0.30.3
+======
+
+- Add a way for Rygel to be started on user systemd
+
+Core:
+ - Fix potential strncpy overflow in BasicManagement
+
+Server:
+ - Remove annoying warning
+ - Add hack to support AVI files on newer Philips TVs
+ - Fix potential crash when applying DIDL
+
+MediaExport:
+ - Remove annoying warning
+ - Fix Artist hierarchy on XBox 360
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=685800
+ - https://bugzilla.gnome.org/show_bug.cgi?id=766332
+ - https://bugzilla.gnome.org/show_bug.cgi?id=766757
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Richard Röjfors <richard.rojfors@gmail.com>
+ - Bastien Nocera <hadess@hadess.net>
+
 0.30.2
 ======
 
