@@ -1,3 +1,4 @@
 [D-BUS Service]
 Name=org.gnome.Rygel1
 Exec=@bindir@/rygel
+SystemdService=rygel.service
