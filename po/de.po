@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-22 06:33+0000\n"
-"PO-Revision-Date: 2016-03-22 10:17+0100\n"
+"POT-Creation-Date: 2016-05-08 20:22+0000\n"
+"PO-Revision-Date: 2016-05-25 17:03+0200\n"
 "Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
@@ -291,22 +291,22 @@ msgstr "[Erweiterungs]-Gruppe nicht gefunden"
 msgid "Plugin module %s does not exist"
 msgstr "Erweiterungs-Modul »%s« existiert nicht"
 
-#: src/librygel-core/rygel-plugin-loader.vala:81
+#: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "Neue Erweiterung »%s« ist verfügbar"
 
-#: src/librygel-core/rygel-plugin-loader.vala:96
+#: src/librygel-core/rygel-plugin-loader.vala:104
 #, c-format
 msgid "A module named %s is already loaded"
 msgstr "Ein Modul namens %s ist bereits geladen"
 
-#: src/librygel-core/rygel-plugin-loader.vala:105
+#: src/librygel-core/rygel-plugin-loader.vala:113
 #, c-format
 msgid "Failed to load module from path '%s': %s"
 msgstr "Laden des Moduls aus Pfad »%s« schlug fehl: %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:115
+#: src/librygel-core/rygel-plugin-loader.vala:123
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Eintrittspunktsfunktion »%s« konnte nicht in %s gefunden werden:%s"
@@ -717,13 +717,6 @@ msgstr "Protokoll für »%s« konnte nicht festgestellt werden"
 msgid "Bad URI: %s"
 msgstr "Fehlerhafte Adresse: %s"
 
-#. Assume the protocol to be the scheme of the URI
-#: src/librygel-server/rygel-media-object.vala:527
-#, c-format
-msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr ""
-"Protokoll für Adresse %s konnte nicht ermittelt werden. »%s« wird angenommen"
-
 #: src/librygel-server/rygel-media-query-action.vala:100
 msgid "Invalid number of arguments"
 msgstr "Ungültige Anzahl der Argumente"
@@ -1027,17 +1020,17 @@ msgid "Shared media"
 msgstr "Freigegebene Medien"
 
 #: src/plugins/lms/rygel-lms-root-container.vala:46
-#: src/plugins/media-export/rygel-media-export-root-container.vala:603
+#: src/plugins/media-export/rygel-media-export-root-container.vala:605
 msgid "Music"
 msgstr "Musik"
 
 #: src/plugins/lms/rygel-lms-root-container.vala:50
-#: src/plugins/media-export/rygel-media-export-root-container.vala:608
+#: src/plugins/media-export/rygel-media-export-root-container.vala:610
 msgid "Videos"
 msgstr "Videos"
 
 #: src/plugins/lms/rygel-lms-root-container.vala:54
-#: src/plugins/media-export/rygel-media-export-root-container.vala:606
+#: src/plugins/media-export/rygel-media-export-root-container.vala:608
 msgid "Pictures"
 msgstr "Bilder"
 
@@ -1057,43 +1050,43 @@ msgstr ""
 msgid "Invalid command received, ignoring"
 msgstr "Ungültiger Befehl empfangen, wird ignoriert"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:100
+#: src/plugins/media-export/rygel-media-export-extract.vala:110
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Erkennen der Adresse »%s« ist fehlgeschlagen: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:119
+#: src/plugins/media-export/rygel-media-export-extract.vala:129
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Lesen aus Weiterleitung gescheitert: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:146
-#: src/plugins/media-export/rygel-media-export-extract.vala:158
+#: src/plugins/media-export/rygel-media-export-extract.vala:156
+#: src/plugins/media-export/rygel-media-export-extract.vala:168
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Senden des Fehlers an Elternelement ist fehlgeschlagen: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:204
+#: src/plugins/media-export/rygel-media-export-extract.vala:214
 #, c-format
 msgid "Failed to extract basic metadata from %s: %s"
 msgstr ""
 "Grundlegende Metainformationen konnten nicht aus »%s« gelesen werden: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:228
+#: src/plugins/media-export/rygel-media-export-extract.vala:238
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "– Hilfsprogramm für Rygel zum Auslesen von Metadaten"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:235
+#: src/plugins/media-export/rygel-media-export-extract.vala:245
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Verarbeiten der Parameter der Befehlszeile fehlgeschlagen: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:243
+#: src/plugins/media-export/rygel-media-export-extract.vala:253
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Ausleser des Covers konnte nicht erstellt werden: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:258
+#: src/plugins/media-export/rygel-media-export-extract.vala:268
 #, c-format
 msgid "Failed to start metadata discoverer: %s"
 msgstr "Starten der Metadaten-Erkennung ist fehlgeschlagen: %s"
@@ -1333,7 +1326,7 @@ msgid "Can't remove containers in %s"
 msgstr "Container in »%s« können nicht entfernt werden"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: src/plugins/media-export/rygel-media-export-root-container.vala:610
+#: src/plugins/media-export/rygel-media-export-root-container.vala:612
 msgid "Playlists"
 msgstr "Wiedergabelisten"
 
@@ -1358,10 +1351,10 @@ msgstr "Dateiänderungen werden nicht überwacht"
 
 #. Avoid warning when file is removed in the meantime, e.g. in
 #. upload case.
-#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
+#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:105
 #, c-format
-msgid "Failed to get file information for %s: %s"
-msgstr "Dateiinformation für %s konnte nicht erhalten werden: %s"
+msgid "Failed to setup up file monitor for %s: %s"
+msgstr "Dateiüberwachung für %s konnte nicht eingerichtet werden: %s"
 
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
@@ -1471,7 +1464,7 @@ msgstr "Tracker-Verbindung konnte nicht erzeugt werden: %s"
 msgid "Error getting all values for '%s': %s"
 msgstr "Fehler beim Ermitteln aller Werte für »%s«: %s"
 
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
+#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
@@ -1653,3 +1646,7 @@ msgstr "Starten des Rygel-Dienstes ist fehlgeschlagen: %s"
 msgid "Failed to stop Rygel service: %s"
 msgstr "Beenden des Rygel-Dienstes ist fehlgeschlagen: %s"
 
+#~ msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+#~ msgstr ""
+#~ "Protokoll für Adresse %s konnte nicht ermittelt werden. »%s« wird "
+#~ "angenommen"
