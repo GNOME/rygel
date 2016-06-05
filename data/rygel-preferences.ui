@@ -64,7 +64,7 @@
                         <child>
                           <object class="GtkTreeViewColumn" id="treeviewcolumn1">
                             <property name="sizing">fixed</property>
-                            <property name="title" translatable="yes">column</property>
+                            <property name="title">column</property>
                             <child>
                               <object class="GtkCellRendererText" id="cellrenderertext1"/>
                               <attributes>
@@ -195,7 +195,7 @@
                         <child>
                           <object class="GtkTreeViewColumn" id="treeviewcolumn2">
                             <property name="sizing">fixed</property>
-                            <property name="title" translatable="yes">column</property>
+                            <property name="title">column</property>
                             <child>
                               <object class="GtkCellRendererCombo" id="cellrenderertext2">
                                 <property name="editable">True</property>
