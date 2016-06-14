@@ -129,7 +129,7 @@ internal class Rygel.Acl : GLib.Object, GUPnP.Acl
         }
     }
 
-    private void on_name_vanished (DBusConnection connection, string name) {
+    private void on_name_vanished (DBusConnection? connection, string name) {
         this.provider = null;
     }
 
