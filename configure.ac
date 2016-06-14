@@ -458,6 +458,12 @@ AM_SILENT_RULES([yes])
 
 dnl documenation
 AC_PATH_PROG([XSLTPROC], [xsltproc])
+AS_IF([test "x$XSLTPROC" != "x"],
+      [
+       AC_MSG_CHECKING([whether $XSLTPROC can create manpages])
+       $XSLTPROC -nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl >/dev/null 2>&1
+       AS_IF([test "$?" = 0], [AC_MSG_RESULT([yes])], [XSLTPROC=""; AC_MSG_RESULT([no])])
+      ])
 AM_CONDITIONAL([HAVE_XSLTPROC], [test x"$XSLTPROC" != x])
 
 dnl Use valadoc and gtk-doc for API documentation:
