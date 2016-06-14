@@ -180,6 +180,7 @@ internal class Rygel.Main : Object {
             debug ("Ignoring network %s (%s) context.",
                    context.network,
                    context.interface);
+            context.active = false;
         }
     }
 
