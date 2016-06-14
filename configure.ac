@@ -442,7 +442,8 @@ RYGEL_CHECK_VALA([$VALA_REQUIRED],
                   gupnp-av-1.0
                   gio-2.0
                   gee-0.8
-                  posix])
+                  posix
+                  libmediaart-2.0])
 
 dnl Gettext
 AM_GNU_GETTEXT_VERSION([0.19.7])
