@@ -254,7 +254,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
                                          HTTPServer     http_server)
                                          throws Error {
         var replacements = http_server.get_replacements ();
-        foreach (var res in get_resource_list ()) {
+        foreach (var res in this.get_resource_list ()) {
             if (res.uri == null || res.uri == "") {
                 var uri = http_server.create_uri_for_object (this,
                                                              -1,
