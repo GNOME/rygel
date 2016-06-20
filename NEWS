@@ -1,3 +1,36 @@
+0.31.2
+======
+
+- Check whether xsltproc is able to build the manpages
+- Don't try to build manpages when xsltproc isn't available
+- Check for libmediaart VAPI file
+
+Rygel:
+ - Fix critical when running without D-Bus
+ - When we ignore a context, disable it
+
+Examples:
+ - Fix resource generation
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=767448
+ - https://bugzilla.gnome.org/show_bug.cgi?id=767458
+ - https://bugzilla.gnome.org/show_bug.cgi?id=767459
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Trần Ngọc Quân <vnwildman@gmail.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Mario Blättermann <mario.blaettermann@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Cédric Valmary <cvalmary@yahoo.fr>
+
+Added/updated translations
+ - de, courtesy of Mario Blättermann
+ - es, courtesy of Daniel Mustieles
+ - oc, courtesy of Cédric Valmary (totenoc.eu)
+ - vi, courtesy of Trần Ngọc Quân
+
 0.31.1
 ======
 
