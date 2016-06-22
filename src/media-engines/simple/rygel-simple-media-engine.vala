@@ -62,27 +62,29 @@ internal class Rygel.SimpleMediaEngine : MediaEngine {
         var item = object as MediaFileItem;
 
         // For MediaFileItems, uri 0 is the file URI referring directly to the content
-        var source_uri = item.get_primary_uri ();
-        if (!source_uri.has_prefix ("file://")) {
-            warning (_("Can't process non-file URI %s"), source_uri);
-        }
 
+        var source_uri = item.get_primary_uri ();
         debug ("get_resources_for_item (%s)", source_uri);
 
         var resources = new Gee.ArrayList<MediaResource> ();
         var primary_res = item.get_primary_resource ();
 
-        // The SimpleMediaEngine supports only byte-based seek
-        primary_res.dlna_operation = GUPnP.DLNAOperation.RANGE;
+        // For file:// uris, we can offer a HTTP proxy. Other URIs are passed
+        // on as-is.
+        if (source_uri.has_prefix ("file://")) {
+            // The SimpleMediaEngine supports only byte-based seek
+            primary_res.dlna_operation = GUPnP.DLNAOperation.RANGE;
 
-        // The SimpleMediaEngine supports connection stalling on
-        primary_res.dlna_flags |= DLNAFlags.CONNECTION_STALL;
+            // The SimpleMediaEngine supports connection stalling on
+            primary_res.dlna_flags |= DLNAFlags.CONNECTION_STALL;
 
-        // Add a resource for http consumption (as SimpleMediaEngine can handle http)
-        var http_res = new MediaResource.from_resource ("primary_http",
-                                                        primary_res);
-        http_res.uri = ""; // The URI needs to be assigned by the MediaServer
-        resources.add (http_res);
+            // Add a resource for http consumption (as SimpleMediaEngine can
+            // handle http)
+            var http_res = new MediaResource.from_resource ("primary_http",
+                                                            primary_res);
+            http_res.uri = ""; // The URI needs to be assigned by the MediaServer
+            resources.add (http_res);
+        }
         resources.add (primary_res);
 
         return resources;
