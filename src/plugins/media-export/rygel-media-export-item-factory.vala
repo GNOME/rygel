@@ -38,27 +38,6 @@ namespace Rygel.MediaExport.ItemFactory {
         MISMATCH
     }
 
-    private const string INVALID_CHARS = "()[]<>{}!@#$^&*+=|\\/\"'?~";
-    private const string CONVERT_CHARS = "\t_\\.";
-    private const string BLOCK_PATTERN = "%s[^%s]*%s";
-    private const string[] BLOCKS = { "()", "{}", "[]", "<>" };
-    private const string[] BLACKLIST = {
-        "720p", "1080p", "x264", "ws", "proper", "real.repack", "repack",
-        "hdtv", "pdtv", "notv", "dsr", "DVDRip", "divx", "xvid"
-    };
-
-    private const string[] VIDEO_SUFFIXES = {
-        "webm", "mkv", "flv", "ogv", "ogg", "avi", "mov", "wmv", "mp4",
-        "m4v", "mpeg", "mpg", "iso"
-    };
-
-    private static Regex char_remove_regex;
-    private static Regex char_convert_regex;
-    private static Regex space_compress_regex;
-    private static Regex[] block_regexes;
-    private static Regex[] blacklist_regexes;
-    private static Regex[] video_suffix_regexes;
-
     private static bool check_variant_type (Variant v,
                                             string typestring) throws Error {
         if (!v.is_of_type (new VariantType (typestring))) {
@@ -200,7 +179,6 @@ namespace Rygel.MediaExport.ItemFactory {
 
                 if (file_info != null) {
                     apply_file_info (object, file_info);
-                    object.title = strip_invalid_entities (object.title);
                 }
 
                 // If the DVD has a single track, just export that as a plain
@@ -240,9 +218,6 @@ namespace Rygel.MediaExport.ItemFactory {
                 apply_file_info (item, file_info);
             }
 
-            if (strip_title) {
-                item.title = strip_invalid_entities (item.title);
-            }
         }
 
         if (audio_info != null) {
@@ -388,64 +363,4 @@ namespace Rygel.MediaExport.ItemFactory {
         }
     }
 
-    private string strip_invalid_entities (string original) {
-        if (char_remove_regex == null) {
-            try {
-                var regex_string = Regex.escape_string (INVALID_CHARS);
-                char_remove_regex = new Regex ("[%s]".printf (regex_string));
-                regex_string = Regex.escape_string (CONVERT_CHARS);
-                char_convert_regex = new Regex ("[%s]".printf (regex_string));
-                space_compress_regex = new Regex ("\\s+");
-                block_regexes = new Regex[0];
-
-                foreach (var block in BLOCKS) {
-                    var block_re = BLOCK_PATTERN.printf (
-                                      Regex.escape_string ("%C".printf (block[0])),
-                                      Regex.escape_string ("%C".printf (block[1])),
-                                      Regex.escape_string ("%C".printf (block[1])));
-                    block_regexes += new Regex (block_re);
-                }
-
-                foreach (var blacklist in BLACKLIST) {
-                    blacklist_regexes += new Regex (Regex.escape_string
-                                                    (blacklist));
-                }
-
-                foreach (var suffix in VIDEO_SUFFIXES) {
-                    video_suffix_regexes += new Regex (Regex.escape_string
-                                                        (suffix));
-                }
-            } catch (RegexError error) {
-                assert_not_reached ();
-            }
-        }
-
-        string p;
-
-        p = original;
-
-        try {
-            foreach (var re in blacklist_regexes) {
-                p = re.replace_literal (p, -1, 0, "");
-            }
-
-            foreach (var re in video_suffix_regexes) {
-                p = re.replace_literal (p, -1, 0, "");
-            }
-
-            foreach (var re in block_regexes) {
-                p = re.replace_literal (p, -1, 0, "");
-            }
-
-            p = char_remove_regex.replace_literal (p, -1, 0, "");
-            p = char_convert_regex.replace_literal (p, -1, 0, " ");
-            p = space_compress_regex.replace_literal (p, -1, 0, " ");
-
-            p._strip ();
-
-            return p;
-        } catch (RegexError error) {
-            assert_not_reached ();
-        }
-    }
 }

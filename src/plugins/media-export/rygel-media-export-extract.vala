@@ -24,6 +24,8 @@ using Gst.PbUtils;
 using GUPnPDLNA;
 using Gst;
 
+using Rygel.MediaExport;
+
 const string UPNP_CLASS_PHOTO = "object.item.imageItem.photo";
 const string UPNP_CLASS_MUSIC = "object.item.audioItem.musicTrack";
 const string UPNP_CLASS_VIDEO = "object.item.videoItem";
@@ -41,7 +43,6 @@ static bool metadata = false;
 static MainLoop loop;
 static DataInputStream input_stream;
 static OutputStream output_stream;
-static Rygel.InfoSerializer serializer;
 static MediaArt.Process media_art;
 static Discoverer discoverer;
 static ProfileGuesser guesser;
@@ -75,32 +76,28 @@ async void run () {
 
                     continue;
                 }
-                DiscovererInfo? info = null;
+
                 try {
+                    var file = File.new_for_uri (parts[0]);
+                    Extractor extractor;
                     // Copy current URI to statically allocated memory area to
                     // dump to fd in the signal handler
                     if (metadata) {
                         var is_text = parts[1].has_prefix ("text/") ||
                                       parts[1].has_suffix ("xml");
                         if (parts[1] == "application/x-cd-image") {
-                            var file = File.new_for_uri (parts[0]);
-                            var parser = new Rygel.DVDParser (file);
-                            yield parser.run ();
+                            extractor = new Extractor (file);
                         } else if (!is_text) {
-                            var file = File.new_for_uri (parts[0]);
-                            var path = file.get_path ();
-                            var uri = parts[0];
-
-                            if (path != null) {
-                                uri = Filename.to_uri (path);
-                            }
-
-                            info = discoverer.discover_uri (uri);
-
-                            debug ("Finished discover on URI %s", parts[0]);
+                            extractor = new GenericExtractor (file);
+                        } else {
+                            extractor = new Extractor (file);
                         }
+                    } else {
+                        extractor = new Extractor (file);
                     }
-                    yield process_meta_data (parts[0], info);
+                    yield extractor.run ();
+
+                    send_extraction_done (file, extractor.get ());
                 } catch (Error error) {
                     if (error is DVDParserError.NOT_AVAILABLE) {
                         send_skip (File.new_for_uri (parts[0]));
@@ -109,12 +106,8 @@ async void run () {
                                  parts[0],
                                  error.message);
                         send_error (File.new_for_uri (parts[0]), error);
-
-                        // Recreate the discoverer on error
-                        discoverer = new Discoverer (10 * Gst.SECOND);
                     }
                 }
-                //discoverer.discover_uri_async (uri);
             } else if (line.has_prefix ("METADATA ")) {
                 var command = line.replace ("METADATA ", "").strip ();
                 metadata = bool.parse (command);
@@ -167,71 +160,6 @@ static void send_error (File file, Error err) {
     }
 }
 
-static async void process_meta_data (string uri, DiscovererInfo? info) {
-    debug ("Discovered %s", uri);
-    var file = File.new_for_uri (uri);
-    if (info != null) {
-        if (info.get_result () == DiscovererResult.TIMEOUT ||
-            info.get_result () == DiscovererResult.BUSY ||
-            info.get_result () == DiscovererResult.MISSING_PLUGINS) {
-            if (info.get_result () == DiscovererResult.MISSING_PLUGINS) {
-                debug ("Plugins are missing for extraction of file %s",
-                       info.get_uri ());
-            } else {
-                debug ("Extraction timed out on %s", file.get_uri ());
-            }
-            yield extract_basic_information (file, null, null);
-
-            return;
-        }
-
-        var dlna_info = GUPnPDLNAGst.utils_information_from_discoverer_info (info);
-        var dlna = guesser.guess_profile_from_info (dlna_info);
-        yield extract_basic_information (file, info, dlna);
-    } else {
-        yield extract_basic_information (file, null, null);
-    }
-}
-
-static async void extract_basic_information (File               file,
-                                             DiscovererInfo?    info,
-                                             GUPnPDLNA.Profile? dlna) {
-    FileInfo file_info;
-
-    try {
-        file_info = yield file.query_info_async (FileAttribute.STANDARD_TYPE + "," +
-                                                 FileAttribute.STANDARD_CONTENT_TYPE
-                                                 + "," +
-                                                 FileAttribute.STANDARD_SIZE + "," +
-                                                 FileAttribute.TIME_MODIFIED + "," +
-                                                 FileAttribute.STANDARD_DISPLAY_NAME,
-                                                 FileQueryInfoFlags.NONE);
-    } catch (Error error) {
-        var uri = file.get_uri ();
-
-        warning (_("Failed to extract basic metadata from %s: %s"),
-                 uri,
-                 error.message);
-
-        // signal error to parent
-        send_error (file, error);
-
-        return;
-    }
-
-    if (file_info.get_file_type () == FileType.DIRECTORY) {
-        file_info.set_file_type (FileType.REGULAR);
-        file_info.set_content_type ("application/x-cd-image");
-    }
-
-    try {
-        send_extraction_done (file,
-                              serializer.serialize (file, file_info, info, dlna));
-    } catch (Error error) {
-        send_error (file, error);
-    }
-}
-
 int main (string[] args) {
     var ctx = new OptionContext (_("- helper binary for Rygel to extract metadata"));
     ctx.add_main_entries (options, null);
@@ -251,7 +179,6 @@ int main (string[] args) {
         warning (_("Failed to create media art extractor: %s"),
                 error.message);
     }
-    serializer = new Rygel.InfoSerializer (media_art);
     Posix.nice (19);
 
     message ("Started with descriptors %d (in) %d (out)", in_fd, out_fd);
