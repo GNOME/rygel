@@ -103,6 +103,10 @@ public class Rygel.MediaExport.Extractor : Object {
         var mtime = file_info.get_attribute_uint64
                                     (FileAttribute.TIME_MODIFIED);
         this.serialized_info.insert (Serializer.MODIFIED, "t", mtime);
+
+        TimeVal tv = { (long) mtime, 0 };
+        this.serialized_info.insert (Serializer.DATE, "s", tv.to_iso8601 ());
+
         var content_type = ContentType.get_mime_type
                                         (file_info.get_content_type ());
         this.serialized_info.insert (Serializer.MIME_TYPE, "s", content_type);
@@ -110,11 +114,21 @@ public class Rygel.MediaExport.Extractor : Object {
         var id = Checksum.compute_for_string (ChecksumType.MD5,
                                               file.get_uri ());
         this.serialized_info.insert (Serializer.ID, "s", id);
-        this.serialized_info.insert (Serializer.URI, "s",
-                                     file.get_uri ());
+        this.serialized_info.insert (Serializer.URI, "s", file.get_uri ());
      }
 
     public new Variant? @get () {
+        // If the date has a timezone offset, make sure it contains a
+        // colon bgo#702231, DLNA 7.3.21.1
+        var date  = this.serialized_info.lookup_value (Serializer.DATE,
+                                                       VariantType.STRING);
+        if ("T" in date.get_string ()) {
+            var fixed_date = new Soup.Date.from_string (date.get_string ());
+            var new_date = fixed_date.to_string (Soup.DateFormat.ISO8601_FULL);
+
+            this.serialized_info.insert (Serializer.DATE, "s", new_date);
+        }
+
         return this.serialized_info.end ();
     }
 
