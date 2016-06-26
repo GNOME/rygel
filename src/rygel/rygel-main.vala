@@ -162,8 +162,9 @@ internal class Rygel.Main : Object {
         } catch (GLib.Error err) {}
 
         if (ifaces == null ||
-            context.interface in ifaces||
-            context.network in ifaces) {
+            context.interface in ifaces ||
+            context.network in ifaces ||
+            context.host_ip in ifaces) {
             try {
                 var factory = new RootDeviceFactory (context);
                 this.factories.add (factory);
