@@ -47,6 +47,7 @@ public class Rygel.MediaExport.Extractor : Object {
     private static Regex[] video_suffix_regexes;
 
     public File file { get; construct set; }
+
     protected VariantDict serialized_info;
 
     public Extractor (File file) {

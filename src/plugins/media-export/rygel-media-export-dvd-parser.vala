@@ -25,10 +25,7 @@ internal errordomain DVDParserError {
     NOT_AVAILABLE;
 }
 
-internal class Rygel.DVDParser : GLib.Object {
-    /// URI to the image / toplevel directory
-    public File file { public get; construct; }
-
+internal class Rygel.MediaExport.DVDParser : Extractor {
     private File cache_file;
     private static string? lsdvd_binary_path;
 
@@ -53,15 +50,20 @@ internal class Rygel.DVDParser : GLib.Object {
                                                 "rygel",
                                                 "dvd-content");
         DirUtils.create_with_parents (cache_folder, 0700);
+
         return Path.build_filename (cache_folder, id);
     }
 
     public override void constructed () {
+        base.constructed ();
+
         var path = DVDParser.get_cache_path (this.file.get_path ());
         this.cache_file = File.new_for_path (path);
     }
 
-    public async void run () throws Error {
+    public async override void run () throws Error {
+        yield base.run ();
+
         if (DVDParser.lsdvd_binary_path == null) {
             throw new DVDParserError.NOT_AVAILABLE ("No DVD extractor found");
         }
@@ -69,6 +71,57 @@ internal class Rygel.DVDParser : GLib.Object {
         var doc = yield this.get_information ();
         if (doc == null) {
             throw new DVDParserError.GENERAL ("Failed to read cache file");
+        }
+
+        var context = new Xml.XPath.Context (doc);
+        var xpo = context.eval ("/lsdvd/track");
+        if ((xpo != null) &&
+            (xpo->type == Xml.XPath.ObjectType.NODESET) &&
+            (xpo->nodesetval->length () == 1)) {
+            this.serialized_info.insert ("UPnPClass", "s", UPNP_CLASS_VIDEO);
+            this.serialized_info.insert ("MimeType", "s", "video/mpeg");
+
+            var node = xpo->nodesetval->item (0);
+
+            var it = node->children;
+            while (it != null) {
+                if (it->name == "length") {
+                    var duration =  (int) double.parse (it->children->content);
+
+                    this.serialized_info.insert ("Duration",
+                                                 "i",
+                                                 duration);
+                } else if (it->name == "width") {
+                    var width = int.parse (it->children->content);
+                    this.serialized_info.insert ("VideoWidth",
+                                                 "i",
+                                                 width);
+                } else if (it->name == "height") {
+                    var height = int.parse (it->children->content);
+                    this.serialized_info.insert ("VideoHeight",
+                                                 "i",
+                                                 height);
+                } else if (it->name == "format") {
+                    var dlna_profile = "MPEG_PS_" + it->children->content;
+                    this.serialized_info.insert ("DLNAProfile",
+                                                 "s",
+                                                 dlna_profile);
+                }
+                // TODO: Japanese formats...
+
+                it = it->next;
+            }
+        } else {
+            this.serialized_info.insert ("UPnPClass",
+                                         "s",
+                                         UPNP_CLASS_PLAYLIST_CONTAINER_DVD);
+            this.serialized_info.insert ("MimeType",
+                                         "s",
+                                         "application/x-cd-image");
+        }
+
+        if (xpo != null) {
+            delete xpo;
         }
 
         delete doc;

@@ -86,7 +86,7 @@ async void run () {
                         var is_text = parts[1].has_prefix ("text/") ||
                                       parts[1].has_suffix ("xml");
                         if (parts[1] == "application/x-cd-image") {
-                            extractor = new Extractor (file);
+                            extractor = new DVDParser (file);
                         } else if (!is_text) {
                             extractor = new GenericExtractor (file);
                         } else {
