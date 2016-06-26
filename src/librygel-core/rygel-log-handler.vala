@@ -25,8 +25,8 @@ using Gee;
 
 public enum Rygel.LogLevel {
     INVALID = 0,
-    CRITICAL = 1,
-    ERROR = 2,
+    ERROR = 1,
+    CRITICAL = 2,
     WARNING = 3,
     INFO = 4,
     DEFAULT = 4,
@@ -117,10 +117,10 @@ public class Rygel.LogHandler : GLib.Object {
         LogLevelFlags flags = DEFAULT_FLAGS;
 
         switch (level) {
-            case LogLevel.CRITICAL:
-                flags = LogLevelFlags.LEVEL_CRITICAL;
-                break;
             case LogLevel.ERROR:
+                flags = LogLevelFlags.LEVEL_ERROR;
+                break;
+            case LogLevel.CRITICAL:
                 flags = LogLevelFlags.LEVEL_CRITICAL |
                         LogLevelFlags.LEVEL_ERROR;
                 break;
