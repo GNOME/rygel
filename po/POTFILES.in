@@ -165,13 +165,17 @@ src/plugins/lms/rygel-lms-database.vala
 src/plugins/lms/rygel-lms-image-years.vala
 src/plugins/lms/rygel-lms-music-root.vala
 src/plugins/lms/rygel-lms-root-container.vala
+src/plugins/media-export/constants.vala
 src/plugins/media-export/rygel-media-export-db-container.vala
 src/plugins/media-export/rygel-media-export-dummy-container.vala
 src/plugins/media-export/rygel-media-export-dvd-container.vala
 src/plugins/media-export/rygel-media-export-dvd-parser.vala
+src/plugins/media-export/rygel-media-export-extractor.vala
 src/plugins/media-export/rygel-media-export-extract.vala
+src/plugins/media-export/rygel-media-export-generic-extractor.vala
 src/plugins/media-export/rygel-media-export-harvester.vala
 src/plugins/media-export/rygel-media-export-harvesting-task.vala
+src/plugins/media-export/rygel-media-export-image-extractor.vala
 src/plugins/media-export/rygel-media-export-item-factory.vala
 src/plugins/media-export/rygel-media-export-leaf-query-container.vala
 src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala
@@ -183,6 +187,7 @@ src/plugins/media-export/rygel-media-export-null-container.vala
 src/plugins/media-export/rygel-media-export-object-factory.vala
 src/plugins/media-export/rygel-media-export-photo-item.vala
 src/plugins/media-export/rygel-media-export-playlist-container.vala
+src/plugins/media-export/rygel-media-export-playlist-extractor.vala
 src/plugins/media-export/rygel-media-export-playlist-item.vala
 src/plugins/media-export/rygel-media-export-playlist-root-container.vala
 src/plugins/media-export/rygel-media-export-plugin.vala
