@@ -295,7 +295,9 @@ src/ui/rygel-writable-user-config.c
 tests/object-creator/rygel-dlna-profile.c
 tests/object-creator/rygel-logical-expression.c
 tests/object-creator/rygel-m3u-playlist.c
+tests/object-creator/rygel-m3u-playlist.vala
 tests/object-creator/rygel-object-creator.c
+tests/object-creator/rygel-object-creator.vala
 tests/object-creator/rygel-relational-expression.c
 tests/object-creator/rygel-search-criteria-parser.c
 tests/object-creator/rygel-search-expression.c
@@ -305,10 +307,13 @@ tests/object-creator/test.c
 tests/rygel-configuration.c
 tests/rygel-database-test.c
 tests/rygel-environment-test.c
+tests/rygel-http-post-test.c
+tests/rygel-http-post-test.vala
 tests/rygel-media-engine-test.c
 tests/rygel-playbin-renderer-test.c
 tests/rygel-regression.c
 tests/rygel-user-config.c
 tests/rygel-user-config-test.c
+tests/rygel-user-config.vala
 tests/searchable-container/rygel-searchable-container.c
 tests/searchable-container/test.c
