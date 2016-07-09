@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-22 02:40+0000\n"
-"PO-Revision-Date: 2016-03-22 07:32+0100\n"
+"POT-Creation-Date: 2016-06-27 00:55+0000\n"
+"PO-Revision-Date: 2016-07-09 10:12+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: data/rygel.desktop.in.in:3
 msgid "Rygel"
@@ -45,14 +45,8 @@ msgid "UPnP/DLNA Preferences"
 msgstr "Nastavenia UPnP/DLNA"
 
 #: data/rygel-preferences.desktop.in.in:6
-#| msgid "Rygel"
 msgid "rygel"
 msgstr "rygel"
-
-# TreeViewColumn title
-#: data/rygel-preferences.ui:67 data/rygel-preferences.ui:198
-msgid "column"
-msgstr "stĺpec"
 
 # tooltip_text
 #: data/rygel-preferences.ui:94
@@ -305,22 +299,22 @@ msgstr "[Zásuvný modul] skupina sa nenašla"
 msgid "Plugin module %s does not exist"
 msgstr "Zásuvný modul %s neexistuje"
 
-#: src/librygel-core/rygel-plugin-loader.vala:81
+#: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "Dostupný nový zásuvný modul „%s“"
 
-#: src/librygel-core/rygel-plugin-loader.vala:96
+#: src/librygel-core/rygel-plugin-loader.vala:104
 #, c-format
 msgid "A module named %s is already loaded"
 msgstr "Modul s názvom %s je už načítaný"
 
-#: src/librygel-core/rygel-plugin-loader.vala:105
+#: src/librygel-core/rygel-plugin-loader.vala:113
 #, c-format
 msgid "Failed to load module from path '%s': %s"
 msgstr "Zlyhalo načítanie modulu z cesty „%s“: %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:115
+#: src/librygel-core/rygel-plugin-loader.vala:123
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Zlyhalo nájdenie funkcie vstupného bodu položky „%s“ v „%s“: %s"
@@ -504,7 +498,7 @@ msgstr "Nedá sa prehliadať potomok položky"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Zlyhalo prehliadanie „%s“: %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:141
+#: src/librygel-server/rygel-client-hacks.vala:145
 msgid "Not Applicable"
 msgstr "Neaplikovateľné"
 
@@ -731,14 +725,6 @@ msgstr "Nepodarilo sa určiť protokol pre %s"
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Zlý identifikátor URI: %s"
-
-#. Assume the protocol to be the scheme of the URI
-#: src/librygel-server/rygel-media-object.vala:527
-#, c-format
-msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr ""
-"Zlyhalo odskúšanie protokolu pre identifikátor URI %s. Očakával sa protokol "
-"„%s“"
 
 #: src/librygel-server/rygel-media-query-action.vala:100
 msgid "Invalid number of arguments"
@@ -990,16 +976,11 @@ msgid "Only byte-based seek supported"
 msgstr "Je podporované iba presúvanie založené na bajtoch (byte-based)"
 
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
-#: src/media-engines/simple/rygel-simple-media-engine.vala:96
+#: src/media-engines/simple/rygel-simple-media-engine.vala:98
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
 msgstr ""
 "Môže spracovať iba objekty MediaObjects založené na súboroh (položky "
 "MediaFileItems)"
-
-#: src/media-engines/simple/rygel-simple-media-engine.vala:67
-#, c-format
-msgid "Can't process non-file URI %s"
-msgstr "Nedá sa spracovať URI %s netýkajúcu sa súboru"
 
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -1035,22 +1016,22 @@ msgstr "Roky"
 msgid "Artists"
 msgstr "Umelci"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:34
+#: src/plugins/lms/rygel-lms-root-container.vala:33
 msgid "Shared media"
 msgstr "Sprístupnené médiá"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:46
-#: src/plugins/media-export/rygel-media-export-root-container.vala:603
+#: src/plugins/lms/rygel-lms-root-container.vala:45
+#: src/plugins/media-export/rygel-media-export-root-container.vala:605
 msgid "Music"
 msgstr "Hudba"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:50
-#: src/plugins/media-export/rygel-media-export-root-container.vala:608
+#: src/plugins/lms/rygel-lms-root-container.vala:49
+#: src/plugins/media-export/rygel-media-export-root-container.vala:610
 msgid "Videos"
 msgstr "Videá"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:54
-#: src/plugins/media-export/rygel-media-export-root-container.vala:606
+#: src/plugins/lms/rygel-lms-root-container.vala:53
+#: src/plugins/media-export/rygel-media-export-root-container.vala:608
 msgid "Pictures"
 msgstr "Obrázky"
 
@@ -1059,56 +1040,46 @@ msgstr "Obrázky"
 msgid "Title %d"
 msgstr "Titul %d"
 
-#: src/plugins/media-export/rygel-media-export-dvd-parser.vala:42
+#: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
 msgid ""
 "Failed to find lsdvd binary in path. DVD extraction will not be available"
 msgstr ""
 "Zlyhalo nájdenie binárneho súboru lsdvd v premennej prostredia path. "
 "Extrahovanie diskov DVD nebude dostupné."
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:74
+#: src/plugins/media-export/rygel-media-export-extract.vala:73
 msgid "Invalid command received, ignoring"
 msgstr "Bol prijatý neplatný príkaz, ignoruje sa"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:100
+#: src/plugins/media-export/rygel-media-export-extract.vala:90
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Zlyhalo preskúmanie URI %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:119
+#: src/plugins/media-export/rygel-media-export-extract.vala:105
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Zlyhalo čítanie zo zreťazenia: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:146
-#: src/plugins/media-export/rygel-media-export-extract.vala:158
+#: src/plugins/media-export/rygel-media-export-extract.vala:132
+#: src/plugins/media-export/rygel-media-export-extract.vala:144
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Zlyhalo odoslanie chyby pôvodcovi: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:204
-#, c-format
-msgid "Failed to extract basic metadata from %s: %s"
-msgstr "Zlyhalo extrahovanie základných metaúdajov z %s: %s"
-
-#: src/plugins/media-export/rygel-media-export-extract.vala:228
+#: src/plugins/media-export/rygel-media-export-extract.vala:149
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- binárny pomocník pre aplikáciu Rygel na extrahovanie metaúdajov"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:235
+#: src/plugins/media-export/rygel-media-export-extract.vala:156
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Zlyhala analýza parametrov príkazového riadku: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:243
+#: src/plugins/media-export/rygel-media-export-generic-extractor.vala:50
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Zlyhalo vytvorenie nástroja na extrahovanie obalov médií: %s"
-
-#: src/plugins/media-export/rygel-media-export-extract.vala:258
-#, c-format
-msgid "Failed to start metadata discoverer: %s"
-msgstr "Zlyhalo spustenie prieskumníka metaúdajov: %s"
 
 # %s je cesta k adresáru narp /home/user/hudba
 #: src/plugins/media-export/rygel-media-export-harvester.vala:146
@@ -1337,7 +1308,7 @@ msgid "Can't remove containers in %s"
 msgstr "Nedajú sa odstrániť kontajnery v %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: src/plugins/media-export/rygel-media-export-root-container.vala:610
+#: src/plugins/media-export/rygel-media-export-root-container.vala:612
 msgid "Playlists"
 msgstr "Zoznamy skladieb"
 
@@ -1363,10 +1334,10 @@ msgstr "Nebudú sa sledovať zmeny súborov"
 
 #. Avoid warning when file is removed in the meantime, e.g. in
 #. upload case.
-#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
+#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:105
 #, c-format
-msgid "Failed to get file information for %s: %s"
-msgstr "Zlyhalo získanie informácií o súbore %s: %s"
+msgid "Failed to setup up file monitor for %s: %s"
+msgstr "Zlyhalo nastavenie monitora súborov pre %s: %s"
 
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
@@ -1477,7 +1448,7 @@ msgstr "Zlyhalo vytvorenie pripojenia k nástroju na vyhľadávanie Tracker: %s"
 msgid "Error getting all values for '%s': %s"
 msgstr "Vyskytla sa chyba pri získavaní všetkých hodnôt pre „%s“: %s"
 
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
+#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
@@ -1619,17 +1590,17 @@ msgstr[1] ""
 msgstr[2] ""
 "V priebehu %d sekúnd sa nenašli žiadne zásuvné moduly; prerušuje sa…"
 
-#: src/rygel/rygel-main.vala:176
+#: src/rygel/rygel-main.vala:177
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Zlyhalo vytvorenie rozhrania na tvorbu koreňového zariadenia: %s"
 
-#: src/rygel/rygel-main.vala:233
+#: src/rygel/rygel-main.vala:235
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Zlyhalo vytvorenie koreňového zariadenia pre %s. Dôvod: %s"
 
-#: src/rygel/rygel-main.vala:270
+#: src/rygel/rygel-main.vala:272
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Zlyhalo načítanie konfigurácie používateľa: %s"
@@ -1669,6 +1640,24 @@ msgstr "Zlyhalo spustenie služby Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Zlyhalo zastavenie služby Rygel: %s"
+
+# TreeViewColumn title
+#~ msgid "column"
+#~ msgstr "stĺpec"
+
+#~ msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+#~ msgstr ""
+#~ "Zlyhalo odskúšanie protokolu pre identifikátor URI %s. Očakával sa "
+#~ "protokol „%s“"
+
+#~ msgid "Can't process non-file URI %s"
+#~ msgstr "Nedá sa spracovať URI %s netýkajúcu sa súboru"
+
+#~ msgid "Failed to extract basic metadata from %s: %s"
+#~ msgstr "Zlyhalo extrahovanie základných metaúdajov z %s: %s"
+
+#~ msgid "Failed to start metadata discoverer: %s"
+#~ msgstr "Zlyhalo spustenie prieskumníka metaúdajov: %s"
 
 #~ msgid "Child failed fatally. Last uri was %s"
 #~ msgstr "Potomok fatálne zlyhal. Posledná uri bola %s"
