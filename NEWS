@@ -1,3 +1,38 @@
+0.31.3
+======
+
+- Explain interface list a bit better in documentation
+- Remove obsolete 'upnp-enabled' switch from default config
+
+Core:
+ - Fix log level mix-up
+
+Rygel:
+ - Allow IP addresses in interface list
+
+Simple media engine:
+ - Pass non-file resources as-is
+
+MediaExport:
+ - Refactor meta-data extraction
+ - Speed up image parsing
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=767305
+ - https://bugzilla.gnome.org/show_bug.cgi?id=768010
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Fabio Tomat <f.t.public@gmail.com>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Andika Triwidada <atriwidada@gnome.org>
+
+Added/updated translations
+ - fur, courtesy of Fabio Tomat
+ - id, courtesy of Andika Triwidada
+ - sk, courtesy of Dušan Kazik
+
 0.31.2
 ======
 
