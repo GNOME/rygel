@@ -2,6 +2,7 @@
 Name=Rygel Preferences
 GenericName=UPnP/DLNA Preferences
 Categories=Settings;X-GNOME-PersonalSettings;
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=rygel
 Exec=rygel-preferences
 Terminal=false
