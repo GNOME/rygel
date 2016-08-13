@@ -122,25 +122,24 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
 
         // For MediaFileItems, the primary URI refers directly to the content
         var source_uri = item.get_primary_uri ();
+        var scheme = GLib.Uri.parse_scheme (source_uri);
+        var uri_is_http = scheme.has_prefix ("http");
 
-        var parts = source_uri.split ("://", 2);
-        if (parts == null || parts[0] == null) {
+        if (scheme == null) {
             warning (_("Invalid URI without prefix: %s"), source_uri);
 
             return null;
         }
 
 
-        debug ("get_resources_for_item(%s), protocol: %s",
-               source_uri,
-               parts[0]);
+        debug ("get_resources_for_item(%s), protocol: %s", source_uri, scheme);
 
-        if (!Gst.URI.protocol_is_supported (URIType.SRC, parts[0]) &&
-            parts[0] != "gst-launch" &&
-            parts[0] != "dvd") {
+        if (!Gst.URI.protocol_is_supported (URIType.SRC, scheme) &&
+            scheme != "gst-launch" &&
+            scheme != "dvd") {
             warning (_("Can't process URI %s with protocol %s"),
                      source_uri,
-                     parts[0]);
+                     scheme);
 
             return null;
         }
@@ -155,11 +154,13 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         // resource
         primary_res.dlna_flags |= DLNAFlags.CONNECTION_STALL;
 
-        // Add a resource for http consumption
-        var http_res = new MediaResource.from_resource ("primary_http",
-                                                        primary_res);
-        http_res.uri = ""; // The URI needs to be assigned by the MediaServer
-        resources.add (http_res);
+        if (!uri_is_http) {
+            // Add a resource for http consumption
+            var http_res = new MediaResource.from_resource ("primary_http",
+                                                            primary_res);
+            http_res.uri = ""; // The URI needs to be assigned by the MediaServer
+            resources.add (http_res);
+        }
 
         if (!item.place_holder) {
             var list = new GLib.List<GstTranscoder> ();
@@ -185,8 +186,7 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         }
 
         // Put the primary resource as most-preferred (front of the list)
-        if (primary_res.uri != null &&
-            primary_res.uri.has_prefix ("http:")) {
+        if (primary_res.uri != null && uri_is_http) {
             resources.insert (0, primary_res);
         } else {
             resources.add (primary_res);
