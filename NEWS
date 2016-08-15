@@ -1,3 +1,42 @@
+0.31.4
+======
+
+- Several translation-related fixes:
+  - Translator comments
+  - Language headers
+  - POTFILES.* updates
+
+GStreamer Media engine:
+ - Don't proxy HTTP URIs
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=769283
+
+All contributors to this release:
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Marek Černocký <marek@manet.cz>
+ - Jens Georg <mail@jensge.org>
+ - Aurimas Černius <aurisc4@gmail.com>
+
+Added/updated translations
+ - bn_IN, courtesy of Runa Bhattacharjee
+ - ca@valencia, courtesy of Gil Forcada
+ - cs, courtesy of Marek Černocký
+ - de, courtesy of Mario Blättermann
+ - es, courtesy of Daniel Mustieles
+ - gu, courtesy of Sweta Kothari
+ - he, courtesy of Yosef Or Boczko
+ - kn, courtesy of Shankar Prasad
+ - ko, courtesy of Changwoo Ryu
+ - lt, courtesy of Aurimas Černius
+ - nb, courtesy of Kjartan Maraas
+ - ne, courtesy of Pawan Chitrakar
+ - sl, courtesy of Matej Urbančič
+ - sr@latin, courtesy of Marko M. Kostić
+ - te, courtesy of Hari Krishna
+ - ug, courtesy of Gheyret Kenji
+ - zh_HK, courtesy of Chao-Hsiung Liao
+
 0.31.3
 ======
 
