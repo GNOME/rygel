@@ -30,12 +30,11 @@ $(systemdservice_DATA): rygel.service.in Makefile
 desktop_in_files = $(srcdir)/rygel.desktop.in $(srcdir)/rygel-preferences.desktop.in
 desktop_DATA = rygel.desktop rygel-preferences.desktop
 
-$(desktop_in_files): $(srcdir)/rygel.desktop.in.in $(srcdir)/rygel-preferences.desktop.in.in
-	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
-
-# Substitute variables in a Desktop Entry file.
-$(desktop_DATA): $(desktop_in_files)
+%.desktop.in : %.desktop.in.in
 	$(AM_V_GEN) sed -e 's|@VERSION[@]|$(VERSION)|g' $< > $@
+
+%.desktop : %.desktop.in
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 preset_DATA = $(srcdir)/presets/avenc_aac.prs \
 	$(srcdir)/presets/avenc_mp2.prs \
