@@ -37,7 +37,8 @@ public class Rygel.MediaExport.Extractor : Object {
 
     private const string[] VIDEO_SUFFIXES = {
         "webm", "mkv", "flv", "ogv", "ogg", "avi", "mov", "wmv", "mp4",
-        "m4v", "mpeg", "mpg", "iso"
+        "m4v", "mpeg", "mpg", "iso", "mp3", "m4a", "png", "jpg", "jpeg",
+        "ogv", "oga", "3gp"
     };
 
     private static Regex char_remove_regex;
@@ -156,8 +157,10 @@ public class Rygel.MediaExport.Extractor : Object {
                 }
 
                 foreach (var suffix in VIDEO_SUFFIXES) {
-                    video_suffix_regexes += new Regex (Regex.escape_string
-                                                        (suffix));
+                    var regex = new Regex (Regex.escape_string (suffix),
+                                           RegexCompileFlags.CASELESS);
+
+                    video_suffix_regexes += regex;
                 }
             } catch (RegexError error) {
                 assert_not_reached ();
