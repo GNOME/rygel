@@ -10,18 +10,18 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-29 20:54+0200\n"
+"POT-Creation-Date: 2016-08-18 23:04+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
-"Language: sl\n"
+"Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: ../data/rygel.desktop.in.in.h:1
 msgid "Rygel"
@@ -37,8 +37,7 @@ msgstr ""
 "predstavni strežnik;predstavni izrisovalnik;souporaba;zvok;slika;fotografije;"
 "video;"
 
-#: ../data/rygel-preferences.desktop.in.in.h:1
-#: ../data/rygel-preferences.ui.h:1
+#: ../data/rygel-preferences.desktop.in.in.h:1 ../data/rygel-preferences.ui.h:1
 msgid "Rygel Preferences"
 msgstr "Možnosti Rygel"
 
@@ -974,9 +973,9 @@ msgid "Invalid command received, ignoring"
 msgstr "Sprejeti so neveljavni podatki o barvi\n"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:88
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to discover URI %s: %s"
-msgstr "Pridobivanje izvirnega URI za '%s' je spodletelo: %s"
+msgstr "Pridobivanje izvirnega URI %s je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:106
 #, fuzzy, c-format
@@ -1088,9 +1087,9 @@ msgid "Cannot upgrade from version %d"
 msgstr "Nadgradnja neposredno z različice {0} ni mogoča"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
-#, fuzzy, c-format
+#, c-format
 msgid "Database upgrade failed: %s"
-msgstr "Poizvedovanje podatkovne zbirke je spodletelo: %s"
+msgstr "Nadgradnja podatkovne zbirke je spodletela: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:133
 #, c-format
@@ -1098,9 +1097,9 @@ msgid "Failed to add item with ID %s: %s"
 msgstr "Dodajanje predmeta z ID %s je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:216
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get update IDs: %s"
-msgstr "Posodabljanje metapodatkov je spodletelo: %s"
+msgstr "Posodabljanje podatkov ID je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:397
 #, c-format
@@ -1108,9 +1107,8 @@ msgid "Inconsistent database: item %s does not have parent %s"
 msgstr ""
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:520
-#, fuzzy
 msgid "Failed to get reset token"
-msgstr "Osveževanje žetona dostopa je spodletelo (%s, %d): "
+msgstr "Pridobivanja žetona ponastavitve je spodletelo"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:532
 #, fuzzy, c-format
@@ -1134,9 +1132,9 @@ msgid "Cannot create references to containers"
 msgstr "Ni mogoče ustvariti sklicev na vsebnike"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:592
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to add %s to file blacklist: %s"
-msgstr "Ni mogoče dodati datoteke %s: %s"
+msgstr "Dodajanje %s na črni seznam je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:605
 #, fuzzy, c-format
@@ -1166,9 +1164,9 @@ msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr ""
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:891
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to create database schema: %s"
-msgstr "Poizvedovanje podatkovne zbirke je spodletelo: %s"
+msgstr "Ustvarjanje sheme podatkovne zbirke je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:1240
 #, c-format
@@ -1209,9 +1207,9 @@ msgstr ""
 #. No error signalling, this was done in the part that called
 #. cancel
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:234
-#, fuzzy, c-format
+#, c-format
 msgid "Read from child failed: %s"
-msgstr "Ni mogoče prebrati iz cevi podrejenega procesa (%s)"
+msgstr "Brenje podrejenega procesa je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:261
 #, fuzzy, c-format
@@ -1260,9 +1258,9 @@ msgid "upnp:class not supported in %s"
 msgstr "upnp: razred ni podprt v %s"
 
 #: ../src/plugins/media-export/rygel-media-export-plugin.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to load plugin %s: %s"
-msgstr "Nalaganje vstavka iz %s je spodletelo."
+msgstr "Nalaganje vstavka %s je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
 msgid "Will not monitor file changes"
@@ -1271,9 +1269,9 @@ msgstr "Ne bo nadziral sprememb datoteke"
 #. Avoid warning when file is removed in the meantime, e.g. in
 #. upload case.
 #: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get file information for %s: %s"
-msgstr "Pridobivanje vtiča je spodletelo: %s"
+msgstr "Pridobivanje podatkov o datoteki %s je spodletelo: %s"
 
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
@@ -1421,9 +1419,9 @@ msgid "Titles"
 msgstr "Naslovi"
 
 #: ../src/rygel/rygel-acl.vala:110
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to query ACL: %s"
-msgstr "Poizvedba je spodletela: %s"
+msgstr "Poizvedba ACL je spodletela: %s"
 
 #: ../src/rygel/rygel-acl.vala:127
 #, c-format
@@ -1548,20 +1546,17 @@ msgid "Failed to load user configuration: %s"
 msgstr "Nalaganje uporabniških nastavitev je spodletelo: %s"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
-#: ../src/rygel/rygel-user-config.vala:246
-#: ../src/ui/rygel-user-config.vala:246
+#: ../src/rygel/rygel-user-config.vala:246 ../src/ui/rygel-user-config.vala:246
 #, c-format
 msgid "Failed to load user configuration from file '%s': %s"
 msgstr "Nalaganje nastavitev iz datoteke '%s' je spodletelo: %s"
 
-#: ../src/rygel/rygel-user-config.vala:299
-#: ../src/ui/rygel-user-config.vala:299
+#: ../src/rygel/rygel-user-config.vala:299 ../src/ui/rygel-user-config.vala:299
 #, c-format
 msgid "No value available for '%s'"
 msgstr "Za '%s' ni na voljo nobene vrednosti"
 
-#: ../src/rygel/rygel-user-config.vala:370
-#: ../src/ui/rygel-user-config.vala:370
+#: ../src/rygel/rygel-user-config.vala:370 ../src/ui/rygel-user-config.vala:370
 #, c-format
 msgid "Value of '%s' out of range"
 msgstr "Vrednost '%s' je izven obsega"
