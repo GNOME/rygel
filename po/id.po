@@ -6,11 +6,11 @@
 # Andika Triwidada <andika@gmail.com>, 2012, 2013, 2014.
 msgid ""
 msgstr ""
-"Project-Id-Version: rygel rygel-0-30\n"
+"Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-05-21 10:26+0000\n"
-"PO-Revision-Date: 2016-06-30 02:48+0700\n"
+"POT-Creation-Date: 2016-08-16 07:07+0000\n"
+"PO-Revision-Date: 2016-08-22 16:49+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id\n"
@@ -28,7 +28,8 @@ msgstr "Rygel"
 msgid "UPnP/DLNA Services"
 msgstr "Layanan UPnP/DLNA"
 
-#: data/rygel.desktop.in.in:6
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/rygel.desktop.in.in:7
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "mediaserver;mediarenderer;berbagi;audio;video;gambar;"
 
@@ -40,14 +41,10 @@ msgstr "Preferensi Rygel"
 msgid "UPnP/DLNA Preferences"
 msgstr "Preferensi UPnP/DLNA"
 
-#: data/rygel-preferences.desktop.in.in:6
-#| msgid "Rygel"
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/rygel-preferences.desktop.in.in:7
 msgid "rygel"
 msgstr "rygel"
-
-#: data/rygel-preferences.ui:67 data/rygel-preferences.ui:198
-msgid "column"
-msgstr "kolom"
 
 #: data/rygel-preferences.ui:94
 msgid "Add a directory to the list of shared directories"
@@ -169,6 +166,7 @@ msgstr "Keadaan '%s' Mencegah Pembatalan"
 #: src/librygel-core/rygel-connection-manager.vala:95
 #: src/librygel-core/rygel-connection-manager.vala:109
 #: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-core/rygel-energy-management.vala:223
 #: src/librygel-renderer/rygel-av-transport.vala:198
 #: src/librygel-renderer/rygel-rendering-control.vala:131
 #: src/librygel-ruih/rygel-ruih-service.vala:63
@@ -288,22 +286,22 @@ msgstr "[Pengaya] grup tak ditemukan"
 msgid "Plugin module %s does not exist"
 msgstr "Modul pengaya %s tak ada"
 
-#: src/librygel-core/rygel-plugin-loader.vala:81
+#: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "Pengaya baru '%s' tersedia"
 
-#: src/librygel-core/rygel-plugin-loader.vala:96
+#: src/librygel-core/rygel-plugin-loader.vala:104
 #, c-format
 msgid "A module named %s is already loaded"
 msgstr "Modul bernama %s telah dimuat"
 
-#: src/librygel-core/rygel-plugin-loader.vala:105
+#: src/librygel-core/rygel-plugin-loader.vala:113
 #, c-format
 msgid "Failed to load module from path '%s': %s"
 msgstr "Gagal memuat modul dari '%s': %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:115
+#: src/librygel-core/rygel-plugin-loader.vala:123
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Gagal menemukan titik akses fungsi '%s' dalam '%s': %s"
@@ -919,12 +917,12 @@ msgstr "Gagal seek ke ofset %lld:%lld"
 msgid "Failed to seek"
 msgstr "Gagal seek"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:128
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:129
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "URI tanpa prefiks tidak sah: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "Tak bisa memroses URI %s dengan protokol %s"
@@ -956,14 +954,9 @@ msgid "Only byte-based seek supported"
 msgstr "Hanya seek berbasis byte yang didukung"
 
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
-#: src/media-engines/simple/rygel-simple-media-engine.vala:96
+#: src/media-engines/simple/rygel-simple-media-engine.vala:98
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
 msgstr "Hanya bisa memroses MediaObjects berbasis berkas (MediaFileItems)"
-
-#: src/media-engines/simple/rygel-simple-media-engine.vala:67
-#, c-format
-msgid "Can't process non-file URI %s"
-msgstr "Tak bisa memroses URI bukan berkas %s"
 
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -997,21 +990,21 @@ msgstr "Tahun"
 msgid "Artists"
 msgstr "Artis"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:34
+#: src/plugins/lms/rygel-lms-root-container.vala:33
 msgid "Shared media"
 msgstr "Media bersama"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:46
+#: src/plugins/lms/rygel-lms-root-container.vala:45
 #: src/plugins/media-export/rygel-media-export-root-container.vala:605
 msgid "Music"
 msgstr "Musik"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:50
+#: src/plugins/lms/rygel-lms-root-container.vala:49
 #: src/plugins/media-export/rygel-media-export-root-container.vala:610
 msgid "Videos"
 msgstr "Video"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:54
+#: src/plugins/lms/rygel-lms-root-container.vala:53
 #: src/plugins/media-export/rygel-media-export-root-container.vala:608
 msgid "Pictures"
 msgstr "Gambar"
@@ -1021,55 +1014,45 @@ msgstr "Gambar"
 msgid "Title %d"
 msgstr "Judul %d"
 
-#: src/plugins/media-export/rygel-media-export-dvd-parser.vala:42
+#: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
 msgid ""
 "Failed to find lsdvd binary in path. DVD extraction will not be available"
 msgstr ""
 "Gagal mencari biner lsdvd dalam path. Ekstraksi DVD tidak akan tersedia"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:74
+#: src/plugins/media-export/rygel-media-export-extract.vala:73
 msgid "Invalid command received, ignoring"
 msgstr "Menerima perintah yang tak valid, mengabaikan"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:100
+#: src/plugins/media-export/rygel-media-export-extract.vala:90
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Gagal menemukan URI %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:119
+#: src/plugins/media-export/rygel-media-export-extract.vala:105
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Gagal membaca dari pipa: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:146
-#: src/plugins/media-export/rygel-media-export-extract.vala:158
+#: src/plugins/media-export/rygel-media-export-extract.vala:132
+#: src/plugins/media-export/rygel-media-export-extract.vala:144
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Gagal mengirim galat ke induk: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:204
-#, c-format
-msgid "Failed to extract basic metadata from %s: %s"
-msgstr "Gagal mengekstrak metadata dasar dari %s: %s"
-
-#: src/plugins/media-export/rygel-media-export-extract.vala:228
+#: src/plugins/media-export/rygel-media-export-extract.vala:149
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- biner pembantu bagi Rygel untuk mengekstrak metadata"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:235
+#: src/plugins/media-export/rygel-media-export-extract.vala:156
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Gagal mengurai arg baris perintah: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:243
+#: src/plugins/media-export/rygel-media-export-generic-extractor.vala:50
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Gagal membuat pengekstrak seni media: %s"
-
-#: src/plugins/media-export/rygel-media-export-extract.vala:258
-#, c-format
-msgid "Failed to start metadata discoverer: %s"
-msgstr "Gagal memulai penemu metadata: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, c-format
@@ -1318,6 +1301,13 @@ msgstr "Gagal memuat pengaya %s: %s"
 msgid "Will not monitor file changes"
 msgstr "Tak akan memantau perubahan berkas"
 
+#. Avoid warning when file is removed in the meantime, e.g. in
+#. upload case.
+#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:105
+#, c-format
+msgid "Failed to setup up file monitor for %s: %s"
+msgstr "Gagal menyiapkan pemantauan berkas untuk %s: %s"
+
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
@@ -1424,7 +1414,7 @@ msgstr "Gagal membuat koneksi Pelacak: %s"
 msgid "Error getting all values for '%s': %s"
 msgstr "Galat saat memperoleh semua nilai untuk '%s': %s"
 
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
+#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "Gagal memulai layanan Tracker: %s. Pengaya dinonaktifkan."
@@ -1547,17 +1537,17 @@ msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
 msgstr[0] "Tidak menemukan pengaya dalam %d detik; menyerah…"
 
-#: src/rygel/rygel-main.vala:176
+#: src/rygel/rygel-main.vala:177
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Gagal membuat faktori root perangkat: %s"
 
-#: src/rygel/rygel-main.vala:233
+#: src/rygel/rygel-main.vala:235
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Gagal membuat RootDevice untuk %s. Alasan: %s"
 
-#: src/rygel/rygel-main.vala:270
+#: src/rygel/rygel-main.vala:272
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Gagal memuat konfigurasi pengguna: %s"
