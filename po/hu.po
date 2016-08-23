@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Rygel master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-23 02:49+0000\n"
-"PO-Revision-Date: 2016-03-23 08:27+0100\n"
+"POT-Creation-Date: 2016-08-16 07:07+0000\n"
+"PO-Revision-Date: 2016-08-23 12:16+0200\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -28,7 +28,8 @@ msgstr "Rygel"
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA szolgáltatások"
 
-#: data/rygel.desktop.in.in:6
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/rygel.desktop.in.in:7
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "média-kiszolgáló;média-renderelő;megosztás;hang;videó;képek;"
 
@@ -40,14 +41,10 @@ msgstr "Rygel beállításai"
 msgid "UPnP/DLNA Preferences"
 msgstr "UPnP/DLNA beállításai"
 
-#: data/rygel-preferences.desktop.in.in:6
-#| msgid "Rygel"
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/rygel-preferences.desktop.in.in:7
 msgid "rygel"
 msgstr "rygel"
-
-#: data/rygel-preferences.ui:67 data/rygel-preferences.ui:198
-msgid "column"
-msgstr "oszlop"
 
 #: data/rygel-preferences.ui:94
 msgid "Add a directory to the list of shared directories"
@@ -166,6 +163,7 @@ msgstr "A(z) „%s” állapot kizárja a megszakítást"
 #: src/librygel-core/rygel-connection-manager.vala:95
 #: src/librygel-core/rygel-connection-manager.vala:109
 #: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-core/rygel-energy-management.vala:223
 #: src/librygel-renderer/rygel-av-transport.vala:198
 #: src/librygel-renderer/rygel-rendering-control.vala:131
 #: src/librygel-ruih/rygel-ruih-service.vala:63
@@ -285,22 +283,22 @@ msgstr "A [Plugin] csoport nem található"
 msgid "Plugin module %s does not exist"
 msgstr "A(z) %s bővítménymodul nem létezik"
 
-#: src/librygel-core/rygel-plugin-loader.vala:81
+#: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "Új bővítmény („%s”) érhető el"
 
-#: src/librygel-core/rygel-plugin-loader.vala:96
+#: src/librygel-core/rygel-plugin-loader.vala:104
 #, c-format
 msgid "A module named %s is already loaded"
 msgstr "Már be van töltve egy %s nevű modul"
 
-#: src/librygel-core/rygel-plugin-loader.vala:105
+#: src/librygel-core/rygel-plugin-loader.vala:113
 #, c-format
 msgid "Failed to load module from path '%s': %s"
 msgstr "A modul betöltése meghiúsult a(z) „%s” útvonalról: %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:115
+#: src/librygel-core/rygel-plugin-loader.vala:123
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "A(z) „%s” belépésipont-függvény nem található itt: „%s”: %s"
@@ -482,7 +480,7 @@ msgstr "Nem tallózhatók az elem gyermekei"
 msgid "Failed to browse '%s': %s\n"
 msgstr "„%s” tallózása sikertelen: %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:141
+#: src/librygel-server/rygel-client-hacks.vala:145
 msgid "Not Applicable"
 msgstr "Nem alkalmazható"
 
@@ -706,13 +704,6 @@ msgstr "Nem sikerült meghatározni a protokollt ehhez: %s"
 msgid "Bad URI: %s"
 msgstr "Hibás URI: %s"
 
-#. Assume the protocol to be the scheme of the URI
-#: src/librygel-server/rygel-media-object.vala:527
-#, c-format
-msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr ""
-"A protokollvizsgálat meghiúsult a(z) %s URI-címhez. „%s” lesz feltételezve."
-
 #: src/librygel-server/rygel-media-query-action.vala:100
 msgid "Invalid number of arguments"
 msgstr "Érvénytelen számú paraméter"
@@ -924,12 +915,12 @@ msgstr "Nem sikerült a tekerés a(z) %lld:%lld eltolásra"
 msgid "Failed to seek"
 msgstr "Nem sikerült a tekerés"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:128
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:129
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "Érvénytelen URI előtag nélkül: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "Nem dolgozható fel a(z) %s URI a következő protokollal: %s"
@@ -962,14 +953,9 @@ msgid "Only byte-based seek supported"
 msgstr "Csak a bájt-alapú tekerés támogatott"
 
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
-#: src/media-engines/simple/rygel-simple-media-engine.vala:96
+#: src/media-engines/simple/rygel-simple-media-engine.vala:98
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
 msgstr "Csak a fájlalapú médiaobjektumok (médiafájlelemek) dolgozhatók fel"
-
-#: src/media-engines/simple/rygel-simple-media-engine.vala:67
-#, c-format
-msgid "Can't process non-file URI %s"
-msgstr "Nem dolgozható fel a nem fájl URI: %s"
 
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -1004,22 +990,22 @@ msgstr "Év"
 msgid "Artists"
 msgstr "Művészek"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:34
+#: src/plugins/lms/rygel-lms-root-container.vala:33
 msgid "Shared media"
 msgstr "Megosztott média"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:46
-#: src/plugins/media-export/rygel-media-export-root-container.vala:603
+#: src/plugins/lms/rygel-lms-root-container.vala:45
+#: src/plugins/media-export/rygel-media-export-root-container.vala:605
 msgid "Music"
 msgstr "Zene"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:50
-#: src/plugins/media-export/rygel-media-export-root-container.vala:608
+#: src/plugins/lms/rygel-lms-root-container.vala:49
+#: src/plugins/media-export/rygel-media-export-root-container.vala:610
 msgid "Videos"
 msgstr "Videók"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:54
-#: src/plugins/media-export/rygel-media-export-root-container.vala:606
+#: src/plugins/lms/rygel-lms-root-container.vala:53
+#: src/plugins/media-export/rygel-media-export-root-container.vala:608
 msgid "Pictures"
 msgstr "Képek"
 
@@ -1028,54 +1014,44 @@ msgstr "Képek"
 msgid "Title %d"
 msgstr "%d. cím"
 
-#: src/plugins/media-export/rygel-media-export-dvd-parser.vala:42
+#: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
 msgid ""
 "Failed to find lsdvd binary in path. DVD extraction will not be available"
 msgstr "Nem található az lsdvd bináris. A DVD-beolvasás nem lesz elérhető"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:74
+#: src/plugins/media-export/rygel-media-export-extract.vala:73
 msgid "Invalid command received, ignoring"
 msgstr "A kapott parancs érvénytelen, figyelmen kívül hagyva"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:100
+#: src/plugins/media-export/rygel-media-export-extract.vala:90
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Nem sikerült a(z) %s URI feltérképezése: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:119
+#: src/plugins/media-export/rygel-media-export-extract.vala:105
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Nem sikerült olvasni a csővezetékből: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:146
-#: src/plugins/media-export/rygel-media-export-extract.vala:158
+#: src/plugins/media-export/rygel-media-export-extract.vala:132
+#: src/plugins/media-export/rygel-media-export-extract.vala:144
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Nem sikerült hibát küldeni a szülőnek: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:204
-#, c-format
-msgid "Failed to extract basic metadata from %s: %s"
-msgstr "Nem sikerült az alap metaadatokat kinyerni a következőből: %s: %s"
-
-#: src/plugins/media-export/rygel-media-export-extract.vala:228
+#: src/plugins/media-export/rygel-media-export-extract.vala:149
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- segítő bináris a Rygel programhoz metaadatok kinyeréséhez"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:235
+#: src/plugins/media-export/rygel-media-export-extract.vala:156
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Nem sikerült a parancssori argumentumok feldolgozása: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:243
+#: src/plugins/media-export/rygel-media-export-generic-extractor.vala:50
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "A médiatartalom-kinyerő létrehozása meghiúsult: %s"
-
-#: src/plugins/media-export/rygel-media-export-extract.vala:258
-#, c-format
-msgid "Failed to start metadata discoverer: %s"
-msgstr "Nem sikerült a metaadat-feltérképező indítása: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, c-format
@@ -1303,7 +1279,7 @@ msgid "Can't remove containers in %s"
 msgstr "Nem távolíthatók el tárolók innen: %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: src/plugins/media-export/rygel-media-export-root-container.vala:610
+#: src/plugins/media-export/rygel-media-export-root-container.vala:612
 msgid "Playlists"
 msgstr "Lejátszólisták"
 
@@ -1328,10 +1304,11 @@ msgstr "A fájlváltozások nem kerülnek megfigyelésre"
 
 #. Avoid warning when file is removed in the meantime, e.g. in
 #. upload case.
-#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
+#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:105
 #, c-format
-msgid "Failed to get file information for %s: %s"
-msgstr "A(z) %s fájlinformációinak lekérése meghiúsult: %s"
+#| msgid "Failed to get file information for %s: %s"
+msgid "Failed to setup up file monitor for %s: %s"
+msgstr "A(z) %s fájlmegfigyelésének beállítása meghiúsult: %s"
 
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
@@ -1439,7 +1416,7 @@ msgstr "A Tracker kapcsolat létrehozása meghiúsult: %s"
 msgid "Error getting all values for '%s': %s"
 msgstr "Hiba a(z) „%s” összes értékének lekérésekor: %s"
 
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
+#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
@@ -1564,17 +1541,17 @@ msgid_plural "No plugins found in %d seconds; giving up…"
 msgstr[0] "Nem található bővítmény %d másodperc alatt, feladom…"
 msgstr[1] "Nem található bővítmény %d másodperc alatt, feladom…"
 
-#: src/rygel/rygel-main.vala:176
+#: src/rygel/rygel-main.vala:177
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "A gyökéreszköz-gyár létrehozása meghiúsult: %s"
 
-#: src/rygel/rygel-main.vala:233
+#: src/rygel/rygel-main.vala:235
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "%s gyökéreszközének létrehozása meghiúsult. Ok: %s"
 
-#: src/rygel/rygel-main.vala:270
+#: src/rygel/rygel-main.vala:272
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "A felhasználói konfiguráció betöltése meghiúsult: %s"
@@ -1614,137 +1591,3 @@ msgstr "A Rygel szolgáltatás indítása meghiúsult: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "A Rygel szolgáltatás leállítása meghiúsult: %s"
-
-#~ msgid "Invalid metadata serialisation, cannot process %s"
-#~ msgstr "Érvénytelen metaadat szerializáció, a(z) %s nem dolgozható fel"
-
-#~ msgid "Invalid metadata serialisation: expected 7 children, got %d"
-#~ msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
-#~ msgstr[0] ""
-#~ "Érvénytelen metaadat szerializáció: 7 gyermekelemet vártunk, de csak %d "
-#~ "van"
-#~ msgstr[1] ""
-#~ "Érvénytelen metaadat szerializáció: 7 gyermekelemet vártunk, de csak %d "
-#~ "van"
-
-#~ msgid "Invalid metadata serialisation of metadata; %s"
-#~ msgstr "Érvénytelen metaadat szerializáció a metaadatoknál; %s"
-
-#~ msgid "Invalid metadata serialisation of video info; %s"
-#~ msgstr "Érvénytelen metaadat szerializáció a videoinformációknál; %s"
-
-#~ msgid "Invalid metadata serialisation of audio info; %s"
-#~ msgstr "Érvénytelen metaadat szerializáció az audioinformációknál; %s"
-
-#~ msgid "Invalid metadata serialisation of general info"
-#~ msgstr "Érvénytelen metaadat szerializáció az általános információknál"
-
-#~ msgid "Invalid metadata serialisation of DLNA profile %s"
-#~ msgstr "Érvénytelen metaadat szerializáció a(z) %s DLNA profilnál"
-
-#~ msgid "Invalid metadata serialisation of file info %s"
-#~ msgstr "Érvénytelen metaadat szerializáció a(z) %s fájlinformációinál"
-
-#~ msgid "Invalid metadata serialisation of file info"
-#~ msgstr "Érvénytelen metaadat szerializáció a fájlinformációknál"
-
-#~ msgid "Child failed fatally. Last uri was %s"
-#~ msgstr "A gyermek végzetesen meghiúsult. A legutóbbi URI ez volt: %s"
-
-#~ msgid "Reading from child's error stream failed: %s"
-#~ msgstr "Nem sikerült a gyermek hibafolyamjából olvasni: %s"
-
-#~ msgid "Disable UPnP (streaming-only)"
-#~ msgstr "UPnP letiltása (csak műsorszórás)"
-
-#~ msgid "Rygel is running in streaming-only mode."
-#~ msgstr "A Rygel csak műsorszórás módban fut."
-
-#~| msgid "Could not determine protocol for %s"
-#~ msgid "Could not determine protocol for uri %s"
-#~ msgstr "Nem sikerült meghatározni a protokollt az URI-hoz: %s"
-
-#~ msgid "Invalid Range '%s'"
-#~ msgstr "Érvénytelen tartomány: „%s”"
-
-#~ msgid "Invalid Request"
-#~ msgstr "Érvénytelen kérés"
-
-#~ msgid "Out Of Range Start '%ld'"
-#~ msgstr "Tartományon kívüli kezdés: „%ld”"
-
-#~ msgid "Out Of Range Stop '%ld'"
-#~ msgstr "Tartományon kívüli befejezés: „%ld”"
-
-#~ msgid "No transcoder available for target format '%s'"
-#~ msgstr "Nem érhető el átkódoló a(z) „%s” célformátumhoz"
-
-#~ msgid "Not Found"
-#~ msgstr "Nem található"
-
-#~ msgid " %%% Object creation in %s not allowed"
-#~ msgstr " %%% Az objektumok létrehozása nem engedélyezett itt: %s"
-
-#~ msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
-#~ msgstr "Médiamegosztás (fényképek, videók és zene) engedélyezése DLNA-val"
-
-#~ msgid ""
-#~ "Select the network interface that DLNA media will be shared on, or share "
-#~ "media on all interfaces"
-#~ msgstr ""
-#~ "Válassza ki azt a hálózati csatolót, amelyen a DLNA média megosztásra "
-#~ "kerül, vagy az összes csatolót"
-
-#~ msgid "Any"
-#~ msgstr "Bármely"
-
-#~ msgid "XML node '%s' not found."
-#~ msgstr "A(z) „%s” XML csomópont nem található."
-
-#~ msgid "LibRygelRenderer"
-#~ msgstr "LibRygelRenderer"
-
-#~ msgid "LibRygelServer"
-#~ msgstr "LibRygelServer"
-
-#~ msgid "Failed to attach to D-Bus session bus: %s"
-#~ msgstr "A D-Bus munkamenetbuszhoz csatlakozás meghiúsult: %s"
-
-#~ msgid "No metadata extractor available. Will not crawl."
-#~ msgstr "Nem érhető el metaadat-kinyerő. Nem történik bejárás."
-
-#~ msgid "Failed to remove URI: %s"
-#~ msgstr "Az URI eltávolítása meghiúsult: %s"
-
-#~ msgid "Failed to create MediaExport D-Bus service: %s"
-#~ msgstr "A MediaExport D-Bus szolgáltatás létrehozása meghiúsult: %s"
-
-#~ msgid "Failed to create D-Bus proxies: %s"
-#~ msgstr "A D-Bus proxyk létrehozása meghiúsult: %s"
-
-#~ msgid "Seek failed"
-#~ msgstr "A pozicionálás meghiúsult"
-
-#~ msgid "Failed to find thumbnails folder."
-#~ msgstr "Nem található a bélyegképek mappája."
-
-#~ msgid "Object %s is not an item"
-#~ msgstr "Az objektum (%s) nem elem"
-
-#~ msgid "Item '%s' didn't provide a URI"
-#~ msgstr "A(z) „%s” elem nem adott meg URI-címet"
-
-#~ msgid "Plugin 'fakesink' missing"
-#~ msgstr "A „fakesink” bővítmény hiányzik"
-
-#~ msgid "Failed to start D-Bus service: %s"
-#~ msgstr "A D-Bus szolgáltatás indítása meghiúsult: %s"
-
-#~ msgid "Failed to seek to %s-%s on URI %s: %s"
-#~ msgstr "A tekerés meghiúsult ide: %s-%s a(z) %s URI-címen: %s"
-
-#~ msgid "Failed to close stream to URI %s: %s"
-#~ msgstr "Az adatfolyam lezárása meghiúsult a(z) %s URI-címnek: %s"
-
-#~ msgid "Failed to write modified description to %s."
-#~ msgstr "A módosított leírás kiírása meghiúsult a következőbe: %s"
