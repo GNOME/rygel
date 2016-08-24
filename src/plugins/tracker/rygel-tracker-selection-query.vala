@@ -72,7 +72,7 @@ public class Rygel.Tracker.SelectionQuery : Query {
         this.max_count = max_count;
 
         ArrayList<string> uris;
-        ArrayList<File> actual_uris;
+        string[] uri_filters = new string[0];
 
         var config = MetaConfig.get_default ();
 
@@ -82,8 +82,6 @@ public class Rygel.Tracker.SelectionQuery : Query {
             uris = new ArrayList<string> ();
         }
 
-        actual_uris = new ArrayList<File> ((EqualDataFunc<File>) File.equal);
-
         var home_dir = File.new_for_path (Environment.get_home_dir ());
         unowned string pictures_dir = Environment.get_user_special_dir
                                         (UserDirectory.PICTURES);
@@ -92,7 +90,6 @@ public class Rygel.Tracker.SelectionQuery : Query {
         unowned string music_dir = Environment.get_user_special_dir
                                         (UserDirectory.MUSIC);
 
-        uri_filter = "(";
         foreach (var uri in uris) {
             var file = File.new_for_commandline_arg (uri);
             if (!file.equal (home_dir)) {
@@ -114,14 +111,15 @@ public class Rygel.Tracker.SelectionQuery : Query {
                     continue;
                 }
 
-                uri_filter += "tracker:uri-is-descendant(\"%s\", nie:url(%s))".printf
+                uri_filters += "tracker:uri-is-descendant(\"%s\", nie:url(%s))".printf
                                 (file.get_uri (), ITEM_VARIABLE);
             }
         }
-        if (uri_filter != "(") {
-            uri_filter += ")";
+
+        if (uri_filters.length != 0) {
+            this.uri_filter = "(%s)".printf (string.joinv ("||", uri_filters));
         } else {
-            uri_filter = null;
+            this.uri_filter = null;
         }
     }
 
