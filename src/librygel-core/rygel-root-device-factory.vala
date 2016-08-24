@@ -241,9 +241,6 @@ public class Rygel.RootDeviceFactory : Object,
     }
 
     private void ensure_dir_exists (string dir_path) throws Error {
-        var file = File.new_for_path (dir_path);
-        if (!file.query_exists (null)) {
-            file.make_directory (null);
-        }
+        DirUtils.create_with_parents (dir_path, 0750);
     }
 }

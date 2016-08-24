@@ -501,8 +501,7 @@ public class Rygel.DescriptionFile : Object {
             throw new IOError.FAILED (message, path);
         }
 
-        // Make sure we don't have any newlines
-        file.puts (mem.replace ("\n", ""));
+        FileUtils.set_contents (path, mem.replace ("\n", ""));
     }
 
     private int index_of_device_element (string element) {
