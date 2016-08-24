@@ -105,6 +105,12 @@ public class Rygel.Tracker.SelectionQuery : Query {
                     actual_uri = actual_uri.replace ("@MUSIC@", music_dir);
                 }
 
+                if (actual_uri.contains ("@PICTURES@") ||
+                    actual_uri.contains ("@VIDEOS@") ||
+                    actual_uri.contains ("@MUSIC@")) {
+                    continue;
+                }
+
                 // protect against special directories expanding to $HOME
                 file = File.new_for_commandline_arg (actual_uri);
                 if (file.equal (home_dir)) {
