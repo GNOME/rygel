@@ -94,11 +94,11 @@ public interface Rygel.Configuration : GLib.Object {
 
     public abstract string get_media_engine () throws GLib.Error;
 
-    public abstract string get_video_upload_folder () throws GLib.Error;
+    public abstract string? get_video_upload_folder () throws GLib.Error;
 
-    public abstract string get_music_upload_folder () throws GLib.Error;
+    public abstract string? get_music_upload_folder () throws GLib.Error;
 
-    public abstract string get_picture_upload_folder () throws GLib.Error;
+    public abstract string? get_picture_upload_folder () throws GLib.Error;
 
     public abstract bool get_enabled (string section) throws GLib.Error;
 

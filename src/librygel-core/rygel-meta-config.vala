@@ -264,8 +264,8 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         return val;
     }
 
-    public string get_video_upload_folder () throws GLib.Error {
-        unowned string default = Environment.get_user_special_dir
+    public string? get_video_upload_folder () throws GLib.Error {
+        unowned string? default = Environment.get_user_special_dir
                                         (UserDirectory.VIDEOS);
         var value = default;
 
@@ -275,11 +275,15 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
             } catch (GLib.Error err) { }
         }
 
-        return value.replace ("@VIDEOS@", default);
+        if (value != null && default != null) {
+            return value.replace ("@VIDEOS@", default);
+        }
+
+        return null;
     }
 
-    public string get_music_upload_folder () throws GLib.Error {
-        unowned string default = Environment.get_user_special_dir
+    public string? get_music_upload_folder () throws GLib.Error {
+        unowned string? default = Environment.get_user_special_dir
                                         (UserDirectory.MUSIC);
 
         var value = default;
@@ -290,11 +294,15 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
             } catch (GLib.Error err) {};
         }
 
-        return value.replace ("@MUSIC@", default);
+        if (value != null && default != null) {
+            return value.replace ("@MUSIC@", default);
+        }
+
+        return null;
     }
 
-    public string get_picture_upload_folder () throws GLib.Error {
-        unowned string default = Environment.get_user_special_dir
+    public string? get_picture_upload_folder () throws GLib.Error {
+        unowned string? default = Environment.get_user_special_dir
                                         (UserDirectory.PICTURES);
         var value = default;
 
@@ -304,9 +312,12 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
             } catch (GLib.Error err) {};
         }
 
-        return value.replace ("@PICTURES@", default);
-    }
+        if (value != null && default != null) {
+            return value.replace ("@PICTURES@", default);
+        }
 
+        return null;
+    }
 
     public bool get_enabled (string section) throws GLib.Error {
         bool val = true;

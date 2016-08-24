@@ -52,7 +52,7 @@ public abstract class Rygel.Tracker.ItemFactory {
     public string category;
     public string category_iri;
     public string upnp_class;
-    public string upload_dir;
+    public string? upload_dir;
 
     public ArrayList<string> properties;
 

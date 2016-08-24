@@ -55,13 +55,15 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
                       io_error.message);
         }
 
-        try {
-            var uri = Filename.to_uri (item_factory.upload_dir, null);
-            this.add_uri (uri);
-        } catch (ConvertError error) {
-            warning (_("Failed to construct URI for folder '%s': %s"),
-                     item_factory.upload_dir,
-                     error.message);
+        if (item_factory.upload_dir != null) {
+            try {
+                var uri = Filename.to_uri (item_factory.upload_dir, null);
+                this.add_uri (uri);
+            } catch (ConvertError error) {
+                warning (_("Failed to construct URI for folder '%s': %s"),
+                        item_factory.upload_dir,
+                        error.message);
+            }
         }
 
         try {

@@ -67,15 +67,15 @@ public class Rygel.BaseConfiguration : Rygel.Configuration, Object {
         throw new ConfigurationError.NO_VALUE_SET (_("Not implemented"));
     }
 
-    public virtual string get_video_upload_folder () throws GLib.Error {
+    public virtual string? get_video_upload_folder () throws GLib.Error {
         throw new ConfigurationError.NO_VALUE_SET (_("Not implemented"));
     }
 
-    public virtual string get_music_upload_folder () throws GLib.Error {
+    public virtual string? get_music_upload_folder () throws GLib.Error {
         throw new ConfigurationError.NO_VALUE_SET (_("Not implemented"));
     }
 
-    public virtual string get_picture_upload_folder () throws GLib.Error {
+    public virtual string? get_picture_upload_folder () throws GLib.Error {
         throw new ConfigurationError.NO_VALUE_SET (_("Not implemented"));
     }
 
