@@ -913,9 +913,9 @@ msgid "Failed to seek"
 msgstr "Iskanje je spodletelo"
 
 #: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:128
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid URI without prefix: %s"
-msgstr "Neveljaven naslov URI '%s'"
+msgstr "Neveljaven naslov URI brez predpone: %s"
 
 #: ../src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, fuzzy, c-format
@@ -978,9 +978,9 @@ msgid "Failed to discover URI %s: %s"
 msgstr "Pridobivanje izvirnega URI %s je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:106
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to read from pipe: %s"
-msgstr "Ni mogoče prebrati iz cevi podrejenega procesa (%s)"
+msgstr "Ni mogoče prebrati iz cevi: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:134
 #, c-format
@@ -1082,9 +1082,9 @@ msgid "Failed to create indices: %s"
 msgstr "Ni mogoče ustvariti datoteke '%s': %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
-#, fuzzy, c-format
+#, c-format
 msgid "Cannot upgrade from version %d"
-msgstr "Nadgradnja neposredno z različice {0} ni mogoča"
+msgstr "Nadgradnja neposredno z različice %d ni mogoča"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
 #, c-format
@@ -1154,9 +1154,8 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:684
-#, fuzzy
 msgid "Incompatible schema… cannot proceed"
-msgstr "ključev ni mogoče dodati shemi 'list-of'"
+msgstr "Neskladna shema ... ni mogoče nadaljevati."
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:690
 #, c-format
@@ -1195,9 +1194,9 @@ msgid "Setting up extraction subprocess failed: %s"
 msgstr ""
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:185
-#, fuzzy, c-format
+#, c-format
 msgid "Received invalid string from child: %s"
-msgstr "Prejeta je neveljavna vrednost JSON s strežnika: %s"
+msgstr "Prejet je neveljaven niz podrejenega predmeta: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:192
 #, c-format
@@ -1212,9 +1211,9 @@ msgid "Read from child failed: %s"
 msgstr "Brenje podrejenega procesa je spodletelo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:261
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to send command to child: %s"
-msgstr "Ni mogoče izvesti podrejenega opravila (%s)"
+msgstr "Ni mogoče poslati ukaza na podrejeno opravilo: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
@@ -1430,11 +1429,11 @@ msgstr ""
 
 #: ../src/rygel/rygel-acl.vala:143
 msgid "No ACL fallback policy found. Using \"allow\""
-msgstr ""
+msgstr "Ni najdenega povrnitvenega pravila ACL. Uporabljeno bo \"dovoli\""
 
 #: ../src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using \"deny\""
-msgstr ""
+msgstr "Ni najdenega povrnitvenega pravila ACL. Uporabljeno bo \"zavrni\""
 
 #: ../src/rygel/rygel-cmdline-config.vala:73
 msgid "Display version number"
@@ -1496,9 +1495,8 @@ msgid "Shut down remote Rygel reference"
 msgstr "Izklapljanje oddaljenega primerka Rygel.\n"
 
 #: ../src/rygel/rygel-cmdline-config.vala:102
-#, fuzzy
 msgid "Replace currently running instance of Rygel"
-msgstr "Zamenjaj trenutno zagnani primerek zaslonskega bralnika"
+msgstr "Zamenjaj trenutno zagnani primerek programa Rygel"
 
 #: ../src/rygel/rygel-cmdline-config.vala:139
 msgid "Shutting down remote Rygel instance\n"
@@ -1510,11 +1508,8 @@ msgid "Failed to shut down other Rygel instance: %s"
 msgstr ""
 
 #: ../src/rygel/rygel-dbus-service.vala:81
-#, fuzzy
 msgid "Another instance of Rygel is already running. Not starting."
-msgstr ""
-"Drug primerek %s že teče.\n"
-"Preklopite nazaj nanj."
+msgstr "Drug primerek programa Rygel že teče. Nova seja ne bo ustvarjena."
 
 #: ../src/rygel/rygel-main.vala:85
 #, c-format
