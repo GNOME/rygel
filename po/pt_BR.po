@@ -6,24 +6,25 @@
 # Gabriel F. Vilar <cogumm@gmail.com>, 2011.
 # Jonh Wendell <jwendell@gnome.org>, 2010, 2012.
 # Edson Silva <edsonlead@gmail.com>, 2013.
-# Enrico Nicoletto <liverig@gmail.com>, 2013, 2014, 2015.
 # Artur de Aquino Morais <artur.morais93@outlook.com>, 2016.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2012, 2013, 2014, 2016.
+# Enrico Nicoletto <liverig@gmail.com>, 2013, 2014, 2015, 2016.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=rygel&"
-"keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-23 15:06+0000\n"
-"PO-Revision-Date: 2016-03-23 17:29-0200\n"
-"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2016-08-16 07:07+0000\n"
+"PO-Revision-Date: 2016-08-25 20:40-0300\n"
+"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Project-Style: gnome\n"
 
 #: data/rygel.desktop.in.in:3
@@ -34,7 +35,8 @@ msgstr "Rygel"
 msgid "UPnP/DLNA Services"
 msgstr "Serviços UPnP/DLNA"
 
-#: data/rygel.desktop.in.in:6
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/rygel.desktop.in.in:7
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
 "servidor de mídia;renderizador de mídia;compartilhar;compartilhamento;áudio;"
@@ -48,14 +50,10 @@ msgstr "Preferências do Rygel"
 msgid "UPnP/DLNA Preferences"
 msgstr "Preferências de UPnP/DLNA"
 
-#: data/rygel-preferences.desktop.in.in:6
-#| msgid "Rygel"
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/rygel-preferences.desktop.in.in:7
 msgid "rygel"
 msgstr "rygel"
-
-#: data/rygel-preferences.ui:67 data/rygel-preferences.ui:198
-msgid "column"
-msgstr "coluna"
 
 #: data/rygel-preferences.ui:94
 msgid "Add a directory to the list of shared directories"
@@ -174,6 +172,7 @@ msgstr "Estado \"%s\" preclui cancelamento"
 #: src/librygel-core/rygel-connection-manager.vala:95
 #: src/librygel-core/rygel-connection-manager.vala:109
 #: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-core/rygel-energy-management.vala:223
 #: src/librygel-renderer/rygel-av-transport.vala:198
 #: src/librygel-renderer/rygel-rendering-control.vala:131
 #: src/librygel-ruih/rygel-ruih-service.vala:63
@@ -293,22 +292,22 @@ msgstr "[Plug-in] grupo não encontrado"
 msgid "Plugin module %s does not exist"
 msgstr "Módulo do plug-in \"%s\" não existe"
 
-#: src/librygel-core/rygel-plugin-loader.vala:81
+#: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "Novo plug-in \"%s\" disponível"
 
-#: src/librygel-core/rygel-plugin-loader.vala:96
+#: src/librygel-core/rygel-plugin-loader.vala:104
 #, c-format
 msgid "A module named %s is already loaded"
 msgstr "Um módulo com nome %s já está carregado"
 
-#: src/librygel-core/rygel-plugin-loader.vala:105
+#: src/librygel-core/rygel-plugin-loader.vala:113
 #, c-format
 msgid "Failed to load module from path '%s': %s"
 msgstr "Falha ao carregar o módulo do caminho \"%s\": %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:115
+#: src/librygel-core/rygel-plugin-loader.vala:123
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Falha ao localizar função de ponto de entrada \"%s\" em \"%s\": %s"
@@ -445,12 +444,12 @@ msgstr "Não foi possível analisar dados de Protocolo - nó inesperado: %s"
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
 #, c-format
 msgid "Failed to set UIList for file %s - %s"
-msgstr "Falha ao definir UIList para arquivo %s - %s"
+msgstr "Falha ao definir lista de UI para arquivo %s - %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
 #, c-format
 msgid "Failed to set initial UI list for file %s - %s"
-msgstr "Falha ao definir lista de URI inicial para o arquivo %s - %s"
+msgstr "Falha ao definir lista de UI inicial para o arquivo %s - %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
 #, c-format
@@ -490,7 +489,7 @@ msgstr "Não foi possível navegar por filho no item"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Falha ao explorar \"%s\": %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:141
+#: src/librygel-server/rygel-client-hacks.vala:145
 msgid "Not Applicable"
 msgstr "Não aplicável"
 
@@ -714,12 +713,6 @@ msgstr "Não foi possível determinar protocolo para %s"
 msgid "Bad URI: %s"
 msgstr "URI errada: %s"
 
-#. Assume the protocol to be the scheme of the URI
-#: src/librygel-server/rygel-media-object.vala:527
-#, c-format
-msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr "Falha ao examinar um protocolo para a URI %s. Assumindo \"%s\""
-
 #: src/librygel-server/rygel-media-query-action.vala:100
 msgid "Invalid number of arguments"
 msgstr "Número inválido de argumentos"
@@ -932,12 +925,12 @@ msgstr "Falha ao buscar no deslocamento %lld:%lld"
 msgid "Failed to seek"
 msgstr "Falha ao buscar"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:128
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:129
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "URI inválida sem prefixo: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "Não é possível processar a URI %s com protocolo %s"
@@ -970,15 +963,10 @@ msgid "Only byte-based seek supported"
 msgstr "Suporte apenas a busca baseada em bytes"
 
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
-#: src/media-engines/simple/rygel-simple-media-engine.vala:96
+#: src/media-engines/simple/rygel-simple-media-engine.vala:98
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
 msgstr ""
 "Só é possível processar MediaObjects baseados em objetos (MediaFileItems) "
-
-#: src/media-engines/simple/rygel-simple-media-engine.vala:67
-#, c-format
-msgid "Can't process non-file URI %s"
-msgstr "Não foi possível processar URI não-arquivo %s"
 
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -1014,22 +1002,22 @@ msgstr "Anos"
 msgid "Artists"
 msgstr "Artistas"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:34
+#: src/plugins/lms/rygel-lms-root-container.vala:33
 msgid "Shared media"
 msgstr "Mídia compartilhada"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:46
-#: src/plugins/media-export/rygel-media-export-root-container.vala:603
+#: src/plugins/lms/rygel-lms-root-container.vala:45
+#: src/plugins/media-export/rygel-media-export-root-container.vala:605
 msgid "Music"
 msgstr "Música"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:50
-#: src/plugins/media-export/rygel-media-export-root-container.vala:608
+#: src/plugins/lms/rygel-lms-root-container.vala:49
+#: src/plugins/media-export/rygel-media-export-root-container.vala:610
 msgid "Videos"
 msgstr "Vídeos"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:54
-#: src/plugins/media-export/rygel-media-export-root-container.vala:606
+#: src/plugins/lms/rygel-lms-root-container.vala:53
+#: src/plugins/media-export/rygel-media-export-root-container.vala:608
 msgid "Pictures"
 msgstr "Fotos"
 
@@ -1038,55 +1026,45 @@ msgstr "Fotos"
 msgid "Title %d"
 msgstr "Título %d"
 
-#: src/plugins/media-export/rygel-media-export-dvd-parser.vala:42
+#: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
 msgid ""
 "Failed to find lsdvd binary in path. DVD extraction will not be available"
 msgstr ""
 "Falha ao localizar executável lsdvd. Extração de DVD não estará disoponível"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:74
+#: src/plugins/media-export/rygel-media-export-extract.vala:73
 msgid "Invalid command received, ignoring"
 msgstr "Comando inválido recebido, ignorando"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:100
+#: src/plugins/media-export/rygel-media-export-extract.vala:90
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Falha em descobrir URI %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:119
+#: src/plugins/media-export/rygel-media-export-extract.vala:105
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Falha ao ler do redirecionamento: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:146
-#: src/plugins/media-export/rygel-media-export-extract.vala:158
+#: src/plugins/media-export/rygel-media-export-extract.vala:132
+#: src/plugins/media-export/rygel-media-export-extract.vala:144
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Falha ao enviar erro ao pai: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:204
-#, c-format
-msgid "Failed to extract basic metadata from %s: %s"
-msgstr "Falha ao extrair metadados básicos de %s: %s"
-
-#: src/plugins/media-export/rygel-media-export-extract.vala:228
+#: src/plugins/media-export/rygel-media-export-extract.vala:149
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- executável auxiliar para Rygel para extrair metadados"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:235
+#: src/plugins/media-export/rygel-media-export-extract.vala:156
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Falha ao analisar argumentos de linha de comando: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:243
+#: src/plugins/media-export/rygel-media-export-generic-extractor.vala:50
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Falha ao criar extrator de arte de mídia: %s"
-
-#: src/plugins/media-export/rygel-media-export-extract.vala:258
-#, c-format
-msgid "Failed to start metadata discoverer: %s"
-msgstr "Falha ao iniciar a descoberta de metadados: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, c-format
@@ -1315,7 +1293,7 @@ msgid "Can't remove containers in %s"
 msgstr "Não foi possível remover contêiners em %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
-#: src/plugins/media-export/rygel-media-export-root-container.vala:610
+#: src/plugins/media-export/rygel-media-export-root-container.vala:612
 msgid "Playlists"
 msgstr "Listas de reprodução"
 
@@ -1340,10 +1318,10 @@ msgstr "Não irá monitorar alterações em arquivos"
 
 #. Avoid warning when file is removed in the meantime, e.g. in
 #. upload case.
-#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
+#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:105
 #, c-format
-msgid "Failed to get file information for %s: %s"
-msgstr "Falha ao obter informações do arquivo para %s: %s"
+msgid "Failed to setup up file monitor for %s: %s"
+msgstr "Falha ao configurar monitoramento de arquivo para %s: %s"
 
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
@@ -1451,7 +1429,7 @@ msgstr "Falha ao criar uma conexão do Tracker: %s"
 msgid "Error getting all values for '%s': %s"
 msgstr "Erro ao obter todos os valores para \"%s\": %s"
 
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
+#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "Falha ao iniciar o serviço Tracker: %s. Plug-in desabilitado."
@@ -1575,17 +1553,17 @@ msgid_plural "No plugins found in %d seconds; giving up…"
 msgstr[0] "Nenhum plug-in localizado em %d segundo; desistindo..."
 msgstr[1] "Nenhum plug-in localizado em %d segundos; desistindo..."
 
-#: src/rygel/rygel-main.vala:176
+#: src/rygel/rygel-main.vala:177
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Falha ao criar fábrica de dispositivo raiz: %s"
 
-#: src/rygel/rygel-main.vala:233
+#: src/rygel/rygel-main.vala:235
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Falha ao criar RootDevice para %s. Razão: %s"
 
-#: src/rygel/rygel-main.vala:270
+#: src/rygel/rygel-main.vala:272
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Falha ao carregar a configuração do usuário: %s"
@@ -1625,6 +1603,21 @@ msgstr "Falha ao iniciar o serviço Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Falha ao parar o serviço Rygel: %s"
+
+#~ msgid "column"
+#~ msgstr "coluna"
+
+#~ msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+#~ msgstr "Falha ao examinar um protocolo para a URI %s. Assumindo \"%s\""
+
+#~ msgid "Can't process non-file URI %s"
+#~ msgstr "Não foi possível processar URI não-arquivo %s"
+
+#~ msgid "Failed to extract basic metadata from %s: %s"
+#~ msgstr "Falha ao extrair metadados básicos de %s: %s"
+
+#~ msgid "Failed to start metadata discoverer: %s"
+#~ msgstr "Falha ao iniciar a descoberta de metadados: %s"
 
 #~ msgid "Child failed fatally. Last uri was %s"
 #~ msgstr "Filho falhou fatalmente. Última uri era %s"
