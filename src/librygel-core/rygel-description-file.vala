@@ -486,18 +486,12 @@ public class Rygel.DescriptionFile : Object {
      * @throws GLib.Error if anything fails while creating the XML dump.
      */
     public void save (string path) throws GLib.Error {
-        var file = FileStream.open (path, "w+");
-        var message = _("Failed to write modified description to %s");
-
-        if (unlikely (file == null)) {
-            throw new IOError.FAILED (message, path);
-        }
-
         string mem = null;
         int len = -1;
         doc.doc.dump_memory_enc (out mem, out len, "UTF-8");
 
         if (unlikely (len <= 0)) {
+            var message = _("Failed to write modified description to %s");
             throw new IOError.FAILED (message, path);
         }
 
