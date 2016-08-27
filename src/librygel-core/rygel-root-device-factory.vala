@@ -137,7 +137,14 @@ public class Rygel.RootDeviceFactory : Object,
         }
         var udn = file.get_udn ();
         if (udn == null || udn == "") {
-            file.set_udn ("uuid:" + GUPnP.get_uuid ());
+            // Check if we have a fixed UUID for this plugin
+            try {
+                var config = MetaConfig.get_default ();
+                udn = config.get_string (plugin.name, "uuid");
+            } catch (Error error) {
+                udn = GUPnP.get_uuid ();
+            }
+            file.set_udn ("uuid:" + udn);
         }
 
         file.save (desc_path);
