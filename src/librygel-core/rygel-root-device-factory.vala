@@ -139,8 +139,7 @@ public class Rygel.RootDeviceFactory : Object,
         if (udn == null || udn == "") {
             // Check if we have a fixed UUID for this plugin
             try {
-                var config = MetaConfig.get_default ();
-                udn = config.get_string (plugin.name, "uuid");
+                udn = this.config.get_string (plugin.name, "uuid");
             } catch (Error error) {
                 udn = GUPnP.get_uuid ();
             }
