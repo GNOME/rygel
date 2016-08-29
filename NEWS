@@ -1,3 +1,46 @@
+0.31.5
+======
+ - Several translation-related fixes
+ - Fix .desktop file generation
+
+Core library:
+ - Fix configuration dir generation
+ - Fix criticals on unset XDG_* variables
+ - Make it possible to add a fixed UDN
+
+MediaExport plugin:
+ - Clean-up titles a bit more thoroghly
+
+Tracker:
+ - Fix criticals on unset XDG_* variables
+ - Fix URL filter
+ - Skip URL filter if pattern substitution failed
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=730910
+ - https://bugzilla.gnome.org/show_bug.cgi?id=770276
+ - https://bugzilla.gnome.org/show_bug.cgi?id=770531
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Мирослав Николић <miroslavnikolic@rocketmail.com>
+ - Enrico Nicoletto <liverig@gmail.com>
+ - Balázs Úr <urbalazs@gmail.com>
+ - Andika Triwidada <atriwidada@gnome.org>
+ - Alexandre Franke <alexandre.franke@gmail.com>
+
+Added/updated translations
+ - fr, courtesy of Alain Lojewski
+ - hu, courtesy of Balázs Úr
+ - id, courtesy of Andika Triwidada
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Enrico Nicoletto
+ - sl, courtesy of Matej Urbančič
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+
 0.31.4
 ======
 
