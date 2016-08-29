@@ -195,15 +195,15 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         return this.get_string (GENERAL_SECTION, MEDIA_ENGINE_KEY);
     }
 
-    public string get_video_upload_folder () throws GLib.Error {
+    public string? get_video_upload_folder () throws GLib.Error {
         return this.get_string (GENERAL_SECTION, VIDEO_UPLOAD_DIR_PATH_KEY);
     }
 
-    public string get_music_upload_folder () throws GLib.Error {
+    public string? get_music_upload_folder () throws GLib.Error {
         return this.get_string (GENERAL_SECTION, MUSIC_UPLOAD_DIR_PATH_KEY);
     }
 
-    public string get_picture_upload_folder () throws GLib.Error {
+    public string? get_picture_upload_folder () throws GLib.Error {
         return this.get_string (GENERAL_SECTION, PICTURE_UPLOAD_DIR_PATH_KEY);
     }
 

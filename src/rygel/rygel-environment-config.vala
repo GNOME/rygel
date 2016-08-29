@@ -96,15 +96,15 @@ internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
         return this.get_string_variable (MEDIA_ENGINE_ENV);
     }
 
-    public string get_video_upload_folder () throws GLib.Error {
+    public string? get_video_upload_folder () throws GLib.Error {
         throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
     }
 
-    public string get_music_upload_folder () throws GLib.Error {
+    public string? get_music_upload_folder () throws GLib.Error {
         throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
     }
 
-    public string get_picture_upload_folder () throws GLib.Error {
+    public string? get_picture_upload_folder () throws GLib.Error {
         throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
     }
 
