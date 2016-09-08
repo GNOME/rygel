@@ -7,18 +7,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-04-24 02:01+0000\n"
-"PO-Revision-Date: 2016-04-24 16:27+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=rygel"
+"&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2016-08-25 23:42+0000\n"
+"PO-Revision-Date: 2016-09-08 20:29+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
-"2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 :"
+" 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
 #: data/rygel.desktop.in.in:3
@@ -29,7 +29,8 @@ msgstr "Rygel"
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA servisi"
 
-#: data/rygel.desktop.in.in:6
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/rygel.desktop.in.in:7
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
 "mediju serveris;mediju renderētājs;mediju attēlotājs;koplietot;audio;video;"
@@ -43,14 +44,10 @@ msgstr "Rygel iestatījumi"
 msgid "UPnP/DLNA Preferences"
 msgstr "UPnP/DLNA iestatījumi"
 
-#: data/rygel-preferences.desktop.in.in:6
-#| msgid "Rygel"
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/rygel-preferences.desktop.in.in:7
 msgid "rygel"
 msgstr "rygel"
-
-#: data/rygel-preferences.ui:67 data/rygel-preferences.ui:198
-msgid "column"
-msgstr "kolonna"
 
 #: data/rygel-preferences.ui:94
 msgid "Add a directory to the list of shared directories"
@@ -169,6 +166,7 @@ msgstr "Stāvoklis “%s” izslēdz atcelšanu"
 #: src/librygel-core/rygel-connection-manager.vala:95
 #: src/librygel-core/rygel-connection-manager.vala:109
 #: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-core/rygel-energy-management.vala:223
 #: src/librygel-renderer/rygel-av-transport.vala:198
 #: src/librygel-renderer/rygel-rendering-control.vala:131
 #: src/librygel-ruih/rygel-ruih-service.vala:63
@@ -259,22 +257,22 @@ msgid "No value available"
 msgstr "Nav pieejama vērtība"
 
 #. translators: "enabled" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:325
+#: src/librygel-core/rygel-meta-config.vala:336
 #, c-format
 msgid "No value set for '%s/enabled'"
 msgstr "'%s/enabled' nav iestatīta vērtība"
 
 #. translators: "title" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:344
+#: src/librygel-core/rygel-meta-config.vala:355
 #, c-format
 msgid "No value set for '%s/title'"
 msgstr "“%s/title” nav iestatīta vērtība"
 
-#: src/librygel-core/rygel-meta-config.vala:364
-#: src/librygel-core/rygel-meta-config.vala:386
-#: src/librygel-core/rygel-meta-config.vala:412
-#: src/librygel-core/rygel-meta-config.vala:434
-#: src/librygel-core/rygel-meta-config.vala:458
+#: src/librygel-core/rygel-meta-config.vala:375
+#: src/librygel-core/rygel-meta-config.vala:397
+#: src/librygel-core/rygel-meta-config.vala:423
+#: src/librygel-core/rygel-meta-config.vala:445
+#: src/librygel-core/rygel-meta-config.vala:469
 #, c-format
 msgid "No value available for '%s/%s'"
 msgstr "'%s/%s' nav pieejama vērtība"
@@ -288,22 +286,22 @@ msgstr "[Spraudnis] grupa nav atrasta"
 msgid "Plugin module %s does not exist"
 msgstr "Spraudņa modulis %s neeksistē"
 
-#: src/librygel-core/rygel-plugin-loader.vala:81
+#: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
 msgid "New plugin '%s' available"
 msgstr "Ir pieejams jauns spraudnis “%s”"
 
-#: src/librygel-core/rygel-plugin-loader.vala:96
+#: src/librygel-core/rygel-plugin-loader.vala:104
 #, c-format
 msgid "A module named %s is already loaded"
 msgstr "Modulis %s ir jau ielādēts"
 
-#: src/librygel-core/rygel-plugin-loader.vala:105
+#: src/librygel-core/rygel-plugin-loader.vala:113
 #, c-format
 msgid "Failed to load module from path '%s': %s"
 msgstr "Neizdevās ielādēt moduli no ceļa “%s”: %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:115
+#: src/librygel-core/rygel-plugin-loader.vala:123
 #, c-format
 msgid "Failed to find entry point function '%s' in '%s': %s"
 msgstr "Neizdevās atrast ievades punktu funkcijai “%s” iekš “%s”: %s"
@@ -484,7 +482,7 @@ msgstr "Nevar pārlūkot bērnus vienumam"
 msgid "Failed to browse '%s': %s\n"
 msgstr "Neizdevās pārlūkot “%s”: %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:141
+#: src/librygel-server/rygel-client-hacks.vala:145
 msgid "Not Applicable"
 msgstr "Nav piemērojams"
 
@@ -708,12 +706,6 @@ msgstr "Neizdevās noteikt %s protokolu"
 msgid "Bad URI: %s"
 msgstr "Slikts URI — %s"
 
-#. Assume the protocol to be the scheme of the URI
-#: src/librygel-server/rygel-media-object.vala:527
-#, c-format
-msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr "Neizdevās zondēt URI %s protokolu. Pieņem “%s”"
-
 #: src/librygel-server/rygel-media-query-action.vala:100
 msgid "Invalid number of arguments"
 msgstr "Nederīgs parametru skaits"
@@ -925,12 +917,12 @@ msgstr "Neizdevās pozicionēties uz nobīdēm %lld:%lld"
 msgid "Failed to seek"
 msgstr "Neizdevās pozicionēt"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:128
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:129
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "Nederīgs URI bez prefiksa — %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, c-format
 msgid "Can't process URI %s with protocol %s"
 msgstr "Nevar apstrādāt URI %s ar protokolu %s"
@@ -962,14 +954,9 @@ msgid "Only byte-based seek supported"
 msgstr "Atbalsta tikai uz baitiem balstītu pozicionēšanu"
 
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
-#: src/media-engines/simple/rygel-simple-media-engine.vala:96
+#: src/media-engines/simple/rygel-simple-media-engine.vala:98
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
 msgstr "Var apstrādāt tikai uz datnēm balstītus MediaObjects (MediaFileItems)"
-
-#: src/media-engines/simple/rygel-simple-media-engine.vala:67
-#, c-format
-msgid "Can't process non-file URI %s"
-msgstr "Nevar apstrādāt ne-datņu URI %s"
 
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -1003,21 +990,21 @@ msgstr "Gadi"
 msgid "Artists"
 msgstr "Izpildītāji"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:34
+#: src/plugins/lms/rygel-lms-root-container.vala:33
 msgid "Shared media"
 msgstr "Koplietoti multimediji"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:46
+#: src/plugins/lms/rygel-lms-root-container.vala:45
 #: src/plugins/media-export/rygel-media-export-root-container.vala:605
 msgid "Music"
 msgstr "Mūzika"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:50
+#: src/plugins/lms/rygel-lms-root-container.vala:49
 #: src/plugins/media-export/rygel-media-export-root-container.vala:610
 msgid "Videos"
 msgstr "Video"
 
-#: src/plugins/lms/rygel-lms-root-container.vala:54
+#: src/plugins/lms/rygel-lms-root-container.vala:53
 #: src/plugins/media-export/rygel-media-export-root-container.vala:608
 msgid "Pictures"
 msgstr "Attēli"
@@ -1027,55 +1014,45 @@ msgstr "Attēli"
 msgid "Title %d"
 msgstr "Nosaukums %d"
 
-#: src/plugins/media-export/rygel-media-export-dvd-parser.vala:42
+#: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
 msgid ""
 "Failed to find lsdvd binary in path. DVD extraction will not be available"
 msgstr ""
 "Ceļā neizdevās atrast lsdvd bināro datni. DVD izvilkšana nebūs pieejama"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:74
+#: src/plugins/media-export/rygel-media-export-extract.vala:73
 msgid "Invalid command received, ignoring"
 msgstr "Saņemta nederīga komanda, ignorē"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:100
+#: src/plugins/media-export/rygel-media-export-extract.vala:90
 #, c-format
 msgid "Failed to discover URI %s: %s"
 msgstr "Neizdevās atklāt URI %s — %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:119
+#: src/plugins/media-export/rygel-media-export-extract.vala:105
 #, c-format
 msgid "Failed to read from pipe: %s"
 msgstr "Neizdevās ielasīt no konveijera — %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:146
-#: src/plugins/media-export/rygel-media-export-extract.vala:158
+#: src/plugins/media-export/rygel-media-export-extract.vala:132
+#: src/plugins/media-export/rygel-media-export-extract.vala:144
 #, c-format
 msgid "Failed to send error to parent: %s"
 msgstr "Neizdevās nosūtīt kļūdu vecākam — %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:204
-#, c-format
-msgid "Failed to extract basic metadata from %s: %s"
-msgstr "Neizdevās izvilkt pamata metadatus no %s — %s"
-
-#: src/plugins/media-export/rygel-media-export-extract.vala:228
+#: src/plugins/media-export/rygel-media-export-extract.vala:149
 msgid "- helper binary for Rygel to extract metadata"
 msgstr "- Rygel palīg-binārijs metadatu izvilkšanai"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:235
+#: src/plugins/media-export/rygel-media-export-extract.vala:156
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Neizdevās parsēt komandrindas parametrus — %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:243
+#: src/plugins/media-export/rygel-media-export-generic-extractor.vala:50
 #, c-format
 msgid "Failed to create media art extractor: %s"
 msgstr "Neizdevās izveidot medija dizaina izvilcēju: %s"
-
-#: src/plugins/media-export/rygel-media-export-extract.vala:258
-#, c-format
-msgid "Failed to start metadata discoverer: %s"
-msgstr "Neizdevās palaist metadatu atklājēju — %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, c-format
@@ -1324,10 +1301,11 @@ msgstr "Neuzraudzītas datņu izmaiņas"
 
 #. Avoid warning when file is removed in the meantime, e.g. in
 #. upload case.
-#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:98
+#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:105
 #, c-format
-msgid "Failed to get file information for %s: %s"
-msgstr "Neizdevās saņemt %s datnes informāciju — %s"
+#| msgid "Failed to get file information for %s: %s"
+msgid "Failed to setup up file monitor for %s: %s"
+msgstr "Neizdevās iestatīt %s datņu pārraudzību — %s"
 
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
@@ -1411,17 +1389,17 @@ msgstr "Nevarēja izveidot GStreamer atskaņotāju "
 msgid "Failed to create a Tracker connection: %s"
 msgstr "Neizdevās izveidot Tracker savienojumu — %s"
 
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:62
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
 #, c-format
 msgid "Failed to construct URI for folder '%s': %s"
 msgstr "Neizdevās izveidot URI mapei “%s”: %s"
 
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:77
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
 #, c-format
 msgid "Could not subscribe to Tracker signals: %s"
 msgstr "Nevarēja pierakstīties pie Tracker signāliem — %s"
 
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:95
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
 msgid "Not supported"
 msgstr "Nav atbalstīts"
 
@@ -1435,7 +1413,7 @@ msgstr "Neizdevās izveidot Tracker savienojumu — %s"
 msgid "Error getting all values for '%s': %s"
 msgstr "Kļūda, saņemot visas “%s” vērtības: %s"
 
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
+#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr "Neizdevās palaist Tracker servisu: %s. Spraudnis atslēgts."
@@ -1560,17 +1538,17 @@ msgstr[0] "Neizdevās atrast spraudni %d sekundē; padodos..."
 msgstr[1] "Neizdevās atrast spraudni %d sekundēs; padodos..."
 msgstr[2] "Neizdevās atrast spraudni %d sekundēs; padodos..."
 
-#: src/rygel/rygel-main.vala:176
+#: src/rygel/rygel-main.vala:177
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Neizdevās izveidot saknes ierīci ražotnei: %s"
 
-#: src/rygel/rygel-main.vala:233
+#: src/rygel/rygel-main.vala:235
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Neizdevās izveidot %s RootDevice. Iemesls: %s"
 
-#: src/rygel/rygel-main.vala:270
+#: src/rygel/rygel-main.vala:272
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Neizdevās ielādēt lietotāja konfigurāciju: %s"
@@ -1611,3 +1589,17 @@ msgstr "Neizdevās palaist Rygel servisu: %s"
 msgid "Failed to stop Rygel service: %s"
 msgstr "Neizdevās apturēt Rygel servisu: %s"
 
+#~ msgid "column"
+#~ msgstr "kolonna"
+
+#~ msgid "Failed to probe protocol for URI %s. Assuming '%s'"
+#~ msgstr "Neizdevās zondēt URI %s protokolu. Pieņem “%s”"
+
+#~ msgid "Can't process non-file URI %s"
+#~ msgstr "Nevar apstrādāt ne-datņu URI %s"
+
+#~ msgid "Failed to extract basic metadata from %s: %s"
+#~ msgstr "Neizdevās izvilkt pamata metadatus no %s — %s"
+
+#~ msgid "Failed to start metadata discoverer: %s"
+#~ msgstr "Neizdevās palaist metadatu atklājēju — %s"
