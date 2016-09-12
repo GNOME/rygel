@@ -1,3 +1,32 @@
+0.31.6
+======
+ - Translation updates
+ - Fixes for Rygel systemd service file
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=766332
+
+All contributors to this release:
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+ - Tom Tryfonidis <tomtryf@gnome.org>
+ - Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+ - Fran Dieguez <fran.dieguez@mabishu.com>
+ - David King <amigadave@amigadave.com>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+ - Anders Jonsson <anders.jonsson@norsjovallen.se>
+
+Added/updated translations
+ - el, courtesy of Tom Tryfonidis
+ - en_GB, courtesy of David King
+ - gl, courtesy of Fran Dieguez
+ - kk, courtesy of Baurzhan Muftakhidinov
+ - ko, courtesy of Changwoo Ryu
+ - lv, courtesy of Rūdolfs Mazurs
+ - pl, courtesy of Piotr Drąg
+ - sv, courtesy of Anders Jonsson
+
 0.31.5
 ======
  - Several translation-related fixes
