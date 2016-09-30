@@ -25,7 +25,7 @@ using Rygel.Database;
 using Sqlite;
 
 public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
-    private static const string SQL_ALL =
+    private const string SQL_ALL =
         "SELECT audio_albums.id, audio_albums.name as title, " +
                "audio_artists.name as artist " +
         "FROM audio_albums " +
@@ -33,7 +33,7 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
         "ON audio_albums.artist_id = audio_artists.id " +
         "LIMIT ? OFFSET ?;";
 
-    private static const string SQL_ALL_WITH_FILTER_TEMPLATE =
+    private const string SQL_ALL_WITH_FILTER_TEMPLATE =
         "SELECT audio_albums.id, audio_albums.name as title, " +
                "audio_artists.name as artist " +
         "FROM audio_albums " +
@@ -42,11 +42,11 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
         "WHERE %s " +
         "LIMIT ? OFFSET ?;";
 
-    private static const string SQL_COUNT =
+    private const string SQL_COUNT =
         "SELECT COUNT(audio_albums.id) " +
         "FROM audio_albums;";
 
-    private static const string SQL_COUNT_WITH_FILTER_TEMPLATE =
+    private const string SQL_COUNT_WITH_FILTER_TEMPLATE =
         "SELECT COUNT(audio_albums.id), audio_albums.name as title, " +
                "audio_artists.name as artist " +
         "FROM audio_albums " +
@@ -55,7 +55,7 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
         "WHERE %s;";
 
     /* count songs inside albums */
-    private static const string SQL_CHILD_COUNT_WITH_FILTER_TEMPLATE =
+    private const string SQL_CHILD_COUNT_WITH_FILTER_TEMPLATE =
         "SELECT COUNT(audios.id), audios.title as title, " +
                "audio_artists.name as artist " +
         "FROM audios, files, audio_albums " +
@@ -64,7 +64,7 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
         "WHERE dtime = 0 AND audios.id = files.id AND audios.album_id = audio_albums.id %s;";
 
     /* select songs inside albums */
-    private static const string SQL_CHILD_ALL_WITH_FILTER_TEMPLATE =
+    private const string SQL_CHILD_ALL_WITH_FILTER_TEMPLATE =
         "SELECT files.id, files.path, files.size, " +
                "audios.title as title, audios.trackno, audios.length, audios.channels, audios.sampling_rate, audios.bitrate, audios.dlna_profile, audios.dlna_mime, " +
                "audio_artists.name as artist, " +
@@ -76,7 +76,7 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
         "LIMIT ? OFFSET ?;";
 
 
-    private static const string SQL_FIND_OBJECT =
+    private const string SQL_FIND_OBJECT =
         "SELECT audio_albums.id, audio_albums.name " +
         "FROM audio_albums " +
         "WHERE audio_albums.id = ?;";

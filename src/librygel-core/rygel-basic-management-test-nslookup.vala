@@ -107,11 +107,11 @@ internal class Rygel.BasicManagementTestNSLookup : BasicManagementTest {
         }
     }
 
-    private static const uint MAX_REPETITIONS = 100;
-    private static const uint DEFAULT_REPETITIONS = 1;
-    private static const uint MIN_INTERVAL_TIMEOUT = 1000;
-    private static const uint MAX_INTERVAL_TIMEOUT = 30000;
-    private static const uint DEFAULT_INTERVAL_TIMEOUT = 1000;
+    private const uint MAX_REPETITIONS = 100;
+    private const uint DEFAULT_REPETITIONS = 1;
+    private const uint MIN_INTERVAL_TIMEOUT = 1000;
+    private const uint MAX_INTERVAL_TIMEOUT = 30000;
+    private const uint DEFAULT_INTERVAL_TIMEOUT = 1000;
 
     private struct Result {
         public ProcessState state;

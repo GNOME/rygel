@@ -237,11 +237,11 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
     public Gee.ArrayList<string> create_classes = new Gee.ArrayList<string> ();
     public int child_count { get; set; }
     public string sort_criteria = "+dc:title";
-    public static const string ANY = "DLNA.ORG_AnyContainer";
-    public static const string UPNP_CLASS = "object.container";
-    public static const string STORAGE_FOLDER =
+    public const string ANY = "DLNA.ORG_AnyContainer";
+    public const string UPNP_CLASS = "object.container";
+    public const string STORAGE_FOLDER =
         "object.container.storageFolder";
-    public static const string PLAYLIST =
+    public const string PLAYLIST =
         "object.container.playlistContainer";
     public uint update_id;
 

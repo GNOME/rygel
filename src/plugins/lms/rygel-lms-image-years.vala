@@ -24,12 +24,12 @@ using Rygel;
 using Sqlite;
 
 public class Rygel.LMS.ImageYears : Rygel.LMS.CategoryContainer {
-    private static const string SQL_ALL =
+    private const string SQL_ALL =
         "SELECT DISTINCT(strftime('%Y', images.date, 'unixepoch')) as year " +
         "FROM images " +
         "LIMIT ? OFFSET ?;";
 
-    private static const string SQL_COUNT =
+    private const string SQL_COUNT =
         "SELECT COUNT(DISTINCT(strftime('%Y', images.date, 'unixepoch'))) " +
         "FROM images;";
 
@@ -37,7 +37,7 @@ public class Rygel.LMS.ImageYears : Rygel.LMS.CategoryContainer {
     /* Casting the year is a workaround so we can keep using
      * Database.find_object() without making the argument a variant or
      * something like it */
-    private static const string SQL_FIND_OBJECT =
+    private const string SQL_FIND_OBJECT =
         "SELECT strftime('%Y', images.date, 'unixepoch') as year " +
         "FROM images " +
         "WHERE year = CAST(? AS TEXT)";

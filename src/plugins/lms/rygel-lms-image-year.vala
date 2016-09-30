@@ -24,32 +24,32 @@ using Rygel;
 using Sqlite;
 
 public class Rygel.LMS.ImageYear : Rygel.LMS.CategoryContainer {
-    private static const string SQL_ALL_TEMPLATE =
+    private const string SQL_ALL_TEMPLATE =
         "SELECT images.id, title, artist, date, width, height, path, size, " +
         "dlna_profile, dlna_mime, strftime('%Y', date, 'unixepoch') as year " +
         "FROM images, files " +
         "WHERE dtime = 0 AND images.id = files.id AND year = '%s' " +
         "LIMIT ? OFFSET ?;";
 
-    private static const string SQL_COUNT_TEMPLATE =
+    private const string SQL_COUNT_TEMPLATE =
         "SELECT count(images.id), strftime('%Y', date, 'unixepoch') as year " +
         "FROM images, files " +
         "WHERE dtime = 0 AND images.id = files.id AND year = '%s';";
 
-    private static const string SQL_FIND_OBJECT_TEMPLATE =
+    private const string SQL_FIND_OBJECT_TEMPLATE =
         "SELECT images.id, title, artist, date, width, height, path, size, " +
         "dlna_profile, dlna_mime, strftime('%Y', date, 'unixepoch') as year " +
         "FROM images, files " +
         "WHERE dtime = 0 AND files.id = ? AND images.id = files.id AND year = '%s';";
 
-    private static const string SQL_ADDED_TEMPLATE =
+    private const string SQL_ADDED_TEMPLATE =
         "SELECT images.id, title, artist, date, width, height, path, size, " +
         "dlna_profile, dlna_mime, strftime('%Y', date, 'unixepoch') as year " +
         "FROM images, files " +
         "WHERE dtime = 0 AND images.id = files.id AND year = '%s' " +
         "AND update_id > ? AND update_id <= ?;";
 
-    private static const string SQL_REMOVED_TEMPLATE =
+    private const string SQL_REMOVED_TEMPLATE =
         "SELECT images.id, title, artist, date, width, height, path, size, " +
         "dlna_profile, dlna_mime, strftime('%Y', date, 'unixepoch') as year " +
         "FROM images, files " +

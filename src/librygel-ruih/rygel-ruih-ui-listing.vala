@@ -25,18 +25,18 @@ using Gee;
 
 public abstract class UIListing
 {
-    protected static const string DESCRIPTION = "description";
-    protected static const string FORK = "fork";
-    protected static const string ICON = "icon";
-    protected static const string ICONLIST = "iconList";
-    protected static const string LIFETIME = "lifetime";
-    protected static const string NAME = "name";
-    protected static const string PROTOCOL = "protocol";
-    protected static const string PROTOCOL_INFO = "protocolInfo";
-    protected static const string SHORT_NAME = "shortName";
-    protected static const string UI = "ui";
-    protected static const string URI = "uri";
-    protected static const string UIID = "uiID";
+    protected const string DESCRIPTION = "description";
+    protected const string FORK = "fork";
+    protected const string ICON = "icon";
+    protected const string ICONLIST = "iconList";
+    protected const string LIFETIME = "lifetime";
+    protected const string NAME = "name";
+    protected const string PROTOCOL = "protocol";
+    protected const string PROTOCOL_INFO = "protocolInfo";
+    protected const string SHORT_NAME = "shortName";
+    protected const string UI = "ui";
+    protected const string URI = "uri";
+    protected const string UIID = "uiID";
 
     public abstract bool match (ArrayList<ProtocolElem>? protocols,
                                 ArrayList<FilterEntry> filters);

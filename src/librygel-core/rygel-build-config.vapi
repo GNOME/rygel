@@ -29,41 +29,41 @@
 [CCode (cheader_filename = "config.h")]
 public class Rygel.BuildConfig {
     [CCode (cname = "DATA_DIR")]
-    public static const string DATA_DIR;
+    public const string DATA_DIR;
 
     [CCode (cname = "SYS_CONFIG_DIR")]
-    public static const string SYS_CONFIG_DIR;
+    public const string SYS_CONFIG_DIR;
 
     [CCode (cname = "DESKTOP_DIR")]
-    public static const string DESKTOP_DIR;
+    public const string DESKTOP_DIR;
 
     [CCode (cname = "PLUGIN_DIR")]
-    public static const string PLUGIN_DIR;
+    public const string PLUGIN_DIR;
 
     [CCode (cname = "BIG_ICON_DIR")]
-    public static const string BIG_ICON_DIR;
+    public const string BIG_ICON_DIR;
 
     [CCode (cname = "SMALL_ICON_DIR")]
-    public static const string SMALL_ICON_DIR;
+    public const string SMALL_ICON_DIR;
 
     [CCode (cname = "PACKAGE_NAME")]
-    public static const string PACKAGE_NAME;
+    public const string PACKAGE_NAME;
 
     [CCode (cname = "PACKAGE_VERSION")]
-    public static const string PACKAGE_VERSION;
+    public const string PACKAGE_VERSION;
 
     [CCode (cname = "PACKAGE_STRING")]
-    public static const string PACKAGE_STRING;
+    public const string PACKAGE_STRING;
 
     [CCode (cname = "GETTEXT_PACKAGE")]
-    public static const string GETTEXT_PACKAGE;
+    public const string GETTEXT_PACKAGE;
 
     [CCode (cname = "LOCALEDIR")]
-    public static const string LOCALEDIR;
+    public const string LOCALEDIR;
 
     [CCode (cname = "ENGINE_DIR")]
-    public static const string ENGINE_DIR;
+    public const string ENGINE_DIR;
 
     [CCode (cname = "PRESET_DIR")]
-    public static const string PRESET_DIR;
+    public const string PRESET_DIR;
 }

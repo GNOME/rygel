@@ -391,8 +391,8 @@ internal class Rygel.TestDataSource : Rygel.DataSource, Object {
 }
 
 public class Rygel.MediaItem {
-    private static const long BLOCK_SIZE = HTTPResponseTest.MAX_BYTES / 16;
-    private static const long MAX_BUFFERS = 25;
+    private const long BLOCK_SIZE = HTTPResponseTest.MAX_BYTES / 16;
+    private const long MAX_BUFFERS = 25;
 
     public int64 size {
         get {

@@ -49,7 +49,7 @@ public errordomain MetadataExtractorError {
     GENERAL
 }
 
-static const OptionEntry[] options = {
+const OptionEntry[] options = {
     { "input-fd", 'i', 0, OptionArg.INT, ref in_fd, "File descriptor used for input", null },
     { "output-fd", 'o', 0, OptionArg.INT, ref out_fd, "File descriptor used for output", null },
     { "extract-metadata", 'm', 0, OptionArg.NONE, ref metadata,

@@ -22,7 +22,7 @@
  */
 
 protected class FilterEntry {
-    private static const string LIFETIME = "lifetime";
+    private const string LIFETIME = "lifetime";
 
     private string entry_name = null;
     private string entry_value = null;

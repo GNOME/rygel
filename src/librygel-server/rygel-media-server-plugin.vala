@@ -34,8 +34,8 @@
  * <link linkend="implementing-server-plugins">Implementing Server Plugins</link> section.
  */
 public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
-    private static const string DMS = "urn:schemas-upnp-org:device:MediaServer";
-    private static const string MEDIA_SERVER_DESC_PATH =
+    private const string DMS = "urn:schemas-upnp-org:device:MediaServer";
+    private const string MEDIA_SERVER_DESC_PATH =
                                 BuildConfig.DATA_DIR + "/xml/MediaServer3.xml";
 
     public MediaContainer root_container { get; construct; }

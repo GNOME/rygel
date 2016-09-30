@@ -76,31 +76,31 @@ public enum Rygel.PluginCapabilities {
  * configuration. See rygel_meta_config_get_default().
  */
 public class Rygel.Plugin : GUPnP.ResourceFactory {
-    private static const string PNG_EXT = "png";
-    private static const string JPG_EXT = "jpg";
+    private const string PNG_EXT = "png";
+    private const string JPG_EXT = "jpg";
 
-    private static const string ICON_BIG = "file://" +
+    private const string ICON_BIG = "file://" +
                                            BuildConfig.BIG_ICON_DIR +
                                            "/rygel";
-    private static const string ICON_PNG_BIG = ICON_BIG + "." + PNG_EXT;
-    private static const string ICON_JPG_BIG = ICON_BIG + "." + JPG_EXT;
+    private const string ICON_PNG_BIG = ICON_BIG + "." + PNG_EXT;
+    private const string ICON_JPG_BIG = ICON_BIG + "." + JPG_EXT;
 
-    private static const string ICON_SMALL = "file://" +
+    private const string ICON_SMALL = "file://" +
                                              BuildConfig.SMALL_ICON_DIR +
                                              "/rygel";
-    private static const string ICON_PNG_SMALL = ICON_SMALL + "." + PNG_EXT;
-    private static const string ICON_JPG_SMALL = ICON_SMALL + "." + JPG_EXT;
+    private const string ICON_PNG_SMALL = ICON_SMALL + "." + PNG_EXT;
+    private const string ICON_JPG_SMALL = ICON_SMALL + "." + JPG_EXT;
 
-    private static const string ICON_PNG_MIME = "image/png";
-    private static const string ICON_JPG_MIME = "image/jpeg";
+    private const string ICON_PNG_MIME = "image/png";
+    private const string ICON_JPG_MIME = "image/jpeg";
 
-    private static const int ICON_PNG_DEPTH = 24;
-    private static const int ICON_JPG_DEPTH = 24;
+    private const int ICON_PNG_DEPTH = 24;
+    private const int ICON_JPG_DEPTH = 24;
 
-    private static const int ICON_BIG_WIDTH = 120;
-    private static const int ICON_BIG_HEIGHT = 120;
-    private static const int ICON_SMALL_WIDTH = 48;
-    private static const int ICON_SMALL_HEIGHT = 48;
+    private const int ICON_BIG_WIDTH = 120;
+    private const int ICON_BIG_HEIGHT = 120;
+    private const int ICON_SMALL_WIDTH = 48;
+    private const int ICON_SMALL_HEIGHT = 48;
 
     public PluginCapabilities capabilities { get; construct set; }
 

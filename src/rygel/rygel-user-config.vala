@@ -37,25 +37,25 @@ private enum Rygel.EntryType {
  * Manages the user configuration for Rygel.
  */
 public class Rygel.UserConfig : GLib.Object, Configuration {
-    public static const string GENERAL_SECTION = "general";
-    public static const string CONFIG_FILE = "rygel.conf";
-    public static const string IFACE_KEY = "interface";
-    public static const string PORT_KEY = "port";
-    public static const string ENABLED_KEY = "enabled";
-    public static const string TITLE_KEY = "title";
-    public static const string TRANSCODING_KEY = "enable-transcoding";
-    public static const string ALLOW_UPLOAD_KEY = "allow-upload";
-    public static const string ALLOW_DELETION_KEY = "allow-deletion";
-    public static const string LOG_LEVELS_KEY = "log-level";
-    public static const string PLUGIN_PATH_KEY = "plugin-path";
-    public static const string ENGINE_PATH_KEY = "engine-path";
-    public static const string MEDIA_ENGINE_KEY = "media-engine";
-    public static const string UPLOAD_FOLDER_KEY = "upload-folder";
-    public static const string VIDEO_UPLOAD_DIR_PATH_KEY =
+    public const string GENERAL_SECTION = "general";
+    public const string CONFIG_FILE = "rygel.conf";
+    public const string IFACE_KEY = "interface";
+    public const string PORT_KEY = "port";
+    public const string ENABLED_KEY = "enabled";
+    public const string TITLE_KEY = "title";
+    public const string TRANSCODING_KEY = "enable-transcoding";
+    public const string ALLOW_UPLOAD_KEY = "allow-upload";
+    public const string ALLOW_DELETION_KEY = "allow-deletion";
+    public const string LOG_LEVELS_KEY = "log-level";
+    public const string PLUGIN_PATH_KEY = "plugin-path";
+    public const string ENGINE_PATH_KEY = "engine-path";
+    public const string MEDIA_ENGINE_KEY = "media-engine";
+    public const string UPLOAD_FOLDER_KEY = "upload-folder";
+    public const string VIDEO_UPLOAD_DIR_PATH_KEY =
                                         "video-" + UPLOAD_FOLDER_KEY;
-    public static const string MUSIC_UPLOAD_DIR_PATH_KEY =
+    public const string MUSIC_UPLOAD_DIR_PATH_KEY =
                                         "music-" + UPLOAD_FOLDER_KEY;
-    public static const string PICTURE_UPLOAD_DIR_PATH_KEY =
+    public const string PICTURE_UPLOAD_DIR_PATH_KEY =
                                         "picture-" + UPLOAD_FOLDER_KEY;
 
     // Our singleton

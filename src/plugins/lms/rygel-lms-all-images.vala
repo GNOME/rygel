@@ -24,32 +24,32 @@ using Rygel;
 using Sqlite;
 
 public class Rygel.LMS.AllImages : Rygel.LMS.CategoryContainer {
-    private static const string SQL_ALL =
+    private const string SQL_ALL =
         "SELECT images.id, title, artist, date, width, height, path, size, " +
             "dlna_profile, dlna_mime " +
         "FROM images, files " +
         "WHERE dtime = 0 AND images.id = files.id " +
         "LIMIT ? OFFSET ?;";
 
-    private static const string SQL_COUNT =
+    private const string SQL_COUNT =
         "SELECT count(images.id) " +
         "FROM images, files " +
         "WHERE dtime = 0 AND images.id = files.id;";
 
-    private static const string SQL_FIND_OBJECT =
+    private const string SQL_FIND_OBJECT =
         "SELECT images.id, title, artist, date, width, height, path, size, " +
             "dlna_profile, dlna_mime " +
         "FROM images, files " +
         "WHERE dtime = 0 AND files.id = ? AND images.id = files.id;";
 
-    private static const string SQL_ADDED =
+    private const string SQL_ADDED =
         "SELECT images.id, title, artist, date, width, height, path, size, " +
             "dlna_profile, dlna_mime " +
         "FROM images, files " +
         "WHERE dtime = 0 AND images.id = files.id " +
         "AND update_id > ? AND update_id <= ?;";
 
-    private static const string SQL_REMOVED =
+    private const string SQL_REMOVED =
         "SELECT images.id, title, artist, date, width, height, path, size, " +
         "dlna_profile, dlna_mime " +
         "FROM images, files " +

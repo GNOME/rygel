@@ -31,7 +31,7 @@
  * A TimeSeekRange request can only have a time range ("npt=start-end").
  */
 public class Rygel.HTTPTimeSeekRequest : Rygel.HTTPSeekRequest {
-    public static const string TIMESEEKRANGE_HEADER = "TimeSeekRange.dlna.org";
+    public const string TIMESEEKRANGE_HEADER = "TimeSeekRange.dlna.org";
     /**
      * Requested range start time, in microseconds
      */

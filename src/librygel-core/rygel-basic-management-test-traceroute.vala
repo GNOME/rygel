@@ -25,18 +25,18 @@ using GLib;
 
 // Helper class for BasicManagementTestTraceroute.
 internal class Rygel.BasicManagementTestTraceroute : BasicManagementTest {
-    private static const uint MIN_TIMEOUT = 1000;
-    private static const uint MAX_TIMEOUT = 30000;
-    private static const uint DEFAULT_TIMEOUT = 5000;
-    private static const uint MIN_DATA_BLOCK_SIZE = 20;
-    private static const uint MAX_DATA_BLOCK_SIZE = 2048;
-    private static const uint DEFAULT_DATA_BLOCK_SIZE = 32;
-    private static const uint MAX_DSCP = 64;
-    private static const uint DEFAULT_DSCP = 30;
-    private static const uint MAX_HOPS = 64;
-    private static const uint DEFAULT_HOPS = 30;
-    private static const uint MAX_HOSTS = 2048;
-    private static const uint MAX_RESULT_SIZE = 4;
+    private const uint MIN_TIMEOUT = 1000;
+    private const uint MAX_TIMEOUT = 30000;
+    private const uint DEFAULT_TIMEOUT = 5000;
+    private const uint MIN_DATA_BLOCK_SIZE = 20;
+    private const uint MAX_DATA_BLOCK_SIZE = 2048;
+    private const uint DEFAULT_DATA_BLOCK_SIZE = 32;
+    private const uint MAX_DSCP = 64;
+    private const uint DEFAULT_DSCP = 30;
+    private const uint MAX_HOPS = 64;
+    private const uint DEFAULT_HOPS = 30;
+    private const uint MAX_HOSTS = 2048;
+    private const uint MAX_RESULT_SIZE = 4;
 
     private enum ProcessState {
         INIT,
