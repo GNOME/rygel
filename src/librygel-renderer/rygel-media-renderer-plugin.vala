@@ -31,9 +31,8 @@
  * and return an instance of it from their get_player() implementation.
  */
 public class Rygel.MediaRendererPlugin : Rygel.Plugin {
-    private const string MEDIA_RENDERER_DESC_PATH =
-                                BuildConfig.DATA_DIR +
-                                "/xml/MediaRenderer2.xml";
+    private const string MEDIA_RENDERER_DESC_PATH = BuildConfig.DATA_DIR +
+                                                    "/xml/MediaRenderer2.xml";
     private const string DMR = "urn:schemas-upnp-org:device:MediaRenderer";
 
     private string sink_protocol_info;

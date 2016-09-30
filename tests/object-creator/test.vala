@@ -239,10 +239,8 @@ public class Rygel.MediaContainer : Rygel.MediaObject {
     public string sort_criteria = "+dc:title";
     public const string ANY = "DLNA.ORG_AnyContainer";
     public const string UPNP_CLASS = "object.container";
-    public const string STORAGE_FOLDER =
-        "object.container.storageFolder";
-    public const string PLAYLIST =
-        "object.container.playlistContainer";
+    public const string STORAGE_FOLDER = "object.container.storageFolder";
+    public const string PLAYLIST = "object.container.playlistContainer";
     public uint update_id;
 
     // mockable elements

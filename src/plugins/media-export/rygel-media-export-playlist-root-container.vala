@@ -33,9 +33,9 @@ using GUPnP;
 internal class Rygel.MediaExport.PlaylistRootContainer : Rygel.WritableContainer,
                                                          DBContainer {
     internal const string ID = "virtual-parent:" +
-                                      Rygel.PlaylistItem.UPNP_CLASS;
+                               Rygel.PlaylistItem.UPNP_CLASS;
     internal const string URI = WritableContainer.WRITABLE_SCHEME +
-                                       "playlist-root";
+                                "playlist-root";
     public ArrayList<string> create_classes { get; set; }
 
     public PlaylistRootContainer () {

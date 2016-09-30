@@ -21,7 +21,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-public const string GET_AVAILABLE_SEEK_RANGE_HEADER = "getAvailableSeekRange.dlna.org";
 
 /**
  * This class represents a DLNA getAvailableSeekRange request.
@@ -29,6 +28,7 @@ public const string GET_AVAILABLE_SEEK_RANGE_HEADER = "getAvailableSeekRange.dln
  * A getAvailableSeekRange request can only have a single parameter: "1"
  */
 public class Rygel.DLNAAvailableSeekRangeRequest : Rygel.HTTPSeekRequest {
+    public const string GET_AVAILABLE_SEEK_RANGE_HEADER = "getAvailableSeekRange.dlna.org";
     /**
      * Create a DLNAAvailableSeekRangeRequest corresponding with a HTTPGet
      * that contains a getAvailableSeekRange.dlna.org header value.

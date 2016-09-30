@@ -24,7 +24,7 @@ using GUPnP;
 internal class Rygel.MediaExport.PlaylistContainer : DBContainer,
                                                      Rygel.WritableContainer {
     internal const string URI = WritableContainer.WRITABLE_SCHEME +
-                                       "playlist-container";
+                                "playlist-container";
     public ArrayList<string> create_classes { get; set; }
 
     public PlaylistContainer (string id, string title) {
