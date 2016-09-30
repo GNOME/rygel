@@ -28,10 +28,10 @@
  *
  */
 public class Rygel.RuihServerPlugin : Rygel.Plugin {
-    private static const string RUIH_SERVER_DESC_PATH =
+    private const string RUIH_SERVER_DESC_PATH =
                                 BuildConfig.DATA_DIR +
                                 "/xml/RuihServer2.xml";
-    private static const string RUIH =
+    private const string RUIH =
                                   "urn:schemas-upnp-org:device:RemoteUIServer";
 
 

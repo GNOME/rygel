@@ -41,6 +41,6 @@ public errordomain Rygel.HTTPSeekRequestError {
  */
 public abstract class Rygel.HTTPSeekRequest : GLib.Object {
     // For designating fields that are unset
-    public static const int64 UNSPECIFIED = -1;
+    public const int64 UNSPECIFIED = -1;
     // Note: -1 is significant in that libsoup also uses it to designate an "unknown" value
 }

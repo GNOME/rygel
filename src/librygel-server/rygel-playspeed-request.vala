@@ -29,7 +29,7 @@ public errordomain Rygel.PlaySpeedError {
  * This class represents a DLNA PlaySpeed request (PlaySpeed.dlna.org)
  */
 public class Rygel.PlaySpeedRequest : GLib.Object {
-    public static const string PLAYSPEED_HEADER = "PlaySpeed.dlna.org";
+    public const string PLAYSPEED_HEADER = "PlaySpeed.dlna.org";
 
     public PlaySpeed speed { get; private set; }
 

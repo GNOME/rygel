@@ -25,17 +25,17 @@ using GLib;
 
 // Helper class for BasicManagementTestPing.
 internal class Rygel.BasicManagementTestPing : BasicManagementTest {
-    private static const uint MAX_REPEAT_COUNT = 100;
-    private static const uint DEFAULT_REPEAT_COUNT = 1;
-    private static const uint DEFAULT_REPLY_TIMEOUT = 10000;
-    private static const uint MIN_REQUEST_INTERVAL_TIMEOUT = 1000;
-    private static const uint MAX_REQUEST_INTERVAL_TIMEOUT = 30000;
-    private static const uint DEFAULT_REQUEST_INTERVAL_TIMEOUT = 1000;
-    private static const uint MIN_DATA_BLOCK_SIZE = 20;
-    private static const uint MAX_DATA_BLOCK_SIZE = 2048;
-    private static const uint DEFAULT_DATA_BLOCK_SIZE = 32;
-    private static const uint MAX_DSCP = 64;
-    private static const uint DEFAULT_DSCP = 30;
+    private const uint MAX_REPEAT_COUNT = 100;
+    private const uint DEFAULT_REPEAT_COUNT = 1;
+    private const uint DEFAULT_REPLY_TIMEOUT = 10000;
+    private const uint MIN_REQUEST_INTERVAL_TIMEOUT = 1000;
+    private const uint MAX_REQUEST_INTERVAL_TIMEOUT = 30000;
+    private const uint DEFAULT_REQUEST_INTERVAL_TIMEOUT = 1000;
+    private const uint MIN_DATA_BLOCK_SIZE = 20;
+    private const uint MAX_DATA_BLOCK_SIZE = 2048;
+    private const uint DEFAULT_DATA_BLOCK_SIZE = 32;
+    private const uint MAX_DSCP = 64;
+    private const uint DEFAULT_DSCP = 30;
 
     private enum ProcessState {
         INIT,

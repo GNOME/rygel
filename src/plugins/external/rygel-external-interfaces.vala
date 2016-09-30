@@ -23,8 +23,8 @@
 
 [DBus (name = "org.gnome.UPnP.MediaObject2")]
 public interface Rygel.External.MediaObjectProxy : DBusProxy {
-    public static const string IFACE = "org.gnome.UPnP.MediaObject2";
-    public static const string[] PROPERTIES = { "Parent",
+    public const string IFACE = "org.gnome.UPnP.MediaObject2";
+    public const string[] PROPERTIES = { "Parent",
                                                 "Type",
                                                 "Path",
                                                 "DisplayName" };
@@ -38,8 +38,8 @@ public interface Rygel.External.MediaObjectProxy : DBusProxy {
 [DBus (name = "org.gnome.UPnP.MediaContainer2")]
 public interface Rygel.External.MediaContainerProxy : DBusProxy,
                                                       MediaObjectProxy {
-    public static const string IFACE = "org.gnome.UPnP.MediaContainer2";
-    public static const string[] PROPERTIES = { "ChildCount", "Searchable" };
+    public const string IFACE = "org.gnome.UPnP.MediaContainer2";
+    public const string[] PROPERTIES = { "ChildCount", "Searchable" };
 
     public abstract signal void updated ();
 
@@ -73,8 +73,8 @@ public interface Rygel.External.MediaContainerProxy : DBusProxy,
 
 [DBus (name = "org.gnome.UPnP.MediaItem2")]
 public interface Rygel.External.MediaItemProxy : DBusProxy, MediaObjectProxy {
-    public static const string IFACE = "org.gnome.UPnP.MediaItem2";
-    public static const string[] PROPERTIES = { "URLs",
+    public const string IFACE = "org.gnome.UPnP.MediaItem2";
+    public const string[] PROPERTIES = { "URLs",
                                                 "MIMEType",
                                                 "DLNAProfile",
                                                 "Size",

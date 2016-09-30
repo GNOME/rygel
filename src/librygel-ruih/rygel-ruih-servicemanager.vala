@@ -28,12 +28,12 @@ using GLib;
 
 public class Rygel.RuihServiceManager : Object
 {
-    private static const string DEVICEPROFILE = "deviceprofile";
-    private static const string PROTOCOL = "protocol";
-    private static const string PROTOCOL_INFO = "protocolInfo";
-    private static const string SHORT_NAME = "shortName";
-    private static const string UI = "ui";
-    private static const string UILIST = "uilist";
+    private const string DEVICEPROFILE = "deviceprofile";
+    private const string PROTOCOL = "protocol";
+    private const string PROTOCOL_INFO = "protocolInfo";
+    private const string SHORT_NAME = "shortName";
+    private const string UI = "ui";
+    private const string UILIST = "uilist";
 
     private static string PRE_RESULT =
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"

@@ -24,18 +24,18 @@ using Rygel;
 using Sqlite;
 
 public class Rygel.LMS.Artist : Rygel.LMS.CategoryContainer {
-    private static const string SQL_ALL_TEMPLATE =
+    private const string SQL_ALL_TEMPLATE =
         "SELECT audio_albums.id, audio_albums.name " +
         "FROM audio_albums " +
         "WHERE audio_albums.artist_id = %s " +
         "LIMIT ? OFFSET ?;";
 
-    private static const string SQL_COUNT_TEMPLATE =
+    private const string SQL_COUNT_TEMPLATE =
         "SELECT COUNT(audio_albums.id) " +
         "FROM audio_albums " +
         "WHERE audio_albums.artist_id = %s";
 
-    private static const string SQL_FIND_OBJECT_TEMPLATE =
+    private const string SQL_FIND_OBJECT_TEMPLATE =
         "SELECT audio_albums.id, audio_albums.name " +
         "FROM audio_albums " +
         "WHERE audio_albums.id = ? AND audio_albums.artist_id = %s;";

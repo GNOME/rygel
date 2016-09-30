@@ -21,7 +21,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-public static const string AVAILABLE_SEEK_RANGE_HEADER = "availableSeekRange.dlna.org";
+public const string AVAILABLE_SEEK_RANGE_HEADER = "availableSeekRange.dlna.org";
 
 public class Rygel.DLNAAvailableSeekRangeResponse : Rygel.HTTPResponseElement {
     /**

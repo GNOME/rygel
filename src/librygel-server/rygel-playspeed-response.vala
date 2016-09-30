@@ -27,7 +27,7 @@ public class Rygel.PlaySpeedResponse : Rygel.HTTPResponseElement {
     public const string FRAMERATE_HEADER = "FrameRateInTrickMode.dlna.org";
 
     PlaySpeed speed;
-    public static const int NO_FRAMERATE = -1;
+    public const int NO_FRAMERATE = -1;
 
     /**
      * The framerate supported for the given rate, in frames per second

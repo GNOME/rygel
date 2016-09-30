@@ -23,8 +23,8 @@ using GUPnP;
 
 internal abstract class Rygel.MediaExport.QueryContainer : DBContainer {
     // public static members
-    public static const string PREFIX = "virtual-container:";
-    public static const string ITEM_PREFIX = "virtual-id:";
+    public const string PREFIX = "virtual-container:";
+    public const string ITEM_PREFIX = "virtual-id:";
 
     // public members
     public SearchExpression expression { get; construct set; }

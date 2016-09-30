@@ -25,11 +25,11 @@ using Gee;
 using Xml;
 
 protected class IconElem : UIListing {
-    private static const string MIMETYPE = "mimetype";
-    private static const string WIDTH = "width";
-    private static const string HEIGHT = "height";
-    private static const string DEPTH = "depth";
-    private static const string URL = "url";
+    private const string MIMETYPE = "mimetype";
+    private const string WIDTH = "width";
+    private const string HEIGHT = "height";
+    private const string DEPTH = "depth";
+    private const string URL = "url";
 
     // optional attributes
     private string mime_type = null;

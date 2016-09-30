@@ -25,29 +25,29 @@ using Rygel.Database;
 using Sqlite;
 
 public class Rygel.LMS.AllVideos : Rygel.LMS.CategoryContainer {
-    private static const string SQL_ALL =
+    private const string SQL_ALL =
         "SELECT videos.id, title, artist, length, path, mtime, size, dlna_profile, dlna_mime " +
         "FROM videos, files " +
         "WHERE dtime = 0 AND videos.id = files.id " +
         "LIMIT ? OFFSET ?;";
 
-   private static const string SQL_COUNT =
+   private const string SQL_COUNT =
         "SELECT count(videos.id) " +
         "FROM videos, files " +
         "WHERE dtime = 0 AND videos.id = files.id;";
 
-    private static const string SQL_FIND_OBJECT =
+    private const string SQL_FIND_OBJECT =
         "SELECT videos.id, title, artist, length, path, mtime, size, dlna_profile, dlna_mime " +
         "FROM videos, files " +
         "WHERE dtime = 0 AND files.id = ? AND videos.id = files.id;";
 
-    private static const string SQL_ADDED =
+    private const string SQL_ADDED =
         "SELECT videos.id, title, artist, length, path, mtime, size, dlna_profile, dlna_mime " +
         "FROM videos, files " +
         "WHERE dtime = 0 AND videos.id = files.id " +
         "AND update_id > ? AND update_id <= ?;";
 
-    private static const string SQL_REMOVED =
+    private const string SQL_REMOVED =
         "SELECT videos.id, title, artist, length, path, mtime, size, dlna_profile, dlna_mime " +
         "FROM videos, files " +
         "WHERE dtime <> 0 AND videos.id = files.id " +

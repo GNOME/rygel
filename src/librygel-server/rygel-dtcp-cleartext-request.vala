@@ -23,7 +23,7 @@
 using GUPnP;
 
 public class Rygel.DTCPCleartextRequest : Rygel.HTTPSeekRequest {
-    public static const string DTCP_RANGE_HEADER = "Range.dtcp.com";
+    public const string DTCP_RANGE_HEADER = "Range.dtcp.com";
 
     /**
      * The start of the cleartext range in bytes

@@ -29,7 +29,7 @@
  * dynamic module file.
  */
 public abstract class Rygel.RecursiveModuleLoader : Object {
-    private static const string LOADER_ATTRIBUTES =
+    private const string LOADER_ATTRIBUTES =
                             FileAttribute.STANDARD_NAME + "," +
                             FileAttribute.STANDARD_TYPE + "," +
                             FileAttribute.STANDARD_IS_HIDDEN + "," +

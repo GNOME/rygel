@@ -21,7 +21,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-public static const string GET_AVAILABLE_SEEK_RANGE_HEADER = "getAvailableSeekRange.dlna.org";
+public const string GET_AVAILABLE_SEEK_RANGE_HEADER = "getAvailableSeekRange.dlna.org";
 
 /**
  * This class represents a DLNA getAvailableSeekRange request.

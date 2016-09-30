@@ -24,7 +24,7 @@ using Rygel;
 using Sqlite;
 
 public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
-    private static const string SQL_ALL_TEMPLATE =
+    private const string SQL_ALL_TEMPLATE =
         "SELECT files.id, files.path, files.size, " +
                "audios.title as title, audios.trackno, audios.length, " +
                "audios.channels, audios.sampling_rate, audios.bitrate, " +
@@ -39,12 +39,12 @@ public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
         "WHERE dtime = 0 AND audios.id = files.id AND audios.album_id = %s " +
         "LIMIT ? OFFSET ?;";
 
-    private static const string SQL_COUNT_TEMPLATE =
+    private const string SQL_COUNT_TEMPLATE =
         "SELECT COUNT(audios.id) " +
         "FROM audios, files " +
         "WHERE dtime = 0 AND audios.id = files.id AND audios.album_id = %s;";
 
-    private static const string SQL_COUNT_WITH_FILTER_TEMPLATE =
+    private const string SQL_COUNT_WITH_FILTER_TEMPLATE =
         "SELECT COUNT(audios.id), audios.title as title, " +
                "audio_artists.name as artist, " +
                "audio_albums.name " +
@@ -55,7 +55,7 @@ public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
         "ON audios.album_id = audio_albums.id " +
         "WHERE dtime = 0 AND audios.id = files.id AND audios.album_id = %s;";
 
-    private static const string SQL_FIND_OBJECT_TEMPLATE =
+    private const string SQL_FIND_OBJECT_TEMPLATE =
         "SELECT files.id, files.path, files.size, " +
                "audios.title, audios.trackno, audios.length, " +
                "audios.channels, audios.sampling_rate, audios.bitrate, " +
@@ -70,7 +70,7 @@ public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
         "WHERE dtime = 0 AND files.id = ? AND audios.id = files.id " +
                         "AND audios.album_id = %s;";
 
-    private static const string SQL_ADDED_TEMPLATE =
+    private const string SQL_ADDED_TEMPLATE =
         "SELECT files.id, files.path, files.size, " +
                "audios.title as title, audios.trackno, audios.length, " +
                "audios.channels, audios.sampling_rate, audios.bitrate, " +
@@ -85,7 +85,7 @@ public class Rygel.LMS.Album : Rygel.LMS.CategoryContainer {
         "WHERE dtime = 0 AND audios.id = files.id AND audios.album_id = %s " +
         "AND update_id > ? AND update_id <= ?;";
 
-    private static const string SQL_REMOVED_TEMPLATE =
+    private const string SQL_REMOVED_TEMPLATE =
         "SELECT files.id, files.path, files.size, " +
                "audios.title as title, audios.trackno, audios.length, " +
                "audios.channels, audios.sampling_rate, audios.bitrate, " +
