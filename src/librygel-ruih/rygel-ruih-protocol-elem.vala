@@ -76,7 +76,7 @@ protected class ProtocolElem : UIListing {
     }
 
     public override bool match (Gee.ArrayList<ProtocolElem>? protocols,
-                                Gee.ArrayList filters) {
+                                Gee.ArrayList<FilterEntry> filters) {
         if (protocols == null || protocols.size == 0) {
             return true;
         }
