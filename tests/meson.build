@@ -4,7 +4,7 @@ searchable_container_test = executable(
     'rygel-searchable-container-test',
     files('searchable-container/rygel-searchable-container.vala',
           'searchable-container/test.vala'),
-    dependencies : [test_deps, gupnp_av, gio]
+    dependencies : [test_deps, gupnp_av, gio, gssdp]
 )
 
 object_creator_test = executable(

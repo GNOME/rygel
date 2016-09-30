@@ -162,7 +162,7 @@ public class Rygel.DescriptionFile : Object {
      * @return The currenly set friendly name.
      */
     public string get_friendly_name () {
-        var element = Rygel.XMLUtils.get_element ((Xml.Node *) this.doc.doc,
+        var element = Rygel.XMLUtils.get_element ((Xml.Node *) this.doc.get_doc (),
                                                   "root",
                                                   "device",
                                                   "friendlyName");
@@ -188,7 +188,7 @@ public class Rygel.DescriptionFile : Object {
      * @return The currenly set UDN.
      */
     public string? get_udn () {
-        var element = Rygel.XMLUtils.get_element ((Xml.Node *) this.doc.doc,
+        var element = Rygel.XMLUtils.get_element ((Xml.Node *) this.doc.get_doc (),
                                                   "root",
                                                   "device",
                                                   "UDN");
@@ -376,13 +376,13 @@ public class Rygel.DescriptionFile : Object {
 
     private Xml.Node* get_device_element () {
         return Rygel.XMLUtils.get_element
-                              ((Xml.Node *) this.doc.doc,
+                              ((Xml.Node *) this.doc.get_doc (),
                                "root",
                                "device");
     }
 
     private bool apply_xpath (string xpath, out Xml.XPath.Object *xpo) {
-        var context = new XPath.Context (this.doc.doc);
+        var context = new XPath.Context (this.doc.get_doc ());
         var result = context.eval_expression (xpath);
 
         var retval = result != null &&
@@ -400,7 +400,7 @@ public class Rygel.DescriptionFile : Object {
 
     public void add_service (string device_name, ResourceInfo resource_info) {
         var list = Rygel.XMLUtils.get_element
-                                        ((Xml.Node *) this.doc.doc,
+                                        ((Xml.Node *) this.doc.get_doc (),
                                          "root",
                                          "device",
                                          "serviceList");
@@ -432,7 +432,7 @@ public class Rygel.DescriptionFile : Object {
                           IconInfo icon_info,
                           string   url) {
         var list = Rygel.XMLUtils.get_element
-                                        ((Xml.Node *) this.doc.doc,
+                                        ((Xml.Node *) this.doc.get_doc (),
                                          "root",
                                          "device",
                                          "iconList");
@@ -488,7 +488,7 @@ public class Rygel.DescriptionFile : Object {
     public void save (string path) throws GLib.Error {
         string mem = null;
         int len = -1;
-        doc.doc.dump_memory_enc (out mem, out len, "UTF-8");
+        doc.get_doc ().dump_memory_enc (out mem, out len, "UTF-8");
 
         if (unlikely (len <= 0)) {
             var message = _("Failed to write modified description to %s");
@@ -521,7 +521,7 @@ public class Rygel.DescriptionFile : Object {
                                           string? new_value,
                                           string? ns = null) {
         var xml_element = Rygel.XMLUtils.get_element
-                                        ((Xml.Node *) this.doc.doc,
+                                        ((Xml.Node *) this.doc.get_doc (),
                                          "root",
                                          "device",
                                          element);
@@ -532,13 +532,13 @@ public class Rygel.DescriptionFile : Object {
 
         // Element not found: create it
         var device_element = Rygel.XMLUtils.get_element
-                                ((Xml.Node *) this.doc.doc,
+                                ((Xml.Node *) this.doc.get_doc (),
                                  "root",
                                  "device");
 
         Xml.Ns *xml_ns = null;
         if (ns != null) {
-            xml_ns = this.doc.doc.search_ns(device_element, ns);
+            xml_ns = this.doc.get_doc ().search_ns(device_element, ns);
         }
 
         xml_element = device_element->new_child (xml_ns, element, new_value);
@@ -550,7 +550,7 @@ public class Rygel.DescriptionFile : Object {
             Xml.Node* sibling = null;
             for (index--; index > 0; index--) {
                 sibling = Rygel.XMLUtils.get_element
-                                        ((Xml.Node *) this.doc.doc,
+                                        ((Xml.Node *) this.doc.get_doc (),
                                          "root",
                                          "device",
                                          device_elements[index]);
@@ -580,7 +580,7 @@ public class Rygel.DescriptionFile : Object {
      */
     private void remove_device_element (string element) {
         var xml_element = Rygel.XMLUtils.get_element
-                                        ((Xml.Node *) this.doc.doc,
+                                        ((Xml.Node *) this.doc.get_doc (),
                                          "root",
                                          "device",
                                          element);

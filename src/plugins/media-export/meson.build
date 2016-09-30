@@ -19,7 +19,7 @@ mx_extract_sources = [
 
 mx_extract = executable('mx-extract',
                         mx_extract_sources,
-                        dependencies : mx_export_deps,
+                        dependencies : [mx_export_deps, gssdp],
                         c_args : ['-DG_LOG_DOMAIN="MxExtract"'],
                         link_with: constants,
                         install: true,

@@ -37,23 +37,24 @@ using Gee;
  * having first instantiated the #RygelRootDeviceFactory
  * for a #GUPnPContext.
  */
-public class Rygel.RootDevice: GUPnP.RootDevice {
+public class Rygel.RootDevice: GUPnP.RootDevice, GLib.Initable {
     public ArrayList<ServiceInfo> services { get; internal set; }   /* Services we implement */
 
     public RootDevice (GUPnP.Context context,
                        Plugin        plugin,
                        XMLDoc        description_doc,
                        string        description_path,
-                       string        description_dir) {
+                       string        description_dir) throws Error {
         Object (context : context,
                 resource_factory : plugin,
                 description_doc : description_doc,
                 description_path: description_path,
                 description_dir: description_dir);
+        init (null);
     }
 
-    public override void constructed () {
-        base.constructed ();
+    public bool init (Cancellable? cancellable) throws Error {
+        base.init (cancellable);
 
         this.services = new ArrayList<ServiceInfo> ();
         var plugin = this.resource_factory as Plugin;
@@ -67,5 +68,7 @@ public class Rygel.RootDevice: GUPnP.RootDevice {
                 this.services.add (service);
             }
         }
+
+        return true;
     }
 }
