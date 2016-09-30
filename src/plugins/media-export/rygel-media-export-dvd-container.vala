@@ -58,7 +58,7 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
                                         Xml.ParserOption.NONET);
         this.doc = new GUPnP.XMLDoc (doc);
 
-        var context = new Xml.XPath.Context (this.doc.doc);
+        var context = new Xml.XPath.Context (this.doc.get_doc ());
         var xpo = context.eval ("/lsdvd/track");
         if (xpo->type != Xml.XPath.ObjectType.NODESET) {
             warning ("No tracks found in DVD");
@@ -82,7 +82,7 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
 
         var parts = id.split (":");
         var track = int.parse (parts[2]);
-        var context = new Xml.XPath.Context (this.doc.doc);
+        var context = new Xml.XPath.Context (this.doc.get_doc ());
         var xpo = context.eval ("/lsdvd/track");
         if (!(xpo->type == Xml.XPath.ObjectType.NODESET &&
               xpo->nodesetval->length () >= track)) {
