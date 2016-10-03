@@ -146,7 +146,7 @@ static void send_error (File file, Error err) {
 }
 
 int main (string[] args) {
-    var ctx = new OptionContext (_("- helper binary for Rygel to extract metadata"));
+    var ctx = new OptionContext (_("— helper binary for Rygel to extract metadata"));
     ctx.add_main_entries (options, null);
     ctx.add_group (Gst.init_get_option_group ());
 

@@ -188,7 +188,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
 
         if (this.elements == null) {
             throw new ContentDirectoryError.BAD_METADATA
-                                        (_("'Elements' argument missing."));
+                                        (_("“Elements” argument missing."));
         } else if (comment_pattern.match_string (this.elements)) {
             throw new ContentDirectoryError.BAD_METADATA
                                         (_("Comments not allowed in XML"));
@@ -221,7 +221,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
         }
 
         if (this.didl_object == null) {
-            var message = _("No objects in DIDL-Lite from client: '%s'");
+            var message = _("No objects in DIDL-Lite from client: “%s”");
 
             throw new ContentDirectoryError.BAD_METADATA
                                         (message, this.elements);
@@ -244,7 +244,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
              (OCMFlags.UPLOAD |
               OCMFlags.CREATE_CONTAINER |
               OCMFlags.UPLOAD_DESTROYABLE)) != 0)) {
-            var msg =  _("Flags that must not be set were found in 'dlnaManaged'");
+            var msg =  _("Flags that must not be set were found in “dlnaManaged”");
             throw new ContentDirectoryError.BAD_METADATA (msg);
         }
 
@@ -380,7 +380,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
 
         if (upnp_class == "object") {
             throw new ContentDirectoryError.BAD_METADATA
-                                    (_("UPnP class '%s' not supported"),
+                                    (_("UPnP class “%s” not supported"),
                                      this.didl_object.upnp_class);
         }
 
@@ -471,7 +471,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
             this.action.return_error (701, error.message);
         }
 
-        warning (_("Failed to create item under '%s': %s"),
+        warning (_("Failed to create item under “%s”: %s"),
                  this.container_id,
                  error.message);
 
@@ -545,7 +545,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
             if (info != null) {
                 if (info.dlna_profile != null) {
                     if (!this.is_profile_valid (info.dlna_profile)) {
-                        var msg = _("DLNA profile '%s' not supported");
+                        var msg = _("DLNA profile “%s” not supported");
                         throw new ContentDirectoryError.BAD_METADATA
                                     (msg,
                                      info.dlna_profile);
@@ -645,7 +645,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
             container.upnp_class = upnp_class;
             return container;
         default:
-            var msg = _("Cannot create object of class '%s': Not supported");
+            var msg = _("Cannot create object of class “%s”: Not supported");
             throw new ContentDirectoryError.BAD_METADATA (msg, upnp_class);
         }
     }
@@ -743,7 +743,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
                 object = yield container.find_object (this.object.id,
                                                       this.cancellable);
             } catch (Error error) {
-                var msg = _("Error from container '%s' on trying to find the newly added child object '%s' in it: %s");
+                var msg = _("Error from container “%s” on trying to find the newly added child object “%s” in it: %s");
                 warning (msg, container.id, this.object.id, error.message);
             }
 

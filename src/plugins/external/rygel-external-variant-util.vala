@@ -20,7 +20,7 @@
 
 namespace Rygel.External {
     public static string MANDATORY_MISSING_MESSAGE =
-        N_("External provider %s did not provide mandatory property \"%s\"");
+        N_("External provider %s did not provide mandatory property “%s”");
 
     public static Variant? get_mandatory
                                     (HashTable<string, Variant> props,

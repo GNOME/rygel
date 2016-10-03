@@ -131,7 +131,7 @@ internal class Rygel.Browse: Rygel.MediaQueryAction {
     }
 
     protected override void handle_error (Error error) {
-        warning (_("Failed to browse '%s': %s\n"),
+        warning (_("Failed to browse “%s”: %s\n"),
                  this.object_id,
                  error.message);
 

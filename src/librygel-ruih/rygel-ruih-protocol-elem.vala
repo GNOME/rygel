@@ -39,7 +39,7 @@ protected class ProtocolElem : UIListing {
                 this.short_name = prop->children->content;
                 break;
             default:
-                var msg = _("Unable to parse Protocol data - unexpected attribute: %s");
+                var msg = _("Unable to parse Protocol data — unexpected attribute: %s");
                 throw new Rygel.RuihServiceError.OPERATION_REJECTED
                                         (msg.printf (attr_name));
             }
@@ -60,7 +60,7 @@ protected class ProtocolElem : UIListing {
                 this.protocol_info = child_node->get_content ();
                 break;
             default:
-                var msg = _("Unable to parse Protocol data - unexpected node: %s");
+                var msg = _("Unable to parse Protocol data — unexpected node: %s");
                 throw new Rygel.RuihServiceError.OPERATION_REJECTED
                                         (msg.printf (node_name));
             }

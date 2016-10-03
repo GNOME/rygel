@@ -91,7 +91,7 @@ internal class Rygel.Search:  Rygel.MediaQueryAction {
     }
 
     protected override void handle_error (Error error) {
-        warning (_("Failed to search in '%s': %s"),
+        warning (_("Failed to search in “%s”: %s"),
                  this.object_id,
                  error.message);
 

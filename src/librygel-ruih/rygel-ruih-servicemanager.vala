@@ -87,7 +87,7 @@ public class Rygel.RuihServiceManager : Object
                     try {
                         this.set_ui_list (ui_listing_full_path);
                     } catch (RuihServiceError e) {
-                        warning (_("Failed to set UIList for file %s - %s"),
+                        warning (_("Failed to set UIList for file %s — %s"),
                                  ui_listing_full_path,
                                  e.message);
                     }
@@ -98,11 +98,11 @@ public class Rygel.RuihServiceManager : Object
                 }
             });
         } catch (RuihServiceError e) {
-            warning (_("Failed to set initial UI list for file %s - %s"),
+            warning (_("Failed to set initial UI list for file %s — %s"),
                      this.ui_listing_full_path,
                      e.message);
         } catch (IOError e) {
-            warning (_("Failed to monitor the file %s - %s"),
+            warning (_("Failed to monitor the file %s — %s"),
                      this.ui_listing_full_path,
                      e.message);
         }

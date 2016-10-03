@@ -116,7 +116,7 @@ public class Rygel.WritableUserConfig : Rygel.UserConfig {
         try {
             FileUtils.set_contents (path, data, (long) length);
         } catch (FileError err) {
-            critical (_("Failed to save configuration data to file '%s': %s"),
+            critical (_("Failed to save configuration data to file “%s”: %s"),
                       path,
                       err.message);
         }

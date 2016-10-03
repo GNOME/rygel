@@ -75,7 +75,7 @@ protected class UIElem : UIListing
                 this.protocols.add (new ProtocolElem (child_node));
                 break;
             default:
-                var msg = _("Unable to parse UI data - unexpected node: %s");
+                var msg = _("Unable to parse UI data — unexpected node: %s");
                 throw new Rygel.RuihServiceError.OPERATION_REJECTED
                                         (msg.printf (node_name));
             }

@@ -121,7 +121,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
 
             this.item = yield this.fetch_item ();
         } catch (Error error) {
-            warning (_("Failed to get original URI for '%s': %s"),
+            warning (_("Failed to get original URI for “%s”: %s"),
                      this.destination_uri,
                      error.message);
 
@@ -183,10 +183,10 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         if (media_object == null ||
             !(media_object is MediaFileItem) ||
             !(media_object.parent is WritableContainer)) {
-            msg = _("URI '%s' invalid for importing contents to").printf
+            msg = _("URI “%s” invalid for importing contents to").printf
                                         (this.destination_uri);
         } else if (!(media_object as MediaFileItem).place_holder) {
-            msg = _("Pushing data to non-empty item '%s' not allowed").printf
+            msg = _("Pushing data to non-empty item “%s” not allowed").printf
                                         (media_object.id);
         } else if (media_object.get_uris ().is_empty) {
             assert_not_reached ();

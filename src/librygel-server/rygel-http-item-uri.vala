@@ -149,7 +149,7 @@ public class Rygel.HTTPItemURI : Object {
         var parts = request_uri.split ("/");
 
         if (parts.length < 2 || parts.length % 2 == 0) {
-            throw new HTTPRequestError.BAD_REQUEST (_("Invalid URI '%s'"),
+            throw new HTTPRequestError.BAD_REQUEST (_("Invalid URI “%s”"),
                                                     request_uri);
         }
 

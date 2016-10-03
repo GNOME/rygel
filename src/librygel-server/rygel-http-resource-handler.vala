@@ -88,7 +88,7 @@ internal class Rygel.HTTPMediaResourceHandler : HTTPGetHandler {
                                     (request, this.media_resource);
             if (src == null) {
                 throw new HTTPRequestError.NOT_FOUND
-                              (_("Couldn't create data source for %s"),
+                              (_("Couldn’t create data source for %s"),
                                this.media_resource.get_name ());
             }
 

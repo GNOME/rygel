@@ -59,7 +59,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
 
     private async void handle_real () throws Error {
         if (!(this.object as MediaFileItem).place_holder) {
-            var msg = _("Pushing data to non-empty item '%s' not allowed");
+            var msg = _("Pushing data to non-empty item “%s” not allowed");
 
             throw new ContentDirectoryError.INVALID_ARGS (msg, this.object.id);
         }

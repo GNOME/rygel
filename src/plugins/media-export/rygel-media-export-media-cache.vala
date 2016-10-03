@@ -658,7 +658,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             } else if (old_version == current_version) {
                 upgrader.fix_schema ();
             } else {
-                warning (_("The version \"%d\" of the detected database is newer than our supported version \"%d\""),
+                warning (_("The version “%d” of the detected database is newer than our supported version “%d”"),
                          old_version,
                          current_version);
                 this.db = null;

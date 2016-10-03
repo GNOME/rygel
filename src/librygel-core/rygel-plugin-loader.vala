@@ -86,7 +86,7 @@ public class Rygel.PluginLoader : RecursiveModuleLoader {
     }
 
     public void add_plugin (Plugin plugin) {
-        message (_("New plugin '%s' available"), plugin.name);
+        message (_("New plugin “%s” available"), plugin.name);
         this.plugin_hash.set (plugin.name, plugin);
         this.plugin_available (plugin);
     }
@@ -110,7 +110,7 @@ public class Rygel.PluginLoader : RecursiveModuleLoader {
         Module module = Module.open (module_file.get_path (),
                                      ModuleFlags.BIND_LOCAL);
         if (module == null) {
-            warning (_("Failed to load module from path '%s': %s"),
+            warning (_("Failed to load module from path “%s”: %s"),
                      module_file.get_path (),
                      Module.error ());
 
@@ -120,7 +120,7 @@ public class Rygel.PluginLoader : RecursiveModuleLoader {
         void* function;
 
         if (!module.symbol("module_init", out function)) {
-            warning (_("Failed to find entry point function '%s' in '%s': %s"),
+            warning (_("Failed to find entry point function “%s” in “%s”: %s"),
                      "module_init",
                      module_file.get_path (),
                      Module.error ());

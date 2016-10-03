@@ -55,7 +55,7 @@ internal abstract class Rygel.GstUtils {
             } else if (uri.has_prefix ("dvd://")) {
                 src = ElementFactory.make ("dvdreadsrc", "dvdreadsrc");
                 if (src == null) {
-                    warning (_("GStreamer element 'dvdreadsrc' not found. DVD support does not work"));
+                    warning (_("GStreamer element “dvdreadsrc” not found. DVD support does not work"));
 
                     return null;
                 }

@@ -47,12 +47,12 @@ internal class Rygel.ReferenceCreator : GLib.Object, Rygel.StateMachine {
                              typeof (string), out this.object_id);
         if (this.container_id == null) {
             throw new ContentDirectoryError.INVALID_ARGS
-                                        (_("'ContainerID' agument missing."));
+                                        (_("“ContainerID” agument missing."));
         }
 
         if (this.object_id == null) {
             throw new ContentDirectoryError.INVALID_ARGS
-                                        (_("'ObjectID' argument missing."));
+                                        (_("“ObjectID” argument missing."));
         }
     }
 
@@ -83,7 +83,7 @@ internal class Rygel.ReferenceCreator : GLib.Object, Rygel.StateMachine {
                 this.action.return_error (402, error.message);
             }
 
-            warning (_("Failed to create object under '%s': %s"),
+            warning (_("Failed to create object under “%s”: %s"),
                      this.container_id,
                      error.message);
 

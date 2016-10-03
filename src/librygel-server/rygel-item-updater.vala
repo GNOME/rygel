@@ -78,7 +78,7 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
 
             this.action.return ();
 
-            debug (_("Successfully updated object '%s'"), this.object_id);
+            debug (_("Successfully updated object “%s”"), this.object_id);
         } catch (Error error) {
             if (error is ContentDirectoryError) {
                 this.action.return_error (error.code, error.message);
@@ -86,7 +86,7 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
                 this.action.return_error (701, error.message);
             }
 
-            warning (_("Failed to update object '%s': %s"),
+            warning (_("Failed to update object “%s”: %s"),
                      this.object_id,
                      error.message);
         }

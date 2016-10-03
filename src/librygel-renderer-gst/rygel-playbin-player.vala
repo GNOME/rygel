@@ -364,7 +364,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         this.playbin = ElementFactory.make ("playbin", null);
         if (this.playbin == null) {
             throw new PlayerError.NO_ELEMENT (
-                _("Your GStreamer installation seems to be missing the \"playbin\" element. The Rygel GStreamer renderer implementation cannot work without it"));
+                _("Your GStreamer installation seems to be missing the “playbin” element. The Rygel GStreamer renderer implementation cannot work without it"));
         }
         this.setup_playbin ();
     }

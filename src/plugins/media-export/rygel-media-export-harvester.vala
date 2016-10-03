@@ -143,7 +143,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
     private void on_file_harvested (StateMachine state_machine) {
         var task = state_machine as HarvestingTask;
         var file = task.origin;
-        message (_("'%s' harvested"), file.get_uri ());
+        message (_("“%s” harvested"), file.get_uri ());
 
         this.tasks.unset (file);
         if (this.tasks.is_empty) {
@@ -199,7 +199,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                                         as MediaContainer;
                     this.schedule (file, parent_container);
                 } catch (Database.DatabaseError error) {
-                    warning (_("Error fetching object '%s' from database: %s"),
+                    warning (_("Error fetching object “%s” from database: %s"),
                             id,
                             error.message);
                 }

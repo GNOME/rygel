@@ -92,7 +92,7 @@ public abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
                this.uri.resource_name != null) ||
               (media_object is MediaFileItem))) {
             throw new HTTPRequestError.NOT_FOUND
-                                        (_("Requested item '%s' not found"),
+                                        (_("Requested item “%s” not found"),
                                          this.uri.item_id);
         }
 

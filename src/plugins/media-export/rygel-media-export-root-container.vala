@@ -363,7 +363,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
      */
     private RootContainer () {
         Object (id : "0",
-                title : _("@REALNAME@'s media"),
+                title : _("@REALNAME@’s media"),
                 parent : null,
                 child_count : 0);
     }

@@ -72,7 +72,7 @@ internal class Rygel.MediaExport.PlaylistRootContainer : Rygel.WritableContainer
                                 Cancellable?        cancellable)
                                 throws Error {
         throw new WritableContainerError.NOT_IMPLEMENTED
-                                        (_("Can't create items in %s"),
+                                        (_("Can’t create items in %s"),
                                          this.id);
     }
 
@@ -80,7 +80,7 @@ internal class Rygel.MediaExport.PlaylistRootContainer : Rygel.WritableContainer
                                    Cancellable? cancellable)
                                    throws Error {
         throw new WritableContainerError.NOT_IMPLEMENTED
-                                        (_("Can't remove items in %s"),
+                                        (_("Can’t remove items in %s"),
                                          this.id);
    }
 

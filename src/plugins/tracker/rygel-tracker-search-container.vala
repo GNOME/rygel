@@ -225,7 +225,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
             }
 
         } catch (GLib.Error error) {
-            critical (_("Error getting item count under category '%s': %s"),
+            critical (_("Error getting item count under category “%s”: %s"),
                       this.item_factory.category,
                       error.message);
 

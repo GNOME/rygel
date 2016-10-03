@@ -67,7 +67,7 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
 
         var folder = File.new_for_path (this.base_path);
         if (folder == null || !this.is_folder (folder)) {
-            warning (_("Failed to open plugins folder: '%s'"),
+            warning (_("Failed to open plugins folder: “%s”"),
                      this.base_path);
 
             return;
@@ -146,7 +146,7 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
                                                        Priority.DEFAULT,
                                                        null);
         } catch (Error error) {
-            critical (_("Error listing contents of folder '%s': %s"),
+            critical (_("Error listing contents of folder “%s”: %s"),
                       folder.get_path (),
                       error.message);
 
@@ -218,7 +218,7 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
 
             return this.is_folder_eligible (file_info);
         } catch (Error error) {
-            critical (_("Failed to query content type for '%s'"),
+            critical (_("Failed to query content type for “%s”"),
                       file.get_path ());
 
             return false;

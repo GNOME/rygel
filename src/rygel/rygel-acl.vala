@@ -140,9 +140,9 @@ internal class Rygel.Acl : GLib.Object, GUPnP.Acl
                                          "acl-fallback-policy");
         } catch (Error error) {
             if (this.fallback_policy) {
-                message (_("No ACL fallback policy found. Using \"allow\""));
+                message (_("No ACL fallback policy found. Using “allow”"));
             } else {
-                message (_("No ACL fallback policy found. Using \"deny\""));
+                message (_("No ACL fallback policy found. Using “deny”"));
             }
         }
     }

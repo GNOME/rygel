@@ -60,7 +60,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
                 var uri = Filename.to_uri (item_factory.upload_dir, null);
                 this.add_uri (uri);
             } catch (ConvertError error) {
-                warning (_("Failed to construct URI for folder '%s': %s"),
+                warning (_("Failed to construct URI for folder “%s”: %s"),
                         item_factory.upload_dir,
                         error.message);
             }

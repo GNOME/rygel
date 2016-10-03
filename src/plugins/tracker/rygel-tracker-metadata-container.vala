@@ -107,7 +107,7 @@ public abstract class Rygel.Tracker.MetadataContainer : Rygel.SimpleContainer {
                 this.add_child_container (container);
             }
         } catch (Error error) {
-            critical (_("Error getting all values for '%s': %s"),
+            critical (_("Error getting all values for “%s”: %s"),
                       this.id,
                       error.message);
             this.update_in_progress = false;

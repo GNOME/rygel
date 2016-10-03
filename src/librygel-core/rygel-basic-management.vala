@@ -172,13 +172,13 @@ public class Rygel.BasicManagement : Service {
                     (action_name == "GetNSLookupResult") ||
                     (action_name == "GetTracerouteResult"))) {
             /// TestID is valid but the test Results are not available
-            action.return_error (708, _("Invalid Test State '%s'").printf (
+            action.return_error (708, _("Invalid Test State “%s”").printf (
                                         bm_test.execution_state.to_string ()));
 
             return false;
         } else if ((action_name == "CancelTest") && !bm_test.is_active ()) {
             /// TestID is valid but the test can't be canceled
-            action.return_error (709, _("State '%s' Precludes Cancel").printf (
+            action.return_error (709, _("State “%s” Precludes Cancel").printf (
                                         bm_test.execution_state.to_string ()));
 
             return false;
@@ -252,7 +252,7 @@ public class Rygel.BasicManagement : Service {
                         out dscp);
 
         if (host == "") {
-            warning (_("Cannot run 'Ping' action: Host is empty"));
+            warning (_("Cannot run “Ping” action: Host is empty"));
             action.return_error (402, _("Invalid argument"));
 
             return;
@@ -345,7 +345,7 @@ public class Rygel.BasicManagement : Service {
                         out interval_time_out);
 
         if (hostname == "") {
-            warning (_("Cannot run 'NSLookup' action: HostName is empty"));
+            warning (_("Cannot run “NSLookup” action: HostName is empty"));
             action.return_error (402, _("Invalid argument"));
 
             return;
@@ -427,7 +427,7 @@ public class Rygel.BasicManagement : Service {
                         out dscp);
 
         if (host == "") {
-            warning (_("Cannot run 'Traceroute' action: Host is empty"));
+            warning (_("Cannot run “Traceroute” action: Host is empty"));
             action.return_error (402, _("Invalid argument"));
 
             return;

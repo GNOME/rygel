@@ -63,7 +63,7 @@ protected class IconElem : UIListing {
                 this.url = child_node->get_content ();
                 break;
             default:
-                var msg = _("Unable to parse Icon data - unexpected node: %s");
+                var msg = _("Unable to parse Icon data — unexpected node: %s");
                 throw new Rygel.RuihServiceError.OPERATION_REJECTED
                                         (msg.printf (node_name));
             }
