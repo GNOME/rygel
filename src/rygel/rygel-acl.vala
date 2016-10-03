@@ -124,7 +124,7 @@ internal class Rygel.Acl : GLib.Object, GUPnP.Acl
                                                 name,
                                                 DBusAclProvider.OBJECT_PATH);
         } catch (Error error) {
-            warning (_("Error creating DBus proxy for ACL: %s"),
+            warning (_("Error creating D-Bus proxy for ACL: %s"),
                      error.message);
         }
     }
