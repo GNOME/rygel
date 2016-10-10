@@ -1,3 +1,16 @@
+0.32.1
+======
+
+- Translation updates
+- Fix compile warnings with newer vala compiler
+
+All contributors to this release:
+ - Rico Tzschichholz <ricotz@ubuntu.com>
+ - Gianvito Cavasoli <gianvito@gmx.it>
+
+Added/updated translations
+ - it, courtesy of Gianvito Cavasoli
+
 0.32.0
 ======
  - Translation updates
