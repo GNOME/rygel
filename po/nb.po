@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel 0.32.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-15 14:58+0200\n"
-"PO-Revision-Date: 2016-10-15 15:01+0200\n"
+"POT-Creation-Date: 2016-10-15 15:27+0200\n"
+"PO-Revision-Date: 2016-10-15 15:28+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
@@ -942,7 +942,9 @@ msgstr "Tittel %d"
 #: ../src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
 msgid ""
 "Failed to find lsdvd binary in path. DVD extraction will not be available"
-msgstr "Klarte ikke å finne binærfilen lsdvd i stien. DVD-utpakking vil ikke være tilgjengelig"
+msgstr ""
+"Klarte ikke å finne binærfilen lsdvd i stien. DVD-utpakking vil ikke være "
+"tilgjengelig"
 
 #: ../src/plugins/media-export/rygel-media-export-extract.vala:73
 msgid "Invalid command received, ignoring"
@@ -1105,16 +1107,18 @@ msgid "Failed to get whether URI %s is blacklisted: %s"
 msgstr "Klarte ikke å sjekke om URI %s er sortelistet: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:622
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get whether item %s is guarded: %s"
-msgstr "Klarte ikke å opprette oppføring under «%s»: %s"
+msgstr "Klarte ikke å finne ut om oppføring %s er bevoktet: %s"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:661
 #, c-format
 msgid ""
 "The version \"%d\" of the detected database is newer than our supported "
 "version \"%d\""
-msgstr "Versjon «%d» av databasen som ble funnet er nyere enn vår støttede versjon «%d»"
+msgstr ""
+"Versjon «%d» av databasen som ble funnet er nyere enn vår støttede versjon "
+"«%d»"
 
 #: ../src/plugins/media-export/rygel-media-export-media-cache.vala:685
 msgid "Incompatible schema… cannot proceed"
