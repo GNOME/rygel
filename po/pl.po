@@ -8,9 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-27 14:49+0000\n"
-"PO-Revision-Date: 2016-09-10 19:00+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2016-10-03 13:26+0000\n"
+"PO-Revision-Date: 2016-10-21 13:50+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -141,13 +142,13 @@ msgstr "Błędny typ testu"
 #. / TestID is valid but the test Results are not available
 #: src/librygel-core/rygel-basic-management.vala:175
 #, c-format
-msgid "Invalid Test State '%s'"
+msgid "Invalid Test State “%s”"
 msgstr "Nieprawidłowy stan testu „%s”"
 
 #. / TestID is valid but the test can't be canceled
 #: src/librygel-core/rygel-basic-management.vala:181
 #, c-format
-msgid "State '%s' Precludes Cancel"
+msgid "State “%s” Precludes Cancel"
 msgstr "Stan „%s” uniemożliwia anulowanie"
 
 #: src/librygel-core/rygel-basic-management.vala:214
@@ -184,15 +185,15 @@ msgid "Invalid argument"
 msgstr "Nieprawidłowy parametr"
 
 #: src/librygel-core/rygel-basic-management.vala:255
-msgid "Cannot run 'Ping' action: Host is empty"
+msgid "Cannot run “Ping” action: Host is empty"
 msgstr "Nie można wykonać działania „Ping”: komputer jest pusty"
 
 #: src/librygel-core/rygel-basic-management.vala:348
-msgid "Cannot run 'NSLookup' action: HostName is empty"
+msgid "Cannot run “NSLookup” action: HostName is empty"
 msgstr "Nie można wykonać działania „NSLookup”: nazwa komputera jest pusta"
 
 #: src/librygel-core/rygel-basic-management.vala:430
-msgid "Cannot run 'Traceroute' action: Host is empty"
+msgid "Cannot run “Traceroute” action: Host is empty"
 msgstr "Nie można wykonać działania „Traceroute”: komputer jest pusty"
 
 #: src/librygel-core/rygel-connection-manager.vala:132
@@ -260,13 +261,13 @@ msgstr "Brak dostępnej wartości"
 #. translators: "enabled" is part of the config key and must not be translated
 #: src/librygel-core/rygel-meta-config.vala:336
 #, c-format
-msgid "No value set for '%s/enabled'"
+msgid "No value set for “%s/enabled”"
 msgstr "Nie ustawiono wartości dla „%s/enabled”"
 
 #. translators: "title" is part of the config key and must not be translated
 #: src/librygel-core/rygel-meta-config.vala:355
 #, c-format
-msgid "No value set for '%s/title'"
+msgid "No value set for “%s/title”"
 msgstr "Nie ustawiono wartości dla „%s/title”"
 
 #: src/librygel-core/rygel-meta-config.vala:375
@@ -275,7 +276,7 @@ msgstr "Nie ustawiono wartości dla „%s/title”"
 #: src/librygel-core/rygel-meta-config.vala:445
 #: src/librygel-core/rygel-meta-config.vala:469
 #, c-format
-msgid "No value available for '%s/%s'"
+msgid "No value available for “%s/%s”"
 msgstr "Brak dostępnej wartości dla „%s/%s”"
 
 #: src/librygel-core/rygel-plugin-information.vala:59
@@ -289,7 +290,7 @@ msgstr "Moduł wtyczki %s nie istnieje"
 
 #: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
-msgid "New plugin '%s' available"
+msgid "New plugin “%s” available"
 msgstr "Dostępna jest nowa wtyczka „%s”"
 
 #: src/librygel-core/rygel-plugin-loader.vala:104
@@ -299,22 +300,22 @@ msgstr "Moduł o nazwie %s jest już wczytany"
 
 #: src/librygel-core/rygel-plugin-loader.vala:113
 #, c-format
-msgid "Failed to load module from path '%s': %s"
+msgid "Failed to load module from path “%s”: %s"
 msgstr "Wczytanie modułu ze ścieżki „%s” się nie powiodło: %s"
 
 #: src/librygel-core/rygel-plugin-loader.vala:123
 #, c-format
-msgid "Failed to find entry point function '%s' in '%s': %s"
+msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "Wyszukanie funkcji punktu wejściowego „%s” w „%s” się nie powiodło: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
-msgid "Failed to open plugins folder: '%s'"
+msgid "Failed to open plugins folder: “%s”"
 msgstr "Otwarcie katalogu wtyczek się nie powiodło: „%s”"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
-msgid "Error listing contents of folder '%s': %s"
+msgid "Error listing contents of folder “%s”: %s"
 msgstr "Błąd podczas wyświetlania zawartości katalogu „%s”: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:193
@@ -324,7 +325,7 @@ msgstr "Nie można wczytać wtyczki: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:221
 #, c-format
-msgid "Failed to query content type for '%s'"
+msgid "Failed to query content type for “%s”"
 msgstr "Odpytanie typu zawartości dla „%s” się nie powiodło"
 
 #: src/librygel-db/database-cursor.vala:99
@@ -344,7 +345,7 @@ msgstr "Przywrócenie transakcji się nie powiodło: %s"
 
 #: src/librygel-renderer-gst/rygel-playbin-player.vala:367
 msgid ""
-"Your GStreamer installation seems to be missing the \"playbin\" element. The "
+"Your GStreamer installation seems to be missing the “playbin” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
 "W instalacji biblioteki GStreamer brakuje elementu „playbin”. Implementacja "
@@ -422,35 +423,35 @@ msgstr "Działanie się nie powiodło"
 
 #: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
 #, c-format
-msgid "Unable to parse Icon data - unexpected node: %s"
+msgid "Unable to parse Icon data — unexpected node: %s"
 msgstr "Nie można przetworzyć danych „Icon” — nieoczekiwany węzeł: %s"
 
 #: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
 #, c-format
-msgid "Unable to parse Protocol data - unexpected attribute: %s"
+msgid "Unable to parse Protocol data — unexpected attribute: %s"
 msgstr "Nie można przetworzyć danych „Protocol” — nieoczekiwany atrybut: %s"
 
 #: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
 #, c-format
-msgid "Unable to parse Protocol data - unexpected node: %s"
+msgid "Unable to parse Protocol data — unexpected node: %s"
 msgstr "Nie można przetworzyć danych „Protocol” — nieoczekiwany węzeł: %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
 #, c-format
-msgid "Failed to set UIList for file %s - %s"
+msgid "Failed to set UIList for file %s — %s"
 msgstr ""
 "Ustawienie listy interfejsu użytkownika dla pliku %s się nie powiodło — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
 #, c-format
-msgid "Failed to set initial UI list for file %s - %s"
+msgid "Failed to set initial UI list for file %s — %s"
 msgstr ""
 "Ustawienie początkowej listy interfejsu użytkownika dla pliku %s się nie "
 "powiodło — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
 #, c-format
-msgid "Failed to monitor the file %s - %s"
+msgid "Failed to monitor the file %s — %s"
 msgstr "Monitorowanie pliku %s się nie powiodło — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
@@ -470,7 +471,7 @@ msgstr "Nieprawidłowy filtr interfejsu użytkownika: %s"
 
 #: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
 #, c-format
-msgid "Unable to parse UI data - unexpected node: %s"
+msgid "Unable to parse UI data — unexpected node: %s"
 msgstr ""
 "Nie można przetworzyć danych interfejsu użytkownika — nieoczekiwany węzeł: %s"
 
@@ -484,7 +485,7 @@ msgstr "Nie można przeglądać potomka elementu"
 
 #: src/librygel-server/rygel-browse.vala:134
 #, c-format
-msgid "Failed to browse '%s': %s\n"
+msgid "Failed to browse “%s”: %s\n"
 msgstr "Przeglądanie „%s” się nie powiodło: %s\n"
 
 #: src/librygel-server/rygel-client-hacks.vala:145
@@ -509,7 +510,7 @@ msgstr " musi wynosić 1"
 
 #: src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
-msgid "Invalid URI '%s'"
+msgid "Invalid URI “%s”"
 msgstr "Nieprawidłowy adres URI „%s”"
 
 #: src/librygel-server/rygel-http-item-uri.vala:192
@@ -519,7 +520,7 @@ msgstr "Nie odnaleziono"
 #: src/librygel-server/rygel-http-post.vala:62
 #: src/librygel-server/rygel-import-resource.vala:189
 #, c-format
-msgid "Pushing data to non-empty item '%s' not allowed"
+msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "Wysyłanie danych do niepustego elementu „%s” jest niedozwolone"
 
 #: src/librygel-server/rygel-http-post.vala:71
@@ -535,22 +536,22 @@ msgstr "Usunięcie pliku rozpoczynającego się od kropki %s się nie powiodło:
 
 #: src/librygel-server/rygel-http-request.vala:95
 #, c-format
-msgid "Requested item '%s' not found"
+msgid "Requested item “%s” not found"
 msgstr "Nie odnaleziono żądanego elementu „%s”"
 
 #: src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
-msgid "Couldn't create data source for %s"
+msgid "Couldn’t create data source for %s"
 msgstr "Nie można utworzyć źródła danych dla %s"
 
 #: src/librygel-server/rygel-import-resource.vala:124
 #, c-format
-msgid "Failed to get original URI for '%s': %s"
+msgid "Failed to get original URI for “%s”: %s"
 msgstr "Uzyskanie pierwotnego adresu URI dla „%s” się nie powiodło: %s"
 
 #: src/librygel-server/rygel-import-resource.vala:186
 #, c-format
-msgid "URI '%s' invalid for importing contents to"
+msgid "URI “%s” invalid for importing contents to"
 msgstr "Adres URI „%s” jest nieprawidłowy do importowania zawartości"
 
 #: src/librygel-server/rygel-import-resource.vala:272
@@ -565,12 +566,12 @@ msgstr "Brak identyfikatora kontenera"
 
 #: src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
-msgid "Successfully destroyed object '%s'"
+msgid "Successfully destroyed object “%s”"
 msgstr "Pomyślnie usunięto obiekt „%s”"
 
 #: src/librygel-server/rygel-item-destroyer.vala:68
 #, c-format
-msgid "Failed to destroy object '%s': %s"
+msgid "Failed to destroy object “%s”: %s"
 msgstr "Usunięcie obiektu „%s” się nie powiodło: %s"
 
 #: src/librygel-server/rygel-item-destroyer.vala:104
@@ -598,12 +599,12 @@ msgstr "Brak identyfikatora obiektu"
 
 #: src/librygel-server/rygel-item-updater.vala:81
 #, c-format
-msgid "Successfully updated object '%s'"
+msgid "Successfully updated object “%s”"
 msgstr "Pomyślnie zaktualizowano obiekt „%s”"
 
 #: src/librygel-server/rygel-item-updater.vala:89
 #, c-format
-msgid "Failed to update object '%s': %s"
+msgid "Failed to update object “%s”: %s"
 msgstr "Zaktualizowanie obiektu „%s” się nie powiodło: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:162
@@ -738,7 +739,7 @@ msgid "upnp:createClass value not supported"
 msgstr "Wartość upnp:createClass nie jest obsługiwana"
 
 #: src/librygel-server/rygel-object-creator.vala:191
-msgid "'Elements' argument missing."
+msgid "“Elements” argument missing."
 msgstr "Brak parametru „Elements”."
 
 #: src/librygel-server/rygel-object-creator.vala:194
@@ -752,7 +753,7 @@ msgstr "Brak parametru ContainerID"
 
 #: src/librygel-server/rygel-object-creator.vala:224
 #, c-format
-msgid "No objects in DIDL-Lite from client: '%s'"
+msgid "No objects in DIDL-Lite from client: “%s”"
 msgstr "Brak obiektów w DIDL-Lite od klienta: „%s”"
 
 #: src/librygel-server/rygel-object-creator.vala:231
@@ -764,7 +765,7 @@ msgid "dc:title must not be empty in CreateObject call"
 msgstr "dc:title nie może być puste w wywołaniu CreateObject"
 
 #: src/librygel-server/rygel-object-creator.vala:247
-msgid "Flags that must not be set were found in 'dlnaManaged'"
+msgid "Flags that must not be set were found in “dlnaManaged”"
 msgstr "W „dlnaManaged” odnaleziono flagi, które nie mogą być ustawione"
 
 #: src/librygel-server/rygel-object-creator.vala:255
@@ -781,7 +782,7 @@ msgstr "Nie można utworzyć ograniczonego elementu"
 
 #: src/librygel-server/rygel-object-creator.vala:383
 #, c-format
-msgid "UPnP class '%s' not supported"
+msgid "UPnP class “%s” not supported"
 msgstr "Klasa UPnP „%s” nie jest obsługiwana"
 
 #: src/librygel-server/rygel-object-creator.vala:417
@@ -794,39 +795,39 @@ msgstr "Utworzenie obiektu w %s nie jest dozwolone"
 
 #: src/librygel-server/rygel-object-creator.vala:474
 #, c-format
-msgid "Failed to create item under '%s': %s"
+msgid "Failed to create item under “%s”: %s"
 msgstr "Utworzenie elementu w „%s” się nie powiodło: %s"
 
 #: src/librygel-server/rygel-object-creator.vala:548
 #, c-format
-msgid "DLNA profile '%s' not supported"
+msgid "DLNA profile “%s” not supported"
 msgstr "Profil DLNA „%s” nie jest obsługiwany"
 
 #: src/librygel-server/rygel-object-creator.vala:648
 #, c-format
-msgid "Cannot create object of class '%s': Not supported"
+msgid "Cannot create object of class “%s”: Not supported"
 msgstr "Nie można utworzyć obiektu klasy „%s”: nieobsługiwane"
 
 #: src/librygel-server/rygel-object-creator.vala:746
 #, c-format
 msgid ""
-"Error from container '%s' on trying to find the newly added child object "
-"'%s' in it: %s"
+"Error from container “%s” on trying to find the newly added child object "
+"“%s” in it: %s"
 msgstr ""
 "Błąd z kontenera „%s” podczas próby odnalezienia w nim nowo dodanego obiektu "
 "potomnego „%s”: %s"
 
 #: src/librygel-server/rygel-reference-creator.vala:50
-msgid "'ContainerID' agument missing."
+msgid "“ContainerID” agument missing."
 msgstr "Brak parametru „ContainerID”."
 
 #: src/librygel-server/rygel-reference-creator.vala:55
-msgid "'ObjectID' argument missing."
+msgid "“ObjectID” argument missing."
 msgstr "Brak parametru „ObjectID”."
 
 #: src/librygel-server/rygel-reference-creator.vala:86
 #, c-format
-msgid "Failed to create object under '%s': %s"
+msgid "Failed to create object under “%s”: %s"
 msgstr "Utworzenie obiektu pod „%s” się nie powiodło: %s"
 
 #: src/librygel-server/rygel-search.vala:70
@@ -835,7 +836,7 @@ msgstr "Podano nieprawidłowe kryteria wyszukiwania"
 
 #: src/librygel-server/rygel-search.vala:94
 #, c-format
-msgid "Failed to search in '%s': %s"
+msgid "Failed to search in “%s”: %s"
 msgstr "Wyszukiwanie w „%s” się nie powiodło: %s"
 
 #: src/librygel-server/rygel-subtitle-manager.vala:92
@@ -929,7 +930,7 @@ msgstr "Nieprawidłowy adres URI bez przedrostka: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, c-format
-msgid "Can't process URI %s with protocol %s"
+msgid "Can’t process URI %s with protocol %s"
 msgstr "Nie można przetworzyć adresu URI %s za pomocą protokołu %s"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
@@ -952,7 +953,7 @@ msgid "Required element %s missing"
 msgstr "Brak wymaganego elementu %s"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:58
-msgid "GStreamer element 'dvdreadsrc' not found. DVD support does not work"
+msgid "GStreamer element “dvdreadsrc” not found. DVD support does not work"
 msgstr ""
 "Nie odnaleziono elementu „dvdreadsrc” biblioteki GStreamer. Obsługa płyt DVD "
 "nie działa"
@@ -970,13 +971,13 @@ msgstr ""
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+msgid "Module “%s” could not connect to D-Bus session bus. Ignoring…"
 msgstr ""
 "Moduł „%s” nie może połączyć się z magistralą sesji D-Bus. Ignorowanie…"
 
 #: src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
-msgid "External provider %s did not provide mandatory property \"%s\""
+msgid "External provider %s did not provide mandatory property “%s”"
 msgstr "Zewnętrzny dostawca %s nie dostarcza wymaganej właściwości „%s”"
 
 #: src/plugins/lms/rygel-lms-albums.vala:166
@@ -1052,7 +1053,7 @@ msgid "Failed to send error to parent: %s"
 msgstr "Wysłanie błędu do elementu nadrzędnego się nie powiodło: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:149
-msgid "- helper binary for Rygel to extract metadata"
+msgid "— helper binary for Rygel to extract metadata"
 msgstr "— pomocniczy plik binarny usługi Rygel do wydobywania metadanych"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:156
@@ -1067,12 +1068,12 @@ msgstr "Utworzenie mechanizmu wydobywającego okładek się nie powiodło: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, c-format
-msgid "'%s' harvested"
+msgid "“%s” harvested"
 msgstr "Wydobyto z „%s”"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:202
 #, c-format
-msgid "Error fetching object '%s' from database: %s"
+msgid "Error fetching object “%s” from database: %s"
 msgstr "Błąd podczas pobierania obiektu „%s” z bazy danych: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:210
@@ -1104,7 +1105,7 @@ msgstr "Odpytanie bazy danych się nie powiodło: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:259
 #, c-format
-msgid "Failed to enumerate folder \"%s\": %s"
+msgid "Failed to enumerate folder “%s”: %s"
 msgstr "Wyliczenie katalogu „%s” się nie powiodło: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:277
@@ -1205,8 +1206,8 @@ msgstr "Sprawdzenie, czy element %s jest chroniony, się nie powiodło: %s"
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:661
 #, c-format
 msgid ""
-"The version \"%d\" of the detected database is newer than our supported "
-"version \"%d\""
+"The version “%d” of the detected database is newer than our supported "
+"version “%d”"
 msgstr ""
 "Wersja „%d” wykrytej bazy danych jest nowsza niż obsługiwana wersja „%d”"
 
@@ -1283,17 +1284,17 @@ msgstr "Uzyskanie liczby elementów potomnych się nie powiodło: %s"
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
 #, c-format
-msgid "Can't create items in %s"
+msgid "Can’t create items in %s"
 msgstr "Nie można utworzyć elementów w %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:91
 #, c-format
-msgid "Can't add containers in %s"
+msgid "Can’t add containers in %s"
 msgstr "Nie można dodać kontenerów w %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:99
 #, c-format
-msgid "Can't remove containers in %s"
+msgid "Can’t remove containers in %s"
 msgstr "Nie można usunąć kontenerów w %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
@@ -1303,7 +1304,7 @@ msgstr "Listy odtwarzania"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
-msgid "Can't remove items in %s"
+msgid "Can’t remove items in %s"
 msgstr "Nie można usunąć elementów w %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
@@ -1356,7 +1357,7 @@ msgstr "Pliki i katalogi"
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
 #: src/plugins/tracker/rygel-tracker-plugin.vala:33
-msgid "@REALNAME@'s media"
+msgid "@REALNAME@’s media"
 msgstr "Multimedia użytkownika @REALNAME@"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:457
@@ -1411,7 +1412,7 @@ msgstr "Utworzenie połączenia z usługą Tracker się nie powiodło: %s"
 
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
 #, c-format
-msgid "Failed to construct URI for folder '%s': %s"
+msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "Utworzenie adresu URI dla katalogu „%s” się nie powiodło: %s"
 
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
@@ -1430,7 +1431,7 @@ msgstr "Utworzenie połączenia z usługą Tracker się nie powiodło: %s"
 
 #: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
 #, c-format
-msgid "Error getting all values for '%s': %s"
+msgid "Error getting all values for “%s”: %s"
 msgstr "Błąd podczas pobierania wszystkich wartości dla „%s”: %s"
 
 #: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
@@ -1445,7 +1446,7 @@ msgstr "Uzyskanie połączenia z usługą Tracker się nie powiodło: %s"
 
 #: src/plugins/tracker/rygel-tracker-search-container.vala:228
 #, c-format
-msgid "Error getting item count under category '%s': %s"
+msgid "Error getting item count under category “%s”: %s"
 msgstr "Błąd podczas pobierania liczby elementów w kategorii „%s”: %s"
 
 #: src/plugins/tracker/rygel-tracker-titles.vala:58
@@ -1459,15 +1460,15 @@ msgstr "Odpytanie ACL się nie powiodło: %s"
 
 #: src/rygel/rygel-acl.vala:127
 #, c-format
-msgid "Error creating DBus proxy for ACL: %s"
+msgid "Error creating D-Bus proxy for ACL: %s"
 msgstr "Błąd podczas tworzenia pośrednika D-Bus dla ACL: %s"
 
 #: src/rygel/rygel-acl.vala:143
-msgid "No ACL fallback policy found. Using \"allow\""
+msgid "No ACL fallback policy found. Using “allow”"
 msgstr "Nie odnaleziono zapasowej polityki ACL. Używanie „allow”"
 
 #: src/rygel/rygel-acl.vala:145
-msgid "No ACL fallback policy found. Using \"deny\""
+msgid "No ACL fallback policy found. Using “deny”"
 msgstr "Nie odnaleziono zapasowej polityki ACL. Używanie „deny”"
 
 #: src/rygel/rygel-cmdline-config.vala:73
@@ -1576,17 +1577,17 @@ msgstr "Wczytanie konfiguracji użytkownika się nie powiodło: %s"
 #. TRANSLATORS: First %s is the file's path, second is the error message
 #: src/rygel/rygel-user-config.vala:246 src/ui/rygel-user-config.vala:246
 #, c-format
-msgid "Failed to load user configuration from file '%s': %s"
+msgid "Failed to load user configuration from file “%s”: %s"
 msgstr "Wczytanie konfiguracji użytkownika z pliku „%s” się nie powiodło: %s"
 
 #: src/rygel/rygel-user-config.vala:299 src/ui/rygel-user-config.vala:299
 #, c-format
-msgid "No value available for '%s'"
+msgid "No value available for “%s”"
 msgstr "Brak dostępnej wartości dla „%s”"
 
 #: src/rygel/rygel-user-config.vala:370 src/ui/rygel-user-config.vala:370
 #, c-format
-msgid "Value of '%s' out of range"
+msgid "Value of “%s” out of range"
 msgstr "Wartość „%s” jest spoza zakresu"
 
 #: src/ui/rygel-preferences-dialog.vala:109
@@ -1596,7 +1597,7 @@ msgstr "Utworzenie okna preferencji się nie powiodło: %s"
 
 #: src/ui/rygel-writable-user-config.vala:119
 #, c-format
-msgid "Failed to save configuration data to file '%s': %s"
+msgid "Failed to save configuration data to file “%s”: %s"
 msgstr "Zapisanie danych konfiguracji do pliku „%s” się nie powiodło: %s"
 
 #: src/ui/rygel-writable-user-config.vala:214
