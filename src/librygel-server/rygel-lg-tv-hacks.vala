@@ -35,6 +35,8 @@ internal class Rygel.LGTVHacks : ClientHacks {
             if (resource.mime_type == "audio/x-vorbis+ogg" ||
                 resource.mime_type == "audio/x-flac+ogg") {
                 resource.mime_type = "application/ogg";
+            } else if (resource.mime_type == "video/x-matroska") {
+                resource.dlna_profile = null;
             }
         }
 
