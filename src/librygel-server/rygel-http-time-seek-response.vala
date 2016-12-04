@@ -160,9 +160,9 @@ public class Rygel.HTTPTimeSeekResponse : Rygel.HTTPResponseElement {
     public HTTPTimeSeekResponse.from_request
                                         (HTTPTimeSeekRequest time_seek_request,
                                          int64               total_duration ) {
-        HTTPTimeSeekResponse.time_only (time_seek_request.start_time,
-                                        time_seek_request.end_time,
-                                        total_duration );
+        this.time_only (time_seek_request.start_time,
+                        time_seek_request.end_time,
+                        total_duration);
     }
 
     public override void add_response_headers (Rygel.HTTPRequest request) {
