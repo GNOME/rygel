@@ -225,9 +225,9 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                        length,
                        bytes);
 
-                var v = Variant.new_from_data<void> (SERIALIZED_DATA_TYPE,
-                                                     (uchar[]) buf,
-                                                     true);
+                var v = Variant.new_from_data<void*> (SERIALIZED_DATA_TYPE,
+                                                      (uchar[]) buf,
+                                                      true);
                 this.extraction_done (File.new_for_uri (uri), v);
             } while (false);
 
