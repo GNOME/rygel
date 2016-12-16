@@ -145,6 +145,14 @@ static void send_error (File file, Error err) {
     }
 }
 
+static bool vaapi_filter (Gst.PluginFeature feature) {
+    if (feature.get_name ().has_prefix ("vaapi")) {
+        return true;
+    }
+
+    return false;
+}
+
 int main (string[] args) {
     var ctx = new OptionContext (_("— helper binary for Rygel to extract metadata"));
     ctx.add_main_entries (options, null);
@@ -159,6 +167,13 @@ int main (string[] args) {
     }
 
     Posix.nice (19);
+
+    var registry = Gst.Registry.@get ();
+    var features = registry.feature_filter (vaapi_filter, false);
+    foreach (var feature in features) {
+        debug ("Removing registry feature %s", feature.get_name ());
+        registry.remove_feature (feature);
+    }
 
     message ("Started with descriptors %d (in) %d (out)", in_fd, out_fd);
 
