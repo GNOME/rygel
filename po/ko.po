@@ -47,7 +47,7 @@ msgstr "UPnP/DLNA 기본 설정"
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/rygel-preferences.desktop.in.in:7
 msgid "rygel"
-msgstr "라이겔"
+msgstr "rygel"
 
 #: data/rygel-preferences.ui:94
 msgid "Add a directory to the list of shared directories"
