@@ -1,3 +1,75 @@
+0.33.0
+======
+
+- Translation updates
+- Several fixes for recent vala compiler
+
+MediaExport:
+ - Blacklist VA-API for extractor
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=775152
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Rico Tzschichholz <ricotz@ubuntu.com>
+ - Stas Solovey <whats_up@tut.by>
+ - Rafael Fontenelle <rafaelff@gnome.org>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Mario Blättermann <mario.blaettermann@gmail.com>
+ - Marek Černocký <marek@manet.cz>
+ - Jiri Grönroos <jiri.gronroos@iki.fi>
+ - Gianvito Cavasoli <gianvito@gmx.it>
+ - Gábor Kelemen <kelemeng@openscope.org>
+ - Fabio Tomat <f.t.public@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Ask Hjorth Larsen <asklarsen@gmail.com>
+ - Anders Jonsson <anders.jonsson@norsjovallen.se>
+
+Added/updated translations
+ - cs, courtesy of Marek Černocký
+ - da, courtesy of Ask Hjorth Larsen
+ - de, courtesy of Mario Blättermann
+ - es, courtesy of Daniel Mustieles
+ - fi, courtesy of Jiri Grönroos
+ - fur, courtesy of Fabio Tomat
+ - hu, courtesy of Gabor Kelemen
+ - it, courtesy of Gianvito Cavasoli
+ - ko, courtesy of Changwoo Ryu
+ - lt, courtesy of Aurimas Černius
+ - pl, courtesy of Piotr Drąg
+ - pt_BR, courtesy of Rafael Fontenelle
+ - ru, courtesy of Stas Solovey
+ - sl, courtesy of Matej Urbančič
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+ - sv, courtesy of Anders Jonsson
+
+0.32.1
+======
+
+- Translation updates
+- Fix compile warnings with newer vala compiler
+
+All contributors to this release:
+ - Rico Tzschichholz <ricotz@ubuntu.com>
+ - Gianvito Cavasoli <gianvito@gmx.it>
+
+Added/updated translations
+ - it, courtesy of Gianvito Cavasoli
+
+0.32.0
+======
+ - Translation updates
+
+All contributors to this release:
+ - Ask Hjorth Larsen <asklarsen@gmail.com>
+
+Added/updated translations
+ - da, courtesy of Ask Hjorth Larsen
+
 0.31.6
 ======
  - Translation updates
