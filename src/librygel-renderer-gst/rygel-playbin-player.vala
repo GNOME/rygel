@@ -61,6 +61,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                         "audio/vnd.dlna.adts",
                                         "audio/x-mod",
                                         "audio/x-wav",
+                                        "audio/wav",
                                         "audio/x-ac3",
                                         "audio/x-m4a",
                                         "audio/l16;rate=44100;channels=2",
