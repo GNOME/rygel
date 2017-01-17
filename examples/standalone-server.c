@@ -127,6 +127,7 @@ int main (int argc, char *argv[])
             rygel_media_object_add_uri (RYGEL_MEDIA_OBJECT (item), uri);
 
             rygel_simple_container_add_child_item (root_container, item);
+            rygel_media_file_item_add_engine_resources (item, NULL, NULL);
         }
 
         i++;
