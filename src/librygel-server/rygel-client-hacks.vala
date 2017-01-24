@@ -64,6 +64,10 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
         } catch (Error error) { }
 
         try {
+            return new XBMC4XBoxHacks (message);
+        } catch (Error error) { }
+
+        try {
             return new XBoxHacks (message);
         } catch (Error error) { }
 

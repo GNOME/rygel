@@ -28,8 +28,8 @@ internal class Rygel.XBMCHacks : ClientHacks {
     // promised by developers.
     private const string AGENT = ".*Platinum/.*|.*XBMC/.*|.*Kodi.*";
 
-    public XBMCHacks (Message? message = null) throws ClientHacksError {
-        base (AGENT, message);
+    public XBMCHacks (Message? message = null, string? agent = null) throws ClientHacksError {
+        base (agent == null ? AGENT : agent, message);
     }
 
     public override void apply (MediaObject object) {
