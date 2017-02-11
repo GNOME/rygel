@@ -17,6 +17,7 @@ src/librygel-core/rygel-basic-management-test.c
 src/librygel-core/rygel-basic-management-test-nslookup.c
 src/librygel-core/rygel-basic-management-test-ping.c
 src/librygel-core/rygel-basic-management-test-traceroute.c
+src/librygel-core/rygel-cmdline-config.c
 src/librygel-core/rygel-configuration.c
 src/librygel-core/rygel-connection-manager.c
 src/librygel-core/rygel-dbus-interface.c
@@ -24,6 +25,7 @@ src/librygel-core/rygel-description-file.c
 src/librygel-core/rygel-dlna-profile.c
 src/librygel-core/rygel-energy-management.c
 src/librygel-core/rygel-energy-management-helper.c
+src/librygel-core/rygel-environment-config.c
 src/librygel-core/rygel-icon-info.c
 src/librygel-core/rygel-log-handler.c
 src/librygel-core/rygel-media-device.c
@@ -36,6 +38,7 @@ src/librygel-core/rygel-resource-info.c
 src/librygel-core/rygel-root-device.c
 src/librygel-core/rygel-root-device-factory.c
 src/librygel-core/rygel-state-machine.c
+src/librygel-core/rygel-user-config.c
 src/librygel-core/rygel-v1-hacks.c
 src/librygel-core/rygel-xml-utils.c
 src/librygel-db/collate.c
@@ -281,11 +284,8 @@ src/plugins/tracker/rygel-tracker-video-item-factory.c
 src/plugins/tracker/rygel-tracker-videos.c
 src/plugins/tracker/rygel-tracker-years.c
 src/rygel/rygel-acl.c
-src/rygel/rygel-cmdline-config.c
 src/rygel/rygel-dbus-service.c
-src/rygel/rygel-environment-config.c
 src/rygel/rygel-main.c
-src/rygel/rygel-user-config.c
 src/ui/rygel-media-pref-section.c
 src/ui/rygel-network-pref-section.c
 src/ui/rygel-preferences-dialog.c

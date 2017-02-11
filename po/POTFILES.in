@@ -6,12 +6,14 @@ data/rygel-preferences.ui
 src/librygel-core/rygel-base-configuration.vala
 src/librygel-core/rygel-basic-management-test.vala
 src/librygel-core/rygel-basic-management.vala
+src/librygel-core/rygel-cmdline-config.vala
 src/librygel-core/rygel-configuration.vala
 src/librygel-core/rygel-connection-manager.vala
 src/librygel-core/rygel-dbus-interface.vala
 src/librygel-core/rygel-description-file.vala
 src/librygel-core/rygel-energy-management-helper.c
 src/librygel-core/rygel-energy-management.vala
+src/librygel-core/rygel-environment-config.vala
 src/librygel-core/rygel-icon-info.vala
 src/librygel-core/rygel-log-handler.vala
 src/librygel-core/rygel-media-device.vala
@@ -24,6 +26,7 @@ src/librygel-core/rygel-resource-info.vala
 src/librygel-core/rygel-root-device-factory.vala
 src/librygel-core/rygel-root-device.vala
 src/librygel-core/rygel-state-machine.vala
+src/librygel-core/rygel-user-config.vala
 src/librygel-core/rygel-v1-hacks.vala
 src/librygel-core/rygel-xml-utils.vala
 src/librygel-db/database-cursor.vala
@@ -240,11 +243,8 @@ src/plugins/tracker/rygel-tracker-video-item-factory.vala
 src/plugins/tracker/rygel-tracker-videos.vala
 src/plugins/tracker/rygel-tracker-years.vala
 src/rygel/rygel-acl.vala
-src/rygel/rygel-cmdline-config.vala
 src/rygel/rygel-dbus-service.vala
-src/rygel/rygel-environment-config.vala
 src/rygel/rygel-main.vala
-src/rygel/rygel-user-config.vala
 src/ui/rygel-media-pref-section.vala
 src/ui/rygel-network-pref-section.vala
 src/ui/rygel-preferences-dialog.vala
