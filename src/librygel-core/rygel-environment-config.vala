@@ -29,7 +29,7 @@ using Gee;
 /**
  * Manages configuration from Environment.
  */
-internal class Rygel.EnvironmentConfig : GLib.Object, Configuration {
+public class Rygel.EnvironmentConfig : GLib.Object, Configuration {
     private static string RYGEL_PREFIX = "RYGEL";
     private static string TITLE_KEY = "TITLE";
     private static string DISABLE_PREFIX = RYGEL_PREFIX + "_DISABLE";

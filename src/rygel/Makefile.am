@@ -5,10 +5,7 @@ bin_PROGRAMS = rygel
 rygel_SOURCES = \
 	rygel-acl.vala \
 	rygel-dbus-service.vala \
-	rygel-main.vala \
-	rygel-cmdline-config.vala \
-	rygel-environment-config.vala \
-	rygel-user-config.vala
+	rygel-main.vala
 
 rygel_VALAFLAGS = \
 	--pkg posix \
