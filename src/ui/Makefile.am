@@ -7,8 +7,7 @@ rygel_preferences_SOURCES =  \
 	rygel-preferences-section.vala \
 	rygel-media-pref-section.vala \
 	rygel-writable-user-config.vala \
-	rygel-network-pref-section.vala \
-	rygel-user-config.vala
+	rygel-network-pref-section.vala
 
 rygel_preferences_VALAFLAGS = \
 	$(RYGEL_UI_DEPS_VALAFLAGS) \

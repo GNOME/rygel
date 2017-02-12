@@ -290,7 +290,6 @@ src/ui/rygel-media-pref-section.c
 src/ui/rygel-network-pref-section.c
 src/ui/rygel-preferences-dialog.c
 src/ui/rygel-preferences-section.c
-src/ui/rygel-user-config.c
 src/ui/rygel-writable-user-config.c
 tests/object-creator/rygel-dlna-profile.c
 tests/object-creator/rygel-logical-expression.c

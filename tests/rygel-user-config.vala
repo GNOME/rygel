@@ -1,1 +1,1 @@
-../src/rygel/rygel-user-config.vala
+../src/librygel-core/rygel-user-config.vala
