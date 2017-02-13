@@ -1,3 +1,32 @@
+0.33.1
+======
+
+- Disable media-engine test, it is racy.
+
+Core:
+ - Make configration helper classes publically avalable
+
+GStreamer renderer:
+ - Support audio/wav, needed by some Samsung mobile servers
+
+Examples:
+ - Fix C server example
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=769189
+ - https://bugzilla.gnome.org/show_bug.cgi?id=777379
+ - https://bugzilla.gnome.org/show_bug.cgi?id=778526
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Samuel CUELLA <samuel.cuella@supinfo.com>
+ - Mandy Wang <wangmychn@gmail.com>
+ - Dušan Kazik <prescott66@gmail.com>
+
+Added/updated translations
+ - sk, courtesy of Dušan Kazik
+ - zh_CN, courtesy of Mandy Wang
+
 0.33.0
 ======
 
