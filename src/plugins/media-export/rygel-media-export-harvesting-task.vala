@@ -51,10 +51,12 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
     private const string HARVESTER_ATTRIBUTES =
                                         FileAttribute.STANDARD_NAME + "," +
                                         FileAttribute.STANDARD_TYPE + "," +
-                                        FileAttribute.TIME_MODIFIED + "," +
-                                        FileAttribute.STANDARD_CONTENT_TYPE + "," +
                                         FileAttribute.STANDARD_SIZE + "," +
+                                        FileAttribute.TIME_MODIFIED + "," +
                                         FileAttribute.STANDARD_IS_HIDDEN;
+
+    private const string HARVESTER_MIME_TYPE_ATTRIBUTES =
+                                        FileAttribute.STANDARD_CONTENT_TYPE;
 
     public HarvestingTask (RecursiveFileMonitor monitor,
                            File                 file,
@@ -142,35 +144,49 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
      *   - The current mtime of the file is larger than the cached
      *   - The size has changed
      * @param file to check
-     * @param info FileInfo of the file to check
+     * @param info FileInfo of the file to check, containing at
+     *             least size, mtime and type (but not necessarily
+     *             mime type)
      * @return true, if the file has been queued, false otherwise.
      */
     private bool push_if_changed_or_unknown (File       file,
                                              FileInfo   info) {
-        int64 timestamp;
-        int64 size;
         try {
-            if (this.cache.exists (file, out timestamp, out size)) {
+            int64 timestamp;
+            int64 size;
+            string mime_type;
+
+            bool is_cached = this.cache.exists (file, out timestamp, out size, out mime_type);
+            if (is_cached) {
                 int64 mtime = (int64) info.get_attribute_uint64
                                         (FileAttribute.TIME_MODIFIED);
-
-                if (mtime > timestamp ||
-                    info.get_size () != size) {
-                    var entry = new FileQueueEntry (file,
-                                                    true,
-                                                    info.get_content_type ());
-                    this.files.offer (entry);
-
-                    return true;
+                if (mtime <= timestamp &&
+                    info.get_size () == size) {
+                    return false;
                 }
-            } else {
-                var entry = new FileQueueEntry (file,
-                                                false,
-                                                info.get_content_type ());
-                this.files.offer (entry);
 
-                return true;
+                info.set_content_type(mime_type);
             }
+
+            if (info.get_content_type () == null) {
+                var extended_info = file.query_info
+                                        (HARVESTER_MIME_TYPE_ATTRIBUTES,
+                                         FileQueryInfoFlags.NONE);
+                info.set_content_type (extended_info.get_content_type ());
+            }
+
+            // Check if the file needs to be harvested at all either because
+            // it is denied by filter or it hasn't updated
+            if (!Harvester.is_eligible (file, info)) {
+                return false;
+            }
+
+            var entry = new FileQueueEntry (file,
+                                            is_cached,
+                                            info.get_content_type ());
+            this.files.offer (entry);
+
+            return true;
         } catch (Error error) {
             warning (_("Failed to query database: %s"), error.message);
         }
@@ -184,7 +200,6 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         if (info.get_is_hidden ()) {
             return false;
         }
-
 
         if (info.get_file_type () == FileType.DIRECTORY) {
             // Check if we have an "exploded" DVD structure
@@ -211,13 +226,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
 
             return true;
         } else {
-            // Check if the file needs to be harvested at all either because
-            // it is denied by filter or it hasn't updated
-            if (Harvester.is_eligible (file, info)) {
-                return this.push_if_changed_or_unknown (file, info);
-            }
-
-            return false;
+            return this.push_if_changed_or_unknown (file, info);
         }
     }
 

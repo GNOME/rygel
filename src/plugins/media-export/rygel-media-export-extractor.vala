@@ -91,12 +91,11 @@ public class Rygel.MediaExport.Extractor : Object {
 
     public virtual async void run () throws Error {
         var file_info = yield file.query_info_async (FileAttribute.STANDARD_TYPE + "," +
-                                                     FileAttribute.STANDARD_CONTENT_TYPE
-                                                 + "," +
-                                                 FileAttribute.STANDARD_SIZE + "," +
-                                                 FileAttribute.TIME_MODIFIED + "," +
-                                                 FileAttribute.STANDARD_DISPLAY_NAME,
-                                                 FileQueryInfoFlags.NONE);
+                                                     FileAttribute.STANDARD_CONTENT_TYPE + "," +
+                                                     FileAttribute.STANDARD_SIZE + "," +
+                                                     FileAttribute.TIME_MODIFIED + "," +
+                                                     FileAttribute.STANDARD_DISPLAY_NAME,
+                                                     FileQueryInfoFlags.NONE);
         var display_name = file_info.get_display_name ();
         var title = this.strip_invalid_entities (display_name);
         this.serialized_info.insert (Serializer.TITLE, "s", title);

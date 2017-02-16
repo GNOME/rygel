@@ -44,6 +44,7 @@ internal enum Rygel.MediaExport.ObjectType {
 internal struct Rygel.MediaExport.ExistsCacheEntry {
     int64 mtime;
     int64 size;
+    string content_type;
 }
 
 /**
@@ -219,15 +220,18 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     public bool exists (File      file,
                         out int64 timestamp,
-                        out int64 size) throws DatabaseError {
+                        out int64 size,
+                        out string mime_type) throws DatabaseError {
         var uri = file.get_uri ();
         GLib.Value[] values = { uri };
+        mime_type = null;
 
         if (this.exists_cache.has_key (uri)) {
             var entry = this.exists_cache.get (uri);
             this.exists_cache.unset (uri);
             timestamp = entry.mtime;
             size = entry.size;
+            mime_type = entry.content_type;
 
             return true;
         }
@@ -634,7 +638,8 @@ public class Rygel.MediaExport.MediaCache : Object {
             var entry = ExistsCacheEntry ();
             entry.mtime = statement.column_int64 (1);
             entry.size = statement.column_int64 (0);
-            this.exists_cache.set (statement.column_text (2), entry);
+            entry.content_type = statement.column_text (2);
+            this.exists_cache.set (statement.column_text (3), entry);
         }
     }
 

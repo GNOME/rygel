@@ -80,7 +80,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         var is_blacklisted = cache.is_blacklisted (file);
 
         if (is_blacklisted) {
-            debug ("URI %s is not eligble due to blacklising",
+            debug ("URI %s is not eligible due to blacklisting",
                    file.get_uri ());
         }
 

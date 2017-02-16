@@ -305,7 +305,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "CREATE INDEX IF NOT EXISTS idx_blacklist on blacklist(uri);";
 
     private const string EXISTS_CACHE_STRING =
-    "SELECT m.size, o.timestamp, o.uri FROM Object o " +
+    "SELECT m.size, o.timestamp, m.mime_type, o.uri FROM Object o " +
         "JOIN meta_data m ON o.upnp_id = m.object_fk";
 
     private const string STATISTICS_STRING =
