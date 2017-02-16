@@ -15,7 +15,7 @@ xml_in_files = EnergyManagement.xml.in \
 xml_DATA = $(xml_in_files:.xml.in=.xml)
 
 # Strip newlines and leading spaces from XML files as not all devices like them
-%.xml: $(srcdir)/%.xml.in
+%.xml: %.xml.in
 	@cat < $< | sed -re "s,^ +,,g" | tr -d "\n" > $@
 
 xmldir = $(datadir)/rygel/xml
