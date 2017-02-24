@@ -137,7 +137,11 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
         TreeIter iter;
 
         if (this.find_interface (context.interface, out iter)) {
+#if VALA_0_36
+            this.iface_store.remove (ref iter);
+#else
             this.iface_store.remove (iter);
+#endif
         }
     }
 
@@ -158,7 +162,11 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
            var path = row_ref.get_path ();
            this.networks_store.get_iter (out iter, path);
 
+#if VALA_0_36
+           this.networks_store.remove (ref iter);
+#else
            this.networks_store.remove (iter);
+#endif
         }
     }
 

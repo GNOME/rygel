@@ -152,7 +152,11 @@ public class Rygel.MediaPrefSection : PreferencesSection {
            var path = row_ref.get_path ();
            this.liststore.get_iter (out iter, path);
 
+#if VALA_0_36
+           this.liststore.remove (ref iter);
+#else
            this.liststore.remove (iter);
+#endif
         }
     }
 
