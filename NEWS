@@ -1,3 +1,42 @@
+0.33.90
+=======
+Server:
+ - Add hack for XBMC on original XBox hardware
+
+Settings UI:
+ - Fix compilation with Vala master
+
+MediaExport:
+ - Improve start-up speed by not re-querying mime types every time
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=777703
+ - https://bugzilla.gnome.org/show_bug.cgi?id=778778
+
+All contributors to this release:
+ - Мирослав Николић <miroslavnikolic@rocketmail.com>
+ - Samuel CUELLA <samuel.cuella@supinfo.com>
+ - Matteo Settenvini <matteo@member.fsf.org>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Jens Georg <mail@jensge.org>
+ - Inaki Larranaga Murgoitio <dooteo@zundan.com>
+ - Fran Dieguez <fran@openhost.es>
+ - Claude Paroz <claude@2xlibre.net>
+ - Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+ - Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+ - Ask Hjorth Larsen <asklarsen@gmail.com>
+
+Added/updated translations
+ - da, courtesy of Ask Hjorth Larsen
+ - eu, courtesy of Iñaki Larrañaga Murgoitio
+ - fr, courtesy of Claude Paroz
+ - gl, courtesy of Fran Dieguez
+ - kk, courtesy of Baurzhan Muftakhidinov
+ - nb, courtesy of Kjartan Maraas
+ - sr, courtesy of Мирослав Николић
+ - sr@latin, courtesy of Miroslav Nikolić
+ - zh_TW, courtesy of Chao-Hsiung Liao
+
 0.33.1
 ======
 
