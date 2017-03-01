@@ -3,7 +3,6 @@
 data/rygel.desktop.in.in
 data/rygel-preferences.desktop.in.in
 data/rygel-preferences.ui
-src/librygel-core/rygel-base-configuration.vala
 src/librygel-core/rygel-basic-management-test.vala
 src/librygel-core/rygel-basic-management.vala
 src/librygel-core/rygel-cmdline-config.vala
