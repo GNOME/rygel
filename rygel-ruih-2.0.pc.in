@@ -3,10 +3,10 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: rygel-ruih-1.0
+Name: rygel-ruih-2.0
 Description: GNOME (Mobile) UPnP/DLNA RUIH server library
 Version: @VERSION@
-Libs: -L${libdir} -lrygel-ruih-1.0
+Libs: -L${libdir} -lrygel-ruih-2.0
 Cflags: -I${includedir}/rygel-2.2
-Requires: gupnp-av-1.0 gee-0.8 rygel-core-2.2
+Requires: gupnp-av-1.0 gee-0.8 rygel-core-2.6
 Requires.Private: gmodule-2.0
