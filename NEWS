@@ -1,3 +1,26 @@
+0.33.92
+=======
+
+- Translation updates
+- Fix RUIH pkg-config file
+
+Bugs fixed in this release:
+
+All contributors to this release:
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Yuri Myasoedov <ymyasoedov@yandex.ru>
+ - Milo Casagrande <milo@ubuntu.com>
+ - Jordi Mas <jmas@softcatala.org>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Ask Hjorth Larsen <asklarsen@gmail.com>
+
+Added/updated translations
+ - ca, courtesy of Carles Ferrando Garcia
+ - da, courtesy of Ask Hjorth Larsen
+ - it, courtesy of Milo Casagrande
+ - ko, courtesy of Changwoo Ryu
+ - ru, courtesy of Yuri Myasoedov
+
 0.33.90
 =======
 Server:
