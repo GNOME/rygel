@@ -543,7 +543,7 @@ rygel-core-2.6.pc
 rygel-renderer-2.6.pc
 rygel-server-2.6.pc
 rygel-renderer-gst-2.6.pc
-rygel-ruih-1.0.pc
+rygel-ruih-2.0.pc
 examples/Makefile
 examples/renderer-plugins/Makefile
 examples/renderer-plugins/vala/Makefile
