@@ -7,18 +7,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-08-16 07:07+0000\n"
-"PO-Revision-Date: 2016-08-22 16:49+0700\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"POT-Creation-Date: 2017-03-01 23:18+0000\n"
+"PO-Revision-Date: 2017-03-14 15:54+0700\n"
+"Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.11\n"
 
 #: data/rygel.desktop.in.in:3
 msgid "Rygel"
@@ -140,14 +140,14 @@ msgstr "Tipe Tes Salah"
 #. / TestID is valid but the test Results are not available
 #: src/librygel-core/rygel-basic-management.vala:175
 #, c-format
-msgid "Invalid Test State '%s'"
-msgstr "Keadaan Tes '%s' Tidak Valid"
+msgid "Invalid Test State “%s”"
+msgstr "Keadaan Tes “%s” Tidak Valid"
 
 #. / TestID is valid but the test can't be canceled
 #: src/librygel-core/rygel-basic-management.vala:181
 #, c-format
-msgid "State '%s' Precludes Cancel"
-msgstr "Keadaan '%s' Mencegah Pembatalan"
+msgid "State “%s” Precludes Cancel"
+msgstr "Keadaan “%s” Mencegah Pembatalan"
 
 #: src/librygel-core/rygel-basic-management.vala:214
 #: src/librygel-core/rygel-basic-management.vala:229
@@ -183,22 +183,127 @@ msgid "Invalid argument"
 msgstr "Argumen tak valid"
 
 #: src/librygel-core/rygel-basic-management.vala:255
-msgid "Cannot run 'Ping' action: Host is empty"
-msgstr "Tak bisa jalankan aksi 'Ping': Host kosong"
+msgid "Cannot run “Ping” action: Host is empty"
+msgstr "Tak bisa jalankan aksi “Ping”: Host kosong"
 
 #: src/librygel-core/rygel-basic-management.vala:348
-msgid "Cannot run 'NSLookup' action: HostName is empty"
-msgstr "Tak bisa jalankan aksi 'NSLookup': Host kosong"
+msgid "Cannot run “NSLookup” action: HostName is empty"
+msgstr "Tak bisa jalankan aksi “NSLookup”: Host kosong"
 
 #: src/librygel-core/rygel-basic-management.vala:430
-msgid "Cannot run 'Traceroute' action: Host is empty"
-msgstr "Tak bisa jalankan aksi 'Traceroute': Host kosong"
+msgid "Cannot run “Traceroute” action: Host is empty"
+msgstr "Tak bisa jalankan aksi “Traceroute”: Host kosong"
+
+#: src/librygel-core/rygel-cmdline-config.vala:73
+msgid "Display version number"
+msgstr "Tampilkan nomor versi"
+
+#: src/librygel-core/rygel-cmdline-config.vala:75
+msgid "Network Interfaces"
+msgstr "Antar Muka Jaringan"
+
+#: src/librygel-core/rygel-cmdline-config.vala:77
+msgid "Port"
+msgstr "Port"
+
+#: src/librygel-core/rygel-cmdline-config.vala:79
+msgid "Disable transcoding"
+msgstr "Matikan transkoding"
+
+#: src/librygel-core/rygel-cmdline-config.vala:81
+msgid "Disallow upload"
+msgstr "Larang unggah"
+
+#: src/librygel-core/rygel-cmdline-config.vala:83
+msgid "Disallow deletion"
+msgstr "Larang penghapusan"
+
+#: src/librygel-core/rygel-cmdline-config.vala:85
+msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
+msgstr ""
+"Daftar yang dipisah koma dari pasangan domain:level. Lihat rygel(1) untuk "
+"rincian."
+
+#: src/librygel-core/rygel-cmdline-config.vala:87
+msgid "Plugin Path"
+msgstr "Path Pengaya"
+
+#: src/librygel-core/rygel-cmdline-config.vala:89
+msgid "Engine Path"
+msgstr "Path Mesin"
+
+#: src/librygel-core/rygel-cmdline-config.vala:92
+msgid "Disable plugin"
+msgstr "Matikan pengaya"
+
+#: src/librygel-core/rygel-cmdline-config.vala:94
+msgid "Set plugin titles"
+msgstr "Tata judul pengaya"
+
+#: src/librygel-core/rygel-cmdline-config.vala:96
+msgid "Set plugin options"
+msgstr "Tata opsi pengaya"
+
+#: src/librygel-core/rygel-cmdline-config.vala:98
+msgid "Use configuration file instead of user configuration"
+msgstr "Memakai berkas konfigurasi bukan konfigurasi pengguna"
+
+#: src/librygel-core/rygel-cmdline-config.vala:100
+msgid "Shut down remote Rygel reference"
+msgstr "Mematikan acuan Rygel remote"
+
+#: src/librygel-core/rygel-cmdline-config.vala:102
+msgid "Replace currently running instance of Rygel"
+msgstr "Gantikan instansi Rygel yang sedang berjalan ini"
+
+#: src/librygel-core/rygel-cmdline-config.vala:139
+msgid "Shutting down remote Rygel instance\n"
+msgstr "Mematikan instansi remote Rygel\n"
+
+#: src/librygel-core/rygel-cmdline-config.vala:147
+#, c-format
+msgid "Failed to shut down other Rygel instance: %s"
+msgstr "Gagal mematikan instansi Rygel lain: %s"
+
+#: src/librygel-core/rygel-cmdline-config.vala:161
+#: src/librygel-core/rygel-cmdline-config.vala:170
+#: src/librygel-core/rygel-cmdline-config.vala:178
+#: src/librygel-core/rygel-cmdline-config.vala:186
+#: src/librygel-core/rygel-cmdline-config.vala:194
+#: src/librygel-core/rygel-cmdline-config.vala:202
+#: src/librygel-core/rygel-cmdline-config.vala:210
+#: src/librygel-core/rygel-cmdline-config.vala:249
+#: src/librygel-core/rygel-cmdline-config.vala:268
+#: src/librygel-core/rygel-cmdline-config.vala:274
+#: src/librygel-core/rygel-cmdline-config.vala:281
+#: src/librygel-core/rygel-cmdline-config.vala:285
+#: src/librygel-core/rygel-cmdline-config.vala:289
+#: src/librygel-core/rygel-cmdline-config.vala:312
+#: src/librygel-core/rygel-cmdline-config.vala:338
+#: src/librygel-core/rygel-cmdline-config.vala:367
+#: src/librygel-core/rygel-cmdline-config.vala:393
+#: src/librygel-core/rygel-cmdline-config.vala:418
+#: src/librygel-core/rygel-environment-config.vala:100
+#: src/librygel-core/rygel-environment-config.vala:104
+#: src/librygel-core/rygel-environment-config.vala:108
+#: src/librygel-core/rygel-meta-config.vala:89
+#: src/librygel-core/rygel-meta-config.vala:109
+#: src/librygel-core/rygel-meta-config.vala:128
+#: src/librygel-core/rygel-meta-config.vala:147
+#: src/librygel-core/rygel-meta-config.vala:166
+#: src/librygel-core/rygel-meta-config.vala:185
+#: src/librygel-core/rygel-meta-config.vala:204
+#: src/librygel-core/rygel-meta-config.vala:223
+#: src/librygel-core/rygel-meta-config.vala:242
+#: src/librygel-core/rygel-meta-config.vala:261
+msgid "No value available"
+msgstr "Tidak ada nilai"
 
 #: src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "Referensi koneksi tidak sah"
 
-#: src/librygel-core/rygel-description-file.vala:490
+#: src/librygel-core/rygel-description-file.vala:494
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Gagal menulis deskripsi yang diubah ke %s"
@@ -222,60 +327,26 @@ msgstr "Pengkuirian tipe jaringan dan MAC tak diimplementasi"
 msgid "Failed to get log level from configuration: %s"
 msgstr "Gagal memperoleh tingkatan log dari konfigurasi: %s"
 
-#: src/librygel-core/rygel-meta-config.vala:89
-#: src/librygel-core/rygel-meta-config.vala:109
-#: src/librygel-core/rygel-meta-config.vala:128
-#: src/librygel-core/rygel-meta-config.vala:147
-#: src/librygel-core/rygel-meta-config.vala:166
-#: src/librygel-core/rygel-meta-config.vala:185
-#: src/librygel-core/rygel-meta-config.vala:204
-#: src/librygel-core/rygel-meta-config.vala:223
-#: src/librygel-core/rygel-meta-config.vala:242
-#: src/librygel-core/rygel-meta-config.vala:261
-#: src/rygel/rygel-cmdline-config.vala:161
-#: src/rygel/rygel-cmdline-config.vala:170
-#: src/rygel/rygel-cmdline-config.vala:178
-#: src/rygel/rygel-cmdline-config.vala:186
-#: src/rygel/rygel-cmdline-config.vala:194
-#: src/rygel/rygel-cmdline-config.vala:202
-#: src/rygel/rygel-cmdline-config.vala:210
-#: src/rygel/rygel-cmdline-config.vala:249
-#: src/rygel/rygel-cmdline-config.vala:268
-#: src/rygel/rygel-cmdline-config.vala:274
-#: src/rygel/rygel-cmdline-config.vala:281
-#: src/rygel/rygel-cmdline-config.vala:285
-#: src/rygel/rygel-cmdline-config.vala:289
-#: src/rygel/rygel-cmdline-config.vala:312
-#: src/rygel/rygel-cmdline-config.vala:338
-#: src/rygel/rygel-cmdline-config.vala:367
-#: src/rygel/rygel-cmdline-config.vala:393
-#: src/rygel/rygel-cmdline-config.vala:418
-#: src/rygel/rygel-environment-config.vala:100
-#: src/rygel/rygel-environment-config.vala:104
-#: src/rygel/rygel-environment-config.vala:108
-msgid "No value available"
-msgstr "Tidak ada nilai"
-
 #. translators: "enabled" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:325
+#: src/librygel-core/rygel-meta-config.vala:336
 #, c-format
-msgid "No value set for '%s/enabled'"
-msgstr "Nilai untuk '%s/enabled' tidak diset"
+msgid "No value set for “%s/enabled”"
+msgstr "Nilai untuk “%s/enabled” tidak diset"
 
 #. translators: "title" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:344
+#: src/librygel-core/rygel-meta-config.vala:355
 #, c-format
-msgid "No value set for '%s/title'"
-msgstr "Nilai untuk '%s/title' tidak diset"
+msgid "No value set for “%s/title”"
+msgstr "Nilai untuk “%s/title” tidak diset"
 
-#: src/librygel-core/rygel-meta-config.vala:364
-#: src/librygel-core/rygel-meta-config.vala:386
-#: src/librygel-core/rygel-meta-config.vala:412
-#: src/librygel-core/rygel-meta-config.vala:434
-#: src/librygel-core/rygel-meta-config.vala:458
+#: src/librygel-core/rygel-meta-config.vala:375
+#: src/librygel-core/rygel-meta-config.vala:397
+#: src/librygel-core/rygel-meta-config.vala:423
+#: src/librygel-core/rygel-meta-config.vala:445
+#: src/librygel-core/rygel-meta-config.vala:469
 #, c-format
-msgid "No value available for '%s/%s'"
-msgstr "Tidak ada nilai untuk '%s/%s'"
+msgid "No value available for “%s/%s”"
+msgstr "Tidak ada nilai untuk “%s/%s”"
 
 #: src/librygel-core/rygel-plugin-information.vala:59
 msgid "[Plugin] group not found"
@@ -288,8 +359,8 @@ msgstr "Modul pengaya %s tak ada"
 
 #: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
-msgid "New plugin '%s' available"
-msgstr "Pengaya baru '%s' tersedia"
+msgid "New plugin “%s” available"
+msgstr "Pengaya baru “%s” tersedia"
 
 #: src/librygel-core/rygel-plugin-loader.vala:104
 #, c-format
@@ -298,23 +369,23 @@ msgstr "Modul bernama %s telah dimuat"
 
 #: src/librygel-core/rygel-plugin-loader.vala:113
 #, c-format
-msgid "Failed to load module from path '%s': %s"
-msgstr "Gagal memuat modul dari '%s': %s"
+msgid "Failed to load module from path “%s”: %s"
+msgstr "Gagal memuat modul dari “%s”: %s"
 
 #: src/librygel-core/rygel-plugin-loader.vala:123
 #, c-format
-msgid "Failed to find entry point function '%s' in '%s': %s"
-msgstr "Gagal menemukan titik akses fungsi '%s' dalam '%s': %s"
+msgid "Failed to find entry point function “%s” in “%s”: %s"
+msgstr "Gagal menemukan titik akses fungsi “%s” dalam “%s”: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
-msgid "Failed to open plugins folder: '%s'"
-msgstr "Gagal membuka folder pengaya: %s"
+msgid "Failed to open plugins folder: “%s”"
+msgstr "Gagal membuka folder pengaya: “%s”"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
-msgid "Error listing contents of folder '%s': %s"
-msgstr "Galat memperoleh daftar isi folder '%s': %s"
+msgid "Error listing contents of folder “%s”: %s"
+msgstr "Galat memperoleh daftar isi folder “%s”: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:193
 #, c-format
@@ -323,8 +394,24 @@ msgstr "Tak bisa memuat pengaya: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:221
 #, c-format
-msgid "Failed to query content type for '%s'"
-msgstr "Gagal melakukan kuiri jenis isi untuk '%s'"
+msgid "Failed to query content type for “%s”"
+msgstr "Gagal melakukan kuiri jenis isi untuk “%s”"
+
+#. TRANSLATORS: First %s is the file's path, second is the error message
+#: src/librygel-core/rygel-user-config.vala:246
+#, c-format
+msgid "Failed to load user configuration from file “%s”: %s"
+msgstr "Gagal memuat konfigurasi pengguna dari berkas “%s”: %s"
+
+#: src/librygel-core/rygel-user-config.vala:299
+#, c-format
+msgid "No value available for “%s”"
+msgstr "Tidak ada nilai untuk “%s”"
+
+#: src/librygel-core/rygel-user-config.vala:370
+#, c-format
+msgid "Value of “%s” out of range"
+msgstr "Nilai “%s” di luar jangkauan"
 
 #: src/librygel-db/database-cursor.vala:99
 #, c-format
@@ -341,9 +428,9 @@ msgstr "Galat saat membuka basis data SQLite %s: %s"
 msgid "Failed to roll back transaction: %s"
 msgstr "Gagal memutar balik transaksi: %s"
 
-#: src/librygel-renderer-gst/rygel-playbin-player.vala:367
+#: src/librygel-renderer-gst/rygel-playbin-player.vala:368
 msgid ""
-"Your GStreamer installation seems to be missing the \"playbin\" element. The "
+"Your GStreamer installation seems to be missing the “playbin” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
 "Instalasi GStreamer Anda nampaknya kekurangan elemen “playbin”. Implementasi "
@@ -421,33 +508,33 @@ msgstr "Aksi Gagal"
 
 #: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
 #, c-format
-msgid "Unable to parse Icon data - unexpected node: %s"
-msgstr "Tak bisa mengurai data Icon - simpul yang tak diharapkan: %s"
+msgid "Unable to parse Icon data — unexpected node: %s"
+msgstr "Tak bisa mengurai data Ikon — simpul yang tak diharapkan: %s"
 
 #: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
 #, c-format
-msgid "Unable to parse Protocol data - unexpected attribute: %s"
-msgstr "Tak bisa mengurai data Protokol - atribut tak diharapkan: %s"
+msgid "Unable to parse Protocol data — unexpected attribute: %s"
+msgstr "Tak bisa mengurai data Protokol — atribut tak diharapkan: %s"
 
 #: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
 #, c-format
-msgid "Unable to parse Protocol data - unexpected node: %s"
-msgstr "Tak bisa mengurai data Protokol - simpul yang tak diharapkan: %s"
+msgid "Unable to parse Protocol data — unexpected node: %s"
+msgstr "Tak bisa mengurai data Protokol — simpul yang tak diharapkan: %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
 #, c-format
-msgid "Failed to set UIList for file %s - %s"
-msgstr "Gagal menata UIList bagi berkas %s - %s"
+msgid "Failed to set UIList for file %s — %s"
+msgstr "Gagal menata UIList bagi berkas %s — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
 #, c-format
-msgid "Failed to set initial UI list for file %s - %s"
-msgstr "Gagal menata daftar UI awal untuk berkas %s - %s"
+msgid "Failed to set initial UI list for file %s — %s"
+msgstr "Gagal menata daftar UI awal untuk berkas %s — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
 #, c-format
-msgid "Failed to monitor the file %s - %s"
-msgstr "Gagal memantau berkas %s - %s"
+msgid "Failed to monitor the file %s — %s"
+msgstr "Gagal memantau berkas %s — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
 #, c-format
@@ -466,8 +553,8 @@ msgstr "Penyaring UI tak valid: %s"
 
 #: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
 #, c-format
-msgid "Unable to parse UI data - unexpected node: %s"
-msgstr "Tak bisa mengurai data UI - simpul yang tak diharapkan: %s"
+msgid "Unable to parse UI data — unexpected node: %s"
+msgstr "Tak bisa mengurai data UI — simpul yang tak diharapkan: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -479,10 +566,10 @@ msgstr "Tak bisa meramban anak pada objek"
 
 #: src/librygel-server/rygel-browse.vala:134
 #, c-format
-msgid "Failed to browse '%s': %s\n"
-msgstr "Gagal menelusuri '%s': %s\n"
+msgid "Failed to browse “%s”: %s\n"
+msgstr "Gagal menelusuri “%s”: %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:145
+#: src/librygel-server/rygel-client-hacks.vala:149
 msgid "Not Applicable"
 msgstr "Tak Berlaku"
 
@@ -504,8 +591,8 @@ msgstr " mesti 1"
 
 #: src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
-msgid "Invalid URI '%s'"
-msgstr "URI '%s' Tidak Sah"
+msgid "Invalid URI “%s”"
+msgstr "URI “%s” Tidak Sah"
 
 #: src/librygel-server/rygel-http-item-uri.vala:192
 msgid "Not found"
@@ -514,8 +601,8 @@ msgstr "Tidak ditemukan"
 #: src/librygel-server/rygel-http-post.vala:62
 #: src/librygel-server/rygel-import-resource.vala:189
 #, c-format
-msgid "Pushing data to non-empty item '%s' not allowed"
-msgstr "Item '%s' tidak kosong, penempatan data tidak diperbolehkan"
+msgid "Pushing data to non-empty item “%s” not allowed"
+msgstr "Item “%s” tidak kosong, penempatan data tidak diperbolehkan"
 
 #: src/librygel-server/rygel-http-post.vala:71
 #, c-format
@@ -530,23 +617,23 @@ msgstr "Gagal memindah berkas dot %s: %s"
 
 #: src/librygel-server/rygel-http-request.vala:95
 #, c-format
-msgid "Requested item '%s' not found"
-msgstr "Item '%s' yang dipinta tidak ada"
+msgid "Requested item “%s” not found"
+msgstr "Item “%s” yang dipinta tidak ada"
 
 #: src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
-msgid "Couldn't create data source for %s"
+msgid "Couldn’t create data source for %s"
 msgstr "Tak bisa membuat sumber data bagi %s"
 
 #: src/librygel-server/rygel-import-resource.vala:124
 #, c-format
-msgid "Failed to get original URI for '%s': %s"
-msgstr "Gagal memperoleh URI asli untuk '%s': %s"
+msgid "Failed to get original URI for “%s”: %s"
+msgstr "Gagal memperoleh URI asli untuk “%s”: %s"
 
 #: src/librygel-server/rygel-import-resource.vala:186
 #, c-format
-msgid "URI '%s' invalid for importing contents to"
-msgstr "URI '%s' tidak sah sebagai tujuan impor"
+msgid "URI “%s” invalid for importing contents to"
+msgstr "URI “%s” tidak sah sebagai tujuan impor"
 
 #: src/librygel-server/rygel-import-resource.vala:272
 #, c-format
@@ -560,13 +647,13 @@ msgstr "Kurang ContainerID"
 
 #: src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
-msgid "Successfully destroyed object '%s'"
-msgstr "Berhasil memusnahkan objek '%s'"
+msgid "Successfully destroyed object “%s”"
+msgstr "Berhasil memusnahkan objek “%s”"
 
 #: src/librygel-server/rygel-item-destroyer.vala:68
 #, c-format
-msgid "Failed to destroy object '%s': %s"
-msgstr "Gagal memusnahkan objek '%s': %s"
+msgid "Failed to destroy object “%s”: %s"
+msgstr "Gagal memusnahkan objek “%s”: %s"
 
 #: src/librygel-server/rygel-item-destroyer.vala:104
 #: src/librygel-server/rygel-item-updater.vala:283
@@ -593,13 +680,13 @@ msgstr "Kurang ID objek"
 
 #: src/librygel-server/rygel-item-updater.vala:81
 #, c-format
-msgid "Successfully updated object '%s'"
-msgstr "Sukses memutakhirkan objek '%s'"
+msgid "Successfully updated object “%s”"
+msgstr "Sukses memutakhirkan objek “%s”"
 
 #: src/librygel-server/rygel-item-updater.vala:89
 #, c-format
-msgid "Failed to update object '%s': %s"
-msgstr "Gagal memutakhirkan objek '%s': %s"
+msgid "Failed to update object “%s”: %s"
+msgstr "Gagal memutakhirkan objek “%s”: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:162
 #: src/librygel-server/rygel-object-creator.vala:606
@@ -733,8 +820,8 @@ msgid "upnp:createClass value not supported"
 msgstr "nilai upnp:createClass tidak didukung"
 
 #: src/librygel-server/rygel-object-creator.vala:191
-msgid "'Elements' argument missing."
-msgstr "Kehilangan argumen 'Elements'."
+msgid "“Elements” argument missing."
+msgstr "Kehilangan argumen \"Elements\"."
 
 #: src/librygel-server/rygel-object-creator.vala:194
 msgid "Comments not allowed in XML"
@@ -747,8 +834,8 @@ msgstr "Kurang argumen ContainerID"
 
 #: src/librygel-server/rygel-object-creator.vala:224
 #, c-format
-msgid "No objects in DIDL-Lite from client: '%s'"
-msgstr "Tidak ada objek dalam DIDL-Lite dari klien: '%s'"
+msgid "No objects in DIDL-Lite from client: “%s”"
+msgstr "Tidak ada objek dalam DIDL-Lite dari klien: “%s”"
 
 #: src/librygel-server/rygel-object-creator.vala:231
 msgid "@id must be set to \"\" in CreateObject call"
@@ -759,8 +846,8 @@ msgid "dc:title must not be empty in CreateObject call"
 msgstr "dc:title tak boleh kosong dalam panggilan CreateObject"
 
 #: src/librygel-server/rygel-object-creator.vala:247
-msgid "Flags that must not be set were found in 'dlnaManaged'"
-msgstr "Flag yang tak boleh diisi ditemukan dalam 'dlnaManaged'"
+msgid "Flags that must not be set were found in “dlnaManaged”"
+msgstr "Flag yang tak boleh diisi ditemukan dalam “dlnaManaged”"
 
 #: src/librygel-server/rygel-object-creator.vala:255
 msgid "Invalid upnp:class given in CreateObject"
@@ -776,8 +863,8 @@ msgstr "Tak bisa membuat item terbatas"
 
 #: src/librygel-server/rygel-object-creator.vala:383
 #, c-format
-msgid "UPnP class '%s' not supported"
-msgstr "Kelas UPnP '%s' tidak didukung"
+msgid "UPnP class “%s” not supported"
+msgstr "Kelas UPnP “%s” tidak didukung"
 
 #: src/librygel-server/rygel-object-creator.vala:417
 #: src/librygel-server/rygel-object-creator.vala:429
@@ -789,40 +876,40 @@ msgstr "Pembuatan objek pada %s tidak diperbolehkan"
 
 #: src/librygel-server/rygel-object-creator.vala:474
 #, c-format
-msgid "Failed to create item under '%s': %s"
-msgstr "Gagal membuat item pada '%s': %s"
+msgid "Failed to create item under “%s”: %s"
+msgstr "Gagal membuat item pada “%s”: %s"
 
 #: src/librygel-server/rygel-object-creator.vala:548
 #, c-format
-msgid "DLNA profile '%s' not supported"
-msgstr "Profil DLNA '%s' tidak didukung"
+msgid "DLNA profile “%s” not supported"
+msgstr "Profil DLNA “%s” tidak didukung"
 
 #: src/librygel-server/rygel-object-creator.vala:648
 #, c-format
-msgid "Cannot create object of class '%s': Not supported"
-msgstr "Tak bisa membuat objek dengan kelas '%s': Tak didukung"
+msgid "Cannot create object of class “%s”: Not supported"
+msgstr "Tak bisa membuat objek dengan kelas “%s”: Tak didukung"
 
 #: src/librygel-server/rygel-object-creator.vala:746
 #, c-format
 msgid ""
-"Error from container '%s' on trying to find the newly added child object "
-"'%s' in it: %s"
+"Error from container “%s” on trying to find the newly added child object "
+"“%s” in it: %s"
 msgstr ""
-"Galat dari wadah '%s' pada percobaan mencari objek anak yang baru "
-"ditambahkan '%s' di dalamnya: %s"
+"Galat dari wadah “%s” pada percobaan mencari objek anak yang baru "
+"ditambahkan “%s” di dalamnya: %s"
 
 #: src/librygel-server/rygel-reference-creator.vala:50
-msgid "'ContainerID' agument missing."
-msgstr "Kehilangan argumen 'ContainerID'."
+msgid "“ContainerID” agument missing."
+msgstr "Kehilangan argumen “ContainerID”."
 
 #: src/librygel-server/rygel-reference-creator.vala:55
-msgid "'ObjectID' argument missing."
-msgstr "Kehilangan argumen 'ObjectID'."
+msgid "“ObjectID” argument missing."
+msgstr "Kehilangan argumen “ObjectID”."
 
 #: src/librygel-server/rygel-reference-creator.vala:86
 #, c-format
-msgid "Failed to create object under '%s': %s"
-msgstr "Gagal membuat objek di bawah '%s': %s"
+msgid "Failed to create object under “%s”: %s"
+msgstr "Gagal membuat objek di bawah “%s”: %s"
 
 #: src/librygel-server/rygel-search.vala:70
 msgid "Invalid search criteria given"
@@ -830,8 +917,8 @@ msgstr "Kriteria pencarian yang tak valid diberikan"
 
 #: src/librygel-server/rygel-search.vala:94
 #, c-format
-msgid "Failed to search in '%s': %s"
-msgstr "Gagal mencari pada '%s': %s"
+msgid "Failed to search in “%s”: %s"
+msgstr "Gagal mencari pada “%s”: %s"
 
 #: src/librygel-server/rygel-subtitle-manager.vala:92
 msgid "No subtitle available"
@@ -924,7 +1011,7 @@ msgstr "URI tanpa prefiks tidak sah: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, c-format
-msgid "Can't process URI %s with protocol %s"
+msgid "Can’t process URI %s with protocol %s"
 msgstr "Tak bisa memroses URI %s dengan protokol %s"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
@@ -946,8 +1033,8 @@ msgid "Required element %s missing"
 msgstr "Kehilangan elemen %s yang diperlukan"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:58
-msgid "GStreamer element 'dvdreadsrc' not found. DVD support does not work"
-msgstr "Elemen 'dvdreadsrc' GStreamer tak ditemukan. Dukungan DVD tak bekerja"
+msgid "GStreamer element “dvdreadsrc” not found. DVD support does not work"
+msgstr "Elemen GStreamer “dvdreadsrc” tak ditemukan. Dukungan DVD tak bekerja"
 
 #: src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
@@ -961,12 +1048,12 @@ msgstr "Hanya bisa memroses MediaObjects berbasis berkas (MediaFileItems)"
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
-msgstr "Modul '%s' tak bisa menyambung ke bus sesi D-Bus. Mengabaikan..."
+msgid "Module “%s” could not connect to D-Bus session bus. Ignoring…"
+msgstr "Modul “%s” tak bisa menyambung ke bus sesi D-Bus. Mengabaikan..."
 
 #: src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
-msgid "External provider %s did not provide mandatory property \"%s\""
+msgid "External provider %s did not provide mandatory property “%s”"
 msgstr "Penyedia eksternal %s tak menyediakan properti \"%s\" yang wajib"
 
 #: src/plugins/lms/rygel-lms-albums.vala:166
@@ -1040,11 +1127,11 @@ msgstr "Gagal membaca dari pipa: %s"
 msgid "Failed to send error to parent: %s"
 msgstr "Gagal mengirim galat ke induk: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:149
-msgid "- helper binary for Rygel to extract metadata"
-msgstr "- biner pembantu bagi Rygel untuk mengekstrak metadata"
+#: src/plugins/media-export/rygel-media-export-extract.vala:157
+msgid "— helper binary for Rygel to extract metadata"
+msgstr "— biner pembantu bagi Rygel untuk mengekstrak metadata"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:156
+#: src/plugins/media-export/rygel-media-export-extract.vala:164
 #, c-format
 msgid "Failed to parse commandline args: %s"
 msgstr "Gagal mengurai arg baris perintah: %s"
@@ -1056,13 +1143,13 @@ msgstr "Gagal membuat pengekstrak seni media: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, c-format
-msgid "'%s' harvested"
-msgstr "'%s' dipanen"
+msgid "“%s” harvested"
+msgstr "“%s” dipanen"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:202
 #, c-format
-msgid "Error fetching object '%s' from database: %s"
-msgstr "Galat mengambil objek '%s' dari basis data: %s"
+msgid "Error fetching object “%s” from database: %s"
+msgstr "Galat mengambil objek “%s” dari basis data: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:210
 #, c-format
@@ -1079,22 +1166,22 @@ msgstr "Tak bisa temukan objek %s atau induknya. Basis data tak konsisten"
 msgid "Error removing object from database: %s"
 msgstr "Galat menghapus objek dari basis data: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:125
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:127
 #, c-format
 msgid "Failed to harvest file %s: %s"
 msgstr "Gagal memanen berkas %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:175
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:191
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "Gagal mengkuiri basis data: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:259
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
 #, c-format
-msgid "Failed to enumerate folder \"%s\": %s"
-msgstr "Gagal mengenumerasi folder \"%s\": %s"
+msgid "Failed to enumerate folder “%s”: %s"
+msgstr "Gagal mengenumerasi folder “%s”: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:277
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:286
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Gagal mendapat anak dari suatu wadah %s: %s"
@@ -1102,7 +1189,7 @@ msgstr "Gagal mendapat anak dari suatu wadah %s: %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:358
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "Melewati URI %s; ekstraksi sepenuhnya gagal: %s"
@@ -1132,83 +1219,83 @@ msgstr "Tak bisa meningkatkan dari versi %d"
 msgid "Database upgrade failed: %s"
 msgstr "Peningkatan basis data gagal: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:133
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:134
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Gagal menambahkan item dengan ID %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:216
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:217
 #, c-format
 msgid "Failed to get update IDs: %s"
 msgstr "Gagal memperoleh ID pemutakhiran: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:396
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:400
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
 msgstr "Basis data tak konsisten: butir %s tak punya induk %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:521
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:525
 msgid "Failed to get reset token"
 msgstr "Gagal me-reset token"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:533
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:537
 #, c-format
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "Gagal membuat ServiceResetToken bertahan: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:543
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:547
 #, c-format
 msgid "Failed to remove virtual folders: %s"
 msgstr "Gagal menghapus folder virtual: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:557
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:561
 #, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
 msgstr "Gagal menandai butir %s sebagai terjaga (%d): %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:567
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:571
 msgid "Cannot create references to containers"
 msgstr "Tak bisa membuat acuan ke wadah"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:593
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:597
 #, c-format
 msgid "Failed to add %s to file blacklist: %s"
 msgstr "Gagal menambahkan %s ke daftar hitam berkas: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:606
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, c-format
 msgid "Failed to get whether URI %s is blacklisted: %s"
 msgstr "Gagal mendapat apakah URI %s masuk daftar hitam: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:622
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:626
 #, c-format
 msgid "Failed to get whether item %s is guarded: %s"
 msgstr "Gagal mendapati apakah butir %s dijaga: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:661
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:666
 #, c-format
 msgid ""
-"The version \"%d\" of the detected database is newer than our supported "
-"version \"%d\""
+"The version “%d” of the detected database is newer than our supported "
+"version “%d”"
 msgstr ""
 "Versi \"%d\" dari basis data yang terdeteksi lebih baru daripada versi \"%d"
 "\" yang kami dukung"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:685
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:690
 msgid "Incompatible schema… cannot proceed"
 msgstr "Skema tak kompatibel… tak bisa melanjutkan"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:691
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:696
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr "Basis data tak valid, tak bisa mengkuiri tabel sqlite_master: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:892
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:897
 #, c-format
 msgid "Failed to create database schema: %s"
 msgstr "Gagal membuat skema basis data: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1228
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Melewati ruas pengurutan yang tak didukung: %s"
@@ -1264,17 +1351,17 @@ msgstr "Gagal mendapat cacah anak: %s"
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
 #, c-format
-msgid "Can't create items in %s"
+msgid "Can’t create items in %s"
 msgstr "Tak bisa membuat item dalam %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:91
 #, c-format
-msgid "Can't add containers in %s"
+msgid "Can’t add containers in %s"
 msgstr "Tak bisa menambah wadah dalam %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:99
 #, c-format
-msgid "Can't remove containers in %s"
+msgid "Can’t remove containers in %s"
 msgstr "Tak bisa menghapus wadah dalam %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
@@ -1284,7 +1371,7 @@ msgstr "Daftar putar"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
-msgid "Can't remove items in %s"
+msgid "Can’t remove items in %s"
 msgstr "Tak bisa menghapus item dalam %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
@@ -1337,7 +1424,7 @@ msgstr "Berkas & Folder"
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
 #: src/plugins/tracker/rygel-tracker-plugin.vala:33
-msgid "@REALNAME@'s media"
+msgid "@REALNAME@’s media"
 msgstr "Media @REALNAME@"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:457
@@ -1390,17 +1477,17 @@ msgstr "Tak dapat membuat pemutar GStreamer"
 msgid "Failed to create a Tracker connection: %s"
 msgstr "Gagal membuat koneksi Pelacak: %s"
 
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:62
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
 #, c-format
-msgid "Failed to construct URI for folder '%s': %s"
-msgstr "Gagal membangun URI untuk folder '%s': %s"
+msgid "Failed to construct URI for folder “%s”: %s"
+msgstr "Gagal membangun URI untuk folder “%s”: %s"
 
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:77
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
 #, c-format
 msgid "Could not subscribe to Tracker signals: %s"
 msgstr "Tak bisa berlangganan ke sinyal Pelacak: %s"
 
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:95
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
 msgid "Not supported"
 msgstr "Tidak didukung"
 
@@ -1411,8 +1498,8 @@ msgstr "Gagal membuat koneksi Pelacak: %s"
 
 #: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
 #, c-format
-msgid "Error getting all values for '%s': %s"
-msgstr "Galat saat memperoleh semua nilai untuk '%s': %s"
+msgid "Error getting all values for “%s”: %s"
+msgstr "Galat saat memperoleh semua nilai untuk “%s”: %s"
 
 #: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
 #, c-format
@@ -1426,8 +1513,8 @@ msgstr "Gagal mendapat koneksi Pelacak: %s"
 
 #: src/plugins/tracker/rygel-tracker-search-container.vala:228
 #, c-format
-msgid "Error getting item count under category '%s': %s"
-msgstr "Galat memperoleh jumlah item untuk kategori '%s': %s"
+msgid "Error getting item count under category “%s”: %s"
+msgstr "Galat memperoleh jumlah item untuk kategori “%s”: %s"
 
 #: src/plugins/tracker/rygel-tracker-titles.vala:58
 msgid "Titles"
@@ -1440,87 +1527,16 @@ msgstr "Gagal mengkuiri ACL: %s"
 
 #: src/rygel/rygel-acl.vala:127
 #, c-format
-msgid "Error creating DBus proxy for ACL: %s"
+msgid "Error creating D-Bus proxy for ACL: %s"
 msgstr "Galat saat membuat proksi DBus untuk ACL: %s"
 
 #: src/rygel/rygel-acl.vala:143
-msgid "No ACL fallback policy found. Using \"allow\""
-msgstr "Tak ditemukan kebijakan fallback ACL. Memakai \"allow\""
+msgid "No ACL fallback policy found. Using “allow”"
+msgstr "Tak ditemukan kebijakan fallback ACL. Gunakan \"allow\""
 
 #: src/rygel/rygel-acl.vala:145
-msgid "No ACL fallback policy found. Using \"deny\""
-msgstr "Tak ditemukan kebijakan fallback ACL. Memakai \"deny\""
-
-#: src/rygel/rygel-cmdline-config.vala:73
-msgid "Display version number"
-msgstr "Tampilkan nomor versi"
-
-#: src/rygel/rygel-cmdline-config.vala:75
-msgid "Network Interfaces"
-msgstr "Antar Muka Jaringan"
-
-#: src/rygel/rygel-cmdline-config.vala:77
-msgid "Port"
-msgstr "Port"
-
-#: src/rygel/rygel-cmdline-config.vala:79
-msgid "Disable transcoding"
-msgstr "Matikan transkoding"
-
-#: src/rygel/rygel-cmdline-config.vala:81
-msgid "Disallow upload"
-msgstr "Larang unggah"
-
-#: src/rygel/rygel-cmdline-config.vala:83
-msgid "Disallow deletion"
-msgstr "Larang penghapusan"
-
-#: src/rygel/rygel-cmdline-config.vala:85
-msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
-msgstr ""
-"Daftar yang dipisah koma dari pasangan domain:level. Lihat rygel(1) untuk "
-"rincian."
-
-#: src/rygel/rygel-cmdline-config.vala:87
-msgid "Plugin Path"
-msgstr "Path Pengaya"
-
-#: src/rygel/rygel-cmdline-config.vala:89
-msgid "Engine Path"
-msgstr "Path Mesin"
-
-#: src/rygel/rygel-cmdline-config.vala:92
-msgid "Disable plugin"
-msgstr "Matikan pengaya"
-
-#: src/rygel/rygel-cmdline-config.vala:94
-msgid "Set plugin titles"
-msgstr "Tata judul pengaya"
-
-#: src/rygel/rygel-cmdline-config.vala:96
-msgid "Set plugin options"
-msgstr "Tata opsi pengaya"
-
-#: src/rygel/rygel-cmdline-config.vala:98
-msgid "Use configuration file instead of user configuration"
-msgstr "Memakai berkas konfigurasi bukan konfigurasi pengguna"
-
-#: src/rygel/rygel-cmdline-config.vala:100
-msgid "Shut down remote Rygel reference"
-msgstr "Mematikan acuan Rygel remote"
-
-#: src/rygel/rygel-cmdline-config.vala:102
-msgid "Replace currently running instance of Rygel"
-msgstr "Gantikan instansi Rygel yang sedang berjalan ini"
-
-#: src/rygel/rygel-cmdline-config.vala:139
-msgid "Shutting down remote Rygel instance\n"
-msgstr "Mematikan instansi remote Rygel\n"
-
-#: src/rygel/rygel-cmdline-config.vala:147
-#, c-format
-msgid "Failed to shut down other Rygel instance: %s"
-msgstr "Gagal mematikan instansi Rygel lain: %s"
+msgid "No ACL fallback policy found. Using “deny”"
+msgstr "Tak ditemukan kebijakan fallback ACL. Gunakan \"deny\""
 
 #: src/rygel/rygel-dbus-service.vala:81
 msgid "Another instance of Rygel is already running. Not starting."
@@ -1552,22 +1568,6 @@ msgstr "Gagal membuat RootDevice untuk %s. Alasan: %s"
 msgid "Failed to load user configuration: %s"
 msgstr "Gagal memuat konfigurasi pengguna: %s"
 
-#. TRANSLATORS: First %s is the file's path, second is the error message
-#: src/rygel/rygel-user-config.vala:246 src/ui/rygel-user-config.vala:246
-#, c-format
-msgid "Failed to load user configuration from file '%s': %s"
-msgstr "Gagal memuat konfigurasi pengguna dari berkas '%s': %s"
-
-#: src/rygel/rygel-user-config.vala:299 src/ui/rygel-user-config.vala:299
-#, c-format
-msgid "No value available for '%s'"
-msgstr "Tidak ada nilai untuk '%s'"
-
-#: src/rygel/rygel-user-config.vala:370 src/ui/rygel-user-config.vala:370
-#, c-format
-msgid "Value of '%s' out of range"
-msgstr "Nilai '%s' di luar jangkauan"
-
 #: src/ui/rygel-preferences-dialog.vala:109
 #, c-format
 msgid "Failed to create preferences dialog: %s"
@@ -1575,8 +1575,8 @@ msgstr "Gagal membuat dialog preferensi: %s"
 
 #: src/ui/rygel-writable-user-config.vala:119
 #, c-format
-msgid "Failed to save configuration data to file '%s': %s"
-msgstr "Gagal menyimpan konfigurasi pada berkas '%s': %s"
+msgid "Failed to save configuration data to file “%s”: %s"
+msgstr "Gagal menyimpan konfigurasi pada berkas “%s”: %s"
 
 #: src/ui/rygel-writable-user-config.vala:214
 #, c-format
@@ -1587,3 +1587,6 @@ msgstr "Gagal menjalankan layanan Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Gagal menghentikan layanan Rygel: %s"
+
+#~ msgid "'ObjectID' argument missing."
+#~ msgstr "Kehilangan argumen 'ObjectID'."
