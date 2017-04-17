@@ -166,7 +166,9 @@ int main (string[] args) {
         return Posix.EXIT_FAILURE;
     }
 
-    Posix.nice (19);
+    if (Posix.nice (19) < 0) {
+        debug ("Failed to reduce nice level of thumbnailer, continuing anyway");
+    }
 
     var registry = Gst.Registry.@get ();
     var features = registry.feature_filter (vaapi_filter, false);
