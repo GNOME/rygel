@@ -44,8 +44,17 @@ standalone_renderer_gst_LDADD = \
 	$(RYGEL_COMMON_LIBRYGEL_RENDERER_GST_LIBS)
 
 if BUILD_UI
+
+org.gnome.Rygel.FullscreenRenderer.gresource.c: $(abs_srcdir)/org.gnome.Rygel.FullscreenRenderer.gresource.xml
+	$(AM_V_GEN)$(GLIB_COMPILE_RESOURCES) \
+		--target=$@ \
+		--sourcedir=$(abs_top_srcdir)/data/icons/scalable \
+		--generate $<
+
 noinst_PROGRAMS += fullscreen-renderer
-fullscreen_renderer_SOURCES = fullscreen-renderer.c
+fullscreen_renderer_SOURCES = \
+	fullscreen-renderer.c \
+	org.gnome.Rygel.FullscreenRenderer.gresource.c
 fullscreen_renderer_CFLAGS = \
 	$(EXAMPLE_UI_DEPS_CFLAGS) \
 	$(LIBRYGEL_RENDERER_GST_DEPS_CFLAGS) \

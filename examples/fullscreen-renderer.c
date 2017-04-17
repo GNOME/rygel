@@ -44,10 +44,15 @@
 #include "rygel-renderer-gst.h"
 #include "rygel-core.h"
 
+#define LOGO_PATH "/org/gnome/Rygel/FullscreenRenderer/rygel-full.svg"
+
 struct _MainData {
     GtkWindow *window;
     GtkWidget *video;
     GstElement *playbin;
+    GdkPixbuf *pixbuf;
+    gint logo_width;
+    gint logo_height;
 };
 typedef struct _MainData MainData;
 
@@ -74,7 +79,7 @@ static gboolean on_draw (GtkWidget *widget, cairo_t *cr, gpointer user_data)
     gst_element_get_state (data->playbin, &state, NULL, GST_CLOCK_TIME_NONE);
 
     if (state < GST_STATE_PAUSED) {
-        gint width, height;
+        gint width, height, logo_x, logo_y;
 
         width = gtk_widget_get_allocated_width (widget);
         height = gtk_widget_get_allocated_height (widget);
@@ -82,6 +87,25 @@ static gboolean on_draw (GtkWidget *widget, cairo_t *cr, gpointer user_data)
         cairo_set_source_rgb (cr, 0, 0, 0);
         cairo_rectangle (cr, 0, 0, width, height);
         cairo_fill (cr);
+
+        if (data->pixbuf == NULL) {
+            data->pixbuf = gdk_pixbuf_new_from_resource_at_scale
+                                        (LOGO_PATH,
+                                         (int) width * 0.6,
+                                         (int) height * 0.6,
+                                         TRUE,
+                                         NULL);
+            data->logo_width = gdk_pixbuf_get_width (data->pixbuf);
+            data->logo_height = gdk_pixbuf_get_height (data->pixbuf);
+        }
+
+
+        logo_x = (width - data->logo_width) / 2;
+        logo_y = (height - data->logo_height) / 2;
+
+        gdk_cairo_set_source_pixbuf (cr, data->pixbuf, logo_x, logo_y);
+
+        cairo_paint (cr);
     }
 }
 
