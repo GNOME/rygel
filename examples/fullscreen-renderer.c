@@ -38,6 +38,7 @@
 
 #include <gst/video/videooverlay.h>
 #include <gdk/gdkx.h>
+#include <gdk/gdkwayland.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
@@ -66,7 +67,14 @@ static void on_realize (GtkWidget *widget, gpointer user_data)
     if (!gdk_window_ensure_native (window))
         g_error ("Could not create native window for overlay");
 
-    window_handle = GDK_WINDOW_XID (window);
+    if (GDK_IS_WAYLAND_WINDOW (window)) {
+        window_handle = gdk_wayland_window_get_wl_surface (window);
+    } else if (GDK_IS_X11_WINDOW (window)) {
+        window_handle = GDK_WINDOW_XID (window);
+    } else {
+        g_error ("Unsupported windowing system");
+    }
+
     gst_video_overlay_set_window_handle (GST_VIDEO_OVERLAY (data->playbin),
                                          window_handle);
 }
