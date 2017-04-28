@@ -680,13 +680,11 @@
       <stateVariable sendEvents="no">
          <name>NextAVTransportURI</name>
          <dataType>string</dataType>
-         <defaultValue>NOT_IMPLEMENTED</defaultValue>
       </stateVariable>
 
       <stateVariable sendEvents="no">
          <name>NextAVTransportURIMetaData</name>
          <dataType>string</dataType>
-         <defaultValue>NOT_IMPLEMENTED</defaultValue>
       </stateVariable>
 
       <stateVariable sendEvents="no">
