@@ -720,6 +720,45 @@ internal class Rygel.AVTransport : Service {
         this.changelog.log ("CurrentPlayMode", this.controller.play_mode);
     }
 
+    private MediaCollection? parse_m3u_playlist (uint8[]? data) throws Error {
+        if (data == null) {
+            return null;
+        }
+
+        var collection = new MediaCollection ();
+        var m_stream = new MemoryInputStream.from_data (data, null);
+        var stream = new DataInputStream (m_stream);
+
+        debug ("Trying to parse m3u playlist");
+        size_t length;
+        var line = stream.read_line (out length);
+        while (line != null) {
+
+            // Swallow comments
+            while (line != null && line.has_prefix ("#")) {
+                line = stream.read_line (out length);
+            }
+
+            // No more lines after comments
+            if (line == null) {
+                break;
+            }
+
+            debug ("Adding uri with %s", line);
+            var item = collection.add_item ();
+            item.upnp_class = "object.item.audioItem";
+
+            var resource = item.add_resource ();
+            var pi = new ProtocolInfo.from_string ("*:*:*:*");
+            resource.set_protocol_info (pi);
+            resource.uri = line.strip ();
+
+            line = stream.read_line (out length);
+        }
+
+        return collection;
+    }
+
     private async void handle_playlist (ServiceAction action,
                                         string uri,
                                         string metadata,
@@ -741,38 +780,9 @@ internal class Rygel.AVTransport : Service {
 
         MediaCollection collection = null;
         if (content_type.has_suffix ("mpegurl")) {
-            collection = new MediaCollection ();
-            var m_stream = new MemoryInputStream.from_data
-                                        (message.response_body.data, null);
-            var stream = new DataInputStream (m_stream);
-
-            size_t length;
             debug ("Trying to parse m3u playlist");
             try {
-                var line = stream.read_line (out length);
-                while (line != null) {
-
-                    // Swallow comments
-                    while (line != null && line.has_prefix ("#")) {
-                        line = stream.read_line (out length);
-                    }
-
-                    // No more lines after comments
-                    if (line == null) {
-                        break;
-                    }
-
-                    debug ("Adding uri with %s", line);
-                    var item = collection.add_item ();
-                    item.upnp_class = "object.item.audioItem";
-
-                    var resource = item.add_resource ();
-                    var pi = new ProtocolInfo.from_string ("*:*:*:*");
-                    resource.set_protocol_info (pi);
-                    resource.uri = line.strip ();
-
-                    line = stream.read_line (out length);
-                }
+                collection = parse_m3u_playlist (message.response_body.data);
             } catch (Error error) {
                 warning (_("Problem parsing playlist: %s"), error.message);
                 // FIXME: Return a more sensible error here.
