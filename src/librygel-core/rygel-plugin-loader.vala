@@ -161,14 +161,14 @@ public class Rygel.PluginLoader : RecursiveModuleLoader {
             try {
                 var enabled = this.config.get_enabled (section);
                 if (!enabled) {
-                    if (section in plugin_hash) {
+                    if (plugin_hash.has_key(section)) {
                         plugin_hash[section].active = enabled;
                     }
                 } else {
-                    if (section in plugin_hash) {
+                    if (plugin_hash.has_key(section)) {
                         plugin_hash[section].active = enabled;
                     } else {
-                        if (section in available_plugins) {
+                        if (available_plugins.has_key(section)) {
                             this.load_module_from_info
                                 (available_plugins[section]);
                         }
