@@ -32,6 +32,7 @@
 #include <sys/socket.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <unistd.h>
 
 #include <linux/wireless.h>
 
