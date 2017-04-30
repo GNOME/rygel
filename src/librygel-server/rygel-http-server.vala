@@ -85,6 +85,7 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
         context.add_server_handler (true, this.path_root, this.server_handler);
         context.server.request_aborted.connect (this.on_request_aborted);
         context.server.request_started.connect (this.on_request_started);
+        context.server.request_read.connect (this.on_request_read);
 
         if (this.cancellable != null) {
             this.cancellable.cancelled.connect (this.on_cancelled);
@@ -196,6 +197,24 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
                                      Soup.Message       message,
                                      Soup.ClientContext client) {
         message.got_headers.connect (this.on_got_headers);
+    }
+
+    private void on_request_read (Soup.Server        server,
+                                  Soup.Message       message,
+                                  Soup.ClientContext client) {
+        var agent = message.request_headers.get_one ("User-Agent");
+
+        if (agent == null) {
+            var host = client.get_host ();
+            agent = this.context.guess_user_agent (host);
+            if (agent != null) {
+                debug ("Guessed user agent %s for %s", agent, client.get_host ());
+                message.request_headers.append ("User-Agent", agent);
+            } else {
+                debug ("Could not guess user agent for ip %s.", host);
+            }
+        }
+
     }
 
     private void on_got_headers (Soup.Message msg) {
