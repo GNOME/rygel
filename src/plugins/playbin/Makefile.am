@@ -5,10 +5,7 @@ plugin_DATA = playbin.plugin
 
 librygel_playbin_la_SOURCES = rygel-playbin-module.vala rygel-playbin-plugin.vala
 librygel_playbin_la_VALAFLAGS = \
-	--pkg rygel-renderer-gst-2.6 \
-	--vapidir $(top_srcdir)/src/librygel-renderer-gst \
-	--enable-experimental \
-	$(RYGEL_COMMON_LIBRYGEL_RENDERER_VALAFLAGS) \
+	$(RYGEL_COMMON_LIBRYGEL_RENDERER_GST_VALAFLAGS) \
 	$(RYGEL_COMMON_VALAFLAGS)
 librygel_playbin_la_CFLAGS = \
 	$(RYGEL_PLUGIN_PLAYBIN_DEPS_CFLAGS) \

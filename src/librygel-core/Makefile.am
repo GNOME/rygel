@@ -14,7 +14,7 @@ librygel_core_2_6_la_SOURCES = \
 librygel_core_2_6_la_VALAFLAGS = \
 	-H rygel-core.h -C --library=rygel-core-2.6 \
 	--gir=Rygel-2.6.gir \
-	--vapidir=$(srcdir) \
+	--vapidir=$(abs_srcdir) \
 	$(LIBRYGEL_CORE_DEPS_VALAFLAGS) \
 	$(RYGEL_COMMON_VALAFLAGS)
 

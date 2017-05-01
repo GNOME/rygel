@@ -5,8 +5,6 @@ plugin_DATA = ruih.plugin
 
 librygel_ruih_la_SOURCES = rygel-ruih-module.vala rygel-ruih-plugin.vala
 librygel_ruih_la_VALAFLAGS = \
-        --pkg rygel-ruih-2.0 \
-        --vapidir $(top_srcdir)/src/librygel-ruih \
         $(RYGEL_COMMON_LIBRYGEL_RUIH_VALAFLAGS) \
         $(RYGEL_COMMON_VALAFLAGS)
 librygel_ruih_la_CFLAGS = \

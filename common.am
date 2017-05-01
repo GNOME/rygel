@@ -23,10 +23,10 @@ endif
 smallicondir = $(shareddir)/icons/48x48
 bigicondir = $(shareddir)/icons/120x120
 
-librygelcoredir = $(top_srcdir)/src/librygel-core
-librygelserverdir = $(top_srcdir)/src/librygel-server
-librygelrendererdir = $(top_srcdir)/src/librygel-renderer
-librygelruihdir = $(top_srcdir)/src/librygel-ruih
+librygelcoredir = $(abs_top_srcdir)/src/librygel-core
+librygelserverdir = $(abs_top_srcdir)/src/librygel-server
+librygelrendererdir = $(abs_top_srcdir)/src/librygel-renderer
+librygelruihdir = $(abs_top_srcdir)/src/librygel-ruih
 
 MAINTAINERCLEANFILES = Makefile.in
 
@@ -48,7 +48,7 @@ RYGEL_COMMON_LIBRYGEL_CORE_LIBS = \
 	$(top_builddir)/src/librygel-core/librygel-core-2.6.la
 
 RYGEL_COMMON_LIBRYGEL_DB_VALAFLAGS = \
-	--vapidir=$(top_srcdir)/src/librygel-db \
+	--vapidir=$(abs_top_srcdir)/src/librygel-db \
 	--pkg rygel-db-2.6 \
 	$(RYGEL_COMMON_LIBRYGEL_CORE_VALAFLAGS)
 
@@ -62,7 +62,7 @@ RYGEL_COMMON_LIBRYGEL_DB_LIBS = \
 	$(top_builddir)/src/librygel-db/librygel-db-2.6.la
 
 RYGEL_COMMON_LIBRYGEL_RENDERER_VALAFLAGS = \
-	--vapidir=$(top_srcdir)/src/librygel-renderer \
+	--vapidir=$(abs_top_srcdir)/src/librygel-renderer \
 	--pkg rygel-renderer-2.6 \
 	$(RYGEL_COMMON_LIBRYGEL_CORE_VALAFLAGS)
 
@@ -77,8 +77,9 @@ RYGEL_COMMON_LIBRYGEL_RENDERER_LIBS = \
 
 
 RYGEL_COMMON_LIBRYGEL_RENDERER_GST_VALAFLAGS = \
-	--vapidir=$(top_srcdir)/src/librygel-renderer-gst \
+	--vapidir=$(abs_top_srcdir)/src/librygel-renderer-gst \
 	--pkg rygel-renderer-gst-2.6 \
+	--enable-experimental \
 	$(RYGEL_COMMON_LIBRYGEL_RENDERER_VALAFLAGS)
 
 RYGEL_COMMON_LIBRYGEL_RENDERER_GST_CFLAGS = \
@@ -106,7 +107,7 @@ RYGEL_COMMON_LIBRYGEL_SERVER_LIBS = \
 	$(top_builddir)/src/librygel-server/librygel-server-2.6.la
 
 RYGEL_COMMON_LIBRYGEL_RUIH_VALAFLAGS = \
-        --vapidir=$(top_builddir)/src/librygel-ruih \
+        --vapidir=$(abs_top_srcdir)/src/librygel-ruih \
         --pkg rygel-ruih-2.0 \
         $(RYGEL_COMMON_LIBRYGEL_CORE_VALAFLAGS)
 
