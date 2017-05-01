@@ -16,7 +16,7 @@ xml_DATA = $(xml_in_files:.xml.in=.xml)
 
 # Strip newlines and leading spaces from XML files as not all devices like them
 %.xml: %.xml.in
-	@cat < $< | sed -re "s,^ +,,g" | tr -d "\n" > $@
+	@$(SED) -re "s,^ +,,g" < $< | tr -d "\n" > $@
 
 xmldir = $(datadir)/rygel/xml
 
