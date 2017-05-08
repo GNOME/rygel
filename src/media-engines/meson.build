@@ -1,0 +1,2 @@
+subdir('gstreamer')
+#subdir('simple')
