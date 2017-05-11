@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2017-05-01 09:31+0000\n"
-"PO-Revision-Date: 2017-05-10 15:53+0200\n"
+"PO-Revision-Date: 2017-05-11 22:54+0200\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -315,24 +315,24 @@ msgstr "Neuspješno dobivanje MAC adrese za %s: %s"
 
 #: src/librygel-core/rygel-energy-management-helper.c:104
 msgid "MAC and network type querying not implemented"
-msgstr ""
+msgstr "MAC i mrežne vrste upita nisu implementirani"
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
 msgid "Failed to get log level from configuration: %s"
-msgstr ""
+msgstr "Neuspješno dobivanje razina zapisa iz podešavanja: %s"
 
 #. translators: "enabled" is part of the config key and must not be translated
 #: src/librygel-core/rygel-meta-config.vala:336
 #, c-format
 msgid "No value set for “%s/enabled”"
-msgstr ""
+msgstr "Nema postavljene vrijednosti za “%s/enabled”"
 
 #. translators: "title" is part of the config key and must not be translated
 #: src/librygel-core/rygel-meta-config.vala:355
 #, c-format
 msgid "No value set for “%s/title”"
-msgstr ""
+msgstr "Nema postavljene vrijednosti za “%s/title”"
 
 #: src/librygel-core/rygel-meta-config.vala:375
 #: src/librygel-core/rygel-meta-config.vala:397
@@ -341,113 +341,115 @@ msgstr ""
 #: src/librygel-core/rygel-meta-config.vala:469
 #, c-format
 msgid "No value available for “%s/%s”"
-msgstr ""
+msgstr "Nema dostupne vrijednosti za “%s/%s”"
 
 #: src/librygel-core/rygel-plugin-information.vala:59
 msgid "[Plugin] group not found"
-msgstr ""
+msgstr "[Priključak] grupa nije pronađena"
 
 #: src/librygel-core/rygel-plugin-information.vala:77
 #, c-format
 msgid "Plugin module %s does not exist"
-msgstr ""
+msgstr "Modul priključka %s ne postoji"
 
 #: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
 msgid "New plugin “%s” available"
-msgstr ""
+msgstr "Novi priključak “%s” je dostupan"
 
 #: src/librygel-core/rygel-plugin-loader.vala:104
 #, c-format
 msgid "A module named %s is already loaded"
-msgstr ""
+msgstr "Modul naziva %s je već učitan"
 
 #: src/librygel-core/rygel-plugin-loader.vala:113
 #, c-format
 msgid "Failed to load module from path “%s”: %s"
-msgstr ""
+msgstr "Neuspješno učitavanje modula iz putanje “%s”: %s"
 
 #: src/librygel-core/rygel-plugin-loader.vala:123
 #, c-format
 msgid "Failed to find entry point function “%s” in “%s”: %s"
-msgstr ""
+msgstr "Neuspješan pronalazak točke unosa funkcije “%s” u “%s”: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
 msgid "Failed to open plugins folder: “%s”"
-msgstr ""
+msgstr "Neuspješno otvaranje mape priključka: “%s”"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
 msgid "Error listing contents of folder “%s”: %s"
-msgstr ""
+msgstr "Greška prikaza sadržaja mape “%s”: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:193
 #, c-format
 msgid "Could not load plugin: %s"
-msgstr ""
+msgstr "Nemoguće učitavanje priključka: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:221
 #, c-format
 msgid "Failed to query content type for “%s”"
-msgstr ""
+msgstr "Neuspješan upit vrste sadržaja za “%s”"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
 #: src/librygel-core/rygel-user-config.vala:246
 #, c-format
 msgid "Failed to load user configuration from file “%s”: %s"
-msgstr ""
+msgstr "Neuspješno učitavanje podešavanja korisnika iz datoteke “%s”: %s"
 
 #: src/librygel-core/rygel-user-config.vala:299
 #, c-format
 msgid "No value available for “%s”"
-msgstr ""
+msgstr "Nema dostupne vrijednosti za “%s”"
 
 #: src/librygel-core/rygel-user-config.vala:370
 #, c-format
 msgid "Value of “%s” out of range"
-msgstr ""
+msgstr "Vrijednost “%s” je izvan raspona"
 
 #: src/librygel-db/database-cursor.vala:99
 #, c-format
 msgid "Unsupported type %s"
-msgstr ""
+msgstr "Nepodržana vrsta %s"
 
 #: src/librygel-db/database.vala:175
 #, c-format
 msgid "Error while opening SQLite database %s: %s"
-msgstr ""
+msgstr "Greška pri otvaranju SQLite baze podataka %s: %s"
 
 #: src/librygel-db/database.vala:306
 #, c-format
 msgid "Failed to roll back transaction: %s"
-msgstr ""
+msgstr "Neuspješno vraćanje posljednje transakcije: %s"
 
 #: src/librygel-renderer-gst/rygel-playbin-player.vala:368
 msgid ""
 "Your GStreamer installation seems to be missing the “playbin” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
+"Izgleda da vašoj GStreamer instalaciji nedostaje “playbin” element. Rygel "
+"GStreamer implementacija prikaza ne može raditi bez tog elementa"
 
 #: src/librygel-renderer/rygel-av-transport.vala:204
 #: src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
-msgstr ""
+msgstr "Neispravan ID primjerka"
 
 #: src/librygel-renderer/rygel-av-transport.vala:474
 msgid "Play speed not supported"
-msgstr ""
+msgstr "Brzina reprodukcije nije podržana"
 
 #: src/librygel-renderer/rygel-av-transport.vala:481
 #: src/librygel-renderer/rygel-av-transport.vala:499
 msgid "Transition not available"
-msgstr ""
+msgstr "Prijelaz nije dostupan"
 
 #: src/librygel-renderer/rygel-av-transport.vala:529
 #: src/librygel-renderer/rygel-av-transport.vala:554
 #: src/librygel-renderer/rygel-av-transport.vala:584
 msgid "Seek mode not supported"
-msgstr ""
+msgstr "Premotavanje nije podržano"
 
 #: src/librygel-renderer/rygel-av-transport.vala:535
 #: src/librygel-renderer/rygel-av-transport.vala:560
@@ -455,11 +457,11 @@ msgstr ""
 #: src/librygel-renderer/rygel-av-transport.vala:598
 #: src/librygel-renderer/rygel-av-transport.vala:610
 msgid "Illegal seek target"
-msgstr ""
+msgstr "Neispravna meta pretraživanja"
 
 #: src/librygel-renderer/rygel-av-transport.vala:659
 msgid "Play mode not supported"
-msgstr ""
+msgstr "Način reprodukcije nije podržan"
 
 #. FIXME: Return a more sensible error here.
 #: src/librygel-renderer/rygel-av-transport.vala:774
@@ -467,141 +469,142 @@ msgstr ""
 #: src/librygel-renderer/rygel-av-transport.vala:798
 #: src/librygel-renderer/rygel-av-transport.vala:877
 msgid "Resource not found"
-msgstr ""
+msgstr "Resurs nije pronađen"
 
 #: src/librygel-renderer/rygel-av-transport.vala:787
 #, c-format
 msgid "Problem parsing playlist: %s"
-msgstr ""
+msgstr "Problem pri obradi popisa izvođenja: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
 #: src/librygel-renderer/rygel-av-transport.vala:873
 #, c-format
 msgid "Failed to access resource at %s: %s"
-msgstr ""
+msgstr "Problem u pristupu resursu na %s: %s"
 
 #: src/librygel-renderer/rygel-av-transport.vala:889
 msgid "Illegal MIME-type"
-msgstr ""
+msgstr "Neispravna MIME vrsta"
 
 #: src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
-msgstr ""
+msgstr "Neispravan naziv"
 
 #: src/librygel-renderer/rygel-rendering-control.vala:182
 msgid "Invalid Channel"
-msgstr ""
+msgstr "Neispravan kanal"
 
 #: src/librygel-renderer/rygel-rendering-control.vala:218
 #: src/librygel-renderer/rygel-rendering-control.vala:260
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
-msgstr ""
+msgstr "Neuspješna radnja"
 
 #: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
 #, c-format
 msgid "Unable to parse Icon data — unexpected node: %s"
-msgstr ""
+msgstr "Neuspješna obrada podataka ikone — neočekivan čvor: %s"
 
 #: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
 #, c-format
 msgid "Unable to parse Protocol data — unexpected attribute: %s"
-msgstr ""
+msgstr "Neuspješna obrada protokola podataka — neočekivano svojstvo: %s"
 
 #: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
 #, c-format
 msgid "Unable to parse Protocol data — unexpected node: %s"
-msgstr ""
+msgstr "Neuspješna obrada protokola podataka — neočekivan čvor: %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
 #, c-format
 msgid "Failed to set UIList for file %s — %s"
-msgstr ""
+msgstr "Neuspješno postavljanje korisničkog sučelja popisa za datoteku %s — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
 #, c-format
 msgid "Failed to set initial UI list for file %s — %s"
 msgstr ""
+"Neuspješno postavljanje početnog korisničkog sučelja popisa za datoteku %s — "
+"%s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
 #, c-format
 msgid "Failed to monitor the file %s — %s"
-msgstr ""
+msgstr "Neuspješno nadgledanje datoteke %s — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
 #, c-format
 msgid "Unable to parse UI list file %s"
-msgstr ""
+msgstr "Neuspješna obrada korisničkog sučelja popisa za datoteku %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
 #, c-format
 msgid "Unable to parse device profile data: %s"
-msgstr ""
+msgstr "Neuspješna obrada podataka profila uređaja: %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
 #, c-format
 msgid "Invalid UI filter: %s"
-msgstr ""
+msgstr "Neispravan filter korisničkog sučelja: %s"
 
 #: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
 #, c-format
 msgid "Unable to parse UI data — unexpected node: %s"
-msgstr ""
+msgstr "Neuspješna obrada podataka korisničkog sučelja — neočekivan čvor: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
-msgstr ""
+msgstr "Neispravni argumenti"
 
 #: src/librygel-server/rygel-browse.vala:94
 msgid "Cannot browse children on item"
-msgstr ""
+msgstr "Nemoguće pregledavanje sadržaja na stavci"
 
 #: src/librygel-server/rygel-browse.vala:134
 #, c-format
 msgid "Failed to browse “%s”: %s\n"
-msgstr ""
+msgstr "Neuspješno pregledavanje “%s”: %s\n"
 
 #: src/librygel-server/rygel-client-hacks.vala:149
 msgid "Not Applicable"
-msgstr ""
+msgstr "Nije primjenjivo"
 
 #: src/librygel-server/rygel-content-directory.vala:637
 msgid "No such file transfer"
-msgstr ""
+msgstr "Nema takvog prijenosa datoteka"
 
 #: src/librygel-server/rygel-dbus-thumbnailer.vala:116
 msgid "No D-Bus thumbnailer service available"
-msgstr ""
+msgstr "Nema dostupne D-Bus usluge minijatura"
 
 #: src/librygel-server/rygel-http-get.vala:52
 msgid "Invalid Request (only GET and HEAD supported)"
-msgstr ""
+msgstr "Neispravan zahtjev (samo su GET i HEAD podržani)"
 
 #: src/librygel-server/rygel-http-get.vala:60
 msgid " must be 1"
-msgstr ""
+msgstr " mora biti 1"
 
 #: src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI “%s”"
-msgstr ""
+msgstr "Neispravan URI “%s”"
 
 #: src/librygel-server/rygel-http-item-uri.vala:192
-#, fuzzy
 msgid "Not found"
-msgstr "Nije pronađen"
+msgstr "Nije pronađeno"
 
 #: src/librygel-server/rygel-http-post.vala:62
 #: src/librygel-server/rygel-import-resource.vala:189
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
-msgstr ""
+msgstr "Slanje podataka u “%s” stavku koja nije prazna je nedopušteno"
 
 #: src/librygel-server/rygel-http-post.vala:71
 #, c-format
 msgid "No writable URI for %s available"
-msgstr ""
+msgstr "Nema dostupnog zapisivog URI-ja za %s"
 
 #. translators: Dotfile is the filename with prefix "."
 #: src/librygel-server/rygel-http-post.vala:186
