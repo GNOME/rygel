@@ -52,6 +52,7 @@ MEDIAART_REQUIRED=0.7.0
 dnl Additional requirements for media-export plugin
 GSTREAMER_TAG_REQUIRED=1.0
 GSTREAMER_APP_REQUIRED=1.0
+GSTREAMER_BASE_REQUIRED=1.0
 LIBSQLITE3_REQUIRED=3.5
 
 dnl Additional requirements for playbin plugin
@@ -192,7 +193,7 @@ AS_IF([test "x$with_media_engine" = "xgstreamer"],
         PKG_CHECK_MODULES([RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS],
                           [$RYGEL_COMMON_MODULES
                            gstreamer-pbutils-1.0 >= $GSTPBU_REQUIRED
-                           gstreamer-app-1.0 >= $GSTREAMER_APP_REQUIRED
+                           gstreamer-base-1.0 >= $GSTREAMER_BASE_REQUIRED
                            gupnp-dlna-2.0 >= $GUPNP_DLNA_REQUIRED
                            libsoup-2.4 >= $LIBSOUP_REQUIRED
                            gio-2.0 >= $GIO_REQUIRED])
