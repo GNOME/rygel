@@ -1,2 +1,2 @@
 subdir('gstreamer')
-#subdir('simple')
+subdir('simple')
