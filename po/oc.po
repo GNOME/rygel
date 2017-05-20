@@ -43,7 +43,7 @@ msgstr "Preferéncias UPnP/DLNA"
 #: data/rygel-preferences.desktop.in.in:6
 #| msgid "Rygel"
 msgid "rygel"
-msgstr "Rygel"
+msgstr "rygel"
 
 #: data/rygel-preferences.ui:67 data/rygel-preferences.ui:198
 msgid "column"
