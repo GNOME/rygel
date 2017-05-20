@@ -22,7 +22,6 @@ conf.set('PLUGIN_DIR', '"@0@"'.format(rygel_plugindir))
 conf.set('BIG_ICON_DIR', '"@0@"'.format(rygel_bigicondir))
 conf.set('SMALL_ICON_DIR', '"@0@"'.format(rygel_smallicondir))
 conf.set('SYS_CONFIG_DIR', '"@0@"'.format(rygel_sysconfdir))
-configure_file(output: 'config.h', configuration: conf)
 config_include = include_directories('.')
 
 add_global_arguments(['-include','config.h'], language : 'c')
@@ -38,6 +37,7 @@ gupnp_av = dependency('gupnp-av-1.0', version: '>= 0.12.8')
 gupnp_dlna = dependency('gupnp-dlna-2.0', version: '>= 0.9.4')
 soup = dependency('libsoup-2.4', version : '>= 2.44.0')
 mediaart = dependency('libmediaart-2.0', version : '>= 0.7.0')
+sqlite = dependency('sqlite3', version : '>= 3.5')
 
 gstreamer = dependency('gstreamer-1.0', version : '>= 1.0')
 gstreamer_pbu = dependency('gstreamer-pbutils-1.0', version : '>= 1.0')
@@ -52,11 +52,19 @@ typelib_dir = join_paths(get_option('libdir'), 'girepository-1.0')
 
 cc = meson.get_compiler('c')
 math = cc.find_library('m', required: false)
+unistring = cc.find_library('unistring', required: false)
+u8_strcoll_available = cc.has_function('u8_strcoll', dependencies: unistring)
+if u8_strcoll_available
+    conf.set('HAVE_UNISTRING', '1')
+endif
 
 common_deps = [gupnp, gee]
 
 core_deps = common_deps + [gssdp, gio, gmodule, libxml, posix, math]
 renderer_deps = common_deps + [gupnp_av, soup]
 server_deps = common_deps + [gssdp, gupnp_av, soup, mediaart, gmodule, libxml]
+db_deps = common_deps + [gupnp_av, gio, sqlite, unistring]
+
+configure_file(output: 'config.h', configuration: conf)
 
 subdir('src')
