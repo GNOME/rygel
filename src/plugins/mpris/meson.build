@@ -1,0 +1,12 @@
+rygel_mpris_sources = [
+    'rygel-mpris-player.vala',
+    'rygel-mpris-plugin.vala',
+    'rygel-mpris-plugin-factory.vala',
+    'rygel-mpris-interfaces.vala',
+    'rygel-free-desktop-interfaces.vala']
+
+library('rygel-mpris',
+        rygel_mpris_sources,
+        dependencies : [build_config, rygel_core, rygel_renderer],
+        install: true,
+        install_dir: rygel_plugindir)
