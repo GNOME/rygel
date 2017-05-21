@@ -11,8 +11,8 @@ rygel_external_sources = [
     'rygel-external-variant-util.vala',
     'rygel-free-desktop-interfaces.vala']
 
-library('rygel-external',
-        rygel_external_sources,
-        dependencies : external_plugin_deps + [build_config, rygel_core, rygel_server],
-        install: true,
-        install_dir: rygel_plugindir)
+shared_module('rygel-external',
+              rygel_external_sources,
+              dependencies : external_plugin_deps + [build_config, rygel_core, rygel_server],
+              install: true,
+              install_dir: rygel_plugindir)

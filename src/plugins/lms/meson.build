@@ -17,8 +17,8 @@ lms_sources = [
     'rygel-lms-image-year.vala',
     'rygel-lms-dbus-interfaces.vala']
 
-lms_plugin = library('rygel-lms',
-                     lms_sources,
-                     dependencies : lms_deps + [build_config, rygel_core, rygel_server, rygel_db],
-                     install : true,
-                     install_dir : rygel_plugindir)
+shared_module('rygel-lms',
+              lms_sources,
+              dependencies : lms_deps + [build_config, rygel_core, rygel_server, rygel_db],
+              install : true,
+              install_dir : rygel_plugindir)
