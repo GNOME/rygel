@@ -74,6 +74,7 @@ rygel_deps = common_deps
 
 external_plugin_deps = [gio]
 gst_launch_plugin_deps = [gstreamer]
+lms_deps = [sqlite]
 
 configure_file(output: 'config.h', configuration: conf)
 
