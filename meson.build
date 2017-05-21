@@ -64,6 +64,8 @@ core_deps = common_deps + [gssdp, gio, gmodule, libxml, posix, math]
 renderer_deps = common_deps + [gupnp_av, soup]
 server_deps = common_deps + [gssdp, gupnp_av, soup, mediaart, gmodule, libxml]
 db_deps = common_deps + [gupnp_av, gio, sqlite, unistring]
+media_engine_gst_dep = [gee, gupnp_av, libxml, gio, gstreamer, gstreamer_pbu,
+                        gstreamer_base, gupnp_dlna]
 
 configure_file(output: 'config.h', configuration: conf)
 
