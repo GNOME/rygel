@@ -50,9 +50,9 @@ mx_sources = [
     'rygel-media-export-dvd-container.vala',
     'rygel-media-export-dvd-track.vala']
 
-mx_plugin = library('rygel-media-export',
-                    mx_sources,
-                    dependencies : mx_plugin_deps + [rygel_core, rygel_server, rygel_db],
-                    link_with : constants,
-                    install: true,
-                    install_dir : rygel_plugindir)
+shared_module('rygel-media-export',
+              mx_sources,
+              dependencies : mx_plugin_deps + [rygel_core, rygel_server, rygel_db],
+              link_with : constants,
+              install: true,
+              install_dir : rygel_plugindir)
