@@ -1,6 +1,7 @@
 subdir('librygel-core')
 subdir('librygel-db')
 subdir('librygel-renderer')
+subdir('librygel-renderer-gst')
 subdir('librygel-ruih')
 subdir('librygel-server')
 subdir('media-engines')
