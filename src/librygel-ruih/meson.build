@@ -17,7 +17,7 @@ ruih_lib = library('rygel-ruih-2.6', ruih_sources,
         version: '1.0.0',
         vala_header : 'rygel-ruih.h',
         install: true,
-        install_dir : [true, true, true])
+        install_dir : [true, rygel_includedir, true])
 
 # need to add to get the current build dir as include dir
 rygel_ruih = declare_dependency(include_directories: include_directories('.'),

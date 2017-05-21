@@ -42,7 +42,7 @@ core_lib = library('rygel-core-2.6', core_sources,
         vala_gir : 'Rygel-2.6.gir',
         vala_header : 'rygel-core.h',
         install: true,
-        install_dir : [true, true, true, false])
+        install_dir : [true, rygel_includedir, true, false])
 
 custom_target('RygelCore-2.6.typelib',
                command: [g_ir_compiler, '--output', '@OUTPUT@', '@INPUT@'],
