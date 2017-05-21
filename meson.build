@@ -22,6 +22,7 @@ conf.set('PLUGIN_DIR', '"@0@"'.format(rygel_plugindir))
 conf.set('BIG_ICON_DIR', '"@0@"'.format(rygel_bigicondir))
 conf.set('SMALL_ICON_DIR', '"@0@"'.format(rygel_smallicondir))
 conf.set('SYS_CONFIG_DIR', '"@0@"'.format(rygel_sysconfdir))
+conf.set('LOCALEDIR', '"@0@"'.format(join_paths(get_option('prefix'), get_option('localedir'))))
 config_include = include_directories('.')
 
 add_global_arguments(['-include','config.h'], language : 'c')
@@ -69,6 +70,7 @@ db_deps = common_deps + [gupnp_av, gio, sqlite, unistring]
 media_engine_gst_dep = [gee, gupnp_av, libxml, gio, gstreamer, gstreamer_pbu,
                         gstreamer_base, gupnp_dlna]
 ruih_deps = common_deps
+rygel_deps = common_deps
 
 configure_file(output: 'config.h', configuration: conf)
 
