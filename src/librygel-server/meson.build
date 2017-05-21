@@ -95,7 +95,7 @@ server_lib = library('rygel-server-2.6', server_sources,
         vala_gir : 'Rygel-2.6.gir',
         vala_header : 'rygel-server.h',
         install: true,
-        install_dir : [true, true, true, false])
+        install_dir : [true, rygel_includedir, true, false])
 
 custom_target('RygelServer-2.6.typelib',
                command: [g_ir_compiler,

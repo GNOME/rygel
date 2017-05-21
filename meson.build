@@ -11,6 +11,7 @@ rygel_libexecdir = join_paths(get_option('prefix'), get_option('libexecdir'),
 rygel_presetdir = join_paths(rygel_datadir, 'rygel', 'presets')
 rygel_bigicondir = join_paths(rygel_datadir, 'rygel', 'icons', '120x120')
 rygel_smallicondir = join_paths(rygel_datadir, 'rygel', 'icons', '48x48')
+rygel_includedir = join_paths(get_option('includedir'), 'rygel-2.6')
 
 conf = configuration_data()
 conf.set('GETTEXT_PACKAGE', '"rygel"')
