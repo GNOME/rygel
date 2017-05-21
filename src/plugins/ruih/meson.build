@@ -3,5 +3,6 @@ shared_module('rygel-ruih',
               dependencies: [build_config, rygel_core, rygel_ruih],
               # Needed to avoid conflict with librarie's header
               vala_header : 'rygel-ruih-plugin.h',
+              c_args : ['-DG_LOG_DOMAIN="RUIH"'],
               install : true,
               install_dir : rygel_plugindir)

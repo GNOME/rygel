@@ -35,5 +35,6 @@ rygel_tracker_sources = [
 shared_module('rygel-tracker',
               rygel_tracker_sources,
               dependencies : tracker_plugin_deps + [build_config, rygel_core, rygel_server],
+              c_args : ['-DG_LOG_DOMAIN="RygelTracker"'],
               install : true,
               install_dir : rygel_plugindir)

@@ -10,6 +10,7 @@ db_lib = library('rygel-db-2.6', db_sources,
         dependencies : db_deps + [rygel_core],
         include_directories: [config_include, include_directories('.')],
         version: '2.0.4',
+        c_args : ['-DG_LOG_DOMAIN="RygelDb"'],
         vala_header : 'rygel-db.h',
         install: true,
         install_dir : [true, rygel_includedir, true])

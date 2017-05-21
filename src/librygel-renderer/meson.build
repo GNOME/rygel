@@ -14,6 +14,7 @@ renderer_sources = [
 renderer_lib = library('rygel-renderer-2.6', renderer_sources,
         dependencies : renderer_deps + [build_config, rygel_core],
         version: '2.0.4',
+        c_args : ['-DG_LOG_DOMAIN="RygelRenderer"'],
         vala_gir : 'Rygel-2.6.gir',
         vala_header : 'rygel-renderer.h',
         install: true,

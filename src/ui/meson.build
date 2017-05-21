@@ -7,5 +7,6 @@ rygel_preferences_sources = [
 
 executable('rygel-preferences',
            rygel_preferences_sources,
+           c_args : ['-DG_LOG_DOMAIN="RygelPreferences"'],
            dependencies : ui_deps + [build_config, rygel_core],
            install: true)

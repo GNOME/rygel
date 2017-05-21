@@ -18,5 +18,6 @@ media_engine_gst_sources = [
 shared_module('rygel-media-engine-gst',
               media_engine_gst_sources,
               dependencies: media_engine_gst_dep + [build_config, rygel_core, rygel_server],
+              c_args : ['-DG_LOG_DOMAIN="MediaEngine-GStreamer"'],
               install: true,
               install_dir : rygel_enginedir)

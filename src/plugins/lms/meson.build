@@ -20,5 +20,6 @@ lms_sources = [
 shared_module('rygel-lms',
               lms_sources,
               dependencies : lms_deps + [build_config, rygel_core, rygel_server, rygel_db],
+              c_args : ['-DG_LOG_DOMAIN="LMS"'],
               install : true,
               install_dir : rygel_plugindir)
