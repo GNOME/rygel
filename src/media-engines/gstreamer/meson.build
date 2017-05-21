@@ -17,6 +17,6 @@ media_engine_gst_sources = [
 
 library('rygel-media-engine-gst',
         media_engine_gst_sources,
-        dependencies: [build_config, gee, gupnp_av, libxml, gio, rygel_core, rygel_server, gstreamer, gstreamer_pbu, gstreamer_base, gupnp_dlna],
+        dependencies: media_engine_gst_dep + [build_config, rygel_core, rygel_server],
         install: true,
         install_dir : rygel_enginedir)
