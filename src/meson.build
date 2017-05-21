@@ -6,3 +6,5 @@ subdir('librygel-ruih')
 subdir('librygel-server')
 subdir('media-engines')
 subdir('rygel')
+
+subdir('plugins')
