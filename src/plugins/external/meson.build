@@ -14,5 +14,6 @@ rygel_external_sources = [
 shared_module('rygel-external',
               rygel_external_sources,
               dependencies : external_plugin_deps + [build_config, rygel_core, rygel_server],
+              c_args : ['-DG_LOG_DOMAIN="External"'],
               install: true,
               install_dir: rygel_plugindir)

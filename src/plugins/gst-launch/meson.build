@@ -7,5 +7,6 @@ gst_launch_sources = [
 shared_module('rygel-gst-launch',
               gst_launch_sources,
               dependencies: gst_launch_plugin_deps + [build_config, rygel_core, rygel_server],
+              c_args : ['-DG_LOG_DOMAIN="GstLaunch"'],
               install : true,
               install_dir : rygel_plugindir)
