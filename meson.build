@@ -72,6 +72,8 @@ media_engine_gst_dep = [gee, gupnp_av, libxml, gio, gstreamer, gstreamer_pbu,
 ruih_deps = common_deps
 rygel_deps = common_deps
 
+external_plugin_deps = [gio]
+
 configure_file(output: 'config.h', configuration: conf)
 
 subdir('src')
