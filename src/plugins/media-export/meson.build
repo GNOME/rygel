@@ -15,6 +15,7 @@ mx_extract_sources = [
 mx_extract = executable('mx-extract',
                         mx_extract_sources,
                         dependencies : mx_export_deps,
+                        c_args : ['-DG_LOG_DOMAIN="MxExtract"'],
                         link_with: constants,
                         install: true,
                         install_dir: rygel_libexecdir)
@@ -53,6 +54,7 @@ mx_sources = [
 shared_module('rygel-media-export',
               mx_sources,
               dependencies : mx_plugin_deps + [rygel_core, rygel_server, rygel_db],
+              c_args : ['-DG_LOG_DOMAIN="MediaExport"'],
               link_with : constants,
               install: true,
               install_dir : rygel_plugindir)

@@ -92,6 +92,7 @@ server_sources = [
 server_lib = library('rygel-server-2.6', server_sources,
         dependencies : server_deps + [build_config, rygel_core],
         version: '2.0.4',
+        c_args : ['-DG_LOG_DOMAIN="RygelServer"'],
         vala_gir : 'Rygel-2.6.gir',
         vala_header : 'rygel-server.h',
         install: true,

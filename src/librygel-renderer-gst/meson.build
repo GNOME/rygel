@@ -6,6 +6,7 @@ renderer_gst_sources = [
 renderer_gst_lib = library('rygel-renderer-gst-2.6', renderer_gst_sources,
         dependencies : renderer_gst_deps + [build_config, rygel_core, rygel_renderer],
         version: '2.0.4',
+        c_args : ['-DG_LOG_DOMAIN="RygelRendererGst"'],
         vala_gir : 'Rygel-2.6.gir',
         vala_header : 'rygel-renderer-gst.h',
         install: true,

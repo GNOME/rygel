@@ -8,5 +8,6 @@ rygel_mpris_sources = [
 shared_module('rygel-mpris',
               rygel_mpris_sources,
               dependencies : [build_config, rygel_core, rygel_renderer],
+              c_args : ['-DG_LOG_DOMAIN="MPRIS"'],
               install: true,
               install_dir: rygel_plugindir)

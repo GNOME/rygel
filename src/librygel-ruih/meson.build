@@ -15,6 +15,7 @@ ruih_sources = [
 ruih_lib = library('rygel-ruih-2.6', ruih_sources,
         dependencies : ruih_deps + [build_config, rygel_core],
         version: '1.0.0',
+        c_args : ['-DG_LOG_DOMAIN="RygelRuih"'],
         vala_header : 'rygel-ruih.h',
         install: true,
         install_dir : [true, rygel_includedir, true])
