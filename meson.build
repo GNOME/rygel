@@ -73,6 +73,7 @@ ruih_deps = common_deps
 rygel_deps = common_deps
 
 external_plugin_deps = [gio]
+gst_launch_plugin_deps = [gstreamer]
 
 configure_file(output: 'config.h', configuration: conf)
 
