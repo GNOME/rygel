@@ -36,3 +36,7 @@ custom_target('RygelRendererGst-2.6.gir',
               capture: true,
               install: true,
               install_dir: join_paths(get_option('datadir'),'gir-1.0'))
+
+rygel_renderer_gst = declare_dependency(include_directories : include_directories('.'),
+                                        dependencies : renderer_gst_deps,
+                                        link_with: renderer_gst_lib)
