@@ -27,6 +27,7 @@ conf.set('SMALL_ICON_DIR', '"@0@"'.format(rygel_smallicondir))
 conf.set('SYS_CONFIG_DIR', '"@0@"'.format(rygel_sysconfdir))
 conf.set('LOCALEDIR', '"@0@"'.format(join_paths(get_option('prefix'), get_option('localedir'))))
 conf.set('MX_EXTRACT_PATH', '"@0@"'.format(join_paths(rygel_libexecdir, 'mx-extract')))
+conf.set('DESKTOP_DIR', '"@0@"'.format(join_paths(rygel_datadir, 'applications')))
 config_include = include_directories('.')
 
 add_global_arguments(['-include','config.h'], language : 'c')
@@ -54,6 +55,7 @@ gstreamer_audio = dependency('gstreamer-audio-1.0', version : '>= 1.0')
 gstreamer_tag = dependency('gstreamer-tag-1.0', version : '>= 1.0')
 
 gdk_pixbuf = dependency('gdk-pixbuf-2.0')
+gtk = dependency('gtk+-3.0', version : '>= 3.0')
 
 tracker_sparql = dependency('tracker-sparql-1.0')
 
@@ -93,6 +95,7 @@ mx_export_deps = common_deps + [gio, gio_unix, gstreamer, gstreamer_pbu,
                                 soup]
 mx_plugin_deps = common_deps + [gstreamer, gstreamer_pbu, gio_unix, gupnp_dlna]
 tracker_plugin_deps = common_deps + [tracker_sparql]
+ui_deps = common_deps + [gtk]
 
 configure_file(output: 'config.h', configuration: conf)
 
