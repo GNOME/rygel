@@ -42,6 +42,7 @@ sqlite = dependency('sqlite3', version : '>= 3.5')
 gstreamer = dependency('gstreamer-1.0', version : '>= 1.0')
 gstreamer_pbu = dependency('gstreamer-pbutils-1.0', version : '>= 1.0')
 gstreamer_base = dependency('gstreamer-base-1.0', version : '>= 1.0')
+gstreamer_audio = dependency('gstreamer-audio-1.0', version : '>= 1.0')
 
 posix = vala.find_library('posix')
 
@@ -62,6 +63,7 @@ common_deps = [gupnp, gee]
 
 core_deps = common_deps + [gssdp, gio, gmodule, libxml, posix, math]
 renderer_deps = common_deps + [gupnp_av, soup]
+renderer_gst_deps = common_deps + [gstreamer, gstreamer_audio]
 server_deps = common_deps + [gssdp, gupnp_av, soup, mediaart, gmodule, libxml]
 db_deps = common_deps + [gupnp_av, gio, sqlite, unistring]
 media_engine_gst_dep = [gee, gupnp_av, libxml, gio, gstreamer, gstreamer_pbu,
