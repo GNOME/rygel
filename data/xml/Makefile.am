@@ -20,7 +20,7 @@ xml_DATA = $(xml_in_files:.xml.in=.xml)
 
 xmldir = $(datadir)/rygel/xml
 
-EXTRA_DIST = $(xml_in_files) MediaServer3.xml.in.in MediaRenderer2.xml.in.in
+EXTRA_DIST = $(xml_in_files) MediaServer3.xml.in.in MediaRenderer2.xml.in.in RuihServer2.xml.in.in
 CLEANFILES = $(xml_DATA)
 
-MAINTAINERCLEANFILES = Makefile.in MediaServer3.xml.in MediaRenderer2.xml.in
+MAINTAINERCLEANFILES = Makefile.in MediaServer3.xml.in MediaRenderer2.xml.in RuihServer2.xml.in
