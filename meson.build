@@ -108,6 +108,46 @@ ui_deps = common_deps + [gtk]
 
 configure_file(output: 'config.h', configuration: conf)
 
+pc_conf = configuration_data()
+pc_conf.set('prefix', get_option('prefix'))
+pc_conf.set('exec_prefix', '${prefix}')
+pc_conf.set('libdir', join_paths(get_option('prefix'), get_option('libdir')))
+pc_conf.set('includedir', join_paths('${prefix}', get_option('includedir')))
+pc_conf.set('RYGEL_PLUGIN_DIR', rygel_plugindir)
+pc_conf.set('RYGEL_MEDIA_ENGINE_DIR', rygel_enginedir)
+pc_conf.set('RYGEL_PLUGIN_LINKER_FLAGS', '')
+pc_conf.set('RYGEL_ENGINE_LINKER_FLAGS', '')
+
+configure_file(output: 'rygel-core-2.6.pc',
+               input: 'rygel-core-2.6.pc.in',
+               configuration: pc_conf,
+               install: true,
+               install_dir : join_paths(get_option('libdir'), 'pkgconfig'))
+
+configure_file(output: 'rygel-server-2.6.pc',
+               input: 'rygel-server-2.6.pc.in',
+               configuration: pc_conf,
+               install: true,
+               install_dir : join_paths(get_option('libdir'), 'pkgconfig'))
+
+configure_file(output: 'rygel-renderer-2.6.pc',
+               input: 'rygel-renderer-2.6.pc.in',
+               configuration: pc_conf,
+               install: true,
+               install_dir : join_paths(get_option('libdir'), 'pkgconfig'))
+
+configure_file(output: 'rygel-renderer-gst-2.6.pc',
+               input: 'rygel-renderer-gst-2.6.pc.in',
+               configuration: pc_conf,
+               install: true,
+               install_dir : join_paths(get_option('libdir'), 'pkgconfig'))
+
+configure_file(output: 'rygel-ruih-2.0.pc',
+               input: 'rygel-ruih-2.0.pc.in',
+               configuration: pc_conf,
+               install: true,
+               install_dir : join_paths(get_option('libdir'), 'pkgconfig'))
+
 subdir('src')
 subdir('po')
 subdir('data')
