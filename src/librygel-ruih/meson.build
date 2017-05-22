@@ -12,13 +12,14 @@ ruih_sources = [
     'rygel-ruih-wildcard-filter-entry.vala'
 ]
 
-ruih_lib = library('rygel-ruih-2.6', ruih_sources,
+ruih_lib = library('rygel-ruih-2.0', ruih_sources,
         dependencies : ruih_deps + [build_config, rygel_core],
         version: '1.0.0',
         c_args : ['-DG_LOG_DOMAIN="RygelRuih"'],
         vala_header : 'rygel-ruih.h',
         install: true,
         install_dir : [true, rygel_includedir, true])
+install_data('rygel-ruih-2.0.deps', install_dir : rygel_vapidir)
 
 # need to add to get the current build dir as include dir
 rygel_ruih = declare_dependency(include_directories: include_directories('.'),

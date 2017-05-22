@@ -1,3 +1,8 @@
+configure_file(input : 'gst-launch.plugin.in',
+               output : 'gst-launch.plugin',
+               configuration : plugin_config,
+               install_dir : rygel_plugindir)
+
 gst_launch_sources = [
     'rygel-gst-launch-plugin.vala',
     'rygel-gst-launch-root-container.vala',

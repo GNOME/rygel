@@ -1,3 +1,8 @@
+configure_file(input : 'media-engine-simple.plugin.in',
+               output : 'media-engine-simple.plugin',
+               configuration : plugin_config,
+               install_dir : rygel_enginedir)
+
 media_engine_simple_sources = ['rygel-simple-media-engine.vala',
                                'rygel-simple-data-source.vala']
 

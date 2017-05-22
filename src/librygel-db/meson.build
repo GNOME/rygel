@@ -14,6 +14,7 @@ db_lib = library('rygel-db-2.6', db_sources,
         vala_header : 'rygel-db.h',
         install: true,
         install_dir : [true, rygel_includedir, true])
+install_data('rygel-db-2.6.deps', install_dir : rygel_vapidir)
 
 # need to add to get the current build dir as include dir
 rygel_db = declare_dependency(include_directories: include_directories('.'),

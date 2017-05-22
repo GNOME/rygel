@@ -1,3 +1,8 @@
+configure_file(input : 'external.plugin.in',
+               output : 'external.plugin',
+               configuration : plugin_config,
+               install_dir : rygel_plugindir)
+
 rygel_external_sources = [
     'rygel-external-container.vala',
     'rygel-external-dummy-container.vala',

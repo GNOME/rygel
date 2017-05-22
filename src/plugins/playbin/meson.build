@@ -1,3 +1,7 @@
+configure_file(input : 'playbin.plugin.in',
+               output : 'playbin.plugin',
+               configuration : plugin_config,
+               install_dir : rygel_plugindir)
 
 shared_module('rygel-playbin',
               ['rygel-playbin-module.vala', 'rygel-playbin-plugin.vala'],

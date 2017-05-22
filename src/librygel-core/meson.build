@@ -44,6 +44,7 @@ core_lib = library('rygel-core-2.6', core_sources,
         vala_header : 'rygel-core.h',
         install: true,
         install_dir : [true, rygel_includedir, true, false])
+install_data('rygel-core-2.6.deps', install_dir : rygel_vapidir)
 
 custom_target('RygelCore-2.6.typelib',
                command: [g_ir_compiler, '--output', '@OUTPUT@', '@INPUT@'],
@@ -51,7 +52,7 @@ custom_target('RygelCore-2.6.typelib',
                input: 'RygelCore-2.6.gir',
                depends: core_lib,
                install: true,
-               install_dir: gir_dir)
+               install_dir: typelib_dir)
 
 custom_target('RygelCore-2.6.gir',
               command: [sed, '-e', 's,Rygel[.],RygelCore.,g',
@@ -61,7 +62,7 @@ custom_target('RygelCore-2.6.gir',
               output: 'RygelCore-2.6.gir',
               capture: true,
               install: true,
-              install_dir: typelib_dir)
+              install_dir: gir_dir)
 
 # need to add to get the current build dir as include dir
 rygel_core = declare_dependency(include_directories: include_directories('.'),

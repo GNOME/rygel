@@ -3,21 +3,28 @@ project('rygel', ['vala', 'c'],
 
 rygel_sysconfdir = join_paths(get_option('prefix'), get_option('sysconfdir'))
 rygel_datadir = join_paths(get_option('prefix'), get_option('datadir'))
-rygel_plugindir = join_paths(get_option('prefix'), get_option('libdir'), 'rygel-2.6', 'plugins')
-rygel_enginedir = join_paths(get_option('prefix'), get_option('libdir'),
-    'rygel-2.6', 'engines')
+rygel_libdir = join_paths(get_option('prefix'), get_option('libdir'))
+rygel_plugindir = join_paths(rygel_libdir, 'rygel-2.6', 'plugins')
+rygel_enginedir = join_paths(rygel_libdir, 'rygel-2.6', 'engines')
 rygel_libexecdir = join_paths(get_option('prefix'), get_option('libexecdir'),
     'rygel')
 rygel_presetdir = join_paths(rygel_datadir, 'rygel', 'presets')
+rygel_icondir = join_paths(rygel_datadir, 'icons', 'hicolor')
 rygel_bigicondir = join_paths(rygel_datadir, 'rygel', 'icons', '120x120')
 rygel_smallicondir = join_paths(rygel_datadir, 'rygel', 'icons', '48x48')
 rygel_includedir = join_paths(get_option('includedir'), 'rygel-2.6')
+rygel_vapidir = join_paths(rygel_datadir, 'vala', 'vapi')
+
+rygel_systemduserdir = join_paths(get_option('prefix'), 'lib', 'systemd', 'user')
+plugin_config = configuration_data()
+plugin_config.set('VERSION', meson.project_version())
 
 conf = configuration_data()
 conf.set('GETTEXT_PACKAGE', '"rygel"')
 conf.set('PACKAGE_NAME', '"Rygel"')
 conf.set('PACKAGE_STRING', '"Rygel @0@"'.format(meson.project_version()))
 conf.set('PACKAGE_VERSION', '"@0@"'.format(meson.project_version()))
+conf.set('PACKAGE_URL', '"http://www.rygel-project.org"')
 conf.set('ENGINE_DIR', '"@0@"'.format(rygel_enginedir))
 conf.set('PRESET_DIR', '"@0@"'.format(rygel_presetdir))
 conf.set('DATA_DIR', '"@0@"'.format(rygel_datadir))
@@ -100,3 +107,5 @@ ui_deps = common_deps + [gtk]
 configure_file(output: 'config.h', configuration: conf)
 
 subdir('src')
+subdir('data')
+subdir('doc')
