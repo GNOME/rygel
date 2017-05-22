@@ -1,3 +1,8 @@
+configure_file(input : 'lms.plugin.in',
+               output : 'lms.plugin',
+               configuration : plugin_config,
+               install_dir : rygel_plugindir)
+
 lms_sources = [
     'rygel-lms-plugin.vala',
     'rygel-lms-plugin-factory.vala',

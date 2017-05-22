@@ -1,3 +1,8 @@
+configure_file(input : 'media-export.plugin.in',
+               output : 'media-export.plugin',
+               configuration : plugin_config,
+               install_dir : rygel_plugindir)
+
 constants = static_library('mx-constants',
                            'constants.vala',
                            dependencies : glib,

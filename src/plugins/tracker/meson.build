@@ -1,3 +1,8 @@
+configure_file(input : 'tracker.plugin.in',
+               output : 'tracker.plugin',
+               configuration : plugin_config,
+               install_dir : rygel_plugindir)
+
 rygel_tracker_sources = [
     'rygel-tracker-root-container.vala',
     'rygel-tracker-category-container.vala',

@@ -11,6 +11,7 @@ renderer_gst_lib = library('rygel-renderer-gst-2.6', renderer_gst_sources,
         vala_header : 'rygel-renderer-gst.h',
         install: true,
         install_dir : [true, rygel_includedir, true, false])
+install_data('rygel-renderer-gst-2.6.deps', install_dir : rygel_vapidir)
 
 custom_target('RygelRendererGst-2.6.typelib',
                command: [g_ir_compiler,
