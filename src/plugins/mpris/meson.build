@@ -1,3 +1,8 @@
+configure_file(input : 'mpris.plugin.in',
+               output : 'mpris.plugin',
+               configuration : plugin_config,
+               install_dir : rygel_plugindir)
+
 rygel_mpris_sources = [
     'rygel-mpris-player.vala',
     'rygel-mpris-plugin.vala',

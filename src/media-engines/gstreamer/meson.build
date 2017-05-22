@@ -1,3 +1,8 @@
+configure_file(input : 'media-engine-gst.plugin.in',
+               output : 'media-engine-gst.plugin',
+               configuration : plugin_config,
+               install_dir : rygel_enginedir)
+
 media_engine_gst_sources = [
     'rygel-aac-transcoder.vala',
     'rygel-audio-transcoder.vala',

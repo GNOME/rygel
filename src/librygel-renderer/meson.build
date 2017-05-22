@@ -19,6 +19,7 @@ renderer_lib = library('rygel-renderer-2.6', renderer_sources,
         vala_header : 'rygel-renderer.h',
         install: true,
         install_dir : [true, rygel_includedir, true, false])
+install_data('rygel-renderer-2.6.deps', install_dir : rygel_vapidir)
 
 custom_target('RygelRenderer-2.6.typelib',
                command: [g_ir_compiler,
