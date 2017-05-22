@@ -1,6 +1,8 @@
 project('rygel', ['vala', 'c'],
         version : '0.35.0')
 
+i18n = import('i18n')
+
 rygel_sysconfdir = join_paths(get_option('prefix'), get_option('sysconfdir'))
 rygel_datadir = join_paths(get_option('prefix'), get_option('datadir'))
 rygel_libdir = join_paths(get_option('prefix'), get_option('libdir'))
@@ -107,5 +109,6 @@ ui_deps = common_deps + [gtk]
 configure_file(output: 'config.h', configuration: conf)
 
 subdir('src')
+subdir('po')
 subdir('data')
 subdir('doc')
