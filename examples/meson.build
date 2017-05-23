@@ -1,5 +1,5 @@
-#subdir('renderer-plguins')
-#subdir('server-plugins')
+subdir('renderer-plugins')
+subdir('server-plugins')
 
 executable('standalone-server',
            'standalone-server.c',
