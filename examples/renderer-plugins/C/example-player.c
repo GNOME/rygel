@@ -286,10 +286,10 @@ rygel_example_player_real_get_protocols (RygelMediaPlayer *base, int *result_len
   /* RygelExamplePlayer *self = RYGEL_EXAMPLE_PLAYER (base); */
 
   if (result_length) {
-    *result_length = g_strv_length (RYGEL_EXAMPLE_PLAYER_PROTOCOLS);
+    *result_length = g_strv_length ((gchar **)RYGEL_EXAMPLE_PLAYER_PROTOCOLS);
   }
 
-  return g_strdupv (RYGEL_EXAMPLE_PLAYER_PROTOCOLS);
+  return g_strdupv ((gchar **) RYGEL_EXAMPLE_PLAYER_PROTOCOLS);
 }
 
 
@@ -298,10 +298,10 @@ rygel_example_player_real_get_mime_types (RygelMediaPlayer *base, int *result_le
   /* RygelExamplePlayer *self = RYGEL_EXAMPLE_PLAYER (base); */
 
   if (result_length) {
-    *result_length = g_strv_length (RYGEL_EXAMPLE_PLAYER_MIME_TYPES);
+    *result_length = g_strv_length ((gchar **) RYGEL_EXAMPLE_PLAYER_MIME_TYPES);
   }
 
-  return g_strdupv (RYGEL_EXAMPLE_PLAYER_MIME_TYPES);
+  return g_strdupv ((gchar **) RYGEL_EXAMPLE_PLAYER_MIME_TYPES);
 }
 
 
@@ -476,21 +476,18 @@ rygel_example_player_real_get_playback_speed (RygelMediaPlayer *base)
 static gint64
 rygel_example_player_real_get_byte_position (RygelMediaPlayer* base)
 {
-	RygelExamplePlayer *self = RYGEL_EXAMPLE_PLAYER (base);
 	return 0;
 }
 
 static gint64
 rygel_example_player_real_get_size (RygelMediaPlayer* base)
 {
-	RygelExamplePlayer *self = RYGEL_EXAMPLE_PLAYER (base);
 	return 0;
 }
 
 static gboolean
 rygel_example_player_real_get_can_seek_bytes (RygelMediaPlayer* base)
 {
-	RygelExamplePlayer *self = RYGEL_EXAMPLE_PLAYER (base);
 	return FALSE;
 }
 

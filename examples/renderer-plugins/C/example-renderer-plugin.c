@@ -77,14 +77,14 @@ rygel_example_renderer_plugin_get_player (RygelMediaRendererPlugin* plugin)
         player = rygel_example_player_new ();
     }
 
-    return RYGEL_EXAMPLE_PLAYER (g_object_ref (player));
+    return RYGEL_MEDIA_PLAYER (g_object_ref (player));
 }
 
 static void
 rygel_example_renderer_plugin_class_init (RygelExampleRendererPluginClass *klass) {
     RygelMediaRendererPluginClass *plugin_class;
 
-    plugin_class = RYGEL_EXAMPLE_RENDERER_PLUGIN_CLASS (klass);
+    plugin_class = RYGEL_MEDIA_RENDERER_PLUGIN_CLASS (klass);
     plugin_class->get_player = rygel_example_renderer_plugin_get_player;
 }
 

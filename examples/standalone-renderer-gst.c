@@ -43,10 +43,8 @@ int main(int argc, char *argv[])
 {
     GstElement *playbin, *sink, *asink;
     RygelPlaybinRenderer *renderer;
-    GError *error = NULL;
     GMainLoop *loop;
 
-    g_type_init ();
     gst_init (&argc, &argv);
 
     g_set_application_name ("Standalone-Renderer");

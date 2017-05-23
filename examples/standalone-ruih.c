@@ -48,11 +48,7 @@
 int main (int argc, char *argv[])
 {
     RygelRuihServer *server;
-    int i;
     GMainLoop *loop;
-    GError *error = NULL;
-
-    g_type_init ();
 
     g_set_application_name ("Standalone-Ruih");
 

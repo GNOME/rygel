@@ -49,7 +49,9 @@ int main (int argc, char *argv[])
     GMainLoop *loop;
     GError *error = NULL;
 
+#if !GLIB_CHECK_VERSION(2, 36, 0)
     g_type_init ();
+#endif
 
     rygel_media_engine_init (&error);
 
@@ -101,33 +103,33 @@ int main (int argc, char *argv[])
         id = g_strdup_printf ("%06d", i);
 
         if (g_str_has_prefix (content_type, "audio/")) {
-            item = rygel_audio_item_new (id,
-                                         root_container,
+            item = RYGEL_MEDIA_ITEM (rygel_audio_item_new (id,
+                                         RYGEL_MEDIA_CONTAINER (root_container),
                                          display_name,
-                                         RYGEL_AUDIO_ITEM_UPNP_CLASS);
+                                         RYGEL_AUDIO_ITEM_UPNP_CLASS));
         } else if (g_str_has_prefix (content_type, "video/")) {
-            item = rygel_video_item_new (id,
-                                         root_container,
+            item = RYGEL_MEDIA_ITEM (rygel_video_item_new (id,
+                                         RYGEL_MEDIA_CONTAINER (root_container),
                                          display_name,
-                                         RYGEL_VIDEO_ITEM_UPNP_CLASS);
+                                         RYGEL_VIDEO_ITEM_UPNP_CLASS));
         } else if (g_str_has_prefix (content_type, "image/")) {
-            item = rygel_image_item_new (id,
-                                         root_container,
+            item = RYGEL_MEDIA_ITEM (rygel_image_item_new (id,
+                                         RYGEL_MEDIA_CONTAINER (root_container),
                                          display_name,
-                                         RYGEL_IMAGE_ITEM_UPNP_CLASS);
+                                         RYGEL_IMAGE_ITEM_UPNP_CLASS));
         }
         g_free (id);
 
         if (item != NULL) {
-            GeeArrayList* uris;
-
             rygel_media_file_item_set_mime_type (RYGEL_MEDIA_FILE_ITEM (item),
                                                  content_type);
 
             rygel_media_object_add_uri (RYGEL_MEDIA_OBJECT (item), uri);
 
             rygel_simple_container_add_child_item (root_container, item);
-            rygel_media_file_item_add_engine_resources (item, NULL, NULL);
+            rygel_media_file_item_add_engine_resources (RYGEL_MEDIA_FILE_ITEM (item),
+                                                        NULL,
+                                                        NULL);
         }
 
         i++;
@@ -135,7 +137,7 @@ int main (int argc, char *argv[])
     }
 
     server = rygel_media_server_new ("LibRygel sample server",
-                                     root_container,
+                                     RYGEL_MEDIA_CONTAINER (root_container),
                                      RYGEL_PLUGIN_CAPABILITIES_NONE);
     rygel_media_device_add_interface (RYGEL_MEDIA_DEVICE (server), "eth0");
     rygel_media_device_add_interface (RYGEL_MEDIA_DEVICE (server), "wlan0");

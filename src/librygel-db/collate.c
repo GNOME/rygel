@@ -37,7 +37,7 @@ gint rygel_database_utf8_collate_str (const char *a, gsize alen,
     b_str = g_strndup (b, blen);
 
 #ifdef HAVE_UNISTRING
-    result = u8_strcoll (a_str, b_str);
+    result = u8_strcoll ((const uint8_t *) a_str, (const uint8_t *) b_str);
 #else
     return g_utf8_collate (a_str, b_str);
 #endif
