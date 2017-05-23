@@ -1,15 +1,18 @@
 SUBDIRS = src data tests po doc examples
 
-pkgconfig_DATA= rygel-core-2.6.pc rygel-renderer-2.6.pc rygel-server-2.6.pc
+pkgconfig_DATA= rygel-core-2.6.pc \
+	rygel-renderer-2.6.pc \
+	rygel-server-2.6.pc \
+	rygel-ruih-2.0.pc
 pkgconfigdir = $(libdir)/pkgconfig
 
 if HAVE_GSTREAMER
 pkgconfig_DATA += rygel-renderer-gst-2.6.pc
 endif
 
-EXTRA_DIST = rygel-core-2.6.pc.in rygel-renderer-2.6.pc.in \
-             build-aux/config.rpath \
+EXTRA_DIST = rygel-core-2.6.pc.in rygel-renderer-2.6.pc.in rygel-ruih-2.0.pc.in \
              rygel-server-2.6.pc.in .version \
+             build-aux/config.rpath \
              build-aux/git-version-gen \
              COPYING.logo \
              README.md
