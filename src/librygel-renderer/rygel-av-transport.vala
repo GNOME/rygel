@@ -909,17 +909,22 @@ internal class Rygel.AVTransport : Service {
     // time expected by GUPnP. Due to GUPnP not using weak pointers at some
     // places (e.g. xmlNode property of GUPnPServiceInfo), a crash happens when
     // AVTransport is freed.
-    private static void setup_handle_new_transport_uri_callback(AVTransport instance,
-    Message message, string uri, string metadata, GUPnP.ServiceAction action) {
-        var weakme = WeakRef(instance);
-        var weakmsg = WeakRef(message);
+    private static void setup_handle_new_transport_uri_callback
+                                    (AVTransport instance,
+                                     Message message,
+                                     string uri,
+                                     string metadata,
+                                     GUPnP.ServiceAction action) {
+        var weakme = WeakRef (instance);
+        var weakmsg = WeakRef (message);
         //var weakact = WeakRef(action);
         message.finished.connect( () => {
-            Rygel.AVTransport? me = (Rygel.AVTransport?)weakme.get();
-            Soup.Message? msg = (Soup.Message?)weakmsg.get();
+            var me = (Rygel.AVTransport?) weakme.get();
+            var msg = (Soup.Message?) weakmsg.get();
             //GUPnP.ServiceAction? act = (GUPnP.ServiceAction?)weakact.get();
-            if (me == null || msg == null)
+            if (me == null || msg == null) {
                 return;
+            }
             me.check_resource (msg, uri, metadata, action);
         });
     }
@@ -933,8 +938,11 @@ internal class Rygel.AVTransport : Service {
                                             "1");
             message.request_headers.append ("Connection", "close");
             this.head_faked = false;
-            setup_handle_new_transport_uri_callback(this, message, uri,
-            metadata, action);
+            AVTransport.setup_handle_new_transport_uri_callback (this,
+                                                                 message,
+                                                                 uri,
+                                                                 metadata,
+                                                                 action);
 
             this.session.queue_message (message, null);
         } else {

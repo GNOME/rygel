@@ -70,22 +70,22 @@ public interface Rygel.PlayerController : GLib.Object {
     public abstract bool previous ();
 
     public abstract void set_single_play_uri (string uri,
-                                     string metadata,
-                                     string? mime,
-                                     string? features);
+                                              string metadata,
+                                              string? mime,
+                                              string? features);
 
     public abstract void set_playlist_uri (string uri,
-                                  string metadata,
-                                  MediaCollection collection);
+                                           string metadata,
+                                           MediaCollection collection);
 
     public abstract void set_next_single_play_uri (string uri,
-                                          string metadata,
-                                          string? mime,
-                                          string? features);
+                                                   string metadata,
+                                                   string? mime,
+                                                   string? features);
 
     public abstract void set_next_playlist_uri (string uri,
-                                       string metadata,
-                                       MediaCollection collection);
+                                                string metadata,
+                                                MediaCollection collection);
 
     public abstract bool is_play_mode_valid (string play_mode);
 
