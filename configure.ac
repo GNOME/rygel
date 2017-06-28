@@ -420,7 +420,7 @@ AS_IF([test "x$enable_tracker_plugin" = "xyes"],
   [
     # Search available Tracker version
     trackerpkg=""
-    m4_foreach([VERSION], [[1.0], [0.16], [0.15], [0.14]],
+    m4_foreach([VERSION], [[2.0], [1.0], [0.16], [0.15], [0.14]],
                  [PKG_CHECK_EXISTS([tracker-sparql-VERSION >= $TRACKER_SPARQL_REQUIRED_MIN],
                                    [ trackerpkg="tracker-sparql-VERSION"
                                      tracker_api_version="VERSION"
