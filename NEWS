@@ -1,3 +1,45 @@
+0.35.0
+======
+
+- Translation updates
+- Fix missing COPYING.logo in tarball
+- Fix XML generation rule for out-of-tree builds from git
+- Fix Build issue for dist tarballs with Yocto 2.2
+- Fix GStreamer dependency for media engine
+
+Examples
+ - Add logo to fullscreen renderer
+
+Server:
+ - Fix guessing user agent from SSDP/UPnP communication
+
+Renderer:
+ - Remove NOT_IMPLEMENTED for SetNextAVTransport
+
+MediaExport:
+ - Log if setting nice value for extractor fails
+
+Tracker:
+ - Search for 2.0 API
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=778829
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - gogo <trebelnik2@gmail.com>
+ - Tom Tryfonidis <tomtryf@gnome.org>
+ - Matteo Settenvini <matteo@member.fsf.org>
+ - Furkan Ahmet Kara <furkanahmetkara.fk@gmail.com>
+ - Carlos Garnacho <carlosg@gnome.org>
+
+Added/updated translations
+ - el, courtesy of Tom Tryfonidis
+ - hr, courtesy of gogo
+ - oc, courtesy of Cédric Valmary (totenoc.eu)
+ - tr, courtesy of Emin Tufan Çetin
+
 0.34.0
 ======
 - Translation updates

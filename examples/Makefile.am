@@ -70,4 +70,5 @@ EXTRA_DIST = service/wrap-dbus \
 service/sysv/rygel \
 service/README.Ubuntu \
 service/upstart/rygel.conf \
-service/systemd/rygel.service
+service/systemd/rygel.service \
+org.gnome.Rygel.FullscreenRenderer.gresource.xml
