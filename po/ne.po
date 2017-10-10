@@ -44,7 +44,7 @@ msgstr "UPnP/DLNA प्राथमिकताहरू"
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/rygel-preferences.desktop.in.in:7
 msgid "rygel"
-msgstr "राईजेल"
+msgstr "rygel"
 
 #: data/rygel-preferences.ui:94
 #, fuzzy
