@@ -8,9 +8,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel 0.36.x\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-03-01 23:18+0000\n"
-"PO-Revision-Date: 2017-11-11 16:44+0100\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
+"product=rygel&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-11-11 15:45+0000\n"
+"PO-Revision-Date: 2017-11-20 12:59+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
@@ -301,17 +302,17 @@ msgstr "Ugyldig tilkoblingsreferanse"
 msgid "Failed to write modified description to %s"
 msgstr "Klarte ikke å skrive endret beskrivelse til %s"
 
-#: src/librygel-core/rygel-energy-management-helper.c:54
+#: src/librygel-core/rygel-energy-management-helper.c:55
 #, c-format
 msgid "Failed to get a socket: %s"
 msgstr "Klarte ikke å hente en plugg: %s"
 
-#: src/librygel-core/rygel-energy-management-helper.c:61
+#: src/librygel-core/rygel-energy-management-helper.c:62
 #, c-format
 msgid "Failed to get MAC address for %s: %s"
 msgstr "Klarte ikke å finne MAC-adresse for %s: %s"
 
-#: src/librygel-core/rygel-energy-management-helper.c:103
+#: src/librygel-core/rygel-energy-management-helper.c:104
 msgid "MAC and network type querying not implemented"
 msgstr "Spørring på MAC og nettverkstype er ikke implementert"
 
@@ -462,26 +463,26 @@ msgid "Play mode not supported"
 msgstr "Avspillingsmodus er ikke støttet"
 
 #. FIXME: Return a more sensible error here.
-#: src/librygel-renderer/rygel-av-transport.vala:735
-#: src/librygel-renderer/rygel-av-transport.vala:779
-#: src/librygel-renderer/rygel-av-transport.vala:788
-#: src/librygel-renderer/rygel-av-transport.vala:867
+#: src/librygel-renderer/rygel-av-transport.vala:774
+#: src/librygel-renderer/rygel-av-transport.vala:789
+#: src/librygel-renderer/rygel-av-transport.vala:798
+#: src/librygel-renderer/rygel-av-transport.vala:877
 msgid "Resource not found"
 msgstr "Ressurs ikke funnet"
 
-#: src/librygel-renderer/rygel-av-transport.vala:777
+#: src/librygel-renderer/rygel-av-transport.vala:787
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "Det oppsto et problem med lesing av spillelisten: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:863
+#: src/librygel-renderer/rygel-av-transport.vala:873
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Klarte ikke å aksessere ressurs på %s: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:879
+#: src/librygel-renderer/rygel-av-transport.vala:889
 msgid "Illegal MIME-type"
 msgstr "Ulovlog MIME-type"
 
@@ -848,7 +849,7 @@ msgstr "Ugyldig upnp:class oppgitt i CreateObject"
 
 #: src/librygel-server/rygel-object-creator.vala:259
 msgid "Object is missing the @restricted attribute"
-msgstr ""
+msgstr "Objektet mangler @restricted-attributten"
 
 #: src/librygel-server/rygel-object-creator.vala:266
 msgid "Cannot create restricted item"
@@ -1027,7 +1028,7 @@ msgstr "Obligatorisk element %s mangler"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:58
 msgid "GStreamer element “dvdreadsrc” not found. DVD support does not work"
-msgstr ""
+msgstr "Fant ikke GStreamer-element «dvdreadsrc». DVD-støtte fungerer ikke"
 
 #: src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
@@ -1097,7 +1098,9 @@ msgstr "Tittel %d"
 #: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
 msgid ""
 "Failed to find lsdvd binary in path. DVD extraction will not be available"
-msgstr "Klarte ikke å finne lsdvd-binærfilen i stien. DVD-utdrag vil ikke være tilgjengelig."
+msgstr ""
+"Klarte ikke å finne lsdvd-binærfilen i stien. DVD-utdrag vil ikke være "
+"tilgjengelig."
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:73
 msgid "Invalid command received, ignoring"
@@ -1231,9 +1234,9 @@ msgid "Failed to get reset token"
 msgstr "Klarte ikke å hente tegn for nullstilling: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:537
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to persist ServiceResetToken: %s"
-msgstr "Klarte ikke å stoppe Rygel-tjeneste: %s"
+msgstr "Klarte ikke å persistere ServiceResetToken: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:547
 #, c-format
@@ -1269,30 +1272,31 @@ msgstr "Klarte ikke å opprette oppføring under «%s»: %s"
 msgid ""
 "The version “%d” of the detected database is newer than our supported "
 "version “%d”"
-msgstr "Versjon «%d» av gjenkjent database er nyere enn vår støttede versjon «%d»"
+msgstr ""
+"Versjon «%d» av gjenkjent database er nyere enn vår støttede versjon «%d»"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:690
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:688
 msgid "Incompatible schema… cannot proceed"
 msgstr "Inkompatibelt skjema … kan ikke fortsette"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:696
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:694
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr "Ugyldig database, kan ikke spørre tabell sqlite_master: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:897
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:895
 #, c-format
 msgid "Failed to create database schema: %s"
 msgstr "Klarte ikke å lage databaseskjema: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1231
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Hopper over sorteringsfelt som ikke støttes: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:104
 msgid "Failed to gracefully stop the process. Using KILL"
-msgstr ""
+msgstr "Klarte ikke å stoppe prosessen på vanlig måte. Bruker KILL"
 
 #. Process exitted properly -> That shouldn't really
 #. happen
@@ -1304,7 +1308,7 @@ msgstr "Prosessen check_async feilet: %s"
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #, c-format
 msgid "Process died while handling URI %s"
-msgstr ""
+msgstr "Prosessen døde under håndtering av URI %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
 #, c-format
@@ -1314,7 +1318,7 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
 #, c-format
 msgid "Received invalid string from child: %s"
-msgstr ""
+msgstr "Mottok ugyldig streng fra barn: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
