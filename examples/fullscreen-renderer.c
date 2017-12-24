@@ -37,10 +37,15 @@
  */
 
 #include <gst/video/videooverlay.h>
-#include <gdk/gdkx.h>
-#include <gdk/gdkwayland.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
+
+#ifdef GDK_WINDOWING_X11
+#include <gdk/gdkx.h>
+#endif
+#ifdef GDK_WINDOWING_WAYLAND
+#include <gdk/gdkwayland.h>
+#endif
 
 #include "rygel-renderer-gst.h"
 #include "rygel-core.h"
@@ -67,11 +72,17 @@ static void on_realize (GtkWidget *widget, gpointer user_data)
     if (!gdk_window_ensure_native (window))
         g_error ("Could not create native window for overlay");
 
+#ifdef GDK_WINDOWING_WAYLAND
     if (GDK_IS_WAYLAND_WINDOW (window)) {
         window_handle = gdk_wayland_window_get_wl_surface (window);
-    } else if (GDK_IS_X11_WINDOW (window)) {
+    } else
+#endif
+#ifdef GDK_WINDOWING_X11
+    if (GDK_IS_X11_WINDOW (window)) {
         window_handle = GDK_WINDOW_XID (window);
-    } else {
+    } else
+#endif
+    {
         g_error ("Unsupported windowing system");
     }
 
