@@ -359,7 +359,11 @@ if test x$try_ui = xyes ; then
                           [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED
                            gssdp-1.0 >= $GSSDP_REQUIRED
                            gstreamer-video-1.0 >= $GSTREAMER_REQUIRED
-                           gtk+-3.0 >= $GTK_REQUIRED])
+                           gtk+-3.0 >= $GTK_REQUIRED],,
+                          [
+                           AC_MSG_WARN([Example UI dependencies not found.])
+                           AC_MSG_WARN([Example UI applications will not be built.])
+                          ])
       ],
       [
         AC_MSG_WARN([UI dependencies not found.])
