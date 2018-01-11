@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # This file is part of Rygel.
 # Copyright (C) 2015 Jens Georg <mail@jensge.org>
@@ -22,7 +22,7 @@ import os.path
 import time
 from xdg import BaseDirectory
 import sys
-from urllib import pathname2url
+from urllib.request import pathname2url
 import argparse
 
 FILE_QUERY = """
@@ -81,18 +81,16 @@ parser.add_argument ('-u, --unblacklist', action = 'store_true',
 args = parser.parse_args ()
 
 rygel_db = os.path.join (BaseDirectory.xdg_cache_home, "rygel", "media-export.db")
-conn = sqlite3.connect (rygel_db);
+conn = sqlite3.connect (rygel_db)
 
-c = conn.cursor ();
-c.execute ("SELECT version FROM schema_info");
+c = conn.cursor ()
+c.execute ("SELECT version FROM schema_info")
 info = c.fetchone()
-if info[0] < 16:
-    print "Unsupported schema version or not a Rygel cache"
+if int(info[0]) < 16:
+    print("Unsupported schema version or not a Rygel cache")
     sys.exit (1)
 
-has_blacklist = False
-if info[0] >= 17:
-    has_blacklist = True
+has_blacklist = int(info[0]) >= 17
 
 if not has_blacklist and args.unblacklist:
     print ('Database version is too old for blacklists, cannot unblacklist')
