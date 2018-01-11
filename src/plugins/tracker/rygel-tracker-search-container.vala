@@ -215,7 +215,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
             query.variables = new ArrayList<string> ();
             query.variables.add ("COUNT(" +
                                  SelectionQuery.ITEM_VARIABLE +
-                                 ") AS x");
+                                 ") AS ?x");
 
             yield query.execute (this.resources);
 

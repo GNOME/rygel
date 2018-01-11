@@ -56,7 +56,7 @@ public abstract class Rygel.Tracker.MetadataValues : MetadataContainer {
         var selected = new ArrayList<string> ();
         selected.add ("DISTINCT " +
                       property_map[this.property] +
-                      " AS x");
+                      " AS ?x");
 
         return new SelectionQuery (selected, triplets, null, "?x");
     }
