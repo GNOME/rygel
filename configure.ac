@@ -427,6 +427,9 @@ AS_IF([test "x$enable_tracker_plugin" = "xyes"],
                                      tracker_api_version="VERSION"
                                    ])
                  ])
+    AS_IF([test "x:$trackerpkg" = "x:"],
+          [AC_MSG_ERROR([No supported API version of the tracker-sparql library was found])])
+
 
     PKG_CHECK_MODULES([RYGEL_PLUGIN_TRACKER_DEPS],
                       [$RYGEL_COMMON_MODULES gio-2.0 >= $GIO_REQUIRED ${trackerpkg}])
