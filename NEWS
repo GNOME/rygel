@@ -1,3 +1,42 @@
+0.36.1
+======
+ - Translation updates
+
+Examples
+ - Fix building examples without Wayland
+ - Fix mx-info to use Python 3
+
+Tracker
+ - Fix SPARQL syntax error
+ - Fail configure if tracker-sparql is not found at all
+
+Bugs fixed in this release:
+ - https://bugzilla.gnome.org/show_bug.cgi?id=791921
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Xavi Ivars <xavi.ivars@gmail.com>
+ - Ting-Wei Lan <lantw@src.gnome.org>
+ - ST Alfas <st.alfas5@gmail.com>
+ - Pawan Chitrakar <chautari@gmail.com>
+ - Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>
+ - hanniedu <hannie@ubuntu-nl.org>
+ - Cédric Valmary <cvalmary@yahoo.fr>
+ - Alexander Shopov <ash@kambanaria.org>
+
+Added/updated translations
+ - bg, courtesy of Alexander Shopov
+ - ca, courtesy of Carles Ferrando Garcia
+ - ca@valencia, courtesy of Xavi Ivars
+ - eo, courtesy of Kristjan SCHMIDT
+ - ml, courtesy of Razee Marikar
+ - nb, courtesy of Kjartan Maraas
+ - ne, courtesy of Pawan Chitrakar
+ - nl, courtesy of Justin van Steijn
+ - oc, courtesy of Cédric Valmary (totenoc.eu)
+
 0.36.0
 ======
  - Translation updates
