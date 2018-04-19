@@ -70,7 +70,6 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
                 this.notify_property ("n-tracks");
             }
         }
-        default = 0;
     }
 
     [CCode (notify = false)]
@@ -83,7 +82,6 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
                 this.notify_property ("track");
             }
         }
-        default = 0;
     }
 
     public string uri { owned get; protected set; default = ""; }
@@ -218,8 +216,8 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
     private MediaCollection next_collection;
 
     // Private property variables
-    private uint _n_tracks;
-    private uint _track;
+    private uint _n_tracks = 0U;
+    private uint _track = 0U;
     private string _playback_state = "NO_MEDIA_PRESENT";
     private string _play_mode = "NORMAL";
 

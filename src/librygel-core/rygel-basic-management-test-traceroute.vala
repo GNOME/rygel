@@ -70,7 +70,7 @@ internal class Rygel.BasicManagementTestTraceroute : BasicManagementTest {
 
     public string host { construct; get; default = ""; }
 
-    private uint32 _wait_time_out;
+    private uint32 _wait_time_out = DEFAULT_TIMEOUT;
     public uint32 wait_time_out {
         construct {
             this._wait_time_out = value;
@@ -82,11 +82,9 @@ internal class Rygel.BasicManagementTestTraceroute : BasicManagementTest {
         get {
             return this._wait_time_out;
         }
-
-        default = DEFAULT_TIMEOUT;
     }
 
-    private uint _data_block_size;
+    private uint _data_block_size = DEFAULT_DATA_BLOCK_SIZE;
     public uint data_block_size {
         construct {
             this._data_block_size = value;
@@ -98,11 +96,9 @@ internal class Rygel.BasicManagementTestTraceroute : BasicManagementTest {
         get {
             return this._data_block_size;
         }
-
-        default = DEFAULT_DATA_BLOCK_SIZE;
     }
 
-    private uint _max_hop_count;
+    private uint _max_hop_count = DEFAULT_HOPS;
     public uint max_hop_count {
         construct {
             this._max_hop_count = value;
@@ -114,11 +110,9 @@ internal class Rygel.BasicManagementTestTraceroute : BasicManagementTest {
         get {
             return this._max_hop_count;
         }
-
-        default = DEFAULT_HOPS;
     }
 
-    private uint _dscp;
+    private uint _dscp = DEFAULT_DSCP;
     public uint dscp {
         construct {
             this._dscp = value;
@@ -130,8 +124,6 @@ internal class Rygel.BasicManagementTestTraceroute : BasicManagementTest {
         get {
             return this._dscp;
         }
-
-        default = DEFAULT_DSCP;
     }
 
     private Regex regex;

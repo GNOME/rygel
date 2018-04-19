@@ -67,7 +67,7 @@ internal class Rygel.BasicManagementTestPing : BasicManagementTest {
 
     public string host { construct; get; default = ""; }
 
-    private uint _repeat_count;
+    private uint _repeat_count = DEFAULT_REPEAT_COUNT;
     public uint repeat_count {
         construct {
             this._repeat_count = value;
@@ -79,11 +79,9 @@ internal class Rygel.BasicManagementTestPing : BasicManagementTest {
         get {
             return this._repeat_count;
         }
-
-        default = DEFAULT_REPEAT_COUNT;
     }
 
-    private uint _data_block_size;
+    private uint _data_block_size = DEFAULT_DATA_BLOCK_SIZE;
     public uint data_block_size {
         construct {
             this._data_block_size = value;
@@ -95,11 +93,9 @@ internal class Rygel.BasicManagementTestPing : BasicManagementTest {
         get {
             return this._data_block_size;
         }
-
-        default = DEFAULT_DATA_BLOCK_SIZE;
     }
 
-    private uint _dscp;
+    private uint _dscp = DEFAULT_DSCP;
     public uint dscp {
         construct {
             this._dscp = value;
@@ -111,11 +107,9 @@ internal class Rygel.BasicManagementTestPing : BasicManagementTest {
         get {
             return this._dscp;
         }
-
-        default = DEFAULT_DSCP;
     }
 
-    private uint32 _interval_time_out;
+    private uint32 _interval_time_out = DEFAULT_REQUEST_INTERVAL_TIMEOUT;
     public uint32 interval_time_out {
         construct {
             this._interval_time_out = value;
@@ -127,8 +121,6 @@ internal class Rygel.BasicManagementTestPing : BasicManagementTest {
         get {
             return _interval_time_out;
         }
-
-        default = DEFAULT_REQUEST_INTERVAL_TIMEOUT;
     }
 
 

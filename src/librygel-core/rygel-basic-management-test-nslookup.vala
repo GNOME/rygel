@@ -154,7 +154,7 @@ internal class Rygel.BasicManagementTestNSLookup : BasicManagementTest {
     public string host_name { construct; private get; default = ""; }
     public string? name_server { construct; private get; default = null; }
 
-    private uint _interval_time_out;
+    private uint _interval_time_out = DEFAULT_INTERVAL_TIMEOUT;
     public uint interval_time_out {
         construct {
             this._interval_time_out = value;
@@ -164,10 +164,9 @@ internal class Rygel.BasicManagementTestNSLookup : BasicManagementTest {
         private get {
             return this._interval_time_out;
         }
-        default = DEFAULT_INTERVAL_TIMEOUT;
     }
 
-    private uint _repetitions;
+    private uint _repetitions = DEFAULT_REPETITIONS;
     public uint repetitions {
         construct {
             this.iterations = 1;
@@ -180,7 +179,6 @@ internal class Rygel.BasicManagementTestNSLookup : BasicManagementTest {
         private get {
             return this._repetitions;
         }
-        default = DEFAULT_REPETITIONS;
     }
 
     private Result[] results;
