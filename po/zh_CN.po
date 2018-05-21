@@ -10,22 +10,22 @@
 # Tong Hui <tonghuix@gmail.com>, 2013, 2014.
 # Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>, 2010, 2015.
 # Mingye Wang (Arthur2e5) <arthur200126@gmail.com>, 2015.
-# Jeff Bai <jeffbai@aosc.xyz>, 2016.
+# Mingcong Bai <jeffbai@aosc.xyz>, 2016, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-08-24 00:05+0000\n"
-"PO-Revision-Date: 2018-03-23 00:25+0800\n"
-"Last-Translator: xcffl <xcffl@outlook.com>\n"
+"POT-Creation-Date: 2018-03-26 11:56+0000\n"
+"PO-Revision-Date: 2018-05-10 12:13-0500\n"
+"Last-Translator: Mingcong Bai <jeffbai@aosc.xyz>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: data/rygel.desktop.in.in:3
 msgid "Rygel"
@@ -432,13 +432,12 @@ msgid "Failed to roll back transaction: %s"
 msgstr "无法回滚事务：%s"
 
 #: src/librygel-renderer-gst/rygel-playbin-player.vala:368
-#, fuzzy
 msgid ""
 "Your GStreamer installation seems to be missing the “playbin” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
-"您安装 GStreamer 的时候似乎没有安装“playbin”元素。Rygel GStreamer 渲染器的实"
-"现没有它就无法工作"
+"您安装 GStreamer 的时候似乎没有安装“playbin”元素，GStreamer 渲染器实现将无法"
+"工作"
 
 #: src/librygel-renderer/rygel-av-transport.vala:204
 #: src/librygel-renderer/rygel-rendering-control.vala:137
@@ -1045,9 +1044,9 @@ msgstr "只能处理以文件为单位的 MediaObjects (MediaFileItems)"
 
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
-#, fuzzy, c-format
+#, c-format
 msgid "Module “%s” could not connect to D-Bus session bus. Ignoring…"
-msgstr "模块“%s”无法连接到 D-Bus 会话总线。将忽略..."
+msgstr "模块“%s”无法连接到 D-Bus 会话总线。忽略该模块…"
 
 #: src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
