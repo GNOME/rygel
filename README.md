@@ -11,16 +11,12 @@ media to format that client devices are capable of handling.
 Important facts and features
 ============================
 
-  * Specifically designed for GNOME (Mobile) and is therefore planned to be one
-    of the key new features of GNOME 3.0 and Maemo platform in the Harmattan
-    release.
   * Based on GUPnP.
-  * Written entirely in Vala language.
-  * APIs to ease the implementation of AV devices.
+  * Written largely in Vala language.
+  * Provides APIs to ease the implementation of AV devices.
   * Export of on-disk media:
     * Tracker plugin.
     * MediaExport plugin: Recursively exports folders and files specified in the user configuration. This plugin supports all types of URIs that gio/gvfs and gstreamer can handle.
-  * Export of online media from 2nd German TV station.
   * Export of media hierarchies provided by external applications through
     implementation of D-Bus MediaServer spec. Applications that utilize
     this feature are:
@@ -75,8 +71,6 @@ References
 
   * http://www.dlna.org
   * http://www.upnp.org
-  * http://maemo.org/intro/platform
-  * http://wiki.maemo.org/Task:Maemo_roadmap/Harmattan
   * http://www.gupnp.org
   * http://www.vala-project.org
   * http://www.wikipedia.org/wiki/Media_server
