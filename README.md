@@ -62,7 +62,7 @@ Requirements
       * gst-plugins-bad
       * gst-plugins-ugly
 
-To build without gstreamer, use: ```--with-media-engine=simple```
+To build without gstreamer, use ```--with-media-engine=simple``` during configure time.
 This will also disable any plugins that use gstreamer.
 
 References
