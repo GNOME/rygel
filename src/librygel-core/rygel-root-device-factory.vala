@@ -93,8 +93,7 @@ public class Rygel.RootDeviceFactory : Object,
         /* We store the modified descriptions in the user's config dir */
         var config_dir = Environment.get_user_config_dir ();
         this.ensure_dir_exists (config_dir);
-        this.desc_dir = Path.build_filename (config_dir,
-                                             Environment.get_application_name ());
+        this.desc_dir = Path.build_filename (config_dir, "Rygel");
         this.ensure_dir_exists (this.desc_dir);
 
         return true;
