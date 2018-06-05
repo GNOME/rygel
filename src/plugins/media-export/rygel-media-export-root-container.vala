@@ -144,17 +144,17 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
     public override async MediaObjects? search (SearchExpression? expression,
                                                 uint              offset,
                                                 uint              max_count,
-                                                out uint          total_matches,
                                                 string            sort_criteria,
-                                                Cancellable?      cancellable)
+                                                Cancellable?      cancellable,
+                                                out uint          total_matches)
                                                 throws GLib.Error {
         if (expression == null) {
             return yield base.search (expression,
                                       offset,
                                       max_count,
-                                      out total_matches,
                                       sort_criteria,
-                                      cancellable);
+                                      cancellable,
+                                      out total_matches);
         }
 
         MediaObjects list;
@@ -193,9 +193,9 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
             return yield base.search (expression,
                                       offset,
                                       max_count,
-                                      out total_matches,
                                       sort_criteria,
-                                      cancellable);
+                                      cancellable,
+                                      out total_matches);
         }
     }
 

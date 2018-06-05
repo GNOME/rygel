@@ -34,9 +34,9 @@ internal class Rygel.WMPHacks : ClientHacks {
                                          SearchExpression?   expression,
                                          uint                offset,
                                          uint                requested,
-                                         out uint            total_matches,
                                          string              sort_criteria,
-                                         Cancellable?        cancellable)
+                                         Cancellable?        cancellable,
+                                         out uint            total_matches)
                                          throws Error {
         // Drop the limit. WMP has a problem if we don't know the number of
         // total matches; instead of continuing to request items it stoppes
@@ -46,8 +46,8 @@ internal class Rygel.WMPHacks : ClientHacks {
         return yield container.search (expression,
                                        offset,
                                        0,
-                                       out total_matches,
                                        sort_criteria,
-                                       cancellable);
+                                       cancellable,
+                                       out total_matches);
     }
 }

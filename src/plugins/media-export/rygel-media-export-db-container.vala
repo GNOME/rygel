@@ -81,9 +81,9 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
     public virtual async MediaObjects? search (SearchExpression? expression,
                                                uint              offset,
                                                uint              max_count,
-                                               out uint          total_matches,
                                                string            sort_criteria,
-                                               Cancellable?      cancellable)
+                                               Cancellable?      cancellable,
+                                               out uint          total_matches)
                                                throws GLib.Error {
         MediaObjects children = null;
 
@@ -100,9 +100,9 @@ public class Rygel.MediaExport.DBContainer : MediaContainer,
                 children = yield this.simple_search (expression,
                                                      offset,
                                                      max_count,
-                                                     out total_matches,
                                                      sort_criteria,
-                                                     cancellable);
+                                                     cancellable,
+                                                     out total_matches);
             } else {
                 throw error;
             }

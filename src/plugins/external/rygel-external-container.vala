@@ -114,18 +114,18 @@ public class Rygel.External.Container : Rygel.MediaContainer,
     public async MediaObjects? search (SearchExpression? expression,
                                        uint              offset,
                                        uint              max_count,
-                                       out uint          total_matches,
                                        string            sort_criteria,
-                                       Cancellable?      cancellable)
+                                       Cancellable?      cancellable,
+                                       out uint          total_matches)
                                        throws GLib.Error {
         if (expression == null || !this.searchable) {
             // Either its wildcard or backend doesn't implement search :(
             return yield this.simple_search (expression,
                                              offset,
                                              max_count,
-                                             out total_matches,
                                              sort_criteria,
-                                             cancellable);
+                                             cancellable,
+                                             out total_matches);
         }
 
         string[] filter = {};

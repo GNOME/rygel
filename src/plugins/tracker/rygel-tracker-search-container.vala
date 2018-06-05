@@ -121,16 +121,16 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                                          sort_criteria,
                                          offset,
                                          max_count,
-                                         out total_matches,
-                                         cancellable);
+                                         cancellable,
+                                         out total_matches);
     }
 
     public async MediaObjects? execute_query (SearchExpression? expression,
                                               string            sort_criteria,
                                               uint              offset,
                                               uint              max_count,
-                                              out uint          total_matches,
-                                              Cancellable?      cancellable)
+                                              Cancellable?      cancellable,
+                                              out uint          total_matches)
                                               throws GLib.Error {
         var results = new MediaObjects ();
 
@@ -178,8 +178,8 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                                                 "",
                                                 0,
                                                 1,
-                                                out total_matches,
-                                                cancellable);
+                                                cancellable,
+                                                out total_matches);
         if (results.size > 0) {
             return results[0];
         } else {
