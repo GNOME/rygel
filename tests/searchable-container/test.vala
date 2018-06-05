@@ -77,7 +77,7 @@ public class TestContainer : MediaContainer, Rygel.SearchableContainer {
 
         // check corners
         try {
-            var result = yield search (null, 0, 0, out total_matches, "", null);
+            var result = yield search (null, 0, 0, "", null, out total_matches);
             assert (total_matches == 10);
             assert (result.size == 10);
         } catch (GLib.Error error) {
@@ -85,7 +85,7 @@ public class TestContainer : MediaContainer, Rygel.SearchableContainer {
         }
 
         try {
-            var result = yield search (null, 10, 0, out total_matches, "",  null);
+            var result = yield search (null, 10, 0, "",  null, out total_matches);
             assert (total_matches == 10);
             assert (result.size == 0);
         } catch (GLib.Error error) {
@@ -94,7 +94,7 @@ public class TestContainer : MediaContainer, Rygel.SearchableContainer {
 
         for (int i = 1; i < 10; ++i) {
             try {
-                var result = yield search (null, i, 0, out total_matches, "", null);
+                var result = yield search (null, i, 0, "", null, out total_matches);
                 assert (total_matches == 10);
                 assert (result.size == 10 - i);
             } catch (GLib.Error error) {
@@ -110,7 +110,7 @@ public class TestContainer : MediaContainer, Rygel.SearchableContainer {
 
         // check corners
         try {
-            var result = yield search (null, 0, 4, out total_matches, "", null);
+            var result = yield search (null, 0, 4, "", null, out total_matches);
             assert (total_matches == 0);
             assert (result.size == 4);
         } catch (GLib.Error error) {
@@ -119,7 +119,7 @@ public class TestContainer : MediaContainer, Rygel.SearchableContainer {
 
         try
         {
-            var result = yield search (null, 10, 4, out total_matches, "", null);
+            var result = yield search (null, 10, 4, "", null, out total_matches);
             assert (total_matches == 0);
             assert (result.size == 0);
         } catch (GLib.Error error) {
@@ -128,7 +128,7 @@ public class TestContainer : MediaContainer, Rygel.SearchableContainer {
 
         for (int i = 1; i < 10; ++i) {
             try {
-                var result = yield search (null, i, 3, out total_matches, "", null);
+                var result = yield search (null, i, 3, "", null, out total_matches);
                 assert (total_matches == 0);
                 assert (result.size == int.min (10 - i, 3));
             } catch (GLib.Error error) {
@@ -152,16 +152,16 @@ public class TestContainer : MediaContainer, Rygel.SearchableContainer {
     public async MediaObjects? search (SearchExpression? expression,
                                        uint              offset,
                                        uint              max_count,
-                                       out uint          total_matches,
                                        string            sort_criteria,
-                                       Cancellable?      cancellable)
+                                       Cancellable?      cancellable,
+                                       out uint          total_matches)
                                        throws Error {
         return yield this.simple_search (expression,
                                          offset,
                                          max_count,
-                                         out total_matches,
                                          sort_criteria ?? this.sort_criteria,
-                                         cancellable);
+                                         cancellable,
+                                         out total_matches);
     }
 
 }

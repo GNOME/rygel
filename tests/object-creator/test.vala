@@ -284,9 +284,9 @@ public class Rygel.SearchableContainer : Rygel.MediaContainer {
     public async MediaObjects search (SearchExpression expression,
                                       int              offset,
                                       int              count,
-                                      out int          total_matches,
                                       string           soer_criteria,
-                                      Cancellable?     cancellable = null) {
+                                      Cancellable?     cancellable,
+                                      out int          total_matches) {
         total_matches = 0;
         Idle.add (() => { search.callback (); return false; });
         yield;
