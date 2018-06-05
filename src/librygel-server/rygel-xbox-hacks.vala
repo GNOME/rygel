@@ -144,9 +144,9 @@ internal class Rygel.XBoxHacks : ClientHacks {
                                          SearchExpression?   expression,
                                          uint                offset,
                                          uint                max_count,
-                                         out uint            total_matches,
                                          string              sort_criteria,
-                                         Cancellable?        cancellable)
+                                         Cancellable?        cancellable,
+                                         out uint            total_matches)
                                          throws Error {
         var set_total_matches = false;
         var modified_expression = expression;
@@ -174,9 +174,9 @@ internal class Rygel.XBoxHacks : ClientHacks {
         var results = yield container.search (modified_expression,
                                               offset,
                                               max_count,
-                                              out total_matches,
                                               sort_criteria,
-                                              cancellable);
+                                              cancellable,
+                                              out total_matches);
         if (total_matches == 0 && set_total_matches) {
             total_matches = results.size;
         }

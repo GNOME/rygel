@@ -366,9 +366,9 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
             var result = yield root_container.search (search_expression,
                                                       0,
                                                       1,
-                                                      out total_matches,
                                                       root_container.sort_criteria,
-                                                      this.cancellable);
+                                                      this.cancellable,
+                                                      out total_matches);
             if (result.size > 0) {
                 this.didl_object.upnp_class = upnp_class;
 

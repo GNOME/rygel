@@ -47,18 +47,18 @@ public interface Rygel.SearchableContainer : MediaContainer {
      *
      * @param expression the search expression or null for wildcard
      * @param offset zero-based index of the first object to return
-     * @param max_count maximum number of objects to return
      * @param total_matches sets it to the actual number of objects that satisfy
      * @param cancellable optional cancellable for this operation.
+     * @param max_count maximum number of objects to return
      *
      * @return A list of matching media objects or null if no object matched.
      */
     public abstract async MediaObjects? search (SearchExpression? expression,
                                                 uint              offset,
                                                 uint              max_count,
-                                                out uint          total_matches,
                                                 string            sort_criteria,
-                                                Cancellable?      cancellable)
+                                                Cancellable?      cancellable,
+                                                out uint          total_matches)
                                                 throws Error;
 
     /**
@@ -80,9 +80,9 @@ public interface Rygel.SearchableContainer : MediaContainer {
     public async MediaObjects? simple_search (SearchExpression? expression,
                                               uint              offset,
                                               uint              max_count,
-                                              out uint          total_matches,
                                               string            sort_criteria,
-                                              Cancellable?      cancellable)
+                                              Cancellable?      cancellable,
+                                              out uint          total_matches)
                                               throws Error {
         var result = new MediaObjects ();
 
@@ -179,9 +179,9 @@ public interface Rygel.SearchableContainer : MediaContainer {
         var results = yield this.search (expression,
                                          0,
                                          1,
-                                         out total_matches,
                                          "",
-                                         cancellable);
+                                         cancellable,
+                                         out total_matches);
         if (results.size > 0) {
             return results[0];
         } else {
@@ -206,9 +206,9 @@ public interface Rygel.SearchableContainer : MediaContainer {
                 var child_result = yield container.search (expression,
                                                            0,
                                                            limit,
-                                                           out tmp,
                                                            sort_criteria,
-                                                           cancellable);
+                                                           cancellable,
+                                                           out tmp);
 
                 result.add_all (child_result);
             }

@@ -728,9 +728,9 @@ public class Rygel.ContentDirectory: Service {
             var objects = yield root.search (expression,
                                              0,
                                              0,
-                                             out matches,
                                              "",
-                                             null);
+                                             null,
+                                             out matches);
             if (objects.size > 0) {
                 uint32 count = 1;
                 foreach (var object in objects) {
