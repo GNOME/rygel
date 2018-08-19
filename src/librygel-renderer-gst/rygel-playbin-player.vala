@@ -85,6 +85,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                         "video/x-mkv",
                                         "video/mpeg",
                                         "video/mp4",
+                                        "video/avi",
                                         "application/x-shockwave-flash",
                                         "video/x-ms-asf",
                                         "video/x-xvid",
