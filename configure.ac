@@ -1,7 +1,7 @@
 AC_PREREQ([2.64])
 AC_INIT([Rygel],
-	[m4_esyscmd(GNOME_TAG_PATTERN=RYGEL build-aux/git-version-gen .tarball-version)],
-	[http://bugzilla.gnome.org/enter_bug.cgi?product=Rygel],
+	[m4_esyscmd(GNOME_TAG_PATTERN=rygel build-aux/git-version-gen .tarball-version)],
+	[https://gitlab.gnome.org/GNOME/rygel/issues/new],
 	[rygel],
 	[http://www.rygel-project.org])
 AC_CONFIG_AUX_DIR([build-aux])

@@ -95,10 +95,13 @@ if test -n "$v"
 then
     : # use $v
 elif test -d .git \
-    && v=`git describe --abbrev=4 --match='${GNOME_TAG_PATTERN}_*' HEAD 2>/dev/null \
+    && v=`git describe --abbrev=4 --match='${GNOME_TAG_PATTERN}*' HEAD 2>/dev/null \
 	  || git describe --abbrev=4 HEAD 2>/dev/null` \
     && case $v in
 	 ${GNOME_TAG_PATTERN}_[0-9]*) ;;
+     ${GNOME_TAG_PATTERN}-[0-9]*)
+         v=`echo "$v" | sed "s/-/_/"`;
+         ;;
 	 *) (exit 1) ;;
        esac
 then
@@ -128,7 +131,7 @@ fi
 
 #v=`echo "$v" |sed 's/^v//'`
 
-v=`echo "$v" | sed "s/${GNOME_TAG_PATTERN}_//" | tr _ .`
+v=`echo "$v" | sed "s/${GNOME_TAG_PATTERN}[_-]//" | tr _- .`
 
 # Don't declare a version "dirty" merely because a time stamp has changed.
 git status > /dev/null 2>&1
