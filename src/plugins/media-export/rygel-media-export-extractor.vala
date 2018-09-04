@@ -49,6 +49,7 @@ public class Rygel.MediaExport.Extractor : Object {
     private static Regex[] video_suffix_regexes;
 
     public File file { get; construct set; }
+    public bool extract_metadata { get; construct set; default = true; }
 
     protected VariantDict serialized_info;
 
@@ -60,7 +61,7 @@ public class Rygel.MediaExport.Extractor : Object {
                                              string content_type,
                                              bool   extract_metadata) {
         if (!extract_metadata) {
-            return new Extractor (file);
+            return new Extractor (file, false);
         }
 
         var is_text = content_type.has_prefix ("text/") ||
@@ -81,8 +82,8 @@ public class Rygel.MediaExport.Extractor : Object {
         return new GenericExtractor (file);
     }
 
-    private Extractor (File file) {
-        Object (file: file);
+    private Extractor (File file, bool extract_metadata) {
+        Object (file: file, extract_metadata: extract_metadata);
     }
 
     public override void constructed () {
@@ -97,8 +98,13 @@ public class Rygel.MediaExport.Extractor : Object {
                                                      FileAttribute.STANDARD_DISPLAY_NAME,
                                                      FileQueryInfoFlags.NONE);
         var display_name = file_info.get_display_name ();
-        var title = this.strip_invalid_entities (display_name);
-        this.serialized_info.insert (Serializer.TITLE, "s", title);
+
+        if (extract_metadata) {
+            var title = this.strip_invalid_entities (display_name);
+            this.serialized_info.insert (Serializer.TITLE, "s", title);
+        } else {
+            this.serialized_info.insert (Serializer.TITLE, "s", display_name);
+        }
 
         var mtime = file_info.get_attribute_uint64
                                     (FileAttribute.TIME_MODIFIED);
