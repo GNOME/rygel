@@ -26,7 +26,7 @@ public interface Rygel.DBusInterface : Object {
     public const string SERVICE_NAME = "org.gnome.Rygel1";
     public const string OBJECT_PATH = "/org/gnome/Rygel1";
 
-    public abstract void shutdown () throws IOError;
+    public abstract void shutdown () throws IOError, DBusError;
 }
 
 [DBus (name = "org.gnome.Rygel1.AclProvider1")]

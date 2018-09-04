@@ -31,7 +31,7 @@ internal class Rygel.DBusService : Object, DBusInterface {
         this.main = main;
     }
 
-    public void shutdown () throws IOError {
+    public void shutdown () throws IOError, DBusError {
         this.main.exit (0);
     }
 
