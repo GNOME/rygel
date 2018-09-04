@@ -1,3 +1,48 @@
+0.36.2
+======
+ - Translation updates
+
+Build:
+ - Allow building examples stuff without gstreamer-video
+ - Bump GSSDP requirement
+
+All:
+ - Fix property default values for newer vala
+ - Fix position of asynchronous out parameters with newer vala
+ - Fix warnings regarding errors on DBus methods with newer vala
+
+Core:
+ - Fix using localized directory names for config directory
+
+GStreamer Renderer:
+ - Add support for "video/avi"
+
+Media Export:
+ - Don't scrub file name when extract-metadata is false
+
+Bugs fixed in this release:
+ - Close https://gitlab.gnome.org/GNOME/rygel/issues/118
+ - https://bugzilla.gnome.org/show_bug.cgi?id=792358
+ - Close https://gitlab.gnome.org/GNOME/rygel/issues/114
+ - Close https://gitlab.gnome.org/GNOME/rygel/issues/119
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Rico Tzschichholz <ricotz@ubuntu.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Waldo Luís Ribeiro <waldoribeiro@sapo.pt>
+ - Mingye Wang <arthur200216@gmail.com>
+ - Mingcong Bai <jeffbai@aosc.xyz>
+ - gogo <trebelnik2@gmail.com>
+ - Fabrice Fontaine <fontaine.fabrice@gmail.com>
+ - Changwoo Ryu <cwryu@debian.org>
+
+Added/updated translations
+ - en_GB, courtesy of Waldo Luís Ribeiro
+ - es, courtesy of Daniel Mustieles
+ - hr, courtesy of gogo
+ - zh_CN, courtesy of Mingcong Bai
+
 0.36.1
 ======
  - Translation updates
