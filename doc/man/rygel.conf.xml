@@ -214,7 +214,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
         <listitem>
           <para>Semicolon-separated list of device user-agents (or parts thereof) which need a forced downgrade to <userinput>MediaServer:1</userinput> and/or <userinput>ContentDirectory:1</userinput>.</para>
           <para><warning>
-              <para>Only use this parameter if you know what your&apos;re doing or are being told to do so; overriding the default value might cause incompatibilites. If you find that adding your device here enables its usage with Rygel, please  <ulink url="https://bugzilla.gnome.org/enter_bug.cgi?product=Rygel&amp;component=IOP">file an IOP bug</ulink> so we can include it into the default configuration.</para>
+              <para>Only use this parameter if you know what your&apos;re doing or are being told to do so; overriding the default value might cause incompatibilites. If you find that adding your device here enables its usage with Rygel, please  <ulink url="https://gitlab.gnome.org/GNOME/rygel/issues/new/?issuable_template=IOP">file an IOP bug</ulink> so we can include it into the default configuration.</para>
             </warning></para>
         </listitem>
       </varlistentry>
@@ -510,7 +510,7 @@ enabled=false</programlisting>
   </refsect1>
   <refsect1>
     <title>MPRIS</title>
-    <para>The MPRIS plugin is a consumer of the  <ulink url="http://www.mpris.org">MPRIS2 DBus interface specification</ulink>. The implementation conforms to version 2.0 of the standard.
+    <para>The MPRIS plugin is a consumer of the  <ulink url="https://specifications.freedesktop.org/mpris-spec/latest/">MPRIS2 DBus interface specification</ulink>. The implementation conforms to version 2.0 of the standard.
       </para>
     <para><application>&dhpackage;</application> exposes media players that implement the provider side of this DBus specification as DLNA Digital Media Renderers (DMR) similar to the Playbin plugin. This means that you can easily turn your media player into a DMR by implementing this DBus specification.</para>
     <para>Players that implement this spec and are known to work with <application>&dhpackage;</application> are  <ulink url="http://banshee.fm">Banshee</ulink>, <ulink url="http://www.rhythmbox.org">Rhythmbox</ulink> and <ulink url="https://wiki.gnome.org/Apps/Videos">GNOME Videos (previously known as Totem)</ulink>

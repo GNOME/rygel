@@ -459,7 +459,7 @@ handling.</para>
   <refsect1 id="bugs">
 <!-- Or use this section to tell about upstream BTS. -->    <title>BUGS</title>
     <para>The  <acronym>BTS</acronym> can be found
-      at <ulink url="https://bugzilla.gnome.org/buglist.cgi?product=rygel"/>.</para>
+    at <ulink url="https://gitlab.gnome.org/GNOME/rygel/issues"/>.</para>
   </refsect1>
   <refsect1 id="see_also">
     <title>SEE ALSO</title>
