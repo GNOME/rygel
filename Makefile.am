@@ -11,7 +11,8 @@ EXTRA_DIST = rygel-core-2.6.pc.in rygel-renderer-2.6.pc.in \
              build-aux/config.rpath \
              rygel-server-2.6.pc.in .version \
              build-aux/git-version-gen \
-             COPYING.logo
+             COPYING.logo \
+             README.md
 
 AM_DISTCHECK_CONFIGURE_FLAGS = --with-systemduserunitdir='$${libdir}/systemd/user-distcheck'
 
