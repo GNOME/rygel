@@ -76,14 +76,13 @@ sed = find_program('sed')
 g_ir_compiler = find_program('g-ir-compiler')
 gir_dir = join_paths(get_option('datadir'), 'gir-1.0')
 typelib_dir = join_paths(get_option('libdir'), 'girepository-1.0')
+pkgconfig_dir = join_paths(get_option('libdir'), 'pkgconfig')
 
 cc = meson.get_compiler('c')
 math = cc.find_library('m', required: false)
 unistring = cc.find_library('unistring', required: false)
 u8_strcoll_available = cc.has_function('u8_strcoll', dependencies: unistring)
-if u8_strcoll_available
-    conf.set('HAVE_UNISTRING', '1')
-endif
+conf.set10('HAVE_UNISTRING', u8_strcoll_available)
 
 common_deps = [gupnp, gee]
 
@@ -125,31 +124,31 @@ configure_file(output: 'rygel-core-2.6.pc',
                input: 'rygel-core-2.6.pc.in',
                configuration: pc_conf,
                install: true,
-               install_dir : join_paths(get_option('libdir'), 'pkgconfig'))
+               install_dir : pkgconfig_dir)
 
 configure_file(output: 'rygel-server-2.6.pc',
                input: 'rygel-server-2.6.pc.in',
                configuration: pc_conf,
                install: true,
-               install_dir : join_paths(get_option('libdir'), 'pkgconfig'))
+               install_dir : pkgconfig_dir)
 
 configure_file(output: 'rygel-renderer-2.6.pc',
                input: 'rygel-renderer-2.6.pc.in',
                configuration: pc_conf,
                install: true,
-               install_dir : join_paths(get_option('libdir'), 'pkgconfig'))
+               install_dir : pkgconfig_dir)
 
 configure_file(output: 'rygel-renderer-gst-2.6.pc',
                input: 'rygel-renderer-gst-2.6.pc.in',
                configuration: pc_conf,
                install: true,
-               install_dir : join_paths(get_option('libdir'), 'pkgconfig'))
+               install_dir : pkgconfig_dir)
 
 configure_file(output: 'rygel-ruih-2.0.pc',
                input: 'rygel-ruih-2.0.pc.in',
                configuration: pc_conf,
                install: true,
-               install_dir : join_paths(get_option('libdir'), 'pkgconfig'))
+               install_dir : pkgconfig_dir)
 
 subdir('src')
 subdir('po')
