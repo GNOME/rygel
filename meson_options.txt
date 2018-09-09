@@ -1,0 +1,1 @@
+option('uninstalled', type: 'boolean', value: 'false', description: 'Run Rygel from build directory only')
