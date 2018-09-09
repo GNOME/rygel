@@ -99,29 +99,31 @@ server_lib = library('rygel-server-2.6', server_sources,
         install_dir : [true, rygel_includedir, true, false])
 install_data('rygel-server-2.6.deps', install_dir : rygel_vapidir)
 
-custom_target('RygelServer-2.6.typelib',
-               command: [g_ir_compiler,
-                        '--output', '@OUTPUT@',
-                        '--includedir', core_girdir,
-                        '@INPUT@'],
-               output: 'RygelServer-2.6.typelib',
-               input: 'RygelServer-2.6.gir',
-               depends: server_lib,
-               install: true,
-               install_dir: typelib_dir)
 
-custom_target('RygelServer-2.6.gir',
-              command: [sed, '-e', 's,Rygel\.,RygelServer.,g',
+# For details on the GIR/typelib generation process, see
+# librygel-core/meson.build
+server_gir = custom_target('RygelServer-2.6.gir',
+              command: [sed, '-e', 's,Rygel[.],RygelServer.,g',
                                           '-e', 's,namespace name="Rygel",namespace name="RygelServer",g',
                                           '-e', 's,RygelServer[.]Plugin,RygelCore.Plugin,g',
                                           '-e', 's,RygelServer[.]MediaDevice,RygelCore.MediaDevice,g',
                                           '-e', 's|<package name="rygel-server-2.6"/>|<include name="RygelCore" version="2.6"/><package name="rygel-server-2.6"/>|',
-                        '@INPUT@'],
-              input: 'Rygel-2.6.gir',
+                        join_paths(meson.current_build_dir(), 'Rygel-2.6.gir')],
               output: 'RygelServer-2.6.gir',
               capture: true,
+              depends: server_lib,
               install: true,
               install_dir: join_paths(get_option('datadir'),'gir-1.0'))
+
+custom_target('RygelServer-2.6.typelib',
+               command: [g_ir_compiler,
+                        '--output', '@OUTPUT@',
+                        '--includedir', core_girdir,
+                        join_paths(meson.current_build_dir(), 'RygelServer-2.6.gir')],
+               output: 'RygelServer-2.6.typelib',
+               depends: server_gir,
+               install: true,
+               install_dir: typelib_dir)
 
 # need to add to get the current build dir as include dir
 rygel_server = declare_dependency(include_directories: include_directories('.'),
