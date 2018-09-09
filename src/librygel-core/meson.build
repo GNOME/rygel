@@ -35,6 +35,9 @@ build_config = declare_dependency(include_directories : config_include,
                                   sources : 'rygel-build-config.vapi')
 
 
+# Rygel GIR generation is a tad special. We need to hammer in custom namespaces
+# since the libraries used to be in one binary. So
+# Step one: Build the library, generate the GIR from vala but do not install it
 core_lib = library('rygel-core-2.6', core_sources,
         dependencies : core_deps,
         include_directories: [config_include, include_directories('.')],
@@ -46,23 +49,31 @@ core_lib = library('rygel-core-2.6', core_sources,
         install_dir : [true, rygel_includedir, true, false])
 install_data('rygel-core-2.6.deps', install_dir : rygel_vapidir)
 
-custom_target('RygelCore-2.6.typelib',
-               command: [g_ir_compiler, '--output', '@OUTPUT@', '@INPUT@'],
-               output: 'RygelCore-2.6.typelib',
-               input: 'RygelCore-2.6.gir',
-               depends: core_lib,
-               install: true,
-               install_dir: typelib_dir)
-
-custom_target('RygelCore-2.6.gir',
+# Step two: Do the namespace magic with sed
+# We cannot use input: here since the generated ninja build file does not seem
+# to know that Rygel-2.6.gir is a result of building rygel-core-2.6 target
+# The custom_target call depends on the core_lib to make sure it is build before
+# and the name of the generated GIR is passed directly to sed as part of the
+# commandline
+core_gir = custom_target('RygelCore-2.6.gir',
               command: [sed, '-e', 's,Rygel[.],RygelCore.,g',
                         '-e', 's,namespace name="Rygel",namespace name="RygelCore",g',
-                        '@INPUT@'],
-              input: 'Rygel-2.6.gir',
+                        join_paths(meson.current_build_dir(), 'Rygel-2.6.gir')],
+              depends: core_lib,
               output: 'RygelCore-2.6.gir',
               capture: true,
               install: true,
               install_dir: gir_dir)
+
+# Step three: Compile the typelib. The dependency issue is similar to step two,
+# so we depend on the custom_target from that step and pass the input through
+# commandline.
+custom_target('RygelCore-2.6.typelib',
+               command: [g_ir_compiler, '--output', '@OUTPUT@', join_paths(meson.current_build_dir(), 'RygelCore-2.6.gir')],
+               output: 'RygelCore-2.6.typelib',
+               depends: core_gir,
+               install: true,
+               install_dir: typelib_dir)
 
 # need to add to get the current build dir as include dir
 rygel_core = declare_dependency(include_directories: include_directories('.'),
