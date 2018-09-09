@@ -68,7 +68,7 @@ gstreamer_tag = dependency('gstreamer-tag-1.0', version : '>= 1.0')
 gdk_pixbuf = dependency('gdk-pixbuf-2.0')
 gtk = dependency('gtk+-3.0', version : '>= 3.0')
 
-tracker_sparql = dependency('tracker-sparql-1.0')
+tracker_sparql = dependency('tracker-sparql-2.0')
 
 posix = vala.find_library('posix')
 
