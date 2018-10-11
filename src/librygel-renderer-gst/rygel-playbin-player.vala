@@ -629,6 +629,32 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     }
 
     private void setup_playbin () {
+        try {
+            var config = MetaConfig.get_default ();
+            var sink_launch = config.get_string ("Playbin", "audio-sink");
+            debug ("Trying to parse audio sink %s", sink_launch);
+            var sink = Gst.parse_bin_from_description (sink_launch,
+                                                       true,
+                                                       null,
+                                                       ParseFlags.FATAL_ERRORS);
+            this.playbin.audio_sink = sink;
+        } catch (Error error) {
+           debug ("No audio sink configured, using default: %s", error.message);
+        }
+
+        try {
+            var config = MetaConfig.get_default ();
+            var sink_launch = config.get_string ("Playbin", "video-sink");
+            debug ("Trying to parse video sink %s", sink_launch);
+            var sink = Gst.parse_bin_from_description (sink_launch,
+                                                       true,
+                                                       null,
+                                                       ParseFlags.FATAL_ERRORS);
+            this.playbin.video_sink = sink;
+        } catch (Error error) {
+           debug ("No video sink configured, using default: %s", error.message);
+        }
+
         // Needed to get "Stop" events from the playbin.
         // We can do this because we have a bus watch
         this.playbin.auto_flush_bus = false;
