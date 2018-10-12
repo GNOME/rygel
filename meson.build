@@ -51,6 +51,7 @@ conf.set_quoted('SYS_CONFIG_DIR', rygel_sysconfdir)
 conf.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('localedir')))
 conf.set_quoted('MX_EXTRACT_PATH', join_paths(rygel_libexecdir, 'mx-extract'))
 conf.set_quoted('DESKTOP_DIR', join_paths(rygel_datadir, 'applications'))
+conf.set_quoted('VERSION', meson.project_version())
 config_include = include_directories('.')
 
 add_global_arguments(['-include','config.h'], language : 'c')
