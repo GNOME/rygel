@@ -1,8 +1,3 @@
-subdir('external')
-subdir('gst-launch')
-subdir('lms')
-subdir('media-export')
-subdir('mpris')
-subdir('playbin')
-subdir('ruih')
-subdir('tracker')
+foreach plugin : get_option('plugins')
+    subdir(plugin)
+endforeach
