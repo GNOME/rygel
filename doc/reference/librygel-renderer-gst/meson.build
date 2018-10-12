@@ -1,3 +1,4 @@
+if valadoc.found()
 renderer_gst_doc_common_args = [
         '--package-name', 'librygel-renderer-gst',
         '--package-version', '2.6',
@@ -26,7 +27,7 @@ custom_target('valadoc-renderer-gst',
     input: renderer_gst_sources,
     output: 'valadoc',
     depends : renderer_gst_lib,
-    build_by_default : true,
+    build_by_default : get_option('api-docs'),
     command :
     [
         valadoc,
@@ -36,11 +37,12 @@ custom_target('valadoc-renderer-gst',
     ]
 )
 
+if gtkdoc.found()
 custom_target('gtkdoc-renderer-gst',
     input: renderer_gst_sources,
     output: 'gtkdoc',
     depends : renderer_gst_lib,
-    build_by_default : true,
+    build_by_default : get_option('api-docs'),
     command :
     [
         valadoc,
@@ -57,3 +59,5 @@ custom_target('gtkdoc-renderer-gst',
         renderer_gst_sources
     ]
 )
+endif
+endif

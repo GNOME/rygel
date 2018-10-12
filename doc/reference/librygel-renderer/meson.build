@@ -1,3 +1,4 @@
+if valadoc.found()
 renderer_doc_common_args = [
         '--package-name', 'librygel-renderer',
         '--package-version', '2.6',
@@ -22,7 +23,7 @@ custom_target('valadoc-renderer',
     input: renderer_sources,
     output: 'valadoc',
     depends: renderer_lib,
-    build_by_default : true,
+    build_by_default : get_option('api-docs'),
     command :
     [
         valadoc,
@@ -32,11 +33,12 @@ custom_target('valadoc-renderer',
     ]
 )
 
+if gtkdoc.found()
 custom_target('gtkdoc-renderer',
     input: renderer_sources,
     output: 'gtkdoc',
     depends : renderer_lib,
-    build_by_default : true,
+    build_by_default : get_option('api-docs'),
     command :
     [
         valadoc,
@@ -51,3 +53,5 @@ custom_target('gtkdoc-renderer',
         renderer_sources
     ]
 )
+endif
+endif

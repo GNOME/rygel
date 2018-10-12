@@ -1,3 +1,4 @@
+if valadoc.found()
 server_doc_common_args = [
         '--package-name', 'librygel-server',
         '--package-version', '2.6',
@@ -23,7 +24,7 @@ custom_target('valadoc-server',
     input: server_sources,
     output: 'valadoc',
     depends : server_lib,
-    build_by_default : true,
+    build_by_default : get_option('api-docs'),
     command :
     [
         valadoc,
@@ -33,11 +34,12 @@ custom_target('valadoc-server',
     ]
 )
 
+if gtkdoc.found()
 custom_target('gtkdoc-server',
     input: server_sources,
     output: 'gtkdoc',
     depends : server_lib,
-    build_by_default : true,
+    build_by_default : get_option('api-docs'),
     command :
     [
         valadoc,
@@ -52,3 +54,5 @@ custom_target('gtkdoc-server',
         server_sources
     ]
 )
+endif
+endif
