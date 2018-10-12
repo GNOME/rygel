@@ -1,3 +1,4 @@
+if valadoc.found()
 core_doc_common_args = [
         '--package-name', 'librygel-core',
         '--package-version', '2.6',
@@ -17,7 +18,7 @@ custom_target('valadoc-core',
     input: core_sources,
     output: 'valadoc',
     depends : core_lib,
-    build_by_default : true,
+    build_by_default : get_option('api-docs'),
     command :
     [
         valadoc,
@@ -27,11 +28,12 @@ custom_target('valadoc-core',
     ]
 )
 
+if gtkdoc.found()
 custom_target('gtkdoc-core',
     input: core_sources,
     output: 'gtkdoc',
     depends : core_lib,
-    build_by_default : true,
+    build_by_default : get_option('api-docs'),
     command :
     [
         valadoc,
@@ -45,3 +47,5 @@ custom_target('gtkdoc-core',
         core_sources
     ]
 )
+endif
+endif
