@@ -1,3 +1,4 @@
+if valadoc.found()
 db_doc_common_args = [
         '--package-name', 'librygel-db',
         '--package-version', '2.6',
@@ -23,7 +24,7 @@ custom_target('valadoc-db',
     input: db_sources,
     output: 'valadoc',
     depends: db_lib,
-    build_by_default : true,
+    build_by_default : get_option('api-docs'),
     command :
     [
         valadoc,
@@ -33,11 +34,12 @@ custom_target('valadoc-db',
     ]
 )
 
+if gtkdoc.found()
 custom_target('gtkdoc-db',
     input: db_sources,
     output: 'gtkdoc',
     depends : db_lib,
-    build_by_default : true,
+    build_by_default : get_option('api-docs'),
     command :
     [
         valadoc,
@@ -52,4 +54,5 @@ custom_target('gtkdoc-db',
         db_sources
     ]
 )
-
+endif
+endif
