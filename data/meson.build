@@ -20,10 +20,22 @@ configure_file(input: 'org.gnome.Rygel1.service.in',
                configuration: data_conf,
                install_dir : join_paths(rygel_datadir, 'dbus-1', 'services'))
 
-configure_file(input: 'rygel.service.in',
-               output: 'rygel.service',
-               configuration: data_conf,
-               install_dir : rygel_systemduserdir)
+systemd = dependency('systemd', required : false)
+systemd_user_unit_dir = join_paths(get_option('prefix'), 'lib/systemd/user/')
+if systemd.found()
+    systemd_user_unit_dir = systemd.get_pkgconfig_variable('systemduserunitdir')
+endif
+
+if not (get_option('systemd-user-units-dir') == 'off')
+    if not (get_option('systemd-user-units-dir') == 'auto')
+        systemd_user_unit_dir = get_option('systemd-user-units-dir')
+    endif
+
+    configure_file(input: 'rygel.service.in',
+                   output: 'rygel.service',
+                   configuration: data_conf,
+                   install_dir : systemd_user_unit_dir)
+endif
 
 rygel_desktop_preferences_in = configure_file(input: 'rygel-preferences.desktop.in.in',
                output : 'rygel-preferences.desktop.in',
