@@ -171,4 +171,7 @@ subdir('src')
 subdir('po')
 subdir('data')
 subdir('doc')
-subdir('examples')
+
+if get_option('examples')
+    subdir('examples')
+endif
