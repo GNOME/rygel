@@ -1,10 +1,10 @@
-db_sources = [
+db_sources = files(
     'database-cursor.vala',
     'database.vala',
     'sql-function.vala',
     'sql-operator.vala',
     'collate.c'
-]
+)
 
 db_lib = library('rygel-db-2.6', db_sources,
         dependencies : db_deps + [rygel_core],

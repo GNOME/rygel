@@ -1,4 +1,4 @@
-server_sources = [
+server_sources = files(
     'rygel-audio-item.vala',
     'rygel-image-item.vala',
     'rygel-logical-expression.vala',
@@ -87,7 +87,7 @@ server_sources = [
     'rygel-dtcp-cleartext-request.vala',
     'rygel-dtcp-cleartext-response.vala',
     'rygel-dlna-available-seek-request.vala',
-    'rygel-dlna-available-seek-response.vala']
+    'rygel-dlna-available-seek-response.vala')
 
 server_lib = library('rygel-server-2.6', server_sources,
         dependencies : server_deps + [build_config, rygel_core],

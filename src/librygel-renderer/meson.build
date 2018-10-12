@@ -1,4 +1,4 @@
-renderer_sources = [
+renderer_sources = files(
     'rygel-media-renderer-plugin.vala',
     'rygel-media-player.vala',
     'rygel-media-renderer.vala',
@@ -9,7 +9,8 @@ renderer_sources = [
     'rygel-sink-connection-manager.vala',
     'rygel-time-utils.vala',
     'rygel-changelog.vala',
-    'rygel-volume.vala']
+    'rygel-volume.vala'
+)
 
 renderer_lib = library('rygel-renderer-2.6', renderer_sources,
         dependencies : renderer_deps + [build_config, rygel_core],

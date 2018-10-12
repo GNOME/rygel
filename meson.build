@@ -56,6 +56,9 @@ config_include = include_directories('.')
 
 add_global_arguments(['-include','config.h'], language : 'c')
 
+valadoc = find_program('valadoc', required : false)
+gtkdoc = dependency('gtk-doc', required : false)
+
 vala = meson.get_compiler('vala')
 gupnp = dependency('gupnp-1.0', version : '>= 0.24.14')
 gee = dependency('gee-0.8', version: '>= 0.8.0')
