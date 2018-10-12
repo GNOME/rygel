@@ -1,7 +1,7 @@
-renderer_gst_sources = [
+renderer_gst_sources = files(
     'rygel-playbin-player.vala',
     'rygel-playbin-renderer.vala',
-]
+)
 
 renderer_gst_lib = library('rygel-renderer-gst-2.6', renderer_gst_sources,
         dependencies : renderer_gst_deps + [build_config, rygel_core, rygel_renderer],

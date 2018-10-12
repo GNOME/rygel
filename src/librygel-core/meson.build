@@ -1,4 +1,4 @@
-core_sources = [
+core_sources = files(
     'rygel-connection-manager.vala',
     'rygel-basic-management.vala',
     'rygel-basic-management-test.vala',
@@ -29,7 +29,7 @@ core_sources = [
     'rygel-xml-utils.vala',
     'rygel-plugin-information.vala',
     'rygel-energy-management-helper.c',
-    'rygel-build-config.vapi']
+    'rygel-build-config.vapi')
 
 build_config = declare_dependency(include_directories : config_include,
                                   sources : 'rygel-build-config.vapi')
