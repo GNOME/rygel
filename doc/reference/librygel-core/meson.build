@@ -47,5 +47,11 @@ custom_target('gtkdoc-core',
         core_sources
     ]
 )
+
+if get_option('api-docs')
+    install_subdir('gtkdoc/html',
+                   install_dir : join_paths(get_option('datadir'), 'gtk-doc/html/librygel-core'),
+                   strip_directory : true)
+endif
 endif
 endif
