@@ -54,5 +54,12 @@ custom_target('gtkdoc-db',
         db_sources
     ]
 )
+
+if get_option('api-docs')
+    install_subdir('gtkdoc/html',
+                   install_dir : join_paths(get_option('datadir'), 'gtk-doc/html/librygel-db'),
+                   strip_directory : true)
+endif
+
 endif
 endif
