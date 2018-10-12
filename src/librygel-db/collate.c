@@ -22,7 +22,7 @@
 
 #include <glib.h>
 
-#ifdef HAVE_UNISTRING
+#if HAVE_UNISTRING
 #   include <unistr.h>
 #endif
 
@@ -36,7 +36,7 @@ gint rygel_database_utf8_collate_str (const char *a, gsize alen,
     a_str = g_strndup (a, alen);
     b_str = g_strndup (b, blen);
 
-#ifdef HAVE_UNISTRING
+#if HAVE_UNISTRING
     result = u8_strcoll ((const uint8_t *) a_str, (const uint8_t *) b_str);
 #else
     return g_utf8_collate (a_str, b_str);
