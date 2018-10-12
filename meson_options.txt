@@ -2,4 +2,5 @@ option('uninstalled', type: 'boolean', value: 'false', description: 'Run Rygel f
 option('api-docs', type: 'boolean', value: 'false', description: 'Build the API documentation')
 option('systemd-user-units-dir', type : 'string', value : 'auto', description : 'Where to install the systemd user unit (use special values "auto" or "none", or pass a path')
 option('plugins', type : 'array', choices : ['external', 'gst-launch', 'lms', 'media-export', 'mpris', 'playbin', 'ruih', 'tracker'])
+option('engines', type : 'array', choices : ['simple', 'gstreamer'])
 option('examples', type : 'boolean', value : 'true')
