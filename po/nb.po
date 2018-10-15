@@ -1,17 +1,16 @@
 # Norwegian bokmål translation of rygel.
 # Copyright (C) Kjartan Maraas
 # This file is distributed under the same license as the rygel package.
-# Kjartan Maraas <kmaraas@gnome.org>, 2002-2017.
+# Kjartan Maraas <kmaraas@gnome.org>, 2002-2018.
 # Terance Edward Sola <terance@lyse.net>, 2005.
 # Øivind Hoel <oivind.hoel@gmail.com>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel 0.36.x\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-11-11 15:45+0000\n"
-"PO-Revision-Date: 2017-11-20 12:59+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
+"POT-Creation-Date: 2018-10-11 18:48+0000\n"
+"PO-Revision-Date: 2018-10-15 18:40+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
@@ -422,7 +421,7 @@ msgstr "Feil under åpning av SQLite-database %s: %s"
 msgid "Failed to roll back transaction: %s"
 msgstr "Klarte ikke å rulle tilbake transaksjon: %s"
 
-#: src/librygel-renderer-gst/rygel-playbin-player.vala:368
+#: src/librygel-renderer-gst/rygel-playbin-player.vala:369
 msgid ""
 "Your GStreamer installation seems to be missing the “playbin” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
@@ -1037,7 +1036,7 @@ msgstr "Kun byte-basert søk er støttet"
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
 #: src/media-engines/simple/rygel-simple-media-engine.vala:98
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
-msgstr ""
+msgstr "Kan kun prosessere filbaserte MediaObjects (MediaFileItems)"
 
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -1263,9 +1262,9 @@ msgid "Failed to get whether URI %s is blacklisted: %s"
 msgstr "Klarte ikke å sjekke om URI %s er sortelistet: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:626
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to get whether item %s is guarded: %s"
-msgstr "Klarte ikke å opprette oppføring under «%s»: %s"
+msgstr "Klarte ikke å sjekke om oppføring %s er bevoktet: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:666
 #, c-format
@@ -1313,7 +1312,7 @@ msgstr "Prosessen døde under håndtering av URI %s"
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
 #, c-format
 msgid "Setting up extraction subprocess failed: %s"
-msgstr ""
+msgstr "Oppsett av underprosess for uthenting feilet: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
 #, c-format
@@ -1323,7 +1322,7 @@ msgstr "Mottok ugyldig streng fra barn: %s"
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received ill-formed response string %s from child…"
-msgstr ""
+msgstr "Mottok dårlig utformet svarstreng %s fra underprosess …"
 
 #. No error signalling, this was done in the part that called
 #. cancel
@@ -1520,17 +1519,17 @@ msgid "Failed to query ACL: %s"
 msgstr "Klarte ikke å spørre ACL: %s"
 
 #: src/rygel/rygel-acl.vala:127
-#, fuzzy, c-format
+#, c-format
 msgid "Error creating D-Bus proxy for ACL: %s"
-msgstr "Feil under henting av alle verdier for «%s»: %s"
+msgstr "Feil under oppretting av D-Bus proxy for ACL: %s"
 
 #: src/rygel/rygel-acl.vala:143
 msgid "No ACL fallback policy found. Using “allow”"
-msgstr ""
+msgstr "Ingen reserveregler for ACL funnet. Bruker «tillat»"
 
 #: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “deny”"
-msgstr ""
+msgstr "Ingen reserveregel for ACL funnet. Bruker «nekt»"
 
 #: src/rygel/rygel-dbus-service.vala:81
 msgid "Another instance of Rygel is already running. Not starting."
