@@ -218,6 +218,14 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
             </warning></para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>
+          <option>acl-fallback-policy</option>
+        </term>
+        <listitem>
+            <para>This is the default policy that is used if no access control provider is found on the D-Bus. Use <userinput>true</userinput> to allow access from every peer, <userinput>false</userinput> to deny all access. If it is not specified, the default fall-back policy is <userinput>true</userinput>.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsect1>
   <refsect1>
