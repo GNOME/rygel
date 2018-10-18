@@ -4,3 +4,4 @@ option('systemd-user-units-dir', type : 'string', value : 'auto', description : 
 option('plugins', type : 'array', choices : ['external', 'gst-launch', 'lms', 'media-export', 'mpris', 'playbin', 'ruih', 'tracker'])
 option('engines', type : 'array', choices : ['simple', 'gstreamer'])
 option('examples', type : 'boolean', value : 'true')
+option('tests', type : 'boolean', value : 'true')
