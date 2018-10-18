@@ -1,5 +1,14 @@
 project('rygel', ['vala', 'c'],
         version : '0.36.2')
+vala = meson.get_compiler('vala')
+
+# Check for the required vala version
+vala_version_required = '>= 0.40'
+vala_version_found = vala.version()
+
+if not vala_version_found.version_compare(vala_version_required)
+    error('Found Vala version @0@, need @1@'.format(vala_version_found, vala_version_required))
+endif
 
 i18n = import('i18n')
 
@@ -59,7 +68,6 @@ add_global_arguments(['-include','config.h'], language : 'c')
 valadoc = find_program('valadoc', required : false)
 gtkdoc = dependency('gtk-doc', required : false)
 
-vala = meson.get_compiler('vala')
 gupnp = dependency('gupnp-1.0', version : '>= 0.24.14')
 gee = dependency('gee-0.8', version: '>= 0.8.0')
 gssdp = dependency('gssdp-1.0', version : '>= 0.13.0')
