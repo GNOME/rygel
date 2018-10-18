@@ -456,7 +456,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>audio-sink</option>
         </term>
         <listitem>
-          <para>Definition of the audio sink to use. Can be a single element or a partial pipeline definition in gst-launch&aps;s syntax</para>
+          <para>Definition of the audio sink to use. Can be a single element or a partial pipeline definition in gst-launch&apos;s syntax</para>
         </listitem>
       </varlistentry>
        <varlistentry>
@@ -464,7 +464,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <option>video-sink</option>
         </term>
         <listitem>
-          <para>Definition of the video sink to use. Can be a single element or a partial pipeline definition in gst-launch&aps;s syntax</para>
+          <para>Definition of the video sink to use. Can be a single element or a partial pipeline definition in gst-launch&apos;s syntax</para>
         </listitem>
       </varlistentry>   </variablelist>
   </refsect1>
