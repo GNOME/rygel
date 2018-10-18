@@ -141,6 +141,11 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
 
     public override void constructed () {
         base.constructed ();
+        try {
+            MediaEngine.init();
+        } catch (Error e) {
+            error ("Failed to initialize media engine: %s", e.message);
+        }
 
         var path = ContentDirectory.DESCRIPTION_PATH_NO_TRACK;
 

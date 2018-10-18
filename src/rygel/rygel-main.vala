@@ -291,7 +291,6 @@ internal class Rygel.Main : Object {
             // Parse commandline options
             CmdlineConfig.parse_args (ref args);
             Main.register_default_configurations ();
-            MediaEngine.init ();
 
             main = new Main ();
             service = new DBusService (main);

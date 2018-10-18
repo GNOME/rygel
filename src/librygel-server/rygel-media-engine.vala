@@ -54,12 +54,14 @@ public abstract class Rygel.MediaEngine : GLib.Object {
     private static MediaEngine instance;
 
     public static void init () throws Error {
-        // lazy-load the engine plug-in
-        var loader = new EngineLoader ();
-        MediaEngine.instance = loader.load_engine ();
         if (MediaEngine.instance == null) {
-            throw new MediaEngineError.NOT_FOUND
-                                        (_("No media engine found."));
+            // lazy-load the engine plug-in
+            var loader = new EngineLoader ();
+            MediaEngine.instance = loader.load_engine ();
+            if (MediaEngine.instance == null) {
+                throw new MediaEngineError.NOT_FOUND
+                    (_("No media engine found."));
+            }
         }
     }
 
