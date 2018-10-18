@@ -72,7 +72,7 @@ public interface Rygel.Configuration : GLib.Object {
      */
     public signal void setting_changed (string section, string key);
 
-    [Deprecated (since="0.19.2", replacement="get_interfaces")]
+    [Version (deprecated=true, deprecated_since="0.19.2", replacement="get_interfaces")]
     public abstract string get_interface () throws GLib.Error;
 
     [CCode (array_length=false, array_null_terminated = true)]

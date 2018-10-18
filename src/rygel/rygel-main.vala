@@ -63,9 +63,9 @@ internal class Rygel.Main : Object {
 
         this.plugin_loader.plugin_available.connect (this.on_plugin_loaded);
 
-        Unix.signal_add (SIGHUP, () => { this.restart (); return true; });
-        Unix.signal_add (SIGINT, () => { this.exit (0); return false; });
-        Unix.signal_add (SIGTERM, () => { this.exit (0); return false; });
+        Unix.signal_add (ProcessSignal.HUP, () => { this.restart (); return true; });
+        Unix.signal_add (ProcessSignal.INT, () => { this.exit (0); return false; });
+        Unix.signal_add (ProcessSignal.TERM, () => { this.exit (0); return false; });
     }
 
     public void exit (int exit_code) {

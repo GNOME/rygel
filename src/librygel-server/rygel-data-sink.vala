@@ -72,8 +72,7 @@ internal class Rygel.DataSink : Object {
 
         var to_send = int64.min (buffer.length, left);
 
-        this.message.response_body.append (Soup.MemoryUse.COPY,
-                                           buffer[0:to_send]);
+        this.message.response_body.append_take (buffer[0:to_send]);
         this.chunks_buffered++;
         this.bytes_sent += to_send;
 

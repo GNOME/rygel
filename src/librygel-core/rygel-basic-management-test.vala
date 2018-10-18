@@ -33,7 +33,7 @@ internal abstract class Rygel.BasicManagementTest : Object, StateMachine {
             this._cancellable = value;
             this._cancellable.cancelled.connect (() => {
                 if (this.execution_state == ExecutionState.IN_PROGRESS) {
-                    Posix.killpg (this.child_pid, Posix.SIGTERM);
+                    Posix.killpg (this.child_pid, ProcessSignal.TERM);
                     this.execution_state = ExecutionState.CANCELED;
                 }
             });
