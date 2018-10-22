@@ -77,22 +77,37 @@ gmodule = dependency('gmodule-2.0')
 libxml = dependency('libxml-2.0', version: '>= 2.7')
 gupnp_av = dependency('gupnp-av-1.0', version: '>= 0.12.8')
 gupnp_dlna = dependency('gupnp-dlna-2.0', version: '>= 0.9.4')
-gupnp_dlna_gst = dependency('gupnp-dlna-gst-2.0', version: '>= 0.9.4')
 soup = dependency('libsoup-2.4', version : '>= 2.44.0')
 mediaart = dependency('libmediaart-2.0', version : '>= 0.7.0')
 sqlite = dependency('sqlite3', version : '>= 3.5')
 
-gstreamer = dependency('gstreamer-1.0', version : '>= 1.0')
-gstreamer_pbu = dependency('gstreamer-pbutils-1.0', version : '>= 1.0')
-gstreamer_base = dependency('gstreamer-base-1.0', version : '>= 1.0')
-gstreamer_audio = dependency('gstreamer-audio-1.0', version : '>= 1.0')
-gstreamer_video = dependency('gstreamer-video-1.0', version : '>= 1.0')
-gstreamer_tag = dependency('gstreamer-tag-1.0', version : '>= 1.0')
+if get_option('gstreamer')
+    gstreamer = dependency('gstreamer-1.0', version : '>= 1.0')
+    gstreamer_pbu = dependency('gstreamer-pbutils-1.0', version : '>= 1.0')
+    gstreamer_base = dependency('gstreamer-base-1.0', version : '>= 1.0')
+    gstreamer_audio = dependency('gstreamer-audio-1.0', version : '>= 1.0')
+    gstreamer_video = dependency('gstreamer-video-1.0', version : '>= 1.0')
+    gstreamer_tag = dependency('gstreamer-tag-1.0', version : '>= 1.0')
+    gupnp_dlna_gst = dependency('gupnp-dlna-gst-2.0', version: '>= 0.9.4')
+else
+    gstreamer = disabler()
+    gstreamer_pbu = disabler()
+    gstreamer_base = disabler()
+    gstreamer_audio = disabler()
+    gstreamer_video = disabler()
+    gstreamer_tag = disabler()
+    gupnp_dlna_gst = disabler()
+endif
 
 gdk_pixbuf = dependency('gdk-pixbuf-2.0')
-gtk = dependency('gtk+-3.0', version : '>= 3.0')
 
-tracker_sparql = dependency('tracker-sparql-2.0')
+if get_option('gtk')
+    gtk = dependency('gtk+-3.0', version : '>= 3.0')
+else
+    gtk = disabler()
+endif
+
+tracker_sparql = dependency('tracker-sparql-1.0')
 
 posix = vala.find_library('posix')
 
