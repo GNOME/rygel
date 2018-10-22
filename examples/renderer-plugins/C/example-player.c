@@ -130,10 +130,6 @@ static void
 rygel_example_player_finalize (GObject *obj);
 
 
-G_DEFINE_TYPE_WITH_CODE (RygelExamplePlayer, rygel_example_player, G_TYPE_OBJECT,
-                         G_IMPLEMENT_INTERFACE (RYGEL_TYPE_MEDIA_PLAYER,
-                                                rygel_example_player_rygel_media_player_interface_init))
-
 struct _RygelExamplePlayerPrivate {
   gchar *_playback_state;
   gchar *_uri;
@@ -146,6 +142,12 @@ struct _RygelExamplePlayerPrivate {
   gchar *playback_speed;
   gchar *user_agent;
 };
+typedef struct _RygelExamplePlayerPrivate RygelExamplePlayerPrivate;
+
+G_DEFINE_TYPE_WITH_CODE (RygelExamplePlayer, rygel_example_player, G_TYPE_OBJECT,
+                         G_ADD_PRIVATE(RygelExamplePlayer)
+                         G_IMPLEMENT_INTERFACE (RYGEL_TYPE_MEDIA_PLAYER,
+                                                rygel_example_player_rygel_media_player_interface_init))
 
 static const gchar* RYGEL_EXAMPLE_PLAYER_PROTOCOLS[] = {"http-get", NULL};
 static const gchar* RYGEL_EXAMPLE_PLAYER_MIME_TYPES[] = {"image/jpeg", "image/png", NULL};
@@ -189,8 +191,6 @@ rygel_example_player_rygel_media_player_interface_init (RygelMediaPlayerIface *i
 static void
 rygel_example_player_class_init (RygelExamplePlayerClass *klass) {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (gobject_class, sizeof (RygelExamplePlayerPrivate));
 
   gobject_class->get_property = _rygel_example_player_get_property;
   gobject_class->set_property = _rygel_example_player_set_property;
