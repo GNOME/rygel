@@ -42,6 +42,7 @@ endif
 
 plugin_config = configuration_data()
 plugin_config.set('VERSION', meson.project_version())
+plugin_config.set('PACKAGE_URL', 'http://www.rygel-project.org')
 
 conf = configuration_data()
 conf.set_quoted('GETTEXT_PACKAGE', 'rygel')

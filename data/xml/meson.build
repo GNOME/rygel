@@ -3,15 +3,15 @@ xml_dir = join_paths(rygel_datadir, 'rygel', 'xml')
 
 server_xml = configure_file(input: 'MediaServer3.xml.in.in',
                output: 'MediaServer3.xml.in',
-               configuration: conf)
+               configuration: plugin_config)
 
 renderer_xml = configure_file(input: 'MediaRenderer2.xml.in.in',
                output: 'MediaRenderer2.xml.in',
-               configuration: conf)
+               configuration: plugin_config)
 
 ruih_xml = configure_file(input: 'RuihServer2.xml.in.in',
                output: 'RuihServer2.xml.in',
-               configuration: conf)
+               configuration: plugin_config)
 
 
 # Fixme: How to install this...
