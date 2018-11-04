@@ -42,7 +42,7 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
 
     /// A list of DLNA profiles the MediaRenderer in this plug-in will accept
     /// for rendering.
-    public unowned GLib.List<unowned DLNAProfile> supported_profiles {
+    public unowned GLib.List<DLNAProfile> supported_profiles {
         get {
             return _supported_profiles;
         }
