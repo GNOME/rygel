@@ -108,7 +108,7 @@ else
     gtk = disabler()
 endif
 
-tracker_sparql = dependency('tracker-sparql-1.0')
+tracker_sparql = dependency('tracker-sparql-2.0')
 
 posix = vala.find_library('posix')
 
