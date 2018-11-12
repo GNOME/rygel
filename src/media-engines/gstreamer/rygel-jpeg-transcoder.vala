@@ -24,6 +24,7 @@
 
 using Gst;
 using Gst.PbUtils;
+using GUPnP;
 
 internal class Rygel.JPEGTranscoder : Rygel.GstTranscoder {
     private const string PROFILE_TEMPLATE =
@@ -36,11 +37,16 @@ internal class Rygel.JPEGTranscoder : Rygel.GstTranscoder {
               "jpg");
     }
 
-    protected override EncodingProfile get_encoding_profile
-                                        (MediaFileItem file_item) {
-        var item = file_item as VisualItem;
-        var width = 640;
-        var height = 480;
+    private void calculate_dimensions (VisualItem item, out int width, out int height) {
+        if (item.width <= 640 && item.height <= 480) {
+            width = item.width;
+            height = item.height;
+
+            return;
+        }
+
+        width = 640;
+        height = 480;
 
         if (item.width > 0 && item.height > 0) {
             var dar = (float) item.width / (float) item.height;
@@ -50,6 +56,15 @@ internal class Rygel.JPEGTranscoder : Rygel.GstTranscoder {
                 width = (int) Math.lrint (480.0 * dar);
             }
         }
+    }
+
+    protected override EncodingProfile get_encoding_profile
+                                        (MediaFileItem file_item) {
+        var item = file_item as VisualItem;
+        int width = -1;
+        int height = -1;
+
+        this.calculate_dimensions (item, out width, out height);
 
         var caps = Caps.from_string (PROFILE_TEMPLATE.printf (width, height));
         var profile = new EncodingVideoProfile (caps, null, null, 1);
@@ -80,5 +95,24 @@ internal class Rygel.JPEGTranscoder : Rygel.GstTranscoder {
         }
 
         return 1;
+    }
+
+    public override MediaResource? get_resource_for_item (MediaFileItem item) {
+        var resource = base.get_resource_for_item (item);
+
+        // Override Seeking, you cannot really time-seek an image
+        resource.dlna_operation = DLNAOperation.NONE;
+
+        // Images must be INTERACTIVE_TRANSFER_MODE
+        resource.dlna_flags &= ~DLNAFlags.STREAMING_TRANSFER_MODE;
+        resource.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE;
+
+        int width;
+        int height;
+        this.calculate_dimensions (item as VisualItem, out width, out height);
+        resource.width = width;
+        resource.height = height;
+
+        return resource;
     }
 }
