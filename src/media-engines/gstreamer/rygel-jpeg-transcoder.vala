@@ -74,7 +74,7 @@ internal class Rygel.JPEGTranscoder : Rygel.GstTranscoder {
     }
 
     public override uint get_distance (MediaFileItem item) {
-        message ("Getting distance of JPEG transcoder to %s", item.id);
+        debug ("Getting distance of JPEG transcoder to %s", item.id);
 
         if (!(item is ImageItem)) {
             debug ("%s is not an image, skipping", item.id);
