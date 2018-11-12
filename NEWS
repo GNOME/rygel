@@ -1,3 +1,45 @@
+0.37.0
+======
+All:
+- Update URLs for gitlab
+- Fix compiler warnings in C code
+- Documentation updates
+- Fix several deprecated functions
+
+Renderer:
+ - Fix type argument mismatch of return value
+
+GStreamer Media Engine:
+ - Imaplement JPEG transcoding
+
+GStreamer Renderer:
+ - Make sinks configurable
+ - Add support for audio/aac mime type
+
+Server:
+ - Move engine intialization into server plugin
+
+MediaExport:
+ - Remove dead code
+
+Updated/added dependencies:
+ - Vala version requirement bumped to 0.40
+ - GTK+ requirement bumped to 3.22
+ - GStreamer requirement bumped to 1.12
+
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/120
+ - https://gitlab.gnome.org/GNOME/rygel/issues/7
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Rico Tzschichholz <ricotz@ubuntu.com>
+ - Kjartan Maraas <kmaraas@gnome.org>
+
+Added/updated translations
+ - nb, courtesy of Kjartan Maraas
+
 0.36.2
 ======
  - Translation updates
