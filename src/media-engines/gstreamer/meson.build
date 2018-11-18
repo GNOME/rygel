@@ -12,6 +12,7 @@ media_engine_gst_sources = [
     'rygel-gst-sink.vala',
     'rygel-gst-transcoder.vala',
     'rygel-gst-utils.vala',
+    'rygel-jpeg-transcoder.vala',
     'rygel-l16-transcoder.vala',
     'rygel-mp2ts-transcoder.vala',
     'rygel-mp3-transcoder.vala',
