@@ -108,8 +108,6 @@ else
     gtk = disabler()
 endif
 
-tracker_sparql = dependency('tracker-sparql-2.0')
-
 posix = vala.find_library('posix')
 
 sed = find_program('sed')
@@ -144,7 +142,6 @@ mx_export_deps = common_deps + [gio, gio_unix, gstreamer, gstreamer_pbu,
                                 posix, gupnp_dlna_gst, gstreamer_tag, libxml,
                                 soup]
 mx_plugin_deps = common_deps + [gstreamer, gstreamer_pbu, gio_unix, gupnp_dlna]
-tracker_plugin_deps = common_deps + [tracker_sparql]
 ui_deps = common_deps + [gtk]
 
 configure_file(output: 'config.h', configuration: conf)
