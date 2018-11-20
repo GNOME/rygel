@@ -933,14 +933,15 @@ internal class Rygel.AVTransport : Service {
                                            string        uri,
                                            string        metadata) {
         if (uri.has_prefix ("http://") || uri.has_prefix ("https://")) {
-            var message = new Message ("HEAD", uri);
+            var new_uri = this.context.rewrite_uri (uri);
+            var message = new Message ("HEAD", new_uri);
             message.request_headers.append ("getContentFeatures.dlna.org",
                                             "1");
             message.request_headers.append ("Connection", "close");
             this.head_faked = false;
             AVTransport.setup_handle_new_transport_uri_callback (this,
                                                                  message,
-                                                                 uri,
+                                                                 new_uri,
                                                                  metadata,
                                                                  action);
 
