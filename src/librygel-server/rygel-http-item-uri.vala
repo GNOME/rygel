@@ -216,10 +216,18 @@ public class Rygel.HTTPItemURI : Object {
     }
 
     private string create_uri_for_path (string path) {
-        return "http://%s:%u%s%s".printf (this.http_server.context.host_ip,
-                                          this.http_server.context.port,
-                                          this.http_server.path_root,
-                                          path);
+        var addr = this.http_server.context.get_address ();
+        if (addr.family == SocketFamily.IPV6) {
+            return "http://[%s]:%u%s%s".printf (addr.to_string (),
+                                                this.http_server.context.port,
+                                                this.http_server.path_root,
+                                                path);
+        } else {
+            return "http://%s:%u%s%s".printf (addr.to_string (),
+                                              this.http_server.context.port,
+                                              this.http_server.path_root,
+                                              path);
+        }
     }
 
     private string ext_from_mime_type (string mime_type) {
