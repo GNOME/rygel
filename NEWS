@@ -1,3 +1,18 @@
+0.37.1
+======
+
+All:
+ - Add meson build files
+ - Port to GSSDP and GUPnP 1.2 API
+ - Preliminary IPv6 support
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Carmen Bianca BAKKER <carmen@carmenbianca.eu>
+
+Added/updated translations
+ - eo, courtesy of Kristjan SCHMIDT
+
 0.37.0
 ======
 All:
