@@ -26,8 +26,6 @@ if not get_option('uninstalled')
     rygel_icondir = join_paths(rygel_datadir, 'icons', 'hicolor')
     rygel_bigicondir = join_paths(rygel_datadir, 'rygel', 'icons', '120x120')
     rygel_smallicondir = join_paths(rygel_datadir, 'rygel', 'icons', '48x48')
-    rygel_includedir = join_paths(get_option('includedir'), 'rygel-2.6')
-    rygel_vapidir = join_paths(rygel_datadir, 'vala', 'vapi')
 else
     rygel_datadir = join_paths(meson.current_build_dir(), 'data')
     rygel_libexecdir = join_paths(meson.current_build_dir(), 'src/plugins/media-export')
