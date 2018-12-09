@@ -1,5 +1,5 @@
 xml_processor = find_program('process-xml.py')
-xml_dir = join_paths(rygel_datadir, 'rygel', 'xml')
+xml_dir = join_paths(rygel_datadir, 'xml')
 
 server_xml = configure_file(input: 'MediaServer3.xml.in.in',
                output: 'MediaServer3.xml.in',
