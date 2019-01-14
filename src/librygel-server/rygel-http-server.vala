@@ -64,9 +64,7 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
         this.requests = new ArrayList<HTTPRequest> ();
         this.cancellable = content_dir.cancellable;
 
-        // FIXME: Needs adaptation for IPv6
-        this.locally_hosted = this.context.interface == "lo" ||
-                              this.context.host_ip == "127.0.0.1";
+        this.locally_hosted = this.context.get_address ().get_is_loopback ();
 
         this.path_root = "/" + name;
         this.replacements = new HashTable <string, string> (str_hash, str_equal);
