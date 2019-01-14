@@ -37,6 +37,8 @@ internal class Rygel.LGTVHacks : ClientHacks {
                 resource.mime_type = "application/ogg";
             } else if (resource.mime_type == "video/x-matroska") {
                 resource.dlna_profile = null;
+            } else if (resource.mime_type == "video/x-msvideo") {
+                resource.mime_type = "video/avi";
             }
         }
 
