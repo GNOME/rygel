@@ -405,6 +405,9 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
           <para><note>
               <para>If you enter a normal path that contains whitespace there is no need to escape them with either a backslash or putting the string in quotes.</para>
             </note></para>
+            <para><note>
+                    <para>It is strongly advised against using an exported folder as a target for downloads when <userinput>extract-metadata</userinput> is enabled. Rygel will most likely blacklist the files then because they will fail to extract.</para>
+            </note></para>
           <example>
             <title>Possible values for <userinput>uris</userinput></title>
             <para/>
