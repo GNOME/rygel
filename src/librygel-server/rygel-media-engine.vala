@@ -128,7 +128,8 @@ public abstract class Rygel.MediaEngine : GLib.Object {
      * @return A #DataSource representing the given item resource
      */
     public abstract DataSource? create_data_source_for_resource (MediaObject item,
-                                                                 MediaResource resource)
+                                                                 MediaResource resource,
+                                                                 HashTable<string, string> replacements)
           throws Error;
 
     /**

@@ -198,7 +198,8 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
 
     public override DataSource? create_data_source_for_resource
                                         (MediaObject   object,
-                                         MediaResource resource)
+                                         MediaResource resource,
+                                         HashTable<string, string> replacements)
                                         throws Error {
         if (!(object is MediaFileItem)) {
             warning ("Can only process file-based MediaObjects (MediaFileItems)");
@@ -210,6 +211,8 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         // For MediaFileItems, the primary URI refers directly to the content
         var source_uri = item.get_primary_uri ();
         debug ("creating data source for %s", source_uri);
+        source_uri = MediaObject.apply_replacements (replacements, source_uri);
+        debug ("source_uri after applying replacements: %s", source_uri);
 
         var data_source = new GstDataSource (source_uri, resource);
         debug ("MediaResource %s, profile %s, mime_type %s",

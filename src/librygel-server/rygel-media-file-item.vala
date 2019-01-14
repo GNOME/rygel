@@ -129,7 +129,7 @@ public abstract class Rygel.MediaFileItem : MediaItem {
                                          MediaResource resource)
                                          throws Error {
         return MediaEngine.get_default ().create_data_source_for_resource
-                                        (this, resource);
+                                        (this, resource, request.http_server.replacements);
     }
 
     internal override DIDLLiteObject? serialize (Serializer serializer,

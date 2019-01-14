@@ -92,7 +92,8 @@ internal class Rygel.SimpleMediaEngine : MediaEngine {
 
     public override DataSource? create_data_source_for_resource
                                         (MediaObject object,
-                                         MediaResource resource)
+                                         MediaResource resource,
+                                         HashTable<string, string> replacements)
                                         throws Error {
         if (!(object is MediaFileItem)) {
             warning (_("Can only process file-based MediaObjects (MediaFileItems)"));
@@ -101,7 +102,9 @@ internal class Rygel.SimpleMediaEngine : MediaEngine {
         }
 
         // For MediaFileItems, the primary URI referrs to the local content file
-        return new SimpleDataSource (this.pool, object.get_primary_uri ());
+        var source_uri = MediaObject.apply_replacements (replacements,
+                                                         object.get_primary_uri ());
+        return new SimpleDataSource (this.pool, source_uri);
     }
 
     public override DataSource? create_data_source_for_uri (string uri) {
