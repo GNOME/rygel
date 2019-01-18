@@ -61,7 +61,7 @@ GSTREAMER_AUDIO_REQUIRED=1.0
 dnl Additional requirements for tracker plugin
 TRACKER_SPARQL_REQUIRED_MIN=0.14.0
 
-VALAFLAGS="--enable-deprecated --target-glib=2.40 $VALAFLAGS"
+VALAFLAGS="--enable-deprecated --target-glib=2.44 $VALAFLAGS"
 
 ########################################################
 ## Base
