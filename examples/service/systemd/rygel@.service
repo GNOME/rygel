@@ -1,0 +1,19 @@
+[Unit]
+Description=Rygel DLNA server
+Documentation=man:rygel(1)
+After=network.target
+
+[Service]
+User=%i
+ExecStart=/usr/bin/rygel
+Restart=on-failure
+
+# Hardening
+ProtectSystem=full
+PrivateTmp=true
+SystemCallArchitectures=native
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

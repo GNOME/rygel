@@ -1,6 +1,6 @@
 [Unit]
 Description=Rygel DLNA server
-After=syslog.target
+After=network.target
 
 [Service]
 User=rygel
