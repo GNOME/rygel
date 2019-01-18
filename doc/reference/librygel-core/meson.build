@@ -3,7 +3,6 @@ core_doc_common_args = [
         '--package-name', 'librygel-core',
         '--package-version', '2.6',
         '-b', join_paths(meson.source_root(), 'src', 'librygel-core'),
-        '--target-glib=2.32',
         '--pkg', 'rygel-build-config',
         '--force',
         '--directory', '@OUTPUT@',

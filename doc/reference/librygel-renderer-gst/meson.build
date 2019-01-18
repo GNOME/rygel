@@ -7,7 +7,6 @@ renderer_gst_doc_common_args = [
         '--vapidir', join_paths(meson.source_root(), 'src/librygel-core'),
         '--vapidir', join_paths(meson.build_root(), 'src/librygel-core'),
         '--vapidir', join_paths(meson.build_root(), 'src', 'librygel-renderer'),
-        '--target-glib=2.32',
         '--pkg', 'rygel-build-config',
         '--force',
         '--directory', '@OUTPUT@',

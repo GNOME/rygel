@@ -9,7 +9,6 @@ if ENABLE_VALADOC
 VALADOC_FLAGS = --force \
 		--vapidir $(top_srcdir)/src/lib$(RYGEL_DOCBUILD_MODULE) \
 		$(RYGEL_DOCBUILD_VALADOC_FLAGS) \
-		--target-glib=2.32 \
 		--vapidir=$(rygeldir) \
 		--pkg rygel-build-config \
 		-b $(top_srcdir)/src/lib$(RYGEL_DOCBUILD_MODULE) \
