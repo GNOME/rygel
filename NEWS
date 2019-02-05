@@ -1,3 +1,18 @@
+0.37.2
+======
+
+Build:
+ - Bump GLib dependency to 2.44
+ - Drop Valac requirement to 0.36
+
+Server:
+ - Fix @ADDRESS@ replacement for proxy or transcoded urls
+ - Use a proper check for localhost
+ - Add some hacks for LG devices
+
+MediaExport:
+ - Document blacklisting behaviour
+
 0.37.1
 ======
 
