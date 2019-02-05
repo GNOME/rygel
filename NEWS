@@ -13,6 +13,21 @@ Server:
 MediaExport:
  - Document blacklisting behaviour
 
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/122
+ - https://gitlab.gnome.org/GNOME/rygel/issues/123
+ - https://gitlab.gnome.org/GNOME/rygel/issues/89
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Pieter Schalk Schoeman <pieter@sonbesie.co.za>
+ - Yuras Shumovich <shumovichy@gmail.com>
+ - Andre Klapper <a9016009@gmx.de>
+
+Added/updated translations:
+ - af.po, courtesy of F Wolff
+ - be.po, courtesy of Uladzimir Manulenka
+
 0.37.1
 ======
 
