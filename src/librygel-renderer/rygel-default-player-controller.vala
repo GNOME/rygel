@@ -172,7 +172,7 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
                 actions += ",X_DLNA_SeekByte";
             }
 
-            if (!this.player.mime_type.has_prefix ("image/") &&
+            if (this.player.mime_type != null && !this.player.mime_type.has_prefix ("image/") &&
                 this.player.allowed_playback_speeds.length > 1) {
                 string play_speeds = "";
                 foreach (var speed in this.player.allowed_playback_speeds) {
