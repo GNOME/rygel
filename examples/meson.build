@@ -20,11 +20,19 @@ executable('standalone-renderer-gst',
                            rygel_renderer_gst],
            link_with: [core_lib, renderer_lib, renderer_gst_lib])
 
+fullscreen_resource = gnome.compile_resources(
+    'fullscreen-renderer-resources',
+    'org.gnome.Rygel.FullscreenRenderer.gresource.xml',
+    source_dir: [join_paths(meson.source_root(), 'data/icons/scalable')]
+)
+
 executable('fullscreen-renderer',
-           'fullscreen-renderer.c',
-           dependencies : [gstreamer_video,
-                           gtk,
-                           rygel_core,
-                           rygel_renderer,
-                           rygel_renderer_gst],
+['fullscreen-renderer.c', fullscreen_resource],
+           dependencies : [
+               gstreamer_video,
+               gtk,
+               rygel_core,
+               rygel_renderer,
+               rygel_renderer_gst
+           ],
            link_with: [core_lib, renderer_lib, renderer_gst_lib])

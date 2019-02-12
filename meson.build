@@ -10,6 +10,7 @@ if not vala_version_found.version_compare(vala_version_required)
 endif
 
 i18n = import('i18n')
+gnome = import('gnome')
 
 rygel_libdir = join_paths(get_option('prefix'), get_option('libdir'))
 rygel_includedir = join_paths(get_option('includedir'), 'rygel-2.6')
