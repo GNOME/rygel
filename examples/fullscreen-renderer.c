@@ -151,7 +151,7 @@ static gboolean on_key_released (GtkWidget *widget,
 int main (int argc, char *argv[])
 {
     RygelPlaybinRenderer *renderer;
-    MainData data;
+    MainData data  = { 0 };
     GdkCursor *cursor;
 
     gtk_init (&argc, &argv);
