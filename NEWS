@@ -1,3 +1,16 @@
+0.38.0
+======
+
+Examples:
+ - Fix crash if logo is missing in full-screen renderer
+ - Fix missing GResource for full-screen renderer
+
+Renderer:
+ - Fix a critical if mime type is not present
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+
 0.37.2
 ======
 
