@@ -27,8 +27,8 @@ public abstract class Rygel.PreferencesSection : GLib.Object {
 
     public string name;
 
-    public PreferencesSection (WritableUserConfig config,
-                               string             name) {
+    protected PreferencesSection (WritableUserConfig config,
+                                  string             name) {
         this.name = name;
         this.config = config;
     }

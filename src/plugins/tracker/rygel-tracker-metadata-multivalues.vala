@@ -34,12 +34,12 @@ using Gee;
 public abstract class Rygel.Tracker.MetadataMultiValues : MetadataContainer {
     public string[] key_chain;
 
-    public MetadataMultiValues (string         id,
-                                MediaContainer parent,
-                                string         title,
-                                ItemFactory    item_factory,
-                                string[]       key_chain,
-                                string?        child_class = null) {
+    protected MetadataMultiValues (string         id,
+                                   MediaContainer parent,
+                                   string         title,
+                                   ItemFactory    item_factory,
+                                   string[]       key_chain,
+                                   string?        child_class = null) {
         base (id, parent, title, item_factory, child_class);
 
         this.key_chain = key_chain;

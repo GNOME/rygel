@@ -374,16 +374,16 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
 
     }
 
-    public CategoryContainer (string db_id,
-                              MediaContainer parent,
-                              string title,
-                              LMS.Database lms_db,
-                              string sql_all,
-                              string sql_find_object,
-                              string sql_count,
-                              string? sql_added,
-                              string? sql_removed
-                             ) {
+    protected CategoryContainer (string db_id,
+                                 MediaContainer parent,
+                                 string title,
+                                 LMS.Database lms_db,
+                                 string sql_all,
+                                 string sql_find_object,
+                                 string sql_count,
+                                 string? sql_added,
+                                 string? sql_removed
+                                ) {
         Object (id : "%s:%s".printf (parent.id, db_id),
                 db_id : db_id,
                 parent : parent,

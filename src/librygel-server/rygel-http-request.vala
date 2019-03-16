@@ -48,9 +48,9 @@ public abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
     internal ClientHacks hack;
 
-    public HTTPRequest (HTTPServer   http_server,
-                        Soup.Server  server,
-                        Soup.Message msg) {
+    protected HTTPRequest (HTTPServer   http_server,
+                           Soup.Server  server,
+                           Soup.Message msg) {
         this.http_server = http_server;
         this.cancellable = new Cancellable ();
         this.root_container = http_server.root_container;

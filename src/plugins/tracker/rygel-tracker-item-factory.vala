@@ -56,10 +56,10 @@ public abstract class Rygel.Tracker.ItemFactory {
 
     public ArrayList<string> properties;
 
-    public ItemFactory (string  category,
-                        string  category_iri,
-                        string  upnp_class,
-                        string? upload_dir) {
+    protected ItemFactory (string  category,
+                           string  category_iri,
+                           string  upnp_class,
+                           string? upload_dir) {
         this.category = category;
         this.category_iri = category_iri;
         this.upnp_class = upnp_class;

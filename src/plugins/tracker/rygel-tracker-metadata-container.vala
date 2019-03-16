@@ -42,11 +42,11 @@ public abstract class Rygel.Tracker.MetadataContainer : Rygel.SimpleContainer {
     private Sparql.Connection resources;
     protected QueryTriplets triplets;
 
-    public MetadataContainer (string         id,
-                              MediaContainer parent,
-                              string         title,
-                              ItemFactory    item_factory,
-                              string?        child_class = null) {
+    protected MetadataContainer (string         id,
+                                 MediaContainer parent,
+                                 string         title,
+                                 ItemFactory    item_factory,
+                                 string?        child_class = null) {
         base (id, parent, title);
 
         this.item_factory = item_factory;

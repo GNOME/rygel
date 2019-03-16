@@ -126,10 +126,10 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
      * @param name The non-human-readable name for the plugin and its service, used in UPnP messages and in the Rygel configuration file.
      * @param description An optional human-readable description (modelDescription) of the UPnP service provided by the plugin.
      */
-    public MediaServerPlugin (MediaContainer root_container,
-                              string         name,
-                              string?        description = null,
-                              PluginCapabilities capabilities =
+    protected MediaServerPlugin (MediaContainer root_container,
+                                 string         name,
+                                 string?        description = null,
+                                 PluginCapabilities capabilities =
                                         PluginCapabilities.NONE) {
         Object (desc_path : MEDIA_SERVER_DESC_PATH,
                 name : name,

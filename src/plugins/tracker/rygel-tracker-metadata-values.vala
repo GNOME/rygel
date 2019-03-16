@@ -33,12 +33,12 @@ using Tracker;
 public abstract class Rygel.Tracker.MetadataValues : MetadataContainer {
     private string property;
 
-    public MetadataValues (string         id,
-                           MediaContainer parent,
-                           string         title,
-                           ItemFactory    item_factory,
-                           string         property,
-                           string?        child_class = null) {
+    protected MetadataValues (string         id,
+                              MediaContainer parent,
+                              string         title,
+                              ItemFactory    item_factory,
+                              string         property,
+                              string?        child_class = null) {
         base (id, parent, title, item_factory, child_class);
 
         this.property = property;

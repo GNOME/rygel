@@ -48,7 +48,7 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
      *
      * @param path base path of the loader.
      */
-    public RecursiveModuleLoader (string path) {
+    protected RecursiveModuleLoader (string path) {
         Object (base_path : path);
     }
 

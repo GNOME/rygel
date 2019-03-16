@@ -27,7 +27,7 @@ internal abstract class Rygel.LastChangeEntry : Object {
     private string id;
     private uint update_id;
 
-    public LastChangeEntry (string tag, string id, uint update_id) {
+    protected LastChangeEntry (string tag, string id, uint update_id) {
         this.tag = tag;
         this.id = id;
         this.update_id = update_id;

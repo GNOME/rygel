@@ -32,7 +32,7 @@ using Tracker;
 public abstract class Rygel.Tracker.Query {
     public QueryTriplets triplets;
 
-    public Query (QueryTriplets triplets) {
+    protected Query (QueryTriplets triplets) {
         this.triplets = triplets;
     }
 

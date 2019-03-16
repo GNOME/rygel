@@ -104,10 +104,10 @@ public abstract class Rygel.MediaFileItem : MediaItem {
 
     protected static Regex address_regex;
 
-    public MediaFileItem (string         id,
-                          MediaContainer parent,
-                          string         title,
-                          string         upnp_class) {
+    protected MediaFileItem (string         id,
+                             MediaContainer parent,
+                             string         title,
+                             string         upnp_class) {
         Object (id : id,
                 parent : parent,
                 title : title,

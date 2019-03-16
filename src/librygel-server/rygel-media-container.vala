@@ -269,10 +269,10 @@ public abstract class Rygel.MediaContainer : MediaObject {
      * @param title See the title property of the #RygelMediaObject class.
      * @param child_count The initially-known number of child items.
      */
-    public MediaContainer (string          id,
-                           MediaContainer? parent,
-                           string          title,
-                           int             child_count) {
+    protected MediaContainer (string          id,
+                              MediaContainer? parent,
+                              string          title,
+                              int             child_count) {
         Object (id : id,
                 parent : parent,
                 title : title,
@@ -286,8 +286,8 @@ public abstract class Rygel.MediaContainer : MediaObject {
      * @param title See the title property of the #RygelMediaObject.
      * @param child_count The initially-known number of child items.
      */
-    public MediaContainer.root (string title,
-                                int    child_count) {
+    protected MediaContainer.root (string title,
+                                   int    child_count) {
         Object (id : "0",
                 parent : null,
                 title : title,

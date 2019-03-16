@@ -37,13 +37,13 @@ internal abstract class Rygel.AudioTranscoder : Rygel.GstTranscoder {
 
     public const string NO_CONTAINER = null;
 
-    public AudioTranscoder (string  name,
-                            string  content_type,
-                            string  dlna_profile,
-                            int     audio_bitrate,
-                            string? container_caps,
-                            string  audio_codec_caps,
-                            string  extension) {
+    protected AudioTranscoder (string  name,
+                               string  content_type,
+                               string  dlna_profile,
+                               int     audio_bitrate,
+                               string? container_caps,
+                               string  audio_codec_caps,
+                               string  extension) {
         base (name, content_type, dlna_profile, extension);
 
         this.audio_bitrate = audio_bitrate;
@@ -54,13 +54,13 @@ internal abstract class Rygel.AudioTranscoder : Rygel.GstTranscoder {
         this.audio_codec_format = Caps.from_string (audio_codec_caps);
     }
 
-    public AudioTranscoder.with_class (string  name,
-                                       string  content_type,
-                                       string  dlna_profile,
-                                       int     audio_bitrate,
-                                       string? container_caps,
-                                       string  audio_codec_caps,
-                                       string  extension) {
+    protected AudioTranscoder.with_class (string  name,
+                                          string  content_type,
+                                          string  dlna_profile,
+                                          int     audio_bitrate,
+                                          string? container_caps,
+                                          string  audio_codec_caps,
+                                          string  extension) {
         base (name, content_type, dlna_profile, extension);
 
         this.audio_bitrate = audio_bitrate;

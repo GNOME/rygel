@@ -34,16 +34,16 @@ internal abstract class Rygel.VideoTranscoder : Rygel.AudioTranscoder {
     private Caps video_codec_format;
     private Caps video_restrictions = null;
 
-    public VideoTranscoder (string  name,
-                            string  content_type,
-                            string  dlna_profile,
-                            int     audio_bitrate,
-                            int     video_bitrate,
-                            string  container_caps,
-                            string  audio_codec_caps,
-                            string  video_codec_caps,
-                            string  extension,
-                            string? restrictions = null) {
+    protected VideoTranscoder (string  name,
+                               string  content_type,
+                               string  dlna_profile,
+                               int     audio_bitrate,
+                               int     video_bitrate,
+                               string  container_caps,
+                               string  audio_codec_caps,
+                               string  video_codec_caps,
+                               string  extension,
+                               string? restrictions = null) {
 
         base.with_class (name,
                          content_type,

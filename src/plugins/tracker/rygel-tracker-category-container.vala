@@ -31,10 +31,10 @@ public abstract class Rygel.Tracker.CategoryContainer : Rygel.SimpleContainer {
 
     private CategoryAllContainer all_container;
 
-    public CategoryContainer (string         id,
-                              MediaContainer parent,
-                              string         title,
-                              ItemFactory    item_factory) {
+    protected CategoryContainer (string         id,
+                                 MediaContainer parent,
+                                 string         title,
+                                 ItemFactory    item_factory) {
         base (id, parent, title);
 
         this.item_factory = item_factory;

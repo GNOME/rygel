@@ -57,10 +57,10 @@ internal abstract class Rygel.GstTranscoder : GLib.Object {
 
     private bool link_failed;
 
-    public GstTranscoder (string name,
-                          string mime_type,
-                          string dlna_profile,
-                          string extension) {
+    protected GstTranscoder (string name,
+                             string mime_type,
+                             string dlna_profile,
+                             string extension) {
         GLib.Object (name : name,
                      mime_type : mime_type,
                      dlna_profile : dlna_profile,
