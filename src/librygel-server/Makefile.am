@@ -47,6 +47,7 @@ $(builddir)/RygelServer-2.6.gir: $(srcdir)/Rygel-2.6.gir
 		-e 's,namespace name="Rygel",namespace name="RygelServer",g' \
 		-e 's,RygelServer\.Plugin,RygelCore.Plugin,g' \
 		-e 's,RygelServer\.MediaDevice,RygelCore.MediaDevice,g' \
+		-e 's,RygelServer\.IconInfo,RygelCore.IconInfo,g' \
 		-e 's,<package name="rygel-server-2.6"/>,<include name="RygelCore" version="2.6"/>\n<package name="rygel-server-2.6"/>,' \
 		$< >$@
 GIRS = RygelServer-2.6.gir
