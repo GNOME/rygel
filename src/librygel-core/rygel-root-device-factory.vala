@@ -28,10 +28,6 @@
 
 using GUPnP;
 
-public errordomain RootDeviceFactoryError {
-    XML_PARSE,
-}
-
 namespace Rygel {
     private static string pretty_host_name = null;
 
