@@ -43,6 +43,7 @@ $(builddir)/RygelRenderer-2.6.gir: $(srcdir)/Rygel-2.6.gir
 		-e 's,namespace name="Rygel",namespace name="RygelRenderer",g' \
 		-e 's,RygelRenderer\.Plugin,RygelCore.Plugin,g' \
 		-e 's,RygelRenderer\.MediaDevice,RygelCore.MediaDevice,g' \
+		-e 's,RygelRenderer\.DLNAProfile,RygelCore.DLNAProfile,g' \
 		-e 's,<package name="rygel-renderer-2.6"/>,<include name="RygelCore" version="2.6"/>\n<package name="rygel-renderer-2.6"/>,' \
 		$< >$@
 GIRS = RygelRenderer-2.6.gir

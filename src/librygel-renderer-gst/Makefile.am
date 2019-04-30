@@ -46,6 +46,7 @@ $(builddir)/RygelRendererGst-2.6.gir: $(srcdir)/Rygel-2.6.gir
 	-e 's,RygelRendererGst\.MediaPlayer,RygelRenderer.MediaPlayer,g' \
 	-e 's,namespace name="Rygel",namespace name="RygelRendererGst",g' \
 	-e 's,RygelRendererGst\.Plugin,RygelCore.Plugin,g' \
+	-e 's,RygelRendererGst\.DLNAProfile,RygelCore.DLNAProfile,g' \
 	-e 's,<package name="rygel-renderer-gst-2.6"/>,<include name="RygelCore" version="2.6"/>\n<include name="RygelRenderer" version="2.6"/>\n<package name="rygel-renderer-gst-2.6"/>,' \
 	$< >$@
 GIRS = RygelRendererGst-2.6.gir
