@@ -1,3 +1,15 @@
+0.38.1
+======
+ - Several build fixes for recent vala
+
+All contributors to this release:
+ - Rico Tzschichholz <ricotz@ubuntu.com>
+ - Jens Georg <mail@jensge.org>
+ - Charles Monzat <charles.monzat@free.fr>
+
+Added/updated translations:
+ - fr.po, courtesy of Charles Monzat
+
 0.38.0
 ======
 
