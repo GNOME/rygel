@@ -719,7 +719,7 @@ msgstr "S'ha intentat canviar una propietat de sols-lectura."
 
 #: src/librygel-server/rygel-item-updater.vala:269
 msgid "Parameter count mismatch."
-msgstr "El número de paràmetres no coincideix."
+msgstr "El nombre de paràmetres no coincideix."
 
 #: src/librygel-server/rygel-item-updater.vala:272
 msgid "Unknown error."
@@ -906,7 +906,7 @@ msgstr "Falta l'argument «ContainerID»."
 
 #: src/librygel-server/rygel-reference-creator.vala:55
 msgid "“ObjectID” argument missing."
-msgstr "Falta l'argument «ObjectID»"
+msgstr "Falta l'argument «ObjectID»."
 
 #: src/librygel-server/rygel-reference-creator.vala:86
 #, c-format
@@ -1496,7 +1496,7 @@ msgstr "No s'ha pogut construir l'URI per a la carpeta «%s»: %s"
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
 #, c-format
 msgid "Could not subscribe to Tracker signals: %s"
-msgstr "No s'ha pogut subscriure a les senyals del Tracker: %s"
+msgstr "No s'ha pogut subscriure als senyals del Tracker: %s"
 
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
 msgid "Not supported"
