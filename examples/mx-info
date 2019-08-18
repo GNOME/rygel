@@ -66,6 +66,7 @@ SELECT b.timestamp FROM blacklist b WHERE b.uri = :uri
 """
 
 BLACKLIST_TEMPLATE = 'File %(uri)s was blacklisted on %(date)s'
+SHOW_BLACKLIST_QUERY = 'SELECT timestamp, uri FROM blacklist'
 UNBLACKLIST_QUERY = 'DELETE FROM blacklist where uri = :uri'
 
 def ensure_uri(string):
@@ -79,6 +80,9 @@ parser.add_argument ('uris', metavar='URI', nargs = '+', type = ensure_uri,
 parser.add_argument ('-u, --unblacklist', action = 'store_true',
                      dest = 'unblacklist',
                      help = 'Remove uris from database\'s blacklist')
+parser.add_argument ('--show-blacklist', action = 'store_true',
+                     dest = 'show_blacklist',
+                     help = 'Show contents of the blacklist')
 args = parser.parse_args ()
 
 rygel_db = os.path.join (BaseDirectory.xdg_cache_home, "rygel", "media-export.db")
@@ -93,9 +97,17 @@ if int(info[0]) < 16:
 
 has_blacklist = int(info[0]) >= 17
 
-if not has_blacklist and args.unblacklist:
+if not has_blacklist and (args.unblacklist or args.show_blacklist):
     print ('Database version is too old for blacklists, cannot unblacklist')
     sys.exit (1)
+
+if has_blacklist and args.show_blacklist:
+    c.execute (SHOW_BLACKLIST_QUERY)
+    for row in c:
+        t = time.gmtime(row[0])
+        print (BLACKLIST_TEMPLATE % { "uri" : row[1],
+                                      "date" : time.strftime("%a, %d %b %Y %H:%M:%S +0000", t)})
+    sys.exit(0)
 
 if has_blacklist and args.unblacklist:
     for uri in args.uris:
