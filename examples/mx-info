@@ -66,6 +66,7 @@ SELECT b.timestamp FROM blacklist b WHERE b.uri = :uri
 """
 
 BLACKLIST_TEMPLATE = 'File %(uri)s was blacklisted on %(date)s'
+UNBLACKLIST_QUERY = 'DELETE FROM blacklist where uri = :uri'
 
 def ensure_uri(string):
     if not string.startswith ('file://'):
@@ -97,7 +98,7 @@ if not has_blacklist and args.unblacklist:
     sys.exit (1)
 
 if has_blacklist and args.unblacklist:
-    for arg in args.uris:
+    for uri in args.uris:
         c.execute (UNBLACKLIST_QUERY, { 'uri' : uri })
 else:
     for uri in args.uris:
