@@ -40,7 +40,7 @@ gboolean
 rygel_energy_management_get_mac_and_network_type (const char *iface,
                                                   char      **mac,
                                                   char      **type) {
-    int fd;
+    int fd = -1;
     struct ifreq ifr;
     gboolean retval = FALSE;
 
@@ -82,7 +82,7 @@ rygel_energy_management_get_mac_and_network_type (const char *iface,
 
     retval = TRUE;
 out:
-    if (fd > 0) {
+    if (fd > -1) {
         close (fd);
     }
 
