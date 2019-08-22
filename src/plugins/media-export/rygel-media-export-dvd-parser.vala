@@ -179,7 +179,6 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
                                      Xml.ParserOption.NOERROR |
                                      Xml.ParserOption.NOWARNING |
                                      Xml.ParserOption.RECOVER |
-                                     Xml.ParserOption.NOENT |
                                      Xml.ParserOption.NONET);
     }
 }
