@@ -24,7 +24,7 @@ if not get_option('uninstalled')
     rygel_plugindir = join_paths(rygel_libdir, 'rygel-2.6', 'plugins')
     rygel_enginedir = join_paths(rygel_libdir, 'rygel-2.6', 'engines')
     rygel_presetdir = join_paths(rygel_datadir, 'presets')
-    rygel_icondir = join_paths(get_opion('prefix'), get_option('datadir'), 'icons', 'hicolor')
+    rygel_icondir = join_paths(get_option('prefix'), get_option('datadir'), 'icons', 'hicolor')
     rygel_bigicondir = join_paths(rygel_datadir, 'icons', '120x120')
     rygel_smallicondir = join_paths(rygel_datadir, 'icons', '48x48')
 else
