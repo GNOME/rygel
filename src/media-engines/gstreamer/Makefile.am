@@ -33,7 +33,8 @@ librygel_media_engine_gst_la_CFLAGS = \
 
 librygel_media_engine_gst_la_LIBADD = \
 	$(RYGEL_MEDIA_ENGINE_GSTREAMER_DEPS_LIBS) \
-	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
+	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS) \
+    -lm
 
 librygel_media_engine_gst_la_LDFLAGS = \
 	$(RYGEL_ENGINE_LINKER_FLAGS)
