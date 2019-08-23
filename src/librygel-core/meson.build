@@ -49,6 +49,7 @@ core_lib = library('rygel-core-2.6', core_sources,
         install_dir : [true, rygel_includedir, true, false])
 install_data('rygel-core-2.6.deps', install_dir : rygel_vapidir)
 
+if g_ir_compiler.found()
 # Step two: Do the namespace magic with sed
 # We cannot use input: here since the generated ninja build file does not seem
 # to know that Rygel-2.6.gir is a result of building rygel-core-2.6 target
@@ -74,6 +75,7 @@ custom_target('RygelCore-2.6.typelib',
                depends: core_gir,
                install: true,
                install_dir: typelib_dir)
+endif
 
 # need to add to get the current build dir as include dir
 rygel_core = declare_dependency(include_directories: include_directories('.'),

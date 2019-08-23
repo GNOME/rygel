@@ -22,6 +22,7 @@ renderer_lib = library('rygel-renderer-2.6', renderer_sources,
         install_dir : [true, rygel_includedir, true, false])
 install_data('rygel-renderer-2.6.deps', install_dir : rygel_vapidir)
 
+if g_ir_compiler.found()
 # For details on the GIR / typelib generation process, see
 # librygel-core/meson.build
 renderer_gir = custom_target('RygelRenderer-2.6.gir',
@@ -47,6 +48,7 @@ custom_target('RygelRenderer-2.6.typelib',
                depends: renderer_gir,
                install: true,
                install_dir: typelib_dir)
+endif
 
 
 rygel_renderer = declare_dependency(include_directories : include_directories('.'),

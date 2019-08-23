@@ -99,7 +99,7 @@ server_lib = library('rygel-server-2.6', server_sources,
         install_dir : [true, rygel_includedir, true, false])
 install_data('rygel-server-2.6.deps', install_dir : rygel_vapidir)
 
-
+if g_ir_compiler.found()
 # For details on the GIR/typelib generation process, see
 # librygel-core/meson.build
 server_gir = custom_target('RygelServer-2.6.gir',
@@ -127,6 +127,8 @@ custom_target('RygelServer-2.6.typelib',
                depends: server_gir,
                install: true,
                install_dir: typelib_dir)
+
+endif
 
 # need to add to get the current build dir as include dir
 rygel_server = declare_dependency(include_directories: include_directories('.'),

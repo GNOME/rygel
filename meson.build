@@ -110,7 +110,7 @@ endif
 posix = vala.find_library('posix')
 
 sed = find_program('sed')
-g_ir_compiler = find_program('g-ir-compiler')
+g_ir_compiler = find_program('g-ir-compiler', required: get_option('introspection'))
 gir_dir = join_paths(get_option('datadir'), 'gir-1.0')
 typelib_dir = join_paths(get_option('libdir'), 'girepository-1.0')
 pkgconfig_dir = join_paths(get_option('libdir'), 'pkgconfig')

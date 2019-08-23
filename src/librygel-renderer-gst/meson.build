@@ -13,6 +13,7 @@ renderer_gst_lib = library('rygel-renderer-gst-2.6', renderer_gst_sources,
         install_dir : [true, rygel_includedir, true, false])
 install_data('rygel-renderer-gst-2.6.deps', install_dir : rygel_vapidir)
 
+if g_ir_compiler.found()
 # For details on the GIR/typelib generating process, see
 # librygel-core/meson.build
 renderer_gst_gir = custom_target('RygelRendererGst-2.6.gir',
@@ -40,6 +41,7 @@ custom_target('RygelRendererGst-2.6.typelib',
                depends: [renderer_gst_lib, renderer_lib, renderer_gst_gir],
                install: true,
                install_dir: typelib_dir)
+endif
 
 rygel_renderer_gst = declare_dependency(include_directories : include_directories('.'),
                                         dependencies : renderer_gst_deps,
