@@ -196,8 +196,6 @@ internal abstract class Rygel.GstTranscoder : GLib.Object {
         } else {
             this.link_failed = false;
         }
-
-        return;
     }
 
     private const string DESCRIPTION = "Encoder and decoder are not " +
