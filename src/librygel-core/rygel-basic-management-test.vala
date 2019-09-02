@@ -255,6 +255,5 @@ internal abstract class Rygel.BasicManagementTest : Object, StateMachine {
         yield;
 
         this.completed ();
-        return;
     }
 }
