@@ -6,795 +6,1587 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel rygel-0-18\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-14 11:49+0000\n"
-"PO-Revision-Date: 2013-11-29 11:30+0330\n"
-"Last-Translator: Amir Farsi <amir_farsi@ymail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
+"POT-Creation-Date: 2019-04-19 15:37+0000\n"
+"PO-Revision-Date: 2019-09-24 12:38+0000\n"
+"Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Poedit 2.2.1\n"
 
-#: ../data/rygel-preferences.ui.h:1
-#: ../data/rygel-preferences.desktop.in.in.h:1
-msgid "Rygel Preferences"
-msgstr "ترجیحات ریگل"
-
-#: ../data/rygel-preferences.ui.h:2
-msgid "_Share media through DLNA"
-msgstr "اـشتراک گذاری رسانه از طریق DLNA"
-
-#: ../data/rygel-preferences.ui.h:3
-msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
-msgstr "فعال سازی به اشتراک گذاری رسانه، مثل تصاویر، ویدئوها و موسیقی، با DLNA"
-
-#: ../data/rygel-preferences.ui.h:4
-msgid "Add a directory to the list of shared directories"
-msgstr "افزودن یک شاخه به لیست شاخه‌های به اشتراک گذاشته شده"
-
-#: ../data/rygel-preferences.ui.h:5
-msgid "Add shared directory"
-msgstr "افزودن شاخه به اشتراک گذاشته شده"
-
-#: ../data/rygel-preferences.ui.h:6
-msgid "Remove a directory from the list of shared directories"
-msgstr "حذف یک شاخه از لیست شاخه‌های به اشتراک گذاشته شده"
-
-#: ../data/rygel-preferences.ui.h:7
-msgid "Remove shared directory"
-msgstr "حذف شاخه به اشتراک گذاشته شده"
-
-#. Network Interface
-#: ../data/rygel-preferences.ui.h:9
-msgid "_Network:"
-msgstr "ـشبکه:"
-
-#: ../data/rygel-preferences.ui.h:10
-msgid ""
-"Select the network interface that DLNA media will be shared on, or share "
-"media on all interfaces"
-msgstr ""
-"انتخاب واسط شبکه‌ای که رسانه DLNA روی آن به اشتراک گذاشته خواهد شد، یا به "
-"اشتراک گذاری رسانه روی همه واسطها"
-
-#: ../data/rygel-preferences.ui.h:11
-msgid "Any"
-msgstr "هر کدام"
-
-#: ../data/rygel-preferences.ui.h:12
-msgid "Select folders"
-msgstr "انتخاب پوشه‌ها"
-
-#: ../data/rygel-preferences.desktop.in.in.h:2
-msgid "UPnP/DLNA Preferences"
-msgstr "ترجیحات UPnP/DLNA"
-
-#: ../data/rygel.desktop.in.in.h:1
+#: data/rygel.desktop.in.in:3
 msgid "Rygel"
-msgstr "ریگل"
+msgstr "رایگل"
 
-#: ../data/rygel.desktop.in.in.h:2
+#: data/rygel.desktop.in.in:4 data/rygel.desktop.in.in:5
 msgid "UPnP/DLNA Services"
 msgstr "خدمات UPnP/DLNA"
 
-#: ../data/rygel.desktop.in.in.h:3
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/rygel.desktop.in.in:7
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
+"mediaserver;mediarenderer;share;audio;video;pictures;کارساز;رسانه;هم‌رسانی;"
+"اشتراک;صدا;تصویر;عکس;"
 
-#: ../src/plugins/external/rygel-external-plugin-factory.vala:42
-#: ../src/plugins/mpris/rygel-mpris-plugin-factory.vala:42
-#, fuzzy, c-format
-#| msgid "Module '%s' could not connect to D-Bus session bus. "
-msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
-msgstr "ماژول '%s' نتوانست به گذرگاه ارتباطی D-Bus متّصل شود."
+#: data/rygel-preferences.desktop.in.in:3 data/rygel-preferences.ui:24
+msgid "Rygel Preferences"
+msgstr "ترجیحات رایگل"
 
-#: ../src/plugins/media-export/rygel-media-export-database.vala:207
-#, c-format
-msgid "Failed to roll back transaction: %s"
-msgstr "تراکنش عقب کشیدن شکست خورد: %s"
+#: data/rygel-preferences.desktop.in.in:4
+msgid "UPnP/DLNA Preferences"
+msgstr "ترجیحات UPnP/DLNA"
 
-#: ../src/plugins/media-export/rygel-media-export-metadata-extractor.vala:138
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:210
-#, c-format
-msgid "Failed to query content type for '%s'"
-msgstr "پرس و جوی نوع محتوا برای '%s' شکست خورد "
+#: data/rygel-preferences.ui:94
+msgid "Add a directory to the list of shared directories"
+msgstr "افزودن شاخه‌ای به فهرست شاخه‌های هم‌رسانده"
 
-#: ../src/plugins/media-export/rygel-media-export-media-cache.vala:121
-#, c-format
-msgid "Failed to add item with ID %s: %s"
-msgstr "افزودن آیتم با شناسه‌ی %s: %s شکست خورد"
+#: data/rygel-preferences.ui:95
+msgid "Add shared directory"
+msgstr "افزودن شاخه هم‌رسانده"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:135
-#, c-format
-msgid "'%s' harvested"
-msgstr "'%s' برداشته شد"
+#: data/rygel-preferences.ui:107
+msgid "Remove a directory from the list of shared directories"
+msgstr "برداشتن شاخه‌ای از فهرست شاخه‌های هم‌رسانده"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:198
-#, c-format
-msgid "Error fetching object '%s' from database: %s"
-msgstr "خطای تطبیق شیء '%s' از بانک اطّلاعاتی: %s"
+#: data/rygel-preferences.ui:108
+msgid "Remove shared directory"
+msgstr "برداشتن شاخهٔ هم‌رسانده"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:206
-#, c-format
-msgid "Failed to query info of a file %s: %s"
-msgstr "پرس و جوی اطَّلاعات پرونده‌ی %s: %s شکست خورد"
+#: data/rygel-preferences.ui:153
+msgid "_Share media through DLNA"
+msgstr "_هم‌رسانی رسانه از سریق DLNA"
 
-#: ../src/plugins/media-export/rygel-media-export-harvester.vala:246
-#, c-format
-msgid "Error removing object from database: %s"
-msgstr "خطای پاک کردن شیء از بانک اطّلاعاتی: %s"
+#: data/rygel-preferences.ui:230 data/rygel-preferences.ui:231
+msgid "Add a network interface Rygel should serve files on"
+msgstr "افزودن رابط شبکه‌ای که رایگل باید کار پرونده‌ها را رویش بسازد"
 
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
-msgid "Will not monitor file changes"
-msgstr "تغییرات پرونده رصد نخواهد شد"
+#: data/rygel-preferences.ui:232
+msgid "Add network interface"
+msgstr "افزودن رابط شبکه"
 
-#: ../src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:95
-#, c-format
-msgid "Failed to get file info for %s"
-msgstr "دریافت اطّلاعات پرونده‌ برای %s شکست خورد"
+#: data/rygel-preferences.ui:245 data/rygel-preferences.ui:246
+msgid "Remove a network interface Rygel should no longer serve files on"
+msgstr "برداشتن رابط شبکه‌ای که رایگل دیگر نباید کار پرونده‌ها را رویش بسازد"
 
-#. Titles and definitions of some virtual folders,
-#. for use with QueryContainer.
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:32
-#: ../src/plugins/tracker/rygel-tracker-years.vala:33
-msgid "Year"
-msgstr "سال"
+#: data/rygel-preferences.ui:247
+msgid "Remove network interface"
+msgstr "برداشتن رابط شبکه"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:33
-msgid "All"
-msgstr "همه"
+#: data/rygel-preferences.ui:276
+msgid "Networks:"
+msgstr "شبکه‌ها:"
 
-#. Titles and definitions of virtual folders for Music,
-#. for use with QueryContainer.
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:39
-msgid "Artist"
-msgstr "آرتیست"
+#: data/rygel-preferences.ui:335
+msgid "Select folders"
+msgstr "گزینش شاخه‌ها"
 
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:40
-msgid "Album"
-msgstr "آلبوم"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:41
-#: ../src/plugins/tracker/rygel-tracker-genre.vala:31
-msgid "Genre"
-msgstr "نوع"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:56
-msgid "Files & Folders"
-msgstr "پرونده‌ها و پوشه‌ها"
-
-#. @REALNAME@ is substituted for user's real name and it
-#. doesn't need translation.
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:344
-#: ../src/plugins/tracker/rygel-tracker-plugin.vala:34
-msgid "@REALNAME@'s media"
-msgstr "رسانه‌ی @REALNAME@"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:431
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:498
-#, c-format
-msgid "Failed to remove entry: %s"
-msgstr "نتوانست مدخل را حذف کند: %s"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:577
-msgid "Music"
-msgstr "موسیقی"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:580
-msgid "Pictures"
-msgstr "تصاویر"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:582
-msgid "Videos"
-msgstr "ویدئوها"
-
-#: ../src/plugins/media-export/rygel-media-export-root-container.vala:584
-msgid "Playlists"
-msgstr "لیست پخش"
-
-#: ../src/plugins/playbin/rygel-playbin-plugin.vala:35
-msgid "GStreamer Player"
-msgstr "پخش کننده GStreamer"
-
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:54
-#, c-format
-msgid "Failed to create a Tracker connection: %s"
-msgstr "ایجاد یک اتّصال ردیاب شکست خورد: %s"
-
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:62
-#, c-format
-msgid "Failed to construct URI for folder '%s': %s"
-msgstr "ساختن URI برای پوشه‌ی %s: %s شکست خورد"
-
-#: ../src/plugins/tracker/rygel-tracker-category-all-container.vala:77
-#, c-format
-msgid "Could not subscribe to tracker signals: %s"
-msgstr "نتوانست با سیگنال‌های ردیاب مشترک شود: %s"
-
-#: ../src/plugins/tracker/rygel-tracker-plugin-factory.vala:42
-#, c-format
-msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr "آغاز خدمات ردیاب شکست خورد: متّصل شونده‌ی %s غیر فعّال شد."
-
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:104
-#, c-format
-msgid "Failed to get Tracker connection: %s"
-msgstr "دریافت اتّصال ردیاب شکست خورد: %s"
-
-#: ../src/plugins/tracker/rygel-tracker-search-container.vala:228
-#, c-format
-msgid "Error getting item count under category '%s': %s"
-msgstr "خطای دریافت کردن تعداد آیتم‌ها بر اساس دسته‌بندی %s: %s"
-
-#: ../src/plugins/tracker/rygel-tracker-albums.vala:31
-msgid "Albums"
-msgstr "آلبوم‌ها"
-
-#: ../src/plugins/tracker/rygel-tracker-artists.vala:31
-msgid "Artists"
-msgstr "هنرپیشه‌ها"
-
-#: ../src/plugins/tracker/rygel-tracker-titles.vala:58
-msgid "Titles"
-msgstr "عناوین"
-
-#: ../src/librygel-core/rygel-base-configuration.vala:30
-#: ../src/librygel-core/rygel-base-configuration.vala:34
-#: ../src/librygel-core/rygel-base-configuration.vala:38
-#: ../src/librygel-core/rygel-base-configuration.vala:42
-#: ../src/librygel-core/rygel-base-configuration.vala:46
-#: ../src/librygel-core/rygel-base-configuration.vala:50
-#: ../src/librygel-core/rygel-base-configuration.vala:54
-#: ../src/librygel-core/rygel-base-configuration.vala:58
-#: ../src/librygel-core/rygel-base-configuration.vala:62
-#: ../src/librygel-core/rygel-base-configuration.vala:66
-#: ../src/librygel-core/rygel-base-configuration.vala:70
-#: ../src/librygel-core/rygel-base-configuration.vala:74
-#: ../src/librygel-core/rygel-base-configuration.vala:78
-#: ../src/librygel-core/rygel-base-configuration.vala:82
-#: ../src/librygel-core/rygel-base-configuration.vala:86
-#: ../src/librygel-core/rygel-base-configuration.vala:92
-#: ../src/librygel-core/rygel-base-configuration.vala:98
-#: ../src/librygel-core/rygel-base-configuration.vala:106
-#: ../src/librygel-core/rygel-base-configuration.vala:112
-#: ../src/librygel-core/rygel-base-configuration.vala:118
+#: src/librygel-core/rygel-base-configuration.vala:30
+#: src/librygel-core/rygel-base-configuration.vala:35
+#: src/librygel-core/rygel-base-configuration.vala:39
+#: src/librygel-core/rygel-base-configuration.vala:43
+#: src/librygel-core/rygel-base-configuration.vala:47
+#: src/librygel-core/rygel-base-configuration.vala:51
+#: src/librygel-core/rygel-base-configuration.vala:55
+#: src/librygel-core/rygel-base-configuration.vala:59
+#: src/librygel-core/rygel-base-configuration.vala:63
+#: src/librygel-core/rygel-base-configuration.vala:67
+#: src/librygel-core/rygel-base-configuration.vala:71
+#: src/librygel-core/rygel-base-configuration.vala:75
+#: src/librygel-core/rygel-base-configuration.vala:79
+#: src/librygel-core/rygel-base-configuration.vala:83
+#: src/librygel-core/rygel-base-configuration.vala:87
+#: src/librygel-core/rygel-base-configuration.vala:93
+#: src/librygel-core/rygel-base-configuration.vala:99
+#: src/librygel-core/rygel-base-configuration.vala:107
+#: src/librygel-core/rygel-base-configuration.vala:113
+#: src/librygel-core/rygel-base-configuration.vala:119
 msgid "Not implemented"
-msgstr "پیاده سازی نشد"
+msgstr "پیاده‌سازی نشده"
 
-#: ../src/librygel-core/rygel-connection-manager.vala:91
-#: ../src/librygel-core/rygel-connection-manager.vala:105
-#: ../src/librygel-core/rygel-connection-manager.vala:127
-#: ../src/librygel-renderer/rygel-av-transport.vala:214
-#: ../src/librygel-renderer/rygel-rendering-control.vala:128
-#: ../src/librygel-server/rygel-content-directory.vala:265
-#: ../src/librygel-server/rygel-content-directory.vala:292
-#: ../src/librygel-server/rygel-content-directory.vala:311
-#: ../src/librygel-server/rygel-content-directory.vala:346
-#: ../src/librygel-server/rygel-content-directory.vala:371
-#: ../src/librygel-server/rygel-content-directory.vala:396
-#: ../src/librygel-server/rygel-media-receiver-registrar.vala:61
-msgid "Invalid argument"
-msgstr "آرگومان نادرست"
-
-#: ../src/librygel-core/rygel-connection-manager.vala:121
-msgid "Invalid connection reference"
-msgstr "منبع اتصال نادرست"
-
-#: ../src/librygel-core/rygel-log-handler.vala:68
+#: src/librygel-core/rygel-basic-management-test.vala:197
 #, c-format
-msgid "Failed to get log level from configuration: %s"
-msgstr "دریافت سطح ثبت وقایع از پیکربندی شکست خورد: %s"
+msgid "Failed to read standard output from %s: %s"
+msgstr "شکست در خواندن خروجی استاندارد از %s: %s"
 
-#: ../src/librygel-core/rygel-meta-config.vala:89
-#: ../src/librygel-core/rygel-meta-config.vala:108
-#: ../src/librygel-core/rygel-meta-config.vala:127
-#: ../src/librygel-core/rygel-meta-config.vala:146
-#: ../src/librygel-core/rygel-meta-config.vala:165
-#: ../src/librygel-core/rygel-meta-config.vala:184
-#: ../src/librygel-core/rygel-meta-config.vala:203
-#: ../src/rygel/rygel-cmdline-config.vala:141
-#: ../src/rygel/rygel-cmdline-config.vala:149
-#: ../src/rygel/rygel-cmdline-config.vala:157
-#: ../src/rygel/rygel-cmdline-config.vala:165
-#: ../src/rygel/rygel-cmdline-config.vala:173
-#: ../src/rygel/rygel-cmdline-config.vala:181
-#: ../src/rygel/rygel-cmdline-config.vala:189
-#: ../src/rygel/rygel-cmdline-config.vala:228
-#: ../src/rygel/rygel-cmdline-config.vala:247
-#: ../src/rygel/rygel-cmdline-config.vala:253
-#: ../src/rygel/rygel-cmdline-config.vala:260
-#: ../src/rygel/rygel-cmdline-config.vala:264
-#: ../src/rygel/rygel-cmdline-config.vala:268
-#: ../src/rygel/rygel-cmdline-config.vala:291
-#: ../src/rygel/rygel-cmdline-config.vala:317
-#: ../src/rygel/rygel-cmdline-config.vala:346
-#: ../src/rygel/rygel-cmdline-config.vala:372
-#: ../src/rygel/rygel-cmdline-config.vala:397
-#: ../src/rygel/rygel-environment-config.vala:100
-#: ../src/rygel/rygel-environment-config.vala:104
-#: ../src/rygel/rygel-environment-config.vala:108
+#: src/librygel-core/rygel-basic-management-test.vala:225
+#, c-format
+msgid "Failed to read error output from %s: %s"
+msgstr "شکست در خواندن خروجی خطا از %s: %s"
+
+#. / No test with the specified TestID was found
+#: src/librygel-core/rygel-basic-management.vala:159
+msgid "No Such Test"
+msgstr "چنین آزمایشی وجود ندارد"
+
+#. / TestID is valid but refers to the wrong test type
+#: src/librygel-core/rygel-basic-management.vala:167
+msgid "Wrong Test Type"
+msgstr "گونهٔ آزمایش اشتباه"
+
+#. / TestID is valid but the test Results are not available
+#: src/librygel-core/rygel-basic-management.vala:175
+#, c-format
+msgid "Invalid Test State “%s”"
+msgstr "وضعیت آزمون نامعتبر «%s»"
+
+#. / TestID is valid but the test can't be canceled
+#: src/librygel-core/rygel-basic-management.vala:181
+#, c-format
+msgid "State “%s” Precludes Cancel"
+msgstr "وضعیت «%s» مانع لغو می‌شود"
+
+#: src/librygel-core/rygel-basic-management.vala:214
+#: src/librygel-core/rygel-basic-management.vala:229
+#: src/librygel-core/rygel-basic-management.vala:256
+#: src/librygel-core/rygel-basic-management.vala:272
+#: src/librygel-core/rygel-basic-management.vala:324
+#: src/librygel-core/rygel-basic-management.vala:349
+#: src/librygel-core/rygel-basic-management.vala:365
+#: src/librygel-core/rygel-basic-management.vala:404
+#: src/librygel-core/rygel-basic-management.vala:431
+#: src/librygel-core/rygel-basic-management.vala:448
+#: src/librygel-core/rygel-basic-management.vala:487
+#: src/librygel-core/rygel-basic-management.vala:502
+#: src/librygel-core/rygel-basic-management.vala:517
+#: src/librygel-core/rygel-basic-management.vala:541
+#: src/librygel-core/rygel-connection-manager.vala:95
+#: src/librygel-core/rygel-connection-manager.vala:109
+#: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-core/rygel-energy-management.vala:223
+#: src/librygel-renderer/rygel-av-transport.vala:198
+#: src/librygel-renderer/rygel-rendering-control.vala:131
+#: src/librygel-ruih/rygel-ruih-service.vala:63
+#: src/librygel-server/rygel-content-directory.vala:261
+#: src/librygel-server/rygel-content-directory.vala:289
+#: src/librygel-server/rygel-content-directory.vala:308
+#: src/librygel-server/rygel-content-directory.vala:343
+#: src/librygel-server/rygel-content-directory.vala:372
+#: src/librygel-server/rygel-content-directory.vala:397
+#: src/librygel-server/rygel-content-directory.vala:616
+#: src/librygel-server/rygel-content-directory.vala:765
+#: src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr "آرگومان نامعتبر"
+
+#: src/librygel-core/rygel-basic-management.vala:255
+msgid "Cannot run “Ping” action: Host is empty"
+msgstr "نمی‌توان کنش Ping را اجرا کرد: میزبان خالی است"
+
+#: src/librygel-core/rygel-basic-management.vala:348
+msgid "Cannot run “NSLookup” action: HostName is empty"
+msgstr "نمی‌توان کنش NSLookup را اجرا کرد: نام میزبان خالی است"
+
+#: src/librygel-core/rygel-basic-management.vala:430
+msgid "Cannot run “Traceroute” action: Host is empty"
+msgstr "نمی‌توان کنش Traceroute را اجرا کرد: میزبان خالی است"
+
+#: src/librygel-core/rygel-cmdline-config.vala:73
+msgid "Display version number"
+msgstr "نمایش شمارهٔ نگارش"
+
+#: src/librygel-core/rygel-cmdline-config.vala:75
+msgid "Network Interfaces"
+msgstr "رابط‌های شبکه"
+
+#: src/librygel-core/rygel-cmdline-config.vala:77
+msgid "Port"
+msgstr "درگاه"
+
+#: src/librygel-core/rygel-cmdline-config.vala:79
+msgid "Disable transcoding"
+msgstr "از کار انداختن تغییر رمز"
+
+#: src/librygel-core/rygel-cmdline-config.vala:81
+msgid "Disallow upload"
+msgstr "اجازه ندادن به بارگذاری"
+
+#: src/librygel-core/rygel-cmdline-config.vala:83
+msgid "Disallow deletion"
+msgstr "اجازه ندادن به حذف"
+
+#: src/librygel-core/rygel-cmdline-config.vala:85
+msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
+msgstr "فهرست جداشده با کامای جفت‌های دامنه:سطح. برای جزییات rygel(1) را ببینید"
+
+#: src/librygel-core/rygel-cmdline-config.vala:87
+msgid "Plugin Path"
+msgstr "مسیر افزایه"
+
+#: src/librygel-core/rygel-cmdline-config.vala:89
+msgid "Engine Path"
+msgstr "مسیر موتور"
+
+#: src/librygel-core/rygel-cmdline-config.vala:92
+msgid "Disable plugin"
+msgstr "از کار انداختن افزایه"
+
+#: src/librygel-core/rygel-cmdline-config.vala:94
+msgid "Set plugin titles"
+msgstr "تنظیم عناوین افزایه"
+
+#: src/librygel-core/rygel-cmdline-config.vala:96
+msgid "Set plugin options"
+msgstr "تنظیم گزینه‌های افزایه"
+
+#: src/librygel-core/rygel-cmdline-config.vala:98
+msgid "Use configuration file instead of user configuration"
+msgstr "استفاده از پروندهٔ پیکربندی به جای پیکربندی کاربر"
+
+#: src/librygel-core/rygel-cmdline-config.vala:100
+msgid "Shut down remote Rygel reference"
+msgstr "خاموش کردن ارجاع دوردست رایگل"
+
+#: src/librygel-core/rygel-cmdline-config.vala:102
+msgid "Replace currently running instance of Rygel"
+msgstr "جایگزینی اجرای فعلی رایگل"
+
+#: src/librygel-core/rygel-cmdline-config.vala:139
+msgid "Shutting down remote Rygel instance\n"
+msgstr "خاموش کردن اجرای دوردست رایگل\n"
+
+#: src/librygel-core/rygel-cmdline-config.vala:147
+#, c-format
+msgid "Failed to shut down other Rygel instance: %s"
+msgstr "شکست در خاموش کردن اجرای دیگر رایگل: %s"
+
+#: src/librygel-core/rygel-cmdline-config.vala:161
+#: src/librygel-core/rygel-cmdline-config.vala:170
+#: src/librygel-core/rygel-cmdline-config.vala:178
+#: src/librygel-core/rygel-cmdline-config.vala:186
+#: src/librygel-core/rygel-cmdline-config.vala:194
+#: src/librygel-core/rygel-cmdline-config.vala:202
+#: src/librygel-core/rygel-cmdline-config.vala:210
+#: src/librygel-core/rygel-cmdline-config.vala:249
+#: src/librygel-core/rygel-cmdline-config.vala:268
+#: src/librygel-core/rygel-cmdline-config.vala:274
+#: src/librygel-core/rygel-cmdline-config.vala:281
+#: src/librygel-core/rygel-cmdline-config.vala:285
+#: src/librygel-core/rygel-cmdline-config.vala:289
+#: src/librygel-core/rygel-cmdline-config.vala:312
+#: src/librygel-core/rygel-cmdline-config.vala:338
+#: src/librygel-core/rygel-cmdline-config.vala:367
+#: src/librygel-core/rygel-cmdline-config.vala:393
+#: src/librygel-core/rygel-cmdline-config.vala:418
+#: src/librygel-core/rygel-environment-config.vala:100
+#: src/librygel-core/rygel-environment-config.vala:104
+#: src/librygel-core/rygel-environment-config.vala:108
+#: src/librygel-core/rygel-meta-config.vala:89
+#: src/librygel-core/rygel-meta-config.vala:109
+#: src/librygel-core/rygel-meta-config.vala:128
+#: src/librygel-core/rygel-meta-config.vala:147
+#: src/librygel-core/rygel-meta-config.vala:166
+#: src/librygel-core/rygel-meta-config.vala:185
+#: src/librygel-core/rygel-meta-config.vala:204
+#: src/librygel-core/rygel-meta-config.vala:223
+#: src/librygel-core/rygel-meta-config.vala:242
+#: src/librygel-core/rygel-meta-config.vala:261
 msgid "No value available"
 msgstr "هیچ مقداری موجود نیست"
 
-#: ../src/librygel-core/rygel-meta-config.vala:324
-#, c-format
-msgid "No value set for '%s/enabled'"
-msgstr "هیچ مقداری برای '%s/enabled' تنظیم نشده است"
+#: src/librygel-core/rygel-connection-manager.vala:132
+msgid "Invalid connection reference"
+msgstr "ارجاع اتّصال نامعتبر"
 
-#: ../src/librygel-core/rygel-meta-config.vala:343
+#: src/librygel-core/rygel-description-file.vala:494
 #, c-format
-msgid "No value set for '%s/title'"
-msgstr "هیچ مقداری برای '%s/title' تنظیم نشده است"
+msgid "Failed to write modified description to %s"
+msgstr "شکست در نوشتن شرح تغییریافته روی %s"
 
-#: ../src/librygel-core/rygel-meta-config.vala:363
-#: ../src/librygel-core/rygel-meta-config.vala:385
-#: ../src/librygel-core/rygel-meta-config.vala:411
-#: ../src/librygel-core/rygel-meta-config.vala:433
-#: ../src/librygel-core/rygel-meta-config.vala:457
+#: src/librygel-core/rygel-energy-management-helper.c:55
 #, c-format
-msgid "No value available for '%s/%s'"
-msgstr "هیچ مقداری برای '%s/%s' وجود ندارد"
+msgid "Failed to get a socket: %s"
+msgstr "شکست در گرفتن بندگاه: %s"
 
-#: ../src/librygel-core/rygel-plugin-loader.vala:86
+#: src/librygel-core/rygel-energy-management-helper.c:62
 #, c-format
-msgid "New plugin '%s' available"
-msgstr "متّصل شونده‌ی '%s' در دسترس است"
+msgid "Failed to get MAC address for %s: %s"
+msgstr "شکست در گرفتن نشانی MAC برای %s: %s"
 
-#: ../src/librygel-core/rygel-plugin-loader.vala:101
+#: src/librygel-core/rygel-energy-management-helper.c:104
+msgid "MAC and network type querying not implemented"
+msgstr "پرس‌وجوی گونهٔ شبکه و MAC پیادّ‌سازی نشده"
+
+#: src/librygel-core/rygel-log-handler.vala:68
+#, c-format
+msgid "Failed to get log level from configuration: %s"
+msgstr "شکست در گرفتن سطح گزارش از پیکربندی: %s"
+
+#. translators: "enabled" is part of the config key and must not be translated
+#: src/librygel-core/rygel-meta-config.vala:336
+#, c-format
+msgid "No value set for “%s/enabled”"
+msgstr "هیچ مقداری برای «%s/enabled» تنظیم نشده"
+
+#. translators: "title" is part of the config key and must not be translated
+#: src/librygel-core/rygel-meta-config.vala:355
+#, c-format
+msgid "No value set for “%s/title”"
+msgstr "هیچ مقداری برای «%s/title» تنظیم نشده"
+
+#: src/librygel-core/rygel-meta-config.vala:375
+#: src/librygel-core/rygel-meta-config.vala:397
+#: src/librygel-core/rygel-meta-config.vala:423
+#: src/librygel-core/rygel-meta-config.vala:445
+#: src/librygel-core/rygel-meta-config.vala:469
+#, c-format
+msgid "No value available for “%s/%s”"
+msgstr "هیچ مقداری برای «%s/%s» موجود نیست"
+
+#: src/librygel-core/rygel-plugin-information.vala:59
+msgid "[Plugin] group not found"
+msgstr "[plugin] گروه پیدا نشد"
+
+#: src/librygel-core/rygel-plugin-information.vala:77
+#, c-format
+msgid "Plugin module %s does not exist"
+msgstr "پیمانهٔ افزایهٔ %s وجود ندارد"
+
+#: src/librygel-core/rygel-plugin-loader.vala:89
+#, c-format
+msgid "New plugin “%s” available"
+msgstr "افزایهٔ جدید «%s» در دسترس است"
+
+#: src/librygel-core/rygel-plugin-loader.vala:104
 #, c-format
 msgid "A module named %s is already loaded"
-msgstr ""
+msgstr "پیمانه‌ای با نام %s ار پیش بار شده"
 
-#: ../src/librygel-core/rygel-plugin-loader.vala:110
+#: src/librygel-core/rygel-plugin-loader.vala:113
 #, c-format
-msgid "Failed to load module from path '%s': %s"
-msgstr ""
+msgid "Failed to load module from path “%s”: %s"
+msgstr "شکست در بار کردن پیمانه از مسیر %s: %s"
 
-#: ../src/librygel-core/rygel-plugin-loader.vala:120
+#: src/librygel-core/rygel-plugin-loader.vala:123
 #, c-format
-msgid "Failed to find entry point function '%s' in '%s': %s"
-msgstr ""
+msgid "Failed to find entry point function “%s” in “%s”: %s"
+msgstr "شکست در یافتن تابع نقطهٔ ورود %s در %s: %s"
 
-#: ../src/librygel-core/rygel-recursive-module-loader.vala:142
+#: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
-msgid "Error listing contents of folder '%s': %s"
-msgstr ""
+msgid "Failed to open plugins folder: “%s”"
+msgstr "شکست در گشودن شاخهٔ افزایه‌ها: «%s»"
 
-#: ../src/librygel-core/rygel-root-device-factory.vala:113
-#: ../src/librygel-core/rygel-root-device-factory.vala:146
-#: ../src/librygel-core/rygel-root-device-factory.vala:168
-#: ../src/librygel-core/rygel-root-device-factory.vala:199
+#: src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
-msgid "XML node '%s' not found."
-msgstr "گره‌ی XML %s یافت نشد"
+msgid "Error listing contents of folder “%s”: %s"
+msgstr "خطا در فهرست کردن محتوای شاخهٔ %s: %s"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:220
-#: ../src/librygel-renderer/rygel-rendering-control.vala:134
+#: src/librygel-core/rygel-recursive-module-loader.vala:193
+#, c-format
+msgid "Could not load plugin: %s"
+msgstr "ناتوان در بار کردن افزایه: %s"
+
+#: src/librygel-core/rygel-recursive-module-loader.vala:221
+#, c-format
+msgid "Failed to query content type for “%s”"
+msgstr "شکست در پرس‌وجوی گونهٔ محتوا برای «%s»"
+
+#. TRANSLATORS: First %s is the file's path, second is the error message
+#: src/librygel-core/rygel-user-config.vala:246
+#, c-format
+msgid "Failed to load user configuration from file “%s”: %s"
+msgstr "شکست در بار کردن پیکربندی کاربر از پروندهٔ «%s»: %s"
+
+#: src/librygel-core/rygel-user-config.vala:299
+#, c-format
+msgid "No value available for “%s”"
+msgstr "هیچ مقداری برای «%s» وجود ندارد"
+
+#: src/librygel-core/rygel-user-config.vala:370
+#, c-format
+msgid "Value of “%s” out of range"
+msgstr "مقدار «%s » خارج از محدوده است"
+
+#: src/librygel-db/database-cursor.vala:99
+#, c-format
+msgid "Unsupported type %s"
+msgstr "گونهٔ پشتیبانی‌نشده %s"
+
+#: src/librygel-db/database.vala:175
+#, c-format
+msgid "Error while opening SQLite database %s: %s"
+msgstr "خطا هنگام گشودن پایگاه دادهٔ SQLite %s: %s"
+
+#: src/librygel-db/database.vala:306
+#, c-format
+msgid "Failed to roll back transaction: %s"
+msgstr "شکست در برگرداندن تراکنش: %s"
+
+#: src/librygel-renderer-gst/rygel-playbin-player.vala:370
+msgid ""
+"Your GStreamer installation seems to be missing the “playbin” element. The "
+"Rygel GStreamer renderer implementation cannot work without it"
+msgstr ""
+"به نظر نصب GStreamerتان عنصر playbin را ندارد. پیاده‌سازی پرداختگر GStreamer "
+"رایگل نمی‌تواند بدون آن کار کند"
+
+#: src/librygel-renderer/rygel-av-transport.vala:204
+#: src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
-msgstr ""
+msgstr "شناسهٔ اجرای نامعتبر"
+
+#: src/librygel-renderer/rygel-av-transport.vala:474
+msgid "Play speed not supported"
+msgstr "سرعت پخش پشتیبانی نشده"
+
+#: src/librygel-renderer/rygel-av-transport.vala:481
+#: src/librygel-renderer/rygel-av-transport.vala:499
+msgid "Transition not available"
+msgstr "گذار در دسترس نیست"
+
+#: src/librygel-renderer/rygel-av-transport.vala:529
+#: src/librygel-renderer/rygel-av-transport.vala:554
+#: src/librygel-renderer/rygel-av-transport.vala:584
+msgid "Seek mode not supported"
+msgstr "حالت رسیدن پشتیبانی نشده"
+
+#: src/librygel-renderer/rygel-av-transport.vala:535
+#: src/librygel-renderer/rygel-av-transport.vala:560
+#: src/librygel-renderer/rygel-av-transport.vala:573
+#: src/librygel-renderer/rygel-av-transport.vala:598
+#: src/librygel-renderer/rygel-av-transport.vala:610
+msgid "Illegal seek target"
+msgstr "هدف رسیدن غیرقانونی"
+
+#: src/librygel-renderer/rygel-av-transport.vala:659
+msgid "Play mode not supported"
+msgstr "حالت پخش پشتیبانی نشده"
 
 #. FIXME: Return a more sensible error here.
-#: ../src/librygel-renderer/rygel-av-transport.vala:271
-#: ../src/librygel-renderer/rygel-av-transport.vala:695
-#: ../src/librygel-renderer/rygel-av-transport.vala:705
+#: src/librygel-renderer/rygel-av-transport.vala:774
+#: src/librygel-renderer/rygel-av-transport.vala:789
+#: src/librygel-renderer/rygel-av-transport.vala:798
+#: src/librygel-renderer/rygel-av-transport.vala:877
 msgid "Resource not found"
-msgstr ""
+msgstr "منبع پیدا نشد"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:281
+#: src/librygel-renderer/rygel-av-transport.vala:787
+#, c-format
+msgid "Problem parsing playlist: %s"
+msgstr "مشکل در تجزیهٔ فهرست پخش: %s"
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: src/librygel-renderer/rygel-av-transport.vala:873
+#, c-format
+msgid "Failed to access resource at %s: %s"
+msgstr "شکست در دسترسی به منبع در %s: %s"
+
+#: src/librygel-renderer/rygel-av-transport.vala:889
 msgid "Illegal MIME-type"
-msgstr "نوع MIME غیر قانونی"
+msgstr "نوع MIME غیرقانونی"
 
-#: ../src/librygel-renderer/rygel-av-transport.vala:553
-msgid "Play speed not supported"
-msgstr "سرعت پخش پشتیبانی نشده است"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:570
-msgid "Transition not available"
-msgstr "انتقال در دسترس نیست"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:599
-#: ../src/librygel-renderer/rygel-av-transport.vala:623
-msgid "Seek mode not supported"
-msgstr "حالت رد شدن پشتیبانی نشده است"
-
-#: ../src/librygel-renderer/rygel-av-transport.vala:612
-#: ../src/librygel-renderer/rygel-av-transport.vala:633
-#: ../src/librygel-renderer/rygel-av-transport.vala:641
-msgid "Illegal seek target"
-msgstr "هدف رد شدن غیر قانونی"
-
-#: ../src/librygel-renderer/rygel-media-renderer.vala:27
-msgid "LibRygelRenderer"
-msgstr ""
-
-#: ../src/librygel-renderer/rygel-rendering-control.vala:165
+#: src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
-msgstr "نام نادرست"
+msgstr "نام نامعتبر"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:179
+#: src/librygel-renderer/rygel-rendering-control.vala:182
 msgid "Invalid Channel"
-msgstr "کانال نادرست"
+msgstr "کانال نامعتبر"
 
-#: ../src/librygel-renderer/rygel-rendering-control.vala:215
-#: ../src/librygel-renderer/rygel-rendering-control.vala:257
-#: ../src/librygel-renderer/rygel-rendering-control.vala:266
+#: src/librygel-renderer/rygel-rendering-control.vala:218
+#: src/librygel-renderer/rygel-rendering-control.vala:260
+#: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
-msgstr "شکست در عمل"
+msgstr "شکست در کنش"
 
-#: ../src/librygel-server/rygel-browse.vala:63
+#: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
+#, c-format
+msgid "Unable to parse Icon data — unexpected node: %s"
+msgstr "ناتوان در تجزیهٔ دادهٔ نقشک — گره غیرمنتظره: %s"
+
+#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
+#, c-format
+msgid "Unable to parse Protocol data — unexpected attribute: %s"
+msgstr "ناتوان در تجزیهٔ دادهٔ قرارداد — ویژگی غیرمنتظره: %s"
+
+#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
+#, c-format
+msgid "Unable to parse Protocol data — unexpected node: %s"
+msgstr "ناتوان در تجزیهٔ دادهٔ قرارداد — گره غیرمنتظره: %s"
+
+#: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
+#, c-format
+msgid "Failed to set UIList for file %s — %s"
+msgstr "شکست در تنظیم فهرست رابط کاربری برای پروندهٔ %s — %s"
+
+#: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
+#, c-format
+msgid "Failed to set initial UI list for file %s — %s"
+msgstr "شکست در تنظیم فهرست رابط کاربری نخستین برای پروندهٔ %s — %s"
+
+#: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
+#, c-format
+msgid "Failed to monitor the file %s — %s"
+msgstr "شکست در پایش پروندهٔ %s — %s"
+
+#: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
+#, c-format
+msgid "Unable to parse UI list file %s"
+msgstr "ناتوان در تجزیهٔ پروندهٔ فهرست رابط کاربری %s"
+
+#: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
+#, c-format
+msgid "Unable to parse device profile data: %s"
+msgstr "ناتوان در تجزیهٔ دادهٔ نمایهٔ افزاره: %s"
+
+#: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
+#, c-format
+msgid "Invalid UI filter: %s"
+msgstr "پالایهٔ رابط کاربری غیرمنتظره: %s"
+
+#: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
+#, c-format
+msgid "Unable to parse UI data — unexpected node: %s"
+msgstr "ناتوان در تجزیهٔ دادهٔ رابط کاربری — گره غیرمنتظره: %s"
+
+#: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
 msgstr "آرگومان‌های نادرست"
 
-#: ../src/librygel-server/rygel-browse.vala:94
+#: src/librygel-server/rygel-browse.vala:94
 msgid "Cannot browse children on item"
-msgstr ""
+msgstr "نمی‌توان فرزندان مورد را مرور کرد"
 
-#: ../src/librygel-server/rygel-browse.vala:130
+#: src/librygel-server/rygel-browse.vala:134
 #, c-format
-msgid "Failed to browse '%s': %s\n"
-msgstr ""
+msgid "Failed to browse “%s”: %s\n"
+msgstr "شکست در مرور «%s»: %s\n"
 
-#: ../src/librygel-server/rygel-content-directory.vala:284
-#: ../src/librygel-server/rygel-content-directory.vala:303
+#: src/librygel-server/rygel-client-hacks.vala:149
+msgid "Not Applicable"
+msgstr "قابل اطلاق نیست"
+
+#: src/librygel-server/rygel-content-directory.vala:637
 msgid "No such file transfer"
-msgstr ""
+msgstr "چنین انتقال پرونده‌ای وجود ندارد"
 
-#. Range header was present but invalid
-#: ../src/librygel-server/rygel-http-byte-seek.vala:49
-#: ../src/librygel-server/rygel-http-byte-seek.vala:54
-#: ../src/librygel-server/rygel-http-time-seek.vala:49
-#: ../src/librygel-server/rygel-http-time-seek.vala:61
-#: ../src/librygel-server/rygel-http-time-seek.vala:68
-#: ../src/librygel-server/rygel-http-time-seek.vala:83
+#: src/librygel-server/rygel-dbus-thumbnailer.vala:116
+msgid "No D-Bus thumbnailer service available"
+msgstr "هیچ خدمت بندانگشتی‌ساز دی‌باسی وجود ندارد"
+
+#: src/librygel-server/rygel-http-get.vala:52
+msgid "Invalid Request (only GET and HEAD supported)"
+msgstr "درخواست نامعتبر (فقط GET و HEAD پشتیبانی می‌شوند)"
+
+#: src/librygel-server/rygel-http-get.vala:60
+msgid " must be 1"
+msgstr " باید ۱ باشد"
+
+#: src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
-msgid "Invalid Range '%s'"
-msgstr ""
+msgid "Invalid URI “%s”"
+msgstr "نشانی نامعتبر «%s»"
 
-#: ../src/librygel-server/rygel-http-get.vala:59
-msgid "Invalid Request"
-msgstr ""
-
-#: ../src/librygel-server/rygel-http-identity-handler.vala:106
-#: ../src/librygel-server/rygel-http-transcode-handler.vala:58
+#: src/librygel-server/rygel-http-item-uri.vala:192
 msgid "Not found"
-msgstr ""
+msgstr "پیدا نشد"
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:134
+#: src/librygel-server/rygel-http-post.vala:62
+#: src/librygel-server/rygel-import-resource.vala:189
 #, c-format
-msgid "Invalid URI '%s'"
+msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr ""
 
-#: ../src/librygel-server/rygel-http-item-uri.vala:177
-msgid "Not Found"
-msgstr ""
-
-#: ../src/librygel-server/rygel-http-post.vala:62
-#: ../src/librygel-server/rygel-import-resource.vala:189
-#, c-format
-msgid "Pushing data to non-empty item '%s' not allowed"
-msgstr ""
-
-#: ../src/librygel-server/rygel-http-post.vala:71
+#: src/librygel-server/rygel-http-post.vala:71
 #, c-format
 msgid "No writable URI for %s available"
 msgstr ""
 
 #. translators: Dotfile is the filename with prefix "."
-#: ../src/librygel-server/rygel-http-post.vala:186
+#: src/librygel-server/rygel-http-post.vala:186
 #, c-format
 msgid "Failed to move dotfile %s: %s"
 msgstr ""
 
-#: ../src/librygel-server/rygel-http-request.vala:92
+#: src/librygel-server/rygel-http-request.vala:95
 #, c-format
-msgid "Requested item '%s' not found"
+msgid "Requested item “%s” not found"
 msgstr ""
 
-#: ../src/librygel-server/rygel-http-seek.vala:95
+#: src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
-msgid "Out Of Range Start '%ld'"
-msgstr "خارج از محدوده. شروع '%ld'"
+msgid "Couldn’t create data source for %s"
+msgstr ""
 
-#: ../src/librygel-server/rygel-http-seek.vala:99
+#: src/librygel-server/rygel-import-resource.vala:124
 #, c-format
-msgid "Out Of Range Stop '%ld'"
-msgstr "خارج از محدوده. توقف '%ld'"
+msgid "Failed to get original URI for “%s”: %s"
+msgstr "شکست در گرفتن نشانی اصلی برای «%s»: %s"
 
-#: ../src/librygel-server/rygel-import-resource.vala:124
+#: src/librygel-server/rygel-import-resource.vala:186
 #, c-format
-msgid "Failed to get original URI for '%s': %s"
+msgid "URI “%s” invalid for importing contents to"
 msgstr ""
 
-#: ../src/librygel-server/rygel-import-resource.vala:186
+#: src/librygel-server/rygel-import-resource.vala:272
 #, c-format
-msgid "URI '%s' invalid for importing contents to"
-msgstr ""
-
-#: ../src/librygel-server/rygel-object-creator.vala:186
-msgid "'Elements' argument missing."
-msgstr ""
-
-#: ../src/librygel-server/rygel-object-creator.vala:189
-msgid "Comments not allowed in XML"
-msgstr ""
-
-#. Sorry we can't do anything without ContainerID
-#. Sorry we can't do anything without ObjectID
-#: ../src/librygel-server/rygel-object-creator.vala:195
-#: ../src/librygel-server/rygel-item-destroyer.vala:104
-#: ../src/librygel-server/rygel-item-updater.vala:189
-#: ../src/librygel-server/rygel-media-query-action.vala:115
-#: ../src/librygel-server/rygel-media-query-action.vala:186
-msgid "No such object"
-msgstr ""
-
-#. FIXME: Change to object after string freeze
-#: ../src/librygel-server/rygel-object-creator.vala:220
-#, c-format
-msgid "No items in DIDL-Lite from client: '%s'"
-msgstr ""
-
-#: ../src/librygel-server/rygel-object-creator.vala:363
-msgid "No such container"
-msgstr ""
-
-#: ../src/librygel-server/rygel-object-creator.vala:367
-#: ../src/librygel-server/rygel-object-creator.vala:638
-#, c-format
-msgid "Object creation in %s not allowed"
-msgstr ""
-
-#: ../src/librygel-server/rygel-object-creator.vala:395
-#, c-format
-msgid "Failed to create item under '%s': %s"
-msgstr ""
+msgid "Failed to import file from %s: %s"
+msgstr "شکست در درون‌ریزی پرونده از %s: %s"
 
 #. Sorry we can't do anything without the ID
-#: ../src/librygel-server/rygel-item-destroyer.vala:53
+#: src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
-msgstr ""
+msgstr "شناسهٔ بارگنج وجود ندارد"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:60
+#: src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
-msgid "Successfully destroyed object '%s'"
-msgstr ""
+msgid "Successfully destroyed object “%s”"
+msgstr "شی «%s» با موفّقیت از بین رفت"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:68
+#: src/librygel-server/rygel-item-destroyer.vala:68
 #, c-format
-msgid "Failed to destroy object '%s': %s"
-msgstr ""
+msgid "Failed to destroy object “%s”: %s"
+msgstr "شکست در از بین بردن شی «%s»: %s"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:107
+#: src/librygel-server/rygel-item-destroyer.vala:104
+#: src/librygel-server/rygel-item-updater.vala:283
+#: src/librygel-server/rygel-media-query-action.vala:194
+#: src/librygel-server/rygel-reference-creator.vala:68
+#: src/librygel-server/rygel-reference-creator.vala:115
+msgid "No such object"
+msgstr "چنین شی‌ای وجود ندارد"
+
+#: src/librygel-server/rygel-item-destroyer.vala:107
 #, c-format
 msgid "Removal of object %s not allowed"
-msgstr ""
+msgstr "برداشتن شی %s مجاز نیست"
 
-#: ../src/librygel-server/rygel-item-destroyer.vala:110
+#: src/librygel-server/rygel-item-destroyer.vala:110
 #, c-format
 msgid "Object removal from %s not allowed"
-msgstr ""
+msgstr "برداشتن شی از %s مجاز نیست"
 
 #. Sorry we can't do anything without the ID
-#: ../src/librygel-server/rygel-item-updater.vala:70
-msgid "Object id missing"
-msgstr ""
+#: src/librygel-server/rygel-item-updater.vala:74
+msgid "Object ID missing"
+msgstr "شناسهٔ شی موجود نیست"
 
-#: ../src/librygel-server/rygel-item-updater.vala:77
+#: src/librygel-server/rygel-item-updater.vala:81
 #, c-format
-msgid "Successfully updated object '%s'"
-msgstr ""
+msgid "Successfully updated object “%s”"
+msgstr "شی «%s» با موفّقیت به‌روز شد"
 
-#: ../src/librygel-server/rygel-item-updater.vala:85
+#: src/librygel-server/rygel-item-updater.vala:89
 #, c-format
-msgid "Failed to update object '%s': %s"
-msgstr ""
+msgid "Failed to update object “%s”: %s"
+msgstr "شکست در به‌روز رسانی شی «%s»: %s"
 
-#: ../src/librygel-server/rygel-item-updater.vala:162
+#: src/librygel-server/rygel-item-updater.vala:162
+#: src/librygel-server/rygel-object-creator.vala:606
+#, c-format
+msgid "Invalid date format: %s"
+msgstr "قالب تاریخ نامعتبر: %s"
+
+#: src/librygel-server/rygel-item-updater.vala:171
+#: src/librygel-server/rygel-object-creator.vala:615
+#, c-format
+msgid "Invalid date: %s"
+msgstr "تاریخ نامعتبر: %s"
+
+#: src/librygel-server/rygel-item-updater.vala:256
 msgid "Bad current tag value."
-msgstr ""
+msgstr "مقدار برچسب جاری بد."
 
-#: ../src/librygel-server/rygel-item-updater.vala:166
+#: src/librygel-server/rygel-item-updater.vala:260
 msgid "Bad new tag value."
-msgstr ""
+msgstr "مقدار برچسب جدید بد."
 
-#: ../src/librygel-server/rygel-item-updater.vala:169
+#: src/librygel-server/rygel-item-updater.vala:263
 msgid "Tried to delete required tag."
 msgstr ""
 
-#: ../src/librygel-server/rygel-item-updater.vala:172
+#: src/librygel-server/rygel-item-updater.vala:266
 msgid "Tried to change read-only property."
 msgstr ""
 
-#: ../src/librygel-server/rygel-item-updater.vala:175
+#: src/librygel-server/rygel-item-updater.vala:269
 msgid "Parameter count mismatch."
 msgstr ""
 
-#: ../src/librygel-server/rygel-item-updater.vala:178
+#: src/librygel-server/rygel-item-updater.vala:272
 msgid "Unknown error."
-msgstr ""
+msgstr "خطای ناشناخته."
 
-#: ../src/librygel-server/rygel-item-updater.vala:191
+#: src/librygel-server/rygel-item-updater.vala:285
 #, c-format
 msgid "Metadata modification of object %s not allowed"
 msgstr ""
 
-#: ../src/librygel-server/rygel-item-updater.vala:196
+#: src/librygel-server/rygel-item-updater.vala:290
 #, c-format
 msgid ""
 "Metadata modification of object %s being a child of restricted object %s not "
 "allowed"
 msgstr ""
 
-#: ../src/librygel-server/rygel-media-engine.vala:69
+#: src/librygel-server/rygel-m3u-playlist.vala:67
+#: src/librygel-server/rygel-m3u-playlist.vala:70
+msgid "Unknown"
+msgstr "ناشناس"
+
+#: src/librygel-server/rygel-media-art-store.vala:111
+#, c-format
+msgid "Failed to add album art for %s: %s"
+msgstr "شکست در افزودن قطعهٔ هنری آلبوم برای %s: %s"
+
+#: src/librygel-server/rygel-media-art-store.vala:125
+#, c-format
+msgid "Failed to find media art for %s: %s"
+msgstr "شکست در یافتن قطعهٔ هنری رسانه برای %s: %s"
+
+#: src/librygel-server/rygel-media-container.vala:67
+msgid "Seeking not supported"
+msgstr "رسیدن پشتیبانی نشده"
+
+#: src/librygel-server/rygel-media-container.vala:72
+msgid "Speed not supported"
+msgstr "سرعت پشتیبانی نشده"
+
+#: src/librygel-server/rygel-media-container.vala:123
+msgid "Failed to generate playlist"
+msgstr "شکست در ایجاد فهرست پخش"
+
+#: src/librygel-server/rygel-media-container.vala:472
+#, c-format
+msgid "Unknown MediaContainer resource: %s"
+msgstr "منبع بارگنج رسانهٔ ناشناخته: %s"
+
+#: src/librygel-server/rygel-media-engine.vala:63
 msgid "No media engine found."
 msgstr "هیچ موتور رسانه‌ای یافت نشد."
 
-#: ../src/librygel-server/rygel-media-engine.vala:80
+#: src/librygel-server/rygel-media-engine.vala:75
 msgid "MediaEngine.init was not called. Cannot continue."
-msgstr ""
+msgstr "فراخوانی MediaEngine.init اینجام نشد. نمی‌توان ادامه داد."
 
-#: ../src/librygel-server/rygel-media-item.vala:312
+#: src/librygel-server/rygel-media-file-item.vala:177
+#, c-format
+msgid "Could not determine protocol for URI %s"
+msgstr "نمی‌توان قرارداد را برای نشانی %s دریافت"
+
+#: src/librygel-server/rygel-media-object.vala:284
+#, c-format
+msgid "Could not determine protocol for %s"
+msgstr "نمی‌توان قرارداد را برای %s دریافت"
+
+#: src/librygel-server/rygel-media-object.vala:509
 #, c-format
 msgid "Bad URI: %s"
-msgstr "URI بد: %s"
+msgstr "نشانی بد: %s"
 
-#. Assume the protocol to be the scheme of the URI
-#: ../src/librygel-server/rygel-media-item.vala:324
-#, c-format
-msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-msgstr ""
+#: src/librygel-server/rygel-media-query-action.vala:100
+msgid "Invalid number of arguments"
+msgstr "تعداد آرگومان نامعتبر"
 
-#: ../src/librygel-server/rygel-media-query-action.vala:120
+#. Sorry we can't do anything without ObjectID
+#: src/librygel-server/rygel-media-query-action.vala:122
+msgid "ObjectID argument missing"
+msgstr "آرگومان شناسهٔ شی موجود نیست"
+
+#: src/librygel-server/rygel-media-query-action.vala:127
 msgid "Invalid range"
-msgstr "بازه‌ی نادرست"
+msgstr "بازهٔ نامعتبر"
 
-#: ../src/librygel-server/rygel-media-query-action.vala:124
+#: src/librygel-server/rygel-media-query-action.vala:131
 msgid "Missing filter"
-msgstr ""
+msgstr "بدون پالایه"
 
-#: ../src/librygel-server/rygel-media-server.vala:25
-msgid "LibRygelServer"
-msgstr ""
+#: src/librygel-server/rygel-media-query-action.vala:197
+#: src/librygel-server/rygel-object-creator.vala:412
+msgid "No such container"
+msgstr "چنین بارگنجی وجود ندارد"
 
-#: ../src/librygel-server/rygel-search.vala:93
+#: src/librygel-server/rygel-object-creator.vala:150
+msgid "upnp:createClass value not supported"
+msgstr "upnp: مقدار createClass پشتیبانی نشده"
+
+#: src/librygel-server/rygel-object-creator.vala:191
+msgid "“Elements” argument missing."
+msgstr "آرگومان «Elements» موجود نیست."
+
+#: src/librygel-server/rygel-object-creator.vala:194
+msgid "Comments not allowed in XML"
+msgstr "توضیحات در XML مجاز نیستند"
+
+#. Sorry we can't do anything without ContainerID
+#: src/librygel-server/rygel-object-creator.vala:200
+msgid "Missing ContainerID argument"
+msgstr "آرگومان شناسهٔ بارگنج وجود ندارد"
+
+#: src/librygel-server/rygel-object-creator.vala:224
 #, c-format
-msgid "Failed to search in '%s': %s"
+msgid "No objects in DIDL-Lite from client: “%s”"
 msgstr ""
 
-#: ../src/librygel-server/rygel-subtitle-manager.vala:85
+#: src/librygel-server/rygel-object-creator.vala:231
+msgid "@id must be set to \"\" in CreateObject call"
+msgstr ""
+
+#: src/librygel-server/rygel-object-creator.vala:236
+msgid "dc:title must not be empty in CreateObject call"
+msgstr ""
+
+#: src/librygel-server/rygel-object-creator.vala:247
+msgid "Flags that must not be set were found in “dlnaManaged”"
+msgstr ""
+
+#: src/librygel-server/rygel-object-creator.vala:255
+msgid "Invalid upnp:class given in CreateObject"
+msgstr ""
+
+#: src/librygel-server/rygel-object-creator.vala:259
+msgid "Object is missing the @restricted attribute"
+msgstr ""
+
+#: src/librygel-server/rygel-object-creator.vala:266
+msgid "Cannot create restricted item"
+msgstr ""
+
+#: src/librygel-server/rygel-object-creator.vala:383
+#, c-format
+msgid "UPnP class “%s” not supported"
+msgstr "کلاس UPnP «%s» پشتیبانی نشده"
+
+#: src/librygel-server/rygel-object-creator.vala:417
+#: src/librygel-server/rygel-object-creator.vala:429
+#: src/librygel-server/rygel-object-creator.vala:715
+#: src/librygel-server/rygel-reference-creator.vala:118
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr ""
+
+#: src/librygel-server/rygel-object-creator.vala:474
+#, c-format
+msgid "Failed to create item under “%s”: %s"
+msgstr "شکست در ایجاد مورد زیر «%s»:%s"
+
+#: src/librygel-server/rygel-object-creator.vala:548
+#, c-format
+msgid "DLNA profile “%s” not supported"
+msgstr ""
+
+#: src/librygel-server/rygel-object-creator.vala:648
+#, c-format
+msgid "Cannot create object of class “%s”: Not supported"
+msgstr ""
+
+#: src/librygel-server/rygel-object-creator.vala:746
+#, c-format
+msgid ""
+"Error from container “%s” on trying to find the newly added child object "
+"“%s” in it: %s"
+msgstr ""
+
+#: src/librygel-server/rygel-reference-creator.vala:50
+msgid "“ContainerID” agument missing."
+msgstr ""
+
+#: src/librygel-server/rygel-reference-creator.vala:55
+msgid "“ObjectID” argument missing."
+msgstr ""
+
+#: src/librygel-server/rygel-reference-creator.vala:86
+#, c-format
+msgid "Failed to create object under “%s”: %s"
+msgstr "شکست در ایجاد شی زیر «%s»:%s"
+
+#: src/librygel-server/rygel-search.vala:70
+msgid "Invalid search criteria given"
+msgstr ""
+
+#: src/librygel-server/rygel-search.vala:94
+#, c-format
+msgid "Failed to search in “%s”: %s"
+msgstr "شکست در جست‌وجو در «%s»: %s"
+
+#: src/librygel-server/rygel-subtitle-manager.vala:92
 msgid "No subtitle available"
-msgstr ""
+msgstr "زیرنویسی موجود نیست"
 
-#: ../src/librygel-server/rygel-thumbnailer.vala:61
+#: src/librygel-server/rygel-thumbnailer.vala:61
 #, c-format
 msgid "No thumbnailer available: %s"
-msgstr ""
+msgstr "بندانگشتی‌سازی موجود نیست: %s"
 
-#: ../src/librygel-server/rygel-thumbnailer.vala:74
-msgid "Thubmnailing not supported"
-msgstr ""
+#: src/librygel-server/rygel-thumbnailer.vala:74
+msgid "Thumbnailing not supported"
+msgstr "بندانگشتی‌سازی پشتیبانی نشده"
 
 #. Thumbnailing failed previously, so there's no current thumbnail
 #. and it doesn't make any sense to request one.
-#: ../src/librygel-server/rygel-thumbnailer.vala:88
-#: ../src/librygel-server/rygel-thumbnailer.vala:97
-#: ../src/librygel-server/rygel-thumbnailer.vala:102
-#: ../src/librygel-server/rygel-thumbnailer.vala:113
+#: src/librygel-server/rygel-thumbnailer.vala:88
+#: src/librygel-server/rygel-thumbnailer.vala:102
+#: src/librygel-server/rygel-thumbnailer.vala:113
 msgid "No thumbnail available"
-msgstr ""
+msgstr "بندانگشتی‌ای موجود نیست"
 
-#: ../src/librygel-server/rygel-thumbnailer.vala:132
+#: src/librygel-server/rygel-thumbnailer.vala:97
+msgid "No thumbnail available. Generation requested."
+msgstr "بندانگشتی‌ای موجود نیست. درخواست ایجاد داده شد."
+
+#: src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
-msgstr ""
+msgstr "هیچ بندانگشتی‌ساز دی‌باسی وجود ندارد"
 
-#: ../src/librygel-server/rygel-transcode-manager.vala:79
-#, c-format
-msgid "No transcoder available for target format '%s'"
-msgstr ""
-
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:39
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:44
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr ""
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:92
-msgid "Failed to create pipeline"
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:72
+#: src/media-engines/simple/rygel-simple-data-source.vala:84
+msgid "Playspeed not supported"
+msgstr "سرعت پخش پشتیبانی نشده"
+
+#. Unknown/unsupported seek type
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:102
+#, c-format
+msgid "HTTPSeekRequest type %s unsupported"
 msgstr ""
+
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:146
+msgid "Failed to create pipeline"
+msgstr "شکست در ایجاد خط لوله"
 
 #. static pads? easy!
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:103
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:124
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:157
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:178
 #, c-format
 msgid "Failed to link %s to %s"
-msgstr ""
+msgstr "شکست در پیوند %s به %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:138
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:192
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr ""
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:193
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:257
 #, c-format
 msgid "Error from pipeline %s: %s"
-msgstr ""
+msgstr "خطا از خط لولهٔ %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:200
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:264
 #, c-format
 msgid "Warning from pipeline %s: %s"
-msgstr ""
+msgstr "هشدار از خط لولهٔ %s: %s"
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:251
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:317
+msgid "Unsupported seek type"
+msgstr "گونهٔ رسیدن پشتیبانی نشده"
+
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:334
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr ""
 
-#: ../src/media-engines/gstreamer/rygel-gst-data-source.vala:255
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:336
 msgid "Failed to seek"
-msgstr "نتوانست رد شود"
+msgstr "شکست در رسیدن"
 
-#: ../src/media-engines/gstreamer/rygel-gst-utils.vala:39
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:130
+#, c-format
+msgid "Invalid URI without prefix: %s"
+msgstr ""
+
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
+#, c-format
+msgid "Can’t process URI %s with protocol %s"
+msgstr ""
+
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:246
+#, c-format
+msgid "Failed to create GStreamer data source for %s: %s"
+msgstr "شکست در ایجاد منبع دادهٔ GStreamer برای %s: %s"
+
+#: src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
+msgid ""
+"Could not create a transcoder configuration. Your GStreamer installation "
+"might be missing a plug-in"
+msgstr ""
+
+#: src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
 msgid "Required element %s missing"
 msgstr ""
 
-#: ../src/media-engines/simple/rygel-simple-data-source.vala:56
-msgid "Time-based seek not supported"
-msgstr "رد کردن مبتنی بر زمان پشتیبانی نشده است"
+#: src/media-engines/gstreamer/rygel-gst-utils.vala:58
+msgid "GStreamer element “dvdreadsrc” not found. DVD support does not work"
+msgstr ""
 
-#: ../src/rygel/rygel-main.vala:101
+#: src/media-engines/simple/rygel-simple-data-source.vala:64
+msgid "Only byte-based seek supported"
+msgstr "فقط رسیدن مبتنی بر بایت پشتیانی می‌شود"
+
+#: src/media-engines/simple/rygel-simple-media-engine.vala:57
+#: src/media-engines/simple/rygel-simple-media-engine.vala:99
+msgid "Can only process file-based MediaObjects (MediaFileItems)"
+msgstr ""
+
+#: src/plugins/external/rygel-external-plugin-factory.vala:35
+#: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-msgid "No plugins found in %d second; giving up.."
-msgid_plural "No plugins found in %d seconds; giving up.."
-msgstr[0] ""
-msgstr[1] ""
+msgid "Module “%s” could not connect to D-Bus session bus. Ignoring…"
+msgstr "پیمانهٔ «%s» نتواست به گذرگاه نشست دی‌باس وصل شود. نادیده گرفتن…"
 
-#: ../src/rygel/rygel-main.vala:162
+#: src/plugins/external/rygel-external-variant-util.vala:23
+#, c-format
+msgid "External provider %s did not provide mandatory property “%s”"
+msgstr ""
+
+#: src/plugins/lms/rygel-lms-albums.vala:166
+#: src/plugins/tracker/rygel-tracker-albums.vala:31
+msgid "Albums"
+msgstr "آلبوم‌ها"
+
+#: src/plugins/lms/rygel-lms-all-images.vala:89
+#: src/plugins/lms/rygel-lms-all-music.vala:171
+#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
+#: src/plugins/media-export/rygel-media-export-root-container.vala:33
+msgid "All"
+msgstr "همه"
+
+#: src/plugins/lms/rygel-lms-image-years.vala:53
+msgid "Years"
+msgstr "سال"
+
+#: src/plugins/lms/rygel-lms-music-root.vala:35
+#: src/plugins/tracker/rygel-tracker-artists.vala:31
+msgid "Artists"
+msgstr "هنرمندان"
+
+#: src/plugins/lms/rygel-lms-root-container.vala:33
+msgid "Shared media"
+msgstr "رسانهٔ هم‌رسانده"
+
+#: src/plugins/lms/rygel-lms-root-container.vala:45
+#: src/plugins/media-export/rygel-media-export-root-container.vala:605
+msgid "Music"
+msgstr "آهنگ‌ها"
+
+#: src/plugins/lms/rygel-lms-root-container.vala:49
+#: src/plugins/media-export/rygel-media-export-root-container.vala:610
+msgid "Videos"
+msgstr "ویدیوها"
+
+#: src/plugins/lms/rygel-lms-root-container.vala:53
+#: src/plugins/media-export/rygel-media-export-root-container.vala:608
+msgid "Pictures"
+msgstr "عکس‌ها"
+
+#: src/plugins/media-export/rygel-media-export-dvd-container.vala:133
+#, c-format
+msgid "Title %d"
+msgstr "عنوان %Id"
+
+#: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
+msgid ""
+"Failed to find lsdvd binary in path. DVD extraction will not be available"
+msgstr ""
+
+#: src/plugins/media-export/rygel-media-export-extract.vala:73
+msgid "Invalid command received, ignoring"
+msgstr ""
+
+#: src/plugins/media-export/rygel-media-export-extract.vala:90
+#, c-format
+msgid "Failed to discover URI %s: %s"
+msgstr "شکست در کشف نشانی %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-extract.vala:105
+#, c-format
+msgid "Failed to read from pipe: %s"
+msgstr "شکست در خواندن از لوله: %s"
+
+#: src/plugins/media-export/rygel-media-export-extract.vala:132
+#: src/plugins/media-export/rygel-media-export-extract.vala:144
+#, c-format
+msgid "Failed to send error to parent: %s"
+msgstr "شکست در فرستادن خطا به والد: %s"
+
+#: src/plugins/media-export/rygel-media-export-extract.vala:157
+msgid "— helper binary for Rygel to extract metadata"
+msgstr ""
+
+#: src/plugins/media-export/rygel-media-export-extract.vala:164
+#, c-format
+msgid "Failed to parse commandline args: %s"
+msgstr "شکست در تجزیهٔ آرگومان‌های حط فرمان: %s"
+
+#: src/plugins/media-export/rygel-media-export-generic-extractor.vala:50
+#, c-format
+msgid "Failed to create media art extractor: %s"
+msgstr "شکست در ایجاد کشندهٔ قطعهٔ هنری رسانده : %s"
+
+#: src/plugins/media-export/rygel-media-export-harvester.vala:146
+#, c-format
+msgid "“%s” harvested"
+msgstr "«%s» برداشت شد"
+
+#: src/plugins/media-export/rygel-media-export-harvester.vala:202
+#, c-format
+msgid "Error fetching object “%s” from database: %s"
+msgstr "خطای واکشی شی «%s» از پایگاه داده: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvester.vala:210
+#, c-format
+msgid "Failed to query info of a file %s: %s"
+msgstr "شکست در پرس‌وجوی اطَّلاعات از یک پرونده %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvester.vala:245
+#, c-format
+msgid "Could not find object %s or its parent. Database is inconsistent"
+msgstr ""
+
+#: src/plugins/media-export/rygel-media-export-harvester.vala:249
+#, c-format
+msgid "Error removing object from database: %s"
+msgstr "خطای برداشتن شی از پایگاه داده: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:127
+#, c-format
+msgid "Failed to harvest file %s: %s"
+msgstr "شکست در برداشت پروندهٔ %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:191
+#, c-format
+msgid "Failed to query database: %s"
+msgstr "شکست در پرس‌وجوی پایگاه داده: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
+#, c-format
+msgid "Failed to enumerate folder “%s”: %s"
+msgstr "شکست در برشماری شاخهٔ «%s»: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:286
+#, c-format
+msgid "Failed to get children of container %s: %s"
+msgstr "شکست در گرفتن فرزندان بارگنج %s: %s"
+
+#. error is only emitted if even the basic information extraction
+#. failed; there's not much to do here, just print the information and
+#. go to the next file
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:358
+#, c-format
+msgid "Skipping URI %s; extraction completely failed: %s"
+msgstr ""
+
+#: src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
+#, c-format
+msgid "Failed to get child count of query container: %s"
+msgstr "شکست در گرفتن تعداد فرزندان بارگنج پرس‌وجو: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
+#, c-format
+msgid "Failed to force reindex to fix database: %s"
+msgstr "شکست در اجبار به بازفهرست برای درست کردن پایگاه داده: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
+#, c-format
+msgid "Failed to create indices: %s"
+msgstr "شکست در ایجاد شاخص‌ها: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
+#, c-format
+msgid "Cannot upgrade from version %d"
+msgstr ""
+
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
+#, c-format
+msgid "Database upgrade failed: %s"
+msgstr "ارتقای پایگاه داده شکست خورد: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:134
+#, c-format
+msgid "Failed to add item with ID %s: %s"
+msgstr "شکست در افزودن مورد با شناسهٔ %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:217
+#, c-format
+msgid "Failed to get update IDs: %s"
+msgstr "شکست در گرفتن شناسه‌های به‌روز رسانی: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:400
+#, c-format
+msgid "Inconsistent database: item %s does not have parent %s"
+msgstr ""
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:525
+msgid "Failed to get reset token"
+msgstr "شکست در گرفتن ژتون بازنشانی"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:537
+#, c-format
+msgid "Failed to persist ServiceResetToken: %s"
+msgstr "شکست در امتداد ژتون بازنشانی خدمت: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:547
+#, c-format
+msgid "Failed to remove virtual folders: %s"
+msgstr "شکست در برداشتنن شاخه‌های مجازی: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:561
+#, c-format
+msgid "Failed to mark item %s as guarded (%d): %s"
+msgstr "شکست در نشانه‌گذاری مورد %s به عنوان محافظت‌شده (%Id): %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:571
+msgid "Cannot create references to containers"
+msgstr "نمی‌توان ارجاعاتی به بارکنج‌ها ایجاد کرد"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:597
+#, c-format
+msgid "Failed to add %s to file blacklist: %s"
+msgstr "شکست در افزودن %s به پروندهٔ انسداد: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:610
+#, c-format
+msgid "Failed to get whether URI %s is blacklisted: %s"
+msgstr "شکست در گرفتن وضعیت مسدودشدگی نشانی %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:626
+#, c-format
+msgid "Failed to get whether item %s is guarded: %s"
+msgstr "شکست در گرفتن وضعیت محافظت‌شدگی مورد %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:666
+#, c-format
+msgid ""
+"The version “%d” of the detected database is newer than our supported "
+"version “%d”"
+msgstr ""
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:688
+msgid "Incompatible schema… cannot proceed"
+msgstr "شمای ناسازگار… نمی‌توان دادمه داد"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:694
+#, c-format
+msgid "Invalid database, cannot query sqlite_master table: %s"
+msgstr ""
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:895
+#, c-format
+msgid "Failed to create database schema: %s"
+msgstr "شکست در ایجاد شمای پایگاه داده: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1231
+#, c-format
+msgid "Skipping unsupported sort field: %s"
+msgstr ""
+
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:104
+msgid "Failed to gracefully stop the process. Using KILL"
+msgstr ""
+
+#. Process exitted properly -> That shouldn't really
+#. happen
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:152
+#, c-format
+msgid "Process check_async failed: %s"
+msgstr ""
+
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
+#, c-format
+msgid "Process died while handling URI %s"
+msgstr ""
+
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
+#, c-format
+msgid "Setting up extraction subprocess failed: %s"
+msgstr ""
+
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
+#, c-format
+msgid "Received invalid string from child: %s"
+msgstr ""
+
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
+#, c-format
+msgid "Received ill-formed response string %s from child…"
+msgstr ""
+
+#. No error signalling, this was done in the part that called
+#. cancel
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:243
+#, c-format
+msgid "Read from child failed: %s"
+msgstr "شکست در خواندن از فرزند: %s"
+
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:270
+#, c-format
+msgid "Failed to send command to child: %s"
+msgstr "شکست در فرستادن دستور به فرزند: %s"
+
+#: src/plugins/media-export/rygel-media-export-node-query-container.vala:93
+#, c-format
+msgid "Failed to get child count: %s"
+msgstr "شکست در گرفتن تعداد فرزندان: %s"
+
+#: src/plugins/media-export/rygel-media-export-playlist-container.vala:70
+#: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
+#, c-format
+msgid "Can’t create items in %s"
+msgstr "نمی‌توان موارد را در %s ایجاد کرد"
+
+#: src/plugins/media-export/rygel-media-export-playlist-container.vala:91
+#, c-format
+msgid "Can’t add containers in %s"
+msgstr "نمی‌توان بارگنج‌ها را در %s افزود"
+
+#: src/plugins/media-export/rygel-media-export-playlist-container.vala:99
+#, c-format
+msgid "Can’t remove containers in %s"
+msgstr "نمی‌توان بارگنج‌های داخل %s را برداشت"
+
+#: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
+#: src/plugins/media-export/rygel-media-export-root-container.vala:612
+msgid "Playlists"
+msgstr "فهرست‌های پخش"
+
+#: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
+#, c-format
+msgid "Can’t remove items in %s"
+msgstr "نمی‌توان موارد داخل %s را برداشت"
+
+#: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
+#, c-format
+msgid "upnp:class not supported in %s"
+msgstr "upnp: کلاس پشتیبانی نشده در %s"
+
+#: src/plugins/media-export/rygel-media-export-plugin.vala:52
+#, c-format
+msgid "Failed to load plugin %s: %s"
+msgstr "شکست در بار کردن افزایهٔ %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
+msgid "Will not monitor file changes"
+msgstr "تغییرات پرونده را نخواهد پایید"
+
+#. Avoid warning when file is removed in the meantime, e.g. in
+#. upload case.
+#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:105
+#, c-format
+msgid "Failed to setup up file monitor for %s: %s"
+msgstr "شکست در برپایی پایش پرونده برای %s: %s"
+
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
+#: src/plugins/media-export/rygel-media-export-root-container.vala:32
+#: src/plugins/tracker/rygel-tracker-years.vala:33
+msgid "Year"
+msgstr "سال"
+
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
+#: src/plugins/media-export/rygel-media-export-root-container.vala:39
+msgid "Artist"
+msgstr "هنرمند"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:40
+msgid "Album"
+msgstr "آلبوم"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:41
+#: src/plugins/tracker/rygel-tracker-genre.vala:31
+msgid "Genre"
+msgstr "سبک"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:56
+msgid "Files & Folders"
+msgstr "پرونده‌ها و شاخه‌ها"
+
+#. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
+#: src/plugins/media-export/rygel-media-export-root-container.vala:366
+#: src/plugins/tracker/rygel-tracker-plugin.vala:33
+msgid "@REALNAME@’s media"
+msgstr "رسانهٔ @REALNAME@"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:457
+#: src/plugins/media-export/rygel-media-export-root-container.vala:524
+#, c-format
+msgid "Failed to remove entry: %s"
+msgstr "شکست در برداشتن ورودی: %s"
+
+#: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
+#: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
+#, c-format
+msgid "Failed to save object: %s"
+msgstr "شکست در ذخیرهٔ شی: %s"
+
+#: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:79
+#, c-format
+msgid "Failed to add object: %s"
+msgstr "شکست در افزودن شی: %s"
+
+#: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:87
+#, c-format
+msgid "Failed to remove object: %s"
+msgstr "شکست در برداشتن شی: %s"
+
+#: src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
+#, c-format
+msgid "Failed to remove file %s: %s"
+msgstr "شکست در برداشتن پروندهٔ %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-writable-db-container.vala:120
+#, c-format
+msgid "Could not find object %d in cache"
+msgstr "ناتوان در یافتن مورد %Id در انباره"
+
+#: src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
+#, c-format
+msgid "MPRIS interface at %s is read-only. Ignoring."
+msgstr ""
+
+#: src/plugins/playbin/rygel-playbin-plugin.vala:35
+msgid "GStreamer Player"
+msgstr "پخش کننده GStreamer"
+
+#: src/plugins/playbin/rygel-playbin-plugin.vala:43
+msgid "Could not create GStreamer player"
+msgstr "ناتوان در ایجاد پخش کنندهٔ GStreamer"
+
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
+#, c-format
+msgid "Failed to create a Tracker connection: %s"
+msgstr "شکست در ایجاد یک اتّصال ردیاب: %s"
+
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
+#, c-format
+msgid "Failed to construct URI for folder “%s”: %s"
+msgstr "شکست در ایجاد نشانی برای شاخهٔ «%s»: %s"
+
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
+#, c-format
+msgid "Could not subscribe to Tracker signals: %s"
+msgstr "ناتوان در اشتراک علائم ردیاب: %s"
+
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
+msgid "Not supported"
+msgstr "پشتیبانی نشده"
+
+#: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
+#, c-format
+msgid "Failed to create Tracker connection: %s"
+msgstr "شکست در ایجاد اتّصال ردیاب: %s"
+
+#: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
+#, c-format
+msgid "Error getting all values for “%s”: %s"
+msgstr "خطای گرفتن تمامی مقدارها برای «%s»: %s"
+
+#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
+#, c-format
+msgid "Failed to start Tracker service: %s. Plugin disabled."
+msgstr "شکست در شروع خدمت ردیاب: %s. افزایه از کار افتاد."
+
+#: src/plugins/tracker/rygel-tracker-search-container.vala:104
+#, c-format
+msgid "Failed to get Tracker connection: %s"
+msgstr "شکست در گرفتن اتّصال ردیاب: %s"
+
+#: src/plugins/tracker/rygel-tracker-search-container.vala:228
+#, c-format
+msgid "Error getting item count under category “%s”: %s"
+msgstr "خطای گرفتن تعداد موارد ذیل دستهٔ «%s»: %s"
+
+#: src/plugins/tracker/rygel-tracker-titles.vala:58
+msgid "Titles"
+msgstr "عناوین"
+
+#: src/rygel/rygel-acl.vala:110
+#, c-format
+msgid "Failed to query ACL: %s"
+msgstr "شکست در پرس‌وجوی ACL: %s"
+
+#: src/rygel/rygel-acl.vala:127
+#, c-format
+msgid "Error creating D-Bus proxy for ACL: %s"
+msgstr ""
+
+#: src/rygel/rygel-acl.vala:143
+msgid "No ACL fallback policy found. Using “allow”"
+msgstr ""
+
+#: src/rygel/rygel-acl.vala:145
+msgid "No ACL fallback policy found. Using “deny”"
+msgstr ""
+
+#: src/rygel/rygel-dbus-service.vala:81
+msgid "Another instance of Rygel is already running. Not starting."
+msgstr ""
+
+#: src/rygel/rygel-main.vala:85
+#, c-format
+msgid "Rygel v%s starting…"
+msgstr "در جال شروع نگارش %s رایگل…"
+
+#: src/rygel/rygel-main.vala:113
+#, c-format
+msgid "No plugins found in %d second; giving up…"
+msgid_plural "No plugins found in %d seconds; giving up…"
+msgstr[0] ""
+
+#: src/rygel/rygel-main.vala:177
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-main.vala:220
+#: src/rygel/rygel-main.vala:235
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-main.vala:257
+#: src/rygel/rygel-main.vala:272
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr ""
 
-#: ../src/rygel/rygel-user-config.vala:294
-#: ../src/ui/rygel-user-config.vala:294
-#, c-format
-msgid "No value available for '%s'"
-msgstr "هیچ مقداری برای '%s' وجود ندارد"
-
-#: ../src/rygel/rygel-user-config.vala:365
-#: ../src/ui/rygel-user-config.vala:365
-#, c-format
-msgid "Value of '%s' out of range"
-msgstr "مقدار %s خارج از محدوده است"
-
-#: ../src/ui/rygel-preferences-dialog.vala:95
+#: src/ui/rygel-preferences-dialog.vala:109
 #, c-format
 msgid "Failed to create preferences dialog: %s"
-msgstr "ایجاد پنجره‌ی ترجیحات شکست خورد: %s"
+msgstr "شکست در ایجاد محاورهٔ ترجیحات: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:122
+#: src/ui/rygel-writable-user-config.vala:119
 #, c-format
-msgid "Failed to save configuration data to file '%s': %s"
-msgstr "ذخیره داده‌ی تنظیمات در پرونده شکست خورد. '%s' : %s"
+msgid "Failed to save configuration data to file “%s”: %s"
+msgstr "شکست در ذخیرهٔ پیکربندی کاربر به پروندهٔ «%s»: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:221
+#: src/ui/rygel-writable-user-config.vala:214
 #, c-format
 msgid "Failed to start Rygel service: %s"
-msgstr "سرویس ریگل نتوانست شروع شود: %s"
+msgstr "شکست در شروع خدمت رایگل: %s"
 
-#: ../src/ui/rygel-writable-user-config.vala:223
+#: src/ui/rygel-writable-user-config.vala:216
 #, c-format
 msgid "Failed to stop Rygel service: %s"
-msgstr "سرویس ریگل نتوانست متوقف شود: %s"
+msgstr "شکست در توقّف خدمت رایگل: %s"
+
+#~ msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
+#~ msgstr ""
+#~ "فعال سازی به اشتراک گذاری رسانه، مثل تصاویر، ویدئوها و موسیقی، با DLNA"
+
+#~ msgid ""
+#~ "Select the network interface that DLNA media will be shared on, or share "
+#~ "media on all interfaces"
+#~ msgstr ""
+#~ "انتخاب واسط شبکه‌ای که رسانه DLNA روی آن به اشتراک گذاشته خواهد شد، یا به "
+#~ "اشتراک گذاری رسانه روی همه واسطها"
+
+#~ msgid "Any"
+#~ msgstr "هر کدام"
+
+#~ msgid "XML node '%s' not found."
+#~ msgstr "گره‌ی XML %s یافت نشد"
+
+#~ msgid "Out Of Range Start '%ld'"
+#~ msgstr "خارج از محدوده. شروع '%ld'"
+
+#~ msgid "Out Of Range Stop '%ld'"
+#~ msgstr "خارج از محدوده. توقف '%ld'"
