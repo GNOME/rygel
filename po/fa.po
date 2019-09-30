@@ -2,13 +2,14 @@
 # Copyright (C) 2013 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
 # Amir Farsi <amir_farsi@ymail.com>, 2013.
+# Danial Behzadi <dani.behzi@ubuntu.com>, 2014, 2015, 2016, 2017, 2018, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel rygel-0-18\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
 "POT-Creation-Date: 2019-04-19 15:37+0000\n"
-"PO-Revision-Date: 2019-09-24 12:38+0000\n"
+"PO-Revision-Date: 2019-09-30 12:13+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -30,8 +31,8 @@ msgstr "خدمات UPnP/DLNA"
 #: data/rygel.desktop.in.in:7
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
-"mediaserver;mediarenderer;share;audio;video;pictures;کارساز;رسانه;هم‌رسانی;"
-"اشتراک;صدا;تصویر;عکس;"
+"mediaserver;mediarenderer;share;audio;video;pictures;کارسازرسانه;هم‌رسانی; "
+"اشتراک;صدا;تصویر;ویدیو;"
 
 #: data/rygel-preferences.desktop.in.in:3 data/rygel-preferences.ui:24
 msgid "Rygel Preferences"
@@ -47,7 +48,7 @@ msgstr "افزودن شاخه‌ای به فهرست شاخه‌های هم‌ر
 
 #: data/rygel-preferences.ui:95
 msgid "Add shared directory"
-msgstr "افزودن شاخه هم‌رسانده"
+msgstr "افزودن شاخهٔ هم‌رسانده"
 
 #: data/rygel-preferences.ui:107
 msgid "Remove a directory from the list of shared directories"
@@ -59,7 +60,7 @@ msgstr "برداشتن شاخهٔ هم‌رسانده"
 
 #: data/rygel-preferences.ui:153
 msgid "_Share media through DLNA"
-msgstr "_هم‌رسانی رسانه از سریق DLNA"
+msgstr "_هم‌رسانی رسانه از طریق DLNA"
 
 #: data/rygel-preferences.ui:230 data/rygel-preferences.ui:231
 msgid "Add a network interface Rygel should serve files on"
@@ -493,7 +494,7 @@ msgstr "کانال نامعتبر"
 #: src/librygel-renderer/rygel-rendering-control.vala:260
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
-msgstr "شکست در کنش"
+msgstr "کنش شکست خورد"
 
 #: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
 #, c-format
@@ -591,28 +592,28 @@ msgstr "پیدا نشد"
 #: src/librygel-server/rygel-import-resource.vala:189
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
-msgstr ""
+msgstr "اریال داده به مورد ناخالی «%s» مجاز نیست"
 
 #: src/librygel-server/rygel-http-post.vala:71
 #, c-format
 msgid "No writable URI for %s available"
-msgstr ""
+msgstr "نشانی قابل نوشتنی برای %s موجود نیست"
 
 #. translators: Dotfile is the filename with prefix "."
 #: src/librygel-server/rygel-http-post.vala:186
 #, c-format
 msgid "Failed to move dotfile %s: %s"
-msgstr ""
+msgstr "شکست در جابه‌جایی پروندهٔ نقطه‌دار %s: %s"
 
 #: src/librygel-server/rygel-http-request.vala:95
 #, c-format
 msgid "Requested item “%s” not found"
-msgstr ""
+msgstr "مورد درخواستی «%s» پیدا نشد"
 
 #: src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
 msgid "Couldn’t create data source for %s"
-msgstr ""
+msgstr "نمی‌توان منبع داده را برای %s ساخت"
 
 #: src/librygel-server/rygel-import-resource.vala:124
 #, c-format
@@ -622,7 +623,7 @@ msgstr "شکست در گرفتن نشانی اصلی برای «%s»: %s"
 #: src/librygel-server/rygel-import-resource.vala:186
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
-msgstr ""
+msgstr "نشانی نامعتبر «%s» برای درون‌ریزی محتوا"
 
 #: src/librygel-server/rygel-import-resource.vala:272
 #, c-format
@@ -699,15 +700,15 @@ msgstr "مقدار برچسب جدید بد."
 
 #: src/librygel-server/rygel-item-updater.vala:263
 msgid "Tried to delete required tag."
-msgstr ""
+msgstr "تلاش برای حذف برچسب‌های لازم."
 
 #: src/librygel-server/rygel-item-updater.vala:266
 msgid "Tried to change read-only property."
-msgstr ""
+msgstr "تلاش برای تغییر ویژگی فقط‌خواندنی."
 
 #: src/librygel-server/rygel-item-updater.vala:269
 msgid "Parameter count mismatch."
-msgstr ""
+msgstr "عدم تطبیق تعداد پارامترها."
 
 #: src/librygel-server/rygel-item-updater.vala:272
 msgid "Unknown error."
@@ -716,19 +717,19 @@ msgstr "خطای ناشناخته."
 #: src/librygel-server/rygel-item-updater.vala:285
 #, c-format
 msgid "Metadata modification of object %s not allowed"
-msgstr ""
+msgstr "تغییر فرادادهٔ شی %s مجاز نیست"
 
 #: src/librygel-server/rygel-item-updater.vala:290
 #, c-format
 msgid ""
 "Metadata modification of object %s being a child of restricted object %s not "
 "allowed"
-msgstr ""
+msgstr "تغییر فرادادهٔ شی %s که فرزند شی محدود %s است، مجاز نیست"
 
 #: src/librygel-server/rygel-m3u-playlist.vala:67
 #: src/librygel-server/rygel-m3u-playlist.vala:70
 msgid "Unknown"
-msgstr "ناشناس"
+msgstr "ناشناخته"
 
 #: src/librygel-server/rygel-media-art-store.vala:111
 #, c-format
@@ -937,7 +938,7 @@ msgstr "هیچ بندانگشتی‌ساز دی‌باسی وجود ندارد"
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:44
 #, c-format
 msgid "Could not create GstElement for URI %s"
-msgstr ""
+msgstr "ناتوان در ایجاد GstElement برای نشانی %s"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:72
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
@@ -948,7 +949,7 @@ msgstr "سرعت پخش پشتیبانی نشده"
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:102
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
-msgstr ""
+msgstr "گونهٔ HTTPSeekRequest %s پشتیبانی نشده"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:146
 msgid "Failed to create pipeline"
@@ -964,7 +965,7 @@ msgstr "شکست در پیوند %s به %s"
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:192
 #, c-format
 msgid "Failed to link pad %s to %s"
-msgstr ""
+msgstr "شکست در پیوند سکّوی %s به %s"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:257
 #, c-format
@@ -1082,7 +1083,7 @@ msgstr "عکس‌ها"
 #: src/plugins/media-export/rygel-media-export-dvd-container.vala:133
 #, c-format
 msgid "Title %d"
-msgstr "عنوان %Id"
+msgstr "عنوان: %Id"
 
 #: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
 msgid ""
@@ -1214,7 +1215,7 @@ msgstr "شکست در گرفتن شناسه‌های به‌روز رسانی: %
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:400
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
-msgstr ""
+msgstr "پایگاه دادهٔ متناقض: مورد %s والد %s ندارد"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:525
 msgid "Failed to get reset token"
@@ -1259,7 +1260,7 @@ msgstr "شکست در گرفتن وضعیت محافظت‌شدگی مورد %s:
 msgid ""
 "The version “%d” of the detected database is newer than our supported "
 "version “%d”"
-msgstr ""
+msgstr "نگارش %Id پایگاه دادهٔ کشف‌شده جدیدتر از نگارش %Id پشتیبانی‌شده است"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:688
 msgid "Incompatible schema… cannot proceed"
@@ -1442,7 +1443,7 @@ msgstr "ناتوان در یافتن مورد %Id در انباره"
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
 #, c-format
 msgid "MPRIS interface at %s is read-only. Ignoring."
-msgstr ""
+msgstr "واسط MPRIS در %s فقط‌خواندنی است. نادیده گرفته می‌شود."
 
 #: src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
@@ -1508,45 +1509,45 @@ msgstr "شکست در پرس‌وجوی ACL: %s"
 #: src/rygel/rygel-acl.vala:127
 #, c-format
 msgid "Error creating D-Bus proxy for ACL: %s"
-msgstr ""
+msgstr "خطا در ایجاد پیشکار D-Bus برای ACL: %s"
 
 #: src/rygel/rygel-acl.vala:143
 msgid "No ACL fallback policy found. Using “allow”"
-msgstr ""
+msgstr "هیچ سیاست پشتیبان ACLای پیدا نشد. استفاده از allow"
 
 #: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “deny”"
-msgstr ""
+msgstr "هیچ سیاست پشتیبان ACLای پیدا نشد. استفاده از deny"
 
 #: src/rygel/rygel-dbus-service.vala:81
 msgid "Another instance of Rygel is already running. Not starting."
-msgstr ""
+msgstr "اجرای دیگری از رایگل وجود دارد. شروع نمی‌شود."
 
 #: src/rygel/rygel-main.vala:85
 #, c-format
 msgid "Rygel v%s starting…"
-msgstr "در جال شروع نگارش %s رایگل…"
+msgstr "در حال شروع نگارش %s رایگل…"
 
 #: src/rygel/rygel-main.vala:113
 #, c-format
 msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
-msgstr[0] ""
+msgstr[0] "در %Id ثانیه هیچ افزایه‌ای پیدا نشد؛ در حال وا دادن…"
 
 #: src/rygel/rygel-main.vala:177
 #, c-format
 msgid "Failed to create root device factory: %s"
-msgstr ""
+msgstr "شکست در ایجاد مرکز تولید افزارهٔ ریشه: %s"
 
 #: src/rygel/rygel-main.vala:235
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
-msgstr ""
+msgstr "شکست در ایجاد افزارهٔ ریشه برای %s. دلیل: %s"
 
 #: src/rygel/rygel-main.vala:272
 #, c-format
 msgid "Failed to load user configuration: %s"
-msgstr ""
+msgstr "شکست در بار کردن پیکربندی کاربر: %s"
 
 #: src/ui/rygel-preferences-dialog.vala:109
 #, c-format
