@@ -329,8 +329,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         get {
             int64 dur = 0;
 
-            if (this.playbin.source != null &&
-                this.playbin.source.query_duration (Format.BYTES, out dur)) {
+            if (this.source != null &&
+                this.source.query_duration (Format.BYTES, out dur)) {
                 return dur;
             } else {
                 return 0;
@@ -354,8 +354,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
        get {
             int64 pos = 0;
 
-            if (this.playbin.source != null &&
-                this.playbin.source.query_position (Format.BYTES, out pos)) {
+            if (this.source != null &&
+                this.source.query_position (Format.BYTES, out pos)) {
                 return pos;
             } else {
                 return 0;
@@ -364,7 +364,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     }
 
     private Player () throws Error {
-        this.playbin = ElementFactory.make ("playbin", null);
+        this.playbin = ElementFactory.make ("playbin3", null);
         if (this.playbin == null) {
             throw new PlayerError.NO_ELEMENT (
                 _("Your GStreamer installation seems to be missing the “playbin” element. The Rygel GStreamer renderer implementation cannot work without it"));
@@ -592,6 +592,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
+    private Element source;
     private void on_source_setup (Element pipeline, dynamic Element source) {
         if (source.get_type ().name () == "GstSoupHTTPSrc" &&
             this.transfer_mode != null) {
@@ -603,6 +604,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
             source.extra_headers = structure;
             source.user_agent = this.user_agent;
         }
+
+        this.source = source;
     }
 
     private void on_uri_notify (ParamSpec pspec) {
