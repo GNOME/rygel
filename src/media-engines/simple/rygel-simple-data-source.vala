@@ -151,11 +151,19 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
 
             if (this.last_byte == 0) {
                 this.last_byte = Posix.lseek (fd, 0, Posix.SEEK_END);
-                Posix.lseek (fd, 0, Posix.SEEK_SET);
+                if (this.last_byte < 0) {
+                    throw IOError.from_errno (errno);
+                }
+
+                if (Posix.lseek (fd, 0, Posix.SEEK_SET) < 0) {
+                    throw IOError.from_errno (errno);
+                }
+
             }
 
             if (this.first_byte != 0) {
-                 Posix.lseek (fd, this.first_byte, Posix.SEEK_SET);
+                 if (Posix.lseek (fd, this.first_byte, Posix.SEEK_SET) < 0)
+                    throw IOError.from_errno (errno);
             }
 
             while (true) {
