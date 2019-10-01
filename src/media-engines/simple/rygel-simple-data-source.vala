@@ -144,9 +144,7 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
         try {
             fd = Posix.open (file.get_path (), Posix.O_RDONLY, 0);
             if (fd < 0) {
-                throw new IOError.FAILED ("Failed to open file '%s': %s",
-                                          file.get_path (),
-                                          Posix.strerror (Posix.errno));
+                throw IOError.from_errno (errno);
             }
 
             if (this.last_byte == 0) {
@@ -191,9 +189,7 @@ internal class Rygel.SimpleDataSource : DataSource, Object {
                 var slice = new uint8[stop - start];
                 var len = (int) Posix.read (fd, slice, slice.length);
                 if (len < 0) {
-                    throw new IOError.FAILED ("Failed to read file '%s': %s",
-                                              file.get_path (),
-                                              Posix.strerror (Posix.errno));
+                    throw IOError.from_errno (errno);
                 }
 
                 slice.length = len;
