@@ -153,8 +153,8 @@ pc_conf.set('includedir', join_paths('${prefix}', get_option('includedir')))
 pc_conf.set('VERSION', '@0@'.format(meson.project_version()))
 pc_conf.set('RYGEL_PLUGIN_DIR', rygel_plugindir)
 pc_conf.set('RYGEL_MEDIA_ENGINE_DIR', rygel_enginedir)
-pc_conf.set('RYGEL_PLUGIN_LINKER_FLAGS', '')
-pc_conf.set('RYGEL_ENGINE_LINKER_FLAGS', '')
+pc_conf.set('RYGEL_PLUGIN_LINKER_FLAGS', '-module -avoid-version -shared -export-dynamic -export-symbols-regex \'module_init\'')
+pc_conf.set('RYGEL_ENGINE_LINKER_FLAGS', '-module -avoid-version -shared -export-dynamic -export-symbols-regex \'module_get_instance\'')
 
 configure_file(output: 'rygel-core-2.6.pc',
                input: 'rygel-core-2.6.pc.in',
