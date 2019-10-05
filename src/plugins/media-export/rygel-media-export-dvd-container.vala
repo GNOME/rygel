@@ -53,7 +53,6 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
                                         Xml.ParserOption.NOERROR |
                                         Xml.ParserOption.NOWARNING |
                                         Xml.ParserOption.NOBLANKS |
-                                        Xml.ParserOption.RECOVER |
                                         Xml.ParserOption.NONET);
         this.doc = new GUPnP.XMLDoc (doc);
 
