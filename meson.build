@@ -121,7 +121,7 @@ unistring = cc.find_library('unistring', required: false)
 u8_strcoll_available = cc.has_function('u8_strcoll', dependencies: unistring)
 conf.set10('HAVE_UNISTRING', u8_strcoll_available)
 
-common_deps = [gupnp, gee]
+common_deps = [glib, gupnp, gee]
 
 core_deps = common_deps + [gssdp, gio, gmodule, libxml, posix, math]
 renderer_deps = common_deps + [gupnp_av, soup]
