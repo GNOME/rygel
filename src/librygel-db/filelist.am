@@ -1,9 +1,0 @@
-
-LIBRYGEL_DB_VAPI_SOURCE_FILES = \
-	database-cursor.vala \
-	database.vala \
-	sql-function.vala \
-	sql-operator.vala
-
-LIBRYGEL_DB_NONVAPI_SOURCE_FILES = \
-	collate.c
