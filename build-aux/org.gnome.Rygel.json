@@ -14,6 +14,10 @@
         "--socket=fallback-x11",
         "--talk-name=org.freedesktop.FileManager1",
         "--talk-name=org.gnome.SettingsDaemon",
+        "--talk-name=org.freedesktop.Tracker1",
+        "--talk-name=org.freedesktop.Tracker1.Statistics",
+        "--talk-name=org.freedesktop.Tracker1.Resources",
+        "--talk-name=org.freedesktop.Tracker1.Miner.Files.Index",
         "--talk-name=org.gtk.vfs",
         "--talk-name=org.gtk.vfs.*"
     ],
