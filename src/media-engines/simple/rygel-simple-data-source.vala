@@ -25,10 +25,10 @@
 /**
  * A simple data source for use with the simple media engine (RygelSimpleMediaEngine).
  *
- * This does not support time-base seeking with 
+ * This does not support time-base seeking with
  * rygel_data_source_start() because it does not
  * use any multimedia framework. Therefore, calling start() with
- * RYGEL_HTTP_SEEK_TYPE_TIME will fail with a 
+ * RYGEL_HTTP_SEEK_TYPE_TIME will fail with a
  * RYGEL_DATA_SOURCE_ERROR_SEEK_FAILED GError code,
  */
 internal class Rygel.SimpleDataSource : DataSource, Object {

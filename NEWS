@@ -1,3 +1,41 @@
+0.38.2
+======
+
+Meson Build:
+ - Fix installation dir for presets
+ - Fix installation dir for icons
+ - Add option to disable introspection completely
+ - Add glib as a dependency to get --target-glib passed on
+ - Fix version string in pkg-config
+ - Generate libtool link flags into pkg-config files for
+   backward-compatibility
+ - Do not drop date from manpage
+
+All:
+ - Clean up code that caused unnecessary C code to be generated
+
+Core:
+ - Fix a potential fd leak
+
+Media Export:
+ - Drop NOENT XML parsing option
+ - Drop RECOVER XML parsing option
+
+GStreamer Media Engine:
+ - Link against -lm where necessary
+
+Simple Media Engine:
+ - Obey lseek return value
+ - Simplify code by using IOError.from_errno
+
+Documentation:
+ - Fix building the references using wong GUPnP version
+
+Examples:
+ - Fix unblacklisting in mx-info
+ - Add option to show blacklist in mx-info
+
+
 0.38.1
 ======
  - Several build fixes for recent vala

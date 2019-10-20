@@ -1,4 +1,4 @@
-project('rygel', 'vala', 'c', version : '0.38.1')
+project('rygel', 'vala', 'c', version : '0.38.2')
 vala = meson.get_compiler('vala')
 
 # Check for the required vala version
