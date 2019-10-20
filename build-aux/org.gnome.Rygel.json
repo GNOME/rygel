@@ -106,7 +106,46 @@
                 "--disable-docs"
             ]
         },
-
+        {
+            "name": "tracker",
+            "buildsystem": "meson",
+            "cleanup": [ "/bin", "/etc", "/lib/girepository-1.0", "/libexec", "/share/dbus-1", "/share/gir-1.0" ],
+            "config-opts": [ "-Dbash_completion=no", "-Ddocs=false", "-Dsystemd_user_services=no" ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/tracker.git"
+                }
+            ]
+        },
+        {
+            "name": "tracker-miners",
+            "buildsystem": "meson",
+            "cleanup": [ "/etc",
+                         "/lib",
+                         "/libexec",
+                         "/share/dbus-1/services/org.freedesktop.Tracker1.Miner.Extract.service",
+                         "/share/dbus-1/services/org.freedesktop.Tracker1.Writeback.service",
+                         "/share/tracker/miners/org.freedesktop.Tracker1.Miner.Applications.service",
+                         "/share/tracker/miners/org.freedesktop.Tracker1.Miner.Extract.service",
+                         "/share/tracker/miners/org.freedesktop.Tracker1.Miner.RSS.service",
+                         "/share/tracker-miners",
+                         "/share/glib-2.0/schemas/org.freedesktop.Tracker.Extract.gschema.xml",
+                         "/share/glib-2.0/schemas/org.freedesktop.Tracker.Writeback.gschema.xml" ],
+            "config-opts": [ "-Dextract=false",
+                             "-Dgeneric_media_extractor=none",
+                             "-Dminer_apps=false",
+                             "-Dminer_fs=true",
+                             "-Dminer_rss=false",
+                             "-Dsystemd_user_services=no",
+                             "-Dwriteback=false" ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/tracker-miners.git"
+                }
+            ]
+        },
        {
             "name" : "rygel",
             "buildsystem" : "meson",
