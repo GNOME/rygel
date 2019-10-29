@@ -5,6 +5,6 @@ option('plugins', type : 'array', choices : ['external', 'gst-launch', 'lms', 'm
 option('engines', type : 'array', choices : ['simple', 'gstreamer'])
 option('examples', type : 'boolean', value : 'true')
 option('tests', type : 'boolean', value : 'true')
-option('gstreamer', type : 'boolean', value : 'true')
-option('gtk', type : 'boolean', value : 'true')
+option('gstreamer', type : 'feature', value : 'enabled')
+option('gtk', type : 'feature', value : 'enabled')
 option('introspection', type: 'feature', value : 'auto')

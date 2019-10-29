@@ -1,4 +1,4 @@
-project('rygel', 'vala', 'c', version : '0.39.0')
+project('rygel', 'vala', 'c', version : '0.39.0', meson_version : '>= 0.50.0')
 vala = meson.get_compiler('vala')
 
 # Check for the required vala version
@@ -81,31 +81,17 @@ soup = dependency('libsoup-2.4', version : '>= 2.44.0')
 mediaart = dependency('libmediaart-2.0', version : '>= 0.7.0')
 sqlite = dependency('sqlite3', version : '>= 3.5')
 
-if get_option('gstreamer')
-    gstreamer = dependency('gstreamer-1.0', version : '>= 1.0')
-    gstreamer_pbu = dependency('gstreamer-pbutils-1.0', version : '>= 1.0')
-    gstreamer_base = dependency('gstreamer-base-1.0', version : '>= 1.0')
-    gstreamer_audio = dependency('gstreamer-audio-1.0', version : '>= 1.0')
-    gstreamer_video = dependency('gstreamer-video-1.0', version : '>= 1.0')
-    gstreamer_tag = dependency('gstreamer-tag-1.0', version : '>= 1.0')
-    gupnp_dlna_gst = dependency('gupnp-dlna-gst-2.0', version: '>= 0.9.4')
-else
-    gstreamer = disabler()
-    gstreamer_pbu = disabler()
-    gstreamer_base = disabler()
-    gstreamer_audio = disabler()
-    gstreamer_video = disabler()
-    gstreamer_tag = disabler()
-    gupnp_dlna_gst = disabler()
-endif
+gstreamer = dependency('gstreamer-1.0', version : '>= 1.0', disabler: true, required: get_option('gstreamer'))
+gstreamer_pbu = dependency('gstreamer-pbutils-1.0', version : '>= 1.0', disabler: true, required: get_option('gstreamer'))
+gstreamer_base = dependency('gstreamer-base-1.0', version : '>= 1.0', disabler: true, required: get_option('gstreamer'))
+gstreamer_audio = dependency('gstreamer-audio-1.0', version : '>= 1.0', disabler: true, required: get_option('gstreamer'))
+gstreamer_video = dependency('gstreamer-video-1.0', version : '>= 1.0', disabler: true, required: get_option('gstreamer'))
+gstreamer_tag = dependency('gstreamer-tag-1.0', version : '>= 1.0', disabler: true, required: get_option('gstreamer'))
+gupnp_dlna_gst = dependency('gupnp-dlna-gst-2.0', version: '>= 0.9.4', disabler: true, required: get_option('gstreamer'))
 
 gdk_pixbuf = dependency('gdk-pixbuf-2.0')
 
-if get_option('gtk')
-    gtk = dependency('gtk+-3.0', version : '>= 3.0')
-else
-    gtk = disabler()
-endif
+gtk = dependency('gtk+-3.0', version : '>= 3.0', disabler: true, required: get_option('gtk'))
 
 posix = vala.find_library('posix')
 
