@@ -1,7 +1,6 @@
 [Desktop Entry]
 Name=Rygel
 GenericName=UPnP/DLNA Services
-Comment=UPnP/DLNA Services
 # Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 Keywords=mediaserver;mediarenderer;share;audio;video;pictures;
 Exec=rygel
