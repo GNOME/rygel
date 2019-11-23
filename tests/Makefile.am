@@ -19,7 +19,7 @@ check_PROGRAMS = rygel-regression \
 
 TESTS = $(check_PROGRAMS)
 
-EXTRA_DIST = $(srcdir)/data/test-data.dat
+EXTRA_DIST = $(srcdir)/data/test-data.dat meson.build
 
 # Define the most commonly-used flags,
 # to avoid repetition:
@@ -46,7 +46,7 @@ test_server_libs = \
 	$(test_libs) \
 	$(LIBRYGEL_SERVER_DEPS_LIBS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
-	
+
 # Note that the non-test sources here are symlinked from their
 # various source directories.
 # TODO: Mention their relative paths instead, to make this clearer?
@@ -205,7 +205,7 @@ test_librygel_renderer_gst_libs = \
 	$(test_libs) \
 	$(LIBRYGEL_RENDERER_GST_DEPS_LIBS) \
 	$(RYGEL_COMMON_LIBRYGEL_RENDERER_GST_LIBS)
-	
+
 rygel_playbin_renderer_test_SOURCES = rygel-playbin-renderer-test.vala
 rygel_playbin_renderer_test_VALAFLAGS = \
 	--enable-experimental \

@@ -71,4 +71,5 @@ service/sysv/rygel \
 service/README.Ubuntu \
 service/upstart/rygel.conf \
 service/systemd/rygel.service \
-org.gnome.Rygel.FullscreenRenderer.gresource.xml
+org.gnome.Rygel.FullscreenRenderer.gresource.xml \
+meson.build

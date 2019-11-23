@@ -22,4 +22,4 @@ librygel_media_engine_simple_la_LIBADD = \
 librygel_media_engine_simple_la_LDFLAGS = \
 	$(RYGEL_ENGINE_LINKER_FLAGS)
 
-EXTRA_DIST = media-engine-simple.plugin.in
+EXTRA_DIST = media-engine-simple.plugin.in meson.build

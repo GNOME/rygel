@@ -23,4 +23,4 @@ librygel_mpris_la_LIBADD = \
 librygel_mpris_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
 
-EXTRA_DIST = mpris.plugin.in
+EXTRA_DIST = mpris.plugin.in meson.build

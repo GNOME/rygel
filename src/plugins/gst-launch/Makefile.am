@@ -24,4 +24,4 @@ librygel_gst_launch_la_LIBADD = \
 librygel_gst_launch_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
 
-EXTRA_DIST = gst-launch.plugin.in
+EXTRA_DIST = gst-launch.plugin.in meson.build

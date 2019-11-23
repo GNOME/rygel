@@ -75,4 +75,5 @@ EXTRA_DIST = \
 	$(DEPS_FILES) \
 	$(BUILT_SOURCES) \
 	RygelCore-2.6.gir \
-	Rygel-2.6.gir
+	Rygel-2.6.gir \
+	meson.build

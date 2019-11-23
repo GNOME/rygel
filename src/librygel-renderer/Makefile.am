@@ -57,4 +57,4 @@ nodist_typelib_DATA = $(GIRS:.gir=.typelib)
 endif
 
 DISTCLEANFILES = $(nodist_typelib_DATA)
-EXTRA_DIST = rygel-renderer.h rygel-renderer-2.6.vapi rygel-renderer-2.6.deps RygelRenderer-2.6.gir Rygel-2.6.gir
+EXTRA_DIST = rygel-renderer.h rygel-renderer-2.6.vapi rygel-renderer-2.6.deps RygelRenderer-2.6.gir Rygel-2.6.gir meson.build

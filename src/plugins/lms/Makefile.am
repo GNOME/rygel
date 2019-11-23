@@ -43,4 +43,4 @@ librygel_lms_la_LIBADD = \
 librygel_lms_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
 
-EXTRA_DIST = lms.plugin.in
+EXTRA_DIST = lms.plugin.in meson.build

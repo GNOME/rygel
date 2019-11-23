@@ -54,4 +54,4 @@ librygel_tracker_la_LIBADD = \
 librygel_tracker_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
 
-EXTRA_DIST = tracker.plugin.in
+EXTRA_DIST = tracker.plugin.in meson.build

@@ -39,4 +39,4 @@ librygel_media_engine_gst_la_LIBADD = \
 librygel_media_engine_gst_la_LDFLAGS = \
 	$(RYGEL_ENGINE_LINKER_FLAGS)
 
-EXTRA_DIST = media-engine-gst.plugin.in
+EXTRA_DIST = media-engine-gst.plugin.in meson.build

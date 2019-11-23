@@ -36,4 +36,4 @@ vapi_DATA = rygel-ruih-2.0.vapi rygel-ruih-2.0.deps
 
 rygel-ruih.h rygel-ruih-2.0.vapi: librygel_ruih_2_0_la_vala.stamp
 
-EXTRA_DIST = rygel-ruih.h rygel-ruih-2.0.vapi rygel-ruih-2.0.deps
+EXTRA_DIST = rygel-ruih.h rygel-ruih-2.0.vapi rygel-ruih-2.0.deps meson.build

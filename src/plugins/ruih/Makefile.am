@@ -17,4 +17,4 @@ librygel_ruih_la_LIBADD = \
 librygel_ruih_la_LDFLAGS = \
         $(RYGEL_PLUGIN_LINKER_FLAGS)
 
-EXTRA_DIST = ruih.plugin.in
+EXTRA_DIST = ruih.plugin.in meson.build

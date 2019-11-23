@@ -54,4 +54,6 @@ EXTRA_DIST = $(dbusservice_in_files) \
 	     $(sysconf_DATA) \
 	     $(pixmaps_DATA) \
 	     $(preset_DATA) \
-	     $(systemdservice_in_files)
+	     $(systemdservice_in_files) \
+		 presets/meson.build \
+		 meson.build

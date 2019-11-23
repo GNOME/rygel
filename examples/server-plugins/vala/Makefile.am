@@ -22,8 +22,8 @@ librygel_example_server_plugin_vala_la_CFLAGS = \
 librygel_example_server_plugin_vala_la_LIBADD = \
 	$(EXAMPLE_DEPS_LIBS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS)
-	
+
 librygel_example_server_plugin_vala_la_LDFLAGS = \
   $(RYGEL_PLUGIN_LINKER_FLAGS)
 
-EXTRA_DIST = example-server-vala.plugin.in
+EXTRA_DIST = example-server-vala.plugin.in meson.build

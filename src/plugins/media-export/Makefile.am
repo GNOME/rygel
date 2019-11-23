@@ -95,4 +95,4 @@ librygel_media_export_la_LIBADD = \
 librygel_media_export_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
 
-EXTRA_DIST = media-export.plugin.in
+EXTRA_DIST = media-export.plugin.in meson.build

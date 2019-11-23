@@ -14,3 +14,5 @@ MAINTAINERCLEANFILES = Makefile.in
 
 vala-clean:
 	rm -f `find . -name "*.stamp"`
+
+EXTRA_DIST = meson.build

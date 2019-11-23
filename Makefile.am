@@ -15,7 +15,10 @@ EXTRA_DIST = rygel-core-2.6.pc.in rygel-renderer-2.6.pc.in rygel-ruih-2.0.pc.in 
              build-aux/config.rpath \
              build-aux/git-version-gen \
              COPYING.logo \
-             README.md
+             README.md \
+			 meson.build \
+			 meson_options.txt \
+			 po/meson.build
 
 AM_DISTCHECK_CONFIGURE_FLAGS = --with-systemduserunitdir='$${libdir}/systemd/user-distcheck'
 

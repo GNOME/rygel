@@ -2,7 +2,9 @@ SUBDIRS = reference
 
 EXTRA_DIST = \
 		man/rygel.xml \
-		man/rygel.conf.xml
+		man/rygel.conf.xml \
+		meson.build \
+		man/meson.build
 
 if HAVE_XSLTPROC
 dist_man1_MANS = \

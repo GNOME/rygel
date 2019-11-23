@@ -17,4 +17,4 @@ librygel_playbin_la_LIBADD = \
 librygel_playbin_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
 
-EXTRA_DIST = playbin.plugin.in
+EXTRA_DIST = playbin.plugin.in meson.build

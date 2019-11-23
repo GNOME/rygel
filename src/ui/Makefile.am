@@ -28,3 +28,5 @@ rygel_preferences_LDADD = \
 rygel_preferences_LDFLAGS = \
 	$(RYGEL_DATA_DIR_DEFINES) \
 	-export-dynamic
+
+EXTRA_DIST = meson.build

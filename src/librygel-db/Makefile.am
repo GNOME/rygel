@@ -37,4 +37,4 @@ vapi_DATA = rygel-db-2.6.vapi rygel-db-2.6.deps
 rygel-db.h rygel-db-2.6.vapi: librygel_db_2_6_la_vala.stamp
 
 DISTCLEANFILES = $(nodist_typelib_DATA)
-EXTRA_DIST = rygel-db.h rygel-db-2.6.vapi rygel-db-2.6.deps
+EXTRA_DIST = rygel-db.h rygel-db-2.6.vapi rygel-db-2.6.deps meson.build

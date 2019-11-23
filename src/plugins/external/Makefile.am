@@ -29,4 +29,4 @@ librygel_external_la_LIBADD = \
 librygel_external_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
 
-EXTRA_DIST=external.plugin.in
+EXTRA_DIST=external.plugin.in meson.build

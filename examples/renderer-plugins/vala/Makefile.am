@@ -18,8 +18,8 @@ librygel_example_renderer_plugin_vala_la_CFLAGS = \
 librygel_example_renderer_plugin_vala_la_LIBADD = \
 	$(EXAMPLE_DEPS_LIBS) \
 	$(RYGEL_COMMON_LIBRYGEL_RENDERER_LIBS)
-	
+
 librygel_example_renderer_plugin_vala_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
 
-EXTRA_DIST = example-renderer-vala.plugin.in
+EXTRA_DIST = example-renderer-vala.plugin.in meson.build

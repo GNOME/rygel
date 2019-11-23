@@ -18,8 +18,8 @@ librygel_example_server_plugin_c_la_LIBADD = \
 	$(EXAMPLE_DEPS_LIBS) \
 	$(RYGEL_COMMON_LIBRYGEL_SERVER_LIBS) \
 	$(RYGEL_COMMON_SERVER_LIBS)
-	
+
 librygel_example_server_plugin_c_la_LDFLAGS = \
 	$(RYGEL_PLUGIN_LINKER_FLAGS)
 
-EXTRA_DIST = example-server-c.plugin.in
+EXTRA_DIST = example-server-c.plugin.in meson.build
