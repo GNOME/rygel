@@ -1,3 +1,16 @@
+0.38.3
+======
+
+Autotools:
+ - Dist meson build files
+
+Data:
+ - Remove useless Comment: from rygel.desktop
+
+All contributors to this release:
+ - Philip Withnall <philip@tecnocode.co.uk>
+ - Jens Georg <mail@jensge.org>
+
 0.38.2
 ======
 
