@@ -183,15 +183,15 @@ msgstr "L'argument no és vàlid"
 
 #: src/librygel-core/rygel-basic-management.vala:255
 msgid "Cannot run “Ping” action: Host is empty"
-msgstr "No es pot executar l'acció «Ping»: l'amfitrió és buit."
+msgstr "No es pot executar l'acció «Ping»: l'amfitrió és buit"
 
 #: src/librygel-core/rygel-basic-management.vala:348
 msgid "Cannot run “NSLookup” action: HostName is empty"
-msgstr "No es pot executar l'acció «NSLookup»: el nom de l'amfitrió és buit."
+msgstr "No es pot executar l'acció «NSLookup»: el nom de l'amfitrió és buit"
 
 #: src/librygel-core/rygel-basic-management.vala:430
 msgid "Cannot run “Traceroute” action: Host is empty"
-msgstr "No es pot executar l'acció «Traceroute»: l'amfitrió és buit."
+msgstr "No es pot executar l'acció «Traceroute»: l'amfitrió és buit"
 
 #: src/librygel-core/rygel-cmdline-config.vala:73
 msgid "Display version number"
@@ -359,7 +359,7 @@ msgstr "No existeix el mòdul %s del connector"
 #: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
 msgid "New plugin “%s” available"
-msgstr "Hi ha un connector «%s» nou disponible."
+msgstr "Hi ha un connector «%s» nou disponible"
 
 #: src/librygel-core/rygel-plugin-loader.vala:104
 #, c-format
@@ -1038,7 +1038,7 @@ msgstr "Manca l'element necessari %s"
 msgid "GStreamer element “dvdreadsrc” not found. DVD support does not work"
 msgstr ""
 "L'element «dvdreadsrc» de GStreamer no s'ha trobat. La implementació DVD no "
-"funciona."
+"funciona"
 
 #: src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
@@ -1169,7 +1169,7 @@ msgstr "No s'ha pogut consultar la informació d'un fitxer %s: %s"
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr ""
 "No s'ha pogut trobar l'objecte %s o el seu pare. La base de dades és "
-"inconsistent."
+"inconsistent"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:249
 #, c-format
@@ -1294,7 +1294,7 @@ msgstr ""
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:690
 msgid "Incompatible schema… cannot proceed"
-msgstr "Esquema incompatible... no es pot continuar."
+msgstr "Esquema incompatible... no es pot continuar"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:696
 #, c-format
@@ -1546,11 +1546,11 @@ msgstr "Error en crear DBus proxy per a ACL: %s"
 
 #: src/rygel/rygel-acl.vala:143
 msgid "No ACL fallback policy found. Using “allow”"
-msgstr "No s'ha trobat política de reserva d'ACL. S'usa \"allow\""
+msgstr "No s'ha trobat política de reserva d'ACL. S'usa «allow»"
 
 #: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “deny”"
-msgstr "No s'ha trobat política de reserva d'ACL. S'usa \"deny\""
+msgstr "No s'ha trobat política de reserva d'ACL. S'usa «deny»"
 
 #: src/rygel/rygel-dbus-service.vala:81
 msgid "Another instance of Rygel is already running. Not starting."
