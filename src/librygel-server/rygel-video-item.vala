@@ -190,19 +190,63 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
                 // Work-around bgo#753382 - add subtitle to all resources
                 var resources = didl_item.get_resources ();
                 foreach (var resource in resources) {
+                    // Don't add subtitles to subtitles
+                    if (resource.protocol_info.mime_type == main_subtitle.mime_type) {
+                        continue;
+                    }
+
                     resource.subtitle_file_type =
                         main_subtitle.caption_type.up ();
                     resource.subtitle_file_uri = main_subtitle.uri;
                 }
             }
+
         }
 
         return didl_item;
+    }
+
+    internal virtual void add_subtitle_resources (HTTPServer http_server) {
+        if (this.place_holder) {
+            return;
+        }
+
+        for (var i = 0; i < this.subtitles.size; i++) {
+            var subtitle = this.subtitles.get (i);
+            // Add the defined thumbnail uri unconditionally
+            //  (it will be filtered out if the request is remote)
+            string protocol;
+            try {
+                protocol = this.get_protocol_for_uri (subtitle.uri);
+            } catch (Error e) {
+                message (_("Could not determine protocol for URI %s"),
+                         subtitle.uri);
+
+                continue;
+            }
+
+            var subtitle_resource = subtitle.get_resource (protocol, i);
+            subtitle_resource.uri = subtitle.uri;
+            this.get_resource_list ().add (subtitle_resource);
+            if (http_server.need_proxy (subtitle.uri)) {
+                var http_sub_res = subtitle.get_resource
+                                    (http_server.get_protocol (), i);
+
+                // Make a http uri for the thumbnail
+                http_sub_res.uri = http_server.create_uri_for_object
+                                             (this,
+                                              -1,
+                                              i,
+                                              null);
+                this.get_resource_list ().add (http_sub_res);
+            }
+        }
     }
 
     internal override void add_additional_resources (HTTPServer server) {
         base.add_additional_resources (server);
 
         this.add_thumbnail_resources (server);
+        this.add_subtitle_resources (server);
     }
 }

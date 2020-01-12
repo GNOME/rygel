@@ -31,13 +31,16 @@ public class Rygel.Subtitle {
     public string uri;
     public string mime_type;
     public string caption_type;
+    public string file_extension;
 
     public int64 size = -1;   // Size in bytes
 
-    public Subtitle (string mime_type = "text/plain",
-                     string caption_type = "srt") {
+    public Subtitle (string mime_type = "text/srt",
+                     string caption_type = "srt",
+                     string file_extension = "srt") {
         this.mime_type = mime_type;
         this.caption_type = caption_type;
+        this.file_extension = file_extension;
     }
 
     internal void add_didl_node (DIDLLiteItem didl_item) {
@@ -63,5 +66,29 @@ public class Rygel.Subtitle {
                                                    this.uri);
 
         sec_node->new_ns_prop (sec_ns, "type", this.caption_type);
+    }
+
+    internal virtual MediaResource get_resource (string protocol, int index) {
+        var name = "%s_subtitle_%2d".printf (protocol, index);
+
+        var res = new MediaResource (name);
+
+        res.size = this.size;
+        res.mime_type = "text/srt"; this.mime_type;
+        res.protocol = protocol;
+
+        // Note: These represent best-case. The MediaServer/HTTPServer can
+        // dial these back
+        res.dlna_flags |= DLNAFlags.INTERACTIVE_TRANSFER_MODE |
+                          DLNAFlags.BACKGROUND_TRANSFER_MODE |
+                          DLNAFlags.CONNECTION_STALL |
+                          DLNAFlags.DLNA_V15;
+        res.dlna_operation = DLNAOperation.RANGE;
+        res.dlna_conversion = DLNAConversion.TRANSCODED;
+        res.extension = this.file_extension;
+
+        res.uri = this.uri;
+
+        return res;
     }
 }
