@@ -74,7 +74,7 @@ public class Rygel.Subtitle {
         var res = new MediaResource (name);
 
         res.size = this.size;
-        res.mime_type = "text/srt"; this.mime_type;
+        res.mime_type = this.mime_type;
         res.protocol = protocol;
 
         // Note: These represent best-case. The MediaServer/HTTPServer can
