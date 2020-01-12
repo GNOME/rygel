@@ -41,6 +41,8 @@ internal class Rygel.LGTVHacks : ClientHacks {
                 resource.mime_type = "video/avi";
             } else if (resource.mime_type == "video/mp4") {
                 resource.dlna_profile = null;
+            } else if (resource.mime_type == "application/subrip") {
+                resource.mime_type = "text/srt";
             }
         }
 
