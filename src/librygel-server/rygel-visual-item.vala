@@ -78,37 +78,39 @@ public interface Rygel.VisualItem : MediaFileItem {
     }
 
     internal void add_thumbnail_resources (HTTPServer http_server) {
+        if (this.place_holder) {
+            return;
+        }
+
         for (var i = 0; i < this.thumbnails.size; i++) {
-            if (!this.place_holder) {
-                var thumbnail = this.thumbnails.get (i);
-                // Add the defined thumbnail uri unconditionally
-                //  (it will be filtered out if the request is remote)
-                string protocol;
-                try {
-                    protocol = this.get_protocol_for_uri (thumbnail.uri);
-                } catch (Error e) {
-                    message (/*_*/("Could not determine protocol for URI %s"),
-                             thumbnail.uri);
+            var thumbnail = this.thumbnails.get (i);
+            // Add the defined thumbnail uri unconditionally
+            //  (it will be filtered out if the request is remote)
+            string protocol;
+            try {
+                protocol = this.get_protocol_for_uri (thumbnail.uri);
+            } catch (Error e) {
+                message (/*_*/("Could not determine protocol for URI %s"),
+                         thumbnail.uri);
 
-                    continue;
-                }
+                continue;
+            }
 
-                var thumb_res = thumbnail.get_resource (protocol, i);
-                thumb_res.uri = thumbnail.uri;
-                this.get_resource_list ().add (thumb_res);
-                if (http_server.need_proxy (thumbnail.uri)) {
-                    var http_thumb_res = thumbnail.get_resource
-                                        (http_server.get_protocol (), i);
+            var thumb_res = thumbnail.get_resource (protocol, i);
+            thumb_res.uri = thumbnail.uri;
+            this.get_resource_list ().add (thumb_res);
+            if (http_server.need_proxy (thumbnail.uri)) {
+                var http_thumb_res = thumbnail.get_resource
+                                    (http_server.get_protocol (), i);
 
-                    var index = this.thumbnails.index_of (thumbnail);
-                    // Make a http uri for the thumbnail
-                    http_thumb_res.uri = http_server.create_uri_for_object
-                                                 (this,
-                                                  index,
-                                                  -1,
-                                                  null);
-                    this.get_resource_list ().add (http_thumb_res);
-                }
+                var index = this.thumbnails.index_of (thumbnail);
+                // Make a http uri for the thumbnail
+                http_thumb_res.uri = http_server.create_uri_for_object
+                                             (this,
+                                              index,
+                                              -1,
+                                              null);
+                this.get_resource_list ().add (http_thumb_res);
             }
         }
     }
