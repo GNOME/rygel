@@ -69,5 +69,16 @@ internal class Rygel.LGTVHacks : ClientHacks {
                 resources.insert (0, resource);
             }
         }
+
+        if (!(object is VideoItem)) {
+            return;
+        }
+
+        var item = object as VideoItem;
+        foreach (var subtitle in item.subtitles) {
+            if (subtitle.mime_type == "application/x-subrip") {
+                subtitle.mime_type = "text/srt";
+            }
+        }
     }
 }
