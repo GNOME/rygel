@@ -110,8 +110,9 @@ public class Rygel.MediaExport.Extractor : Object {
                                     (FileAttribute.TIME_MODIFIED);
         this.serialized_info.insert (Serializer.MODIFIED, "t", mtime);
 
-        TimeVal tv = { (long) mtime, 0 };
-        this.serialized_info.insert (Serializer.DATE, "s", tv.to_iso8601 ());
+        var dt = new DateTime.from_unix_utc (mtime);
+        var date = "%sZ".printf (now.format ("%Y-%m-%dT%H:%M:%S"));
+        this.serialized_info.insert (Serializer.DATE, "s", date);
 
         var content_type = ContentType.get_mime_type
                                         (file_info.get_content_type ());

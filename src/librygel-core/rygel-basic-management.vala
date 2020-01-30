@@ -47,10 +47,9 @@ public class Rygel.BasicManagement : Service {
         this.tests_map = new HashMap<string, BasicManagementTest> ();
         this.test_ids_by_type = new HashMap<string, LinkedList> ();
 
-        var now = TimeVal ();
-        now.tv_usec = 0;
-
-        this.device_status = "OK," + now.to_iso8601 ();
+        var now = new GLib.DateTime.now_utc ();
+        // TODO: Replace with to_iso8601() once glib 2.62 is a bit more widespread
+        this.device_status = "OK,%sZ".printf (now.format ("%Y-%m-%dT%H:%M:%S"));
 
         this.query_variable["DeviceStatus"].connect
                                         (this.query_device_status_cb);

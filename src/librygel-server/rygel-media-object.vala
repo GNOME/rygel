@@ -470,28 +470,10 @@ public abstract class Rygel.MediaObject : GLib.Object {
                 other_date += "T00:00:00Z";
             }
 
-            var tv1 = TimeVal ();
-            assert (tv1.from_iso8601 (this.date));
+            var our_date_time = new GLib.DateTime.from_iso8601 (our_date, null);
+            var other_date_time = new GLib.DateTime.from_iso8601 (other_date, null);
 
-            var tv2 = TimeVal ();
-            assert (tv2.from_iso8601 (object.date));
-
-            var ret = this.compare_long (tv1.tv_sec, tv2.tv_sec);
-            if (ret == 0) {
-                ret = this.compare_long (tv1.tv_usec, tv2.tv_usec);
-            }
-
-            return ret;
-        }
-    }
-
-    private int compare_long (long a, long b) {
-        if (a < b) {
-            return -1;
-        } else if (a > b) {
-            return 1;
-        } else {
-            return 0;
+            return our_date_time.compare (other_date_time);
         }
     }
 

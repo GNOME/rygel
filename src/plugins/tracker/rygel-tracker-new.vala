@@ -41,11 +41,12 @@ public class Rygel.Tracker.New : Rygel.Tracker.SearchContainer {
                                         ADDED_PREDICATE,
                                         ADDED_VARIABLE));
 
-        var time = TimeVal ();
-        time.tv_sec -= THREE_DAYS_AS_SEC;
+        var now = new DateTime.now_utc ();
+        now.add_days (-3);
+        var three_days_ago = "%sZ".printf (now.format ("%Y-%m-%dT%H:%M:%S"));
 
         var filters = new ArrayList<string> ();
-        filters.add (ADDED_VARIABLE + " > \"" + time.to_iso8601 () + "\"");
+        filters.add (ADDED_VARIABLE + " > \"" + three_days_ago + "\"");
 
         base (parent.id + "New",
               parent,

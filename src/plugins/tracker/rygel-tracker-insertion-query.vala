@@ -95,8 +95,8 @@ public class Rygel.Tracker.InsertionQuery : Query {
                                         "\"" + item.get_primary_uri () + "\""));
         string date;
         if (item.date == null) {
-            var now = TimeVal ();
-            date = now.to_iso8601 ();
+            var now = new GLib.DateTime.now_utc ();
+            date = "%sZ".printf (now.format ("%Y-%m-%dT%H:%M:%S"));
         } else {
             // Rygel core makes sure that this is a valid ISO8601 date.
             date = item.date;

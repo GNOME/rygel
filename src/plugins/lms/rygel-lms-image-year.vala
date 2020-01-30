@@ -71,8 +71,8 @@ public class Rygel.LMS.ImageYear : Rygel.LMS.CategoryContainer {
         var image = new ImageItem (this.build_child_id (id), this, title);
         image.ref_id = this.build_reference_id (id);
         image.creator = statement.column_text (2);
-        TimeVal tv = { (long) statement.column_int (3), (long) 0 };
-        image.date = tv.to_iso8601 ();
+        var dt = new DateTime.from_unix_utc ((long) statement.column_int (3));
+        image.date = "%sZ".printf (now.format ("%Y-%m-%dT%H:%M:%S"));
         image.width = statement.column_int (4);
         image.height = statement.column_int (5);
         image.size = statement.column_int (7);
