@@ -106,12 +106,12 @@ public class Rygel.MediaExport.Extractor : Object {
             this.serialized_info.insert (Serializer.TITLE, "s", display_name);
         }
 
-        var mtime = file_info.get_attribute_uint64
+        var mtime = file_info.get_attribute_int64
                                     (FileAttribute.TIME_MODIFIED);
         this.serialized_info.insert (Serializer.MODIFIED, "t", mtime);
 
         var dt = new DateTime.from_unix_utc (mtime);
-        var date = "%sZ".printf (now.format ("%Y-%m-%dT%H:%M:%S"));
+        var date = "%sZ".printf (dt.format ("%Y-%m-%dT%H:%M:%S"));
         this.serialized_info.insert (Serializer.DATE, "s", date);
 
         var content_type = ContentType.get_mime_type

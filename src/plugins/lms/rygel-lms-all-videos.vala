@@ -84,7 +84,7 @@ public class Rygel.LMS.AllVideos : Rygel.LMS.CategoryContainer {
         video.creator = statement.column_text (2);
         video.duration = statement.column_int (3);
         var dt = new DateTime.from_unix_utc ((long) statement.column_int (5));
-        video.date = "%sZ".printf (now.format ("%Y-%m-%dT%H:%M:%S"));
+        video.date = "%sZ".printf (dt.format ("%Y-%m-%dT%H:%M:%S"));
         video.size = statement.column_int (6);
         video.dlna_profile = statement.column_text (7);
         video.mime_type = mime_type;

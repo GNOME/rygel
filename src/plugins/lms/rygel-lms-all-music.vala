@@ -157,7 +157,7 @@ public class Rygel.LMS.AllMusic : Rygel.LMS.CategoryContainer {
         song.artist = statement.column_text (11);
         song.album = statement.column_text (12);
         var dt = new DateTime.from_unix_utc ((long) statement.column_int (13));
-        song.date = "%sZ".printf (now.format ("%Y-%m-%dT%H:%M:%S"));
+        song.date = "%sZ".printf (dt.format ("%Y-%m-%dT%H:%M:%S"));
         song.genre = statement.column_text (14);
         var file = File.new_for_path (path);
         song.add_uri (file.get_uri ());
