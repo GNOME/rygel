@@ -188,10 +188,10 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
 
         if (expression is LogicalExpression) {
             return CategoryContainer.logical_expression_to_sql
-                                        (expression as LogicalExpression, args);
+                                        ((LogicalExpression) expression, args);
         } else {
             return CategoryContainer.relational_expression_to_sql
-                                        (expression as RelationalExpression,
+                                        ((RelationalExpression) expression,
                                          args);
         }
     }
@@ -320,7 +320,7 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
                     object = child;
                 } else {
                     /* try grandchildren */
-                    var container = child as CategoryContainer;
+                    var container = (CategoryContainer) child;
                     object = yield container.find_object (id, cancellable);
 
                     /* tell object to keep a reference to the parent --
