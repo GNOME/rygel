@@ -259,9 +259,7 @@ rygel_example_player_class_init (RygelExamplePlayerClass *klass) {
 
 static void
 rygel_example_player_init (RygelExamplePlayer *self) {
-  self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self,
-                                            RYGEL_EXAMPLE_TYPE_PLAYER,
-                                            RygelExamplePlayerPrivate);
+  self->priv = rygel_example_player_get_instance_private (self);
 
   self->priv->_playback_state = g_strdup ("NO_MEDIA_PRESENT");
   self->priv->_uri = NULL;
