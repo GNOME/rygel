@@ -35,10 +35,10 @@ private class Rygel.PlaybinRendererTest : GLib.Object {
     }
 
     public void test_with_default_gstplaybin() {
-        var renderer = new Rygel.Playbin.Renderer ("test playbin renderer");
+        var renderer = new Rygel.PlaybinRenderer ("test playbin renderer");
         assert (renderer != null);
         try {
-            var player = Rygel.Playbin.Player.instance ();
+            var player = Rygel.PlaybinPlayer.instance ();
             assert (player.playbin != null);
         } catch (Error error) {
             assert_not_reached ();

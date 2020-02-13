@@ -40,7 +40,7 @@ using GUPnP;
  *
  * See the <link linkend="implementing-renderers-gst">Implementing GStreamer-based Renderers</link> section.
  */
-public class Rygel.Playbin.Renderer : Rygel.MediaRenderer {
+public class Rygel.PlaybinRenderer : Rygel.MediaRenderer {
     /**
      * Create a new instance of Renderer.
      *
@@ -49,10 +49,10 @@ public class Rygel.Playbin.Renderer : Rygel.MediaRenderer {
      *
      * @param title Friendly name of the new UPnP renderer on the network.
      */
-    public Renderer (string title) {
+    public PlaybinRenderer (string title) {
         try {
             Object (title: title,
-                    player: Player.instance ());
+                    player: PlaybinPlayer.instance ());
         } catch (Error error) {
             warning (error.message);
 
@@ -65,7 +65,7 @@ public class Rygel.Playbin.Renderer : Rygel.MediaRenderer {
      */
     public Gst.Element? get_playbin () {
         try {
-            var player = Rygel.Playbin.Player.instance ();
+            var player = Rygel.PlaybinPlayer.instance ();
 
             return player.playbin;
         } catch (Error error) {

@@ -33,12 +33,12 @@ internal class Rygel.Playbin.Plugin : Rygel.MediaRendererPlugin {
 
     public Plugin () throws Error {
         base (Plugin.NAME, _("GStreamer Player"));
-        this.supported_profiles = Player.instance ().supported_profiles;
+        this.supported_profiles = PlaybinPlayer.instance ().supported_profiles;
     }
 
     public override MediaPlayer? get_player () {
         try {
-            return Playbin.Player.instance ();
+            return PlaybinPlayer.instance ();
         } catch (Error error) {
             warning (_("Could not create GStreamer player"));
 
