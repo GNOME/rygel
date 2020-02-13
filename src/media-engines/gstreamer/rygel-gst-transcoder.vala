@@ -95,7 +95,7 @@ internal abstract class Rygel.GstTranscoder : GLib.Object {
 
         // Retrieve the duration from primary media resource
         if (item is AudioItem) {
-            res.duration = (item as AudioItem).duration;
+            res.duration = ((AudioItem) item).duration;
         }
 
         return res;
