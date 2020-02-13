@@ -63,7 +63,11 @@ internal class Rygel.EngineLoader : RecursiveModuleLoader {
             }
         }
 
+#if VALA_0_46
+        var module = Module.open (file.get_path (), ModuleFlags.LOCAL);
+#else
         var module = Module.open (file.get_path (), ModuleFlags.BIND_LOCAL);
+#endif
         if (module == null) {
             debug ("Failed to load engine %s: %s",
                    file.get_path (),
