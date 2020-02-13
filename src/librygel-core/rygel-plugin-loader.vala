@@ -107,8 +107,13 @@ public class Rygel.PluginLoader : RecursiveModuleLoader {
             return true;
         }
 
+#if VALA_0_46
+        Module module = Module.open (module_file.get_path (),
+                                     ModuleFlags.LOCAL);
+#else
         Module module = Module.open (module_file.get_path (),
                                      ModuleFlags.BIND_LOCAL);
+#endif
         if (module == null) {
             warning (_("Failed to load module from path “%s”: %s"),
                      module_file.get_path (),
