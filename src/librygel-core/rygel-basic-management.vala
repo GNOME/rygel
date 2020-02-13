@@ -278,19 +278,24 @@ public class Rygel.BasicManagement : Service {
         if (!this.ensure_test_exists (action, out bm_test)) {
             return;
         }
+        var ping = bm_test as BasicManagementTestPing;
+        if (ping == null) {
+            action.return_error (707, _("Wrong Test Type"));
+
+            return;
+        }
 
         string status, additional_info;
         uint success_count, failure_count;
         uint32 avg_response_time, min_response_time, max_response_time;
 
-        (bm_test as BasicManagementTestPing).get_results
-                                        (out status,
-                                         out additional_info,
-                                         out success_count,
-                                         out failure_count,
-                                         out avg_response_time,
-                                         out min_response_time,
-                                         out max_response_time);
+        ping.get_results (out status,
+                          out additional_info,
+                          out success_count,
+                          out failure_count,
+                          out avg_response_time,
+                          out min_response_time,
+                          out max_response_time);
 
         action.set ("Status",
                         typeof (string),
@@ -372,14 +377,20 @@ public class Rygel.BasicManagement : Service {
             return;
         }
 
+        var nslookup = bm_test as BasicManagementTestNSLookup;
+        if (nslookup == null) {
+            action.return_error (707, _("Wrong Test Type"));
+
+            return;
+        }
+
         string status, additional_info, result;
         uint success_count;
 
-        (bm_test as BasicManagementTestNSLookup).get_results
-                                        (out status,
-                                         out additional_info,
-                                         out success_count,
-                                         out result);
+        nslookup.get_results (out status,
+                              out additional_info,
+                              out success_count,
+                              out result);
 
         action.set ("Status",
                         typeof (string),
@@ -455,14 +466,20 @@ public class Rygel.BasicManagement : Service {
             return;
         }
 
+        var traceroute = bm_test as BasicManagementTestTraceroute;
+        if (traceroute == null) {
+            action.return_error (707, _("Wrong Test Type"));
+
+            return;
+        }
+
         string status, additional_info, hop_hosts;
         uint32 response_time;
 
-        (bm_test as BasicManagementTestTraceroute).get_results
-                                        (out status,
-                                         out additional_info,
-                                         out response_time,
-                                         out hop_hosts);
+        traceroute.get_results (out status,
+                                out additional_info,
+                                out response_time,
+                                out hop_hosts);
 
         action.set ("Status",
                         typeof (string),
