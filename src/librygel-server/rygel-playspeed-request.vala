@@ -83,9 +83,10 @@ public class Rygel.PlaySpeedRequest : GLib.Object {
         // Normal rate is always valid. Just check for valid scaled rate
         if (!speed.is_normal_rate ()) {
             // Validate if playspeed is listed in the protocolInfo
-            if (request.handler is HTTPMediaResourceHandler) {
-                var resource = (request.handler as HTTPMediaResourceHandler)
-                                         .media_resource;
+            var resource_handler = request.handler as HTTPMediaResourceHandler;
+
+            if (resource_handler != null) {
+                var resource = resource_handler.media_resource;
                 var speeds = resource.play_speeds;
                 var found_speed = false;
                 foreach (var speed in speeds) {

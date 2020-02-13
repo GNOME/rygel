@@ -43,13 +43,8 @@ internal class Rygel.PanasonicHacks : ClientHacks {
     }
 
     public override void apply (MediaObject object) {
-        if (!(object is MediaFileItem)) {
-            return;
-        }
-
-        var item = object as MediaFileItem;
-
-        if (!(item is VisualItem)) {
+        var item = object as VisualItem;
+        if (item == null) {
             return;
         }
 
@@ -57,7 +52,7 @@ internal class Rygel.PanasonicHacks : ClientHacks {
         // type JPEG. This is correct from a DLNA pov, but we usually only
         // supply PNG. When fooled into accepting it, they're rendered fine,
         // however.
-        foreach (var thumbnail in (item as VisualItem).thumbnails) {
+        foreach (var thumbnail in item.thumbnails) {
             try {
                 thumbnail.mime_type = mime_regex.replace_literal
                                         (thumbnail.mime_type, -1, 0, "jpeg");

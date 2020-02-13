@@ -79,31 +79,23 @@ public class Rygel.RelationalExpression :
 
             return this.compare_create_class
                                         (media_object as WritableContainer);
-        case "dc:creator":
-            if (!(media_object is PhotoItem)) {
-                return false;
-            }
+        case "dc:creator": {
+            var item = media_object as PhotoItem;
 
-            return this.compare_string ((media_object as PhotoItem).creator);
-        case "upnp:artist":
-            if (!(media_object is MusicItem)) {
-                return false;
-            }
+            return item != null && this.compare_string (item.creator);
+        }
+        case "upnp:artist": {
+            var item = media_object as MusicItem;
 
-            return this.compare_string ((media_object as MusicItem).artist);
+            return item != null && this.compare_string (item.artist);
+        }
         case "upnp:album":
-            if (!(media_object is MusicItem)) {
-                return false;
-            }
+            var item = media_object as MusicItem;
 
-            return this.compare_string ((media_object as MusicItem).album);
+            return item != null && this.compare_string (item.album);
         case "@childCount":
-            if (!(media_object is MediaContainer)) {
-                return false;
-            }
-
             var container = media_object as MediaContainer;
-            return this.compare_int (container.child_count);
+            return container != null && this.compare_int (container.child_count);
         default:
             return false;
         }

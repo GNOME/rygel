@@ -148,7 +148,7 @@ internal class Rygel.PlaylistDatasource : Rygel.DataSource, Object {
  * interface.
  *
  * If the container should support the change tracking profile of the UPnP
- * ContentDirectory:3 specification then you should also implement the 
+ * ContentDirectory:3 specification then you should also implement the
  * #RygelTrackableContainer interface.
  *
  * The #RygelSimpleContainer class contains a simple memory-based container
@@ -345,7 +345,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
      * for this container, if items under it are removed or added, if
      * there are metadata changes to items under it, etc.
      *
-     * If sub_tree_update is true then the caller should later emit the 
+     * If sub_tree_update is true then the caller should later emit the
      * sub_tree_updates_finished signal on the root container of the sub-tree
      * that was updated.
      *
@@ -432,7 +432,7 @@ public abstract class Rygel.MediaContainer : MediaObject {
 
         // If the container is searchable then it must add search class parameters.
         if (this is SearchableContainer) {
-            (this as SearchableContainer).serialize_search_parameters
+            ((SearchableContainer) this).serialize_search_parameters
                                         (didl_container);
         }
 

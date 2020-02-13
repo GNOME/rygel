@@ -472,8 +472,10 @@ public class Rygel.ContentDirectory: Service {
         object.object_update_id = this.system_update_id;
         // Whenever container experiences object update it also
         // experiences a container update
-        if (object is MediaContainer) {
-            (object as MediaContainer).update_id = this.system_update_id;
+
+        var container = object as MediaContainer;
+        if (container != null) {
+            container.update_id = this.system_update_id;
         }
 
         return container_changed;
