@@ -64,6 +64,10 @@ config_include = include_directories('.')
 
 add_global_arguments(['-include','config.h'], language : 'c')
 
+if get_option('fatal_warnings')
+    add_global_arguments(['--fatal-warnings'], language : 'vala')
+endif
+
 valadoc = find_program('valadoc', required : false)
 gtkdoc = dependency('gtk-doc', required : false)
 
