@@ -301,12 +301,12 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
 
     public double volume {
         get {
-            return (this.playbin as Audio.StreamVolume).get_volume
+            return ((Audio.StreamVolume) this.playbin).get_volume
                                         (Audio.StreamVolumeFormat.CUBIC);
         }
 
         set {
-            (this.playbin as Audio.StreamVolume).set_volume
+            ((Audio.StreamVolume) this.playbin).set_volume
                                         (Audio.StreamVolumeFormat.CUBIC, value);
             debug ("volume set to %f.", value);
         }
@@ -504,7 +504,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     private bool is_rendering_image () {
         dynamic Element typefind;
 
-        typefind = (this.playbin as Gst.Bin).get_by_name ("typefind");
+        typefind = ((Gst.Bin) this.playbin).get_by_name ("typefind");
         Caps caps = typefind.caps;
         unowned Structure structure = caps.get_structure (0);
 
