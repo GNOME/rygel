@@ -71,7 +71,7 @@ public class Rygel.PreferencesDialog : GLib.Object {
             return true;
         });
 
-        (builder.get_object (CLOSE_BUTTON) as Button).clicked.connect ( () => {
+        ((Button) builder.get_object (CLOSE_BUTTON)).clicked.connect ( () => {
             this.dialog.hide ();
             this.loop.quit ();
         });
