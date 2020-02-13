@@ -342,7 +342,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                 }
             }
         } catch (Error error) {
-            warning (/*_*/"Failed to extract meta-data for file %s",
+            warning (_("Failed to extract meta-data for file %s"),
                      error.message);
         }
 
