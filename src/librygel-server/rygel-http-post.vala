@@ -58,14 +58,15 @@ internal class Rygel.HTTPPost : HTTPRequest {
     }
 
     private async void handle_real () throws Error {
-        if (!(this.object as MediaFileItem).place_holder) {
+        var item = (MediaFileItem) this.object;
+
+        if (!item.place_holder) {
             var msg = _("Pushing data to non-empty item “%s” not allowed");
 
             throw new ContentDirectoryError.INVALID_ARGS (msg, this.object.id);
         }
 
-        this.file = yield (this.object as MediaFileItem).get_writable
-                                        (this.cancellable);
+        this.file = yield item.get_writable (this.cancellable);
         if (this.file == null) {
             throw new HTTPRequestError.BAD_REQUEST
                                         (_("No writable URI for %s available"),

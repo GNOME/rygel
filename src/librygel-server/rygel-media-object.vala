@@ -260,8 +260,8 @@ public abstract class Rygel.MediaObject : GLib.Object {
                                                              -1,
                                                              -1,
                                                              res.get_name ());
-                if (this is MediaFileItem &&
-                    (this as MediaFileItem).place_holder) {
+                var media_item = this as MediaFileItem;
+                if (media_item != null && media_item.place_holder) {
                     res.import_uri = uri;
                 } else {
                     res.uri = uri;
@@ -374,7 +374,7 @@ public abstract class Rygel.MediaObject : GLib.Object {
             if (result == DIDLLiteFragmentResult.OK) {
                 this.apply_didl_lite (didl_object);
                 if (this is UpdatableObject) {
-                    yield (this as UpdatableObject).commit ();
+                    yield ((UpdatableObject) this).commit ();
                 }
             }
 

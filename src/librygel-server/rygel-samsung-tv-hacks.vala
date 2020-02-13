@@ -57,13 +57,8 @@ internal class Rygel.SamsungTVHacks : ClientHacks {
             }
         }
 
-        if (!(object is MediaFileItem)) {
-            return;
-        }
-
-        var item = object as MediaFileItem;
-
-        if (!(item is VisualItem)) {
+        var item = object as VisualItem;
+        if (item == null) {
             return;
         }
 
@@ -72,7 +67,7 @@ internal class Rygel.SamsungTVHacks : ClientHacks {
         // supply PNG. When fooled into accepting it, they're rendered fine,
         // however.
         // TODO: Unifiy with Panasonic hack!
-        foreach (var thumbnail in (item as VisualItem).thumbnails) {
+        foreach (var thumbnail in item.thumbnails) {
             try {
                 thumbnail.mime_type = mime_regex.replace_literal
                                         (thumbnail.mime_type, -1, 0, "jpeg");
@@ -89,11 +84,13 @@ internal class Rygel.SamsungTVHacks : ClientHacks {
     }
 
     public override void modify_headers (HTTPRequest request) {
+        var item = request.object as VideoItem;
+
         if (request.msg.request_headers.get_one ("getCaptionInfo.sec") != null
-            && (request.object is VideoItem)
-            && (request.object as VideoItem).subtitles.size > 0) {
+            && item != null
+            && item.subtitles.size > 0) {
                 var caption_uri = request.http_server.create_uri_for_object
-                                        (request.object as MediaItem,
+                                        (item,
                                          -1,
                                          0, // FIXME: offer first subtitle only?
                                          null);

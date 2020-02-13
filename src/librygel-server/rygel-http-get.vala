@@ -105,8 +105,8 @@ public class Rygel.HTTPGet : HTTPRequest {
             return;
         }
 
-        if (unlikely ((this.object is MediaFileItem)
-                      && (this.object as MediaFileItem).place_holder)) {
+        var item = this.object as MediaFileItem;
+        if (item != null && item.place_holder) {
             throw new HTTPRequestError.NOT_FOUND ("Item '%s' is empty",
                                                   this.object.id);
         }

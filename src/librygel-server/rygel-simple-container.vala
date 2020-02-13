@@ -108,7 +108,7 @@ public class Rygel.SimpleContainer : Rygel.MediaContainer,
      */
     public void add_child_container (MediaContainer child) {
         if (child is SearchableContainer) {
-            var search_classes = (child as SearchableContainer).search_classes;
+            var search_classes = ((SearchableContainer) child).search_classes;
             this.search_classes.add_all (search_classes);
         }
 

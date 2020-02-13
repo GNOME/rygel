@@ -58,9 +58,9 @@ public class Rygel.DTCPCleartextRequest : Rygel.HTTPSeekRequest {
 
         // It's only possible to get the cleartext size from a MediaResource
         //  (and only if it is link protected)
-        if (handler is HTTPMediaResourceHandler) {
-            var resource = (handler as HTTPMediaResourceHandler)
-                                        .media_resource;
+        var resource_handler = handler as HTTPMediaResourceHandler;
+        if (resource_handler != null) {
+            var resource = resource_handler.media_resource;
             total_size = resource.cleartext_size;
             if (total_size <= 0) {
                 // Even if it's a resource and the content is link-protected,
@@ -148,9 +148,11 @@ public class Rygel.DTCPCleartextRequest : Rygel.HTTPSeekRequest {
 
     public static bool supported (Soup.Message message,
                                   Rygel.HTTPGetHandler handler) {
-        return (handler is HTTPMediaResourceHandler)
-               && (handler as HTTPMediaResourceHandler)
-                  .media_resource.is_cleartext_range_support_enabled ();
+        var resource_handler = handler as HTTPMediaResourceHandler;
+
+        return (resource_handler != null)
+               && resource_handler.media_resource
+                  .is_cleartext_range_support_enabled ();
     }
 
     public static bool requested (Soup.Message message) {

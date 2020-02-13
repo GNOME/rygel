@@ -76,13 +76,13 @@ public class Rygel.HTTPItemURI : Object {
         var item = object as MediaFileItem;
         if (thumbnail_index > -1) {
             if (item is VisualItem) {
-                var thumbnails = (item as VisualItem).thumbnails;
+                var thumbnails = ((VisualItem) item).thumbnails;
 
                 if (thumbnails.size > thumbnail_index) {
                     this.extension = thumbnails[thumbnail_index].file_extension;
                 }
             } else if (item is MusicItem) {
-                var album_art = (item as MusicItem).album_art;
+                var album_art = ((MusicItem) item).album_art;
 
                 if (album_art != null) {
                     this.extension = album_art.file_extension;
@@ -90,7 +90,7 @@ public class Rygel.HTTPItemURI : Object {
             }
         } else if (subtitle_index > -1) {
             if (item is VideoItem) {
-                var subtitles = (item as VideoItem).subtitles;
+                var subtitles = ((VideoItem) item).subtitles;
 
                 if (subtitles.size > subtitle_index) {
                     this.extension = subtitles[subtitle_index].caption_type;
