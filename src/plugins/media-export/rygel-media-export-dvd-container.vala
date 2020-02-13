@@ -108,10 +108,6 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
         return Path.build_filename (cache_folder, id);
     }
 
-    public async void commit () throws Error {
-        yield this.commit_custom (true);
-    }
-
     public async void commit_custom (bool override_guarded) throws Error {
         MediaCache.get_default ().save_container (this);
     }
