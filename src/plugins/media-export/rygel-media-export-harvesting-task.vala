@@ -221,7 +221,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
             var dummy_parent = parent as DummyContainer;
             if (dummy_parent == null ||
                 !dummy_parent.children.contains (MediaCache.get_id (file))) {
-                (parent as TrackableContainer).add_child_tracked.begin (container);
+                ((TrackableContainer) parent).add_child_tracked.begin (container);
             }
 
             return true;
@@ -248,7 +248,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
     }
 
     private async void enumerate_directory () {
-        var directory = (this.containers.peek_head () as DummyContainer).file;
+        var directory = ((DummyContainer) this.containers.peek_head ()).file;
         try {
             var enumerator = yield directory.enumerate_children_async
                                         (HARVESTER_ATTRIBUTES,
@@ -335,9 +335,9 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                 // This is only necessary to generate the proper <objAdd LastChange
                 // entry
                 if (this.files.peek ().known) {
-                    (item as UpdatableObject).non_overriding_commit.begin ();
+                    ((UpdatableObject) item).non_overriding_commit.begin ();
                 } else {
-                    var container = item.parent as TrackableContainer;
+                    var container = (TrackableContainer) item.parent;
                     container.add_child_tracked.begin (item) ;
                 }
             }
