@@ -952,9 +952,10 @@ public class Rygel.MediaExport.MediaCache : Object {
 
         if (object != null) {
             object.modified = statement.column_int64 (DetailColumn.TIMESTAMP);
-            if (object.modified  == int64.MAX && object is MediaFileItem) {
+            var item = object as MediaFileItem;
+            if (object.modified  == int64.MAX && item != null) {
                 object.modified = 0;
-                (object as MediaFileItem).place_holder = true;
+                item.place_holder = true;
             }
             object.object_update_id = (uint) statement.column_int64
                                         (DetailColumn.OBJECT_UPDATE_ID);
