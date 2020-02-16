@@ -2,14 +2,14 @@
 # Copyright (C) 2013 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
 # Amir Farsi <amir_farsi@ymail.com>, 2013.
-# Danial Behzadi <dani.behzi@ubuntu.com>, 2014, 2015, 2016, 2017, 2018, 2019.
+# Danial Behzadi <dani.behzi@ubuntu.com>, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel rygel-0-18\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2019-04-19 15:37+0000\n"
-"PO-Revision-Date: 2019-09-30 12:13+0000\n"
+"POT-Creation-Date: 2019-10-01 21:17+0000\n"
+"PO-Revision-Date: 2020-02-16 09:03+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #: data/rygel.desktop.in.in:3
 msgid "Rygel"
@@ -823,31 +823,31 @@ msgstr "آرگومان شناسهٔ بارگنج وجود ندارد"
 #: src/librygel-server/rygel-object-creator.vala:224
 #, c-format
 msgid "No objects in DIDL-Lite from client: “%s”"
-msgstr ""
+msgstr "هیچ شیی از کارخواه در حالت DIDL-Lite وجود ندارد: %s"
 
 #: src/librygel-server/rygel-object-creator.vala:231
 msgid "@id must be set to \"\" in CreateObject call"
-msgstr ""
+msgstr "مقدار @id باید در فراخوانی CreateObject به \"\" تنظیم شود"
 
 #: src/librygel-server/rygel-object-creator.vala:236
 msgid "dc:title must not be empty in CreateObject call"
-msgstr ""
+msgstr "مقدار dc:title نباید در فراخوانی CreateObject خالی باشد"
 
 #: src/librygel-server/rygel-object-creator.vala:247
 msgid "Flags that must not be set were found in “dlnaManaged”"
-msgstr ""
+msgstr "پرچم‌هایی که نباید تنظیم شده باشند، در dlnaManaged پیدا شدند"
 
 #: src/librygel-server/rygel-object-creator.vala:255
 msgid "Invalid upnp:class given in CreateObject"
-msgstr ""
+msgstr "عدم اعتبار upnp: کلاس در CreateObject داده‌شده"
 
 #: src/librygel-server/rygel-object-creator.vala:259
 msgid "Object is missing the @restricted attribute"
-msgstr ""
+msgstr "شی فاقد ویژگی @restricted است"
 
 #: src/librygel-server/rygel-object-creator.vala:266
 msgid "Cannot create restricted item"
-msgstr ""
+msgstr "نمی‌تواند مورد محدود ساخت"
 
 #: src/librygel-server/rygel-object-creator.vala:383
 #, c-format
@@ -860,7 +860,7 @@ msgstr "کلاس UPnP «%s» پشتیبانی نشده"
 #: src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
-msgstr ""
+msgstr "ایجاد شی در %s مجاز نیست"
 
 #: src/librygel-server/rygel-object-creator.vala:474
 #, c-format
@@ -870,27 +870,28 @@ msgstr "شکست در ایجاد مورد زیر «%s»:%s"
 #: src/librygel-server/rygel-object-creator.vala:548
 #, c-format
 msgid "DLNA profile “%s” not supported"
-msgstr ""
+msgstr "نمایهٔ DLNA پشیبانی نمی‌شود: %s"
 
 #: src/librygel-server/rygel-object-creator.vala:648
 #, c-format
 msgid "Cannot create object of class “%s”: Not supported"
-msgstr ""
+msgstr "نمی‌تواند شییی از کلاس %s ساخت: پشتیبانی‌نشده"
 
 #: src/librygel-server/rygel-object-creator.vala:746
 #, c-format
 msgid ""
-"Error from container “%s” on trying to find the newly added child object "
-"“%s” in it: %s"
+"Error from container “%s” on trying to find the newly added child object “%s” "
+"in it: %s"
 msgstr ""
+"خطا از بارگنج %s هنگام تلاش برای یافتن شی فرزند به‌تازگی افزودهٔ %s در آن: %s"
 
 #: src/librygel-server/rygel-reference-creator.vala:50
 msgid "“ContainerID” agument missing."
-msgstr ""
+msgstr "آرگومان ContainerID مفقود است."
 
 #: src/librygel-server/rygel-reference-creator.vala:55
 msgid "“ObjectID” argument missing."
-msgstr ""
+msgstr "آرگومان ObjectID مفقود است."
 
 #: src/librygel-server/rygel-reference-creator.vala:86
 #, c-format
@@ -899,7 +900,7 @@ msgstr "شکست در ایجاد شی زیر «%s»:%s"
 
 #: src/librygel-server/rygel-search.vala:70
 msgid "Invalid search criteria given"
-msgstr ""
+msgstr "معیار نامعتبر جست‌وجوی داده شده"
 
 #: src/librygel-server/rygel-search.vala:94
 #, c-format
@@ -984,7 +985,7 @@ msgstr "گونهٔ رسیدن پشتیبانی نشده"
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:334
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
-msgstr ""
+msgstr "شکست در جهش به آفست %Illd:%Illd"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:336
 msgid "Failed to seek"
@@ -993,12 +994,12 @@ msgstr "شکست در رسیدن"
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:130
 #, c-format
 msgid "Invalid URI without prefix: %s"
-msgstr ""
+msgstr "نشانی نامعتبر بدون پیشوند: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
-msgstr ""
+msgstr "نمی‌توان نشانی %s را با پروتکل %s پردازش کردش"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:246
 #, c-format
@@ -1010,15 +1011,17 @@ msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation "
 "might be missing a plug-in"
 msgstr ""
+"نمی‌توان یک پیکربندی transcoder ایجاد کرد. ممکن است نصب جی‌استریمرتان یک افزایه "
+"را نداشته باشد"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
 msgid "Required element %s missing"
-msgstr ""
+msgstr "عنصر ضروری %s مفقود است"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:58
 msgid "GStreamer element “dvdreadsrc” not found. DVD support does not work"
-msgstr ""
+msgstr "عنصر dvdreadsrc از جی‌استریمر پیدا نشد. پشتیبانی دی‌وی‌دی کار نمی‌کند"
 
 #: src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
@@ -1027,7 +1030,7 @@ msgstr "فقط رسیدن مبتنی بر بایت پشتیانی می‌شود"
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
 #: src/media-engines/simple/rygel-simple-media-engine.vala:99
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
-msgstr ""
+msgstr "فقط می‌توان اشیای رسانه‌ای مبتنی بر پرونده (MediaFileItems) را پردازش کرد"
 
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -1038,7 +1041,7 @@ msgstr "پیمانهٔ «%s» نتواست به گذرگاه نشست دی‌ب�
 #: src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
 msgid "External provider %s did not provide mandatory property “%s”"
-msgstr ""
+msgstr "فراهم‌کنندهٔ خارجی %s، ویژگی ضروری %s را فراهم نکرد"
 
 #: src/plugins/lms/rygel-lms-albums.vala:166
 #: src/plugins/tracker/rygel-tracker-albums.vala:31
@@ -1080,7 +1083,7 @@ msgstr "ویدیوها"
 msgid "Pictures"
 msgstr "عکس‌ها"
 
-#: src/plugins/media-export/rygel-media-export-dvd-container.vala:133
+#: src/plugins/media-export/rygel-media-export-dvd-container.vala:132
 #, c-format
 msgid "Title %d"
 msgstr "عنوان: %Id"
@@ -1088,11 +1091,11 @@ msgstr "عنوان: %Id"
 #: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
 msgid ""
 "Failed to find lsdvd binary in path. DVD extraction will not be available"
-msgstr ""
+msgstr "شکست در یافتن دودویی lsdvd در مسیر. استخراج دی‌وی‌دی در دسترس نخواهد بود"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:73
 msgid "Invalid command received, ignoring"
-msgstr ""
+msgstr "فرمان نامعتبر دریافت شد، نادیده گرفتن"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:90
 #, c-format
@@ -1112,7 +1115,7 @@ msgstr "شکست در فرستادن خطا به والد: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:157
 msgid "— helper binary for Rygel to extract metadata"
-msgstr ""
+msgstr "— دودویی راهنمای رایگل برای استخراج فراداده"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:164
 #, c-format
@@ -1142,7 +1145,7 @@ msgstr "شکست در پرس‌وجوی اطَّلاعات از یک پروند�
 #: src/plugins/media-export/rygel-media-export-harvester.vala:245
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
-msgstr ""
+msgstr "نمی‌توان شی %s یا والدش را یافت. پایگاه داده متناقض است"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:249
 #, c-format
@@ -1175,7 +1178,7 @@ msgstr "شکست در گرفتن فرزندان بارگنج %s: %s"
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:358
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
-msgstr ""
+msgstr "پرش از نشانی %s؛ استخراج به کلی شکست خورد: %s"
 
 #: src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
@@ -1195,7 +1198,7 @@ msgstr "شکست در ایجاد شاخص‌ها: %s"
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
 #, c-format
 msgid "Cannot upgrade from version %d"
-msgstr ""
+msgstr "نمی‌توان از نگارش %Id ارتقا داد"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
 #, c-format
@@ -1258,8 +1261,8 @@ msgstr "شکست در گرفتن وضعیت محافظت‌شدگی مورد %s:
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:666
 #, c-format
 msgid ""
-"The version “%d” of the detected database is newer than our supported "
-"version “%d”"
+"The version “%d” of the detected database is newer than our supported version "
+"“%d”"
 msgstr "نگارش %Id پایگاه دادهٔ کشف‌شده جدیدتر از نگارش %Id پشتیبانی‌شده است"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:688
@@ -1269,7 +1272,7 @@ msgstr "شمای ناسازگار… نمی‌توان دادمه داد"
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:694
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
-msgstr ""
+msgstr "پایگاه دادهٔ نامعتبر. نمی‌توان از جدول sqlite_master پرس‌وجو کرد: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:895
 #, c-format
@@ -1279,38 +1282,38 @@ msgstr "شکست در ایجاد شمای پایگاه داده: %s"
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:1231
 #, c-format
 msgid "Skipping unsupported sort field: %s"
-msgstr ""
+msgstr "پرش از زمینهٔ چینش پشتیبانی‌نشده: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:104
 msgid "Failed to gracefully stop the process. Using KILL"
-msgstr ""
+msgstr "شکست در توقف درست فرایند. استفاده از KILL"
 
 #. Process exitted properly -> That shouldn't really
 #. happen
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:152
 #, c-format
 msgid "Process check_async failed: %s"
-msgstr ""
+msgstr "فرایند check_async شکست خورد: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #, c-format
 msgid "Process died while handling URI %s"
-msgstr ""
+msgstr "فرایند هنگام مدیریت نشانی %s مرد"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
 #, c-format
 msgid "Setting up extraction subprocess failed: %s"
-msgstr ""
+msgstr "برپایی زیرفرایند استخراج شکست خورد: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
 #, c-format
 msgid "Received invalid string from child: %s"
-msgstr ""
+msgstr "رشتهٔ نامعتبر از فرزند دریافت شد: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received ill-formed response string %s from child…"
-msgstr ""
+msgstr "رشتهٔ پاسخ بدشکل %s از فرزند دریافت شد…"
 
 #. No error signalling, this was done in the part that called
 #. cancel
