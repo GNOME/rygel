@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel rygel-0-18\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2019-10-01 21:17+0000\n"
-"PO-Revision-Date: 2020-02-16 09:03+0000\n"
+"POT-Creation-Date: 2020-02-23 11:41+0000\n"
+"PO-Revision-Date: 2020-02-24 01:57+0000\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -17,18 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 
 #: data/rygel.desktop.in.in:3
 msgid "Rygel"
 msgstr "رایگل"
 
-#: data/rygel.desktop.in.in:4 data/rygel.desktop.in.in:5
+#: data/rygel.desktop.in.in:4
 msgid "UPnP/DLNA Services"
 msgstr "خدمات UPnP/DLNA"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in.in:7
+#: data/rygel.desktop.in.in:6
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
 "mediaserver;mediarenderer;share;audio;video;pictures;کارسازرسانه;هم‌رسانی; "
@@ -120,41 +120,44 @@ msgid "Failed to read error output from %s: %s"
 msgstr "شکست در خواندن خروجی خطا از %s: %s"
 
 #. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:159
+#: src/librygel-core/rygel-basic-management.vala:158
 msgid "No Such Test"
 msgstr "چنین آزمایشی وجود ندارد"
 
 #. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:167
+#: src/librygel-core/rygel-basic-management.vala:166
+#: src/librygel-core/rygel-basic-management.vala:283
+#: src/librygel-core/rygel-basic-management.vala:382
+#: src/librygel-core/rygel-basic-management.vala:471
 msgid "Wrong Test Type"
 msgstr "گونهٔ آزمایش اشتباه"
 
 #. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:175
+#: src/librygel-core/rygel-basic-management.vala:174
 #, c-format
 msgid "Invalid Test State “%s”"
 msgstr "وضعیت آزمون نامعتبر «%s»"
 
 #. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:181
+#: src/librygel-core/rygel-basic-management.vala:180
 #, c-format
 msgid "State “%s” Precludes Cancel"
 msgstr "وضعیت «%s» مانع لغو می‌شود"
 
-#: src/librygel-core/rygel-basic-management.vala:214
-#: src/librygel-core/rygel-basic-management.vala:229
-#: src/librygel-core/rygel-basic-management.vala:256
-#: src/librygel-core/rygel-basic-management.vala:272
-#: src/librygel-core/rygel-basic-management.vala:324
-#: src/librygel-core/rygel-basic-management.vala:349
-#: src/librygel-core/rygel-basic-management.vala:365
-#: src/librygel-core/rygel-basic-management.vala:404
-#: src/librygel-core/rygel-basic-management.vala:431
-#: src/librygel-core/rygel-basic-management.vala:448
-#: src/librygel-core/rygel-basic-management.vala:487
-#: src/librygel-core/rygel-basic-management.vala:502
-#: src/librygel-core/rygel-basic-management.vala:517
-#: src/librygel-core/rygel-basic-management.vala:541
+#: src/librygel-core/rygel-basic-management.vala:213
+#: src/librygel-core/rygel-basic-management.vala:228
+#: src/librygel-core/rygel-basic-management.vala:255
+#: src/librygel-core/rygel-basic-management.vala:271
+#: src/librygel-core/rygel-basic-management.vala:328
+#: src/librygel-core/rygel-basic-management.vala:353
+#: src/librygel-core/rygel-basic-management.vala:369
+#: src/librygel-core/rygel-basic-management.vala:414
+#: src/librygel-core/rygel-basic-management.vala:441
+#: src/librygel-core/rygel-basic-management.vala:458
+#: src/librygel-core/rygel-basic-management.vala:503
+#: src/librygel-core/rygel-basic-management.vala:518
+#: src/librygel-core/rygel-basic-management.vala:533
+#: src/librygel-core/rygel-basic-management.vala:557
 #: src/librygel-core/rygel-connection-manager.vala:95
 #: src/librygel-core/rygel-connection-manager.vala:109
 #: src/librygel-core/rygel-connection-manager.vala:126
@@ -168,21 +171,21 @@ msgstr "وضعیت «%s» مانع لغو می‌شود"
 #: src/librygel-server/rygel-content-directory.vala:343
 #: src/librygel-server/rygel-content-directory.vala:372
 #: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:616
-#: src/librygel-server/rygel-content-directory.vala:765
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
 #: src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "آرگومان نامعتبر"
 
-#: src/librygel-core/rygel-basic-management.vala:255
+#: src/librygel-core/rygel-basic-management.vala:254
 msgid "Cannot run “Ping” action: Host is empty"
 msgstr "نمی‌توان کنش Ping را اجرا کرد: میزبان خالی است"
 
-#: src/librygel-core/rygel-basic-management.vala:348
+#: src/librygel-core/rygel-basic-management.vala:352
 msgid "Cannot run “NSLookup” action: HostName is empty"
 msgstr "نمی‌توان کنش NSLookup را اجرا کرد: نام میزبان خالی است"
 
-#: src/librygel-core/rygel-basic-management.vala:430
+#: src/librygel-core/rygel-basic-management.vala:440
 msgid "Cannot run “Traceroute” action: Host is empty"
 msgstr "نمی‌توان کنش Traceroute را اجرا کرد: میزبان خالی است"
 
@@ -357,12 +360,12 @@ msgstr "افزایهٔ جدید «%s» در دسترس است"
 msgid "A module named %s is already loaded"
 msgstr "پیمانه‌ای با نام %s ار پیش بار شده"
 
-#: src/librygel-core/rygel-plugin-loader.vala:113
+#: src/librygel-core/rygel-plugin-loader.vala:118
 #, c-format
 msgid "Failed to load module from path “%s”: %s"
 msgstr "شکست در بار کردن پیمانه از مسیر %s: %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:123
+#: src/librygel-core/rygel-plugin-loader.vala:128
 #, c-format
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "شکست در یافتن تابع نقطهٔ ورود %s در %s: %s"
@@ -563,7 +566,7 @@ msgstr "شکست در مرور «%s»: %s\n"
 msgid "Not Applicable"
 msgstr "قابل اطلاق نیست"
 
-#: src/librygel-server/rygel-content-directory.vala:637
+#: src/librygel-server/rygel-content-directory.vala:639
 msgid "No such file transfer"
 msgstr "چنین انتقال پرونده‌ای وجود ندارد"
 
@@ -588,19 +591,19 @@ msgstr "نشانی نامعتبر «%s»"
 msgid "Not found"
 msgstr "پیدا نشد"
 
-#: src/librygel-server/rygel-http-post.vala:62
-#: src/librygel-server/rygel-import-resource.vala:189
+#: src/librygel-server/rygel-http-post.vala:64
+#: src/librygel-server/rygel-import-resource.vala:193
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "اریال داده به مورد ناخالی «%s» مجاز نیست"
 
-#: src/librygel-server/rygel-http-post.vala:71
+#: src/librygel-server/rygel-http-post.vala:72
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "نشانی قابل نوشتنی برای %s موجود نیست"
 
 #. translators: Dotfile is the filename with prefix "."
-#: src/librygel-server/rygel-http-post.vala:186
+#: src/librygel-server/rygel-http-post.vala:187
 #, c-format
 msgid "Failed to move dotfile %s: %s"
 msgstr "شکست در جابه‌جایی پروندهٔ نقطه‌دار %s: %s"
@@ -620,12 +623,12 @@ msgstr "نمی‌توان منبع داده را برای %s ساخت"
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "شکست در گرفتن نشانی اصلی برای «%s»: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:186
+#: src/librygel-server/rygel-import-resource.vala:188
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "نشانی نامعتبر «%s» برای درون‌ریزی محتوا"
 
-#: src/librygel-server/rygel-import-resource.vala:272
+#: src/librygel-server/rygel-import-resource.vala:276
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "شکست در درون‌ریزی پرونده از %s: %s"
@@ -645,7 +648,7 @@ msgstr "شی «%s» با موفّقیت از بین رفت"
 msgid "Failed to destroy object “%s”: %s"
 msgstr "شکست در از بین بردن شی «%s»: %s"
 
-#: src/librygel-server/rygel-item-destroyer.vala:104
+#: src/librygel-server/rygel-item-destroyer.vala:105
 #: src/librygel-server/rygel-item-updater.vala:283
 #: src/librygel-server/rygel-media-query-action.vala:194
 #: src/librygel-server/rygel-reference-creator.vala:68
@@ -653,12 +656,12 @@ msgstr "شکست در از بین بردن شی «%s»: %s"
 msgid "No such object"
 msgstr "چنین شی‌ای وجود ندارد"
 
-#: src/librygel-server/rygel-item-destroyer.vala:107
+#: src/librygel-server/rygel-item-destroyer.vala:108
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "برداشتن شی %s مجاز نیست"
 
-#: src/librygel-server/rygel-item-destroyer.vala:110
+#: src/librygel-server/rygel-item-destroyer.vala:111
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "برداشتن شی از %s مجاز نیست"
@@ -679,13 +682,13 @@ msgid "Failed to update object “%s”: %s"
 msgstr "شکست در به‌روز رسانی شی «%s»: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:162
-#: src/librygel-server/rygel-object-creator.vala:606
+#: src/librygel-server/rygel-object-creator.vala:614
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "قالب تاریخ نامعتبر: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:171
-#: src/librygel-server/rygel-object-creator.vala:615
+#: src/librygel-server/rygel-object-creator.vala:623
 #, c-format
 msgid "Invalid date: %s"
 msgstr "تاریخ نامعتبر: %s"
@@ -767,6 +770,7 @@ msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "فراخوانی MediaEngine.init اینجام نشد. نمی‌توان ادامه داد."
 
 #: src/librygel-server/rygel-media-file-item.vala:177
+#: src/librygel-server/rygel-video-item.vala:222
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "نمی‌توان قرارداد را برای نشانی %s دریافت"
@@ -776,7 +780,7 @@ msgstr "نمی‌توان قرارداد را برای نشانی %s دریاف�
 msgid "Could not determine protocol for %s"
 msgstr "نمی‌توان قرارداد را برای %s دریافت"
 
-#: src/librygel-server/rygel-media-object.vala:509
+#: src/librygel-server/rygel-media-object.vala:491
 #, c-format
 msgid "Bad URI: %s"
 msgstr "نشانی بد: %s"
@@ -799,7 +803,7 @@ msgid "Missing filter"
 msgstr "بدون پالایه"
 
 #: src/librygel-server/rygel-media-query-action.vala:197
-#: src/librygel-server/rygel-object-creator.vala:412
+#: src/librygel-server/rygel-object-creator.vala:414
 msgid "No such container"
 msgstr "چنین بارگنجی وجود ندارد"
 
@@ -807,77 +811,77 @@ msgstr "چنین بارگنجی وجود ندارد"
 msgid "upnp:createClass value not supported"
 msgstr "upnp: مقدار createClass پشتیبانی نشده"
 
-#: src/librygel-server/rygel-object-creator.vala:191
+#: src/librygel-server/rygel-object-creator.vala:193
 msgid "“Elements” argument missing."
 msgstr "آرگومان «Elements» موجود نیست."
 
-#: src/librygel-server/rygel-object-creator.vala:194
+#: src/librygel-server/rygel-object-creator.vala:196
 msgid "Comments not allowed in XML"
 msgstr "توضیحات در XML مجاز نیستند"
 
 #. Sorry we can't do anything without ContainerID
-#: src/librygel-server/rygel-object-creator.vala:200
+#: src/librygel-server/rygel-object-creator.vala:202
 msgid "Missing ContainerID argument"
 msgstr "آرگومان شناسهٔ بارگنج وجود ندارد"
 
-#: src/librygel-server/rygel-object-creator.vala:224
+#: src/librygel-server/rygel-object-creator.vala:226
 #, c-format
 msgid "No objects in DIDL-Lite from client: “%s”"
 msgstr "هیچ شیی از کارخواه در حالت DIDL-Lite وجود ندارد: %s"
 
-#: src/librygel-server/rygel-object-creator.vala:231
+#: src/librygel-server/rygel-object-creator.vala:233
 msgid "@id must be set to \"\" in CreateObject call"
 msgstr "مقدار @id باید در فراخوانی CreateObject به \"\" تنظیم شود"
 
-#: src/librygel-server/rygel-object-creator.vala:236
+#: src/librygel-server/rygel-object-creator.vala:238
 msgid "dc:title must not be empty in CreateObject call"
 msgstr "مقدار dc:title نباید در فراخوانی CreateObject خالی باشد"
 
-#: src/librygel-server/rygel-object-creator.vala:247
+#: src/librygel-server/rygel-object-creator.vala:249
 msgid "Flags that must not be set were found in “dlnaManaged”"
 msgstr "پرچم‌هایی که نباید تنظیم شده باشند، در dlnaManaged پیدا شدند"
 
-#: src/librygel-server/rygel-object-creator.vala:255
+#: src/librygel-server/rygel-object-creator.vala:257
 msgid "Invalid upnp:class given in CreateObject"
 msgstr "عدم اعتبار upnp: کلاس در CreateObject داده‌شده"
 
-#: src/librygel-server/rygel-object-creator.vala:259
+#: src/librygel-server/rygel-object-creator.vala:261
 msgid "Object is missing the @restricted attribute"
 msgstr "شی فاقد ویژگی @restricted است"
 
-#: src/librygel-server/rygel-object-creator.vala:266
+#: src/librygel-server/rygel-object-creator.vala:268
 msgid "Cannot create restricted item"
 msgstr "نمی‌تواند مورد محدود ساخت"
 
-#: src/librygel-server/rygel-object-creator.vala:383
+#: src/librygel-server/rygel-object-creator.vala:385
 #, c-format
 msgid "UPnP class “%s” not supported"
 msgstr "کلاس UPnP «%s» پشتیبانی نشده"
 
-#: src/librygel-server/rygel-object-creator.vala:417
-#: src/librygel-server/rygel-object-creator.vala:429
-#: src/librygel-server/rygel-object-creator.vala:715
+#: src/librygel-server/rygel-object-creator.vala:419
+#: src/librygel-server/rygel-object-creator.vala:431
+#: src/librygel-server/rygel-object-creator.vala:723
 #: src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "ایجاد شی در %s مجاز نیست"
 
-#: src/librygel-server/rygel-object-creator.vala:474
+#: src/librygel-server/rygel-object-creator.vala:476
 #, c-format
 msgid "Failed to create item under “%s”: %s"
 msgstr "شکست در ایجاد مورد زیر «%s»:%s"
 
-#: src/librygel-server/rygel-object-creator.vala:548
+#: src/librygel-server/rygel-object-creator.vala:552
 #, c-format
 msgid "DLNA profile “%s” not supported"
 msgstr "نمایهٔ DLNA پشیبانی نمی‌شود: %s"
 
-#: src/librygel-server/rygel-object-creator.vala:648
+#: src/librygel-server/rygel-object-creator.vala:656
 #, c-format
 msgid "Cannot create object of class “%s”: Not supported"
 msgstr "نمی‌تواند شییی از کلاس %s ساخت: پشتیبانی‌نشده"
 
-#: src/librygel-server/rygel-object-creator.vala:746
+#: src/librygel-server/rygel-object-creator.vala:754
 #, c-format
 msgid ""
 "Error from container “%s” on trying to find the newly added child object “%s” "
@@ -1008,8 +1012,8 @@ msgstr "شکست در ایجاد منبع دادهٔ GStreamer برای %s: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
 msgid ""
-"Could not create a transcoder configuration. Your GStreamer installation "
-"might be missing a plug-in"
+"Could not create a transcoder configuration. Your GStreamer installation might "
+"be missing a plug-in"
 msgstr ""
 "نمی‌توان یک پیکربندی transcoder ایجاد کرد. ممکن است نصب جی‌استریمرتان یک افزایه "
 "را نداشته باشد"
@@ -1083,14 +1087,13 @@ msgstr "ویدیوها"
 msgid "Pictures"
 msgstr "عکس‌ها"
 
-#: src/plugins/media-export/rygel-media-export-dvd-container.vala:132
+#: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
 msgid "Title %d"
 msgstr "عنوان: %Id"
 
 #: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
-msgid ""
-"Failed to find lsdvd binary in path. DVD extraction will not be available"
+msgid "Failed to find lsdvd binary in path. DVD extraction will not be available"
 msgstr "شکست در یافتن دودویی lsdvd در مسیر. استخراج دی‌وی‌دی در دسترس نخواهد بود"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:73
@@ -1171,6 +1174,11 @@ msgstr "شکست در برشماری شاخهٔ «%s»: %s"
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "شکست در گرفتن فرزندان بارگنج %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
+#, c-format
+msgid "Failed to extract meta-data for file %s"
+msgstr "شکست در استخراج فراداده برای پروندهٔ %s"
 
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
@@ -1279,7 +1287,7 @@ msgstr "پایگاه دادهٔ نامعتبر. نمی‌توان از جدول 
 msgid "Failed to create database schema: %s"
 msgstr "شکست در ایجاد شمای پایگاه داده: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1231
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1232
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "پرش از زمینهٔ چینش پشتیبانی‌نشده: %s"
