@@ -127,7 +127,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
     }
 
     private void on_graph_updated (DBusConnection connection,
-                                   string         sender,
+                                   string?        sender,
                                    string         object_path,
                                    string         interface_name,
                                    string         signal_path,
