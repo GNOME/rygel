@@ -2,7 +2,7 @@ project('rygel', 'vala', 'c', version : '0.39.0', meson_version : '>= 0.50.0')
 vala = meson.get_compiler('vala')
 
 # Check for the required vala version
-vala_version_required = '>= 0.36'
+vala_version_required = '>= 0.40.10'
 vala_version_found = vala.version()
 
 if not vala_version_found.version_compare(vala_version_required)
@@ -71,13 +71,15 @@ endif
 valadoc = find_program('valadoc', required : false)
 gtkdoc = dependency('gtk-doc', required : false)
 
+glib_minimal_version = '>= 2.56'
+
 gupnp = dependency('gupnp-1.2', version : '>= 1.1')
 gee = dependency('gee-0.8', version: '>= 0.8.0')
 gssdp = dependency('gssdp-1.2', version : '>= 1.1')
-glib = dependency('glib-2.0', version : '>= 2.44')
-gio = dependency('gio-2.0', version : '>= 2.44')
-gio_unix = dependency('gio-unix-2.0', version : '>= 2.44')
-gmodule = dependency('gmodule-2.0', version: '>= 2.44')
+glib = dependency('glib-2.0', version : glib_minimal_version)
+gio = dependency('gio-2.0', version : glib_minimal_version)
+gio_unix = dependency('gio-unix-2.0', version : glib_minimal_version)
+gmodule = dependency('gmodule-2.0', version: glib_minimal_version)
 libxml = dependency('libxml-2.0', version: '>= 2.7')
 gupnp_av = dependency('gupnp-av-1.0', version: '>= 0.12.8')
 gupnp_dlna = dependency('gupnp-dlna-2.0', version: '>= 0.9.4')
