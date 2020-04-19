@@ -148,6 +148,18 @@ public class Rygel.PluginLoader : RecursiveModuleLoader {
     }
 
     protected override bool load_module_from_info (PluginInformation info) {
+        debug ("Trying to load plugin '%s'", info.name);
+
+        foreach (var conflicting in info.conflicts.get_values ()) {
+            if (this.available_plugins.has_key (conflicting)) {
+                message (_("Module '%s' conflicts with already loaded module '%s'. Skipping"),
+                         info.name,
+                         conflicting);
+
+                return false;
+            }
+        }
+
         this.available_plugins.set (info.name, info);
         if (this.plugin_disabled (info.name)) {
             debug ("Module '%s' disabled by user. Ignoring…",

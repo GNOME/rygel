@@ -41,8 +41,13 @@ public class Rygel.PluginInformation : Object {
     /// Name of this module
     public string name { get; construct; }
 
-    private PluginInformation (string module_path, string name) {
-        Object (module_path: module_path, name : name);
+    /// Name of other plugins this plugin conflicts with
+    public GenericSet<string> conflicts { get; construct; }
+
+    private PluginInformation (string module_path,
+                               string name,
+                               GenericSet<string> conflicts) {
+        Object (module_path: module_path, name : name, conflicts : conflicts);
     }
 
     /**
@@ -72,6 +77,16 @@ public class Rygel.PluginInformation : Object {
                                        module_file.get_path ());
         }
 
-        return new PluginInformation (module_file.get_path (), name);
+        var conflicts = new GenericSet<string>(str_hash, str_equal);
+        try {
+            foreach (var other_name in keyfile.get_string_list ("Plugin", "Conflicts")) {
+                other_name.strip();
+                conflicts.add (other_name);
+            }
+        } catch (KeyFileError err) {
+            // Do nothing
+        }
+
+        return new PluginInformation (module_file.get_path (), name, conflicts);
     }
 }

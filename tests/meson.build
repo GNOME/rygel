@@ -66,6 +66,19 @@ http_time_seek_test = executable(
     dependencies : [glib, soup]
 )
 
+test('rygel-plugin-loader-test',
+    executable(
+        'rygel-plugin-loader-test',
+        files(
+            'plugin-loader/rygel-plugin-loader-test.vala'
+        ),
+        dependencies : [
+            rygel_core
+        ]
+    ),
+    workdir : meson.current_source_dir(),
+)
+
 test('rygel-searchable-container-test', searchable_container_test)
 test('rygel-object-creator-test', object_creator_test)
 test('rygel-regression-test', regression_test)
