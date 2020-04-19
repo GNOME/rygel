@@ -198,9 +198,8 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
     }
 
     private bool is_folder_eligible (FileInfo file_info) {
-        return file_info.get_file_type () == FileType.DIRECTORY &&
-               (file_info.get_name () == ".libs" ||
-                !file_info.get_is_hidden ());
+        return (file_info.get_file_type () == FileType.DIRECTORY) &&
+                (!file_info.get_is_hidden ());
     }
 
     /**

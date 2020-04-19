@@ -68,15 +68,8 @@ public class Rygel.PluginInformation : Object {
                                                 Module.SUFFIX));
 
         if (!module_file.query_exists ()) {
-            // try .libs for uninstalled
-            module_file = module_dir.get_child (".libs%clibrygel-%s.%s".printf (
-                                                Path.DIR_SEPARATOR,
-                                                module,
-                                                Module.SUFFIX));
-            if (!module_file.query_exists ()) {
-                throw new FileError.EXIST (_("Plugin module %s does not exist"),
-                                           module_file.get_path ());
-            }
+            throw new FileError.EXIST (_("Plugin module %s does not exist"),
+                                       module_file.get_path ());
         }
 
         return new PluginInformation (module_file.get_path (), name);
