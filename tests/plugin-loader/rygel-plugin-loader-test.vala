@@ -1,3 +1,20 @@
+class TestConfig : Rygel.BaseConfiguration {
+    public HashTable<string, bool> enable = new HashTable<string, bool> (str_hash, str_equal);
+
+    public void toggl_enable (string module) {
+        enable[module] = !enable[module];
+        this.section_changed (module, Rygel.SectionEntry.ENABLED);
+    }
+
+    public override bool get_enabled(string module) throws Error {
+        if (module in this.enable) {
+            return this.enable[module];
+        }
+
+        throw new Rygel.ConfigurationError.NO_VALUE_SET ("Should not happen");
+    }
+}
+
 class TestPluginLoader : Rygel.PluginLoader {
     private string[] expected_plugins;
     private string[] forbidden_plugins;
@@ -24,15 +41,11 @@ class TestPluginLoader : Rygel.PluginLoader {
 }
 
 void test_plugin_loader_conflict () {
-    try {
-        var config = new Rygel.UserConfig.with_paths (
-            "data/plugin-loader/conflicts/test.conf",
-            "data/plugin-loader/conflicts/test.conf");
-        Rygel.MetaConfig.register_configuration (config);
-    } catch (Error error) {
-        critical("%s", error.message);
-        assert_not_reached ();
-    }
+    var config = new TestConfig ();
+    config.enable["Tracker"] = true;
+    config.enable["Tracker3"] = true;
+    config.enable["SomePlugin"] = true;
+    Rygel.MetaConfig.register_configuration (config);
 
     var loader = new TestPluginLoader("conflicts",
                                       {"librygel-tracker.so", "librygel-no-conflict.so"},
