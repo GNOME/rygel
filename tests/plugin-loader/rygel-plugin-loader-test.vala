@@ -1,7 +1,7 @@
 class TestConfig : Rygel.BaseConfiguration {
     public HashTable<string, bool> enable = new HashTable<string, bool> (str_hash, str_equal);
 
-    public void toggl_enable (string module) {
+    public void toggle_enable (string module) {
         enable[module] = !enable[module];
         this.section_changed (module, Rygel.SectionEntry.ENABLED);
     }
@@ -54,6 +54,35 @@ void test_plugin_loader_conflict () {
     assert (loader.loaded_plugins.length == 2);
     assert ("librygel-tracker.so" in loader.loaded_plugins);
     assert ("librygel-no-conflict.so" in loader.loaded_plugins);
+
+    Rygel.MetaConfig.cleanup ();
+}
+
+
+void test_plugin_loader_conflict_dynamic_enable () {
+    var config = new TestConfig ();
+    config.enable["Tracker"] = true;
+    config.enable["Tracker3"] = false;
+    config.enable["SomePlugin"] = true;
+    Rygel.MetaConfig.register_configuration (config);
+
+    var loader = new TestPluginLoader("conflicts",
+                                      {"librygel-tracker.so", "librygel-no-conflict.so"},
+                                      {"librygel-tracker3.so"});
+
+    loader.load_modules_sync ();
+    assert (loader.loaded_plugins.length == 2);
+    assert ("librygel-tracker.so" in loader.loaded_plugins);
+    assert ("librygel-no-conflict.so" in loader.loaded_plugins);
+
+    // Enabling Tracker3 should not change the list of loaded plugins
+    config.toggle_enable ("Tracker3");
+
+    assert (loader.loaded_plugins.length == 2);
+    assert ("librygel-tracker.so" in loader.loaded_plugins);
+    assert ("librygel-no-conflict.so" in loader.loaded_plugins);
+
+    Rygel.MetaConfig.cleanup ();
 }
 
 int main (string[] args) {
@@ -61,5 +90,7 @@ int main (string[] args) {
 
     Test.add_func ("/librygel-core/plugins/load-conflict",
                    test_plugin_loader_conflict);
+    Test.add_func ("/librygel-core/plugins/load-conflict-enable",
+                   test_plugin_loader_conflict_dynamic_enable);
     return Test.run ();
 }
