@@ -79,6 +79,18 @@ test('rygel-plugin-loader-test',
     workdir : meson.current_source_dir(),
 )
 
+test('rygel-meta-config-test',
+    executable(
+        'rygel-meta-config-test',
+        files(
+            'rygel-meta-config-test.vala'
+        ),
+        dependencies : [
+            rygel_core
+        ]
+    )
+)
+
 test('rygel-searchable-container-test', searchable_container_test)
 test('rygel-object-creator-test', object_creator_test)
 test('rygel-regression-test', regression_test)
