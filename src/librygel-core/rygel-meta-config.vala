@@ -62,6 +62,12 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         return meta_config;
     }
 
+    /**
+     * Register another configuration provider to the meta configuration
+     * First configuration to provide a value wins. If you want to assign
+     * priority to configuration providers, they have to be added with descending
+     * priority
+     */
     public static void register_configuration (Configuration config) {
         if (MetaConfig.configs == null) {
             MetaConfig.configs = new ArrayList<Configuration> ();
@@ -71,6 +77,16 @@ public class Rygel.MetaConfig : GLib.Object, Configuration {
         if (meta_config != null) {
             meta_config.connect_signals (config);
         }
+    }
+
+    /**
+     * Convenoience method for cleaning up the singleton. This
+     * Should usually not be used; only if you care for your
+     * valgrind report or in tests
+     */
+    public static void cleanup () {
+        MetaConfig.meta_config = null;
+        MetaConfig.configs = null;
     }
 
     public string get_interface () throws GLib.Error {
