@@ -49,13 +49,21 @@ test_meta_config_overrides () {
 
     // Check that signalling a change for a value that only exists
     // on lower priority will trigger a signal on the MetaConfig
-    assert_true (instance.get_enabled (SECTION_A));
-    assert_true (instance.get_enabled (SECTION_B));
+    try {
+        assert_true (instance.get_enabled (SECTION_A));
+        assert_true (instance.get_enabled (SECTION_B));
+    } catch (Error e) {
+        assert_not_reached ();
+    }
 
     var id = instance.section_changed.connect ((section, entry) => {
         assert_true (section == SECTION_B);
         assert_true (entry == Rygel.SectionEntry.ENABLED);
-        assert_false (instance.get_enabled (section));
+        try {
+            assert_false (instance.get_enabled (section));
+        } catch (Error e) {
+            assert_not_reached ();
+        }
     });
 
     second_config.toggl_enable (SECTION_B);
