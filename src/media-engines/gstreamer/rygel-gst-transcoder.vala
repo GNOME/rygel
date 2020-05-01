@@ -149,6 +149,7 @@ internal abstract class Rygel.GstTranscoder : GLib.Object {
 
         orig_source.src.link (decoder);
 
+        decoder.autoplug_continue.connect (this.on_decode_autoplug_continue);
         decoder.pad_added.connect (this.on_decoder_pad_added);
         decoder.no_more_pads.connect (this.on_no_more_pads);
 
@@ -171,20 +172,33 @@ internal abstract class Rygel.GstTranscoder : GLib.Object {
     protected abstract EncodingProfile get_encoding_profile
                                         (MediaFileItem item);
 
-    private void on_decoder_pad_added (Element decodebin, Pad new_pad) {
-        Gst.Pad sinkpad;
-
-        sinkpad = this.encoder.get_compatible_pad (new_pad, null);
+    private Gst.Pad? get_compatible_sink_pad (Pad pad, Caps caps) {
+        var sinkpad = this.encoder.get_compatible_pad (pad, null);
 
         if (sinkpad == null) {
-            var caps = new_pad.query_caps (null);
             Signal.emit_by_name (this.encoder, "request-pad", caps, out sinkpad);
         }
 
         if (sinkpad == null) {
-            debug ("No compatible encodebin pad found for pad '%s', ignoring..",
-                   new_pad.name);
+            debug ("No compatible encodebin pad found for pad '%s', ignoring...",
+                   pad.name);
+        }
 
+        return sinkpad;
+    }
+
+    private bool on_decode_autoplug_continue (Element decodebin,
+                                              Pad     new_pad,
+                                              Caps    caps) {
+        return this.get_compatible_sink_pad (new_pad, caps) == null;
+    }
+
+    private void on_decoder_pad_added (Element decodebin, Pad new_pad) {
+        var sinkpad = this.get_compatible_sink_pad (new_pad, new_pad.query_caps (null));
+
+        if (sinkpad == null) {
+            debug ("No compatible encodebin pad found for pad '%s', ignoring...",
+                   new_pad.name);
             return;
         }
 
