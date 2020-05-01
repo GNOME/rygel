@@ -97,11 +97,12 @@
             "name": "tracker",
             "buildsystem": "meson",
             "cleanup": [ "/bin", "/etc", "/lib/girepository-1.0", "/libexec", "/share/dbus-1", "/share/gir-1.0" ],
-            "config-opts": [ "-Dbash_completion=no", "-Ddocs=false", "-Dsystemd_user_services=no" ],
+            "config-opts": [ "-Dbash_completion=no", "-Ddocs=false", "-Dsystemd_user_services=no", "-Dgstreamer_backend=gupnp" ],
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/tracker.git"
+                    "url": "https://gitlab.gnome.org/GNOME/tracker.git",
+                    "branch" : "tracker-2.3"
                 }
             ]
         },
