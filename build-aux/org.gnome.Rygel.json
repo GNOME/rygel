@@ -81,23 +81,6 @@
             ]
         },
         {
-            "name" : "libgee",
-            "sources" : [
-                {
-                    "type" : "archive",
-                    "url" : "https://download.gnome.org/sources/libgee/0.20/libgee-0.20.2.tar.xz",
-                    "sha256" : "9e035c4b755f46bfae70ba81cdcf8328b03f554373cec8c816e8b5680f85353c"
-                }
-            ],
-            "make-install-args": [
-                "girdir=/app/share/gir-1.0",
-                "typelibdir=/app/lib/girepository-1.0"
-            ],
-            "config-opts" : [
-                "--disable-docs"
-            ]
-        },
-        {
             "name" : "libmediaart",
             "sources" : [
                 {
