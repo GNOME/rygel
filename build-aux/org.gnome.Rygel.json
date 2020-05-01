@@ -130,16 +130,14 @@
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/tracker-miners.git"
+                    "url": "https://gitlab.gnome.org/GNOME/tracker-miners.git",
+                    "branch" : "tracker-2.3"
                 }
             ]
         },
        {
             "name" : "rygel",
             "buildsystem" : "meson",
-            "config-opts" : [
-                "-Dplugins=['external', 'gst-launch', 'lms', 'media-export', 'mpris', 'playbin', 'ruih']"
-            ],
             "sources" : [
                 {
                     "type" : "git",
