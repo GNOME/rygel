@@ -14,14 +14,14 @@ internal class Rygel.TranscodingGstDataSource : Rygel.GstDataSource {
     dynamic Element decoder;
     dynamic Element encoder;
     private bool link_failed = true;
+    private GstDataSource orig_source;
 
     public TranscodingGstDataSource(DataSource src, EncodingProfile profile) throws Error {
         var bin = new Bin ("transcoder-source");
         base.from_element (bin);
 
-        var orig_source = (GstDataSource) src;
+        this.orig_source = (GstDataSource) src;
 
-        this.decoder = GstUtils.create_element (DECODE_BIN, DECODE_BIN);
         this.encoder = GstUtils.create_element (ENCODE_BIN, ENCODE_BIN);
 
         this.encoder.profile = profile;
@@ -31,18 +31,7 @@ internal class Rygel.TranscodingGstDataSource : Rygel.GstDataSource {
             throw new GstTranscoderError.CANT_TRANSCODE (message);
         }
 
-        debug ("%s using the following encoding profile:",
-               this.get_class ().get_type ().name ());
-               GstUtils.dump_encoding_profile (encoder.profile);
-
-        bin.add_many (orig_source.src, decoder, encoder);
-
-        orig_source.src.link (decoder);
-
-        decoder.autoplug_continue.connect (this.on_decode_autoplug_continue);
-        decoder.pad_added.connect (this.on_decoder_pad_added);
-        decoder.no_more_pads.connect (this.on_no_more_pads);
-
+        bin.add (encoder);
         var pad = encoder.get_static_pad ("src");
         var ghost = new GhostPad (null, pad);
         bin.add_pad (ghost);
@@ -52,6 +41,21 @@ internal class Rygel.TranscodingGstDataSource : Rygel.GstDataSource {
                                         (HTTPSeekRequest? seek_request,
                                          PlaySpeedRequest? playspeed_request)
                                          throws Error {
+        var bin = (Gst.Bin) this.src;
+
+        this.decoder = GstUtils.create_element (DECODE_BIN, DECODE_BIN);
+        debug ("%s using the following encoding profile:",
+                this.get_class ().get_type ().name ());
+                GstUtils.dump_encoding_profile (encoder.profile);
+
+        bin.add_many (orig_source.src, decoder);
+
+        orig_source.src.link (decoder);
+
+        decoder.autoplug_continue.connect (this.on_decode_autoplug_continue);
+        decoder.pad_added.connect (this.on_decoder_pad_added);
+        decoder.no_more_pads.connect (this.on_no_more_pads);
+
         return base.preroll (seek_request, playspeed_request);
     }
 
