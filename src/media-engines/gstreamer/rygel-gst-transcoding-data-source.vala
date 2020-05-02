@@ -48,6 +48,13 @@ internal class Rygel.TranscodingGstDataSource : Rygel.GstDataSource {
         bin.add_pad (ghost);
     }
 
+    public override Gee.List<HTTPResponseElement>? preroll
+                                        (HTTPSeekRequest? seek_request,
+                                         PlaySpeedRequest? playspeed_request)
+                                         throws Error {
+        return base.preroll (seek_request, playspeed_request);
+    }
+
     private Gst.Pad? get_compatible_sink_pad (Pad pad, Caps caps) {
         var sinkpad = this.encoder.get_compatible_pad (pad, null);
 
