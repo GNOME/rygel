@@ -8,6 +8,7 @@ media_engine_gst_sources = [
     'rygel-audio-transcoder.vala',
     'rygel-avc-transcoder.vala',
     'rygel-gst-data-source.vala',
+    'rygel-gst-transcoding-data-source.vala',
     'rygel-gst-media-engine.vala',
     'rygel-gst-sink.vala',
     'rygel-gst-transcoder.vala',
