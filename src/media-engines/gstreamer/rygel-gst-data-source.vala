@@ -61,6 +61,10 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         this.src = element;
     }
 
+    public HTTPSeekRequest? get_seek_request () {
+        return this.seek;
+    }
+
     public Gee.List<HTTPResponseElement>? preroll
                                         (HTTPSeekRequest? seek_request,
                                          PlaySpeedRequest? playspeed_request)
