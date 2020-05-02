@@ -30,7 +30,7 @@
 using Gst;
 using GUPnP;
 
-public errordomain Rygel.Playbin.PlayerError {
+public errordomain Rygel.PlaybinPlayerError {
     NO_ELEMENT
 }
 
@@ -366,8 +366,8 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
     private Player () throws Error {
         this.playbin = ElementFactory.make ("playbin3", null);
         if (this.playbin == null) {
-            throw new PlayerError.NO_ELEMENT (
-                _("Your GStreamer installation seems to be missing the “playbin” element. The Rygel GStreamer renderer implementation cannot work without it"));
+            throw new PlaybinPlayerError.NO_ELEMENT (
+                _("Your GStreamer installation seems to be missing the “playbin3” element. The Rygel GStreamer renderer implementation cannot work without it"));
         }
         this.setup_playbin ();
     }
