@@ -28,7 +28,7 @@ public void module_init (PluginLoader loader) {
 
     Gst.init (ref args);
     try {
-        var plugin = new Playbin.Plugin ();
+        var plugin = new PlaybinPlugin ();
 
         loader.add_plugin (plugin);
     } catch (Error error) {

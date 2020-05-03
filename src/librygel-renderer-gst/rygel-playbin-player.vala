@@ -39,7 +39,7 @@ public errordomain Rygel.PlaybinPlayerError {
  *
  * This class is useful only when implementing Rygel plugins.
  */
-public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
+public class Rygel.PlaybinPlayer : GLib.Object, Rygel.MediaPlayer {
     private const string TRANSFER_MODE_STREAMING = "Streaming";
     private const string TRANSFER_MODE_INTERACTIVE = "Interactive";
     private const string PROTOCOL_INFO_TEMPLATE = "http-get:%s:*:%s";
@@ -91,12 +91,12 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
                                         "video/x-ms-asf",
                                         "video/x-xvid",
                                         "video/x-ms-wmv" };
-    private static Player player;
+    private static PlaybinPlayer player;
     private static bool has_dlna_src;
 
     static construct {
-        Player.has_dlna_src = Gst.URI.protocol_is_supported (URIType.SRC,
-                                                             "dlna+http");
+        PlaybinPlayer.has_dlna_src = Gst.URI.protocol_is_supported (URIType.SRC,
+                                                                   "dlna+http");
     }
 
     public dynamic Element playbin { get; private set; }
@@ -198,7 +198,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         set {
             this._uri = value;
             this.playbin.set_state (State.READY);
-            if (Player.has_dlna_src && value.has_prefix ("http")) {
+            if (PlaybinPlayer.has_dlna_src && value.has_prefix ("http")) {
                 debug ("Trying to use DLNA src element");
                 this.playbin.uri = "dlna+" + value;
             } else {
@@ -363,7 +363,7 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         }
     }
 
-    private Player () throws Error {
+    private PlaybinPlayer () throws Error {
         this.playbin = ElementFactory.make ("playbin3", null);
         if (this.playbin == null) {
             throw new PlaybinPlayerError.NO_ELEMENT (
@@ -372,9 +372,9 @@ public class Rygel.Playbin.Player : GLib.Object, Rygel.MediaPlayer {
         this.setup_playbin ();
     }
 
-    public static Player instance () throws Error {
+    public static PlaybinPlayer instance () throws Error {
         if (player == null) {
-            player = new Player ();
+            player = new PlaybinPlayer ();
         }
 
         return player;
