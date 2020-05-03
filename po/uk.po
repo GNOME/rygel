@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-02-23 11:41+0000\n"
-"PO-Revision-Date: 2020-03-11 20:32+0200\n"
+"POT-Creation-Date: 2020-05-03 16:54+0000\n"
+"PO-Revision-Date: 2020-05-03 22:17+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
 "=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 20.03.70\n"
+"X-Generator: Lokalize 20.07.70\n"
 "X-Project-Style: gnome\n"
 
 #: data/rygel.desktop.in.in:3
@@ -136,14 +136,12 @@ msgstr "Неправильний тип тестування"
 #. / TestID is valid but the test Results are not available
 #: src/librygel-core/rygel-basic-management.vala:174
 #, c-format
-#| msgid "Invalid Test State '%s'"
 msgid "Invalid Test State “%s”"
 msgstr "Неправильний стан тесту «%s»"
 
 #. / TestID is valid but the test can't be canceled
 #: src/librygel-core/rygel-basic-management.vala:180
 #, c-format
-#| msgid "State '%s' Precludes Cancel"
 msgid "State “%s” Precludes Cancel"
 msgstr "Стан «%s» запобігає скасуванню"
 
@@ -181,17 +179,14 @@ msgid "Invalid argument"
 msgstr "Неправильний аргумент"
 
 #: src/librygel-core/rygel-basic-management.vala:254
-#| msgid "Cannot run 'Ping' action: Host is empty"
 msgid "Cannot run “Ping” action: Host is empty"
 msgstr "Неможливо запустити «Ping»: вузол порожній"
 
 #: src/librygel-core/rygel-basic-management.vala:352
-#| msgid "Cannot run 'NSLookup' action: HostName is empty"
 msgid "Cannot run “NSLookup” action: HostName is empty"
 msgstr "Неможливо запустити «NSLookup»: назва вузла порожня"
 
 #: src/librygel-core/rygel-basic-management.vala:440
-#| msgid "Cannot run 'Traceroute' action: Host is empty"
 msgid "Cannot run “Traceroute” action: Host is empty"
 msgstr "Неможливо запустити «Traceroute»: вузол порожній"
 
@@ -329,14 +324,12 @@ msgstr "Не вдалось отримати журнал рівнів з кон
 #. translators: "enabled" is part of the config key and must not be translated
 #: src/librygel-core/rygel-meta-config.vala:336
 #, c-format
-#| msgid "No value set for '%s/enabled'"
 msgid "No value set for “%s/enabled”"
 msgstr "Не вказано значення для «%s/enabled»"
 
 #. translators: "title" is part of the config key and must not be translated
 #: src/librygel-core/rygel-meta-config.vala:355
 #, c-format
-#| msgid "No value set for '%s/title'"
 msgid "No value set for “%s/title”"
 msgstr "Не вказано значення для «%s/title»"
 
@@ -346,7 +339,6 @@ msgstr "Не вказано значення для «%s/title»"
 #: src/librygel-core/rygel-meta-config.vala:445
 #: src/librygel-core/rygel-meta-config.vala:469
 #, c-format
-#| msgid "No value available for '%s/%s'"
 msgid "No value available for “%s/%s”"
 msgstr "Немає доступного значення для «%s/%s»"
 
@@ -361,7 +353,6 @@ msgstr "Додаток %s не існує"
 
 #: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
-#| msgid "New plugin '%s' available"
 msgid "New plugin “%s” available"
 msgstr "Доступна нова втулка «%s»"
 
@@ -372,25 +363,21 @@ msgstr "Додаток «%s» вже завантажено"
 
 #: src/librygel-core/rygel-plugin-loader.vala:118
 #, c-format
-#| msgid "Failed to load module from path '%s': %s"
 msgid "Failed to load module from path “%s”: %s"
 msgstr "Не вдалось завантажити модуль з «%s»: %s"
 
 #: src/librygel-core/rygel-plugin-loader.vala:128
 #, c-format
-#| msgid "Failed to find entry point function '%s' in '%s': %s"
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "Не вдалось знайти функцію точки входу «%s» в «%s»: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
-#| msgid "Failed to open plugins folder: '%s'"
 msgid "Failed to open plugins folder: “%s”"
 msgstr "Не вдалося відкрити теку додатків: «%s»"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
-#| msgid "Error listing contents of folder '%s': %s"
 msgid "Error listing contents of folder “%s”: %s"
 msgstr "Помилка перелічення вмісту теки «%s»: %s"
 
@@ -401,26 +388,22 @@ msgstr "Не вдалося завантажити додаток: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:221
 #, c-format
-#| msgid "Failed to query content type for '%s'"
 msgid "Failed to query content type for “%s”"
 msgstr "Не вдалось виконати запит типу вмісту для «%s»"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
 #: src/librygel-core/rygel-user-config.vala:246
 #, c-format
-#| msgid "Failed to load user configuration from file '%s': %s"
 msgid "Failed to load user configuration from file “%s”: %s"
 msgstr "Не вдалося завантажити налаштування користувача з файла «%s»: %s"
 
 #: src/librygel-core/rygel-user-config.vala:299
 #, c-format
-#| msgid "No value available for '%s'"
 msgid "No value available for “%s”"
 msgstr "Немає доступного значення «%s»"
 
 #: src/librygel-core/rygel-user-config.vala:370
 #, c-format
-#| msgid "Value of '%s' out of range"
 msgid "Value of “%s” out of range"
 msgstr "Значення «%s» — поза діапазоном"
 
@@ -441,13 +424,14 @@ msgstr "Не вдалось відкотити транзакцію: %s"
 
 #: src/librygel-renderer-gst/rygel-playbin-player.vala:370
 #| msgid ""
-#| "Your GStreamer installation seems to be missing the \"playbin\" element. "
+#| "Your GStreamer installation seems to be missing the “playbin” element. "
 #| "The Rygel GStreamer renderer implementation cannot work without it"
 msgid ""
-"Your GStreamer installation seems to be missing the “playbin” element. The "
+"Your GStreamer installation seems to be missing the “playbin3” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
-"Схоже, що ваше встановлення GStreamer не містить елементу «playbin». Rygel "
+"Схоже, що встановлений у вашій системі GStreamer не містить елемента"
+" «playbin3». Rygel "
 "GStreamer не може працювати без нього."
 
 #: src/librygel-renderer/rygel-av-transport.vala:204
@@ -522,37 +506,31 @@ msgstr "Не вдалось виконати дію"
 
 #: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
 #, c-format
-#| msgid "Unable to parse Icon data - unexpected node: %s"
 msgid "Unable to parse Icon data — unexpected node: %s"
 msgstr "Неможливо розібрати дані піктограми — неочікуваний вузол: %s"
 
 #: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
 #, c-format
-#| msgid "Unable to parse Protocol data - unexpected attribute: %s"
 msgid "Unable to parse Protocol data — unexpected attribute: %s"
 msgstr "Неможливо розібрати дані протоколу — неочікуваний атрибут: %s"
 
 #: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
 #, c-format
-#| msgid "Unable to parse Protocol data - unexpected node: %s"
 msgid "Unable to parse Protocol data — unexpected node: %s"
 msgstr "Неможливо розібрати дані протоколу — неочікуваний вузол: %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
 #, c-format
-#| msgid "Failed to set UIList for file %s - %s"
 msgid "Failed to set UIList for file %s — %s"
 msgstr "Не вдалося вказати UIList для файла %s — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
 #, c-format
-#| msgid "Failed to set initial UI list for file %s - %s"
 msgid "Failed to set initial UI list for file %s — %s"
 msgstr "Не вдалося вказати початковий список UI для файла %s — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
 #, c-format
-#| msgid "Failed to monitor the file %s - %s"
 msgid "Failed to monitor the file %s — %s"
 msgstr "Не вдалося проконтролювати за файлом %s — %s"
 
@@ -573,7 +551,6 @@ msgstr "Неправильний фільтр UI: %s"
 
 #: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
 #, c-format
-#| msgid "Unable to parse UI data - unexpected node: %s"
 msgid "Unable to parse UI data — unexpected node: %s"
 msgstr "Неможливо розібрати дані UI — неочікуваний вузол: %s"
 
@@ -587,7 +564,6 @@ msgstr "Не вдалося прочитати дочірні елементи"
 
 #: src/librygel-server/rygel-browse.vala:134
 #, c-format
-#| msgid "Failed to browse '%s': %s\n"
 msgid "Failed to browse “%s”: %s\n"
 msgstr ""
 "Не вдалось оглянути «%s»: %s\n"
@@ -615,7 +591,6 @@ msgstr " має бути 1"
 
 #: src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
-#| msgid "Invalid URI '%s'"
 msgid "Invalid URI “%s”"
 msgstr "Неприпустиме URI «%s»"
 
@@ -626,7 +601,6 @@ msgstr "Не знайдено"
 #: src/librygel-server/rygel-http-post.vala:64
 #: src/librygel-server/rygel-import-resource.vala:193
 #, c-format
-#| msgid "Pushing data to non-empty item '%s' not allowed"
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "Не дозволено виштовхувати дані в непорожній пункт «%s»"
 
@@ -643,25 +617,21 @@ msgstr "Не вдалося перемістити прихований файл
 
 #: src/librygel-server/rygel-http-request.vala:95
 #, c-format
-#| msgid "Requested item '%s' not found"
 msgid "Requested item “%s” not found"
 msgstr "Не знайдено потрібного пункту «%s»"
 
 #: src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
-#| msgid "Couldn't create data source for %s"
 msgid "Couldn’t create data source for %s"
 msgstr "Неможливо створити джерело даних для %s"
 
 #: src/librygel-server/rygel-import-resource.vala:124
 #, c-format
-#| msgid "Failed to get original URI for '%s': %s"
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "Не вдалось отримати оригінальне URI для «%s»: %s"
 
 #: src/librygel-server/rygel-import-resource.vala:188
 #, c-format
-#| msgid "URI '%s' invalid for importing contents to"
 msgid "URI “%s” invalid for importing contents to"
 msgstr "Недоступне URI «%s» для імпортування вмісту"
 
@@ -677,13 +647,11 @@ msgstr "Немає ContainerID"
 
 #: src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
-#| msgid "Successfully destroyed object '%s'"
 msgid "Successfully destroyed object “%s”"
 msgstr "Успішно знищено об'єкт «%s»"
 
 #: src/librygel-server/rygel-item-destroyer.vala:68
 #, c-format
-#| msgid "Failed to destroy object '%s': %s"
 msgid "Failed to destroy object “%s”: %s"
 msgstr "Не вдалось знищити об'єкт «%s»: %s"
 
@@ -712,13 +680,11 @@ msgstr "Бракує ідентифікатора об'єкта"
 
 #: src/librygel-server/rygel-item-updater.vala:81
 #, c-format
-#| msgid "Successfully updated object '%s'"
 msgid "Successfully updated object “%s”"
 msgstr "Об'єкт «%s» успішно оновлено"
 
 #: src/librygel-server/rygel-item-updater.vala:89
 #, c-format
-#| msgid "Failed to update object '%s': %s"
 msgid "Failed to update object “%s”: %s"
 msgstr "Не вдалося оновити об'єкт «%s»: %s"
 
@@ -855,7 +821,6 @@ msgid "upnp:createClass value not supported"
 msgstr "Значення upnp:createClass не підтримується"
 
 #: src/librygel-server/rygel-object-creator.vala:193
-#| msgid "'Elements' argument missing."
 msgid "“Elements” argument missing."
 msgstr "Бракує аргументу «Elements»."
 
@@ -870,7 +835,6 @@ msgstr "Немає аргументу ContainerID."
 
 #: src/librygel-server/rygel-object-creator.vala:226
 #, c-format
-#| msgid "No objects in DIDL-Lite from client: '%s'"
 msgid "No objects in DIDL-Lite from client: “%s”"
 msgstr "Немає об'єктів у DIDL-Lite від клієнта: «%s»"
 
@@ -883,7 +847,6 @@ msgid "dc:title must not be empty in CreateObject call"
 msgstr "dc:title не повинно бути порожнім у виклику CreateObject"
 
 #: src/librygel-server/rygel-object-creator.vala:249
-#| msgid "Flags that must not be set were found in 'dlnaManaged'"
 msgid "Flags that must not be set were found in “dlnaManaged”"
 msgstr ""
 "Прапорці, які не повинні бути встановлені, були знайдені у «dlnaManaged»"
@@ -902,7 +865,6 @@ msgstr "Неможливо створити елемент з обмеження
 
 #: src/librygel-server/rygel-object-creator.vala:385
 #, c-format
-#| msgid "UPnP class '%s' not supported"
 msgid "UPnP class “%s” not supported"
 msgstr "Клас UPnP «%s» не підтримується"
 
@@ -916,27 +878,21 @@ msgstr "Не дозволено створювати об'єкти в %s"
 
 #: src/librygel-server/rygel-object-creator.vala:476
 #, c-format
-#| msgid "Failed to create item under '%s': %s"
 msgid "Failed to create item under “%s”: %s"
 msgstr "Не вдалось створити пункт під «%s»: %s"
 
 #: src/librygel-server/rygel-object-creator.vala:552
 #, c-format
-#| msgid "DLNA profile '%s' not supported"
 msgid "DLNA profile “%s” not supported"
 msgstr "Профіль DLNA «%s» не підтримується"
 
 #: src/librygel-server/rygel-object-creator.vala:656
 #, c-format
-#| msgid "Cannot create object of class '%s': Not supported"
 msgid "Cannot create object of class “%s”: Not supported"
 msgstr "Не вдалося створити об'єкт класу «%s»: не підтримується"
 
 #: src/librygel-server/rygel-object-creator.vala:754
 #, c-format
-#| msgid ""
-#| "Error from container '%s' on trying to find the newly added child object "
-#| "'%s' in it: %s"
 msgid ""
 "Error from container “%s” on trying to find the newly added child object "
 "“%s” in it: %s"
@@ -945,18 +901,15 @@ msgstr ""
 "дочірній об'єкт «%s»: %s"
 
 #: src/librygel-server/rygel-reference-creator.vala:50
-#| msgid "'ContainerID' agument missing."
 msgid "“ContainerID” agument missing."
 msgstr "Немає аргументу «ContainerID»."
 
 #: src/librygel-server/rygel-reference-creator.vala:55
-#| msgid "ObjectID argument missing"
 msgid "“ObjectID” argument missing."
 msgstr "Бракує аргументу «ObjectID»."
 
 #: src/librygel-server/rygel-reference-creator.vala:86
 #, c-format
-#| msgid "Failed to create object under '%s': %s"
 msgid "Failed to create object under “%s”: %s"
 msgstr "Не вдалося створити об'єкт під «%s»: %s"
 
@@ -966,7 +919,6 @@ msgstr "Некоректний критерій пошуку"
 
 #: src/librygel-server/rygel-search.vala:94
 #, c-format
-#| msgid "Failed to search in '%s': %s"
 msgid "Failed to search in “%s”: %s"
 msgstr "Не вдалось знайти в «%s»: %s"
 
@@ -999,84 +951,75 @@ msgstr "Немає доступної мініатюри. Потрібно по�
 msgid "No D-Bus thumbnailer available"
 msgstr "Немає доступного модуля мініатюр D-Bus"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:44
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:46
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr "Не вдалося створити GstElement для URI %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:72
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
 msgstr "Швидкість програвання не підтримується"
 
 #. Unknown/unsupported seek type
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:102
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
 msgstr "Тип HTTPSeekRequest %s не підтримується"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:146
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
 msgid "Failed to create pipeline"
 msgstr "Не вдалося створити конвеєр"
 
 #. static pads? easy!
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:157
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:178
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:163
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:184
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Не вдалось сполучити %s з %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:192
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:198
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Не вдалось сполучити клавішу %s з %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:257
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:263
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Помилка з каналу даних %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:264
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:270
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Попередження з каналу даних %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:317
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:323
 msgid "Unsupported seek type"
 msgstr "Непідтримуваний тип переміщення"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:334
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Не вдалося переміститися до зміщення %lld:%lld"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:336
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
 msgid "Failed to seek"
 msgstr "Не вдалося переміститися"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:130
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "Неправильний URI без префікса: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
 #, c-format
-#| msgid "Can't process URI %s with protocol %s"
 msgid "Can’t process URI %s with protocol %s"
 msgstr "Неможливо опрацювати URI %s без протоколу %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:246
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Не вдалося створити джерело даних GStreamer для %s: %s"
-
-#: src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
-msgid ""
-"Could not create a transcoder configuration. Your GStreamer installation "
-"might be missing a plug-in"
-msgstr ""
-"Не вдалося створити налаштування транскодера. У встановленому GStreamer може "
-"бракувати додатка"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
@@ -1084,7 +1027,6 @@ msgid "Required element %s missing"
 msgstr "Бракує потрібного елементу %s"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:58
-#| msgid "GStreamer element 'dvdreadsrc' not found. DVD support does not work"
 msgid "GStreamer element “dvdreadsrc” not found. DVD support does not work"
 msgstr ""
 "Елемент GStreamer «dvdreadsrc» не знайдено. Підтримування DVD не працює"
@@ -1102,13 +1044,11 @@ msgstr ""
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
-#| msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
 msgid "Module “%s” could not connect to D-Bus session bus. Ignoring…"
 msgstr "Модулю «%s» не вдалося під'єднатися до шини сеансу D-Bus. Ігнорування…"
 
 #: src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
-#| msgid "External provider %s did not provide mandatory property \"%s\""
 msgid "External provider %s did not provide mandatory property “%s”"
 msgstr "Зовнішній постачальник %s не надає обов'язкову властивість «%s»"
 
@@ -1184,7 +1124,6 @@ msgid "Failed to send error to parent: %s"
 msgstr "Не вдалося надіслати помилку далі: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:157
-#| msgid "- helper binary for Rygel to extract metadata"
 msgid "— helper binary for Rygel to extract metadata"
 msgstr "— бінарна помічник для Rygel, щоб витягувати метадані"
 
@@ -1200,13 +1139,11 @@ msgstr "Не вдалося витягнути матеріал: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, c-format
-#| msgid "'%s' harvested"
 msgid "“%s” harvested"
 msgstr "«%s» зібрано"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:202
 #, c-format
-#| msgid "Error fetching object '%s' from database: %s"
 msgid "Error fetching object “%s” from database: %s"
 msgstr "Помилка отримання об'єкта «%s» з бази даних: %s"
 
@@ -1237,7 +1174,6 @@ msgstr "Не вдалося зробити запит до бази даних: 
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
 #, c-format
-#| msgid "Failed to enumerate folder \"%s\": %s"
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "не вдалося перелічити теку «%s»: %s"
 
@@ -1248,7 +1184,6 @@ msgstr "Не вдалось отримати нащадків у контейн�
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
 #, c-format
-#| msgid "Failed to extract basic metadata from %s: %s"
 msgid "Failed to extract meta-data for file %s"
 msgstr "Не вдалося видобути метадані для файла %s"
 
@@ -1340,9 +1275,6 @@ msgstr "Не вдалося розібрати, чи об'єкт %s під за�
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:666
 #, c-format
-#| msgid ""
-#| "The version \"%d\" of the detected database is newer than our supported "
-#| "version \"%d\""
 msgid ""
 "The version “%d” of the detected database is newer than our supported "
 "version “%d”"
@@ -1418,19 +1350,16 @@ msgstr "Не вдалось отримати кількість нащадків
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
 #, c-format
-#| msgid "Can't create items in %s"
 msgid "Can’t create items in %s"
 msgstr "Неможливо створити елементи у %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:91
 #, c-format
-#| msgid "Can't add containers in %s"
 msgid "Can’t add containers in %s"
 msgstr "Неможливо додати контейнери у %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:99
 #, c-format
-#| msgid "Can't remove containers in %s"
 msgid "Can’t remove containers in %s"
 msgstr "Неможливо вилучити контейнери у %s"
 
@@ -1441,7 +1370,6 @@ msgstr "Списки композицій"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
-#| msgid "Can't remove items in %s"
 msgid "Can’t remove items in %s"
 msgstr "Неможливо вилучити елементи у %s"
 
@@ -1463,7 +1391,6 @@ msgstr "Не буде стежити за змінами файлів"
 #. upload case.
 #: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:105
 #, c-format
-#| msgid "Failed to get file information for %s: %s"
 msgid "Failed to setup up file monitor for %s: %s"
 msgstr "Не вдалося налаштувати спостереження за файлом для %s: %s"
 
@@ -1496,7 +1423,6 @@ msgstr "Файли та теки"
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
 #: src/plugins/tracker/rygel-tracker-plugin.vala:33
-#| msgid "@REALNAME@'s media"
 msgid "@REALNAME@’s media"
 msgstr "Матеріал @REALNAME@"
 
@@ -1552,7 +1478,6 @@ msgstr "Не вдалося створити з'єднання з Tracker: %s"
 
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
 #, c-format
-#| msgid "Failed to construct URI for folder '%s': %s"
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "Не вдалось побудувати URI для теки «%s»: %s"
 
@@ -1572,7 +1497,6 @@ msgstr "Не вдалося створити з'єднання Tracker: %s"
 
 #: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
 #, c-format
-#| msgid "Error getting all values for '%s': %s"
 msgid "Error getting all values for “%s”: %s"
 msgstr "Помилка отримання всіх значень «%s»: %s"
 
@@ -1588,7 +1512,6 @@ msgstr "Не вдалось отримати з'єднання Tracker: %s"
 
 #: src/plugins/tracker/rygel-tracker-search-container.vala:228
 #, c-format
-#| msgid "Error getting item count under category '%s': %s"
 msgid "Error getting item count under category “%s”: %s"
 msgstr "Помилка отримання кількості пунктів під категорією «%s»: %s"
 
@@ -1603,17 +1526,14 @@ msgstr "Не вдалося виконати запит ACL: %s"
 
 #: src/rygel/rygel-acl.vala:127
 #, c-format
-#| msgid "Error creating DBus proxy for ACL: %s"
 msgid "Error creating D-Bus proxy for ACL: %s"
 msgstr "Помилка створення проксі D-Bus для ACL: %s"
 
 #: src/rygel/rygel-acl.vala:143
-#| msgid "No ACL fallback policy found. Using \"allow\""
 msgid "No ACL fallback policy found. Using “allow”"
 msgstr "Не знайдено запасних правил ACL. Використовується «allow»"
 
 #: src/rygel/rygel-acl.vala:145
-#| msgid "No ACL fallback policy found. Using \"deny\""
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "Не знайдено запасних правил ACL. Використовується «deny»"
 
@@ -1656,7 +1576,6 @@ msgstr "Не вдалось створити діалог налаштувань
 
 #: src/ui/rygel-writable-user-config.vala:119
 #, c-format
-#| msgid "Failed to save configuration data to file '%s': %s"
 msgid "Failed to save configuration data to file “%s”: %s"
 msgstr "Не вдалось зберегти дані налаштувань у файл «%s»: %s"
 
@@ -1669,3 +1588,10 @@ msgstr "Не вдалось запустити службу Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Не вдалось зупинити службу Rygel: %s"
+
+#~ msgid ""
+#~ "Could not create a transcoder configuration. Your GStreamer installation "
+#~ "might be missing a plug-in"
+#~ msgstr ""
+#~ "Не вдалося створити налаштування транскодера. У встановленому GStreamer "
+#~ "може бракувати додатка"
