@@ -204,6 +204,7 @@ public class Rygel.HTTPTimeSeekResponse : Rygel.HTTPResponseElement {
         // object owner. To form the response, we just use what is set.
 
         var response = new StringBuilder ();
+        var locale = Intl.setlocale (LocaleCategory.NUMERIC, "C");
         response.append ("npt=");
         response.append_printf ("%.3f-",
                                 (double) this.start_time / TimeSpan.SECOND);
@@ -217,6 +218,7 @@ public class Rygel.HTTPTimeSeekResponse : Rygel.HTTPResponseElement {
         } else {
             response.append ("/*");
         }
+        Intl.setlocale (LocaleCategory.NUMERIC, locale);
 
         if ((this.start_byte != UNSPECIFIED) &&
             (this.end_byte != UNSPECIFIED)) {
