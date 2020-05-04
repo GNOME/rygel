@@ -43,42 +43,20 @@ internal class Rygel.TranscodingGstDataSource : Rygel.GstDataSource {
                                          throws Error {
         var bin = (Gst.Bin) this.src;
 
-        if (seek_request == null || seek_request is HTTPByteSeekRequest) {
-            this.decoder = GstUtils.create_element (DECODE_BIN, DECODE_BIN);
-            debug ("%s using the following encoding profile:",
-                    this.get_class ().get_type ().name ());
-                    GstUtils.dump_encoding_profile (encoder.profile);
+        this.decoder = GstUtils.create_element (DECODE_BIN, DECODE_BIN);
+        debug ("%s using the following encoding profile:",
+                this.get_class ().get_type ().name ());
+                GstUtils.dump_encoding_profile (encoder.profile);
 
-            bin.add_many (orig_source.src, decoder);
-            orig_source.src.link (decoder);
-            orig_source.src.sync_state_with_parent ();
-            decoder.sync_state_with_parent ();
+        bin.add_many (orig_source.src, decoder);
 
-            decoder.autoplug_continue.connect (this.on_decode_autoplug_continue);
-            decoder.pad_added.connect (this.on_decoder_pad_added);
-            decoder.no_more_pads.connect (this.on_no_more_pads);
-        } else {
-            var time_seek = (HTTPTimeSeekRequest) seek_request;
+        orig_source.src.link (decoder);
 
-            var timeline = new GES.Timeline.audio_video ();
-            var layer = timeline.append_layer ();
-            var clip = new GES.UriClip (this.orig_source.get_uri ());
-            clip.in_point = time_seek.start_time * Gst.USECOND;
-            clip.duration = time_seek.range_duration * Gst.USECOND;
-            layer.add_clip (clip);
-            timeline.commit ();
-            var gessrc = GstUtils.create_element ("gessrc", "gessrc");
-            bin.add (gessrc);
-            gessrc.pad_added.connect (this.on_decoder_pad_added);
-            gessrc.no_more_pads.connect (this.on_no_more_pads);
-            gessrc.set ("timeline", timeline, null);
-        }
+        decoder.autoplug_continue.connect (this.on_decode_autoplug_continue);
+        decoder.pad_added.connect (this.on_decoder_pad_added);
+        decoder.no_more_pads.connect (this.on_no_more_pads);
 
         return base.preroll (seek_request, playspeed_request);
-    }
-
-    public override bool perform_seek () {
-        return true;
     }
 
     private Gst.Pad? get_compatible_sink_pad (Pad pad, Caps caps) {

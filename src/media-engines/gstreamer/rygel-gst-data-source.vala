@@ -36,10 +36,8 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
     private HTTPSeekRequest seek = null;
     private GstSink sink;
     private uint bus_watch_id;
-    string uri = null;
 
     public GstDataSource (string uri, MediaResource ? resource) throws Error {
-        this.uri = uri;
         this.res = resource;
         this.src = GstUtils.create_source_for_uri (uri);
         if (this.src == null) {
@@ -63,8 +61,8 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         this.src = element;
     }
 
-    public string get_uri () {
-        return this.uri;
+    public HTTPSeekRequest? get_seek_request () {
+        return this.seek;
     }
 
     public virtual Gee.List<HTTPResponseElement>? preroll
@@ -286,7 +284,7 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         return ret;
     }
 
-    public virtual bool perform_seek () {
+    private bool perform_seek () {
         var stop_type = Gst.SeekType.NONE;
         Format format;
         var flags = SeekFlags.FLUSH;

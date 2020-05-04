@@ -93,7 +93,6 @@ gstreamer_base = dependency('gstreamer-base-1.0', version : '>= 1.0', disabler: 
 gstreamer_audio = dependency('gstreamer-audio-1.0', version : '>= 1.0', disabler: true, required: get_option('gstreamer'))
 gstreamer_video = dependency('gstreamer-video-1.0', version : '>= 1.0', disabler: true, required: get_option('gstreamer'))
 gstreamer_tag = dependency('gstreamer-tag-1.0', version : '>= 1.0', disabler: true, required: get_option('gstreamer'))
-gstreamer_es = dependency('gst-editing-services-1.0', version : '>= 1.16', disabler: true, required : get_option('gstreamer'))
 gupnp_dlna_gst = dependency('gupnp-dlna-gst-2.0', version: '>= 0.9.4', disabler: true, required: get_option('gstreamer'))
 
 gdk_pixbuf = dependency('gdk-pixbuf-2.0')
@@ -122,7 +121,7 @@ renderer_gst_deps = common_deps + [gstreamer, gstreamer_audio]
 server_deps = common_deps + [gssdp, gupnp_av, soup, mediaart, gmodule, libxml]
 db_deps = common_deps + [gupnp_av, gio, sqlite, unistring]
 media_engine_gst_dep = [gee, gupnp_av, libxml, gio, gstreamer, gstreamer_pbu,
-                        gstreamer_base, gupnp_dlna, math, gstreamer_es]
+                        gstreamer_base, gupnp_dlna, math]
 ruih_deps = common_deps
 rygel_deps = common_deps
 

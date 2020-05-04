@@ -35,7 +35,6 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
         unowned string[] args = null;
 
         Gst.init (ref args);
-        GES.init ();
         Gst.preset_set_app_dir (BuildConfig.PRESET_DIR);
 
         /* Get the possible DLNA profiles
