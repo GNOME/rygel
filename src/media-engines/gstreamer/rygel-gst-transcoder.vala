@@ -39,6 +39,7 @@ public errordomain Rygel.GstTranscoderError {
  * implement get_resources_for_item and get_encoding_profile methods.
  */
 internal abstract class Rygel.GstTranscoder : GLib.Object {
+    public const string DECODE_BIN_NAME = "RygelTranscoderDecodebin";
     public string name { get; construct; }
     public string mime_type { get; construct; }
     public string dlna_profile { get; construct; }
@@ -129,7 +130,7 @@ internal abstract class Rygel.GstTranscoder : GLib.Object {
         var orig_source = src as GstDataSource;
 
         this.decoder = GstUtils.create_element (DECODE_BIN,
-                                                DECODE_BIN);
+                                                DECODE_BIN_NAME);
         this.encoder = GstUtils.create_element (ENCODE_BIN,
                                                 ENCODE_BIN);
 

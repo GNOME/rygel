@@ -208,16 +208,35 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
         if (message.type == MessageType.EOS) {
             ret = false;
         } else if (message.type == MessageType.STATE_CHANGED) {
-            if (message.src != this.pipeline) {
-                return true;
-            }
-
             State old_state;
             State new_state;
 
             message.parse_state_changed (out old_state,
                                          out new_state,
                                          null);
+
+            var encodebin = this.pipeline.get_by_name (GstTranscoder.DECODE_BIN_NAME);
+            if (message.src == encodebin && old_state == State.READY && new_state == State.PAUSED) {
+                if (this.seek is HTTPTimeSeekRequest) {
+                    debug ("Trying to seek encodebin directly...");
+                    var time_seek = (HTTPTimeSeekRequest) this.seek;
+                    debug ("%lld %lld", time_seek.start_time * Gst.USECOND, time_seek.end_time * Gst.USECOND);
+                    if (!encodebin.seek (1.0,
+                                    Format.TIME,
+                                    SeekFlags.ACCURATE| SeekFlags.FLUSH,
+                                    Gst.SeekType.SET,
+                                    time_seek.start_time * Gst.USECOND,
+                                    time_seek.end_time == 0 ?
+                                        Gst.SeekType.NONE : Gst.SeekType.SET,
+                                    time_seek.end_time * Gst.USECOND + 1)) {
+                        critical ("Failed to seek...");
+                    }
+                }
+            }
+            if (message.src != this.pipeline) {
+                return true;
+            }
+
 
             if (old_state == State.NULL && new_state == State.READY) {
                 dynamic Element element = this.pipeline.get_by_name ("muxer");
@@ -239,7 +258,7 @@ internal class Rygel.GstDataSource : Rygel.DataSource, GLib.Object {
 
             if (this.seek != null) {
                 if (old_state == State.READY && new_state == State.PAUSED) {
-                    if (this.perform_seek ()) {
+                    if ((encodebin != null && this.seek is HTTPTimeSeekRequest) || this.perform_seek ()) {
                         this.pipeline.set_state (State.PLAYING);
                     }
                 }
