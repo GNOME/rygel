@@ -56,6 +56,16 @@ playbin_renderer_test = executable(
     dependencies : [gstreamer, rygel_core, rygel_renderer, rygel_renderer_gst]
 )
 
+http_time_seek_test = executable(
+    'rygel-http-time-seek-test',
+    files(
+        'time-seek/rygel-http-seek.vala',
+        'time-seek/rygel-http-time-seek-request.vala',
+        'time-seek/rygel-http-time-seek-test.vala'
+    ),
+    dependencies : [glib, soup]
+)
+
 test('rygel-searchable-container-test', searchable_container_test)
 test('rygel-object-creator-test', object_creator_test)
 test('rygel-regression-test', regression_test)
@@ -65,3 +75,5 @@ test('rygel-playbin-renderer-test', playbin_renderer_test)
 
 # Up the timeout, the test itself is waiting 10s per round for changes, doing 4 rounds
 test('rygel-user-config-test', user_config_test, timeout : 50)
+
+test('rygel-http-time-seek-test', http_time_seek_test)
