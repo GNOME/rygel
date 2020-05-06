@@ -1,0 +1,8 @@
+[Plugin]
+Version = @VERSION@
+Module = tracker3
+Name = Tracker3
+License = LGPL
+Conflicts = Tracker
+Description = Share media using the Tracker meta-data store
+Copyright = Copyright © Rygel maintainers
