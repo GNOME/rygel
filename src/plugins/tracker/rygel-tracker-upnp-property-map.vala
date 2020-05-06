@@ -63,7 +63,7 @@ public class Rygel.Tracker.UPnPPropertyMap : Object {
         this.add_key_chain ("res@duration", "nfo:duration");
         this.add_key_chain ("upnp:artist", "nmm:performer", "nmm:artistName");
         this.add_key_chain ("dc:creator", "nmm:performer", "nmm:artistName");
-        this.add_key_chain ("upnp:album", "nmm:musicAlbum", "nmm:albumTitle");
+        this.add_key_chain ("upnp:album", "nmm:musicAlbum", "nie:title");
         this.add_key_chain ("upnp:originalTrackNumber", "nmm:trackNumber");
         this.add_key_chain ("upnp:genre", "nfo:genre");
         this.add_key_chain ("sampleRate", "nfo:sampleRate");
