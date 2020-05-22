@@ -7,9 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2018-10-11 18:48+0000\n"
-"PO-Revision-Date: 2019-08-10 19:43+0200\n"
-"Last-Translator: Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>\n"
+"POT-Creation-Date: 2020-05-04 13:01+0000\n"
+"PO-Revision-Date: 2020-05-22 10:42+0200\n"
+"Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
+"com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -17,19 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==0 || (n!=1 && n%100>=1 && n"
 "%100<=19) ? 1 : 2);\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: data/rygel.desktop.in.in:3
 msgid "Rygel"
 msgstr "Rygel"
 
-#: data/rygel.desktop.in.in:4 data/rygel.desktop.in.in:5
+#: data/rygel.desktop.in.in:4
 msgid "UPnP/DLNA Services"
 msgstr "Serviciile UPnP/DLNA"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in.in:7
+#: data/rygel.desktop.in.in:6
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
 "mediaserver;mediarenderer;share;audio;video;pictures;servermedia;sunet;"
@@ -42,11 +43,6 @@ msgstr "Preferințe Rygel"
 #: data/rygel-preferences.desktop.in.in:4
 msgid "UPnP/DLNA Preferences"
 msgstr "Preferințe UPnP/DLNA"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/rygel-preferences.desktop.in.in:7
-msgid "rygel"
-msgstr "rygel"
 
 #: data/rygel-preferences.ui:94
 msgid "Add a directory to the list of shared directories"
@@ -128,41 +124,44 @@ msgid "Failed to read error output from %s: %s"
 msgstr "Eșec la citirea ieșirii erorilor din %s: %s"
 
 #. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:159
+#: src/librygel-core/rygel-basic-management.vala:158
 msgid "No Such Test"
 msgstr "Nu există un astfel de test"
 
 #. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:167
+#: src/librygel-core/rygel-basic-management.vala:166
+#: src/librygel-core/rygel-basic-management.vala:283
+#: src/librygel-core/rygel-basic-management.vala:382
+#: src/librygel-core/rygel-basic-management.vala:471
 msgid "Wrong Test Type"
 msgstr "Tip de test greșit"
 
 #. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:175
+#: src/librygel-core/rygel-basic-management.vala:174
 #, c-format
 msgid "Invalid Test State “%s”"
 msgstr "Stare test nevalidă „%s”"
 
 #. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:181
+#: src/librygel-core/rygel-basic-management.vala:180
 #, c-format
 msgid "State “%s” Precludes Cancel"
 msgstr "Starea „%s” previne anularea"
 
-#: src/librygel-core/rygel-basic-management.vala:214
-#: src/librygel-core/rygel-basic-management.vala:229
-#: src/librygel-core/rygel-basic-management.vala:256
-#: src/librygel-core/rygel-basic-management.vala:272
-#: src/librygel-core/rygel-basic-management.vala:324
-#: src/librygel-core/rygel-basic-management.vala:349
-#: src/librygel-core/rygel-basic-management.vala:365
-#: src/librygel-core/rygel-basic-management.vala:404
-#: src/librygel-core/rygel-basic-management.vala:431
-#: src/librygel-core/rygel-basic-management.vala:448
-#: src/librygel-core/rygel-basic-management.vala:487
-#: src/librygel-core/rygel-basic-management.vala:502
-#: src/librygel-core/rygel-basic-management.vala:517
-#: src/librygel-core/rygel-basic-management.vala:541
+#: src/librygel-core/rygel-basic-management.vala:213
+#: src/librygel-core/rygel-basic-management.vala:228
+#: src/librygel-core/rygel-basic-management.vala:255
+#: src/librygel-core/rygel-basic-management.vala:271
+#: src/librygel-core/rygel-basic-management.vala:328
+#: src/librygel-core/rygel-basic-management.vala:353
+#: src/librygel-core/rygel-basic-management.vala:369
+#: src/librygel-core/rygel-basic-management.vala:414
+#: src/librygel-core/rygel-basic-management.vala:441
+#: src/librygel-core/rygel-basic-management.vala:458
+#: src/librygel-core/rygel-basic-management.vala:503
+#: src/librygel-core/rygel-basic-management.vala:518
+#: src/librygel-core/rygel-basic-management.vala:533
+#: src/librygel-core/rygel-basic-management.vala:557
 #: src/librygel-core/rygel-connection-manager.vala:95
 #: src/librygel-core/rygel-connection-manager.vala:109
 #: src/librygel-core/rygel-connection-manager.vala:126
@@ -176,21 +175,21 @@ msgstr "Starea „%s” previne anularea"
 #: src/librygel-server/rygel-content-directory.vala:343
 #: src/librygel-server/rygel-content-directory.vala:372
 #: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:616
-#: src/librygel-server/rygel-content-directory.vala:765
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
 #: src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Argument nevalid"
 
-#: src/librygel-core/rygel-basic-management.vala:255
+#: src/librygel-core/rygel-basic-management.vala:254
 msgid "Cannot run “Ping” action: Host is empty"
 msgstr "Nu se poate rula acțiunea „Ping”: Gazda este goală"
 
-#: src/librygel-core/rygel-basic-management.vala:348
+#: src/librygel-core/rygel-basic-management.vala:352
 msgid "Cannot run “NSLookup” action: HostName is empty"
 msgstr "Nu se poate rula acțiunea „NSLookup”: Numele de gazdă este gol"
 
-#: src/librygel-core/rygel-basic-management.vala:430
+#: src/librygel-core/rygel-basic-management.vala:440
 msgid "Cannot run “Traceroute” action: Host is empty"
 msgstr "Nu se poate rula acțiunea „Traceroute”: Gazda este goală"
 
@@ -368,12 +367,12 @@ msgstr "Noul modul „%s” este disponibil"
 msgid "A module named %s is already loaded"
 msgstr "Un modul numit %s este încărcat deja"
 
-#: src/librygel-core/rygel-plugin-loader.vala:113
+#: src/librygel-core/rygel-plugin-loader.vala:118
 #, c-format
 msgid "Failed to load module from path “%s”: %s"
 msgstr "Eșec la încărcarea modulului din calea „%s”: %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:123
+#: src/librygel-core/rygel-plugin-loader.vala:128
 #, c-format
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "Eșec la găsirea funcției de intrare „%s” în „%s”: %s"
@@ -429,9 +428,9 @@ msgstr "Eroare la deschiderea bazei de date SQLite %s: %s"
 msgid "Failed to roll back transaction: %s"
 msgstr "Anularea tranzacției a eșuat: %s"
 
-#: src/librygel-renderer-gst/rygel-playbin-player.vala:369
+#: src/librygel-renderer-gst/rygel-playbin-player.vala:370
 msgid ""
-"Your GStreamer installation seems to be missing the “playbin” element. The "
+"Your GStreamer installation seems to be missing the “playbin3” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
 "Instalației GStreamer pare să îi lipsească elementul „playbin”. "
@@ -574,7 +573,7 @@ msgstr "Navigarea „%s” a eșuat: %s\n"
 msgid "Not Applicable"
 msgstr "Nu este aplicabil"
 
-#: src/librygel-server/rygel-content-directory.vala:637
+#: src/librygel-server/rygel-content-directory.vala:639
 msgid "No such file transfer"
 msgstr "Nu există un astfel de transfer de fișiere"
 
@@ -599,19 +598,19 @@ msgstr "URI nevalid „%s”"
 msgid "Not found"
 msgstr "Nu a fost găsit"
 
-#: src/librygel-server/rygel-http-post.vala:62
-#: src/librygel-server/rygel-import-resource.vala:189
+#: src/librygel-server/rygel-http-post.vala:64
+#: src/librygel-server/rygel-import-resource.vala:193
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "Trimiterea datelor către elementul ne-gol „%s” nu este permisă"
 
-#: src/librygel-server/rygel-http-post.vala:71
+#: src/librygel-server/rygel-http-post.vala:72
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "Nu există niciun URI pentru %s care poate fi scris"
 
 #. translators: Dotfile is the filename with prefix "."
-#: src/librygel-server/rygel-http-post.vala:186
+#: src/librygel-server/rygel-http-post.vala:187
 #, c-format
 msgid "Failed to move dotfile %s: %s"
 msgstr "Eșec la mutarea fișierului-punct %s: %s"
@@ -631,12 +630,12 @@ msgstr "Nu s-a putut crea sursa de date pentru %s"
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "Eșec la obținerea URI-ului original pentru „%s”: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:186
+#: src/librygel-server/rygel-import-resource.vala:188
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "URI-ul „%s” nu este valid pentru a importa conținut în el"
 
-#: src/librygel-server/rygel-import-resource.vala:272
+#: src/librygel-server/rygel-import-resource.vala:276
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "Eșec la importarea fișierului din %s: %s"
@@ -656,7 +655,7 @@ msgstr "Obiectul „%s” a fost distrus cu succes"
 msgid "Failed to destroy object “%s”: %s"
 msgstr "Distrugerea obiectului „%s” a eșuat: %s"
 
-#: src/librygel-server/rygel-item-destroyer.vala:104
+#: src/librygel-server/rygel-item-destroyer.vala:105
 #: src/librygel-server/rygel-item-updater.vala:283
 #: src/librygel-server/rygel-media-query-action.vala:194
 #: src/librygel-server/rygel-reference-creator.vala:68
@@ -664,12 +663,12 @@ msgstr "Distrugerea obiectului „%s” a eșuat: %s"
 msgid "No such object"
 msgstr "Nu există un astfel de obiect"
 
-#: src/librygel-server/rygel-item-destroyer.vala:107
+#: src/librygel-server/rygel-item-destroyer.vala:108
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "Eliminarea obiectului %s nu este permisă"
 
-#: src/librygel-server/rygel-item-destroyer.vala:110
+#: src/librygel-server/rygel-item-destroyer.vala:111
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "Eliminarea unui obiect din %s nu este permisă"
@@ -690,13 +689,13 @@ msgid "Failed to update object “%s”: %s"
 msgstr "Actualizarea obiectului „%s” a eșuat: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:162
-#: src/librygel-server/rygel-object-creator.vala:606
+#: src/librygel-server/rygel-object-creator.vala:614
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "Format de dată nevalid: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:171
-#: src/librygel-server/rygel-object-creator.vala:615
+#: src/librygel-server/rygel-object-creator.vala:623
 #, c-format
 msgid "Invalid date: %s"
 msgstr "Dată nevalidă: %s"
@@ -771,15 +770,16 @@ msgstr "Eroare la generarea listei de redare"
 msgid "Unknown MediaContainer resource: %s"
 msgstr "Resursă necunoscută MediaContainer: %s"
 
-#: src/librygel-server/rygel-media-engine.vala:62
+#: src/librygel-server/rygel-media-engine.vala:63
 msgid "No media engine found."
 msgstr "Niciun motor media nu a fost găsit."
 
-#: src/librygel-server/rygel-media-engine.vala:73
+#: src/librygel-server/rygel-media-engine.vala:75
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init nu a fost apelat. Nu se poate continua."
 
 #: src/librygel-server/rygel-media-file-item.vala:177
+#: src/librygel-server/rygel-video-item.vala:222
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "Nu s-a putut determina protocolul pentru URI-ul %s"
@@ -789,7 +789,7 @@ msgstr "Nu s-a putut determina protocolul pentru URI-ul %s"
 msgid "Could not determine protocol for %s"
 msgstr "Nu s-a putut determina protocolul pentru %s"
 
-#: src/librygel-server/rygel-media-object.vala:509
+#: src/librygel-server/rygel-media-object.vala:491
 #, c-format
 msgid "Bad URI: %s"
 msgstr "URI malformat: %s"
@@ -812,7 +812,7 @@ msgid "Missing filter"
 msgstr "Filtru lipsă"
 
 #: src/librygel-server/rygel-media-query-action.vala:197
-#: src/librygel-server/rygel-object-creator.vala:412
+#: src/librygel-server/rygel-object-creator.vala:414
 msgid "No such container"
 msgstr "Nu există un astfel de container"
 
@@ -820,77 +820,77 @@ msgstr "Nu există un astfel de container"
 msgid "upnp:createClass value not supported"
 msgstr "Valoarea upnp:createClass nu este suportată"
 
-#: src/librygel-server/rygel-object-creator.vala:191
+#: src/librygel-server/rygel-object-creator.vala:193
 msgid "“Elements” argument missing."
 msgstr "Argumentul „Elemente” lipsește."
 
-#: src/librygel-server/rygel-object-creator.vala:194
+#: src/librygel-server/rygel-object-creator.vala:196
 msgid "Comments not allowed in XML"
 msgstr "Comentariile nu sunt permise în XML"
 
 #. Sorry we can't do anything without ContainerID
-#: src/librygel-server/rygel-object-creator.vala:200
+#: src/librygel-server/rygel-object-creator.vala:202
 msgid "Missing ContainerID argument"
 msgstr "Lipsește argumentul ContainerID"
 
-#: src/librygel-server/rygel-object-creator.vala:224
+#: src/librygel-server/rygel-object-creator.vala:226
 #, c-format
 msgid "No objects in DIDL-Lite from client: “%s”"
 msgstr "Niciun element în DIDL-Lite de la client: „%s”"
 
-#: src/librygel-server/rygel-object-creator.vala:231
+#: src/librygel-server/rygel-object-creator.vala:233
 msgid "@id must be set to \"\" in CreateObject call"
 msgstr "@id trebuie stabilit la \"\" în apelul CreateObject"
 
-#: src/librygel-server/rygel-object-creator.vala:236
+#: src/librygel-server/rygel-object-creator.vala:238
 msgid "dc:title must not be empty in CreateObject call"
 msgstr "dc:title nu trebuie să fie gol în apelul CreateObject"
 
-#: src/librygel-server/rygel-object-creator.vala:247
+#: src/librygel-server/rygel-object-creator.vala:249
 msgid "Flags that must not be set were found in “dlnaManaged”"
 msgstr "Fanioane care nu trebuiesc configurate au fost găsite în „dlnaManaged”"
 
-#: src/librygel-server/rygel-object-creator.vala:255
+#: src/librygel-server/rygel-object-creator.vala:257
 msgid "Invalid upnp:class given in CreateObject"
 msgstr "upnp:class nevalidă dată în CreateObject"
 
-#: src/librygel-server/rygel-object-creator.vala:259
+#: src/librygel-server/rygel-object-creator.vala:261
 msgid "Object is missing the @restricted attribute"
 msgstr "Obiectului îi lipsește atributul @restricted"
 
-#: src/librygel-server/rygel-object-creator.vala:266
+#: src/librygel-server/rygel-object-creator.vala:268
 msgid "Cannot create restricted item"
 msgstr "Nu se poate restricționa elementul"
 
-#: src/librygel-server/rygel-object-creator.vala:383
+#: src/librygel-server/rygel-object-creator.vala:385
 #, c-format
 msgid "UPnP class “%s” not supported"
 msgstr "Clasa UPnP „%s” nu este suportată"
 
-#: src/librygel-server/rygel-object-creator.vala:417
-#: src/librygel-server/rygel-object-creator.vala:429
-#: src/librygel-server/rygel-object-creator.vala:715
+#: src/librygel-server/rygel-object-creator.vala:419
+#: src/librygel-server/rygel-object-creator.vala:431
+#: src/librygel-server/rygel-object-creator.vala:723
 #: src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "Crearea obiectului %s nu este permisă"
 
-#: src/librygel-server/rygel-object-creator.vala:474
+#: src/librygel-server/rygel-object-creator.vala:476
 #, c-format
 msgid "Failed to create item under “%s”: %s"
 msgstr "Eșec la crearea elementului sub „%s”: %s"
 
-#: src/librygel-server/rygel-object-creator.vala:548
+#: src/librygel-server/rygel-object-creator.vala:552
 #, c-format
 msgid "DLNA profile “%s” not supported"
 msgstr "Profilul DLNA „%s” nu este suportat"
 
-#: src/librygel-server/rygel-object-creator.vala:648
+#: src/librygel-server/rygel-object-creator.vala:656
 #, c-format
 msgid "Cannot create object of class “%s”: Not supported"
 msgstr "Nu se poate crea obiect din clasa „%s”: Nesuportat"
 
-#: src/librygel-server/rygel-object-creator.vala:746
+#: src/librygel-server/rygel-object-creator.vala:754
 #, c-format
 msgid ""
 "Error from container “%s” on trying to find the newly added child object "
@@ -955,78 +955,70 @@ msgstr "Niciun generator de miniaturi D-Bus disponibil"
 msgid "Could not create GstElement for URI %s"
 msgstr "Nu s-a putut crea GstElement din URI-ul %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:72
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:76
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
 msgstr "Viteza de redare nu este suportată"
 
 #. Unknown/unsupported seek type
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:102
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:106
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
 msgstr "Tipul HTTPSeekRequest %s este nesuportat"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:146
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:150
 msgid "Failed to create pipeline"
 msgstr "Eșec la crearea conductei"
 
 #. static pads? easy!
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:157
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:178
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:161
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:182
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Nu s-a putut lega %s la %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:192
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:196
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Nu s-a putut lega blocul %s la %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:257
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:261
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Eroare în linia de asamblare %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:264
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:268
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Avertisment de la linia de asamblare %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:317
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:321
 msgid "Unsupported seek type"
 msgstr "Tip de derulare nesuportat"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:334
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:338
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Eșec la derularea la decalajele %lld:%lld"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:336
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
 msgid "Failed to seek"
 msgstr "Eșec la derulare"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:129
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:130
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "URI nevalid fără prefix: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
 msgstr "Nu pot procesa URI-ul %s cu protocolul %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:246
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Nu s-au putut crea sursa de date GStreamer pentru %s: %s"
-
-#: src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
-msgid ""
-"Could not create a transcoder configuration. Your GStreamer installation "
-"might be missing a plug-in"
-msgstr ""
-"Nu s-a putut crea configurația transcodorului. Instalației GStreamer îi "
-"poate lipsi un modul"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
@@ -1044,7 +1036,7 @@ msgid "Only byte-based seek supported"
 msgstr "Numai derularea bazată pe byți este suportată"
 
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
-#: src/media-engines/simple/rygel-simple-media-engine.vala:98
+#: src/media-engines/simple/rygel-simple-media-engine.vala:99
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
 msgstr "Pot procesa numai MediaObjects bazate pe fișiere (MediaFileItems)"
 
@@ -1100,7 +1092,7 @@ msgstr "Videoclipuri"
 msgid "Pictures"
 msgstr "Fotografii"
 
-#: src/plugins/media-export/rygel-media-export-dvd-container.vala:133
+#: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
 msgid "Title %d"
 msgstr "Titlu %d"
@@ -1191,6 +1183,11 @@ msgstr "Eșec la enumerarea dosarului „%s”: %s"
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Nu s-au putut obține copiii containerului %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
+#, c-format
+msgid "Failed to extract meta-data for file %s"
+msgstr "Nu s-au putut extrage meta-datele pentru fișierul %s"
 
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
@@ -1301,7 +1298,7 @@ msgstr "Bază de date nevalidă, nu se poate interoga tabelul sqlite_master: %s"
 msgid "Failed to create database schema: %s"
 msgstr "Crearea schemei bazei de date a eșuat: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1231
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1232
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Se omite câmpul de sortare nesuportat: %s"
@@ -1595,6 +1592,16 @@ msgstr "Nu s-a putut porni serviciul D-Bus: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Nu s-a putut opri serviciul D-Bus: %s"
+
+#~ msgid ""
+#~ "Could not create a transcoder configuration. Your GStreamer installation "
+#~ "might be missing a plug-in"
+#~ msgstr ""
+#~ "Nu s-a putut crea configurația transcodorului. Instalației GStreamer îi "
+#~ "poate lipsi un modul"
+
+#~ msgid "rygel"
+#~ msgstr "rygel"
 
 #~ msgid "Failed to open database: %d (%s)"
 #~ msgstr "Deschiderea bazei de date a eșuat: %d (%s)"
