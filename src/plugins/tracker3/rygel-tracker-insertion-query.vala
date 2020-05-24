@@ -152,6 +152,7 @@ public class Rygel.Tracker.InsertionQuery : Query {
                 }
             } catch (Error error) {
             }
+            cursor.close ();
         } else {
             var file = File.new_for_uri (this.uri);
             if (file.is_native () &&

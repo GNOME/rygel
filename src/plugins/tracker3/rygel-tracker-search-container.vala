@@ -38,7 +38,9 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
     public SelectionQuery query;
     public ItemFactory item_factory;
 
-    private Sparql.Connection resources;
+    static construct {
+        update_id_hash = new HashMap<string, uint> ();
+    }
 
     private static HashMap<string, uint> update_id_hash;
 
@@ -49,10 +51,6 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                             QueryTriplets?     triplets = null,
                             ArrayList<string>? filters = null) {
         base (id, parent, title);
-
-        if (unlikely (update_id_hash == null)) {
-            update_id_hash = new HashMap<string, uint> ();
-        }
 
         if (update_id_hash.has_key (this.id)) {
             this.update_id = update_id_hash[this.id];
@@ -80,6 +78,10 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                                 (SelectionQuery.ITEM_VARIABLE,
                                  "a",
                                  item_factory.category));
+        our_triplets.add (new QueryTriplet
+                                (SelectionQuery.ITEM_VARIABLE,
+                                 "nie:isStoredAs",
+                                SelectionQuery.STORAGE_VARIABLE));
 
         var property_map = UPnPPropertyMap.get_property_map ();
         foreach (var property in this.item_factory.properties) {
@@ -88,7 +90,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
         var order_by = MODIFIED_PROPERTY +
                        "(" +
-                       SelectionQuery.ITEM_VARIABLE +
+                       SelectionQuery.STORAGE_VARIABLE +
                        ")";
 
         this.query = new SelectionQuery (variables,
@@ -96,13 +98,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                                          filters,
                                          order_by);
 
-        try {
-            this.resources = Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files", null);
-
-            this.get_children_count.begin ();
-        } catch (Error error) {
-            critical (_("Failed to get Tracker connection: %s"), error.message);
-        }
+        this.get_children_count.begin ();
     }
 
     public override async MediaObjects? get_children (uint       offset,
@@ -140,7 +136,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                                        sort_criteria);
 
         if (query != null) {
-            yield query.execute (this.resources);
+            yield query.execute (RootContainer.connection);
 
             /* Iterate through all items */
             while (yield query.result.next_async ()) {
@@ -154,6 +150,8 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                                                      query.result);
                 results.add (item);
             }
+
+            query.result.close ();
         }
 
         total_matches = results.size;
@@ -217,13 +215,14 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                                  SelectionQuery.ITEM_VARIABLE +
                                  ") AS ?x");
 
-            yield query.execute (this.resources);
+            yield query.execute (RootContainer.connection);
 
             if (query.result.next ()) {
                 this.child_count = int.parse (query.result.get_string (0));
                 this.updated ();
             }
 
+            query.result.close ();
         } catch (GLib.Error error) {
             critical (_("Error getting item count under category “%s”: %s"),
                       this.item_factory.category,
@@ -284,9 +283,11 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
 
          foreach (string s in sort_props) {
              var key = key_chain_map[s.substring(1)];
-             if (key.index_of (SelectionQuery.ITEM_VARIABLE) == 0) {
+             if (key.index_of (SelectionQuery.ITEM_VARIABLE) == 0 ||
+                 key.index_of (SelectionQuery.STORAGE_VARIABLE) == 0) {
                  continue;
              }
+
 
              if (s.has_prefix("-")) {
                  order += "DESC (" +
