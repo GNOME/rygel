@@ -24,11 +24,24 @@
 
 using GUPnP;
 using Gee;
+using Tracker;
 
 /**
  * Represents the root container for Tracker media content hierarchy.
  */
 public class Rygel.Tracker.RootContainer : Rygel.SimpleContainer {
+    private const string TRACKER_SERVICE = "org.freedesktop.Tracker3.Miner.Files";
+
+    public static Sparql.Connection connection;
+
+    static construct {
+        try {
+            RootContainer.connection = Sparql.Connection.bus_new (TRACKER_SERVICE, null);
+        } catch (Error err) {
+            error ("Failed to connect to tracker: %s", err.message);
+        }
+    }
+
     public RootContainer (string title) {
         base.root (title);
 
@@ -52,7 +65,7 @@ public class Rygel.Tracker.RootContainer : Rygel.SimpleContainer {
         var config = MetaConfig.get_default ();
 
         try {
-            value = config.get_bool ("Tracker", key);
+            value = config.get_bool ("Tracker3", key);
         } catch (GLib.Error error) {}
 
         return value;

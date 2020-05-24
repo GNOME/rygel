@@ -38,21 +38,10 @@ public void module_init (PluginLoader loader) {
 }
 
 public class Rygel.Tracker.PluginFactory {
-    private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
-    private const string STATISTICS_OBJECT =
-                                        "/org/freedesktop/Tracker1/Statistics";
-
-    StatsIface stats;
     PluginLoader loader;
 
     public PluginFactory (PluginLoader loader) throws IOError, DBusError {
-        this.stats = Bus.get_proxy_sync (BusType.SESSION,
-                                         TRACKER_SERVICE,
-                                         STATISTICS_OBJECT,
-                                         DBusProxyFlags.DO_NOT_LOAD_PROPERTIES);
         this.loader = loader;
-
-        this.stats.get ();
 
         this.loader.add_plugin (new Tracker.Plugin ());
     }

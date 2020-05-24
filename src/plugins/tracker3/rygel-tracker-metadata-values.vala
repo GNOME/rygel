@@ -48,6 +48,9 @@ public abstract class Rygel.Tracker.MetadataValues : MetadataContainer {
         this.triplets.add (new QueryTriplet (SelectionQuery.ITEM_VARIABLE,
                                              "a",
                                              this.item_factory.category));
+        this.triplets.add (new QueryTriplet (SelectionQuery.ITEM_VARIABLE,
+                                             "nie:isStoredAs",
+                                             SelectionQuery.STORAGE_VARIABLE));
         this.fetch_metadata_values.begin ();
     }
 
@@ -58,7 +61,9 @@ public abstract class Rygel.Tracker.MetadataValues : MetadataContainer {
                       property_map[this.property] +
                       " AS ?x");
 
-        return new SelectionQuery (selected, triplets, null, "?x");
+        var q = new SelectionQuery (selected, triplets, null, "?x");
+        critical(q.to_string());
+        return q;
     }
 
     protected override SearchContainer create_container (string id,

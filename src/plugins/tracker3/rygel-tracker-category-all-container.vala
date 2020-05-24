@@ -33,13 +33,12 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
                                                   WritableContainer,
                                                   SearchableContainer {
     /* class-wide constants */
-    private const string TRACKER_SERVICE = "org.freedesktop.Tracker1";
-    private const string RESOURCES_PATH = "/org/freedesktop/Tracker1/Resources";
+    private const string TRACKER_SERVICE = "org.freedesktop.Tracker3.Miner.Files";
+    private const string RESOURCES_PATH = "/org/freedesktop/Tracker3/Endpoint";
+    private const string TRACKER_INTERFACE = "org.freedesktop.Tracker3.Endpoint";
 
     public ArrayList<string> create_classes { get; set; }
     public ArrayList<string> search_classes { get; set; }
-
-    private Sparql.Connection resources;
 
     public CategoryAllContainer (CategoryContainer parent) {
         base ("All" + parent.id, parent, "All", parent.item_factory);
@@ -47,13 +46,6 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         this.create_classes = new ArrayList<string> ();
         this.create_classes.add (item_factory.upnp_class);
         this.search_classes = new ArrayList<string> ();
-
-        try {
-            this.resources = Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files", null);
-        } catch (Error io_error) {
-            critical (_("Failed to create a Tracker connection: %s"),
-                      io_error.message);
-        }
 
         if (item_factory.upload_dir != null) {
             try {
@@ -69,7 +61,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         try {
             var connection = Bus.get_sync (BusType.SESSION);
             connection.signal_subscribe (TRACKER_SERVICE,
-                                         TRACKER_SERVICE + ".Resources",
+                                         TRACKER_INTERFACE,
                                          "GraphUpdated",
                                          RESOURCES_PATH,
                                          this.item_factory.category_iri,
@@ -80,8 +72,9 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
                       error.message);
         }
 
+        message("RUnnin cleanup query for %s", this.item_factory.category);
         var cleanup_query = new CleanupQuery (this.item_factory.category);
-        cleanup_query.execute.begin (this.resources);
+        cleanup_query.execute.begin (RootContainer.connection, () => { query.result.close (); } );
     }
 
     public async void add_item (MediaFileItem item, Cancellable? cancellable)
@@ -140,7 +133,7 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
         var category = this.item_factory.category;
         var query = new InsertionQuery (item, category);
 
-        yield query.execute (this.resources);
+        yield query.execute (RootContainer.connection);
 
         return query.id;
     }
@@ -148,6 +141,6 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
     private async void remove_entry_from_store (string id) throws Error {
         var query = new DeletionQuery (id);
 
-        yield query.execute (this.resources);
+        yield query.execute (RootContainer.connection);
     }
 }

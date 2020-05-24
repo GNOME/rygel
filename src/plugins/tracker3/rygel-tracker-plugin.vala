@@ -21,9 +21,10 @@
  */
 
 using Gee;
+using Tracker;
 
 public class Rygel.Tracker.Plugin : Rygel.MediaServerPlugin {
-    public const string NAME = "Tracker";
+    public const string NAME = "Tracker3";
 
     private static RootContainer root;
 

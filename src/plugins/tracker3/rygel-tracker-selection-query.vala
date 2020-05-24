@@ -29,17 +29,19 @@ using Tracker;
  */
 public class Rygel.Tracker.SelectionQuery : Query {
     public const string ITEM_VARIABLE = "?item";
-    private const string SHARED_FILTER = "(!BOUND(nmm:uPnPShared(" +
+    public const string STORAGE_VARIABLE = "?storage";
+
+    private const string SHARED_FILTER = ""; /*"(!BOUND(nmm:uPnPShared(" +
                                          ITEM_VARIABLE + ")) ||" +
                                          " nmm:uPnPShared(" +
                                          ITEM_VARIABLE +
                                          ") = true) && " +
-                                         "(BOUND(nie:url(" +
-                                         ITEM_VARIABLE + ")))";
+                                         "(BOUND(nie:isStoredAs(" +
+                                         ITEM_VARIABLE + ")))";*/
     private const string STRICT_SHARED_FILTER = "(BOUND(nmm:dlnaProfile(" +
                                                 ITEM_VARIABLE + ")))";
-    private const string AVAILABLE_FILTER = "(tracker:available(" +
-                                            ITEM_VARIABLE + ") = true)";
+    private const string AVAILABLE_FILTER = "(tracker:available(nie:isStoredAs(" +
+                                            ITEM_VARIABLE + ")) = true)";
 
     private string uri_filter;
 
@@ -77,7 +79,7 @@ public class Rygel.Tracker.SelectionQuery : Query {
         var config = MetaConfig.get_default ();
 
         try {
-            uris = config.get_string_list ("Tracker", "only-export-from");
+            uris = config.get_string_list ("Tracker3", "only-export-from");
         } catch (Error error) {
             uris = new ArrayList<string> ();
         }
@@ -162,17 +164,17 @@ public class Rygel.Tracker.SelectionQuery : Query {
         var filters = new ArrayList<string> ();
         filters.add_all (this.filters);
         // Make sure we don't expose items that are marked not to be shared
-        filters.add (SHARED_FILTER);
+        // filters.add (SHARED_FILTER);
 
         // Make sure we don't expose items on removable media that isn't
         // mounted
-        filters.add (AVAILABLE_FILTER);
+        //filters.add (AVAILABLE_FILTER);
 
         // If strict sharing is enabled, only expose files that have a DLNA
         // profile set
         try {
             var config = MetaConfig.get_default ();
-            if (config.get_bool ("Tracker", "strict-sharing")) {
+            if (config.get_bool ("Tracker3", "strict-sharing")) {
                 filters.add (STRICT_SHARED_FILTER);
             }
         } catch (Error error) {};

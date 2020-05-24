@@ -39,7 +39,6 @@ public abstract class Rygel.Tracker.MetadataContainer : Rygel.SimpleContainer {
 
     private string child_class;
 
-    private Sparql.Connection resources;
     protected QueryTriplets triplets;
 
     protected MetadataContainer (string         id,
@@ -51,15 +50,6 @@ public abstract class Rygel.Tracker.MetadataContainer : Rygel.SimpleContainer {
 
         this.item_factory = item_factory;
         this.child_class = child_class;
-
-        try {
-            this.resources = Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files", null);
-        } catch (Error error) {
-            critical (_("Failed to create Tracker connection: %s"),
-                      error.message);
-
-            return;
-        }
     }
 
     internal async void fetch_metadata_values () {
@@ -74,7 +64,7 @@ public abstract class Rygel.Tracker.MetadataContainer : Rygel.SimpleContainer {
         var query = this.create_query ();
 
         try {
-            yield query.execute (this.resources);
+            yield query.execute (RootContainer.connection);
 
             /* Iterate through all the values */
             while (query.result.next ()) {
@@ -106,6 +96,8 @@ public abstract class Rygel.Tracker.MetadataContainer : Rygel.SimpleContainer {
 
                 this.add_child_container (container);
             }
+
+            query.result.close ();
         } catch (Error error) {
             critical (_("Error getting all values for “%s”: %s"),
                       this.id,
