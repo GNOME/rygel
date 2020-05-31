@@ -29,7 +29,6 @@ using Gee;
 public class Rygel.Tracker.New : Rygel.Tracker.SearchContainer {
     private const string ADDED_PREDICATE = "tracker:added";
     private const string ADDED_VARIABLE = "?added";
-    private const long THREE_DAYS_AS_SEC = 259200;
 
     public New (MediaContainer parent, ItemFactory item_factory) {
         var triplets = new QueryTriplets ();
