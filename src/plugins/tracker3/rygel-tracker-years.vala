@@ -46,7 +46,7 @@ public class Rygel.Tracker.Years : MetadataValues {
         year += "-01-01T00:00:00Z";
         next_year += "-01-01T00:00:00Z";
 
-        return variable + " > \"" + year + "\" && " +
-               variable + " < \"" + next_year + "\"";
+        return variable + " > \"" + year + "\"^^xsd:dateTime && " +
+               variable + " < \"" + next_year + "\"^^xsd:dateTime";
     }
 }
