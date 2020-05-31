@@ -42,7 +42,7 @@ public class Rygel.Tracker.New : Rygel.Tracker.SearchContainer {
                                         ADDED_VARIABLE));
 
         var now = new DateTime.now_utc ();
-        now.add_days (-3);
+        now = now.add_days (-3);
         var three_days_ago = "%sZ".printf (now.format ("%Y-%m-%dT%H:%M:%S"));
 
         var filters = new ArrayList<string> ();
