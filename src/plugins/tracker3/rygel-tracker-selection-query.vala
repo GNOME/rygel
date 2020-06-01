@@ -123,7 +123,7 @@ public class Rygel.Tracker.SelectionQuery : Query {
                 }
 
                 uri_filters += "tracker:uri-is-descendant(\"%s\", nie:url(%s))".printf
-                                (file.get_uri (), ITEM_VARIABLE);
+                                (file.get_uri (), STORAGE_VARIABLE);
             }
         }
 
