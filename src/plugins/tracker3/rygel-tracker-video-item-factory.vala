@@ -42,6 +42,7 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
     private const string CATEGORY = "nmm:Video";
     private const string CATEGORY_IRI = "http://www.tracker-project.org/" +
                                         "temp/nmm#Video";
+    private const string GRAPH = "tracker:Videos";
 
     public VideoItemFactory () {
         var upload_folder = Environment.get_user_special_dir
@@ -51,7 +52,7 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
             upload_folder = config.get_video_upload_folder ();
         } catch (Error error) {};
 
-        base (CATEGORY, CATEGORY_IRI, VideoItem.UPNP_CLASS, upload_folder);
+        base (CATEGORY, CATEGORY_IRI, GRAPH, VideoItem.UPNP_CLASS, upload_folder);
 
         // These must be in the same order as enum VideoMetadata
         this.properties.add ("height");

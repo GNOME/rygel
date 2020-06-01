@@ -96,6 +96,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
         this.query = new SelectionQuery (variables,
                                          our_triplets,
                                          filters,
+                                         this.item_factory.graph,
                                          order_by);
 
         this.get_children_count.begin ();
@@ -305,6 +306,7 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                                 variables,
                                 new QueryTriplets.clone(this.query.triplets),
                                 filters,
+                                this.item_factory.graph,
                                 order);
     }
 

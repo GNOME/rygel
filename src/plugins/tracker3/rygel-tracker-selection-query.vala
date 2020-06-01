@@ -47,6 +47,7 @@ public class Rygel.Tracker.SelectionQuery : Query {
 
     public ArrayList<string> variables;
     public ArrayList<string> filters;
+    public string graph;
 
     public string order_by;
     public int offset;
@@ -57,6 +58,7 @@ public class Rygel.Tracker.SelectionQuery : Query {
     public SelectionQuery (ArrayList<string>  variables,
                            QueryTriplets      triplets,
                            ArrayList<string>? filters,
+                           string             graph,
                            string?            order_by = null,
                            int                offset = 0,
                            int                max_count = -1) {
@@ -69,6 +71,7 @@ public class Rygel.Tracker.SelectionQuery : Query {
         }
 
         this.variables = variables;
+        this.graph = graph;
         this.order_by = order_by;
         this.offset = offset;
         this.max_count = max_count;
@@ -135,6 +138,7 @@ public class Rygel.Tracker.SelectionQuery : Query {
         this (copy_str_list (query.variables),
               new QueryTriplets.clone (query.triplets),
               copy_str_list (query.filters),
+              query.graph,
               query.order_by,
               query.offset,
               query.max_count);
@@ -159,6 +163,7 @@ public class Rygel.Tracker.SelectionQuery : Query {
             query += " " + variable;
         }
 
+        query += " FROM tracker:FileSystem FROM %s".printf(this.graph);
         query += " WHERE { " + base.to_string ();
 
         var filters = new ArrayList<string> ();
