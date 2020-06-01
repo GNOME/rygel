@@ -61,7 +61,11 @@ public abstract class Rygel.Tracker.MetadataValues : MetadataContainer {
                       property_map[this.property] +
                       " AS ?x");
 
-        var q = new SelectionQuery (selected, triplets, null, "?x");
+        var q = new SelectionQuery (selected,
+                                    triplets,
+                                    null,
+                                    this.item_factory.graph,
+                                    "?x");
         critical(q.to_string());
         return q;
     }

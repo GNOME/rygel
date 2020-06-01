@@ -78,7 +78,7 @@ public abstract class Rygel.Tracker.MetadataMultiValues : MetadataContainer {
         var last_variable = variables[num_keys - 1];
         selected.add ("DISTINCT " + last_variable);
 
-        return new SelectionQuery (selected, triplets, null, last_variable);
+        return new SelectionQuery (selected, triplets, null, this.item_factory.graph, last_variable);
     }
 
     protected override SearchContainer create_container (string id,
