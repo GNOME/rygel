@@ -66,7 +66,6 @@ public abstract class Rygel.Tracker.MetadataValues : MetadataContainer {
                                     null,
                                     this.item_factory.graph,
                                     "?x");
-        critical(q.to_string());
         return q;
     }
 

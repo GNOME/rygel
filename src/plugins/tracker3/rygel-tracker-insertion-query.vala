@@ -31,22 +31,16 @@ public class Rygel.Tracker.InsertionQuery : Query {
     private const string TEMP_ID = "x";
     private const string QUERY_ID = "_:" + TEMP_ID;
 
-    private const string MINER_SERVICE = "org.freedesktop.Tracker1.Miner.Files.Index";
-    private const string MINER_PATH = "/org/freedesktop/Tracker1/Miner/Files/Index";
+    private const string MINER_SERVICE = "org.freedesktop.Tracker3.Miner.Files.Index";
+    private const string MINER_PATH = "/org/freedesktop/Tracker3/Miner/Files/Index";
 
-    // We need to add the size in the miner's graph so that the miner will
-    // update it and correct a (possibly wrong) size we got via CreateItem
-    // (DLNA requirement 7.3.128.7)
-    // FIXME: Use constant from libtracker-miner once we port to
-    // libtracker-sparql
-    private const string MINER_GRAPH =
-                              "urn:uuid:472ed0cc-40ff-4e37-9c0c-062d78656540";
+    private const string MINER_GRAPH = "tracker:FileSystem";
 
     private const string RESOURCE_ID_QUERY_TEMPLATE =
-        "SELECT ?resource WHERE { ?resource a nie:DataObject; nie:url '%s' }";
+        "SELECT ?resource WHERE { ?f a nie:DataObject; nie:url '%s'; nie:interpretedAs ?resource }";
 
     private const string RESOURCE_NOT_BOUND_TEMPLATE =
-        "OPTIONAL { ?resource a nie:DataObject; nie:url '%s' } " +
+        "OPTIONAL { GRAPH Tracker:FileSystem { ?resource a nie:DataObject; nie:url '%s' }} " +
         "FILTER (!bound(?resource))";
 
     public string id;
@@ -54,45 +48,44 @@ public class Rygel.Tracker.InsertionQuery : Query {
     private string uri;
 
     public InsertionQuery (MediaFileItem item, string category) {
-        var type = "nie:DataObject";
+        var type = "nie:InformationElement";
         var file = File.new_for_uri (item.get_primary_uri ());
+        var urn = "<%s>".printf(item.get_primary_uri ());
 
         if (!file.is_native ()) {
             type = "nfo:RemoteDataObject";
         }
 
         var triplets = new QueryTriplets ();
-        triplets.add (new QueryTriplet (QUERY_ID, "a", category));
-        triplets.add (new QueryTriplet (QUERY_ID, "a", type));
-        triplets.add (new QueryTriplet (QUERY_ID, "nmm:uPnPShared", "true"));
-        triplets.add (new QueryTriplet (QUERY_ID, "tracker:available", "true"));
-        triplets.add (new QueryTriplet (QUERY_ID,
+        triplets.add (new QueryTriplet.with_graph ("Tracker:Audio", QUERY_ID, "a", category));
+        triplets.add (new QueryTriplet.with_graph ("Tracker:Audio", QUERY_ID, "a", type));
+        //  triplets.add (new QueryTriplet (QUERY_ID, "nmm:uPnPShared", "true"));
+        triplets.add (new QueryTriplet.with_graph ("Tracker:Audio", QUERY_ID,
                                         "nie:generator",
                                         "\"rygel\""));
 
-        triplets.add (new QueryTriplet (QUERY_ID,
+        triplets.add (new QueryTriplet.with_graph ("Tracker:Audio", QUERY_ID,
                                         "nie:title",
                                         "\"" + item.title + "\""));
 
-        triplets.add (new QueryTriplet.with_graph
-                                        (MINER_GRAPH,
-                                         QUERY_ID,
-                                         "nie:mimeType",
-                                         "\"" + item.mime_type + "\""));
         var dlna_profile = "";
         if (item.dlna_profile != null) {
             dlna_profile = item.dlna_profile;
         }
 
-        triplets.add (new QueryTriplet.with_graph
-                                        (MINER_GRAPH,
-                                         QUERY_ID,
-                                         "nmm:dlnaProfile",
-                                         "\"" + dlna_profile + "\""));
+        triplets.add (new QueryTriplet.with_graph ("Tracker:Audio", QUERY_ID,
+                                        "nmm:dlnaProfile",
+                                        "\"" + dlna_profile + "\""));
 
-        triplets.add (new QueryTriplet (QUERY_ID,
-                                        "nie:url",
-                                        "\"" + item.get_primary_uri () + "\""));
+        triplets.add (new QueryTriplet.with_graph
+                                            ("Tracker:Audio",
+                                                QUERY_ID,
+                                                "nie:mimeType",
+                                                "\"" + item.mime_type + "\""));
+
+
+        triplets.add (new QueryTriplet.with_graph ("Tracker:Audio", QUERY_ID,
+                                                   "nie:isStoredAs", urn));
         string date;
         if (item.date == null) {
             var now = new GLib.DateTime.now_utc ();
@@ -101,14 +94,18 @@ public class Rygel.Tracker.InsertionQuery : Query {
             // Rygel core makes sure that this is a valid ISO8601 date.
             date = item.date;
         }
-        triplets.add (new QueryTriplet (QUERY_ID,
+        triplets.add (new QueryTriplet.with_graph ("Tracker:Audio", QUERY_ID,
                                         "nie:contentCreated",
-                                        "\"" + date + "\""));
+                                        "\"" + date + "\"^^xsd:dateTime"));
+
+        triplets.add (new QueryTriplet.with_graph (MINER_GRAPH, urn, "a", "nie:DataObject"));
+        triplets.add (new QueryTriplet.with_graph (MINER_GRAPH, urn, "nie:interpretedAs", QUERY_ID));
+        triplets.add (new QueryTriplet.with_graph (MINER_GRAPH, urn, "tracker:available", "true"));
 
         if (item.size > 0) {
             triplets.add (new QueryTriplet.with_graph
                                         (MINER_GRAPH,
-                                         QUERY_ID,
+                                         urn,
                                          "nie:byteSize",
                                          "\"" + item.size.to_string () + "\""));
         }
@@ -131,6 +128,8 @@ public class Rygel.Tracker.InsertionQuery : Query {
         VariantIter iter1, iter2, iter3;
         string key = null;
 
+        debug("Result: %s", v.print(true));
+
         iter1 = v.iterator ();
         while (iter1.next ("aa{ss}", out iter2)) {
             while (iter2.next ("a{ss}", out iter3)) {
@@ -142,6 +141,7 @@ public class Rygel.Tracker.InsertionQuery : Query {
 
         // Item already existed
         if (this.id == null)  {
+            debug("Item already exists, running query %s", this.get_resource_id_query ().to_string ());
             var cursor = yield resources.query_async
                                         (this.get_resource_id_query ());
 
@@ -151,6 +151,7 @@ public class Rygel.Tracker.InsertionQuery : Query {
                     break;
                 }
             } catch (Error error) {
+                debug ("Failed to query resource: %s", error.message);
             }
             cursor.close ();
         } else {
@@ -171,8 +172,8 @@ public class Rygel.Tracker.InsertionQuery : Query {
 
     public override string to_string () {
         var query = "INSERT { " + base.to_string () + " }";
-        query += "WHERE {" + RESOURCE_NOT_BOUND_TEMPLATE.printf (this.uri) +
-                 "}";
+        //  query += "WHERE {" + RESOURCE_NOT_BOUND_TEMPLATE.printf (this.uri) +
+        //             "}";
 
         return query;
     }
