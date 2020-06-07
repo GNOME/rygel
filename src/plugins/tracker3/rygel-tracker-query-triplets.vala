@@ -44,7 +44,7 @@ public class Rygel.Tracker.QueryTriplets : ArrayList<QueryTriplet> {
 
         for (int i = 0; i < this.size; i++) {
             if (this[i].graph != null && include_subject) {
-                str += "GRAPH <%s> {".printf (this[i].graph);
+                str += "GRAPH %s {".printf (this[i].graph);
             }
 
             str += this[i].to_string (include_subject);

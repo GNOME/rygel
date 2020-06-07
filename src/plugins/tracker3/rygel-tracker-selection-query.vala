@@ -151,7 +151,7 @@ public class Rygel.Tracker.SelectionQuery : Query {
                                                DBusError {
         var str = this.to_string ();
 
-        critical ("Executing SPARQL query: %s", str);
+        debug ("Executing SPARQL query: %s", str);
 
         result = yield resources.query_async (str);
     }
