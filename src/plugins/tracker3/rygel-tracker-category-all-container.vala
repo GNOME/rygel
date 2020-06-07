@@ -72,9 +72,13 @@ public class Rygel.Tracker.CategoryAllContainer : SearchContainer,
                       error.message);
         }
 
-        message("RUnnin cleanup query for %s", this.item_factory.category);
+        message("Running cleanup query for %s", this.item_factory.category);
         var cleanup_query = new CleanupQuery (this.item_factory.category);
-        cleanup_query.execute.begin (RootContainer.connection, () => { query.result.close (); } );
+        cleanup_query.execute.begin (RootContainer.connection, () => {
+            if (query.result != null) {
+                query.result.close ();
+            }
+        });
     }
 
     public async void add_item (MediaFileItem item, Cancellable? cancellable)
