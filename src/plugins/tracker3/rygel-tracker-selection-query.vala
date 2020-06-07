@@ -122,8 +122,8 @@ public class Rygel.Tracker.SelectionQuery : Query {
                     continue;
                 }
 
-                uri_filters += "tracker:uri-is-descendant(\"%s\", nie:url(%s))".printf
-                                (file.get_uri (), STORAGE_VARIABLE);
+                uri_filters += "STRSTARTS(nie:url(%s), \"%s\")".printf
+                                (STORAGE_VARIABLE, file.get_uri ());
             }
         }
 
