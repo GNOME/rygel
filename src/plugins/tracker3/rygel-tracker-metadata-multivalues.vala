@@ -53,6 +53,9 @@ public abstract class Rygel.Tracker.MetadataMultiValues : MetadataContainer {
         this.triplets.add (new QueryTriplet (SelectionQuery.ITEM_VARIABLE,
                                              "a",
                                              this.item_factory.category));
+        this.triplets.add (new QueryTriplet (SelectionQuery.ITEM_VARIABLE,
+                                             "nie:isStoredAs",
+                                             SelectionQuery.STORAGE_VARIABLE));
 
         // All variables used in the query
         var num_keys = this.key_chain.length - 1;
