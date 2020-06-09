@@ -190,11 +190,11 @@ public interface Rygel.SearchableContainer : MediaContainer {
     }
 
     private async MediaObjects search_in_children
-                                        (SearchExpression expression,
-                                         MediaObjects     children,
-                                         uint             limit,
-                                         string           sort_criteria,
-                                         Cancellable?     cancellable)
+                                        (SearchExpression? expression,
+                                         MediaObjects      children,
+                                         uint              limit,
+                                         string            sort_criteria,
+                                         Cancellable?      cancellable)
                                         throws Error {
         var result = new MediaObjects ();
 
