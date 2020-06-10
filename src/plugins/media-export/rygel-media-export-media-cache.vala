@@ -594,7 +594,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             this.db.exec (this.sql.make (SQLString.ADD_TO_BLACKLIST),
                           values);
         } catch (DatabaseError error) {
-            warning (_("Failed to add %s to file blacklist: %s"),
+            warning (_("Failed to add %s to ignored files: %s"),
                      file.get_uri (),
                      error.message);
         }
@@ -607,7 +607,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             return this.query_value (SQLString.CHECK_BLACKLIST,
                                      values) == 1;
         } catch (DatabaseError error) {
-            warning (_("Failed to get whether URI %s is blacklisted: %s"),
+            warning (_("Failed to get whether URI %s is ignored: %s"),
                      file.get_uri (),
                      error.message);
 
