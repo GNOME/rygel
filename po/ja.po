@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
 "POT-Creation-Date: 2020-05-31 14:58+0000\n"
-"PO-Revision-Date: 2020-01-18 00:00+0900\n"
+"PO-Revision-Date: 2020-06-10 18:45+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -428,16 +428,12 @@ msgid "Failed to roll back transaction: %s"
 msgstr "トランザクションのロールバックに失敗しました: %s"
 
 #: src/librygel-renderer-gst/rygel-playbin-player.vala:370
-#, fuzzy
-#| msgid ""
-#| "Your GStreamer installation seems to be missing the “playbin” element. "
-#| "The Rygel GStreamer renderer implementation cannot work without it"
 msgid ""
 "Your GStreamer installation seems to be missing the “playbin3” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
-"お使いの GStreamer に“playbin”エレメントが無いようです。Rygel GStreamer レン"
-"ダラーの実装はこのエレメント無しでは動作しません"
+"お使いの GStreamer に“playbin3”エレメントが無いようです (Rygel GStreamer レ"
+"ンダラーの実装はこのエレメントなしでは動作しません)"
 
 #: src/librygel-renderer/rygel-av-transport.vala:204
 #: src/librygel-renderer/rygel-rendering-control.vala:137
@@ -1189,10 +1185,9 @@ msgid "Failed to get children of container %s: %s"
 msgstr "コンテナー %s の子の取得に失敗しました: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
-#, fuzzy, c-format
-#| msgid "Failed to read from pipe: %s"
+#, c-format
 msgid "Failed to extract meta-data for file %s"
-msgstr "パイプからの読み込みに失敗しました: %s"
+msgstr "%s のメタデータの抽出に失敗しました"
 
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
