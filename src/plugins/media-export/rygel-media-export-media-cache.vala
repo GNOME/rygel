@@ -587,11 +587,11 @@ public class Rygel.MediaExport.MediaCache : Object {
         return object.id;
     }
 
-    public void blacklist (File file) {
+    public void ignore (File file) {
         try {
             GLib.Value[] values = { file.get_uri (),
                                     new GLib.DateTime.now_utc ().to_unix () };
-            this.db.exec (this.sql.make (SQLString.ADD_TO_BLACKLIST),
+            this.db.exec (this.sql.make (SQLString.ADD_TO_IGNORELIST),
                           values);
         } catch (DatabaseError error) {
             warning (_("Failed to add %s to ignored files: %s"),
@@ -600,11 +600,11 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
     }
 
-    public bool is_blacklisted (File file) {
+    public bool is_ignored (File file) {
         try {
             GLib.Value[] values = { file.get_uri () };
 
-            return this.query_value (SQLString.CHECK_BLACKLIST,
+            return this.query_value (SQLString.CHECK_IGNORELIST,
                                      values) == 1;
         } catch (DatabaseError error) {
             warning (_("Failed to get whether URI %s is ignored: %s"),

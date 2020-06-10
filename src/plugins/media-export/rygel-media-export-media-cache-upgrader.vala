@@ -90,7 +90,12 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
 
             switch (old_version) {
                 case 16:
-                    this.update_v16_v17 ();
+                    this.update_v17_v18 (false);
+                    // We jump 17 here since 17 -> 18 is just a table rename
+                    old_version++;
+                    break;
+                case 17:
+                    this.update_v17_v18 (true);
                     break;
                 default:
                     warning (_("Cannot upgrade from version %d"), old_version);
@@ -101,18 +106,21 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
         }
     }
 
-    private void update_v16_v17 () {
+    private void update_v17_v18 (bool move_data) {
         try {
             this.database.begin ();
-            this.database.exec (this.sql.make (SQLString.CREATE_BLACKLIST_TABLE));
-            this.database.exec (this.sql.make (SQLString.CREATE_BLACKLIST_INDEX));
-            database.exec ("UPDATE schema_info SET version = '17'");
+            this.database.exec (this.sql.make (SQLString.CREATE_IGNORELIST_TABLE));
+            this.database.exec (this.sql.make (SQLString.CREATE_IGNORELIST_INDEX));
+            if (move_data) {
+                database.exec ("INSERT INTO ignorelist SELECT * FROM blacklist");
+            }
+            database.exec ("UPDATE schema_info SET VERSION = '18'");
             this.database.commit ();
             this.database.exec ("VACUUM");
             this.database.analyze ();
         } catch (Database.DatabaseError error) {
             database.rollback ();
-            warning (_("Database upgrade failed: %s"), error.message);
+            warning (_("Database upgrade to v18 failed: %s"), error.message);
             database = null;
         }
     }

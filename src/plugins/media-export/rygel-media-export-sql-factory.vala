@@ -80,10 +80,10 @@ internal enum Rygel.MediaExport.SQLString {
     IS_GUARDED,
     UPDATE_GUARDED_OBJECT,
     TRIGGER_REFERENCE,
-    CREATE_BLACKLIST_TABLE,
-    CREATE_BLACKLIST_INDEX,
-    ADD_TO_BLACKLIST,
-    CHECK_BLACKLIST
+    CREATE_IGNORELIST_TABLE,
+    CREATE_IGNORELIST_INDEX,
+    ADD_TO_IGNORELIST,
+    CHECK_IGNORELIST
 }
 
 internal class Rygel.MediaExport.SQLFactory : Object {
@@ -173,12 +173,13 @@ internal class Rygel.MediaExport.SQLFactory : Object {
         "LEFT OUTER JOIN meta_data m " +
             "ON o.upnp_id = m.object_fk %s";
 
-    private const string CHECK_BLACKLIST_STRING =
-    "SELECT COUNT(1) FROM blacklist b " +
+    private const string CHECK_IGNORELIST_STRING =
+    "SELECT COUNT(1) FROM ignorelist b " +
         "WHERE b.uri = ?";
 
-    private const string ADD_TO_BLACKLIST_STRING =
-    "INSERT OR REPLACE INTO blacklist (uri, timestamp) VALUES (?,?)";
+    private const string ADD_TO_IGNORELIST_STRING =
+    "INSERT OR REPLACE INTO ignorelist (uri, timestamp) VALUES (?,?)";
+
 
     private const string GET_OBJECT_COUNT_BY_FILTER_STRING =
     "SELECT COUNT(1) FROM meta_data m %s";
@@ -199,7 +200,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
         "WHERE _column IS NOT NULL %s %s" +
     "LIMIT ?,?";
 
-    internal const string SCHEMA_VERSION = "17";
+    internal const string SCHEMA_VERSION = "18";
     internal const string CREATE_META_DATA_TABLE_STRING =
     "CREATE TABLE meta_data (size INTEGER NOT NULL, " +
                             "mime_type TEXT NOT NULL, " +
@@ -224,8 +225,8 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                                 "object_fk_id REFERENCES Object(upnp_id) " +
                                     "ON DELETE CASCADE);";
 
-    private const string CREATE_BLACKLIST_TABLE_STRING =
-    "CREATE TABLE blacklist (uri TEXT, timestamp INTEGER NOT NULL);";
+    private const string CREATE_IGNORELIST_TABLE_STRING =
+    "CREATE TABLE ignorelist (uri TEXT, timestamp INTEGER NOT NULL);";
 
     private const string SCHEMA_STRING =
     "CREATE TABLE schema_info (version TEXT NOT NULL, " +
@@ -243,7 +244,7 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                           "container_update_id INTEGER, " +
                           "is_guarded INTEGER, " +
                           "reference_id TEXT DEFAULT NULL);" +
-    CREATE_BLACKLIST_TABLE_STRING +
+    CREATE_IGNORELIST_TABLE_STRING +
     "INSERT INTO schema_info (version) VALUES ('" +
     SQLFactory.SCHEMA_VERSION + "'); ";
 
@@ -299,10 +300,10 @@ internal class Rygel.MediaExport.SQLFactory : Object {
     "CREATE INDEX IF NOT EXISTS idx_meta_data_album on meta_data(album);" +
     "CREATE INDEX IF NOT EXISTS idx_meta_data_artist_album on " +
                                 "meta_data(author, album);" +
-    CREATE_BLACKLIST_INDEX_STRING;
+    CREATE_IGNORELIST_INDEX_STRING;
 
-    private const string CREATE_BLACKLIST_INDEX_STRING =
-    "CREATE INDEX IF NOT EXISTS idx_blacklist on blacklist(uri);";
+    private const string CREATE_IGNORELIST_INDEX_STRING =
+    "CREATE INDEX IF NOT EXISTS idx_ignorelist on ignorelist(uri);";
 
     private const string EXISTS_CACHE_STRING =
     "SELECT m.size, o.timestamp, m.mime_type, o.uri FROM Object o " +
@@ -379,14 +380,14 @@ internal class Rygel.MediaExport.SQLFactory : Object {
                 return UPDATE_GUARDED_OBJECT_STRING;
             case SQLString.TRIGGER_REFERENCE:
                 return DELETE_REFERENCE_TRIGGER_STRING;
-            case SQLString.CREATE_BLACKLIST_TABLE:
-                return CREATE_BLACKLIST_TABLE_STRING;
-            case SQLString.CREATE_BLACKLIST_INDEX:
-                return CREATE_BLACKLIST_INDEX_STRING;
-            case SQLString.ADD_TO_BLACKLIST:
-                return ADD_TO_BLACKLIST_STRING;
-            case SQLString.CHECK_BLACKLIST:
-                return CHECK_BLACKLIST_STRING;
+            case SQLString.CREATE_IGNORELIST_TABLE:
+                return CREATE_IGNORELIST_TABLE_STRING;
+            case SQLString.CREATE_IGNORELIST_INDEX:
+                return CREATE_IGNORELIST_INDEX_STRING;
+            case SQLString.ADD_TO_IGNORELIST:
+                return ADD_TO_IGNORELIST_STRING;
+            case SQLString.CHECK_IGNORELIST:
+                return CHECK_IGNORELIST_STRING;
             default:
                 assert_not_reached ();
         }

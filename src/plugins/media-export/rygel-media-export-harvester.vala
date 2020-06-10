@@ -77,14 +77,14 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
             info.get_content_type () == "text/plain" ||
             info.get_content_type () == "application/x-cd-image";
         var cache = MediaCache.get_default ();
-        var is_blacklisted = cache.is_blacklisted (file);
+        var is_ignored = cache.is_ignored (file);
 
-        if (is_blacklisted) {
-            debug ("URI %s is not eligible due to blacklisting",
+        if (is_ignored) {
+            debug ("URI %s is not eligible due, it is ignored",
                    file.get_uri ());
         }
 
-        return is_supported_content_type && ! is_blacklisted;
+        return is_supported_content_type && ! is_ignored;
     }
 
     /**

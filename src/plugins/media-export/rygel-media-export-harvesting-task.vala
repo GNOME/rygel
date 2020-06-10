@@ -359,7 +359,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                file.get_uri (),
                error.message);
 
-        this.cache.blacklist (file);
+        this.cache.ignore (file);
 
         this.files.poll ();
         this.do_update ();

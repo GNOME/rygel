@@ -61,13 +61,13 @@ Technical information:
     Channels: %(channels)d
     Color depths: %(depth)d
 """
-BLACKLIST_QUERY = """
-SELECT b.timestamp FROM blacklist b WHERE b.uri = :uri
+IGNORELIST_QUERY = """
+SELECT b.timestamp FROM ignorelist b WHERE b.uri = :uri
 """
 
-BLACKLIST_TEMPLATE = 'File %(uri)s was blacklisted on %(date)s'
-SHOW_BLACKLIST_QUERY = 'SELECT timestamp, uri FROM blacklist'
-UNBLACKLIST_QUERY = 'DELETE FROM blacklist where uri = :uri'
+IGNORELIST_TEMPLATE = 'File %(uri)s was ignore on %(date)s'
+SHOW_IGNORELIST_QUERY = 'SELECT timestamp, uri FROM ignorelist'
+UNIGNORELIST_QUERY = 'DELETE FROM ignorelist where uri = :uri'
 
 def ensure_uri(string):
     if not string.startswith ('file://'):
@@ -77,12 +77,12 @@ def ensure_uri(string):
 parser = argparse.ArgumentParser (description = "MediaExport database tool")
 parser.add_argument ('uris', metavar='URI', nargs = '+', type = ensure_uri,
                      help = 'URIs to dump infos for')
-parser.add_argument ('-u, --unblacklist', action = 'store_true',
-                     dest = 'unblacklist',
-                     help = 'Remove uris from database\'s blacklist')
-parser.add_argument ('--show-blacklist', action = 'store_true',
-                     dest = 'show_blacklist',
-                     help = 'Show contents of the blacklist')
+parser.add_argument ('-u, --unignore', action = 'store_true',
+                     dest = 'unignore',
+                     help = 'Remove uris from database\'s ignorelist')
+parser.add_argument ('--show-ignorelist', action = 'store_true',
+                     dest = 'show_ignorelist',
+                     help = 'Show contents of the ignorelist')
 args = parser.parse_args ()
 
 rygel_db = os.path.join (BaseDirectory.xdg_cache_home, "rygel", "media-export.db")
@@ -95,23 +95,23 @@ if int(info[0]) < 16:
     print("Unsupported schema version or not a Rygel cache")
     sys.exit (1)
 
-has_blacklist = int(info[0]) >= 17
+has_ignorelist = int(info[0]) >= 18
 
-if not has_blacklist and (args.unblacklist or args.show_blacklist):
-    print ('Database version is too old for blacklists, cannot unblacklist')
+if not has_ignorelist and (args.unignorelist or args.show_ignorelist):
+    print ('Database version is too old for ignorelists, cannot unignorelist')
     sys.exit (1)
 
-if has_blacklist and args.show_blacklist:
-    c.execute (SHOW_BLACKLIST_QUERY)
+if has_ignorelist and args.show_ignorelist:
+    c.execute (SHOW_IGNORELIST_QUERY)
     for row in c:
         t = time.gmtime(row[0])
-        print (BLACKLIST_TEMPLATE % { "uri" : row[1],
+        print (IGNORELIST_TEMPLATE % { "uri" : row[1],
                                       "date" : time.strftime("%a, %d %b %Y %H:%M:%S +0000", t)})
     sys.exit(0)
 
-if has_blacklist and args.unblacklist:
+if has_ignorelist and args.unignorelist:
     for uri in args.uris:
-        c.execute (UNBLACKLIST_QUERY, { 'uri' : uri })
+        c.execute (UNIGNORELIST_QUERY, { 'uri' : uri })
     conn.commit()
 else:
     for uri in args.uris:
@@ -140,9 +140,9 @@ else:
                                      "disc" : row[21],
                                      "title": row[22]})
 
-        if has_blacklist:
-            c.execute (BLACKLIST_QUERY, {"uri": uri})
+        if has_ignorelist:
+            c.execute (IGNORELIST_QUERY, {"uri": uri})
             for row in c:
                 t = time.gmtime(row[0])
-                print (BLACKLIST_TEMPLATE % { "uri" : uri,
+                print (IGNORELIST_TEMPLATE % { "uri" : uri,
                                           "date" : time.strftime("%a, %d %b %Y %H:%M:%S +0000", t)})
