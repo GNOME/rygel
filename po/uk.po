@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-05-03 16:54+0000\n"
-"PO-Revision-Date: 2020-05-03 22:17+0300\n"
+"POT-Creation-Date: 2020-06-10 21:22+0000\n"
+"PO-Revision-Date: 2020-06-11 13:51+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
-"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -423,16 +423,12 @@ msgid "Failed to roll back transaction: %s"
 msgstr "Не вдалось відкотити транзакцію: %s"
 
 #: src/librygel-renderer-gst/rygel-playbin-player.vala:370
-#| msgid ""
-#| "Your GStreamer installation seems to be missing the “playbin” element. "
-#| "The Rygel GStreamer renderer implementation cannot work without it"
 msgid ""
 "Your GStreamer installation seems to be missing the “playbin3” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
-"Схоже, що встановлений у вашій системі GStreamer не містить елемента"
-" «playbin3». Rygel "
-"GStreamer не може працювати без нього."
+"Схоже, що встановлений у вашій системі GStreamer не містить елемента "
+"«playbin3». Rygel GStreamer не може працювати без нього."
 
 #: src/librygel-renderer/rygel-av-transport.vala:204
 #: src/librygel-renderer/rygel-rendering-control.vala:137
@@ -951,72 +947,72 @@ msgstr "Немає доступної мініатюри. Потрібно по�
 msgid "No D-Bus thumbnailer available"
 msgstr "Немає доступного модуля мініатюр D-Bus"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:46
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:44
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr "Не вдалося створити GstElement для URI %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:76
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
 msgstr "Швидкість програвання не підтримується"
 
 #. Unknown/unsupported seek type
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:106
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
 msgstr "Тип HTTPSeekRequest %s не підтримується"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:150
 msgid "Failed to create pipeline"
 msgstr "Не вдалося створити конвеєр"
 
 #. static pads? easy!
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:163
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:184
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:161
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:182
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Не вдалось сполучити %s з %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:198
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:196
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Не вдалось сполучити клавішу %s з %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:263
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:261
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Помилка з каналу даних %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:270
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:268
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Попередження з каналу даних %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:323
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:321
 msgid "Unsupported seek type"
 msgstr "Непідтримуваний тип переміщення"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:338
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Не вдалося переміститися до зміщення %lld:%lld"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
 msgid "Failed to seek"
 msgstr "Не вдалося переміститися"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:130
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "Неправильний URI без префікса: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
 msgstr "Неможливо опрацювати URI %s без протоколу %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:246
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Не вдалося створити джерело даних GStreamer для %s: %s"
@@ -1260,13 +1256,15 @@ msgstr "Неможливо створити посилання на контей
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:597
 #, c-format
-msgid "Failed to add %s to file blacklist: %s"
-msgstr "Не вдалося додати %s до чорного списку файлів: %s"
+#| msgid "Failed to add %s to file blacklist: %s"
+msgid "Failed to add %s to ignored files: %s"
+msgstr "Не вдалося додати %s до ігнорованих файлів: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, c-format
-msgid "Failed to get whether URI %s is blacklisted: %s"
-msgstr "Не вдалося розібрати, чи URI %s в чорному списку: %s"
+#| msgid "Failed to get whether URI %s is blacklisted: %s"
+msgid "Failed to get whether URI %s is ignored: %s"
+msgstr "Не вдалося розібрати, чи перебуває адреса %s у списку ігнорованих: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:626
 #, c-format
@@ -1588,10 +1586,3 @@ msgstr "Не вдалось запустити службу Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Не вдалось зупинити службу Rygel: %s"
-
-#~ msgid ""
-#~ "Could not create a transcoder configuration. Your GStreamer installation "
-#~ "might be missing a plug-in"
-#~ msgstr ""
-#~ "Не вдалося створити налаштування транскодера. У встановленому GStreamer "
-#~ "може бракувати додатка"
