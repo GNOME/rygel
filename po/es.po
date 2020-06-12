@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-05-03 16:54+0000\n"
-"PO-Revision-Date: 2020-05-04 14:06+0200\n"
+"POT-Creation-Date: 2020-06-10 21:22+0000\n"
+"PO-Revision-Date: 2020-06-12 12:02+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -427,9 +427,6 @@ msgid "Failed to roll back transaction: %s"
 msgstr "Falló al deshacer la transacción: %s"
 
 #: src/librygel-renderer-gst/rygel-playbin-player.vala:370
-#| msgid ""
-#| "Your GStreamer installation seems to be missing the “playbin” element. "
-#| "The Rygel GStreamer renderer implementation cannot work without it"
 msgid ""
 "Your GStreamer installation seems to be missing the “playbin3” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
@@ -954,72 +951,72 @@ msgstr "No hay ninguna miniatura disponible. Generación solicitada."
 msgid "No D-Bus thumbnailer available"
 msgstr "No hay ningún generador de miniaturas de D-Bus disponible"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:46
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:44
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr "No se pudo crear el GstElement para el URI %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:76
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
 msgstr "No se soporta la velocidad de reproducción"
 
 #. Unknown/unsupported seek type
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:106
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
 msgstr "Tipo %s de HTTPSeekRequest no soportado"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:150
 msgid "Failed to create pipeline"
 msgstr "Falló al crear la tubería"
 
 #. static pads? easy!
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:163
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:184
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:161
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:182
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Falló al enlazar %s con %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:198
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:196
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Falló al enlazar el relleno de %s a %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:263
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:261
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Error de la tubería %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:270
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:268
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Advertencia de la tubería %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:323
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:321
 msgid "Unsupported seek type"
 msgstr "Tipo de búsqueda no soportado"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:338
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Falló al buscar hasta los desplazamientos %lld:%lld"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
 msgid "Failed to seek"
 msgstr "Falló al buscar"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:130
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "URI no válido sin prefijo: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
 msgstr "No se puede procesar el URI %s con el protocolo %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:246
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Falló al crear la fuente de datos GStreamer para «%s»: %s"
@@ -1267,13 +1264,15 @@ msgstr "No se pueden crear las referencias a los contenedores"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:597
 #, c-format
-msgid "Failed to add %s to file blacklist: %s"
-msgstr "Falló al añadir %s a la lista negra de archivos: %s"
+#| msgid "Failed to add %s to file blacklist: %s"
+msgid "Failed to add %s to ignored files: %s"
+msgstr "Falló al añadir %s a la lista de archivos ignorados: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, c-format
-msgid "Failed to get whether URI %s is blacklisted: %s"
-msgstr "Falló al consultar si el URI %s está en una lsita negra: %s"
+#| msgid "Failed to get whether URI %s is blacklisted: %s"
+msgid "Failed to get whether URI %s is ignored: %s"
+msgstr "Falló al consultar si el URI %s está ignorado: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:626
 #, c-format
