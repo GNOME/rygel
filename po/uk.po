@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-06-10 21:22+0000\n"
-"PO-Revision-Date: 2020-06-11 13:51+0300\n"
+"POT-Creation-Date: 2020-06-15 18:06+0000\n"
+"PO-Revision-Date: 2020-06-15 22:04+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -1206,15 +1206,16 @@ msgstr "Не вдалося примусово переіндексувати д
 msgid "Failed to create indices: %s"
 msgstr "Не вдалося створити індекси: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:101
 #, c-format
 msgid "Cannot upgrade from version %d"
 msgstr "Неможливо оновити з версії %d"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
 #, c-format
-msgid "Database upgrade failed: %s"
-msgstr "Не вдалося оновити базу даних: %s"
+#| msgid "Database upgrade failed: %s"
+msgid "Database upgrade to v18 failed: %s"
+msgstr "Не вдалося оновити базу даних до v18: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:134
 #, c-format
@@ -1256,13 +1257,11 @@ msgstr "Неможливо створити посилання на контей
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:597
 #, c-format
-#| msgid "Failed to add %s to file blacklist: %s"
 msgid "Failed to add %s to ignored files: %s"
 msgstr "Не вдалося додати %s до ігнорованих файлів: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, c-format
-#| msgid "Failed to get whether URI %s is blacklisted: %s"
 msgid "Failed to get whether URI %s is ignored: %s"
 msgstr "Не вдалося розібрати, чи перебуває адреса %s у списку ігнорованих: %s"
 
