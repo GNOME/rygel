@@ -9,11 +9,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-06-10 21:22+0000\n"
-"PO-Revision-Date: 2020-06-12 12:02+0200\n"
+"POT-Creation-Date: 2020-06-15 18:06+0000\n"
+"PO-Revision-Date: 2020-06-16 09:37+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: es <gnome-es-list@gnome.org>\n"
-"Language: es\n"
+"Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1214,15 +1214,16 @@ msgstr "Falló al forzar el reindexado para corregir la base de datos: %s"
 msgid "Failed to create indices: %s"
 msgstr "Falló al crear los índices: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:101
 #, c-format
 msgid "Cannot upgrade from version %d"
 msgstr "No se puede actualizar desde la versión %d"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
 #, c-format
-msgid "Database upgrade failed: %s"
-msgstr "Falló al actualizar la base de datos: %s"
+#| msgid "Database upgrade failed: %s"
+msgid "Database upgrade to v18 failed: %s"
+msgstr "Falló al actualizar la base de datos a v18: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:134
 #, c-format
@@ -1264,13 +1265,11 @@ msgstr "No se pueden crear las referencias a los contenedores"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:597
 #, c-format
-#| msgid "Failed to add %s to file blacklist: %s"
 msgid "Failed to add %s to ignored files: %s"
 msgstr "Falló al añadir %s a la lista de archivos ignorados: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, c-format
-#| msgid "Failed to get whether URI %s is blacklisted: %s"
 msgid "Failed to get whether URI %s is ignored: %s"
 msgstr "Falló al consultar si el URI %s está ignorado: %s"
 
