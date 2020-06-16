@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-05-31 17:49+0000\n"
+"POT-Creation-Date: 2020-06-16 07:48+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
@@ -1045,7 +1045,7 @@ msgstr "Podprto je le obdelovanje datotečnih predstavnih predmetov"
 msgid "Module “%s” could not connect to D-Bus session bus. Ignoring…"
 msgstr ""
 "Povezovanje modula »%s« z vodilom seje D-Bus je spodletelo. Opravilo bo "
-"prezrto ..."
+"prezrto …"
 
 #: src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -1216,15 +1216,15 @@ msgstr ""
 msgid "Failed to create indices: %s"
 msgstr "Ni mogoče ustvariti kazal: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:101
 #, c-format
 msgid "Cannot upgrade from version %d"
 msgstr "Nadgradnja neposredno z različice %d ni mogoča"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
 #, c-format
-msgid "Database upgrade failed: %s"
-msgstr "Nadgradnja podatkovne zbirke je spodletela: %s"
+msgid "Database upgrade to v18 failed: %s"
+msgstr "Nadgradnja podatkovne zbirke na različico 18 je spodletela: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:134
 #, c-format
@@ -1267,15 +1267,13 @@ msgstr "Ni mogoče ustvariti sklicev na vsebnike"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:597
 #, c-format
-msgid "Failed to add %s to file blacklist: %s"
-msgstr "Dodajanje %s na črni seznam je spodletelo: %s"
+msgid "Failed to add %s to ignored files: %s"
+msgstr "Dodajanje %s na seznam prezrtih datotek je spodletelo: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, c-format
-msgid "Failed to get whether URI %s is blacklisted: %s"
-msgstr ""
-"Pridobivanje podatka, ali je nalslov URI %s na črnem seznamu, je spodletelo: "
-"%s"
+msgid "Failed to get whether URI %s is ignored: %s"
+msgstr "Pridobivanje podatka, ali je naslov URI %s prezrt, je spodletelo: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:626
 #, c-format
@@ -1292,7 +1290,7 @@ msgstr ""
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:688
 msgid "Incompatible schema… cannot proceed"
-msgstr "Neskladna shema ... ni mogoče nadaljevati."
+msgstr "Neskladna shema … ni mogoče nadaljevati."
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:694
 #, c-format
@@ -1339,7 +1337,7 @@ msgstr "Prejet je neveljaven niz podrejenega predmeta: %s"
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received ill-formed response string %s from child…"
-msgstr "Pridobljen je napačno oblikovan odzivi niz %s podrejenega procesa ..."
+msgstr "Pridobljen je napačno oblikovan odzivi niz %s podrejenega procesa …"
 
 #. No error signalling, this was done in the part that called
 #. cancel
@@ -1557,16 +1555,23 @@ msgstr "Drug primerek programa Rygel že teče. Nova seja ne bo ustvarjena."
 #: src/rygel/rygel-main.vala:85
 #, c-format
 msgid "Rygel v%s starting…"
-msgstr "Začenjanje programa Rygel v%s ..."
+msgstr "Začenjanje programa Rygel v%s …"
 
 #: src/rygel/rygel-main.vala:113
 #, c-format
 msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
-msgstr[0] "Ni najdenih vstavkov v %d sekundah, zato bo iskanje prekinjeno ..."
-msgstr[1] "Ni najdenih vstavkov v %d sekundi, zato bo iskanje prekinjeno ..."
-msgstr[2] "Ni najdenih vstavkov v %d sekundah, zato bo iskanje prekinjeno ..."
-msgstr[3] "Ni najdenih vstavkov v %d sekundah, zato bo iskanje prekinjeno ..."
+msgstr[0] ""
+"V %d sekundah ni bilo najdenega nobenega vstavka, zato bo iskanje prekinjeno "
+"…"
+msgstr[1] ""
+"V %d sekundi ni bilo najdenega nobenega vstavka, zato bo iskanje prekinjeno …"
+msgstr[2] ""
+"V %d sekundah ni bilo najdenega nobenega vstavka, zato bo iskanje prekinjeno "
+"…"
+msgstr[3] ""
+"V %d sekundah ni bilo najdenega nobenega vstavka, zato bo iskanje prekinjeno "
+"…"
 
 #: src/rygel/rygel-main.vala:177
 #, c-format
