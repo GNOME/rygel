@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-05-04 13:01+0000\n"
-"PO-Revision-Date: 2020-05-22 10:42+0200\n"
-"Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
-"com>\n"
+"POT-Creation-Date: 2020-06-15 18:06+0000\n"
+"PO-Revision-Date: 2020-06-17 19:29+0300\n"
+"Last-Translator: Florentina Mușat <florentina [dot] musat [dot] 28 [at] "
+"gmail [dot] com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==0 || (n!=1 && n%100>=1 && n"
 "%100<=19) ? 1 : 2);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.3.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: data/rygel.desktop.in.in:3
@@ -1212,15 +1212,15 @@ msgstr "Eșec la reindexarea forțată pentru repararea bazei de date: %s"
 msgid "Failed to create indices: %s"
 msgstr "Eșec la crearea indicilor: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:101
 #, c-format
 msgid "Cannot upgrade from version %d"
 msgstr "Nu se poate înnoi de la versiunea %d"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
 #, c-format
-msgid "Database upgrade failed: %s"
-msgstr "Înnoirea bazei de date a eșuat: %s"
+msgid "Database upgrade to v18 failed: %s"
+msgstr "Înnoirea bazei de date la v18 a eșuat: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:134
 #, c-format
@@ -1262,13 +1262,13 @@ msgstr "Nu s-au putut crea referințe la containere"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:597
 #, c-format
-msgid "Failed to add %s to file blacklist: %s"
-msgstr "Eșec la adăugarea %s la lista neagră a fișierelor: %s"
+msgid "Failed to add %s to ignored files: %s"
+msgstr "Nu s-a putu adăuga %s la fișierele ignorate: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, c-format
-msgid "Failed to get whether URI %s is blacklisted: %s"
-msgstr "Eșec la obținerea dacă URI-ul %s este pe lista neagră: %s"
+msgid "Failed to get whether URI %s is ignored: %s"
+msgstr "Nu s-a putut obține dacă URI-ul %s este ignorat: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:626
 #, c-format
