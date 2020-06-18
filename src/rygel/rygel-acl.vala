@@ -138,6 +138,8 @@ internal class Rygel.Acl : GLib.Object, GUPnP.Acl
             this.fallback_policy = this.configuration.get_bool
                                         ("general",
                                          "acl-fallback-policy");
+            debug ("Found ACL fallback policy “%s”",
+                   this.fallback_policy ? "allow" : "deny");
         } catch (Error error) {
             if (this.fallback_policy) {
                 message (_("No ACL fallback policy found. Using “allow”"));
