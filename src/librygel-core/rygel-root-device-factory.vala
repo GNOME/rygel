@@ -34,6 +34,8 @@ namespace Rygel {
     public string get_pretty_host_name () {
 
         if (pretty_host_name == null) {
+            pretty_host_name = Environment.get_host_name ();
+
             try {
                 string machine_info;
 
@@ -51,8 +53,6 @@ namespace Rygel {
             } catch (GLib.Error e) {
                 debug("Failed to parse /etc/machine-info: %s", e.message);
             }
-
-            pretty_host_name = Environment.get_host_name ();
         }
 
         return pretty_host_name;
