@@ -1,3 +1,46 @@
+0.38.4
+======
+
+Core:
+ - Actually use the pretty hostname if found
+
+Server:
+ - Fix missing nullable argument
+
+Rygel:
+ - Add debug output regarding the currently applied
+   ACL policy
+
+Server:
+ - Fix TimeSeekRange headers being locale-dependent
+
+Tracker:
+ - Some fixes for compatibility with recent vala
+ - nmm:albumTitle was removed ages ago, use nie:title
+
+GStreamer Media Engine:
+ - Do not seek on encodebin
+
+ Translation updates
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/157
+ - https://gitlab.gnome.org/GNOME/rygel/issues/161
+ - https://gitlab.gnome.org/GNOME/rygel/issues/165
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - sicklylife <translation@sicklylife.jp>
+ - Daniel Korostil <ted.korostiled@gmail.com>
+ - Danial Behzadi <dani.behzi@ubuntu.com>
+ - Umarzuki Bin Mochlis Moktar <umarzuki@gmail.com>
+
+Added/updated translations:
+ - fa.po, courtesy of Danial Behzadi
+ - ja.po, courtesy of sicklylife
+ - ms.po, courtesy of abuyop
+ - uk.po, courtesy of Yuri Chornoivan
+
 0.38.3
 ======
 
