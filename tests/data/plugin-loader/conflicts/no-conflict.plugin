@@ -1,0 +1,7 @@
+[Plugin]
+Version = 0.39.0
+Module = no-conflict
+Name = No-Conflict
+License = LGPL
+Description = Plugin without conflicts
+Copyright = Copyright © Rygel maintainers
