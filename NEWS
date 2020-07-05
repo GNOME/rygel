@@ -1,3 +1,12 @@
+0.39.1
+======
+
+Tests:
+ - Add missing test sample files
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+
 0.39.0
 ======
 
@@ -46,6 +55,47 @@ Examples:
 
 Data:
  - Fix desktop file
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/129
+ - https://gitlab.gnome.org/GNOME/rygel/issues/155
+ - https://gitlab.gnome.org/GNOME/rygel/issues/157
+ - https://gitlab.gnome.org/GNOME/rygel/issues/157
+ - https://gitlab.gnome.org/GNOME/rygel/issues/161
+ - https://gitlab.gnome.org/GNOME/rygel/issues/164
+ - https://gitlab.gnome.org/GNOME/rygel/issues/165
+ - https://gitlab.gnome.org/GNOME/rygel/issues/84
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - sicklylife <translation@sicklylife.jp>
+ - Yuri Chornoivan <yurchor@ukr.net>
+ - Anders Jonsson <anders.jonsson@norsjovallen.se>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Cheng-Chia Tseng <pswo10680@gmail.com>
+ - Danial Behzadi <dani.behzi@ubuntu.com>
+ - Florentina Mușat <florentina.musat.28@gmail.com>
+ - Daniel Șerbănescu <daniel@serbanescu.dk>
+ - Michael Catanzaro <mcatanzaro@gnome.org>
+ - Daniel Korostil <ted.korostiled@gmail.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Umarzuki Bin Mochlis Moktar <umarzuki@gmail.com>
+ - Jordi Mas <jmas@softcatala.org>
+ - Philip Withnall <philip@tecnocode.co.uk>
+
+Added/updated translations:
+ - ca.po, courtesy of Carles Ferrando Garcia
+ - es.po, courtesy of Daniel Mustieles
+ - fa.po, courtesy of Danial Behzadi
+ - ja.po, courtesy of sicklylife
+ - ms.po, courtesy of abuyop
+ - pl.po, courtesy of Piotr Drąg
+ - ro.po, courtesy of Florentina Mușat
+ - sl.po, courtesy of Matej Urbančič
+ - sv.po, courtesy of Anders Jonsson
+ - uk.po, courtesy of Yuri Chornoivan
+ - zh_TW.po, courtesy of Cheng-Chia Tseng
 
 0.38.2
 ======
