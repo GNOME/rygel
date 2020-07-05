@@ -1,3 +1,52 @@
+0.39.0
+======
+
+Dependency changes:
+ - New dependency: GStreamer Editing Services
+ - New dependency: Tracker 3
+
+All:
+ - Remove deprecated GTimeVal
+ - Fix "potential null access" warnings with newer Vala
+
+Autotools Build:
+ - Removed
+
+Core:
+ - Actually use pretty hostname
+ - Drop libtool support from plugin loader
+ - Add support for "Conflicts:" keyword in plugin files
+
+Server:
+ - Provide subtitles as transcoded resource
+ - Hack subtitle mime-types for LG devices
+ - Fix a missing nullable argument
+
+Tracker:
+ - Fix date-time check for New container
+ - Remove obsolete variables
+ - Fix query for nmm:albumTitle (now nie:title)
+
+Tracker3:
+ - Add initial support for new Tracker API 3.0
+
+MediaExport:
+ - Drop the termin "Blacklist"
+
+GStreamer Renderer:
+ - Port to playbin3
+ - Fix GIR namespace errors during vala compile
+
+GStreamer Media Engine:
+ - Restore transmuxing capabilities
+ - Fix time-based seeking on transcoded resources
+
+Examples:
+ - Remove deprecated functions
+
+Data:
+ - Fix desktop file
+
 0.38.2
 ======
 
