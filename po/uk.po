@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-06-15 18:06+0000\n"
-"PO-Revision-Date: 2020-06-15 22:04+0300\n"
+"POT-Creation-Date: 2020-07-05 13:37+0000\n"
+"PO-Revision-Date: 2020-07-05 17:43+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -280,16 +280,16 @@ msgstr "Не вдалося вимкнути інші зразки Rygel: %s"
 #: src/librygel-core/rygel-environment-config.vala:100
 #: src/librygel-core/rygel-environment-config.vala:104
 #: src/librygel-core/rygel-environment-config.vala:108
-#: src/librygel-core/rygel-meta-config.vala:89
-#: src/librygel-core/rygel-meta-config.vala:109
-#: src/librygel-core/rygel-meta-config.vala:128
-#: src/librygel-core/rygel-meta-config.vala:147
-#: src/librygel-core/rygel-meta-config.vala:166
-#: src/librygel-core/rygel-meta-config.vala:185
-#: src/librygel-core/rygel-meta-config.vala:204
-#: src/librygel-core/rygel-meta-config.vala:223
-#: src/librygel-core/rygel-meta-config.vala:242
-#: src/librygel-core/rygel-meta-config.vala:261
+#: src/librygel-core/rygel-meta-config.vala:105
+#: src/librygel-core/rygel-meta-config.vala:125
+#: src/librygel-core/rygel-meta-config.vala:144
+#: src/librygel-core/rygel-meta-config.vala:163
+#: src/librygel-core/rygel-meta-config.vala:182
+#: src/librygel-core/rygel-meta-config.vala:201
+#: src/librygel-core/rygel-meta-config.vala:220
+#: src/librygel-core/rygel-meta-config.vala:239
+#: src/librygel-core/rygel-meta-config.vala:258
+#: src/librygel-core/rygel-meta-config.vala:277
 msgid "No value available"
 msgstr "Немає доступного значення"
 
@@ -322,31 +322,31 @@ msgid "Failed to get log level from configuration: %s"
 msgstr "Не вдалось отримати журнал рівнів з конфігурації: %s"
 
 #. translators: "enabled" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:336
+#: src/librygel-core/rygel-meta-config.vala:352
 #, c-format
 msgid "No value set for “%s/enabled”"
 msgstr "Не вказано значення для «%s/enabled»"
 
 #. translators: "title" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:355
+#: src/librygel-core/rygel-meta-config.vala:371
 #, c-format
 msgid "No value set for “%s/title”"
 msgstr "Не вказано значення для «%s/title»"
 
-#: src/librygel-core/rygel-meta-config.vala:375
-#: src/librygel-core/rygel-meta-config.vala:397
-#: src/librygel-core/rygel-meta-config.vala:423
-#: src/librygel-core/rygel-meta-config.vala:445
-#: src/librygel-core/rygel-meta-config.vala:469
+#: src/librygel-core/rygel-meta-config.vala:391
+#: src/librygel-core/rygel-meta-config.vala:413
+#: src/librygel-core/rygel-meta-config.vala:439
+#: src/librygel-core/rygel-meta-config.vala:461
+#: src/librygel-core/rygel-meta-config.vala:485
 #, c-format
 msgid "No value available for “%s/%s”"
 msgstr "Немає доступного значення для «%s/%s»"
 
-#: src/librygel-core/rygel-plugin-information.vala:59
+#: src/librygel-core/rygel-plugin-information.vala:64
 msgid "[Plugin] group not found"
 msgstr "[Додаток] групу не знайдено"
 
-#: src/librygel-core/rygel-plugin-information.vala:77
+#: src/librygel-core/rygel-plugin-information.vala:76
 #, c-format
 msgid "Plugin module %s does not exist"
 msgstr "Додаток %s не існує"
@@ -371,6 +371,11 @@ msgstr "Не вдалось завантажити модуль з «%s»: %s"
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "Не вдалось знайти функцію точки входу «%s» в «%s»: %s"
 
+#: src/librygel-core/rygel-plugin-loader.vala:155
+#, c-format
+msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
+msgstr "Модуль «%s» конфліктує з уже завантаженим модулем «%s». Пропускаємо"
+
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
 msgid "Failed to open plugins folder: “%s”"
@@ -386,7 +391,7 @@ msgstr "Помилка перелічення вмісту теки «%s»: %s"
 msgid "Could not load plugin: %s"
 msgstr "Не вдалося завантажити додаток: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:221
+#: src/librygel-core/rygel-recursive-module-loader.vala:220
 #, c-format
 msgid "Failed to query content type for “%s”"
 msgstr "Не вдалось виконати запит типу вмісту для «%s»"
@@ -947,72 +952,72 @@ msgstr "Немає доступної мініатюри. Потрібно по�
 msgid "No D-Bus thumbnailer available"
 msgstr "Немає доступного модуля мініатюр D-Bus"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:44
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:46
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr "Не вдалося створити GstElement для URI %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:76
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
 msgstr "Швидкість програвання не підтримується"
 
 #. Unknown/unsupported seek type
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:106
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
 msgstr "Тип HTTPSeekRequest %s не підтримується"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:150
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
 msgid "Failed to create pipeline"
 msgstr "Не вдалося створити конвеєр"
 
 #. static pads? easy!
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:161
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:182
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:163
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:184
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Не вдалось сполучити %s з %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:196
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:198
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Не вдалось сполучити клавішу %s з %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:261
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:263
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Помилка з каналу даних %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:268
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:270
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Попередження з каналу даних %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:321
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:323
 msgid "Unsupported seek type"
 msgstr "Непідтримуваний тип переміщення"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:338
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Не вдалося переміститися до зміщення %lld:%lld"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
 msgid "Failed to seek"
 msgstr "Не вдалося переміститися"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:130
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "Неправильний URI без префікса: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
 msgstr "Неможливо опрацювати URI %s без протоколу %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:246
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Не вдалося створити джерело даних GStreamer для %s: %s"
@@ -1213,7 +1218,6 @@ msgstr "Неможливо оновити з версії %d"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
 #, c-format
-#| msgid "Database upgrade failed: %s"
 msgid "Database upgrade to v18 failed: %s"
 msgstr "Не вдалося оновити базу даних до v18: %s"
 
@@ -1526,11 +1530,11 @@ msgstr "Не вдалося виконати запит ACL: %s"
 msgid "Error creating D-Bus proxy for ACL: %s"
 msgstr "Помилка створення проксі D-Bus для ACL: %s"
 
-#: src/rygel/rygel-acl.vala:143
+#: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “allow”"
 msgstr "Не знайдено запасних правил ACL. Використовується «allow»"
 
-#: src/rygel/rygel-acl.vala:145
+#: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "Не знайдено запасних правил ACL. Використовується «deny»"
 
