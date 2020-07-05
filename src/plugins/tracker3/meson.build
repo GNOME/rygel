@@ -41,7 +41,7 @@ shared_module('rygel-tracker3',
               rygel_tracker_sources,
               dependencies : [
                   common_deps,
-                  dependency('tracker-sparql-3.0'),
+                  dependency('tracker-sparql-3.0', required:false, disabler: true),
                   build_config, rygel_core, rygel_server
               ],
               c_args : ['-DG_LOG_DOMAIN="RygelTracker3"'],
