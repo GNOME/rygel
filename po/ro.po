@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-06-15 18:06+0000\n"
-"PO-Revision-Date: 2020-06-17 19:29+0300\n"
+"POT-Creation-Date: 2020-07-05 13:37+0000\n"
+"PO-Revision-Date: 2020-07-05 17:45+0200\n"
 "Last-Translator: Florentina Mușat <florentina [dot] musat [dot] 28 [at] "
 "gmail [dot] com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
@@ -286,16 +286,16 @@ msgstr "Eșec la închiderea celeilalte instanțe Rygel: %s"
 #: src/librygel-core/rygel-environment-config.vala:100
 #: src/librygel-core/rygel-environment-config.vala:104
 #: src/librygel-core/rygel-environment-config.vala:108
-#: src/librygel-core/rygel-meta-config.vala:89
-#: src/librygel-core/rygel-meta-config.vala:109
-#: src/librygel-core/rygel-meta-config.vala:128
-#: src/librygel-core/rygel-meta-config.vala:147
-#: src/librygel-core/rygel-meta-config.vala:166
-#: src/librygel-core/rygel-meta-config.vala:185
-#: src/librygel-core/rygel-meta-config.vala:204
-#: src/librygel-core/rygel-meta-config.vala:223
-#: src/librygel-core/rygel-meta-config.vala:242
-#: src/librygel-core/rygel-meta-config.vala:261
+#: src/librygel-core/rygel-meta-config.vala:105
+#: src/librygel-core/rygel-meta-config.vala:125
+#: src/librygel-core/rygel-meta-config.vala:144
+#: src/librygel-core/rygel-meta-config.vala:163
+#: src/librygel-core/rygel-meta-config.vala:182
+#: src/librygel-core/rygel-meta-config.vala:201
+#: src/librygel-core/rygel-meta-config.vala:220
+#: src/librygel-core/rygel-meta-config.vala:239
+#: src/librygel-core/rygel-meta-config.vala:258
+#: src/librygel-core/rygel-meta-config.vala:277
 msgid "No value available"
 msgstr "Nicio valoare disponibilă"
 
@@ -328,31 +328,31 @@ msgid "Failed to get log level from configuration: %s"
 msgstr "Nu s-a putut afla nivelul de jurnalizare din configurație: %s"
 
 #. translators: "enabled" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:336
+#: src/librygel-core/rygel-meta-config.vala:352
 #, c-format
 msgid "No value set for “%s/enabled”"
 msgstr "Nicio valoare stabilită pentru „%s/activat”"
 
 #. translators: "title" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:355
+#: src/librygel-core/rygel-meta-config.vala:371
 #, c-format
 msgid "No value set for “%s/title”"
 msgstr "Nicio valoare stabilită pentru „%s/titlu”"
 
-#: src/librygel-core/rygel-meta-config.vala:375
-#: src/librygel-core/rygel-meta-config.vala:397
-#: src/librygel-core/rygel-meta-config.vala:423
-#: src/librygel-core/rygel-meta-config.vala:445
-#: src/librygel-core/rygel-meta-config.vala:469
+#: src/librygel-core/rygel-meta-config.vala:391
+#: src/librygel-core/rygel-meta-config.vala:413
+#: src/librygel-core/rygel-meta-config.vala:439
+#: src/librygel-core/rygel-meta-config.vala:461
+#: src/librygel-core/rygel-meta-config.vala:485
 #, c-format
 msgid "No value available for “%s/%s”"
 msgstr "Nicio valoare disponibilă pentru „%s/%s”"
 
-#: src/librygel-core/rygel-plugin-information.vala:59
+#: src/librygel-core/rygel-plugin-information.vala:64
 msgid "[Plugin] group not found"
 msgstr "[Modul] grup negăsit"
 
-#: src/librygel-core/rygel-plugin-information.vala:77
+#: src/librygel-core/rygel-plugin-information.vala:76
 #, c-format
 msgid "Plugin module %s does not exist"
 msgstr "Modulul %s nu există"
@@ -377,6 +377,11 @@ msgstr "Eșec la încărcarea modulului din calea „%s”: %s"
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "Eșec la găsirea funcției de intrare „%s” în „%s”: %s"
 
+#: src/librygel-core/rygel-plugin-loader.vala:155
+#, c-format
+msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
+msgstr "Modulul „%s” intră în conflict cu modulul încărcat „%s”. Se omite"
+
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
 msgid "Failed to open plugins folder: “%s”"
@@ -392,7 +397,7 @@ msgstr "Eroare la listarea conținutului dosarului „%s”: %s"
 msgid "Could not load plugin: %s"
 msgstr "Nu s-a putut încărca modulul: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:221
+#: src/librygel-core/rygel-recursive-module-loader.vala:220
 #, c-format
 msgid "Failed to query content type for “%s”"
 msgstr "Interogarea tipului conținutului pentru „%s” a eșuat"
@@ -950,72 +955,72 @@ msgstr "Nicio miniatură disponibilă. S-a cerut generarea."
 msgid "No D-Bus thumbnailer available"
 msgstr "Niciun generator de miniaturi D-Bus disponibil"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:44
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:46
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr "Nu s-a putut crea GstElement din URI-ul %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:76
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
 msgstr "Viteza de redare nu este suportată"
 
 #. Unknown/unsupported seek type
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:106
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
 msgstr "Tipul HTTPSeekRequest %s este nesuportat"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:150
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
 msgid "Failed to create pipeline"
 msgstr "Eșec la crearea conductei"
 
 #. static pads? easy!
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:161
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:182
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:163
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:184
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Nu s-a putut lega %s la %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:196
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:198
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Nu s-a putut lega blocul %s la %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:261
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:263
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Eroare în linia de asamblare %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:268
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:270
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Avertisment de la linia de asamblare %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:321
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:323
 msgid "Unsupported seek type"
 msgstr "Tip de derulare nesuportat"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:338
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Eșec la derularea la decalajele %lld:%lld"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
 msgid "Failed to seek"
 msgstr "Eșec la derulare"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:130
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "URI nevalid fără prefix: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
 msgstr "Nu pot procesa URI-ul %s cu protocolul %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:246
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Nu s-au putut crea sursa de date GStreamer pentru %s: %s"
@@ -1533,11 +1538,11 @@ msgstr "Interogarea ACL a eșuat: %s"
 msgid "Error creating D-Bus proxy for ACL: %s"
 msgstr "Eroare la crearea unui proxy D-Bus pentru ACL: %s"
 
-#: src/rygel/rygel-acl.vala:143
+#: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “allow”"
 msgstr "Nicio politică ACL de rezervă nu a fost găsită. Se folosește „permite”"
 
-#: src/rygel/rygel-acl.vala:145
+#: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "Nicio politică ACL de rezervă nu a fost găsită. Se folosește „refuză”"
 
