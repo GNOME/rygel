@@ -159,7 +159,7 @@ int main (int argc, char *argv[])
 
     g_set_application_name ("Rygel-Fullscreen-Renderer");
 
-    renderer = rygel_playbin_renderer_new ("LibRygel renderer demo");
+    renderer = rygel_playbin_renderer_new ("Rygel Fullscreen renderer demo");
     data.playbin = rygel_playbin_renderer_get_playbin (renderer);
 
     data.window = GTK_WINDOW (gtk_window_new (GTK_WINDOW_TOPLEVEL));
