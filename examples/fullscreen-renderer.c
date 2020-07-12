@@ -27,7 +27,7 @@
  * fullscreen.
  *
  * Usage:
- *   standalone-renderer [<network device>]
+ *   fullscreen-renderer [<network device>]
  *
  * If no network device is given on the commandline, the program falls back to
  * eth0.
