@@ -130,13 +130,37 @@ static gboolean on_draw (GtkWidget *widget, cairo_t *cr, gpointer user_data)
     return TRUE;
 }
 
+static void toggle_play_pause (GstElement *element)
+{
+    GstStateChangeReturn ret;
+    GstState current = GST_STATE_NULL, pending = GST_STATE_NULL;
+
+    ret = gst_element_get_state (element, &current, &pending, GST_CLOCK_TIME_NONE);
+
+    if (ret != GST_STATE_CHANGE_SUCCESS)
+        return;
+
+    if (current == GST_STATE_PAUSED) {
+        gst_element_set_state (element, GST_STATE_PLAYING);
+    }
+
+    if (current == GST_STATE_PLAYING)  {
+        gst_element_set_state (element, GST_STATE_PAUSED);
+    }
+}
+
 static gboolean on_key_released (GtkWidget *widget,
-                             GdkEvent *event,
-                             gpointer user_data)
+                                 GdkEvent *event,
+                                 gpointer user_data)
 {
     GdkEventKey *key_event = (GdkEventKey *) event;
+    MainData *data = (MainData *) user_data;
 
     switch (key_event->keyval) {
+        case GDK_KEY_space:
+            toggle_play_pause (data->playbin);
+
+            return FALSE;
         case GDK_KEY_Escape:
         case GDK_KEY_q:
         case GDK_KEY_Q:
