@@ -140,6 +140,7 @@ src/media-engines/gstreamer/rygel-gst-data-source.vala
 src/media-engines/gstreamer/rygel-gst-media-engine.vala
 src/media-engines/gstreamer/rygel-gst-sink.vala
 src/media-engines/gstreamer/rygel-gst-transcoder.vala
+src/media-engines/gstreamer/rygel-gst-transcoding-data-source.vala
 src/media-engines/gstreamer/rygel-gst-utils.vala
 src/media-engines/gstreamer/rygel-l16-transcoder.vala
 src/media-engines/gstreamer/rygel-mp2ts-transcoder.vala
@@ -210,6 +211,16 @@ src/plugins/mpris/rygel-mpris-plugin-factory.vala
 src/plugins/mpris/rygel-mpris-plugin.vala
 src/plugins/playbin/rygel-playbin-module.vala
 src/plugins/playbin/rygel-playbin-plugin.vala
+src/plugins/tracker3/rygel-tracker-albums.vala
+src/plugins/tracker3/rygel-tracker-artists.vala
+src/plugins/tracker3/rygel-tracker-category-all-container.vala
+src/plugins/tracker3/rygel-tracker-genre.vala
+src/plugins/tracker3/rygel-tracker-metadata-container.vala
+src/plugins/tracker3/rygel-tracker-plugin-factory.vala
+src/plugins/tracker3/rygel-tracker-plugin.vala
+src/plugins/tracker3/rygel-tracker-search-container.vala
+src/plugins/tracker3/rygel-tracker-titles.vala
+src/plugins/tracker3/rygel-tracker-years.vala
 src/plugins/tracker/rygel-tracker-albums.vala
 src/plugins/tracker/rygel-tracker-artists.vala
 src/plugins/tracker/rygel-tracker-category-all-container.vala

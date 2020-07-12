@@ -165,6 +165,7 @@ src/media-engines/gstreamer/rygel-gst-data-source.c
 src/media-engines/gstreamer/rygel-gst-media-engine.c
 src/media-engines/gstreamer/rygel-gst-sink.c
 src/media-engines/gstreamer/rygel-gst-transcoder.c
+src/media-engines/gstreamer/rygel-gst-transcoding-data-source.c
 src/media-engines/gstreamer/rygel-gst-utils.c
 src/media-engines/gstreamer/rygel-l16-transcoder.c
 src/media-engines/gstreamer/rygel-mp2ts-transcoder.c
@@ -251,6 +252,16 @@ src/plugins/playbin/rygel-playbin-module.c
 src/plugins/playbin/rygel-playbin-plugin.c
 src/plugins/ruih/rygel-ruih-module.c
 src/plugins/ruih/rygel-ruih-plugin.c
+src/plugins/tracker3/rygel-tracker-albums.c
+src/plugins/tracker3/rygel-tracker-artists.c
+src/plugins/tracker3/rygel-tracker-category-all-container.c
+src/plugins/tracker3/rygel-tracker-genre.c
+src/plugins/tracker3/rygel-tracker-metadata-container.c
+src/plugins/tracker3/rygel-tracker-plugin.c
+src/plugins/tracker3/rygel-tracker-plugin-factory.c
+src/plugins/tracker3/rygel-tracker-search-container.c
+src/plugins/tracker3/rygel-tracker-titles.c
+src/plugins/tracker3/rygel-tracker-years.c
 src/plugins/tracker/rygel-tracker-albums.c
 src/plugins/tracker/rygel-tracker-artists.c
 src/plugins/tracker/rygel-tracker-category-all-container.c
