@@ -8,9 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-03-10 18:49+0000\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
+"POT-Creation-Date: 2020-07-12 13:38+0000\n"
 "PO-Revision-Date: 2017-03-10 18:04+0100\n"
 "Last-Translator: Carles Ferrando Garcia <carles.ferrando@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
@@ -25,12 +24,13 @@ msgstr ""
 msgid "Rygel"
 msgstr "Rygel"
 
-#: data/rygel.desktop.in.in:4 data/rygel.desktop.in.in:5
+#: data/rygel.desktop.in.in:4
 msgid "UPnP/DLNA Services"
 msgstr "Serveis UPnP/DLNA"
 
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in.in:7
+#. Translators: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
+#: data/rygel.desktop.in.in:6
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
 "servidor multimèdia;renderització multimèdia;compartir;àudio;vídeo;imatges;"
@@ -42,11 +42,6 @@ msgstr "Preferències del Rygel"
 #: data/rygel-preferences.desktop.in.in:4
 msgid "UPnP/DLNA Preferences"
 msgstr "Preferències UPnP/DLNA"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/rygel-preferences.desktop.in.in:7
-msgid "rygel"
-msgstr "rygel"
 
 #: data/rygel-preferences.ui:94
 msgid "Add a directory to the list of shared directories"
@@ -66,7 +61,7 @@ msgstr "Suprimeix un directori compartit"
 
 #: data/rygel-preferences.ui:153
 msgid "_Share media through DLNA"
-msgstr "Comparteix el suport mitjançant DLNA"
+msgstr "_Comparteix el suport mitjançant DLNA"
 
 #: data/rygel-preferences.ui:230 data/rygel-preferences.ui:231
 msgid "Add a network interface Rygel should serve files on"
@@ -127,41 +122,44 @@ msgid "Failed to read error output from %s: %s"
 msgstr "No s'ha pogut llegir la sortida d'error de %s: %s"
 
 #. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:159
+#: src/librygel-core/rygel-basic-management.vala:158
 msgid "No Such Test"
 msgstr "No existeix la comprovació"
 
 #. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:167
+#: src/librygel-core/rygel-basic-management.vala:166
+#: src/librygel-core/rygel-basic-management.vala:283
+#: src/librygel-core/rygel-basic-management.vala:382
+#: src/librygel-core/rygel-basic-management.vala:471
 msgid "Wrong Test Type"
 msgstr "Tipus de comprovació errònia"
 
 #. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:175
+#: src/librygel-core/rygel-basic-management.vala:174
 #, c-format
 msgid "Invalid Test State “%s”"
 msgstr "L'estat de comprovació no és vàlid «%s»"
 
 #. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:181
+#: src/librygel-core/rygel-basic-management.vala:180
 #, c-format
 msgid "State “%s” Precludes Cancel"
 msgstr "L'estat «%s» exclou la cancel·lació"
 
-#: src/librygel-core/rygel-basic-management.vala:214
-#: src/librygel-core/rygel-basic-management.vala:229
-#: src/librygel-core/rygel-basic-management.vala:256
-#: src/librygel-core/rygel-basic-management.vala:272
-#: src/librygel-core/rygel-basic-management.vala:324
-#: src/librygel-core/rygel-basic-management.vala:349
-#: src/librygel-core/rygel-basic-management.vala:365
-#: src/librygel-core/rygel-basic-management.vala:404
-#: src/librygel-core/rygel-basic-management.vala:431
-#: src/librygel-core/rygel-basic-management.vala:448
-#: src/librygel-core/rygel-basic-management.vala:487
-#: src/librygel-core/rygel-basic-management.vala:502
-#: src/librygel-core/rygel-basic-management.vala:517
-#: src/librygel-core/rygel-basic-management.vala:541
+#: src/librygel-core/rygel-basic-management.vala:213
+#: src/librygel-core/rygel-basic-management.vala:228
+#: src/librygel-core/rygel-basic-management.vala:255
+#: src/librygel-core/rygel-basic-management.vala:271
+#: src/librygel-core/rygel-basic-management.vala:328
+#: src/librygel-core/rygel-basic-management.vala:353
+#: src/librygel-core/rygel-basic-management.vala:369
+#: src/librygel-core/rygel-basic-management.vala:414
+#: src/librygel-core/rygel-basic-management.vala:441
+#: src/librygel-core/rygel-basic-management.vala:458
+#: src/librygel-core/rygel-basic-management.vala:503
+#: src/librygel-core/rygel-basic-management.vala:518
+#: src/librygel-core/rygel-basic-management.vala:533
+#: src/librygel-core/rygel-basic-management.vala:557
 #: src/librygel-core/rygel-connection-manager.vala:95
 #: src/librygel-core/rygel-connection-manager.vala:109
 #: src/librygel-core/rygel-connection-manager.vala:126
@@ -175,21 +173,21 @@ msgstr "L'estat «%s» exclou la cancel·lació"
 #: src/librygel-server/rygel-content-directory.vala:343
 #: src/librygel-server/rygel-content-directory.vala:372
 #: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:616
-#: src/librygel-server/rygel-content-directory.vala:765
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
 #: src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "L'argument no és vàlid"
 
-#: src/librygel-core/rygel-basic-management.vala:255
+#: src/librygel-core/rygel-basic-management.vala:254
 msgid "Cannot run “Ping” action: Host is empty"
 msgstr "No es pot executar l'acció «Ping»: l'amfitrió és buit"
 
-#: src/librygel-core/rygel-basic-management.vala:348
+#: src/librygel-core/rygel-basic-management.vala:352
 msgid "Cannot run “NSLookup” action: HostName is empty"
 msgstr "No es pot executar l'acció «NSLookup»: el nom de l'amfitrió és buit"
 
-#: src/librygel-core/rygel-basic-management.vala:430
+#: src/librygel-core/rygel-basic-management.vala:440
 msgid "Cannot run “Traceroute” action: Host is empty"
 msgstr "No es pot executar l'acció «Traceroute»: l'amfitrió és buit"
 
@@ -285,16 +283,16 @@ msgstr "No s'ha pogut aturar l'altra instància del Rygel: %s"
 #: src/librygel-core/rygel-environment-config.vala:100
 #: src/librygel-core/rygel-environment-config.vala:104
 #: src/librygel-core/rygel-environment-config.vala:108
-#: src/librygel-core/rygel-meta-config.vala:89
-#: src/librygel-core/rygel-meta-config.vala:109
-#: src/librygel-core/rygel-meta-config.vala:128
-#: src/librygel-core/rygel-meta-config.vala:147
-#: src/librygel-core/rygel-meta-config.vala:166
-#: src/librygel-core/rygel-meta-config.vala:185
-#: src/librygel-core/rygel-meta-config.vala:204
-#: src/librygel-core/rygel-meta-config.vala:223
-#: src/librygel-core/rygel-meta-config.vala:242
-#: src/librygel-core/rygel-meta-config.vala:261
+#: src/librygel-core/rygel-meta-config.vala:105
+#: src/librygel-core/rygel-meta-config.vala:125
+#: src/librygel-core/rygel-meta-config.vala:144
+#: src/librygel-core/rygel-meta-config.vala:163
+#: src/librygel-core/rygel-meta-config.vala:182
+#: src/librygel-core/rygel-meta-config.vala:201
+#: src/librygel-core/rygel-meta-config.vala:220
+#: src/librygel-core/rygel-meta-config.vala:239
+#: src/librygel-core/rygel-meta-config.vala:258
+#: src/librygel-core/rygel-meta-config.vala:277
 msgid "No value available"
 msgstr "No hi ha cap valor disponible"
 
@@ -307,17 +305,17 @@ msgstr "La referència de connexió no és vàlida"
 msgid "Failed to write modified description to %s"
 msgstr "No s'ha pogut escriure la descripció modificada a %s"
 
-#: src/librygel-core/rygel-energy-management-helper.c:54
+#: src/librygel-core/rygel-energy-management-helper.c:55
 #, c-format
 msgid "Failed to get a socket: %s"
 msgstr "Ha fallat l'obtenció del sòcol: %s"
 
-#: src/librygel-core/rygel-energy-management-helper.c:61
+#: src/librygel-core/rygel-energy-management-helper.c:62
 #, c-format
 msgid "Failed to get MAC address for %s: %s"
 msgstr "Ha fallat l'obtenció de l'adreça MAC per a %s: %s"
 
-#: src/librygel-core/rygel-energy-management-helper.c:103
+#: src/librygel-core/rygel-energy-management-helper.c:104
 msgid "MAC and network type querying not implemented"
 msgstr "No s'ha implementat el tipus de consulta MAC i de xarxa"
 
@@ -327,31 +325,31 @@ msgid "Failed to get log level from configuration: %s"
 msgstr "No s'ha pogut obtenir el nivell de registre de la configuració: %s"
 
 #. translators: "enabled" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:336
+#: src/librygel-core/rygel-meta-config.vala:352
 #, c-format
 msgid "No value set for “%s/enabled”"
 msgstr "No s'ha establert cap valor per a «%s/enabled»"
 
 #. translators: "title" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:355
+#: src/librygel-core/rygel-meta-config.vala:371
 #, c-format
 msgid "No value set for “%s/title”"
 msgstr "No s'ha establert cap valor per a «%s/title»"
 
-#: src/librygel-core/rygel-meta-config.vala:375
-#: src/librygel-core/rygel-meta-config.vala:397
-#: src/librygel-core/rygel-meta-config.vala:423
-#: src/librygel-core/rygel-meta-config.vala:445
-#: src/librygel-core/rygel-meta-config.vala:469
+#: src/librygel-core/rygel-meta-config.vala:391
+#: src/librygel-core/rygel-meta-config.vala:413
+#: src/librygel-core/rygel-meta-config.vala:439
+#: src/librygel-core/rygel-meta-config.vala:461
+#: src/librygel-core/rygel-meta-config.vala:485
 #, c-format
 msgid "No value available for “%s/%s”"
 msgstr "No hi ha cap valor disponible per a «%s/%s»"
 
-#: src/librygel-core/rygel-plugin-information.vala:59
+#: src/librygel-core/rygel-plugin-information.vala:64
 msgid "[Plugin] group not found"
 msgstr "[Connector] No s'ha trobat el grup"
 
-#: src/librygel-core/rygel-plugin-information.vala:77
+#: src/librygel-core/rygel-plugin-information.vala:76
 #, c-format
 msgid "Plugin module %s does not exist"
 msgstr "No existeix el mòdul %s del connector"
@@ -366,15 +364,21 @@ msgstr "Hi ha un connector «%s» nou disponible"
 msgid "A module named %s is already loaded"
 msgstr "Ja està carregat el mòdul %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:113
+#: src/librygel-core/rygel-plugin-loader.vala:118
 #, c-format
 msgid "Failed to load module from path “%s”: %s"
 msgstr "No s'ha pogut carregar el mòdul del camí «%s»: %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:123
+#: src/librygel-core/rygel-plugin-loader.vala:128
 #, c-format
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "No s'ha pogut cercar el punt d'entrada de la funció «%s» a «%s»: %s"
+
+#: src/librygel-core/rygel-plugin-loader.vala:155
+#, c-format
+msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
+msgstr ""
+"El mòdul '%s' entra en conflicte amb el mòdul ja carregat '%s'. S'està ometent"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
@@ -391,7 +395,7 @@ msgstr "S'ha produït un error en llistar el contingut de la carpeta «%s»: %s"
 msgid "Could not load plugin: %s"
 msgstr "No s'ha pogut carregar el connector: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:221
+#: src/librygel-core/rygel-recursive-module-loader.vala:220
 #, c-format
 msgid "Failed to query content type for “%s”"
 msgstr "No s'ha pogut consultar el tipus de contingut per a «%s»"
@@ -427,13 +431,13 @@ msgstr "S'ha produït un error en obrir la base de dades SQLite %s : %s"
 msgid "Failed to roll back transaction: %s"
 msgstr "No s'ha pogut desfer la transacció: %s"
 
-#: src/librygel-renderer-gst/rygel-playbin-player.vala:368
+#: src/librygel-renderer-gst/rygel-playbin-player.vala:370
 msgid ""
-"Your GStreamer installation seems to be missing the “playbin” element. The "
+"Your GStreamer installation seems to be missing the “playbin3” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
 "A la vostra instal·lació de la GStreamer sembla que li manca l'element "
-"«playbin». La implementació del renderitzador de la GStreamer del Rygel no "
+"«playbin3». La implementació del renderitzador de la GStreamer del Rygel no "
 "pot funcionar sense ell"
 
 #: src/librygel-renderer/rygel-av-transport.vala:204
@@ -469,26 +473,26 @@ msgid "Play mode not supported"
 msgstr "No s'admet el mode de reproducció"
 
 #. FIXME: Return a more sensible error here.
-#: src/librygel-renderer/rygel-av-transport.vala:735
-#: src/librygel-renderer/rygel-av-transport.vala:779
-#: src/librygel-renderer/rygel-av-transport.vala:788
-#: src/librygel-renderer/rygel-av-transport.vala:867
+#: src/librygel-renderer/rygel-av-transport.vala:774
+#: src/librygel-renderer/rygel-av-transport.vala:789
+#: src/librygel-renderer/rygel-av-transport.vala:798
+#: src/librygel-renderer/rygel-av-transport.vala:877
 msgid "Resource not found"
 msgstr "No s'ha trobat el recurs"
 
-#: src/librygel-renderer/rygel-av-transport.vala:777
+#: src/librygel-renderer/rygel-av-transport.vala:787
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "S'ha produït un error en analitzar la llista de reproducció: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:863
+#: src/librygel-renderer/rygel-av-transport.vala:873
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "No s'ha pogut accedir al recurs a %s: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:879
+#: src/librygel-renderer/rygel-av-transport.vala:889
 msgid "Illegal MIME-type"
 msgstr "El tipus MIME no és vàlid"
 
@@ -574,7 +578,7 @@ msgstr "No s'ha pogut navegar per «%s»: %s\n"
 msgid "Not Applicable"
 msgstr "No és aplicable"
 
-#: src/librygel-server/rygel-content-directory.vala:637
+#: src/librygel-server/rygel-content-directory.vala:639
 msgid "No such file transfer"
 msgstr "No existeix la transferència del fitxer"
 
@@ -599,19 +603,19 @@ msgstr "L'URI «%s» no és vàlida"
 msgid "Not found"
 msgstr "No s'ha trobat"
 
-#: src/librygel-server/rygel-http-post.vala:62
-#: src/librygel-server/rygel-import-resource.vala:189
+#: src/librygel-server/rygel-http-post.vala:64
+#: src/librygel-server/rygel-import-resource.vala:193
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "No es permet publicar dades a l'element no buit «%s»"
 
-#: src/librygel-server/rygel-http-post.vala:71
+#: src/librygel-server/rygel-http-post.vala:72
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "No hi ha disponible cap URI d'escriptura per a %s"
 
 #. translators: Dotfile is the filename with prefix "."
-#: src/librygel-server/rygel-http-post.vala:186
+#: src/librygel-server/rygel-http-post.vala:187
 #, c-format
 msgid "Failed to move dotfile %s: %s"
 msgstr "No s'ha pogut moure el fitxer amb punt %s: %s"
@@ -631,12 +635,12 @@ msgstr "No s'ha pogut crear la font de dades per a %s"
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "No s'ha pogut obtenir l'URI original per a «%s»: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:186
+#: src/librygel-server/rygel-import-resource.vala:188
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "L'URI «%s» no és vàlid per importar-hi el contingut"
 
-#: src/librygel-server/rygel-import-resource.vala:272
+#: src/librygel-server/rygel-import-resource.vala:276
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "No s'ha pogut importar el fitxer des de %s: %s"
@@ -656,7 +660,7 @@ msgstr "S'ha destruït correctament l'objecte «%s»"
 msgid "Failed to destroy object “%s”: %s"
 msgstr "No s'ha pogut destruir l'objecte «%s»: %s"
 
-#: src/librygel-server/rygel-item-destroyer.vala:104
+#: src/librygel-server/rygel-item-destroyer.vala:105
 #: src/librygel-server/rygel-item-updater.vala:283
 #: src/librygel-server/rygel-media-query-action.vala:194
 #: src/librygel-server/rygel-reference-creator.vala:68
@@ -664,12 +668,12 @@ msgstr "No s'ha pogut destruir l'objecte «%s»: %s"
 msgid "No such object"
 msgstr "No existeix l'objecte"
 
-#: src/librygel-server/rygel-item-destroyer.vala:107
+#: src/librygel-server/rygel-item-destroyer.vala:108
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "No es permet destruir l'objecte %s"
 
-#: src/librygel-server/rygel-item-destroyer.vala:110
+#: src/librygel-server/rygel-item-destroyer.vala:111
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "No es permet destruir l'objecte de %s"
@@ -690,13 +694,13 @@ msgid "Failed to update object “%s”: %s"
 msgstr "No s'ha pogut actualitzar l'objecte «%s»: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:162
-#: src/librygel-server/rygel-object-creator.vala:606
+#: src/librygel-server/rygel-object-creator.vala:614
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "Format de data incorrecte: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:171
-#: src/librygel-server/rygel-object-creator.vala:615
+#: src/librygel-server/rygel-object-creator.vala:623
 #, c-format
 msgid "Invalid date: %s"
 msgstr "La data no és correcta: %s"
@@ -733,8 +737,8 @@ msgstr "No es permet la modificació de les metadades de l'objecte %s"
 #: src/librygel-server/rygel-item-updater.vala:290
 #, c-format
 msgid ""
-"Metadata modification of object %s being a child of restricted object %s not "
-"allowed"
+"Metadata modification of object %s being a child of restricted object %s not"
+" allowed"
 msgstr ""
 "No es permet la modificació de les metadades de l'objecte %s sent fill de "
 "l'objecte restringit %s"
@@ -771,15 +775,16 @@ msgstr "No s'ha pogut generar la llista de reproducció"
 msgid "Unknown MediaContainer resource: %s"
 msgstr "Recurs del MediaContainer desconegut: %s"
 
-#: src/librygel-server/rygel-media-engine.vala:62
+#: src/librygel-server/rygel-media-engine.vala:63
 msgid "No media engine found."
 msgstr "No s'ha trobat cap motor multimèdia."
 
-#: src/librygel-server/rygel-media-engine.vala:73
+#: src/librygel-server/rygel-media-engine.vala:75
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "No s'ha cridat MediaEngine.init. No es pot continuar."
 
 #: src/librygel-server/rygel-media-file-item.vala:177
+#: src/librygel-server/rygel-video-item.vala:222
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "No s'ha pogut determinar un protocol per a l'URI %s"
@@ -789,7 +794,7 @@ msgstr "No s'ha pogut determinar un protocol per a l'URI %s"
 msgid "Could not determine protocol for %s"
 msgstr "No s'ha pogut determinar un protocol per a %s"
 
-#: src/librygel-server/rygel-media-object.vala:509
+#: src/librygel-server/rygel-media-object.vala:491
 #, c-format
 msgid "Bad URI: %s"
 msgstr "L'URI és incorrecte: %s"
@@ -812,7 +817,7 @@ msgid "Missing filter"
 msgstr "Falta un filtre"
 
 #: src/librygel-server/rygel-media-query-action.vala:197
-#: src/librygel-server/rygel-object-creator.vala:412
+#: src/librygel-server/rygel-object-creator.vala:414
 msgid "No such container"
 msgstr "No s'ha trobat el contenidor"
 
@@ -820,78 +825,78 @@ msgstr "No s'ha trobat el contenidor"
 msgid "upnp:createClass value not supported"
 msgstr "No s'ha implementat aquest valor d'upnp:createClass"
 
-#: src/librygel-server/rygel-object-creator.vala:191
+#: src/librygel-server/rygel-object-creator.vala:193
 msgid "“Elements” argument missing."
 msgstr "Falta l'argument «Elements»."
 
-#: src/librygel-server/rygel-object-creator.vala:194
+#: src/librygel-server/rygel-object-creator.vala:196
 msgid "Comments not allowed in XML"
 msgstr "No es permeten comentaris en l'XML"
 
 #. Sorry we can't do anything without ContainerID
-#: src/librygel-server/rygel-object-creator.vala:200
+#: src/librygel-server/rygel-object-creator.vala:202
 msgid "Missing ContainerID argument"
 msgstr "Falta l'argument ContainerID"
 
-#: src/librygel-server/rygel-object-creator.vala:224
+#: src/librygel-server/rygel-object-creator.vala:226
 #, c-format
 msgid "No objects in DIDL-Lite from client: “%s”"
 msgstr "No s'ha trobat objectes a DIDL-Lite del client: «%s»"
 
-#: src/librygel-server/rygel-object-creator.vala:231
+#: src/librygel-server/rygel-object-creator.vala:233
 msgid "@id must be set to \"\" in CreateObject call"
 msgstr "@id ha de ser «» a la crida CreateObject"
 
-#: src/librygel-server/rygel-object-creator.vala:236
+#: src/librygel-server/rygel-object-creator.vala:238
 msgid "dc:title must not be empty in CreateObject call"
 msgstr "dc:title no pot ser buit en una crida CreateObject"
 
-#: src/librygel-server/rygel-object-creator.vala:247
+#: src/librygel-server/rygel-object-creator.vala:249
 msgid "Flags that must not be set were found in “dlnaManaged”"
 msgstr ""
 "S'han trobat senyaladors que no haurien d'estar definits a «dlnaManaged»"
 
-#: src/librygel-server/rygel-object-creator.vala:255
+#: src/librygel-server/rygel-object-creator.vala:257
 msgid "Invalid upnp:class given in CreateObject"
 msgstr "«upnp:class» no vàlida a CreateObject"
 
-#: src/librygel-server/rygel-object-creator.vala:259
+#: src/librygel-server/rygel-object-creator.vala:261
 msgid "Object is missing the @restricted attribute"
 msgstr "L'objecte ha perdut l'atribut @restringit"
 
-#: src/librygel-server/rygel-object-creator.vala:266
+#: src/librygel-server/rygel-object-creator.vala:268
 msgid "Cannot create restricted item"
 msgstr "No s'ha pogut crear l'element restringit"
 
-#: src/librygel-server/rygel-object-creator.vala:383
+#: src/librygel-server/rygel-object-creator.vala:385
 #, c-format
 msgid "UPnP class “%s” not supported"
 msgstr "No s'ha implementat la classe UPnP «%s»"
 
-#: src/librygel-server/rygel-object-creator.vala:417
-#: src/librygel-server/rygel-object-creator.vala:429
-#: src/librygel-server/rygel-object-creator.vala:715
+#: src/librygel-server/rygel-object-creator.vala:419
+#: src/librygel-server/rygel-object-creator.vala:431
+#: src/librygel-server/rygel-object-creator.vala:723
 #: src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "No es permet la creació d'objectes a %s"
 
-#: src/librygel-server/rygel-object-creator.vala:474
+#: src/librygel-server/rygel-object-creator.vala:476
 #, c-format
 msgid "Failed to create item under “%s”: %s"
 msgstr "No s'ha pogut crear l'element a «%s»: %s"
 
-#: src/librygel-server/rygel-object-creator.vala:548
+#: src/librygel-server/rygel-object-creator.vala:552
 #, c-format
 msgid "DLNA profile “%s” not supported"
 msgstr "No s'ha implementat el perfil DLNA «%s»"
 
-#: src/librygel-server/rygel-object-creator.vala:648
+#: src/librygel-server/rygel-object-creator.vala:656
 #, c-format
 msgid "Cannot create object of class “%s”: Not supported"
 msgstr "No s'ha pogut crear un objecte de la classe «%s»: no implementada"
 
-#: src/librygel-server/rygel-object-creator.vala:746
+#: src/librygel-server/rygel-object-creator.vala:754
 #, c-format
 msgid ""
 "Error from container “%s” on trying to find the newly added child object "
@@ -951,77 +956,77 @@ msgstr "No hi ha cap miniatura disponible. Cal generar-ne."
 msgid "No D-Bus thumbnailer available"
 msgstr "No hi ha cap miniaturitzador a través del D-Bus disponible"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:44
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:46
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr "No s'ha pogut crear un GstElement per l'URI %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:72
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
 msgstr "No s'admet la velocitat de reproducció"
 
 #. Unknown/unsupported seek type
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:102
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
 msgstr "No s'admet el tipus HTTPSeekRequest %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:146
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
 msgid "Failed to create pipeline"
 msgstr "No s'ha pogut crear el conducte"
 
 #. static pads? easy!
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:157
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:178
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:163
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:184
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "No s'ha pogut enllaçar %s amb %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:192
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:198
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "No s'ha pogut enllaçar el farciment %s amb %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:257
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:263
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "S'ha produït un error en el conducte %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:264
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:270
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Avís del conducte %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:317
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:323
 msgid "Unsupported seek type"
 msgstr "Tipus de cerca no compatible"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:334
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "No s'ha pogut cercar fins als desplaçaments %lld:%lld"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:336
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
 msgid "Failed to seek"
 msgstr "No s'ha pogut cercar"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:129
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "URI invàlid sense prefix: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
 msgstr "No es pot processar l'URI %s amb el protocol %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "No s'ha pogut crear la font de dades GStreamer per a %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
+#: src/media-engines/gstreamer/rygel-gst-transcoding-data-source.vala:29
 msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation "
 "might be missing a plug-in"
@@ -1045,7 +1050,7 @@ msgid "Only byte-based seek supported"
 msgstr "Només s'admet la cerca basada en bytes"
 
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
-#: src/media-engines/simple/rygel-simple-media-engine.vala:98
+#: src/media-engines/simple/rygel-simple-media-engine.vala:99
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
 msgstr ""
 "Només es poden processar MediaObjects basats en fitxers (MediaFileItems)"
@@ -1063,6 +1068,7 @@ msgstr ""
 "El proveïdor extern %s no ha proporcionat la propietat obligatòria «%s»"
 
 #: src/plugins/lms/rygel-lms-albums.vala:166
+#: src/plugins/tracker3/rygel-tracker-albums.vala:31
 #: src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
 msgstr "Àlbums"
@@ -1079,6 +1085,7 @@ msgid "Years"
 msgstr "Anys"
 
 #: src/plugins/lms/rygel-lms-music-root.vala:35
+#: src/plugins/tracker3/rygel-tracker-artists.vala:31
 #: src/plugins/tracker/rygel-tracker-artists.vala:31
 msgid "Artists"
 msgstr "Artistes"
@@ -1102,7 +1109,7 @@ msgstr "Vídeos"
 msgid "Pictures"
 msgstr "Imatges"
 
-#: src/plugins/media-export/rygel-media-export-dvd-container.vala:133
+#: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
 msgid "Title %d"
 msgstr "Títol %d"
@@ -1111,8 +1118,8 @@ msgstr "Títol %d"
 msgid ""
 "Failed to find lsdvd binary in path. DVD extraction will not be available"
 msgstr ""
-"S'ha produït un error en cercar el binari lsdvd al camí. L'extracció del "
-"DVD no estarà disponible"
+"S'ha produït un error en cercar el binari lsdvd al camí. L'extracció del DVD"
+" no estarà disponible"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:73
 msgid "Invalid command received, ignoring"
@@ -1196,6 +1203,11 @@ msgstr "No s'ha pogut enumerar la carpeta «%s»: %s"
 msgid "Failed to get children of container %s: %s"
 msgstr "No s'ha pogut obtenir el fill del contenidor %s: %s"
 
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
+#, c-format
+msgid "Failed to extract meta-data for file %s"
+msgstr "Ha fallat l'extracció de metadades per al fitxer %s"
+
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
@@ -1220,15 +1232,15 @@ msgstr "Ha fallat forçar la reindexació per esmenar la base de dades: %s"
 msgid "Failed to create indices: %s"
 msgstr "Ha fallat la creació d'índexs: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:101
 #, c-format
 msgid "Cannot upgrade from version %d"
 msgstr "No es pot actualitzar des de la versió %d"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
 #, c-format
-msgid "Database upgrade failed: %s"
-msgstr "Ha fallat l'actualització de la base de dades: %s"
+msgid "Database upgrade to v18 failed: %s"
+msgstr "S'ha produït un error en l'actualització de la base de dades a v18: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:134
 #, c-format
@@ -1270,13 +1282,13 @@ msgstr "No s'han pogut crear referències als contenidors"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:597
 #, c-format
-msgid "Failed to add %s to file blacklist: %s"
-msgstr "Ha fallat afegir el fitxer %s a la llista negra: %s"
+msgid "Failed to add %s to ignored files: %s"
+msgstr "Ha fallat afegir en %s als fitxers ignorats: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, c-format
-msgid "Failed to get whether URI %s is blacklisted: %s"
-msgstr "Ha fallat saber si l'URI %s és a la llista negra: %s"
+msgid "Failed to get whether URI %s is ignored: %s"
+msgstr "Ha fallat en obtenir si l'URI %s és ignorat: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:626
 #, c-format
@@ -1292,21 +1304,22 @@ msgstr ""
 "La versió «%d» de la base de dades detectada és més nova que la nostra "
 "versió amb suport «%d»"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:690
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:688
 msgid "Incompatible schema… cannot proceed"
 msgstr "Esquema incompatible... no es pot continuar"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:696
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:694
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
-msgstr "Base de dades invàlida, no es pot consultar la taula sqlite_master: %s"
+msgstr ""
+"Base de dades invàlida, no es pot consultar la taula sqlite_master: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:897
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:895
 #, c-format
 msgid "Failed to create database schema: %s"
 msgstr "Ha fallat la creació de l'esquema de la base de dades: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1232
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "S'omet el camp de classificació no admès: %s"
@@ -1409,6 +1422,7 @@ msgstr "Ha fallat l'obtenció de la informació del fitxer per a %s: %s"
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
+#: src/plugins/tracker3/rygel-tracker-years.vala:33
 #: src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Any"
@@ -1424,6 +1438,7 @@ msgid "Album"
 msgstr "Àlbum"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
+#: src/plugins/tracker3/rygel-tracker-genre.vala:31
 #: src/plugins/tracker/rygel-tracker-genre.vala:31
 msgid "Genre"
 msgstr "Gènere"
@@ -1432,8 +1447,10 @@ msgstr "Gènere"
 msgid "Files & Folders"
 msgstr "Fitxers i carpetes"
 
-#. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
+#. translators: @REALNAME@ is substituted for user's real name and it doesn't
+#. need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
+#: src/plugins/tracker3/rygel-tracker-plugin.vala:34
 #: src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@’s media"
 msgstr "Element multimèdia de @REALNAME@"
@@ -1483,46 +1500,37 @@ msgstr "Reproductor GStreamer"
 msgid "Could not create GStreamer player"
 msgstr "No s'ha pogut crear un reproductor de la GStreamer"
 
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
-#, c-format
-msgid "Failed to create a Tracker connection: %s"
-msgstr "No s'ha pogut crear una connexió al Tracker: %s"
-
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "No s'ha pogut construir l'URI per a la carpeta «%s»: %s"
 
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
 #, c-format
 msgid "Could not subscribe to Tracker signals: %s"
 msgstr "No s'ha pogut subscriure als senyals del Tracker: %s"
 
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
 msgid "Not supported"
 msgstr "No està implementat"
 
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
-#, c-format
-msgid "Failed to create Tracker connection: %s"
-msgstr "No s'ha pogut crear la connexió al Tracker: %s"
-
+#: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
 #: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
 #, c-format
 msgid "Error getting all values for “%s”: %s"
 msgstr "S'ha produït un error en obtenir tots els valors de «%s»: %s"
 
+#: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
 #: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
 "No s'ha pogut iniciar el servei Tracker: %s. S'inhabilita el connector."
 
-#: src/plugins/tracker/rygel-tracker-search-container.vala:104
-#, c-format
-msgid "Failed to get Tracker connection: %s"
-msgstr "No s'ha pogut obtenir la connexió al Tracker: %s"
-
+#: src/plugins/tracker3/rygel-tracker-search-container.vala:228
 #: src/plugins/tracker/rygel-tracker-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category “%s”: %s"
@@ -1530,9 +1538,25 @@ msgstr ""
 "S'ha produït un error en obtenir el nombre d'elements en la categoria «%s»: "
 "%s"
 
+#: src/plugins/tracker3/rygel-tracker-titles.vala:58
 #: src/plugins/tracker/rygel-tracker-titles.vala:58
 msgid "Titles"
 msgstr "Títols"
+
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
+#, c-format
+msgid "Failed to create a Tracker connection: %s"
+msgstr "No s'ha pogut crear una connexió al Tracker: %s"
+
+#: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
+#, c-format
+msgid "Failed to create Tracker connection: %s"
+msgstr "No s'ha pogut crear la connexió al Tracker: %s"
+
+#: src/plugins/tracker/rygel-tracker-search-container.vala:104
+#, c-format
+msgid "Failed to get Tracker connection: %s"
+msgstr "No s'ha pogut obtenir la connexió al Tracker: %s"
 
 #: src/rygel/rygel-acl.vala:110
 #, c-format
@@ -1544,11 +1568,11 @@ msgstr "Ha fallat la consulta a ACL: %s"
 msgid "Error creating D-Bus proxy for ACL: %s"
 msgstr "Error en crear DBus proxy per a ACL: %s"
 
-#: src/rygel/rygel-acl.vala:143
+#: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “allow”"
 msgstr "No s'ha trobat política de reserva d'ACL. S'usa «allow»"
 
-#: src/rygel/rygel-acl.vala:145
+#: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "No s'ha trobat política de reserva d'ACL. S'usa «deny»"
 
@@ -1603,83 +1627,3 @@ msgstr "No s'ha pogut iniciar el servei Rygel: %s"
 msgid "Failed to stop Rygel service: %s"
 msgstr "No s'ha pogut aturar el servei Rygel: %s"
 
-#~ msgid "column"
-#~ msgstr "columna"
-
-#~ msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-#~ msgstr "No s'ha pogut explorar el protocol per a l'URI %s. S'assumeix «%s»"
-
-#~ msgid "'ObjectID' argument missing."
-#~ msgstr "Falta l'argument «ObjectID»."
-
-#~ msgid "Can't process non-file URI %s"
-#~ msgstr "No es pot processar l'URI sense fitxer %s"
-
-#~ msgid "Failed to extract basic metadata from %s: %s"
-#~ msgstr "Ha fallat l'extracció de metadades bàsiques des de %s: %s"
-
-#~ msgid "Failed to start metadata discoverer: %s"
-#~ msgstr "Ha fallat l'inici del descobridor de metadades: %s"
-
-#~ msgid "Invalid metadata serialisation, cannot process %s"
-#~ msgstr "Serialització invàlida de metadades, no es pot processar %s"
-
-#~ msgid "Invalid metadata serialisation: expected 7 children, got %d"
-#~ msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
-#~ msgstr[0] ""
-#~ "Serialització invàlida de metadades: s'esperaven 7 fills, se n'han "
-#~ "obtingut %d"
-#~ msgstr[1] ""
-#~ "Serialització invàlida de metadades: s'esperaven 7 fills, se n'han "
-#~ "obtingut %d"
-
-#~ msgid "Invalid metadata serialisation of metadata; %s"
-#~ msgstr "Serialització invàlida de metadades de metadades;  %s"
-
-#~ msgid "Invalid metadata serialisation of video info; %s"
-#~ msgstr "Serialització invàlida de metadades d'informació de vídeo; %s"
-
-#~ msgid "Invalid metadata serialisation of audio info; %s"
-#~ msgstr "Serialització invàlida de metadades d'informació d'àudio; %s"
-
-#~ msgid "Invalid metadata serialisation of general info"
-#~ msgstr "Serialització invàlida de metadades d'informació general"
-
-#~ msgid "Invalid metadata serialisation of DLNA profile %s"
-#~ msgstr "Serialització invàlida de metadades del perfil DLNA %s"
-
-#~ msgid "Invalid metadata serialisation of file info %s"
-#~ msgstr "Serialització invàlida de metadades d'informació de fitxer %s"
-
-#~ msgid "Invalid metadata serialisation of file info"
-#~ msgstr "Serialització invàlida de metadades d'informació de fitxer"
-
-#~ msgid "Child failed fatally. Last uri was %s"
-#~ msgstr "El fill ha fallat fatalment. L'últim uri era %s"
-
-#~ msgid "Reading from child's error stream failed: %s"
-#~ msgstr "Ha fallat la lectura del flux d'error del fill: %s"
-
-#~ msgid "Could not determine protocol for uri %s"
-#~ msgstr "No s'ha pogut determinar un protocol per a l'URI %s"
-
-#~ msgid "Disable UPnP (streaming-only)"
-#~ msgstr "Inhabilita l'UPnP (només per fluxos)"
-
-#~ msgid "Rygel is running in streaming-only mode."
-#~ msgstr "Rygel s'està executant en mode de només flux."
-
-#~ msgid "Invalid Range '%s'"
-#~ msgstr "El rang no és vàlid «%s»"
-
-#~ msgid "Invalid Request"
-#~ msgstr "La sol·licitud no és vàlida"
-
-#~ msgid "Out Of Range Start '%ld'"
-#~ msgstr "Inici del fora de rang «%ld»"
-
-#~ msgid "Out Of Range Stop '%ld'"
-#~ msgstr "Fi del fora de rang «%ld»"
-
-#~ msgid "No transcoder available for target format '%s'"
-#~ msgstr "No hi ha cap transcodificador disponible pel format objectiu «%s»"
