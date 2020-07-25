@@ -44,6 +44,10 @@ internal class Rygel.SubtitleManager : GLib.Object {
 
     public ArrayList<Subtitle> get_subtitles (string uri) throws Error {
         var video_file = File.new_for_uri (uri);
+        if (!video_file.is_native ()) {
+            throw new SubtitleManagerError.NO_SUBTITLE
+                                        (_("No subtitle available"));
+        }
 
         var directory = video_file.get_parent ();
         var basename = video_file.get_basename ();
