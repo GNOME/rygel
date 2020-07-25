@@ -28,9 +28,18 @@ public class Rygel.GstLaunch.RootContainer : SimpleContainer {
     const string ITEM_NAMES = "launch-items";
 
     MetaConfig config;
+    bool initialized = false;
 
     public RootContainer (string title) {
         base.root (title);
+    }
+
+    public void init () {
+        if (this.initialized) {
+            return;
+        }
+
+        this.initialized = true;
 
         try {
             config = MetaConfig.get_default ();

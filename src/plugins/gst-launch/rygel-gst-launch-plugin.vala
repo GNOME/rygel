@@ -37,4 +37,10 @@ public class Rygel.GstLaunch.Plugin : Rygel.MediaServerPlugin {
 
         base (root_container, Plugin.NAME);
     }
+
+    public override void constructed () {
+        base.constructed ();
+
+        ((RootContainer) this.root_container).init ();
+    }
 }
