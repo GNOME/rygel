@@ -90,6 +90,7 @@ public class Rygel.GstLaunch.RootContainer : SimpleContainer {
 
                 item.add_engine_resources.begin ();
                 this.add_child_item (item);
+                this.updated ();
             }
         } catch (GLib.Error err) {
             debug ("GstLaunch failed item '%s': %s", name, err.message);
