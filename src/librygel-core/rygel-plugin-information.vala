@@ -44,6 +44,9 @@ public class Rygel.PluginInformation : Object {
     /// Name of other plugins this plugin conflicts with
     public GenericSet<string> conflicts { get; construct; }
 
+    /// Whether the module was loaded or not
+    public bool module_loaded { get; set; default = false; }
+
     private PluginInformation (string module_path,
                                string name,
                                GenericSet<string> conflicts) {

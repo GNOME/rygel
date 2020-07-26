@@ -29,7 +29,7 @@ using Gee;
 /**
  * This class is responsible for plugin loading.
  *
- * It probes for shared library files in a specific directory, tries to 
+ * It probes for shared library files in a specific directory, tries to
  * find a module_init() function with this signature:
  * ``void module_init (RygelPluginLoader* loader);``
  *
@@ -151,7 +151,8 @@ public class Rygel.PluginLoader : RecursiveModuleLoader {
         debug ("Trying to load plugin '%s'", info.name);
 
         foreach (var conflicting in info.conflicts.get_values ()) {
-            if (this.available_plugins.has_key (conflicting)) {
+            if (this.available_plugins.has_key (conflicting) &&
+                this.available_plugins[conflicting].module_loaded) {
                 message (_("Module '%s' conflicts with already loaded module '%s'. Skipping"),
                          info.name,
                          conflicting);
@@ -170,7 +171,10 @@ public class Rygel.PluginLoader : RecursiveModuleLoader {
 
         var module_file = File.new_for_path (info.module_path);
 
-        return this.load_module_from_file (module_file);
+        var loaded = this.load_module_from_file (module_file);
+        info.module_loaded = loaded;
+
+        return loaded;
     }
 
     private void on_section_changed (string section, SectionEntry entry) {
