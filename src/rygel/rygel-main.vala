@@ -133,12 +133,27 @@ internal class Rygel.Main : Object {
 
     private ContextManager create_context_manager () {
         int port = 0;
+        bool ipv6 = false;
 
         try {
             port = this.config.get_port ();
         } catch (GLib.Error err) {}
 
-        var manager = ContextManager.create (port);
+        try {
+            ipv6 = this.config.get_bool ("general", "ipv6");
+        } catch (GLib.Error err) {
+            debug ("No ipv6 config key found, using default %s", ipv6.to_string ());
+        }
+
+        // INVALID means "all"
+        var family = GLib.SocketFamily.INVALID;
+        if (!ipv6) {
+            family = GLib.SocketFamily.IPV4;
+        }
+
+        var manager = ContextManager.create_full (GSSDP.UDAVersion.VERSION_1_0,
+                                                  family,
+                                                  port);
 
         manager.context_available.connect (this.on_context_available);
         manager.context_unavailable.connect (this.on_context_unavailable);
