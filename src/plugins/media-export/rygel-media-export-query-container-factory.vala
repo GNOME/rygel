@@ -216,6 +216,9 @@ internal class Rygel.MediaExport.QueryContainerFactory : Object {
                 if (i + 2 == args.length) {
                     upnp_class = QueryContainerFactory.map_upnp_class
                                         (attribute);
+                    if (name == "") {
+                        name = Uri.unescape_string (args[i + 1]);
+                    }
                 }
             } else {
                 args[i + 1] = "%s";
