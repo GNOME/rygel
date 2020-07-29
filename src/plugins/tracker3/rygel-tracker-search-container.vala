@@ -353,6 +353,8 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                 case SearchCriteriaOp.CONTAINS:
                     value = expression.operand2;
                     break;
+                default:
+                    break;
             }
         }
 
@@ -369,6 +371,8 @@ public class Rygel.Tracker.SearchContainer : SimpleContainer {
                 var regex = Query.escape_regex (value);
 
                 filter = "regex(" + variable + ", \"" + regex + "\", \"i\")";
+                break;
+            default:
                 break;
         }
 
