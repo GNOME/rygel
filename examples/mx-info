@@ -65,7 +65,7 @@ IGNORELIST_QUERY = """
 SELECT b.timestamp FROM ignorelist b WHERE b.uri = :uri
 """
 
-IGNORELIST_TEMPLATE = 'File %(uri)s was ignore on %(date)s'
+IGNORELIST_TEMPLATE = 'File %(uri)s was ignored on %(date)s'
 SHOW_IGNORELIST_QUERY = 'SELECT timestamp, uri FROM ignorelist'
 UNIGNORELIST_QUERY = 'DELETE FROM ignorelist where uri = :uri'
 
