@@ -97,7 +97,7 @@ if int(info[0]) < 16:
 
 has_ignorelist = int(info[0]) >= 18
 
-if not has_ignorelist and (args.unignorelist or args.show_ignorelist):
+if not has_ignorelist and (args.unignore or args.show_ignorelist):
     print ('Database version is too old for ignorelists, cannot unignorelist')
     sys.exit (1)
 
@@ -109,7 +109,7 @@ if has_ignorelist and args.show_ignorelist:
                                       "date" : time.strftime("%a, %d %b %Y %H:%M:%S +0000", t)})
     sys.exit(0)
 
-if has_ignorelist and args.unignorelist:
+if has_ignorelist and args.unignore:
     for uri in args.uris:
         c.execute (UNIGNORELIST_QUERY, { 'uri' : uri })
     conn.commit()
