@@ -114,7 +114,7 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
             return container;
         } else if (id.has_prefix (QueryContainer.ITEM_PREFIX)) {
             var tmp_id = id.replace (QueryContainer.ITEM_PREFIX, "");
-            var parts = tmp_id.split (":");
+            var parts = tmp_id.split (":", 2);
             if (parts.length != 2) {
                 return null;
             }
