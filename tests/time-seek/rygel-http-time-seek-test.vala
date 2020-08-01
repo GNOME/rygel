@@ -28,63 +28,53 @@ void test_time_seek_malformed_header () {
 
     // Test without the header
     try {
-        var request = new Rygel.HTTPTimeSeekRequest (message, handler, null);
+        new Rygel.HTTPTimeSeekRequest (message, handler, null);
         assert_not_reached ();
-    } catch (Rygel.HTTPSeekRequestError e) {
+    } catch (Error e) {
         // Pass - we only expect a HTTPSeekRequestError
         assert (e is Rygel.HTTPSeekRequestError.INVALID_RANGE);
-    } catch (Error e) {
-        assert_not_reached ();
     }
 
     // Test empty header
     message.request_headers.replace (Rygel.HTTPTimeSeekRequest.TIMESEEKRANGE_HEADER, "");
     try {
-        var request = new Rygel.HTTPTimeSeekRequest (message, handler, null);
+        new Rygel.HTTPTimeSeekRequest (message, handler, null);
         assert_not_reached ();
-    } catch (Rygel.HTTPSeekRequestError e) {
+    } catch (Error e) {
         // Pass - we only expect a HTTPSeekRequestError
         assert (e is Rygel.HTTPSeekRequestError.INVALID_RANGE);
-    } catch (Error e) {
-        assert_not_reached ();
     }
 
     // Test empty header
     message.request_headers.replace (Rygel.HTTPTimeSeekRequest.TIMESEEKRANGE_HEADER, "npt=kjalsjd lsdjldskj lkfdsj ");
     try {
-        var request = new Rygel.HTTPTimeSeekRequest (message, handler, null);
+        new Rygel.HTTPTimeSeekRequest (message, handler, null);
         assert_not_reached ();
-    } catch (Rygel.HTTPSeekRequestError e) {
+    } catch (Error e) {
         // Pass - we only expect a HTTPSeekRequestError
         assert (e is Rygel.HTTPSeekRequestError.INVALID_RANGE);
-    } catch (Error e) {
-        assert_not_reached ();
     }
 
     // Must not have white-spaces before npt=
     message.request_headers.replace (Rygel.HTTPTimeSeekRequest.TIMESEEKRANGE_HEADER,
                                      "         npt=0.000-");
     try {
-        var request = new Rygel.HTTPTimeSeekRequest (message, handler, null);
+        new Rygel.HTTPTimeSeekRequest (message, handler, null);
         assert_not_reached ();
-    } catch (Rygel.HTTPSeekRequestError e) {
+    } catch (Error e) {
         // Pass - we only expect a HTTPSeekRequestError
         assert (e is Rygel.HTTPSeekRequestError.INVALID_RANGE);
-    } catch (Error e) {
-        assert_not_reached ();
     }
 
     // Must not have white-spaces in the time
     message.request_headers.replace (Rygel.HTTPTimeSeekRequest.TIMESEEKRANGE_HEADER,
                                      "npt = 00 : 05 : 35.3-00");
     try {
-        var request = new Rygel.HTTPTimeSeekRequest (message, handler, null);
+        new Rygel.HTTPTimeSeekRequest (message, handler, null);
         assert_not_reached ();
-    } catch (Rygel.HTTPSeekRequestError e) {
+    } catch (Error e) {
         // Pass - we only expect a HTTPSeekRequestError
         assert (e is Rygel.HTTPSeekRequestError.INVALID_RANGE);
-    } catch (Error e) {
-        assert_not_reached ();
     }
 }
 
