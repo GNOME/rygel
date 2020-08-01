@@ -27,7 +27,7 @@ using Gee;
  * A container listing all newly (<3 days) added items.
  */
 public class Rygel.Tracker.New : Rygel.Tracker.SearchContainer {
-    private const string ADDED_PREDICATE = "tracker:added";
+    private const string ADDED_PREDICATE = "nrl:added";
     private const string ADDED_VARIABLE = "?added";
 
     public New (MediaContainer parent, ItemFactory item_factory) {
