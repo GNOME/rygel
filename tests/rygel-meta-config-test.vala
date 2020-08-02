@@ -1,10 +1,8 @@
 class TestConfig : Rygel.BaseConfiguration {
     public HashTable<string, bool> enable = new HashTable<string, bool> (str_hash, str_equal);
 
-    public void toggl_enable (string module) {
-        print("%s ->", enable[module].to_string ());
+    public void toggle_enable (string module) {
         enable[module] = !enable[module];
-        print("%s\n", enable[module].to_string ());
         this.section_changed (module, Rygel.SectionEntry.ENABLED);
     }
 
@@ -65,7 +63,7 @@ test_meta_config_overrides () {
         }
     });
 
-    second_config.toggl_enable (SECTION_B);
+    second_config.toggle_enable (SECTION_B);
     instance.disconnect (id);
 
     // Check that changing a value on a lower priority will not
@@ -73,7 +71,7 @@ test_meta_config_overrides () {
     id = instance.section_changed.connect ((section, entry) => {
         assert_not_reached ();
     });
-    second_config.toggl_enable (SECTION_A);
+    second_config.toggle_enable (SECTION_A);
     instance.disconnect (id);
 
     // Check that changing a value on a higher priority will be
@@ -87,7 +85,7 @@ test_meta_config_overrides () {
             assert_not_reached ();
         }
     });
-    first_config.toggl_enable (SECTION_A);
+    first_config.toggle_enable (SECTION_A);
     instance.disconnect (id);
 
     Rygel.MetaConfig.cleanup ();
