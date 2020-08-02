@@ -58,6 +58,24 @@ void test_plugin_loader_conflict () {
     Rygel.MetaConfig.cleanup ();
 }
 
+void test_plugin_loader_conflict_with_disabled () {
+    var config = new TestConfig ();
+    config.enable["Tracker"] = false;
+    config.enable["Tracker3"] = true;
+    config.enable["SomePlugin"] = true;
+    Rygel.MetaConfig.register_configuration (config);
+
+    var loader = new TestPluginLoader("conflicts",
+                                      {"librygel-tracker3.so", "librygel-no-conflict.so"},
+                                      {"librygel-tracker.so"});
+    loader.load_modules_sync (null);
+    assert (loader.loaded_plugins.length == 2);
+    assert ("librygel-tracker3.so" in loader.loaded_plugins);
+    assert ("librygel-no-conflict.so" in loader.loaded_plugins);
+
+    Rygel.MetaConfig.cleanup ();
+}
+
 
 void test_plugin_loader_conflict_dynamic_enable () {
     var config = new TestConfig ();
@@ -90,6 +108,8 @@ int main (string[] args) {
 
     Test.add_func ("/librygel-core/plugins/load-conflict",
                    test_plugin_loader_conflict);
+    Test.add_func ("/librygel-core/plugins/load-conflict-with-disabled",
+                   test_plugin_loader_conflict_with_disabled);
     Test.add_func ("/librygel-core/plugins/load-conflict-enable",
                    test_plugin_loader_conflict_dynamic_enable);
     return Test.run ();
