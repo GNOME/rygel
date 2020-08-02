@@ -20,7 +20,6 @@ class TestConfig : Rygel.BaseConfiguration {
 void
 test_meta_config_single_instance ()
 {
-    Test.summary ("Test whether we actually get only one instance");
     var instance_a = Rygel.MetaConfig.get_default ();
     var instance_b = Rygel.MetaConfig.get_default ();
 

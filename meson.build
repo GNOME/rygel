@@ -71,7 +71,7 @@ endif
 valadoc = find_program('valadoc', required : false)
 gtkdoc = dependency('gtk-doc', required : false)
 
-glib_minimal_version = '>= 2.62'
+glib_minimal_version = '>= 2.56'
 
 gupnp = dependency('gupnp-1.2', version : '>= 1.1')
 gee = dependency('gee-0.8', version: '>= 0.8.0')
