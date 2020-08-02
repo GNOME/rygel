@@ -589,6 +589,8 @@ public class Rygel.PlaybinPlayer : GLib.Object, Rygel.MediaPlayer {
             this.playback_state = "STOPPED";
 
             break;
+        default:
+            break;
         }
     }
 
