@@ -1,3 +1,73 @@
+0.39.2
+======
+
+Core:
+ - Allow loading plugin that conflicts with a disabled plugin
+
+Server:
+ - Check for subtitles only on "local" files
+
+Rygel:
+ - Support IPv6 if supported by GUPnP context manager
+
+Tracker:
+ - Add missing default in case
+
+Tracker3:
+ - Make it an optional dependency
+ - Add mising default in case
+ - Update for API break in 2.99
+
+GstLaunch:
+ - Fix critical about missing media engine
+ - Fix missing updated() call
+ - Update resolution of examples
+
+MediaExport:
+ - Fix missing title in virtual containers
+
+Examples:
+ - Change device name for fullscreen renderer example
+ - Bind "Space" to Play/Pause toggle for fullscreen renderer
+ - Drop init system examples that are not systemd
+ - Fix a typo in mx-info
+ - Fix removing files from ignorelist in mx-info
+
+Tests:
+ - Remove some compiler warnings
+ - Add test for loading conflicting but disabled modules
+
+Documentation:
+ - Remove outdated Ubuntu docs
+ - Minor updates for man pages
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/159
+ - https://gitlab.gnome.org/GNOME/rygel/issues/167
+ - https://gitlab.gnome.org/GNOME/rygel/issues/169
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Yuri Chornoivan <yurchor@ukr.net>
+ - Sam Thursfield <sam@afuera.me.uk>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Jordi Mas <jmas@softcatala.org>
+ - Efstathios Iosifidis <eiosifidis@gnome.org>
+ - Florentina Mușat <florentina.musat.28@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Fabio Tomat <f.t.public@gmail.com>
+ - Daniel Șerbănescu <daniel@serbanescu.dk>
+
+Added/updated translations:
+ - ca.po, courtesy of Carles Ferrando Garcia
+ - el.po, courtesy of Efstathios Iosifidis
+ - es.po, courtesy of Daniel Mustieles
+ - fur.po, courtesy of Fabio Tomat
+ - lt.po, courtesy of Aurimas Černius
+ - ro.po, courtesy of Florentina Mușat
+ - uk.po, courtesy of Yuri Chornoivan
+
 0.39.1
 ======
 
