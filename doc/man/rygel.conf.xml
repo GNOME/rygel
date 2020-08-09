@@ -109,6 +109,14 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
     <variablelist>
       <varlistentry>
         <term>
+          <option>ipv6</option>
+        </term>
+        <listitem>
+          <para>Set to <userinput>false</userinput> to disable binding to IPv6 addresses</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>
           <option>interface=<replaceable>INTERFACE</replaceable></option>
         </term>
         <listitem>
