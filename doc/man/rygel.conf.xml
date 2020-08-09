@@ -298,7 +298,7 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
         </term>
         <listitem>
           <para>
-            Set to <userinput>true</userinput> to if you would like the UPnP device to contain a EnergyManagement service. Not that additional configuration is required, see EnergyManagement settings.
+            Set to <userinput>true</userinput> to if you would like the UPnP device to contain a EnergyManagement service. Note that additional configuration is required, see EnergyManagement settings.
           </para>
         </listitem>
       </varlistentry>
