@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-02-23 11:41+0000\n"
-"PO-Revision-Date: 2020-02-23 12:44+0100\n"
+"POT-Creation-Date: 2020-07-12 13:38+0000\n"
+"PO-Revision-Date: 2020-08-16 11:05+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -285,16 +285,16 @@ msgstr "Wyłączenie innej usługi Rygel się nie powiodło: %s"
 #: src/librygel-core/rygel-environment-config.vala:100
 #: src/librygel-core/rygel-environment-config.vala:104
 #: src/librygel-core/rygel-environment-config.vala:108
-#: src/librygel-core/rygel-meta-config.vala:89
-#: src/librygel-core/rygel-meta-config.vala:109
-#: src/librygel-core/rygel-meta-config.vala:128
-#: src/librygel-core/rygel-meta-config.vala:147
-#: src/librygel-core/rygel-meta-config.vala:166
-#: src/librygel-core/rygel-meta-config.vala:185
-#: src/librygel-core/rygel-meta-config.vala:204
-#: src/librygel-core/rygel-meta-config.vala:223
-#: src/librygel-core/rygel-meta-config.vala:242
-#: src/librygel-core/rygel-meta-config.vala:261
+#: src/librygel-core/rygel-meta-config.vala:105
+#: src/librygel-core/rygel-meta-config.vala:125
+#: src/librygel-core/rygel-meta-config.vala:144
+#: src/librygel-core/rygel-meta-config.vala:163
+#: src/librygel-core/rygel-meta-config.vala:182
+#: src/librygel-core/rygel-meta-config.vala:201
+#: src/librygel-core/rygel-meta-config.vala:220
+#: src/librygel-core/rygel-meta-config.vala:239
+#: src/librygel-core/rygel-meta-config.vala:258
+#: src/librygel-core/rygel-meta-config.vala:277
 msgid "No value available"
 msgstr "Brak dostępnej wartości"
 
@@ -327,31 +327,31 @@ msgid "Failed to get log level from configuration: %s"
 msgstr "Uzyskanie poziomu dziennika z konfiguracji się nie powiodło: %s"
 
 #. translators: "enabled" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:336
+#: src/librygel-core/rygel-meta-config.vala:352
 #, c-format
 msgid "No value set for “%s/enabled”"
 msgstr "Nie ustawiono wartości dla „%s/enabled”"
 
 #. translators: "title" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:355
+#: src/librygel-core/rygel-meta-config.vala:371
 #, c-format
 msgid "No value set for “%s/title”"
 msgstr "Nie ustawiono wartości dla „%s/title”"
 
-#: src/librygel-core/rygel-meta-config.vala:375
-#: src/librygel-core/rygel-meta-config.vala:397
-#: src/librygel-core/rygel-meta-config.vala:423
-#: src/librygel-core/rygel-meta-config.vala:445
-#: src/librygel-core/rygel-meta-config.vala:469
+#: src/librygel-core/rygel-meta-config.vala:391
+#: src/librygel-core/rygel-meta-config.vala:413
+#: src/librygel-core/rygel-meta-config.vala:439
+#: src/librygel-core/rygel-meta-config.vala:461
+#: src/librygel-core/rygel-meta-config.vala:485
 #, c-format
 msgid "No value available for “%s/%s”"
 msgstr "Brak dostępnej wartości dla „%s/%s”"
 
-#: src/librygel-core/rygel-plugin-information.vala:59
+#: src/librygel-core/rygel-plugin-information.vala:64
 msgid "[Plugin] group not found"
 msgstr "Nie odnaleziono grupy [Plugin]"
 
-#: src/librygel-core/rygel-plugin-information.vala:77
+#: src/librygel-core/rygel-plugin-information.vala:76
 #, c-format
 msgid "Plugin module %s does not exist"
 msgstr "Moduł wtyczki %s nie istnieje"
@@ -376,6 +376,11 @@ msgstr "Wczytanie modułu ze ścieżki „%s” się nie powiodło: %s"
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "Wyszukanie funkcji punktu wejściowego „%s” w „%s” się nie powiodło: %s"
 
+#: src/librygel-core/rygel-plugin-loader.vala:155
+#, c-format
+msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
+msgstr "Moduł „%s” jest sprzeczny z już wczytanym modułem „%s”. Pomijanie"
+
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
 msgid "Failed to open plugins folder: “%s”"
@@ -391,7 +396,7 @@ msgstr "Błąd podczas wyświetlania zawartości katalogu „%s”: %s"
 msgid "Could not load plugin: %s"
 msgstr "Nie można wczytać wtyczki: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:221
+#: src/librygel-core/rygel-recursive-module-loader.vala:220
 #, c-format
 msgid "Failed to query content type for “%s”"
 msgstr "Odpytanie typu zawartości dla „%s” się nie powiodło"
@@ -429,10 +434,10 @@ msgstr "Przywrócenie transakcji się nie powiodło: %s"
 
 #: src/librygel-renderer-gst/rygel-playbin-player.vala:370
 msgid ""
-"Your GStreamer installation seems to be missing the “playbin” element. The "
+"Your GStreamer installation seems to be missing the “playbin3” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
-"W instalacji biblioteki GStreamer brakuje elementu „playbin”. Implementacja "
+"W instalacji biblioteki GStreamer brakuje elementu „playbin3”. Implementacja "
 "programu renderującego Rygel GStreamer nie zadziała bez niego"
 
 #: src/librygel-renderer/rygel-av-transport.vala:204
@@ -953,78 +958,78 @@ msgstr "Brak dostępnych miniatur. Zażądano utworzenia."
 msgid "No D-Bus thumbnailer available"
 msgstr "Brak dostępnej usługi miniatur D-Bus"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:44
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:46
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr "Nie można utworzyć „GstElement” dla adresu URI %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:72
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
 msgstr "Prędkość odtwarzania nie jest obsługiwana"
 
 #. Unknown/unsupported seek type
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:102
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
 msgstr "Nieobsługiwany typ HTTPSeekRequest %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:146
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
 msgid "Failed to create pipeline"
 msgstr "Utworzenie potoku się nie powiodło"
 
 #. static pads? easy!
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:157
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:178
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:163
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:184
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Dowiązanie %s do %s się nie powiodło"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:192
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:198
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Dowiązanie podkładki %s do %s się nie powiodło"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:257
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:263
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Błąd z potoku %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:264
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:270
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Ostrzeżenie z potoku %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:317
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:323
 msgid "Unsupported seek type"
 msgstr "Nieobsługiwany typ przewijania"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:334
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Przewinięcie do przesunięcia %lld:%lld się nie powiodło"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:336
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
 msgid "Failed to seek"
 msgstr "Przewinięcie się nie powiodło"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:130
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "Nieprawidłowy adres URI bez przedrostka: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
 msgstr "Nie można przetworzyć adresu URI %s za pomocą protokołu %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:246
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr ""
 "Utworzenie źródła danych biblioteki GStreamer dla %s się nie powiodło: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
+#: src/media-engines/gstreamer/rygel-gst-transcoding-data-source.vala:29
 msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation "
 "might be missing a plug-in"
@@ -1066,6 +1071,7 @@ msgid "External provider %s did not provide mandatory property “%s”"
 msgstr "Zewnętrzny dostawca %s nie dostarcza wymaganej właściwości „%s”"
 
 #: src/plugins/lms/rygel-lms-albums.vala:166
+#: src/plugins/tracker3/rygel-tracker-albums.vala:31
 #: src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
 msgstr "Albumy"
@@ -1082,6 +1088,7 @@ msgid "Years"
 msgstr "Lata"
 
 #: src/plugins/lms/rygel-lms-music-root.vala:35
+#: src/plugins/tracker3/rygel-tracker-artists.vala:31
 #: src/plugins/tracker/rygel-tracker-artists.vala:31
 msgid "Artists"
 msgstr "Wykonawcy"
@@ -1229,15 +1236,15 @@ msgstr ""
 msgid "Failed to create indices: %s"
 msgstr "Utworzenie indeksów się nie powiodło: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:101
 #, c-format
 msgid "Cannot upgrade from version %d"
 msgstr "Nie można zaktualizować z wersji %d"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
 #, c-format
-msgid "Database upgrade failed: %s"
-msgstr "Aktualizacja bazy danych się nie powiodła: %s"
+msgid "Database upgrade to v18 failed: %s"
+msgstr "Aktualizacja bazy danych do wersji 18 się nie powiodła: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:134
 #, c-format
@@ -1279,14 +1286,13 @@ msgstr "Nie można utworzyć odniesień do kontenerów"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:597
 #, c-format
-msgid "Failed to add %s to file blacklist: %s"
-msgstr "Dodanie pliku %s do listy blokowania się nie powiodło: %s"
+msgid "Failed to add %s to ignored files: %s"
+msgstr "Dodanie pliku %s do ignorowanych plików się nie powiodło: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, c-format
-msgid "Failed to get whether URI %s is blacklisted: %s"
-msgstr ""
-"Sprawdzenie, czy adres URI %s jest na liście blokowania, się nie powiodło: %s"
+msgid "Failed to get whether URI %s is ignored: %s"
+msgstr "Sprawdzenie, czy adres URI %s jest ignorowany, się nie powiodło: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:626
 #, c-format
@@ -1421,6 +1427,7 @@ msgstr "Ustawienie monitora plików dla %s się nie powiodło: %s"
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
+#: src/plugins/tracker3/rygel-tracker-years.vala:33
 #: src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Rok"
@@ -1436,6 +1443,7 @@ msgid "Album"
 msgstr "Album"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
+#: src/plugins/tracker3/rygel-tracker-genre.vala:31
 #: src/plugins/tracker/rygel-tracker-genre.vala:31
 msgid "Genre"
 msgstr "Gatunek"
@@ -1446,6 +1454,7 @@ msgstr "Pliki i katalogi"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
+#: src/plugins/tracker3/rygel-tracker-plugin.vala:34
 #: src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@’s media"
 msgstr "Multimedia użytkownika @REALNAME@"
@@ -1495,53 +1504,60 @@ msgstr "Odtwarzacz biblioteki GStreamer"
 msgid "Could not create GStreamer player"
 msgstr "Nie można utworzyć odtwarzacza GStreamer"
 
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
-#, c-format
-msgid "Failed to create a Tracker connection: %s"
-msgstr "Utworzenie połączenia z usługą Tracker się nie powiodło: %s"
-
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "Utworzenie adresu URI dla katalogu „%s” się nie powiodło: %s"
 
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
 #, c-format
 msgid "Could not subscribe to Tracker signals: %s"
 msgstr "Nie można subskrybować sygnałów usługi Tracker: %s"
 
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
 msgid "Not supported"
 msgstr "Nieobsługiwane"
+
+#: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
+#: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
+#, c-format
+msgid "Error getting all values for “%s”: %s"
+msgstr "Błąd podczas pobierania wszystkich wartości dla „%s”: %s"
+
+#: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
+#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
+#, c-format
+msgid "Failed to start Tracker service: %s. Plugin disabled."
+msgstr "Uruchomienie usługi Tracker się nie powiodło: %s. Wyłączono wtyczkę."
+
+#: src/plugins/tracker3/rygel-tracker-search-container.vala:228
+#: src/plugins/tracker/rygel-tracker-search-container.vala:228
+#, c-format
+msgid "Error getting item count under category “%s”: %s"
+msgstr "Błąd podczas pobierania liczby elementów w kategorii „%s”: %s"
+
+#: src/plugins/tracker3/rygel-tracker-titles.vala:58
+#: src/plugins/tracker/rygel-tracker-titles.vala:58
+msgid "Titles"
+msgstr "Tytuły"
+
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
+#, c-format
+msgid "Failed to create a Tracker connection: %s"
+msgstr "Utworzenie połączenia z usługą Tracker się nie powiodło: %s"
 
 #: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
 #, c-format
 msgid "Failed to create Tracker connection: %s"
 msgstr "Utworzenie połączenia z usługą Tracker się nie powiodło: %s"
 
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
-#, c-format
-msgid "Error getting all values for “%s”: %s"
-msgstr "Błąd podczas pobierania wszystkich wartości dla „%s”: %s"
-
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
-#, c-format
-msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr "Uruchomienie usługi Tracker się nie powiodło: %s. Wyłączono wtyczkę."
-
 #: src/plugins/tracker/rygel-tracker-search-container.vala:104
 #, c-format
 msgid "Failed to get Tracker connection: %s"
 msgstr "Uzyskanie połączenia z usługą Tracker się nie powiodło: %s"
-
-#: src/plugins/tracker/rygel-tracker-search-container.vala:228
-#, c-format
-msgid "Error getting item count under category “%s”: %s"
-msgstr "Błąd podczas pobierania liczby elementów w kategorii „%s”: %s"
-
-#: src/plugins/tracker/rygel-tracker-titles.vala:58
-msgid "Titles"
-msgstr "Tytuły"
 
 #: src/rygel/rygel-acl.vala:110
 #, c-format
@@ -1553,11 +1569,11 @@ msgstr "Odpytanie ACL się nie powiodło: %s"
 msgid "Error creating D-Bus proxy for ACL: %s"
 msgstr "Błąd podczas tworzenia pośrednika D-Bus dla ACL: %s"
 
-#: src/rygel/rygel-acl.vala:143
+#: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “allow”"
 msgstr "Nie odnaleziono zapasowej polityki ACL. Używanie „allow”"
 
-#: src/rygel/rygel-acl.vala:145
+#: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "Nie odnaleziono zapasowej polityki ACL. Używanie „deny”"
 
