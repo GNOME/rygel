@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
 "POT-Creation-Date: 2020-07-12 13:38+0000\n"
-"PO-Revision-Date: 2020-06-10 18:45+0900\n"
+"PO-Revision-Date: 2020-08-17 08:00+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -591,7 +591,7 @@ msgstr "無効なリクエスト (GET と HEAD のみサポートします)"
 
 #: src/librygel-server/rygel-http-get.vala:60
 msgid " must be 1"
-msgstr ""
+msgstr " は 1 である必要があります"
 
 #: src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
@@ -600,7 +600,7 @@ msgstr "無効な URI “%s”"
 
 #: src/librygel-server/rygel-http-item-uri.vala:192
 msgid "Not found"
-msgstr "見つかりません"
+msgstr "見つかりませんでした"
 
 #: src/librygel-server/rygel-http-post.vala:64
 #: src/librygel-server/rygel-import-resource.vala:193
@@ -1233,10 +1233,9 @@ msgid "Cannot upgrade from version %d"
 msgstr "バージョン %d からアップグレードできません"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
-#, fuzzy, c-format
-#| msgid "Database upgrade failed: %s"
+#, c-format
 msgid "Database upgrade to v18 failed: %s"
-msgstr "データベースのアップグレードに失敗しました: %s"
+msgstr "データベースの v18 へのアップグレードに失敗しました: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:134
 #, c-format
@@ -1277,16 +1276,14 @@ msgid "Cannot create references to containers"
 msgstr "コンテナー参照の生成に失敗しました"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:597
-#, fuzzy, c-format
-#| msgid "Failed to add album art for %s: %s"
+#, c-format
 msgid "Failed to add %s to ignored files: %s"
-msgstr "%s のアルバムアート追加に失敗しました: %s"
+msgstr "%s を無視するファイルに追加できませんでした: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:610
-#, fuzzy, c-format
-#| msgid "Failed to get update IDs: %s"
+#, c-format
 msgid "Failed to get whether URI %s is ignored: %s"
-msgstr "更新 ID の取得に失敗しました: %s"
+msgstr "URI %s を無視するかどうか確認できませんでした: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:626
 #, c-format
@@ -1328,12 +1325,12 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:152
 #, c-format
 msgid "Process check_async failed: %s"
-msgstr ""
+msgstr "プロセスの check_async に失敗しました: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #, c-format
 msgid "Process died while handling URI %s"
-msgstr ""
+msgstr "URI %s の処理中にプロセスが終了しました"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
 #, c-format
@@ -1343,19 +1340,20 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
 #, c-format
 msgid "Received invalid string from child: %s"
-msgstr ""
+msgstr "子から無効な文字列を受け取りました: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received ill-formed response string %s from child…"
 msgstr ""
+"子から形式的に正しくないレスポンス文字列 %s を受け取りました…"
 
 #. No error signalling, this was done in the part that called
 #. cancel
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:243
 #, c-format
 msgid "Read from child failed: %s"
-msgstr ""
+msgstr "子からの読み取りに失敗しました: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:270
 #, c-format
@@ -1412,7 +1410,7 @@ msgstr "ファイル変更の監視は行いません"
 #: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:105
 #, c-format
 msgid "Failed to setup up file monitor for %s: %s"
-msgstr ""
+msgstr "%s のファイル監視のセットアップに失敗しました: %s"
 
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
@@ -1552,20 +1550,22 @@ msgstr "Tracker 接続の取得に失敗しました: %s"
 #: src/rygel/rygel-acl.vala:110
 #, c-format
 msgid "Failed to query ACL: %s"
-msgstr ""
+msgstr "ACL のクエリに失敗しました: %s"
 
 #: src/rygel/rygel-acl.vala:127
 #, c-format
 msgid "Error creating D-Bus proxy for ACL: %s"
-msgstr ""
+msgstr "ACL の D-Bus プロキシ作成エラー: %s"
 
 #: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “allow”"
 msgstr ""
+"ACL フォールバックポリシーが見つからなかったため“allow”を使用します"
 
 #: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr ""
+"ACL フォールバックポリシーが見つからなかったため“deny”を使用します"
 
 #: src/rygel/rygel-dbus-service.vala:81
 msgid "Another instance of Rygel is already running. Not starting."
