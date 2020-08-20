@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-06-16 07:48+0000\n"
+"POT-Creation-Date: 2020-08-19 14:58+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
@@ -284,16 +284,16 @@ msgstr "Zapiranje drugega primerka Rygel je spodletelo: %s"
 #: src/librygel-core/rygel-environment-config.vala:100
 #: src/librygel-core/rygel-environment-config.vala:104
 #: src/librygel-core/rygel-environment-config.vala:108
-#: src/librygel-core/rygel-meta-config.vala:89
-#: src/librygel-core/rygel-meta-config.vala:109
-#: src/librygel-core/rygel-meta-config.vala:128
-#: src/librygel-core/rygel-meta-config.vala:147
-#: src/librygel-core/rygel-meta-config.vala:166
-#: src/librygel-core/rygel-meta-config.vala:185
-#: src/librygel-core/rygel-meta-config.vala:204
-#: src/librygel-core/rygel-meta-config.vala:223
-#: src/librygel-core/rygel-meta-config.vala:242
-#: src/librygel-core/rygel-meta-config.vala:261
+#: src/librygel-core/rygel-meta-config.vala:105
+#: src/librygel-core/rygel-meta-config.vala:125
+#: src/librygel-core/rygel-meta-config.vala:144
+#: src/librygel-core/rygel-meta-config.vala:163
+#: src/librygel-core/rygel-meta-config.vala:182
+#: src/librygel-core/rygel-meta-config.vala:201
+#: src/librygel-core/rygel-meta-config.vala:220
+#: src/librygel-core/rygel-meta-config.vala:239
+#: src/librygel-core/rygel-meta-config.vala:258
+#: src/librygel-core/rygel-meta-config.vala:277
 msgid "No value available"
 msgstr "Na voljo ni nobene vrednosti"
 
@@ -326,31 +326,31 @@ msgid "Failed to get log level from configuration: %s"
 msgstr "Pridobivanje ravni dnevnika iz nastavitev je spodletelo: %s"
 
 #. translators: "enabled" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:336
+#: src/librygel-core/rygel-meta-config.vala:352
 #, c-format
 msgid "No value set for “%s/enabled”"
 msgstr "Ni nastavljene vrednosti za »%s/enabled«"
 
 #. translators: "title" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:355
+#: src/librygel-core/rygel-meta-config.vala:371
 #, c-format
 msgid "No value set for “%s/title”"
 msgstr "Ni vrednosti za parameter »%s/naziv«"
 
-#: src/librygel-core/rygel-meta-config.vala:375
-#: src/librygel-core/rygel-meta-config.vala:397
-#: src/librygel-core/rygel-meta-config.vala:423
-#: src/librygel-core/rygel-meta-config.vala:445
-#: src/librygel-core/rygel-meta-config.vala:469
+#: src/librygel-core/rygel-meta-config.vala:391
+#: src/librygel-core/rygel-meta-config.vala:413
+#: src/librygel-core/rygel-meta-config.vala:439
+#: src/librygel-core/rygel-meta-config.vala:461
+#: src/librygel-core/rygel-meta-config.vala:485
 #, c-format
 msgid "No value available for “%s/%s”"
 msgstr "Ni vrednosti na voljo za »%s/%s«"
 
-#: src/librygel-core/rygel-plugin-information.vala:59
+#: src/librygel-core/rygel-plugin-information.vala:67
 msgid "[Plugin] group not found"
 msgstr "Skupine [vstavka ]ni mogoče najti"
 
-#: src/librygel-core/rygel-plugin-information.vala:77
+#: src/librygel-core/rygel-plugin-information.vala:79
 #, c-format
 msgid "Plugin module %s does not exist"
 msgstr "Modul vstavka %s ne obstaja."
@@ -375,6 +375,12 @@ msgstr "Nalaganje modula iz poti »%s« je spodletelo: %s"
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "Iskanje funkcije vstopne točke »%s« v »%s« je spodletelo: %s"
 
+#: src/librygel-core/rygel-plugin-loader.vala:156
+#, c-format
+msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
+msgstr ""
+"Modul »%s« je v sporu z že naloženim modulom »%s«. Opravilo bo prekinjeno."
+
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
 msgid "Failed to open plugins folder: “%s”"
@@ -390,7 +396,7 @@ msgstr "Napaka med izpisovanjem vsebine mape »%s«: %s"
 msgid "Could not load plugin: %s"
 msgstr "Vstavka ni mogoče naložiti: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:221
+#: src/librygel-core/rygel-recursive-module-loader.vala:220
 #, c-format
 msgid "Failed to query content type for “%s”"
 msgstr "Poizvedba o vrsti vsebine za »%s« je spodletela"
@@ -920,7 +926,8 @@ msgstr "Podani kriteriji niso veljaveni"
 msgid "Failed to search in “%s”: %s"
 msgstr "Iskanje v »%s« je spodletelo: %s"
 
-#: src/librygel-server/rygel-subtitle-manager.vala:92
+#: src/librygel-server/rygel-subtitle-manager.vala:49
+#: src/librygel-server/rygel-subtitle-manager.vala:96
 msgid "No subtitle available"
 msgstr "Ni podnapisov na voljo"
 
@@ -949,75 +956,83 @@ msgstr "Sličice niso na voljo. Njihova tvorba je zahtevana."
 msgid "No D-Bus thumbnailer available"
 msgstr "Ustvarjalnik sličic vodila D-Bus ni na voljo."
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:44
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:46
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr "Ni mogoče ustvariti predmeta GstElement za naslov URI %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:76
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
 msgstr "Spreminjanje hitrosti predvajanja ni podporto"
 
 #. Unknown/unsupported seek type
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:106
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
 msgstr "Nepodprta vrsta zahteve %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:150
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
 msgid "Failed to create pipeline"
 msgstr "Ustvarjanje cevovoda je spodletelo"
 
 #. static pads? easy!
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:161
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:182
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:163
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:184
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "Povezovanje %s z %s je spodletelo"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:196
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:198
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "Napaka med povezovanjem %s z %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:261
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:263
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "Napaka iz cevovoda %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:268
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:270
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "Opozorilo iz cevovoda %s: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:321
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:323
 msgid "Unsupported seek type"
 msgstr "Nepodprta vrsta iskanja"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:338
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "Iskanje na odmik %lld:%lld je spodletelo"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
 msgid "Failed to seek"
 msgstr "Iskanje je spodletelo"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:130
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "Neveljaven naslov URI brez predpone: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:141
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
 msgstr "Ni mogoče uporabiti naslova URI %s s protokolom %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:246
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Ustvarjanje podatkovnega vira GStreamer za %s je spodletelo: %s"
+
+#: src/media-engines/gstreamer/rygel-gst-transcoding-data-source.vala:29
+msgid ""
+"Could not create a transcoder configuration. Your GStreamer installation "
+"might be missing a plug-in"
+msgstr ""
+"Ni mogoče ustvariti nastavitev prekodirnika. Nastavitvi GStrimer morda "
+"manjkajo vstavki."
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
@@ -1053,6 +1068,7 @@ msgid "External provider %s did not provide mandatory property “%s”"
 msgstr "Zunanji ponudnik %s je brez nastavitve obvezne lastnosti »%s«"
 
 #: src/plugins/lms/rygel-lms-albums.vala:166
+#: src/plugins/tracker3/rygel-tracker-albums.vala:31
 #: src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
 msgstr "Albumi"
@@ -1069,6 +1085,7 @@ msgid "Years"
 msgstr "Leta"
 
 #: src/plugins/lms/rygel-lms-music-root.vala:35
+#: src/plugins/tracker3/rygel-tracker-artists.vala:31
 #: src/plugins/tracker/rygel-tracker-artists.vala:31
 msgid "Artists"
 msgstr "Izvajalci"
@@ -1406,6 +1423,7 @@ msgstr "Nastavljanje nadzornika datoteke za %s je spodletelo: %s"
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
+#: src/plugins/tracker3/rygel-tracker-years.vala:33
 #: src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Leto"
@@ -1421,6 +1439,7 @@ msgid "Album"
 msgstr "Album"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
+#: src/plugins/tracker3/rygel-tracker-genre.vala:31
 #: src/plugins/tracker/rygel-tracker-genre.vala:31
 msgid "Genre"
 msgstr "Zvrst"
@@ -1431,6 +1450,7 @@ msgstr "Datoteke in mape"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
+#: src/plugins/tracker3/rygel-tracker-plugin.vala:34
 #: src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@’s media"
 msgstr "Uporabnika @REALNAME@"
@@ -1480,53 +1500,60 @@ msgstr "Predvajalnik GStreamer"
 msgid "Could not create GStreamer player"
 msgstr "Ni mogoče ustvariti predvajalnika GStreamer"
 
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
-#, c-format
-msgid "Failed to create a Tracker connection: %s"
-msgstr "Ustvarjanje povezave Tracker je spodletelo: %s"
-
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "Izgradnja naslova URI za mapo »%s« je spodletela: %s"
 
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
 #, c-format
 msgid "Could not subscribe to Tracker signals: %s"
 msgstr "Ni mogoče vzpostaviti naročil na signale programa tracker: %s"
 
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
 msgid "Not supported"
 msgstr "Ni podprto"
+
+#: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
+#: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
+#, c-format
+msgid "Error getting all values for “%s”: %s"
+msgstr "Napaka pridobivanja vseh vrednosti za »%s«: %s"
+
+#: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
+#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
+#, c-format
+msgid "Failed to start Tracker service: %s. Plugin disabled."
+msgstr "Začenjanje storitve Tracker je spodletelo: %s. Vstavek je onemogočen."
+
+#: src/plugins/tracker3/rygel-tracker-search-container.vala:228
+#: src/plugins/tracker/rygel-tracker-search-container.vala:228
+#, c-format
+msgid "Error getting item count under category “%s”: %s"
+msgstr "Napaka med pridobivanjem števila predmetov pod kategorijo »%s«: %s"
+
+#: src/plugins/tracker3/rygel-tracker-titles.vala:58
+#: src/plugins/tracker/rygel-tracker-titles.vala:58
+msgid "Titles"
+msgstr "Naslovi"
+
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
+#, c-format
+msgid "Failed to create a Tracker connection: %s"
+msgstr "Ustvarjanje povezave Tracker je spodletelo: %s"
 
 #: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
 #, c-format
 msgid "Failed to create Tracker connection: %s"
 msgstr "Ustvarjanje povezave s programom Tracker je spodletelo: %s"
 
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
-#, c-format
-msgid "Error getting all values for “%s”: %s"
-msgstr "Napaka pridobivanja vseh vrednosti za »%s«: %s"
-
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
-#, c-format
-msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr "Začenjanje storitve Tracker je spodletelo: %s. Vstavek je onemogočen."
-
 #: src/plugins/tracker/rygel-tracker-search-container.vala:104
 #, c-format
 msgid "Failed to get Tracker connection: %s"
 msgstr "Pridobivanje povezave je spodletelo: %s"
-
-#: src/plugins/tracker/rygel-tracker-search-container.vala:228
-#, c-format
-msgid "Error getting item count under category “%s”: %s"
-msgstr "Napaka med pridobivanjem števila predmetov pod kategorijo »%s«: %s"
-
-#: src/plugins/tracker/rygel-tracker-titles.vala:58
-msgid "Titles"
-msgstr "Naslovi"
 
 #: src/rygel/rygel-acl.vala:110
 #, c-format
@@ -1538,12 +1565,12 @@ msgstr "Poizvedba ACL je spodletela: %s"
 msgid "Error creating D-Bus proxy for ACL: %s"
 msgstr "Napaka ustvarjanja posredniškega vodila DBus za ACL: %s"
 
-#: src/rygel/rygel-acl.vala:143
+#: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “allow”"
 msgstr ""
 "Ni najdenega povrnitvenega pravila ACL. Uporabljena bo možnost »dovoli«."
 
-#: src/rygel/rygel-acl.vala:145
+#: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr ""
 "Ni najdenega povrnitvenega pravila ACL. Uporabljena bo možnost »zavrni«."
@@ -1573,17 +1600,17 @@ msgstr[3] ""
 "V %d sekundah ni bilo najdenega nobenega vstavka, zato bo iskanje prekinjeno "
 "…"
 
-#: src/rygel/rygel-main.vala:177
+#: src/rygel/rygel-main.vala:192
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Ustvarjanje tovarne korenske naprave je spodletelo: %s"
 
-#: src/rygel/rygel-main.vala:235
+#: src/rygel/rygel-main.vala:250
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Ustvarjanje RootDevice za %s je spodletelo: Vzrok: %s"
 
-#: src/rygel/rygel-main.vala:272
+#: src/rygel/rygel-main.vala:287
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Nalaganje uporabniških nastavitev je spodletelo: %s"
@@ -1610,13 +1637,6 @@ msgstr "Zaustavljanje storitve Rygel je spodletelo: %s"
 
 #~ msgid "rygel"
 #~ msgstr "rygel"
-
-#~ msgid ""
-#~ "Could not create a transcoder configuration. Your GStreamer installation "
-#~ "might be missing a plug-in"
-#~ msgstr ""
-#~ "Ni mogoče ustvariti nastavitev prekodirnika. Nastavitvi GStrimer morda "
-#~ "manjkajo vstavki."
 
 #~ msgid "column"
 #~ msgstr "stolpec"
