@@ -14,10 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-03-26 11:56+0000\n"
-"PO-Revision-Date: 2018-05-10 12:13-0500\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
+"POT-Creation-Date: 2020-07-12 13:38+0000\n"
+"PO-Revision-Date: 2020-08-15 09:36+0800\n"
 "Last-Translator: Mingcong Bai <jeffbai@aosc.xyz>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -25,18 +24,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: data/rygel.desktop.in.in:3
 msgid "Rygel"
 msgstr "Rygel"
 
-#: data/rygel.desktop.in.in:4 data/rygel.desktop.in.in:5
+#: data/rygel.desktop.in.in:4
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA 服务"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in.in:7
+#: data/rygel.desktop.in.in:6
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
 "mediaserver;mediarenderer;share;audio;video;pictures;媒体服务器;媒体渲染器;共"
@@ -49,11 +48,6 @@ msgstr "Rygel 首选项"
 #: data/rygel-preferences.desktop.in.in:4
 msgid "UPnP/DLNA Preferences"
 msgstr "UPnP/DLNA 首选项"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/rygel-preferences.desktop.in.in:7
-msgid "rygel"
-msgstr "rygel"
 
 #: data/rygel-preferences.ui:94
 msgid "Add a directory to the list of shared directories"
@@ -133,41 +127,44 @@ msgid "Failed to read error output from %s: %s"
 msgstr "从 %s 读标准错误失败：%s"
 
 #. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:159
+#: src/librygel-core/rygel-basic-management.vala:158
 msgid "No Such Test"
 msgstr "无此测试"
 
 #. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:167
+#: src/librygel-core/rygel-basic-management.vala:166
+#: src/librygel-core/rygel-basic-management.vala:283
+#: src/librygel-core/rygel-basic-management.vala:382
+#: src/librygel-core/rygel-basic-management.vala:471
 msgid "Wrong Test Type"
 msgstr "错误的测试类型"
 
 #. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:175
+#: src/librygel-core/rygel-basic-management.vala:174
 #, c-format
 msgid "Invalid Test State “%s”"
 msgstr "无效的测试状态“%s”"
 
 #. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:181
+#: src/librygel-core/rygel-basic-management.vala:180
 #, c-format
 msgid "State “%s” Precludes Cancel"
 msgstr "状态“%s”阻止取消"
 
-#: src/librygel-core/rygel-basic-management.vala:214
-#: src/librygel-core/rygel-basic-management.vala:229
-#: src/librygel-core/rygel-basic-management.vala:256
-#: src/librygel-core/rygel-basic-management.vala:272
-#: src/librygel-core/rygel-basic-management.vala:324
-#: src/librygel-core/rygel-basic-management.vala:349
-#: src/librygel-core/rygel-basic-management.vala:365
-#: src/librygel-core/rygel-basic-management.vala:404
-#: src/librygel-core/rygel-basic-management.vala:431
-#: src/librygel-core/rygel-basic-management.vala:448
-#: src/librygel-core/rygel-basic-management.vala:487
-#: src/librygel-core/rygel-basic-management.vala:502
-#: src/librygel-core/rygel-basic-management.vala:517
-#: src/librygel-core/rygel-basic-management.vala:541
+#: src/librygel-core/rygel-basic-management.vala:213
+#: src/librygel-core/rygel-basic-management.vala:228
+#: src/librygel-core/rygel-basic-management.vala:255
+#: src/librygel-core/rygel-basic-management.vala:271
+#: src/librygel-core/rygel-basic-management.vala:328
+#: src/librygel-core/rygel-basic-management.vala:353
+#: src/librygel-core/rygel-basic-management.vala:369
+#: src/librygel-core/rygel-basic-management.vala:414
+#: src/librygel-core/rygel-basic-management.vala:441
+#: src/librygel-core/rygel-basic-management.vala:458
+#: src/librygel-core/rygel-basic-management.vala:503
+#: src/librygel-core/rygel-basic-management.vala:518
+#: src/librygel-core/rygel-basic-management.vala:533
+#: src/librygel-core/rygel-basic-management.vala:557
 #: src/librygel-core/rygel-connection-manager.vala:95
 #: src/librygel-core/rygel-connection-manager.vala:109
 #: src/librygel-core/rygel-connection-manager.vala:126
@@ -181,21 +178,21 @@ msgstr "状态“%s”阻止取消"
 #: src/librygel-server/rygel-content-directory.vala:343
 #: src/librygel-server/rygel-content-directory.vala:372
 #: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:616
-#: src/librygel-server/rygel-content-directory.vala:765
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
 #: src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "无效参数"
 
-#: src/librygel-core/rygel-basic-management.vala:255
+#: src/librygel-core/rygel-basic-management.vala:254
 msgid "Cannot run “Ping” action: Host is empty"
 msgstr "不能运行“Ping”动作：主机未填"
 
-#: src/librygel-core/rygel-basic-management.vala:348
+#: src/librygel-core/rygel-basic-management.vala:352
 msgid "Cannot run “NSLookup” action: HostName is empty"
 msgstr "不能运行“NSLookup”动作：主机名未填"
 
-#: src/librygel-core/rygel-basic-management.vala:430
+#: src/librygel-core/rygel-basic-management.vala:440
 msgid "Cannot run “Traceroute” action: Host is empty"
 msgstr "不能运行“Traceroute”动作：主机未填"
 
@@ -289,16 +286,16 @@ msgstr "无法关闭其他的 Rygel 实例：%s"
 #: src/librygel-core/rygel-environment-config.vala:100
 #: src/librygel-core/rygel-environment-config.vala:104
 #: src/librygel-core/rygel-environment-config.vala:108
-#: src/librygel-core/rygel-meta-config.vala:89
-#: src/librygel-core/rygel-meta-config.vala:109
-#: src/librygel-core/rygel-meta-config.vala:128
-#: src/librygel-core/rygel-meta-config.vala:147
-#: src/librygel-core/rygel-meta-config.vala:166
-#: src/librygel-core/rygel-meta-config.vala:185
-#: src/librygel-core/rygel-meta-config.vala:204
-#: src/librygel-core/rygel-meta-config.vala:223
-#: src/librygel-core/rygel-meta-config.vala:242
-#: src/librygel-core/rygel-meta-config.vala:261
+#: src/librygel-core/rygel-meta-config.vala:105
+#: src/librygel-core/rygel-meta-config.vala:125
+#: src/librygel-core/rygel-meta-config.vala:144
+#: src/librygel-core/rygel-meta-config.vala:163
+#: src/librygel-core/rygel-meta-config.vala:182
+#: src/librygel-core/rygel-meta-config.vala:201
+#: src/librygel-core/rygel-meta-config.vala:220
+#: src/librygel-core/rygel-meta-config.vala:239
+#: src/librygel-core/rygel-meta-config.vala:258
+#: src/librygel-core/rygel-meta-config.vala:277
 msgid "No value available"
 msgstr "无可用值"
 
@@ -331,31 +328,31 @@ msgid "Failed to get log level from configuration: %s"
 msgstr "无法从配置中得到日志等级：%s"
 
 #. translators: "enabled" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:336
+#: src/librygel-core/rygel-meta-config.vala:352
 #, c-format
 msgid "No value set for “%s/enabled”"
 msgstr "没有为“%s/enabled”赋值"
 
 #. translators: "title" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:355
+#: src/librygel-core/rygel-meta-config.vala:371
 #, c-format
 msgid "No value set for “%s/title”"
 msgstr "没有为“%s/title”赋值"
 
-#: src/librygel-core/rygel-meta-config.vala:375
-#: src/librygel-core/rygel-meta-config.vala:397
-#: src/librygel-core/rygel-meta-config.vala:423
-#: src/librygel-core/rygel-meta-config.vala:445
-#: src/librygel-core/rygel-meta-config.vala:469
+#: src/librygel-core/rygel-meta-config.vala:391
+#: src/librygel-core/rygel-meta-config.vala:413
+#: src/librygel-core/rygel-meta-config.vala:439
+#: src/librygel-core/rygel-meta-config.vala:461
+#: src/librygel-core/rygel-meta-config.vala:485
 #, c-format
 msgid "No value available for “%s/%s”"
 msgstr "没有“%s/%s”可用的值"
 
-#: src/librygel-core/rygel-plugin-information.vala:59
+#: src/librygel-core/rygel-plugin-information.vala:64
 msgid "[Plugin] group not found"
 msgstr "未找到 [插件] 组"
 
-#: src/librygel-core/rygel-plugin-information.vala:77
+#: src/librygel-core/rygel-plugin-information.vala:76
 #, c-format
 msgid "Plugin module %s does not exist"
 msgstr "插件模块 %s 不存在"
@@ -370,15 +367,20 @@ msgstr "新插件“%s”可用"
 msgid "A module named %s is already loaded"
 msgstr "名为 %s 的模块已经加载"
 
-#: src/librygel-core/rygel-plugin-loader.vala:113
+#: src/librygel-core/rygel-plugin-loader.vala:118
 #, c-format
 msgid "Failed to load module from path “%s”: %s"
 msgstr "从路径“%s”加载模块失败：%s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:123
+#: src/librygel-core/rygel-plugin-loader.vala:128
 #, c-format
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "无法在 %2$s 中找到入口点函数 %1$s：%3$s"
+
+#: src/librygel-core/rygel-plugin-loader.vala:155
+#, c-format
+msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
+msgstr "模块“%s”与已加载的模块“%s”冲突。正在跳过"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
@@ -395,7 +397,7 @@ msgstr "无法列出文件夹“%s”的内容：%s"
 msgid "Could not load plugin: %s"
 msgstr "无法加载插件：%s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:221
+#: src/librygel-core/rygel-recursive-module-loader.vala:220
 #, c-format
 msgid "Failed to query content type for “%s”"
 msgstr "无法查询“%s”的内容类型"
@@ -431,12 +433,12 @@ msgstr "打开 SQLite 数据库 %s 时发生错误：%s"
 msgid "Failed to roll back transaction: %s"
 msgstr "无法回滚事务：%s"
 
-#: src/librygel-renderer-gst/rygel-playbin-player.vala:368
+#: src/librygel-renderer-gst/rygel-playbin-player.vala:370
 msgid ""
-"Your GStreamer installation seems to be missing the “playbin” element. The "
+"Your GStreamer installation seems to be missing the “playbin3” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
-"您安装 GStreamer 的时候似乎没有安装“playbin”元素，GStreamer 渲染器实现将无法"
+"您安装 GStreamer 的时候似乎没有安装“playbin3”元素，GStreamer 渲染器实现将无法"
 "工作"
 
 #: src/librygel-renderer/rygel-av-transport.vala:204
@@ -576,7 +578,7 @@ msgstr "浏览“'%s”失败：%s\n"
 msgid "Not Applicable"
 msgstr "不适用"
 
-#: src/librygel-server/rygel-content-directory.vala:637
+#: src/librygel-server/rygel-content-directory.vala:639
 msgid "No such file transfer"
 msgstr "无此文件传输"
 
@@ -601,19 +603,19 @@ msgstr "无效 URI “%s”"
 msgid "Not found"
 msgstr "没有找到"
 
-#: src/librygel-server/rygel-http-post.vala:62
-#: src/librygel-server/rygel-import-resource.vala:189
+#: src/librygel-server/rygel-http-post.vala:64
+#: src/librygel-server/rygel-import-resource.vala:193
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "不允许将数据压入非空条目“%s”中"
 
-#: src/librygel-server/rygel-http-post.vala:71
+#: src/librygel-server/rygel-http-post.vala:72
 #, c-format
 msgid "No writable URI for %s available"
 msgstr "没有可用的 %s 的可写入的 URI"
 
 #. translators: Dotfile is the filename with prefix "."
-#: src/librygel-server/rygel-http-post.vala:186
+#: src/librygel-server/rygel-http-post.vala:187
 #, c-format
 msgid "Failed to move dotfile %s: %s"
 msgstr "移动 dotfile 失败 %s: %s"
@@ -633,12 +635,12 @@ msgstr "无法为 %s 创建数据源"
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "获取“%s”的原始 URI 失败：%s"
 
-#: src/librygel-server/rygel-import-resource.vala:186
+#: src/librygel-server/rygel-import-resource.vala:188
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "URI “%s”无效，无法导入内容至"
 
-#: src/librygel-server/rygel-import-resource.vala:272
+#: src/librygel-server/rygel-import-resource.vala:276
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "从文件“%s”导入文件失败：%s"
@@ -658,7 +660,7 @@ msgstr "已成功销毁对象“%s”"
 msgid "Failed to destroy object “%s”: %s"
 msgstr "无法销毁对象“%s”：%s"
 
-#: src/librygel-server/rygel-item-destroyer.vala:104
+#: src/librygel-server/rygel-item-destroyer.vala:105
 #: src/librygel-server/rygel-item-updater.vala:283
 #: src/librygel-server/rygel-media-query-action.vala:194
 #: src/librygel-server/rygel-reference-creator.vala:68
@@ -666,12 +668,12 @@ msgstr "无法销毁对象“%s”：%s"
 msgid "No such object"
 msgstr "无此对象"
 
-#: src/librygel-server/rygel-item-destroyer.vala:107
+#: src/librygel-server/rygel-item-destroyer.vala:108
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "不允许移除 %s 对象"
 
-#: src/librygel-server/rygel-item-destroyer.vala:110
+#: src/librygel-server/rygel-item-destroyer.vala:111
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr "不允许从 %s 中移除对象"
@@ -692,13 +694,13 @@ msgid "Failed to update object “%s”: %s"
 msgstr "无法更新对象“%s”：%s"
 
 #: src/librygel-server/rygel-item-updater.vala:162
-#: src/librygel-server/rygel-object-creator.vala:606
+#: src/librygel-server/rygel-object-creator.vala:614
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "无效的日期格式：%s"
 
 #: src/librygel-server/rygel-item-updater.vala:171
-#: src/librygel-server/rygel-object-creator.vala:615
+#: src/librygel-server/rygel-object-creator.vala:623
 #, c-format
 msgid "Invalid date: %s"
 msgstr "无效日期：%s"
@@ -717,7 +719,7 @@ msgstr "试图删除必需的标签。"
 
 #: src/librygel-server/rygel-item-updater.vala:266
 msgid "Tried to change read-only property."
-msgstr "试图更改只读属性"
+msgstr "试图更改只读属性。"
 
 #: src/librygel-server/rygel-item-updater.vala:269
 msgid "Parameter count mismatch."
@@ -771,15 +773,16 @@ msgstr "创建播放列表失败"
 msgid "Unknown MediaContainer resource: %s"
 msgstr "不明的媒体容器资源：%s"
 
-#: src/librygel-server/rygel-media-engine.vala:62
+#: src/librygel-server/rygel-media-engine.vala:63
 msgid "No media engine found."
 msgstr "没有找到媒体引擎。"
 
-#: src/librygel-server/rygel-media-engine.vala:73
+#: src/librygel-server/rygel-media-engine.vala:75
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "没有调用 MediaEngine.init。无法继续。"
 
 #: src/librygel-server/rygel-media-file-item.vala:177
+#: src/librygel-server/rygel-video-item.vala:222
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "无法确定 URI %s 的协议"
@@ -789,7 +792,7 @@ msgstr "无法确定 URI %s 的协议"
 msgid "Could not determine protocol for %s"
 msgstr "无法确定 %s 的协议"
 
-#: src/librygel-server/rygel-media-object.vala:509
+#: src/librygel-server/rygel-media-object.vala:491
 #, c-format
 msgid "Bad URI: %s"
 msgstr "坏的 URI：%s"
@@ -812,7 +815,7 @@ msgid "Missing filter"
 msgstr "缺少过滤器"
 
 #: src/librygel-server/rygel-media-query-action.vala:197
-#: src/librygel-server/rygel-object-creator.vala:412
+#: src/librygel-server/rygel-object-creator.vala:414
 msgid "No such container"
 msgstr "无此类容器"
 
@@ -820,77 +823,77 @@ msgstr "无此类容器"
 msgid "upnp:createClass value not supported"
 msgstr "不支持 upnp:createClass 值"
 
-#: src/librygel-server/rygel-object-creator.vala:191
+#: src/librygel-server/rygel-object-creator.vala:193
 msgid "“Elements” argument missing."
 msgstr "缺少“Elements”参数。"
 
-#: src/librygel-server/rygel-object-creator.vala:194
+#: src/librygel-server/rygel-object-creator.vala:196
 msgid "Comments not allowed in XML"
 msgstr "XML 中不允许有注释"
 
 #. Sorry we can't do anything without ContainerID
-#: src/librygel-server/rygel-object-creator.vala:200
+#: src/librygel-server/rygel-object-creator.vala:202
 msgid "Missing ContainerID argument"
 msgstr "缺少“ContainerID”参数"
 
-#: src/librygel-server/rygel-object-creator.vala:224
+#: src/librygel-server/rygel-object-creator.vala:226
 #, c-format
 msgid "No objects in DIDL-Lite from client: “%s”"
 msgstr "客户端的 DIDL-Lite 中无对象：“%s”"
 
-#: src/librygel-server/rygel-object-creator.vala:231
+#: src/librygel-server/rygel-object-creator.vala:233
 msgid "@id must be set to \"\" in CreateObject call"
-msgstr "在 CreateObject 调用中 @id 必须设定为 \"\" "
+msgstr "在 CreateObject 调用中 @id 必须设定为 \"\""
 
-#: src/librygel-server/rygel-object-creator.vala:236
+#: src/librygel-server/rygel-object-creator.vala:238
 msgid "dc:title must not be empty in CreateObject call"
 msgstr "CreateObject 调用中 dc:title 不能为空"
 
-#: src/librygel-server/rygel-object-creator.vala:247
+#: src/librygel-server/rygel-object-creator.vala:249
 msgid "Flags that must not be set were found in “dlnaManaged”"
 msgstr "在“dlnaManaged”中发现不允许设置的标志"
 
-#: src/librygel-server/rygel-object-creator.vala:255
+#: src/librygel-server/rygel-object-creator.vala:257
 msgid "Invalid upnp:class given in CreateObject"
-msgstr "在 CreateObject 指定了无效的 upnp:class "
+msgstr "在 CreateObject 指定了无效的 upnp:class"
 
-#: src/librygel-server/rygel-object-creator.vala:259
+#: src/librygel-server/rygel-object-creator.vala:261
 msgid "Object is missing the @restricted attribute"
 msgstr "对象缺少 @restricted 属性"
 
-#: src/librygel-server/rygel-object-creator.vala:266
+#: src/librygel-server/rygel-object-creator.vala:268
 msgid "Cannot create restricted item"
 msgstr "无法创建受限条目"
 
-#: src/librygel-server/rygel-object-creator.vala:383
+#: src/librygel-server/rygel-object-creator.vala:385
 #, c-format
 msgid "UPnP class “%s” not supported"
 msgstr "不支持 UPnP 类“%s”"
 
-#: src/librygel-server/rygel-object-creator.vala:417
-#: src/librygel-server/rygel-object-creator.vala:429
-#: src/librygel-server/rygel-object-creator.vala:715
+#: src/librygel-server/rygel-object-creator.vala:419
+#: src/librygel-server/rygel-object-creator.vala:431
+#: src/librygel-server/rygel-object-creator.vala:723
 #: src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "不允许在 %s 中创建对象"
 
-#: src/librygel-server/rygel-object-creator.vala:474
+#: src/librygel-server/rygel-object-creator.vala:476
 #, c-format
 msgid "Failed to create item under “%s”: %s"
 msgstr "无法在“%s”下创建条目：%s"
 
-#: src/librygel-server/rygel-object-creator.vala:548
+#: src/librygel-server/rygel-object-creator.vala:552
 #, c-format
 msgid "DLNA profile “%s” not supported"
 msgstr "不支持 DLNA 配置“%s”"
 
-#: src/librygel-server/rygel-object-creator.vala:648
+#: src/librygel-server/rygel-object-creator.vala:656
 #, c-format
 msgid "Cannot create object of class “%s”: Not supported"
 msgstr "无法创建属于类“%s”的对象：不支持"
 
-#: src/librygel-server/rygel-object-creator.vala:746
+#: src/librygel-server/rygel-object-creator.vala:754
 #, c-format
 msgid ""
 "Error from container “%s” on trying to find the newly added child object "
@@ -948,77 +951,77 @@ msgstr "没有可用的缩略图。已请求生成。"
 msgid "No D-Bus thumbnailer available"
 msgstr "无可用的 D-Bus 缩略图创建器"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:44
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:46
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr "无法为 URI %s 创建 GstElement"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:72
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
 msgstr "不支持的播放速度"
 
 #. Unknown/unsupported seek type
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:102
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
 msgstr "不支持的 HTTPSeekRequest 类型 %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:146
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
 msgid "Failed to create pipeline"
 msgstr "创建管道失败"
 
 #. static pads? easy!
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:157
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:178
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:163
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:184
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr "链接 %s 到 %s 失败"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:192
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:198
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr "无法链接 pad %s 到 %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:257
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:263
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr "来自于管线 %s 的错误：%s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:264
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:270
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr "来自管线 %s 的警告：%s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:317
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:323
 msgid "Unsupported seek type"
 msgstr "不支持的定位类型"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:334
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr "无法定位到偏移量 %lld:%lld"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:336
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
 msgid "Failed to seek"
 msgstr "无法定位"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:129
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "无效的无前缀 URI：%s”"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
 msgstr "无法处理协议为 %2$s 的 URI %1$s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "无法为“%s”创建 GStreamer 数据源：%s"
 
-#: src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
+#: src/media-engines/gstreamer/rygel-gst-transcoding-data-source.vala:29
 msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation "
 "might be missing a plug-in"
@@ -1038,7 +1041,7 @@ msgid "Only byte-based seek supported"
 msgstr "只支持以字节为单位的定位"
 
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
-#: src/media-engines/simple/rygel-simple-media-engine.vala:98
+#: src/media-engines/simple/rygel-simple-media-engine.vala:99
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
 msgstr "只能处理以文件为单位的 MediaObjects (MediaFileItems)"
 
@@ -1054,6 +1057,7 @@ msgid "External provider %s did not provide mandatory property “%s”"
 msgstr "外部提供器 %s 未提供强制属性“%s”"
 
 #: src/plugins/lms/rygel-lms-albums.vala:166
+#: src/plugins/tracker3/rygel-tracker-albums.vala:31
 #: src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
 msgstr "专辑"
@@ -1070,6 +1074,7 @@ msgid "Years"
 msgstr "年份"
 
 #: src/plugins/lms/rygel-lms-music-root.vala:35
+#: src/plugins/tracker3/rygel-tracker-artists.vala:31
 #: src/plugins/tracker/rygel-tracker-artists.vala:31
 msgid "Artists"
 msgstr "艺人"
@@ -1093,7 +1098,7 @@ msgstr "视频"
 msgid "Pictures"
 msgstr "图片"
 
-#: src/plugins/media-export/rygel-media-export-dvd-container.vala:133
+#: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
 msgid "Title %d"
 msgstr "标题 %d"
@@ -1184,6 +1189,11 @@ msgstr "列举文件夹“%s”失败：%s"
 msgid "Failed to get children of container %s: %s"
 msgstr "无法得到容器 %s 的子容器：%s"
 
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
+#, c-format
+msgid "Failed to extract meta-data for file %s"
+msgstr "无法从文件 %s 提取元数据"
+
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
@@ -1207,15 +1217,15 @@ msgstr "强制重新索引以修正数据库失败：%s"
 msgid "Failed to create indices: %s"
 msgstr "无法创建索引：%s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:101
 #, c-format
 msgid "Cannot upgrade from version %d"
 msgstr "不能从版本 %d 升级"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
 #, c-format
-msgid "Database upgrade failed: %s"
-msgstr "数据库升级失败：%s"
+msgid "Database upgrade to v18 failed: %s"
+msgstr "数据库升级到 v18 失败：%s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:134
 #, c-format
@@ -1257,13 +1267,13 @@ msgstr "无法创建到容器的引用"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:597
 #, c-format
-msgid "Failed to add %s to file blacklist: %s"
-msgstr "无法将 %s 加入文件黑名单：%s"
+msgid "Failed to add %s to ignored files: %s"
+msgstr "无法将 %s 添加到忽略的文件：%s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, c-format
-msgid "Failed to get whether URI %s is blacklisted: %s"
-msgstr "无法得到 URI %s 是否在黑名单：%s"
+msgid "Failed to get whether URI %s is ignored: %s"
+msgstr "无法获取是否忽略 URI %s：%s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:626
 #, c-format
@@ -1291,7 +1301,7 @@ msgstr "无效的数据库，不能查询 sqlite_master 表：%s"
 msgid "Failed to create database schema: %s"
 msgstr "无法创建数据库 schema：%s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1231
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1232
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "略过不支持的排序字段：%s"
@@ -1394,6 +1404,7 @@ msgstr "设置 %s 的文件信息失败：%s"
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
+#: src/plugins/tracker3/rygel-tracker-years.vala:33
 #: src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "年代"
@@ -1409,6 +1420,7 @@ msgid "Album"
 msgstr "专辑"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
+#: src/plugins/tracker3/rygel-tracker-genre.vala:31
 #: src/plugins/tracker/rygel-tracker-genre.vala:31
 msgid "Genre"
 msgstr "流派"
@@ -1419,6 +1431,7 @@ msgstr "文件与文件夹"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
+#: src/plugins/tracker3/rygel-tracker-plugin.vala:34
 #: src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@’s media"
 msgstr "@REALNAME@ 的媒体"
@@ -1468,53 +1481,60 @@ msgstr "GStreamer 播放器"
 msgid "Could not create GStreamer player"
 msgstr "不能创建 GStreamer 播放器"
 
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
-#, c-format
-msgid "Failed to create a Tracker connection: %s"
-msgstr "创建 Tracker 连接失败：%s"
-
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "无法为文件夹“%s”构建 URI：%s"
 
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
 #, c-format
 msgid "Could not subscribe to Tracker signals: %s"
 msgstr "无法订阅到 Tracker 信号：%s"
 
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
 msgid "Not supported"
 msgstr "不支持"
+
+#: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
+#: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
+#, c-format
+msgid "Error getting all values for “%s”: %s"
+msgstr "为“%s”获取全部值时出错：%s"
+
+#: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
+#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
+#, c-format
+msgid "Failed to start Tracker service: %s. Plugin disabled."
+msgstr "无法启动 Tracker 服务：%s。插件已禁用。"
+
+#: src/plugins/tracker3/rygel-tracker-search-container.vala:228
+#: src/plugins/tracker/rygel-tracker-search-container.vala:228
+#, c-format
+msgid "Error getting item count under category “%s”: %s"
+msgstr "获取分类“%s”下的条目数时出错：%s"
+
+#: src/plugins/tracker3/rygel-tracker-titles.vala:58
+#: src/plugins/tracker/rygel-tracker-titles.vala:58
+msgid "Titles"
+msgstr "标题"
+
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
+#, c-format
+msgid "Failed to create a Tracker connection: %s"
+msgstr "创建 Tracker 连接失败：%s"
 
 #: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
 #, c-format
 msgid "Failed to create Tracker connection: %s"
 msgstr "创建 Tracker 连接失败：%s"
 
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
-#, c-format
-msgid "Error getting all values for “%s”: %s"
-msgstr "为“%s”获取全部值时出错：%s"
-
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
-#, c-format
-msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr "无法启动 Tracker 服务：%s。插件已禁用。"
-
 #: src/plugins/tracker/rygel-tracker-search-container.vala:104
 #, c-format
 msgid "Failed to get Tracker connection: %s"
 msgstr "获取 Tracker 连接失败：%s"
-
-#: src/plugins/tracker/rygel-tracker-search-container.vala:228
-#, c-format
-msgid "Error getting item count under category “%s”: %s"
-msgstr "获取分类“%s”下的条目数时出错：%s"
-
-#: src/plugins/tracker/rygel-tracker-titles.vala:58
-msgid "Titles"
-msgstr "标题"
 
 #: src/rygel/rygel-acl.vala:110
 #, c-format
@@ -1526,11 +1546,11 @@ msgstr "查询 ACL 失败：%s"
 msgid "Error creating D-Bus proxy for ACL: %s"
 msgstr "为 ACL 创建 DBus 代理时出错：%s"
 
-#: src/rygel/rygel-acl.vala:143
+#: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “allow”"
 msgstr "找不到 ACL 后备政策。使用“allow”"
 
-#: src/rygel/rygel-acl.vala:145
+#: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "找不到 ACL 后备政策。使用“deny”"
 
@@ -1584,6 +1604,9 @@ msgstr "启动 Rygel 服务失败：%s"
 msgid "Failed to stop Rygel service: %s"
 msgstr "停止 Rygel 服务失败：%s"
 
+#~ msgid "rygel"
+#~ msgstr "rygel"
+
 #~ msgid "Invalid URI '%s'"
 #~ msgstr "无效 URI “%s”"
 
@@ -1598,9 +1621,6 @@ msgstr "停止 Rygel 服务失败：%s"
 
 #~ msgid "Can't process non-file URI %s"
 #~ msgstr "不能处理非文件 URI %s"
-
-#~ msgid "Failed to extract basic metadata from %s: %s"
-#~ msgstr "无法从 %s 提取基础元数据：%s"
 
 #~ msgid "Failed to start metadata discoverer: %s"
 #~ msgstr "无法启动元数据发现器：%s"
