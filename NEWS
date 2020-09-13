@@ -1,3 +1,61 @@
+0.40.0
+======
+ - Translation updates
+
+All contributors to this release:
+ - sicklylife <translation@sicklylife.jp>
+ - Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+ - Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>
+ - Milo Casagrande <milo@milo.name>
+ - Zander Brown <zbrown@gnome.org>
+ - Mario Blättermann <mario.blaettermann@gmail.com>
+ - Ask Hjorth Larsen <asklarsen@gmail.com>
+ - Balázs Úr <balazs@urbalazs.hu>
+ - Марко Костић <marko.m.kostic@gmail.com>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Danial Behzadi <dani.behzi@ubuntu.com>
+ - Boyuan Yang <073plan@gmail.com>
+ - Nathan Follens <nfollens@gnome.org>
+ - Marek Černocký <marek@manet.cz>
+ - Asier Sarasua Garmendia <asiersarasua@ni.eus>
+ - Matej Urbančič <mateju@svn.gnome.org>
+ - Thibault Martin <mail@thibaultmart.in>
+ - Goran Vidović <trebelnik2@gmail.com>
+ - Anders Jonsson <anders.jonsson@norsjovallen.se>
+ - Rafael Fontenelle <rafaelff@gnome.org>
+ - Kukuh Syafaat <kukuhsyafaat@gnome.org>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Fran Dieguez <frandieguez@gnome.org>
+ - Emin Tufan Çetin <etcetin@gmail.com>
+
+Added/updated translations:
+ - cs.po, courtesy of Marek Černocký
+ - da.po, courtesy of Alan Mortensen
+ - de.po, courtesy of Mario Blättermann
+ - en_GB.po, courtesy of Bruce Cowan
+ - eu.po, courtesy of Asier Sarasua Garmendia
+ - fa.po, courtesy of Danial Behzadi
+ - fr.po, courtesy of Thibault Martin
+ - gl.po, courtesy of Fran Dieguez
+ - hr.po, courtesy of gogo
+ - hu.po, courtesy of Balázs Úr
+ - id.po, courtesy of Kukuh Syafaat
+ - it.po, courtesy of Milo Casagrande
+ - ja.po, courtesy of sicklylife
+ - kk.po, courtesy of Baurzhan Muftakhidinov
+ - ko.po, courtesy of Changwoo Ryu
+ - lv.po, courtesy of Rūdolfs Mazurs
+ - nl.po, courtesy of Nathan Follens
+ - pl.po, courtesy of Piotr Drąg
+ - pt_BR.po, courtesy of Rafael Fontenelle
+ - sk.po, courtesy of Dušan Kazik
+ - sl.po, courtesy of Matej Urbančič
+ - sr.po, courtesy of Марко М. Костић
+ - sv.po, courtesy of Anders Jonsson
+ - tr.po, courtesy of Emin Tufan Çetin
+ - zh_CN.po, courtesy of Mingcong Bai
+
 0.39.2
 ======
 
