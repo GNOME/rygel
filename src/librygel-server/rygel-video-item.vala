@@ -182,6 +182,7 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
                     subtitle.add_didl_node (didl_item);
                 }
             }
+
             if (main_subtitle != null) {
                 // Add resource-level subtitle metadata to all streamable
                 // video resources Note: All resources have already been
@@ -201,6 +202,25 @@ public class Rygel.VideoItem : AudioItem, VisualItem {
                 }
             }
 
+            // Also add upnp:albumArtURI for thumbnails. Some players need this apparently
+            // even for videos instead of using the JPEG_TN/PNG_TN resource
+            if (this.thumbnails.size != 0) {
+                var protocol = this.get_protocol_for_uri (this.thumbnails[0].uri);
+                if (http_server.is_local () || protocol != "internal") {
+                    didl_item.album_art = this.thumbnails[0].uri;
+                } else {
+                    // Create a http uri for the album art that our server can process
+                    string http_uri = http_server.create_uri_for_object (this,
+                            0,
+                            -1,
+                            null);
+                    didl_item.album_art = MediaFileItem.address_regex.replace_literal
+                        (http_uri,
+                         -1,
+                         0,
+                         http_server.context.host_ip);
+                }
+            }
         }
 
         return didl_item;
