@@ -38,7 +38,9 @@ public class Rygel.MediaExport.Extractor : Object {
     private const string[] VIDEO_SUFFIXES = {
         "webm", "mkv", "flv", "ogv", "ogg", "avi", "mov", "wmv", "mp4",
         "m4v", "mpeg", "mpg", "iso", "mp3", "m4a", "png", "jpg", "jpeg",
-        "ogv", "oga", "3gp"
+        "ogv", "oga", "3gp",
+        // DIDL playlists
+        "xml"
     };
 
     private static Regex char_remove_regex;
