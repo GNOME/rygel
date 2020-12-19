@@ -31,13 +31,13 @@ custom_target('valadoc-renderer-gst',
     [
         valadoc,
         renderer_gst_doc_common_args,
-        '-o', 'valadoc',
         renderer_gst_sources
     ]
 )
 
 if gtkdoc.found()
-custom_target('gtkdoc-renderer-gst',
+subdir('gtkdoc')
+gtkdoc_renderer_gst_target = custom_target('gtkdoc-renderer-gst',
     input: renderer_gst_sources,
     output: 'gtkdoc',
     depends : renderer_gst_lib,
@@ -47,7 +47,6 @@ custom_target('gtkdoc-renderer-gst',
         valadoc,
         renderer_gst_doc_common_args,
         '--doclet', 'gtkdoc',
-        '-o', 'gtkdoc',
         '-X', join_paths(meson.build_root(), 'src/librygel-renderer/rygel-renderer.h'),
         '-X', '-l',
         '-X', join_paths(meson.build_root(), 'src/librygel-renderer/librygel-renderer-2.6.so'),
@@ -59,9 +58,8 @@ custom_target('gtkdoc-renderer-gst',
     ]
 )
 if get_option('api-docs')
-    install_subdir('gtkdoc/html',
-                   install_dir : join_paths(get_option('datadir'), 'gtk-doc/html/librygel-renderer-gst'),
-                   strip_directory : true)
+    meson.add_install_script(install_doc, gtkdoc_renderer_gst_target,
+                   join_paths(get_option('datadir'), 'gtk-doc/html/librygel-renderer-gst'))
 endif
 endif
 endif

@@ -28,13 +28,13 @@ custom_target('valadoc-server',
     [
         valadoc,
         server_doc_common_args,
-        '-o', 'valadoc',
         server_sources
     ]
 )
 
 if gtkdoc.found()
-custom_target('gtkdoc-server',
+subdir('gtkdoc')
+gtkdoc_server_target = custom_target('gtkdoc-server',
     input: server_sources,
     output: 'gtkdoc',
     depends : server_lib,
@@ -44,7 +44,6 @@ custom_target('gtkdoc-server',
         valadoc,
         server_doc_common_args,
         '--doclet', 'gtkdoc',
-        '-o', 'gtkdoc',
         '-X', join_paths(meson.build_root(), 'src/librygel-server/rygel-server.h'),
         '-X', '-l',
         '-X', join_paths(meson.build_root(), 'src/librygel-server/librygel-server-2.6.so'),
@@ -54,9 +53,8 @@ custom_target('gtkdoc-server',
     ]
 )
 if get_option('api-docs')
-    install_subdir('gtkdoc/html',
-                   install_dir : join_paths(get_option('datadir'), 'gtk-doc/html/librygel-server'),
-                   strip_directory : true)
+    meson.add_install_script(install_doc, gtkdoc_server_target,
+                   join_paths(get_option('datadir'), 'gtk-doc/html/librygel-server'))
 endif
 endif
 endif

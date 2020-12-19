@@ -28,13 +28,13 @@ custom_target('valadoc-db',
     [
         valadoc,
         db_doc_common_args,
-        '-o', 'valadoc',
         db_sources
     ]
 )
 
 if gtkdoc.found()
-custom_target('gtkdoc-db',
+subdir('gtkdoc')
+gtkdoc_db_target = custom_target('gtkdoc-db',
     input: db_sources,
     output: 'gtkdoc',
     depends : db_lib,
@@ -44,7 +44,6 @@ custom_target('gtkdoc-db',
         valadoc,
         db_doc_common_args,
         '--doclet', 'gtkdoc',
-        '-o', 'gtkdoc',
         '-X', join_paths(meson.build_root(), 'src/librygel-db/rygel-db.h'),
         '-X', '-l',
         '-X', join_paths(meson.build_root(), 'src/librygel-db/librygel-db-2.6.so'),
@@ -55,9 +54,8 @@ custom_target('gtkdoc-db',
 )
 
 if get_option('api-docs')
-    install_subdir('gtkdoc/html',
-                   install_dir : join_paths(get_option('datadir'), 'gtk-doc/html/librygel-db'),
-                   strip_directory : true)
+    meson.add_install_script(install_doc, gtkdoc_db_target,
+                   join_paths(get_option('datadir'), 'gtk-doc/html/librygel-db'))
 endif
 
 endif

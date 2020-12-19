@@ -22,22 +22,22 @@ custom_target('valadoc-core',
     [
         valadoc,
         core_doc_common_args,
-        '-o', 'valadoc',
         core_sources
     ]
 )
 
 if gtkdoc.found()
-custom_target('gtkdoc-core',
+    subdir('gtkdoc')
+
+gtkdoc_core_target = custom_target('gtkdoc-core',
     input: core_sources,
     output: 'gtkdoc',
     depends : core_lib,
     build_by_default : get_option('api-docs'),
-    command :
+    command:
     [
         valadoc,
         '--doclet', 'gtkdoc',
-        '-o', 'gtkdoc',
         core_doc_common_args,
         '-X', join_paths(meson.build_root(), 'src/librygel-core/rygel-core.h'),
         '-X', '-l',
@@ -48,9 +48,8 @@ custom_target('gtkdoc-core',
 )
 
 if get_option('api-docs')
-    install_subdir('gtkdoc/html',
-                   install_dir : join_paths(get_option('datadir'), 'gtk-doc/html/librygel-core'),
-                   strip_directory : true)
+    meson.add_install_script(install_doc, gtkdoc_core_target,
+                   join_paths(get_option('datadir'), 'gtk-doc/html/librygel-core'))
 endif
 endif
 endif

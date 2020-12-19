@@ -27,13 +27,13 @@ custom_target('valadoc-renderer',
     [
         valadoc,
         renderer_doc_common_args,
-        '-o', 'valadoc',
         renderer_sources
     ]
 )
 
 if gtkdoc.found()
-custom_target('gtkdoc-renderer',
+subdir('gtkdoc')
+gtkdoc_renderer_target = custom_target('gtkdoc-renderer',
     input: renderer_sources,
     output: 'gtkdoc',
     depends : renderer_lib,
@@ -43,7 +43,6 @@ custom_target('gtkdoc-renderer',
         valadoc,
         renderer_doc_common_args,
         '--doclet', 'gtkdoc',
-        '-o', 'gtkdoc',
         '-X', join_paths(meson.build_root(), 'src/librygel-renderer/rygel-renderer.h'),
         '-X', '-l',
         '-X', join_paths(meson.build_root(), 'src/librygel-renderer/librygel-renderer-2.6.so'),
@@ -53,9 +52,8 @@ custom_target('gtkdoc-renderer',
     ]
 )
 if get_option('api-docs')
-    install_subdir('gtkdoc/html',
-                   install_dir : join_paths(get_option('datadir'), 'gtk-doc/html/librygel-renderer'),
-                   strip_directory : true)
+    meson.add_install_script(install_doc, gtkdoc_renderer_target,
+                   join_paths(get_option('datadir'), 'gtk-doc/html/librygel-renderer'))
 endif
 endif
 endif

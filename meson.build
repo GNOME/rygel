@@ -1,4 +1,4 @@
-project('rygel', 'vala', 'c', version : '0.40.0', meson_version : '>= 0.50.0')
+project('rygel', 'vala', 'c', version : '0.40.0', meson_version : '>= 0.55.0')
 vala = meson.get_compiler('vala')
 
 # Check for the required vala version
@@ -8,6 +8,8 @@ vala_version_found = vala.version()
 if not vala_version_found.version_compare(vala_version_required)
     error('Found Vala version @0@, need @1@'.format(vala_version_found, vala_version_required))
 endif
+
+install_doc = find_program('build-aux/meson/install-gtkdoc.py')
 
 i18n = import('i18n')
 gnome = import('gnome')
@@ -60,6 +62,7 @@ conf.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('locale
 conf.set_quoted('MX_EXTRACT_PATH', join_paths(rygel_libexecdir, 'mx-extract'))
 conf.set_quoted('DESKTOP_DIR', join_paths(get_option('prefix'), get_option('datadir'), 'applications'))
 conf.set_quoted('VERSION', meson.project_version())
+conf.set('EXAMPLEDIR', join_paths(meson.current_source_dir(), 'examples'))
 config_include = include_directories('.')
 
 add_global_arguments(['-include','config.h'], language : 'c')
