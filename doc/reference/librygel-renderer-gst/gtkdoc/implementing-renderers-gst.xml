@@ -11,12 +11,12 @@
 <title>Implementing GStreamer-based Renderers: Overview</title>
 
 <para>
-This library may be used to create in-process UPnP/DLNA Renderers, or Players based on GStreamer, via 
+This library may be used to create in-process UPnP/DLNA Renderers, or Players based on GStreamer, via
 the <link linkend="RygelPlaybinRenderer">RygelPlaybinRenderer</link> class. For instance,
 this may be used to add UPnP/DLNA Renderer or Player capability to an existing GStreamer-based media player application.
 </para>
 
-<para>The <link linkend="RygelPlaybinRenderer">RygelPlaybinRenderer</link> reference documentation 
+<para>The <link linkend="RygelPlaybinRenderer">RygelPlaybinRenderer</link> reference documentation
 and these examples explain how to implement renderers.
 </para>
 
@@ -33,7 +33,7 @@ and connect it to a network interface, rendering the content to stdout as ASCII.
 
 <!-- Do not indent the xi:include node. That puts spaces at the start of the code. -->
 <programlisting role="C">
-<xi:include  href="../../../../examples/standalone-renderer-gst.c"
+<xi:include  href="@EXAMPLEDIR@/standalone-renderer-gst.c"
     parse="text"
     xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </programlisting>
@@ -50,7 +50,7 @@ This slightly fuller example program shows how to instantiate the renderer then 
 
 <!-- Do not indent the xi:include node. That puts spaces at the start of the code. -->
 <programlisting role="C">
-<xi:include  href="../../../../examples/fullscreen-renderer.c"
+<xi:include  href="@EXAMPLEDIR@/fullscreen-renderer.c"
     parse="text"
     xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </programlisting>

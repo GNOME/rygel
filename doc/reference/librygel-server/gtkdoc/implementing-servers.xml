@@ -14,7 +14,7 @@
 This library may be used to create UPnP or DLNA servers via its <link linkend="RygelMediaServer">RygelMediaServer</link> class.
 </para>
 
-<para>The <link linkend="RygelMediaServer">RygelMediaServer</link> reference documentation 
+<para>The <link linkend="RygelMediaServer">RygelMediaServer</link> reference documentation
 and this example explains how to implement a server.
 </para>
 
@@ -25,13 +25,13 @@ and this example explains how to implement a server.
 
 <!-- TODO: Find a way to mention this C example code in the RygelMediaServer valadoc comments instead. -->
 <para>
-This example program shows how to fill a container with media items and then instantiate a server to serve 
+This example program shows how to fill a container with media items and then instantiate a server to serve
 them.
 </para>
 
 <!-- Do not indent the xi:include node. That puts spaces at the start of the code. -->
-<programlisting role="C">
-<xi:include  href="../../../../examples/standalone-server.c"
+<programlisting languae="C">
+  <xi:include  href="@EXAMPLEDIR@/standalone-server.c"
     parse="text"
     xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </programlisting>

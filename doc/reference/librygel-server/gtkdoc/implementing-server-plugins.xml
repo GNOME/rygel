@@ -12,10 +12,10 @@
 <title>Implementing Server Plugins: Overview</title>
 
 <para>
-This library may be used to create Rygel server plugins by 
+This library may be used to create Rygel server plugins by
 implementing the <link linkend="RygelMediaServerPlugin">RygelMediaServerPlugin</link> class.</para>
 
-<para>The <link linkend="RygelMediaServerPlugin">RygelMediaServerPlugin</link> reference documentation 
+<para>The <link linkend="RygelMediaServerPlugin">RygelMediaServerPlugin</link> reference documentation
 and these examples explain how to implement these plugins.
 </para>
 
@@ -32,30 +32,30 @@ This example source code shows how to implement a Rygel Server plugin.</para>
 deriving from <link linkend="RygelSimpleContainer">RygelSimpleContainer</link> and adding some
 hard-coded items. A real Rygel server plugin's root container, or its child items, would typically
 populate themselves dynamically. For instance, they might add and remove items based on some source
-such as a file system or database. See, for instance, the 
+such as a file system or database. See, for instance, the
 <ulink url="&url_git_browse_base_src;plugins/tracker">Rygel Tracker Plugin</ulink> or the
 <ulink url="&url_git_browse_base_src;plugins/media-export">Rygel MediaExport Plugin</ulink> plugins,
 implemented in Vala.
 </para>
 
 <!-- Do not indent the xi:include node. That puts spaces at the start of the code. -->
-<programlisting role="C">
-<xi:include  href="../../../../examples/server-plugins/C/example-server-plugin.h"
+<programlisting language="C">
+<xi:include  href="@EXAMPLEDIR@/server-plugins/C/example-server-plugin.h"
     parse="text"
     xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </programlisting>
-<programlisting role="C">
-<xi:include  href="../../../../examples/server-plugins/C/example-server-plugin.c"
+<programlisting language="C">
+<xi:include  href="@EXAMPLEDIR@/server-plugins/C/example-server-plugin.c"
     parse="text"
     xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </programlisting>
-<programlisting role="C">
-<xi:include  href="../../../../examples/server-plugins/C/example-root-container.h"
+<programlisting language="C">
+<xi:include  href="@EXAMPLEDIR@/server-plugins/C/example-root-container.h"
     parse="text"
     xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </programlisting>
-<programlisting role="C">
-<xi:include  href="../../../../examples/server-plugins/C/example-root-container.c"
+<programlisting language="C">
+<xi:include  href="@EXAMPLEDIR@/server-plugins/C/example-root-container.c"
     parse="text"
     xmlns:xi="http://www.w3.org/2001/XInclude"/>
 </programlisting>
@@ -73,7 +73,7 @@ implemented in Vala.
 
 <para>The <classname>RygelMediaExportRootContainer</classname> creates an instance of a <classname>RygelMediaExportMediaCache</classname> class and a <classname>RygelMediaExportHarvester</classname> class. The harvester finds files on the filesystem, and stores them in the media cache, which uses SQLite to keep track of them.</para>
 
-<para><classname>RygelMediaExportRootContainer</classname> informs the media cache that it should have a child container for the media content as organised on the filesystem, and additionally some virtual folders for Music, Pictures, Video and Playlists, with further sub-divisions under these, for instance by publication year. These containers are added to the media cache via instances of the <classname>RygelMediaExportNullContainer</classname> class, but that is just to simplify the media cache API and these instances then serve no further purpose. The virtual folders are re-added whenever the filesystem's container is updated, so that they can show the updated 
+<para><classname>RygelMediaExportRootContainer</classname> informs the media cache that it should have a child container for the media content as organised on the filesystem, and additionally some virtual folders for Music, Pictures, Video and Playlists, with further sub-divisions under these, for instance by publication year. These containers are added to the media cache via instances of the <classname>RygelMediaExportNullContainer</classname> class, but that is just to simplify the media cache API and these instances then serve no further purpose. The virtual folders are re-added whenever the filesystem's container is updated, so that they can show the updated
 content, though that is not particularly efficient.</para>
 
 <para><classname>RygelMediaExportRootContainer</classname> then delegates its <classname>RygelMediaContainer</classname> virtual function implementations to this media cache, which in turn uses the <classname>RygelMediaExportObjectFactory</classname> to instantiate new containers for each request based on their ID. For instance, it returns a <classname>RygelMediaExportDBContainer</classname> if the requested ID indicates a virtual container, using the definition in the rest of the ID to build a suitable SQL query.</para>
