@@ -1,0 +1,6 @@
+[_presets_]
+version=1.0
+element-name=GstVaapiEncodeH264
+
+[Rygel AVC_MP4_BL_CIF15_AAC_520 preset]
+bitrate=384
