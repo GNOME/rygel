@@ -5,3 +5,7 @@ element-name=GstMP4Mux
 [Rygel DLNA preset]
 streamable=true
 faststart=true
+
+[Rygel AVC_MP4_BL_CIF15_AAC_520 preset]
+streamable=true
+faststart=true
