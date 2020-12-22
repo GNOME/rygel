@@ -1,0 +1,12 @@
+[_presets_]
+version=1.0
+element-name=GstVoAacEnc
+
+[Rygel DLNA preset]
+bitrate=64
+
+[Rygel AAC_ADTS_320 preset]
+bitrate=256
+
+[Rygel AVC_MP4_BL_CIF15_AAC_520 preset]
+bitrate=128
