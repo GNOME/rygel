@@ -1,0 +1,6 @@
+[_presets_]
+version=1.0
+element-name=GstVaapiEncodeMpeg2
+
+[Rygel DLNA preset]
+bitrate=15000

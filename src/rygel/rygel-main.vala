@@ -294,6 +294,8 @@ internal class Rygel.Main : Object {
         Main main = null;
         DBusService service = null;
 
+        X.init_threads ();
+
         var original_args = args;
 
         Intl.setlocale (LocaleCategory.ALL, "");
