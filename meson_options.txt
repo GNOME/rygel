@@ -1,5 +1,6 @@
 option('uninstalled', type: 'boolean', value: 'false', description: 'Run Rygel from build directory only')
 option('api-docs', type: 'boolean', value: 'false', description: 'Build the API documentation')
+option('man_pages', type: 'boolean', value: 'true', description: 'Build the man pages')
 option('systemd-user-units-dir', type : 'string', value : 'auto', description : 'Where to install the systemd user unit (use special values "auto" or "none", or pass a path')
 option('plugins', type : 'array', choices : ['external', 'gst-launch', 'lms', 'media-export', 'mpris', 'playbin', 'ruih', 'tracker', 'tracker3'])
 option('engines', type : 'array', choices : ['simple', 'gstreamer'])
