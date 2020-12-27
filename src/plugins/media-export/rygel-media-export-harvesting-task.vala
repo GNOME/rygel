@@ -210,6 +210,10 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
         }
 
         if (info.get_file_type () == FileType.DIRECTORY) {
+            if (!Harvester.is_eligible (file, info)) {
+                return false;
+            }
+
             // queue directory for processing later
             this.monitor.add.begin (file);
 

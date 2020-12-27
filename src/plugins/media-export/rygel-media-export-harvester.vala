@@ -67,6 +67,10 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
      * @return true if file should be extracted, false otherwise
      */
     public static bool is_eligible (File file, FileInfo info) {
+        if (info.get_file_type () == FileType.DIRECTORY) {
+            return !file.get_child (".nomedia").query_exists ();
+        }
+
         var is_supported_content_type =
             info.get_content_type ().has_prefix ("image/") ||
             info.get_content_type ().has_prefix ("video/") ||
@@ -191,8 +195,7 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
                                         FileAttribute.STANDARD_CONTENT_TYPE,
                                         FileQueryInfoFlags.NONE,
                                         this.cancellable);
-            if (info.get_file_type () == FileType.DIRECTORY ||
-                Harvester.is_eligible (file, info)) {
+            if (Harvester.is_eligible (file, info)) {
                 var id = MediaCache.get_id (file.get_parent ());
                 try {
                     var parent_container = cache.get_object (id)
