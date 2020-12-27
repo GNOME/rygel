@@ -33,13 +33,14 @@ if xsltproc.found()
         [
             xsltproc,
             xlstproc_flags,
-            '-o', '/dev/null',
+            '--noout',
             stylesheet,
             'rygel.xml'
         ]
     )
 
     if (r.returncode() == 0)
+        message('docbook stylesheets found')
         custom_target(
             'man 1 pages',
             input: 'rygel.xml',
