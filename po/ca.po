@@ -378,7 +378,7 @@ msgstr "No s'ha pogut cercar el punt d'entrada de la funció «%s» a «%s»: %s
 #, c-format
 msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
 msgstr ""
-"El mòdul '%s' entra en conflicte amb el mòdul ja carregat '%s'. S'està ometent"
+"El mòdul «%s» entra en conflicte amb el mòdul ja carregat «%s». S'està ometent"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
@@ -638,7 +638,7 @@ msgstr "No s'ha pogut obtenir l'URI original per a «%s»: %s"
 #: src/librygel-server/rygel-import-resource.vala:188
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
-msgstr "L'URI «%s» no és vàlid per importar-hi el contingut"
+msgstr "L'URI «%s» no és vàlid per a importar-hi el contingut"
 
 #: src/librygel-server/rygel-import-resource.vala:276
 #, c-format
@@ -1143,7 +1143,7 @@ msgstr "Ha fallat l'enviament de l'error al pare: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:157
 msgid "— helper binary for Rygel to extract metadata"
-msgstr "- binari d'ajuda del Rygel per extreure metadades"
+msgstr "- binari d'ajuda del Rygel per a extreure metadades"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:164
 #, c-format
@@ -1225,7 +1225,7 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
 #, c-format
 msgid "Failed to force reindex to fix database: %s"
-msgstr "Ha fallat forçar la reindexació per esmenar la base de dades: %s"
+msgstr "Ha fallat forçar la reindexació per a esmenar la base de dades: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
@@ -1255,7 +1255,7 @@ msgstr "Ha fallat l'obtenció dels ID d'actualització: %s"
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:400
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
-msgstr "Base de dades inconsistent: l'ítem %s no té %s pare "
+msgstr "Base de dades inconsistent: l'ítem %s no té %s pare"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:525
 msgid "Failed to get reset token"
