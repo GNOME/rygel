@@ -1,3 +1,36 @@
+0.40.1
+======
+Server:
+ - Set albumArtUri on Videos to provide thumbnails for the PS4
+
+MediaExport:
+ - Strip xml suffix when generating titles from filenames
+
+Documentation:
+ - Fix generation and install location
+
+Tracker3:
+ - Add section to the default configuration file
+
+Translations:
+ - Various updates
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/151
+ - https://gitlab.gnome.org/GNOME/rygel/issues/183
+ - https://gitlab.gnome.org/GNOME/rygel/issues/190
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Cheng-Chia Tseng <pswo10680@gmail.com>
+ - Juliano Camargo <julianosc@protonmail.com>
+
+Added/updated translations:
+ - nb.po, courtesy of Kjartan Maraas
+ - pt.po, courtesy of José Vieira
+ - zh_TW.po, courtesy of Cheng-Chia Tseng
+
 0.40.0
 ======
  - Translation updates
