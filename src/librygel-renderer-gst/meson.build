@@ -38,7 +38,7 @@ custom_target('RygelRendererGst-2.6.typelib',
                         '--includedir', renderer_girdir,
                         join_paths(meson.current_build_dir(), 'RygelRendererGst-2.6.gir')],
                output: 'RygelRendererGst-2.6.typelib',
-               depends: [renderer_gst_lib, renderer_lib, renderer_gst_gir],
+               depends: [renderer_gst_lib, renderer_lib, renderer_gst_gir, renderer_gir],
                install: true,
                install_dir: typelib_dir)
 endif

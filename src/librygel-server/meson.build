@@ -124,7 +124,7 @@ custom_target('RygelServer-2.6.typelib',
                         '--includedir', core_girdir,
                         join_paths(meson.current_build_dir(), 'RygelServer-2.6.gir')],
                output: 'RygelServer-2.6.typelib',
-               depends: server_gir,
+               depends: [ server_lib, server_gir, core_gir ],
                install: true,
                install_dir: typelib_dir)
 
