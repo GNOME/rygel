@@ -72,7 +72,7 @@ core_gir = custom_target('RygelCore-2.6.gir',
 custom_target('RygelCore-2.6.typelib',
                command: [g_ir_compiler, '--output', '@OUTPUT@', join_paths(meson.current_build_dir(), 'RygelCore-2.6.gir')],
                output: 'RygelCore-2.6.typelib',
-               depends: core_gir,
+               depends: [ core_lib, core_gir ],
                install: true,
                install_dir: typelib_dir)
 endif
