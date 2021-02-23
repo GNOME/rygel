@@ -22,6 +22,7 @@ using Rygel;
 using GUPnP;
 
 private const string TRACKER_PLUGIN = "Tracker";
+private const string TRACKER3_PLUGIN = "Tracker3";
 
 /**
  * Simple plugin which exposes the media contents of a directory via UPnP.
@@ -59,7 +60,7 @@ public void on_plugin_available (Plugin plugin, Plugin our_plugin) {
     // Do not allow this plugin and the tracker plugin to both be
     // active at the same time,
     // because they serve the same purpose.
-    if (plugin.name == TRACKER_PLUGIN) {
+    if (plugin.name == TRACKER_PLUGIN || plugin.name == TRACKER3_PLUGIN ) {
         if (our_plugin.active && !plugin.active) {
             // The Tracker plugin might be activated later,
             // so shut this plugin down if that happens.
@@ -78,7 +79,7 @@ public void on_plugin_available (Plugin plugin, Plugin our_plugin) {
                 // Log that we are starting this plugin
                 // because the Tracker plugin is not active instead.
                 message ("Plugin '%s' inactivate, activating '%s' plugin",
-                         TRACKER_PLUGIN,
+                         plugin.name,
                          MediaExport.Plugin.NAME);
             }
             our_plugin.active = !plugin.active;
