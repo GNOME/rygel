@@ -80,33 +80,27 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
         }
     }
 
-    public void upgrade (int old_version) {
+    public void upgrade (int old_version) throws MediaCacheError {
         debug ("Older schema detected. Upgrading...");
         int current_version = int.parse (SQLFactory.SCHEMA_VERSION);
         while (old_version < current_version) {
-            if (this.database == null) {
-                break;
-            }
-
             switch (old_version) {
                 case 16:
                     this.update_v17_v18 (false);
-                    // We jump 17 here since 17 -> 18 is just a table rename
+                    // We skip 17 here since 17 -> 18 is just a table rename
                     old_version++;
                     break;
                 case 17:
                     this.update_v17_v18 (true);
                     break;
                 default:
-                    warning (_("Cannot upgrade from version %d"), old_version);
-                    database = null;
-                    break;
+                    throw new MediaCacheError.UPGRADE_FAILED (_("Cannot upgrade from version %d"), old_version);
             }
             old_version++;
         }
     }
 
-    private void update_v17_v18 (bool move_data) {
+    private void update_v17_v18 (bool move_data) throws MediaCacheError {
         try {
             this.database.begin ();
             this.database.exec (this.sql.make (SQLString.CREATE_IGNORELIST_TABLE));
@@ -120,8 +114,7 @@ internal class Rygel.MediaExport.MediaCacheUpgrader {
             this.database.analyze ();
         } catch (Database.DatabaseError error) {
             database.rollback ();
-            warning (_("Database upgrade to v18 failed: %s"), error.message);
-            database = null;
+            throw new MediaCacheError.UPGRADE_FAILED (_("Database upgrade to v18 failed: %s"), error.message);
         }
     }
 }

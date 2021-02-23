@@ -33,7 +33,8 @@ public errordomain Rygel.MediaExport.MediaCacheError {
     SQLITE_ERROR,
     GENERAL_ERROR,
     INVALID_TYPE,
-    UNSUPPORTED_SEARCH
+    UNSUPPORTED_SEARCH,
+    UPGRADE_FAILED
 }
 
 internal enum Rygel.MediaExport.ObjectType {
