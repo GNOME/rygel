@@ -3,24 +3,24 @@
 # This file is distributed under the same license as the rygel package.
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en http://www.trasno.net
+#
 # Fran Diéguez <frandieguez@gnome.org>, 2010, 2011, 2012.
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2012.
-# Fran Dieguez <frandieguez@gnome.org>, 2012-2020.
-#
+# Fran Dieguez <frandieguez@gnome.org>, 2012-2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-07-12 13:38+0000\n"
-"PO-Revision-Date: 2020-08-14 00:02+0200\n"
+"POT-Creation-Date: 2020-12-27 17:59+0000\n"
+"PO-Revision-Date: 2021-02-23 15:26+0100\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
-"Language-Team: Galician <proxecto@trasno.gal>\n"
+"Language-Team: Proxecto Trasno <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 3.36.0\n"
+"X-Generator: Gtranslator 3.38.0\n"
 "X-Project-Style: gnome\n"
 
 #: data/rygel.desktop.in.in:3
@@ -348,11 +348,11 @@ msgstr "Non se estabeleceu o valor para «%s/title»"
 msgid "No value available for “%s/%s”"
 msgstr "Non hai un valor dispoñíbel para «%s/%s»"
 
-#: src/librygel-core/rygel-plugin-information.vala:64
+#: src/librygel-core/rygel-plugin-information.vala:67
 msgid "[Plugin] group not found"
 msgstr "[Engadido] grupo non atopado"
 
-#: src/librygel-core/rygel-plugin-information.vala:76
+#: src/librygel-core/rygel-plugin-information.vala:79
 #, c-format
 msgid "Plugin module %s does not exist"
 msgstr "O módulo do engadido %s non existe"
@@ -378,7 +378,7 @@ msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr ""
 "Produciuse un erro ao buscar a función do punto de entrada  «%s» en «%s»: %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:155
+#: src/librygel-core/rygel-plugin-loader.vala:156
 #, c-format
 msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
 msgstr "O módulo «%s» ten un conflito co módulo «%s» xa cargado. Omitindo"
@@ -437,15 +437,12 @@ msgid "Failed to roll back transaction: %s"
 msgstr "Produciuse un erro ao desfacer a transacción: %s"
 
 #: src/librygel-renderer-gst/rygel-playbin-player.vala:370
-#| msgid ""
-#| "Your GStreamer installation seems to be missing the “playbin” element. "
-#| "The Rygel GStreamer renderer implementation cannot work without it"
 msgid ""
 "Your GStreamer installation seems to be missing the “playbin3” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
 "A súa instalación de GStreamer semella que non conta co elemento «playbin3». "
-"A implementacion do renderizador GStreamer de Rygel non pode traballar sen "
+"A implementación do renderizador GStreamer de Rygel non pode traballar sen "
 "ela"
 
 #: src/librygel-renderer/rygel-av-transport.vala:204
@@ -558,7 +555,7 @@ msgstr "Produciuse un fallo ao analizar o ficheiro de UI da lista %s"
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
 #, c-format
 msgid "Unable to parse device profile data: %s"
-msgstr "Produciuse un erro ao analizar os datos do perfíl: %s"
+msgstr "Produciuse un erro ao analizar os datos do perfil: %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
 #, c-format
@@ -793,7 +790,7 @@ msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init non foi chamado. Non se pode continuar."
 
 #: src/librygel-server/rygel-media-file-item.vala:177
-#: src/librygel-server/rygel-video-item.vala:222
+#: src/librygel-server/rygel-video-item.vala:242
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "Non é posíbel determinar o protocolo para a URI %s"
@@ -881,7 +878,7 @@ msgstr "Non é posíbel crear un elemento restrinxido"
 #: src/librygel-server/rygel-object-creator.vala:385
 #, c-format
 msgid "UPnP class “%s” not supported"
-msgstr "Clase UPnp «%s» non admitida"
+msgstr "Clase UPnP «%s» non admitida"
 
 #: src/librygel-server/rygel-object-creator.vala:419
 #: src/librygel-server/rygel-object-creator.vala:431
@@ -899,7 +896,7 @@ msgstr "Produciuse un erro ao crear o elemento baixo «%s»: %s"
 #: src/librygel-server/rygel-object-creator.vala:552
 #, c-format
 msgid "DLNA profile “%s” not supported"
-msgstr "Perfíl DLNA «%s» non admitido"
+msgstr "Perfil DLNA «%s» non admitido"
 
 #: src/librygel-server/rygel-object-creator.vala:656
 #, c-format
@@ -937,7 +934,8 @@ msgstr "Criterio de busca fornecido non válido"
 msgid "Failed to search in “%s”: %s"
 msgstr "Produciuse un erro ao buscar en «%s»: %s"
 
-#: src/librygel-server/rygel-subtitle-manager.vala:92
+#: src/librygel-server/rygel-subtitle-manager.vala:49
+#: src/librygel-server/rygel-subtitle-manager.vala:96
 msgid "No subtitle available"
 msgstr "Non hai subtítulos dispoñíbeis"
 
@@ -1080,7 +1078,7 @@ msgstr "O fornecedor externo %s non forneceu a propiedade obrigatoria «%s»"
 #: src/plugins/tracker3/rygel-tracker-albums.vala:31
 #: src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
-msgstr "Álbumes"
+msgstr "Albumes"
 
 #: src/plugins/lms/rygel-lms-all-images.vala:89
 #: src/plugins/lms/rygel-lms-all-music.vala:171
@@ -1148,7 +1146,7 @@ msgstr "Produciuse un fallo ao ler da tubería: %s"
 #: src/plugins/media-export/rygel-media-export-extract.vala:144
 #, c-format
 msgid "Failed to send error to parent: %s"
-msgstr "Produciuse un fallo ao envair un erro ao pai: %s"
+msgstr "Produciuse un fallo ao enviar un erro ao pai: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:157
 msgid "— helper binary for Rygel to extract metadata"
@@ -1213,7 +1211,6 @@ msgstr "Produciuse un fallo ao obter o fillo do contedor %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
 #, c-format
-#| msgid "Failed to extract basic metadata from %s: %s"
 msgid "Failed to extract meta-data for file %s"
 msgstr "Produciuse un fallo ao extraer os metadatos do ficheiro %s"
 
@@ -1248,7 +1245,6 @@ msgstr "Non é posíbel anovar desde a versión %d"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
 #, c-format
-#| msgid "Database upgrade failed: %s"
 msgid "Database upgrade to v18 failed: %s"
 msgstr "Produciuse un fallo ao actualizar a v18: %s"
 
@@ -1292,13 +1288,11 @@ msgstr "Non é posíbel crear referencias a contedores"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:597
 #, c-format
-#| msgid "Failed to add %s to file blacklist: %s"
 msgid "Failed to add %s to ignored files: %s"
 msgstr "Produciuse un fallo ao engadir %s á lista de ficheiros ignorados: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, c-format
-#| msgid "Failed to get whether URI %s is blacklisted: %s"
 msgid "Failed to get whether URI %s is ignored: %s"
 msgstr "Produciuse un fallo ao saber se o URI %s está ignorada: %s"
 
@@ -1334,7 +1328,7 @@ msgstr "Produciuse un fallo ao crear o esquema da base de datos: %s"
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:1232
 #, c-format
 msgid "Skipping unsupported sort field: %s"
-msgstr "Omitindo o campo de ordenacion non admitido: %s"
+msgstr "Omitindo o campo de ordenación non admitido: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:104
 msgid "Failed to gracefully stop the process. Using KILL"
@@ -1351,7 +1345,7 @@ msgstr "O proceso check_async fallou: %s"
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #, c-format
 msgid "Process died while handling URI %s"
-msgstr "O proceso morreo ao xestionar o URI %s"
+msgstr "O proceso morre ao xestionar o URI %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
 #, c-format
@@ -1516,7 +1510,7 @@ msgstr "Non é posíbel crear o reprodutor GStreamer"
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
-msgstr "Produciuse un erro ao construir o URI para o cartafol «%s»: %s"
+msgstr "Produciuse un erro ao construír o URI para o cartafol «%s»: %s"
 
 #: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
@@ -1577,7 +1571,7 @@ msgstr "Produciuse un fallo ao consultar a ACL: %s"
 #: src/rygel/rygel-acl.vala:127
 #, c-format
 msgid "Error creating D-Bus proxy for ACL: %s"
-msgstr "Produciuse un fallo ao crear o proxi de DBUS para a ACL: %s"
+msgstr "Produciuse un fallo ao crear o proxy de DBUS para a ACL: %s"
 
 #: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “allow”"
@@ -1604,17 +1598,17 @@ msgid_plural "No plugins found in %d seconds; giving up…"
 msgstr[0] "Non foi posíbel atopar engadidos en %d segundo, abortando…"
 msgstr[1] "Non foi posíbel atopar engadidos en %d segundos, abortando…"
 
-#: src/rygel/rygel-main.vala:177
+#: src/rygel/rygel-main.vala:192
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Produciuse un erro ao crear a factoría de dispositivo raíz: %s"
 
-#: src/rygel/rygel-main.vala:235
+#: src/rygel/rygel-main.vala:250
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Produciuse un erro ao crear o RootDevice para %s. Razón: %s"
 
-#: src/rygel/rygel-main.vala:272
+#: src/rygel/rygel-main.vala:287
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Produciuse un erro ao cargar a configuración do usuario: %s"
