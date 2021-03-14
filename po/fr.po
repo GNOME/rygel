@@ -9,21 +9,22 @@
 # naybnet <naybnet@gmail.com>, 2014.
 # Charles Monzat <charles.monzat@numericable.fr>, 2018.
 # Thibault Martin <mail@thibaultmart.in>, 2020.
+# Guillaume Bernard <associations@guillaume-bernard.fr>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-08-10 23:36+0000\n"
-"PO-Revision-Date: 2020-08-19 15:46+0200\n"
-"Last-Translator: Thibault Martin <mail@thibaultmart.in>\n"
+"POT-Creation-Date: 2021-02-24 00:02+0000\n"
+"PO-Revision-Date: 2021-03-07 21:51+0100\n"
+"Last-Translator: Guillaume Bernard <associations@guillaume-bernard.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 3.36.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Gtranslator 3.38.0\n"
 
 #: data/rygel.desktop.in.in:3
 msgid "Rygel"
@@ -49,7 +50,7 @@ msgstr "Préférences UPnP/DLNA"
 
 #: data/rygel-preferences.ui:94
 msgid "Add a directory to the list of shared directories"
-msgstr "Ajoute un répertoire à la liste des répertoires partagés"
+msgstr "Ajoute un répertoire à la liste des répertoires partagés"
 
 #: data/rygel-preferences.ui:95
 msgid "Add shared directory"
@@ -125,7 +126,7 @@ msgstr "Impossible de lire la sortie standard de %s : %s"
 #: src/librygel-core/rygel-basic-management-test.vala:225
 #, c-format
 msgid "Failed to read error output from %s: %s"
-msgstr "Impossible de lire la sortie d’erreur de « %s » : %s"
+msgstr "Impossible de lire la sortie d’erreur de %s : %s"
 
 #. / No test with the specified TestID was found
 #: src/librygel-core/rygel-basic-management.vala:158
@@ -570,7 +571,7 @@ msgstr "Filtre UI non valide : %s"
 #: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
 #, c-format
 msgid "Unable to parse UI data — unexpected node: %s"
-msgstr "Impossible d’analyser les données UI — nœud inattendu : %s "
+msgstr "Impossible d’analyser les données UI — nœud inattendu : %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -623,7 +624,7 @@ msgstr "L’envoi de données vers l’élément non vide « %s » n’est pas
 #: src/librygel-server/rygel-http-post.vala:72
 #, c-format
 msgid "No writable URI for %s available"
-msgstr "Aucun URI modifiable disponible pour %s"
+msgstr "Aucune URI modifiable disponible pour %s"
 
 #. translators: Dotfile is the filename with prefix "."
 #: src/librygel-server/rygel-http-post.vala:187
@@ -644,7 +645,7 @@ msgstr "Impossible de créer la source de données pour %s"
 #: src/librygel-server/rygel-import-resource.vala:124
 #, c-format
 msgid "Failed to get original URI for “%s”: %s"
-msgstr "Impossible d’obtenir l’URI original pour « %s » : %s"
+msgstr "Impossible d’obtenir l’URI originale pour « %s » : %s"
 
 #: src/librygel-server/rygel-import-resource.vala:188
 #, c-format
@@ -795,7 +796,7 @@ msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init n’a pas été appelé. Impossible de continuer."
 
 #: src/librygel-server/rygel-media-file-item.vala:177
-#: src/librygel-server/rygel-video-item.vala:222
+#: src/librygel-server/rygel-video-item.vala:242
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "Impossible de déterminer le protocole pour l’URI %s"
@@ -808,16 +809,16 @@ msgstr "Impossible de déterminer le protocole pour %s"
 #: src/librygel-server/rygel-media-object.vala:491
 #, c-format
 msgid "Bad URI: %s"
-msgstr "URI incorrect : %s"
+msgstr "URI incorrecte : %s"
 
 #: src/librygel-server/rygel-media-query-action.vala:100
 msgid "Invalid number of arguments"
-msgstr "Nombre d’arguments non valide"
+msgstr "Nombre de paramètres non valide"
 
 #. Sorry we can't do anything without ObjectID
 #: src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
-msgstr "Argument d’ObjectID manquant."
+msgstr "Paramètre d’ObjectID manquant."
 
 #: src/librygel-server/rygel-media-query-action.vala:127
 msgid "Invalid range"
@@ -847,7 +848,7 @@ msgstr "Les commentaires ne sont pas permis dans le XML"
 #. Sorry we can't do anything without ContainerID
 #: src/librygel-server/rygel-object-creator.vala:202
 msgid "Missing ContainerID argument"
-msgstr "Argument de ContainerID manquant"
+msgstr "Paramètre de ContainerID manquant"
 
 #: src/librygel-server/rygel-object-creator.vala:226
 #, c-format
@@ -869,7 +870,7 @@ msgstr ""
 
 #: src/librygel-server/rygel-object-creator.vala:257
 msgid "Invalid upnp:class given in CreateObject"
-msgstr "upnpn non valide : classe donnée dans CreateObject"
+msgstr "upnp non valide : classe donnée dans CreateObject"
 
 #: src/librygel-server/rygel-object-creator.vala:261
 msgid "Object is missing the @restricted attribute"
@@ -918,11 +919,11 @@ msgstr ""
 
 #: src/librygel-server/rygel-reference-creator.vala:50
 msgid "“ContainerID” agument missing."
-msgstr "Argument « ContainerID » manquant."
+msgstr "Paramètre « ContainerID » manquant."
 
 #: src/librygel-server/rygel-reference-creator.vala:55
 msgid "“ObjectID” argument missing."
-msgstr "Argument ObjectID manquant."
+msgstr "Paramètre « ObjectID » manquant."
 
 #: src/librygel-server/rygel-reference-creator.vala:86
 #, c-format
@@ -946,7 +947,7 @@ msgstr "Aucun sous-titre disponible"
 #: src/librygel-server/rygel-thumbnailer.vala:61
 #, c-format
 msgid "No thumbnailer available: %s"
-msgstr "Pas de créateur de vignettes disponible : %s"
+msgstr "Aucun créateur de vignettes disponible : %s"
 
 #: src/librygel-server/rygel-thumbnailer.vala:74
 msgid "Thumbnailing not supported"
@@ -962,7 +963,7 @@ msgstr "Aucune vignette disponible"
 
 #: src/librygel-server/rygel-thumbnailer.vala:97
 msgid "No thumbnail available. Generation requested."
-msgstr "Pas de vignette disponible. La génération à été demandée."
+msgstr "Aucune vignette disponible. La génération à été demandée."
 
 #: src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
@@ -1163,7 +1164,7 @@ msgstr "— utilitaire binaire de Rygel pour extraire les métadonnées"
 #: src/plugins/media-export/rygel-media-export-extract.vala:164
 #, c-format
 msgid "Failed to parse commandline args: %s"
-msgstr "Échec d’analyse des arguments en ligne de commande : %s"
+msgstr "Échec d’analyse des paramètres de la ligne de commande : %s"
 
 # fabrique from glossary
 #: src/plugins/media-export/rygel-media-export-generic-extractor.vala:50
@@ -1305,7 +1306,7 @@ msgstr "Impossible d’ajouter %s à la liste des fichiers ignorés : %s"
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, c-format
 msgid "Failed to get whether URI %s is ignored: %s"
-msgstr "Impossible de savoir si l’URI %s est ignoré : %s"
+msgstr "Impossible de savoir si l’URI %s est ignorée : %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:626
 #, c-format
@@ -1463,7 +1464,7 @@ msgstr "Genre"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:56
 msgid "Files & Folders"
-msgstr "Fichiers & dossiers"
+msgstr "Fichiers et dossiers"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
