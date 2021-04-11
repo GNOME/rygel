@@ -6,10 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gnome Nepali Translation Project\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-03-01 23:18+0000\n"
-"PO-Revision-Date: 2017-10-10 11:31+0545\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
+"POT-Creation-Date: 2020-12-27 17:59+0000\n"
+"PO-Revision-Date: 2021-04-11 06:39+0545\n"
 "Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali Translation Team <chautari@gmail.com>\n"
 "Language: ne\n"
@@ -17,18 +16,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: data/rygel.desktop.in.in:3
 msgid "Rygel"
 msgstr "राईजेल"
 
-#: data/rygel.desktop.in.in:4 data/rygel.desktop.in.in:5
+#: data/rygel.desktop.in.in:4
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA सेवाहरू"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in.in:7
+#: data/rygel.desktop.in.in:6
 #, fuzzy
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "मध्यस्थता; मध्यस्थकर्ता; शेयर; अडियो; भिडियो; चित्र;"
@@ -40,11 +39,6 @@ msgstr "राईजेल प्राथमिकता"
 #: data/rygel-preferences.desktop.in.in:4
 msgid "UPnP/DLNA Preferences"
 msgstr "UPnP/DLNA प्राथमिकताहरू"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/rygel-preferences.desktop.in.in:7
-msgid "rygel"
-msgstr "rygel"
 
 #: data/rygel-preferences.ui:94
 #, fuzzy
@@ -91,36 +85,23 @@ msgstr "सञ्जाल:"
 msgid "Select folders"
 msgstr "फोल्डरहरू चयन गर्नुहोस्"
 
-#: src/librygel-core/rygel-base-configuration.vala:30
-#: src/librygel-core/rygel-base-configuration.vala:35
-#: src/librygel-core/rygel-base-configuration.vala:39
-#: src/librygel-core/rygel-base-configuration.vala:43
-#: src/librygel-core/rygel-base-configuration.vala:47
-#: src/librygel-core/rygel-base-configuration.vala:51
-#: src/librygel-core/rygel-base-configuration.vala:55
-#: src/librygel-core/rygel-base-configuration.vala:59
-#: src/librygel-core/rygel-base-configuration.vala:63
-#: src/librygel-core/rygel-base-configuration.vala:67
-#: src/librygel-core/rygel-base-configuration.vala:71
-#: src/librygel-core/rygel-base-configuration.vala:75
-#: src/librygel-core/rygel-base-configuration.vala:79
-#: src/librygel-core/rygel-base-configuration.vala:83
-#: src/librygel-core/rygel-base-configuration.vala:87
-#: src/librygel-core/rygel-base-configuration.vala:93
-#: src/librygel-core/rygel-base-configuration.vala:99
-#: src/librygel-core/rygel-base-configuration.vala:107
-#: src/librygel-core/rygel-base-configuration.vala:113
-#: src/librygel-core/rygel-base-configuration.vala:119
+#: src/librygel-core/rygel-base-configuration.vala:30 src/librygel-core/rygel-base-configuration.vala:35
+#: src/librygel-core/rygel-base-configuration.vala:39 src/librygel-core/rygel-base-configuration.vala:43
+#: src/librygel-core/rygel-base-configuration.vala:47 src/librygel-core/rygel-base-configuration.vala:51
+#: src/librygel-core/rygel-base-configuration.vala:55 src/librygel-core/rygel-base-configuration.vala:59
+#: src/librygel-core/rygel-base-configuration.vala:63 src/librygel-core/rygel-base-configuration.vala:67
+#: src/librygel-core/rygel-base-configuration.vala:71 src/librygel-core/rygel-base-configuration.vala:75
+#: src/librygel-core/rygel-base-configuration.vala:79 src/librygel-core/rygel-base-configuration.vala:83
+#: src/librygel-core/rygel-base-configuration.vala:87 src/librygel-core/rygel-base-configuration.vala:93
+#: src/librygel-core/rygel-base-configuration.vala:99 src/librygel-core/rygel-base-configuration.vala:107
+#: src/librygel-core/rygel-base-configuration.vala:113 src/librygel-core/rygel-base-configuration.vala:119
 msgid "Not implemented"
 msgstr "कार्यान्वयन भएको छैन"
 
 #: src/librygel-core/rygel-basic-management-test.vala:197
 #, fuzzy, c-format
 msgid "Failed to read standard output from %s: %s"
-msgstr ""
-"आदेश विवरणबाट\n"
-"\n"
-"निर्गत पढ्न असमर्थ: %s"
+msgstr "%s बाट मानक आउटपुट पढ्न असफल भयो: %s"
 
 #: src/librygel-core/rygel-basic-management-test.vala:225
 #, fuzzy, c-format
@@ -128,70 +109,55 @@ msgid "Failed to read error output from %s: %s"
 msgstr "शाखा प्रक्रिया (%s) बाट डेटा पढ्न असफल"
 
 #. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:159
+#: src/librygel-core/rygel-basic-management.vala:158
 msgid "No Such Test"
 msgstr "त्यस प्रकारको जाच छैन"
 
 #. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:167
+#: src/librygel-core/rygel-basic-management.vala:166 src/librygel-core/rygel-basic-management.vala:283
+#: src/librygel-core/rygel-basic-management.vala:382 src/librygel-core/rygel-basic-management.vala:471
 msgid "Wrong Test Type"
 msgstr "गलत जाच प्रकार"
 
 #. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:175
+#: src/librygel-core/rygel-basic-management.vala:174
 #, c-format
-#| msgid "Invalid date: %s"
 msgid "Invalid Test State “%s”"
 msgstr "अवैध परिक्षण स्थिति  “%s”"
 
 #. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:181
+#: src/librygel-core/rygel-basic-management.vala:180
 #, fuzzy, c-format
 msgid "State “%s” Precludes Cancel"
 msgstr "अवैध परिक्षण स्थिति  “%s”"
 
-#: src/librygel-core/rygel-basic-management.vala:214
-#: src/librygel-core/rygel-basic-management.vala:229
-#: src/librygel-core/rygel-basic-management.vala:256
-#: src/librygel-core/rygel-basic-management.vala:272
-#: src/librygel-core/rygel-basic-management.vala:324
-#: src/librygel-core/rygel-basic-management.vala:349
-#: src/librygel-core/rygel-basic-management.vala:365
-#: src/librygel-core/rygel-basic-management.vala:404
-#: src/librygel-core/rygel-basic-management.vala:431
-#: src/librygel-core/rygel-basic-management.vala:448
-#: src/librygel-core/rygel-basic-management.vala:487
-#: src/librygel-core/rygel-basic-management.vala:502
-#: src/librygel-core/rygel-basic-management.vala:517
-#: src/librygel-core/rygel-basic-management.vala:541
-#: src/librygel-core/rygel-connection-manager.vala:95
-#: src/librygel-core/rygel-connection-manager.vala:109
-#: src/librygel-core/rygel-connection-manager.vala:126
-#: src/librygel-core/rygel-energy-management.vala:223
-#: src/librygel-renderer/rygel-av-transport.vala:198
-#: src/librygel-renderer/rygel-rendering-control.vala:131
-#: src/librygel-ruih/rygel-ruih-service.vala:63
-#: src/librygel-server/rygel-content-directory.vala:261
-#: src/librygel-server/rygel-content-directory.vala:289
-#: src/librygel-server/rygel-content-directory.vala:308
-#: src/librygel-server/rygel-content-directory.vala:343
-#: src/librygel-server/rygel-content-directory.vala:372
-#: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:616
-#: src/librygel-server/rygel-content-directory.vala:765
-#: src/librygel-server/rygel-media-receiver-registrar.vala:61
+#: src/librygel-core/rygel-basic-management.vala:213 src/librygel-core/rygel-basic-management.vala:228
+#: src/librygel-core/rygel-basic-management.vala:255 src/librygel-core/rygel-basic-management.vala:271
+#: src/librygel-core/rygel-basic-management.vala:328 src/librygel-core/rygel-basic-management.vala:353
+#: src/librygel-core/rygel-basic-management.vala:369 src/librygel-core/rygel-basic-management.vala:414
+#: src/librygel-core/rygel-basic-management.vala:441 src/librygel-core/rygel-basic-management.vala:458
+#: src/librygel-core/rygel-basic-management.vala:503 src/librygel-core/rygel-basic-management.vala:518
+#: src/librygel-core/rygel-basic-management.vala:533 src/librygel-core/rygel-basic-management.vala:557
+#: src/librygel-core/rygel-connection-manager.vala:95 src/librygel-core/rygel-connection-manager.vala:109
+#: src/librygel-core/rygel-connection-manager.vala:126 src/librygel-core/rygel-energy-management.vala:223
+#: src/librygel-renderer/rygel-av-transport.vala:198 src/librygel-renderer/rygel-rendering-control.vala:131
+#: src/librygel-ruih/rygel-ruih-service.vala:63 src/librygel-server/rygel-content-directory.vala:261
+#: src/librygel-server/rygel-content-directory.vala:289 src/librygel-server/rygel-content-directory.vala:308
+#: src/librygel-server/rygel-content-directory.vala:343 src/librygel-server/rygel-content-directory.vala:372
+#: src/librygel-server/rygel-content-directory.vala:397 src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767 src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "अवैध तर्क"
 
-#: src/librygel-core/rygel-basic-management.vala:255
+#: src/librygel-core/rygel-basic-management.vala:254
 msgid "Cannot run “Ping” action: Host is empty"
 msgstr ""
 
-#: src/librygel-core/rygel-basic-management.vala:348
+#: src/librygel-core/rygel-basic-management.vala:352
 msgid "Cannot run “NSLookup” action: HostName is empty"
 msgstr ""
 
-#: src/librygel-core/rygel-basic-management.vala:430
+#: src/librygel-core/rygel-basic-management.vala:440
 msgid "Cannot run “Traceroute” action: Host is empty"
 msgstr ""
 
@@ -210,7 +176,7 @@ msgstr "पोर्ट"
 #: src/librygel-core/rygel-cmdline-config.vala:79
 #, fuzzy
 msgid "Disable transcoding"
-msgstr "बन्द​:"
+msgstr "अक्षम पार्नुहोस्"
 
 #: src/librygel-core/rygel-cmdline-config.vala:81
 msgid "Disallow upload"
@@ -250,54 +216,38 @@ msgid "Use configuration file instead of user configuration"
 msgstr "वैकल्पिक प्रयोगकर्ता gimprc फाइल प्रयोग गर्नुहोस्"
 
 #: src/librygel-core/rygel-cmdline-config.vala:100
-#, fuzzy
 msgid "Shut down remote Rygel reference"
-msgstr "रेफरेन्स टु रिमोट फाईल"
+msgstr "रिमोट राइजेल सन्दर्भ बन्द गर्नुहोस्"
 
 #: src/librygel-core/rygel-cmdline-config.vala:102
-#, fuzzy
 msgid "Replace currently running instance of Rygel"
-msgstr "हाल चालू दृष्टिवाचकलाई प्रतिस्थापन गर्नु होस् ।"
+msgstr "रिजेलको हाल चलिरहेको दृष्टान्त बदल्नुहोस्"
 
 #: src/librygel-core/rygel-cmdline-config.vala:139
 msgid "Shutting down remote Rygel instance\n"
-msgstr ""
+msgstr "टाढाको रिजेल दृष्टान्त बन्द गर्दै\n"
 
 #: src/librygel-core/rygel-cmdline-config.vala:147
 #, fuzzy, c-format
 msgid "Failed to shut down other Rygel instance: %s"
 msgstr "स्वतIP सेवा सुरु गर्न असफल भयो"
 
-#: src/librygel-core/rygel-cmdline-config.vala:161
-#: src/librygel-core/rygel-cmdline-config.vala:170
-#: src/librygel-core/rygel-cmdline-config.vala:178
-#: src/librygel-core/rygel-cmdline-config.vala:186
-#: src/librygel-core/rygel-cmdline-config.vala:194
-#: src/librygel-core/rygel-cmdline-config.vala:202
-#: src/librygel-core/rygel-cmdline-config.vala:210
-#: src/librygel-core/rygel-cmdline-config.vala:249
-#: src/librygel-core/rygel-cmdline-config.vala:268
-#: src/librygel-core/rygel-cmdline-config.vala:274
-#: src/librygel-core/rygel-cmdline-config.vala:281
-#: src/librygel-core/rygel-cmdline-config.vala:285
-#: src/librygel-core/rygel-cmdline-config.vala:289
-#: src/librygel-core/rygel-cmdline-config.vala:312
-#: src/librygel-core/rygel-cmdline-config.vala:338
-#: src/librygel-core/rygel-cmdline-config.vala:367
-#: src/librygel-core/rygel-cmdline-config.vala:393
-#: src/librygel-core/rygel-cmdline-config.vala:418
-#: src/librygel-core/rygel-environment-config.vala:100
-#: src/librygel-core/rygel-environment-config.vala:104
-#: src/librygel-core/rygel-environment-config.vala:108
-#: src/librygel-core/rygel-meta-config.vala:89 src/librygel-core/rygel-meta-config.vala:109
-#: src/librygel-core/rygel-meta-config.vala:128
-#: src/librygel-core/rygel-meta-config.vala:147
-#: src/librygel-core/rygel-meta-config.vala:166
-#: src/librygel-core/rygel-meta-config.vala:185
-#: src/librygel-core/rygel-meta-config.vala:204
-#: src/librygel-core/rygel-meta-config.vala:223
-#: src/librygel-core/rygel-meta-config.vala:242
-#: src/librygel-core/rygel-meta-config.vala:261
+#: src/librygel-core/rygel-cmdline-config.vala:161 src/librygel-core/rygel-cmdline-config.vala:170
+#: src/librygel-core/rygel-cmdline-config.vala:178 src/librygel-core/rygel-cmdline-config.vala:186
+#: src/librygel-core/rygel-cmdline-config.vala:194 src/librygel-core/rygel-cmdline-config.vala:202
+#: src/librygel-core/rygel-cmdline-config.vala:210 src/librygel-core/rygel-cmdline-config.vala:249
+#: src/librygel-core/rygel-cmdline-config.vala:268 src/librygel-core/rygel-cmdline-config.vala:274
+#: src/librygel-core/rygel-cmdline-config.vala:281 src/librygel-core/rygel-cmdline-config.vala:285
+#: src/librygel-core/rygel-cmdline-config.vala:289 src/librygel-core/rygel-cmdline-config.vala:312
+#: src/librygel-core/rygel-cmdline-config.vala:338 src/librygel-core/rygel-cmdline-config.vala:367
+#: src/librygel-core/rygel-cmdline-config.vala:393 src/librygel-core/rygel-cmdline-config.vala:418
+#: src/librygel-core/rygel-environment-config.vala:100 src/librygel-core/rygel-environment-config.vala:104
+#: src/librygel-core/rygel-environment-config.vala:108 src/librygel-core/rygel-meta-config.vala:105
+#: src/librygel-core/rygel-meta-config.vala:125 src/librygel-core/rygel-meta-config.vala:144
+#: src/librygel-core/rygel-meta-config.vala:163 src/librygel-core/rygel-meta-config.vala:182
+#: src/librygel-core/rygel-meta-config.vala:201 src/librygel-core/rygel-meta-config.vala:220
+#: src/librygel-core/rygel-meta-config.vala:239 src/librygel-core/rygel-meta-config.vala:258
+#: src/librygel-core/rygel-meta-config.vala:277
 msgid "No value available"
 msgstr "कुनै मान उपलब्ध छैन"
 
@@ -306,21 +256,21 @@ msgid "Invalid connection reference"
 msgstr "अवैध जडान सन्दर्भ"
 
 #: src/librygel-core/rygel-description-file.vala:494
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to write modified description to %s"
-msgstr "फाइल %s लेख्न असफल भयो"
+msgstr "%s लाई परिमार्जित विवरण लेख्न असफल भयो"
 
-#: src/librygel-core/rygel-energy-management-helper.c:54
+#: src/librygel-core/rygel-energy-management-helper.c:55
 #, fuzzy, c-format
 msgid "Failed to get a socket: %s"
-msgstr "होस्टनाम प्राप्त गर्न असफल: %s\n"
+msgstr "फोल्डर सूची प्राप्त गर्न असफल भयो"
 
-#: src/librygel-core/rygel-energy-management-helper.c:61
+#: src/librygel-core/rygel-energy-management-helper.c:62
 #, fuzzy, c-format
 msgid "Failed to get MAC address for %s: %s"
-msgstr "`%s' का लागि मान प्राप्त गर्न असफल भयो: %s\n"
+msgstr "ठेगाना पुस्तिका क्षमताहरू प्राप्त गर्न सकेन:%s"
 
-#: src/librygel-core/rygel-energy-management-helper.c:103
+#: src/librygel-core/rygel-energy-management-helper.c:104
 msgid "MAC and network type querying not implemented"
 msgstr ""
 
@@ -330,35 +280,33 @@ msgid "Failed to get log level from configuration: %s"
 msgstr "%s बाट कन्फिगरेसन फाइल मार्ग प्राप्त गर्न असफल भयो"
 
 #. translators: "enabled" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:336
-#, fuzzy, c-format
+#: src/librygel-core/rygel-meta-config.vala:352
+#, c-format
 msgid "No value set for “%s/enabled”"
-msgstr "कुञ्जीका लागि सेट गर्न कुनै मान छैन: `%s'\n"
+msgstr "“%s/सक्षम” का लागि मान सेट गरिएको छैन"
 
 #. translators: "title" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:355
-#, fuzzy, c-format
+#: src/librygel-core/rygel-meta-config.vala:371
+#, c-format
 msgid "No value set for “%s/title”"
-msgstr "कुञ्जीका लागि सेट गर्न कुनै मान छैन: `%s'\n"
+msgstr "“%s/शीर्षक” का लागि मान सेट गरिएको छैन"
 
-#: src/librygel-core/rygel-meta-config.vala:375
-#: src/librygel-core/rygel-meta-config.vala:397
-#: src/librygel-core/rygel-meta-config.vala:423
-#: src/librygel-core/rygel-meta-config.vala:445
-#: src/librygel-core/rygel-meta-config.vala:469
-#, fuzzy, c-format
+#: src/librygel-core/rygel-meta-config.vala:391 src/librygel-core/rygel-meta-config.vala:413
+#: src/librygel-core/rygel-meta-config.vala:439 src/librygel-core/rygel-meta-config.vala:461
+#: src/librygel-core/rygel-meta-config.vala:485
+#, c-format
 msgid "No value available for “%s/%s”"
-msgstr " “%s” का लागि कुनै मान उपलब्ध छैन"
+msgstr "“%s/%s” का लागि कुनै मान उपलब्ध छैन"
 
-#: src/librygel-core/rygel-plugin-information.vala:59
+#: src/librygel-core/rygel-plugin-information.vala:67
 #, fuzzy
 msgid "[Plugin] group not found"
-msgstr "समुह फेला परेन"
+msgstr "\"%s\" जिस्ट्रिमर प्लगिन फेला पर्न सकेन"
 
-#: src/librygel-core/rygel-plugin-information.vala:77
+#: src/librygel-core/rygel-plugin-information.vala:79
 #, fuzzy, c-format
 msgid "Plugin module %s does not exist"
-msgstr "\"%s\" मोड्युल अवस्थित छैन।"
+msgstr "फाइल ‘%s’ अवस्थित छैन ।."
 
 #: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
@@ -370,20 +318,25 @@ msgstr "प्लगइन “%s” उपलब्ध"
 msgid "A module named %s is already loaded"
 msgstr "पार्श्वचित्र बहन गर्न सकिएन: %s\n"
 
-#: src/librygel-core/rygel-plugin-loader.vala:113
+#: src/librygel-core/rygel-plugin-loader.vala:118
 #, fuzzy, c-format
 msgid "Failed to load module from path “%s”: %s"
 msgstr "प्लगइन लोड गर्न असफल: %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:123
+#: src/librygel-core/rygel-plugin-loader.vala:128
 #, c-format
 msgid "Failed to find entry point function “%s” in “%s”: %s"
+msgstr ""
+
+#: src/librygel-core/rygel-plugin-loader.vala:156
+#, c-format
+msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
 msgstr ""
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, fuzzy, c-format
 msgid "Failed to open plugins folder: “%s”"
-msgstr "%s को लागि फोल्डर खोल्न असमर्थ।"
+msgstr "कार्य फाइल %s: %s fdopen() गर्न असफल"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:149
 #, fuzzy, c-format
@@ -395,7 +348,7 @@ msgstr "फोल्डर '%s' को सामाग्री सूचीब�
 msgid "Could not load plugin: %s"
 msgstr "प्लगिन लोड गर्न असफल \"%s\""
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:221
+#: src/librygel-core/rygel-recursive-module-loader.vala:220
 #, c-format
 msgid "Failed to query content type for “%s”"
 msgstr "सामाग्री प्रकार क्वेरि गर्न असफल: %s"
@@ -412,9 +365,9 @@ msgid "No value available for “%s”"
 msgstr " “%s” का लागि कुनै मान उपलब्ध छैन"
 
 #: src/librygel-core/rygel-user-config.vala:370
-#, fuzzy, c-format
+#, c-format
 msgid "Value of “%s” out of range"
-msgstr "%s: मान दायरा भन्दाबाहिर"
+msgstr "“%s” को मान दायरा बाहिर भयो"
 
 #: src/librygel-db/database-cursor.vala:99
 #, c-format
@@ -432,73 +385,64 @@ msgstr "लेख्नका लागि \"%s\" फाइल खोल्द�
 msgid "Failed to roll back transaction: %s"
 msgstr "लेनदेन फिर्ता गर्न असफल भयो: %s"
 
-#: src/librygel-renderer-gst/rygel-playbin-player.vala:368
+#: src/librygel-renderer-gst/rygel-playbin-player.vala:370
+#, fuzzy
+#| msgid ""
+#| "Your GStreamer installation seems to be missing the “playbin” element. The Rygel GStreamer renderer "
+#| "implementation cannot work without it"
 msgid ""
-"Your GStreamer installation seems to be missing the “playbin” element. The Rygel "
-"GStreamer renderer implementation cannot work without it"
-msgstr ""
-"तपाईंको जीस्ट्रीमर स्थापनामा \"playbin\" तत्व हराइरहेको जस्तो देखिन्छ। राईजेल जीस्ट्रीमर रेन्डरर "
-"कार्यान्वयन काम गर्न सक्दैन"
+"Your GStreamer installation seems to be missing the “playbin3” element. The Rygel GStreamer renderer "
+"implementation cannot work without it"
+msgstr "तपाईंको जीस्ट्रीमर स्थापनामा \"playbin\" तत्व हराइरहेको जस्तो देखिन्छ। राईजेल जीस्ट्रीमर रेन्डरर कार्यान्वयन काम गर्न सक्दैन"
 
-#: src/librygel-renderer/rygel-av-transport.vala:204
-#: src/librygel-renderer/rygel-rendering-control.vala:137
+#: src/librygel-renderer/rygel-av-transport.vala:204 src/librygel-renderer/rygel-rendering-control.vala:137
 #, fuzzy
 msgid "Invalid InstanceID"
-msgstr " अवैध"
+msgstr "अवैध"
 
 #: src/librygel-renderer/rygel-av-transport.vala:474
-#, fuzzy
 msgid "Play speed not supported"
-msgstr "प्ले गर्नुहोस्"
+msgstr "बजाउने गति समर्थित छैन"
 
-#: src/librygel-renderer/rygel-av-transport.vala:481
-#: src/librygel-renderer/rygel-av-transport.vala:499
+#: src/librygel-renderer/rygel-av-transport.vala:481 src/librygel-renderer/rygel-av-transport.vala:499
 msgid "Transition not available"
 msgstr "सङ्क्रमण  उपलब्ध छैन"
 
-#: src/librygel-renderer/rygel-av-transport.vala:529
-#: src/librygel-renderer/rygel-av-transport.vala:554
+#: src/librygel-renderer/rygel-av-transport.vala:529 src/librygel-renderer/rygel-av-transport.vala:554
 #: src/librygel-renderer/rygel-av-transport.vala:584
-#, fuzzy
 msgid "Seek mode not supported"
-msgstr "स्ट्रिममा खोजी समर्थित छैन "
+msgstr "खोजी तरिका समर्थित छैन"
 
-#: src/librygel-renderer/rygel-av-transport.vala:535
-#: src/librygel-renderer/rygel-av-transport.vala:560
-#: src/librygel-renderer/rygel-av-transport.vala:573
-#: src/librygel-renderer/rygel-av-transport.vala:598
+#: src/librygel-renderer/rygel-av-transport.vala:535 src/librygel-renderer/rygel-av-transport.vala:560
+#: src/librygel-renderer/rygel-av-transport.vala:573 src/librygel-renderer/rygel-av-transport.vala:598
 #: src/librygel-renderer/rygel-av-transport.vala:610
 #, fuzzy
 msgid "Illegal seek target"
 msgstr "लक्ष्य"
 
 #: src/librygel-renderer/rygel-av-transport.vala:659
-#, fuzzy
 msgid "Play mode not supported"
-msgstr "प्ले/पज मोड टगल गर्नुहोस्"
+msgstr "बजाउने तरिका समर्थित छैन"
 
 #. FIXME: Return a more sensible error here.
-#: src/librygel-renderer/rygel-av-transport.vala:735
-#: src/librygel-renderer/rygel-av-transport.vala:779
-#: src/librygel-renderer/rygel-av-transport.vala:788
-#: src/librygel-renderer/rygel-av-transport.vala:867
+#: src/librygel-renderer/rygel-av-transport.vala:774 src/librygel-renderer/rygel-av-transport.vala:789
+#: src/librygel-renderer/rygel-av-transport.vala:798 src/librygel-renderer/rygel-av-transport.vala:877
 msgid "Resource not found"
 msgstr "संसाधन भेटिएन"
 
-#: src/librygel-renderer/rygel-av-transport.vala:777
+#: src/librygel-renderer/rygel-av-transport.vala:787
 #, fuzzy, c-format
 msgid "Problem parsing playlist: %s"
-msgstr "%s मा समस्या"
+msgstr "फिल्टर पदवर्णन गर्दा त्रुटि: %s: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:863
+#: src/librygel-renderer/rygel-av-transport.vala:873
 #, fuzzy, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "पहुँच टोकन ताजा गर्न असफल (%s, %d): "
 
-#: src/librygel-renderer/rygel-av-transport.vala:879
-#, fuzzy
+#: src/librygel-renderer/rygel-av-transport.vala:889
 msgid "Illegal MIME-type"
 msgstr "अज्ञात माइम प्रकार"
 
@@ -510,8 +454,7 @@ msgstr "अवैध नाम"
 msgid "Invalid Channel"
 msgstr "अवैध च्यानल"
 
-#: src/librygel-renderer/rygel-rendering-control.vala:218
-#: src/librygel-renderer/rygel-rendering-control.vala:260
+#: src/librygel-renderer/rygel-rendering-control.vala:218 src/librygel-renderer/rygel-rendering-control.vala:260
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "कार्य असफल"
@@ -534,7 +477,7 @@ msgstr ""
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
 #, fuzzy, c-format
 msgid "Failed to set UIList for file %s — %s"
-msgstr "फाइल %s लेख्न असफल भयो"
+msgstr "%s फाइलअपलोड गर्न असफल"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
 #, fuzzy, c-format
@@ -542,9 +485,9 @@ msgid "Failed to set initial UI list for file %s — %s"
 msgstr "क्लाइन्टका लागि IOR प्राप्त गर्न असफल भयो: %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to monitor the file %s — %s"
-msgstr "फाइल %s लेख्न असफल भयो"
+msgstr "%s फाईल निगरानि गर्न असफल भयो— %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
 #, fuzzy, c-format
@@ -577,13 +520,13 @@ msgstr "वस्तुमा शाखाहरू ब्राउज गर्
 #: src/librygel-server/rygel-browse.vala:134
 #, fuzzy, c-format
 msgid "Failed to browse “%s”: %s\n"
-msgstr "*** %s मा %s लिङ्क असफल भयो"
+msgstr "%s कम्पाइलेसन असफल: %s"
 
 #: src/librygel-server/rygel-client-hacks.vala:149
 msgid "Not Applicable"
 msgstr "लागु हुँदैन"
 
-#: src/librygel-server/rygel-content-directory.vala:637
+#: src/librygel-server/rygel-content-directory.vala:639
 msgid "No such file transfer"
 msgstr "कुनै फाइल स्थानान्तरण छैन"
 
@@ -608,28 +551,27 @@ msgstr "अवैध URI: '%s'"
 msgid "Not found"
 msgstr "फेला परेन"
 
-#: src/librygel-server/rygel-http-post.vala:62
-#: src/librygel-server/rygel-import-resource.vala:189
+#: src/librygel-server/rygel-http-post.vala:64 src/librygel-server/rygel-import-resource.vala:193
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr ""
 
-#: src/librygel-server/rygel-http-post.vala:71
-#, fuzzy, c-format
+#: src/librygel-server/rygel-http-post.vala:72
+#, c-format
 msgid "No writable URI for %s available"
-msgstr "अवैध '%s' URI: %s"
+msgstr "%s का लागि कुनै लेखनयोग्य URI उपलब्ध छैन"
 
 #. translators: Dotfile is the filename with prefix "."
-#: src/librygel-server/rygel-http-post.vala:186
+#: src/librygel-server/rygel-http-post.vala:187
 #, fuzzy, c-format
 msgid "Failed to move dotfile %s: %s"
-msgstr "रद्दीटोकरीमा सार्न असफल: %s"
+msgstr "%s कम्पाइलेसन असफल: %s"
 
 #: src/librygel-server/rygel-http-request.vala:95
-#, fuzzy, c-format
+#, c-format
 #| msgid "Requested item '%s' not found"
 msgid "Requested item “%s” not found"
-msgstr "“%s” URI का लागि वस्तु फेला परेन"
+msgstr "अनुरोध गरिएको वस्तु “%s” फेला परेन"
 
 #: src/librygel-server/rygel-http-resource-handler.vala:91
 #, fuzzy, c-format
@@ -639,76 +581,71 @@ msgstr "प्रकाशनका लागि अभाहि प्रवि
 #: src/librygel-server/rygel-import-resource.vala:124
 #, fuzzy, c-format
 msgid "Failed to get original URI for “%s”: %s"
-msgstr "`%s' का लागि मान प्राप्त गर्न असफल भयो: %s\n"
+msgstr "फाइल '%s' का लागि जानकारी प्राप्त गर्न सकेन: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:186
+#: src/librygel-server/rygel-import-resource.vala:188
 #, fuzzy, c-format
 msgid "URI “%s” invalid for importing contents to"
-msgstr "URI “%s” अवैध"
+msgstr "अवैध URI: '%s'"
 
-#: src/librygel-server/rygel-import-resource.vala:272
-#, fuzzy, c-format
+#: src/librygel-server/rygel-import-resource.vala:276
+#, c-format
 msgid "Failed to import file from %s: %s"
-msgstr "'%s' बाट ग्रेडियन्ट आयात गर्न असफल: %s"
+msgstr "%s बाट फाईल आयात गर्न असफल भयो: %s"
 
 #. Sorry we can't do anything without the ID
 #: src/librygel-server/rygel-item-destroyer.vala:53
 #, fuzzy
 msgid "ContainerID missing"
-msgstr "  हराइरहेको: "
+msgstr "फर्मवेयर छैन"
 
 #: src/librygel-server/rygel-item-destroyer.vala:60
-#, fuzzy, c-format
+#, c-format
 msgid "Successfully destroyed object “%s”"
-msgstr "%s विषयवस्तु  स्थापना सफल"
+msgstr "\"%s\" वस्तु सफलतापूर्वक नष्ट भयो"
 
 #: src/librygel-server/rygel-item-destroyer.vala:68
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to destroy object “%s”: %s"
-msgstr "बस्तु बचत असफल:%s"
+msgstr "“%s”वस्तु नष्ट गर्न असफल भयो : %s"
 
-#: src/librygel-server/rygel-item-destroyer.vala:104
-#: src/librygel-server/rygel-item-updater.vala:283
-#: src/librygel-server/rygel-media-query-action.vala:194
-#: src/librygel-server/rygel-reference-creator.vala:68
+#: src/librygel-server/rygel-item-destroyer.vala:105 src/librygel-server/rygel-item-updater.vala:283
+#: src/librygel-server/rygel-media-query-action.vala:194 src/librygel-server/rygel-reference-creator.vala:68
 #: src/librygel-server/rygel-reference-creator.vala:115
 msgid "No such object"
 msgstr "त्यस प्रकारको वस्तु छैन"
 
-#: src/librygel-server/rygel-item-destroyer.vala:107
-#, fuzzy, c-format
+#: src/librygel-server/rygel-item-destroyer.vala:108
+#, c-format
 msgid "Removal of object %s not allowed"
-msgstr "प्याकेज '%s' हटाउनका लागि चिह्नित गरेको छ तर यो हटाउने कालो सूचीमा छ।"
+msgstr "%s वस्तु हटाउन अनुमति छैन"
 
-#: src/librygel-server/rygel-item-destroyer.vala:110
-#, fuzzy, c-format
+#: src/librygel-server/rygel-item-destroyer.vala:111
+#, c-format
 msgid "Object removal from %s not allowed"
-msgstr "डाटावेसबाट वस्तु “%s” ल्याउदा त्रुटि : %s"
+msgstr "%s बाट वस्तु हटाउने अनुमति छैन"
 
 #. Sorry we can't do anything without the ID
 #: src/librygel-server/rygel-item-updater.vala:74
-#, fuzzy
 msgid "Object ID missing"
-msgstr "वस्तु आइडी पहिले नै अवस्थित छ"
+msgstr "वस्तु आइडी हराइरहेको छ"
 
 #: src/librygel-server/rygel-item-updater.vala:81
-#, fuzzy, c-format
+#, c-format
 msgid "Successfully updated object “%s”"
-msgstr "%s विषयवस्तु  अध्याबधीक सफल"
+msgstr "\"%s\" वस्तु सफलतापूर्वक अद्यावधिक भयो"
 
 #: src/librygel-server/rygel-item-updater.vala:89
 #, fuzzy, c-format
 msgid "Failed to update object “%s”: %s"
 msgstr "वस्तु हटाउन असफल भयो: %s"
 
-#: src/librygel-server/rygel-item-updater.vala:162
-#: src/librygel-server/rygel-object-creator.vala:606
+#: src/librygel-server/rygel-item-updater.vala:162 src/librygel-server/rygel-object-creator.vala:614
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "अवैध मिति ढाँचा %s"
 
-#: src/librygel-server/rygel-item-updater.vala:171
-#: src/librygel-server/rygel-object-creator.vala:615
+#: src/librygel-server/rygel-item-updater.vala:171 src/librygel-server/rygel-object-creator.vala:623
 #, c-format
 msgid "Invalid date: %s"
 msgstr "अवैध मिति %s"
@@ -716,7 +653,7 @@ msgstr "अवैध मिति %s"
 #: src/librygel-server/rygel-item-updater.vala:256
 #, fuzzy
 msgid "Bad current tag value."
-msgstr "हालको मान:"
+msgstr "हालको मान"
 
 #: src/librygel-server/rygel-item-updater.vala:260
 #, fuzzy
@@ -724,19 +661,16 @@ msgid "Bad new tag value."
 msgstr "तत्कालको मूल्य पढ्छ वा नँया मूल्य मिलाउछ"
 
 #: src/librygel-server/rygel-item-updater.vala:263
-#, fuzzy
 msgid "Tried to delete required tag."
-msgstr "ट्याग मेट्न असफल  %s"
+msgstr "आवश्यक ट्याग मेटाउन कोशिस गरियो।"
 
 #: src/librygel-server/rygel-item-updater.vala:266
-#, fuzzy
 msgid "Tried to change read-only property."
-msgstr "विशेषता पढ्नका लागि मात्र हो"
+msgstr "पढ्ने-मात्र गुण परिवर्तन गर्न कोसिस गर्‍यो।"
 
 #: src/librygel-server/rygel-item-updater.vala:269
-#, fuzzy
 msgid "Parameter count mismatch."
-msgstr "परामिति"
+msgstr "परिमिति गणना मिलेन ।"
 
 #: src/librygel-server/rygel-item-updater.vala:272
 msgid "Unknown error."
@@ -749,12 +683,10 @@ msgstr ""
 
 #: src/librygel-server/rygel-item-updater.vala:290
 #, c-format
-msgid ""
-"Metadata modification of object %s being a child of restricted object %s not allowed"
+msgid "Metadata modification of object %s being a child of restricted object %s not allowed"
 msgstr "वस्तु%s को मेटाडाटा परिमार्जन प्रतिबन्धित वस्तुको शाखा भएको%s लाई अनुमति छैन"
 
-#: src/librygel-server/rygel-m3u-playlist.vala:67
-#: src/librygel-server/rygel-m3u-playlist.vala:70
+#: src/librygel-server/rygel-m3u-playlist.vala:67 src/librygel-server/rygel-m3u-playlist.vala:70
 msgid "Unknown"
 msgstr "अज्ञात"
 
@@ -773,9 +705,8 @@ msgid "Seeking not supported"
 msgstr "खोजी समर्थित छैन"
 
 #: src/librygel-server/rygel-media-container.vala:72
-#, fuzzy
 msgid "Speed not supported"
-msgstr "समर्थित छैन"
+msgstr "गति समर्थित छैन"
 
 #: src/librygel-server/rygel-media-container.vala:123
 msgid "Failed to generate playlist"
@@ -784,28 +715,29 @@ msgstr "प्लेसूची निर्माण असफल"
 #: src/librygel-server/rygel-media-container.vala:472
 #, fuzzy, c-format
 msgid "Unknown MediaContainer resource: %s"
-msgstr "अज्ञात (%s)"
+msgstr "अज्ञात स्किमा “%s”."
 
-#: src/librygel-server/rygel-media-engine.vala:62
+#: src/librygel-server/rygel-media-engine.vala:63
 #, fuzzy
 msgid "No media engine found."
 msgstr "मिडिया सर्भर भेटिएन"
 
-#: src/librygel-server/rygel-media-engine.vala:73
+#: src/librygel-server/rygel-media-engine.vala:75
+#, fuzzy
 msgid "MediaEngine.init was not called. Cannot continue."
-msgstr ""
+msgstr "The computer player is confused. The game cannot continue."
 
-#: src/librygel-server/rygel-media-file-item.vala:177
+#: src/librygel-server/rygel-media-file-item.vala:177 src/librygel-server/rygel-video-item.vala:242
 #, fuzzy, c-format
 msgid "Could not determine protocol for URI %s"
-msgstr "URI '%s' को लागि मिडिया समाधान गर्न सकेन"
+msgstr "यूआरआई '%s' पद वर्ण नगर्न सकिएन।"
 
 #: src/librygel-server/rygel-media-object.vala:284
 #, fuzzy, c-format
 msgid "Could not determine protocol for %s"
-msgstr "सकेट नाम निर्धारण गर्न सकिएन"
+msgstr "(प्रोटोकल %s)"
 
-#: src/librygel-server/rygel-media-object.vala:509
+#: src/librygel-server/rygel-media-object.vala:491
 #, c-format
 msgid "Bad URI: %s"
 msgstr "नराम्रो URI %s"
@@ -827,103 +759,95 @@ msgstr "अवैध दायरा"
 #: src/librygel-server/rygel-media-query-action.vala:131
 #, fuzzy
 msgid "Missing filter"
-msgstr "  हराइरहेको: "
+msgstr "फिल्टर"
 
-#: src/librygel-server/rygel-media-query-action.vala:197
-#: src/librygel-server/rygel-object-creator.vala:412
-#, fuzzy
+#: src/librygel-server/rygel-media-query-action.vala:197 src/librygel-server/rygel-object-creator.vala:414
 msgid "No such container"
-msgstr "कन्टेनर"
+msgstr "कन्टेनरममा नभएको"
 
 #: src/librygel-server/rygel-object-creator.vala:150
 msgid "upnp:createClass value not supported"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:191
+#: src/librygel-server/rygel-object-creator.vala:193
 #, fuzzy
 msgid "“Elements” argument missing."
 msgstr "%s का छुटेको तर्क"
 
-#: src/librygel-server/rygel-object-creator.vala:194
-#, fuzzy
+#: src/librygel-server/rygel-object-creator.vala:196
 msgid "Comments not allowed in XML"
-msgstr "टिप्पणीहरू:"
+msgstr "XML मा टिप्पणीहरूलाई अनुमति छैन"
 
 #. Sorry we can't do anything without ContainerID
-#: src/librygel-server/rygel-object-creator.vala:200
+#: src/librygel-server/rygel-object-creator.vala:202
 #, fuzzy
 msgid "Missing ContainerID argument"
 msgstr "%s का छुटेको तर्क"
 
-#: src/librygel-server/rygel-object-creator.vala:224
+#: src/librygel-server/rygel-object-creator.vala:226
 #, c-format
 msgid "No objects in DIDL-Lite from client: “%s”"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:231
+#: src/librygel-server/rygel-object-creator.vala:233
 msgid "@id must be set to \"\" in CreateObject call"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:236
+#: src/librygel-server/rygel-object-creator.vala:238
 msgid "dc:title must not be empty in CreateObject call"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:247
+#: src/librygel-server/rygel-object-creator.vala:249
 msgid "Flags that must not be set were found in “dlnaManaged”"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:255
+#: src/librygel-server/rygel-object-creator.vala:257
 msgid "Invalid upnp:class given in CreateObject"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:259
-#, fuzzy
+#: src/librygel-server/rygel-object-creator.vala:261
 msgid "Object is missing the @restricted attribute"
-msgstr "'मार्ग' नाम भएको गुण हराइरहेको छ"
+msgstr "वस्तुमा @restricted विशेषता हराइरहेको छ"
 
-#: src/librygel-server/rygel-object-creator.vala:266
-#, fuzzy
+#: src/librygel-server/rygel-object-creator.vala:268
 msgid "Cannot create restricted item"
-msgstr "नयाँ कुञ्जि वा वस्तु सिर्जना गर्नुहोस्"
+msgstr "प्रतिबन्धित वस्तु सिर्जना गर्न सक्दैन"
 
-#: src/librygel-server/rygel-object-creator.vala:383
+#: src/librygel-server/rygel-object-creator.vala:385
 #, fuzzy, c-format
 msgid "UPnP class “%s” not supported"
-msgstr "%s: रेपोजिटरी %s समर्थित छैन\n"
+msgstr "वर्ग नाम %s का लागि कुनै प्रकार छैन"
 
-#: src/librygel-server/rygel-object-creator.vala:417
-#: src/librygel-server/rygel-object-creator.vala:429
-#: src/librygel-server/rygel-object-creator.vala:715
-#: src/librygel-server/rygel-reference-creator.vala:118
-#, fuzzy, c-format
+#: src/librygel-server/rygel-object-creator.vala:419 src/librygel-server/rygel-object-creator.vala:431
+#: src/librygel-server/rygel-object-creator.vala:723 src/librygel-server/rygel-reference-creator.vala:118
+#, c-format
 msgid "Object creation in %s not allowed"
-msgstr "फोल्डर सिर्जना असफल। कारण: %s"
+msgstr "%s मा वस्तु सिर्जना गर्न अनुमति छैन"
 
-#: src/librygel-server/rygel-object-creator.vala:474
+#: src/librygel-server/rygel-object-creator.vala:476
 #, fuzzy, c-format
 msgid "Failed to create item under “%s”: %s"
-msgstr "प्लेयर सिर्जना गर्न असफल: %s"
+msgstr "%s को स्न्यापसट सिर्जना गर्न असफल भयो"
 
-#: src/librygel-server/rygel-object-creator.vala:548
+#: src/librygel-server/rygel-object-creator.vala:552
 #, fuzzy, c-format
 msgid "DLNA profile “%s” not supported"
-msgstr "%s: रेपोजिटरी %s समर्थित छैन\n"
+msgstr "%s %s अब उप्रान्त समर्थित छैन।."
 
-#: src/librygel-server/rygel-object-creator.vala:648
+#: src/librygel-server/rygel-object-creator.vala:656
 #, c-format
 msgid "Cannot create object of class “%s”: Not supported"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:746
+#: src/librygel-server/rygel-object-creator.vala:754
 #, c-format
-msgid ""
-"Error from container “%s” on trying to find the newly added child object “%s” in it: %s"
+msgid "Error from container “%s” on trying to find the newly added child object “%s” in it: %s"
 msgstr ""
 
 #: src/librygel-server/rygel-reference-creator.vala:50
 #, fuzzy
 msgid "“ContainerID” agument missing."
-msgstr "  हराइरहेको: "
+msgstr "आवश्यक मान हराइरहेछ"
 
 #: src/librygel-server/rygel-reference-creator.vala:55
 #, fuzzy
@@ -936,132 +860,124 @@ msgid "Failed to create object under “%s”: %s"
 msgstr "बस्तु बचत असफल:%s"
 
 #: src/librygel-server/rygel-search.vala:70
-#, fuzzy
 msgid "Invalid search criteria given"
-msgstr "दिइएको मापदण्ड अवैध छ"
+msgstr "अवैध खोज मापदण्ड दिइयो"
 
 #: src/librygel-server/rygel-search.vala:94
 #, fuzzy, c-format
 msgid "Failed to search in “%s”: %s"
-msgstr "\"%s\" लेख्न असफल भयो: %s\n"
+msgstr "%s कम्पाइलेसन असफल: %s"
 
-#: src/librygel-server/rygel-subtitle-manager.vala:92
-#, fuzzy
+#: src/librygel-server/rygel-subtitle-manager.vala:49 src/librygel-server/rygel-subtitle-manager.vala:96
 msgid "No subtitle available"
-msgstr "उपशीर्षक डाउनलोड"
+msgstr "उपशीर्षक उपलब्ध छैन"
 
 #: src/librygel-server/rygel-thumbnailer.vala:61
-#, fuzzy, c-format
+#, c-format
 msgid "No thumbnailer available: %s"
-msgstr "%s %s उपलब्ध छ"
+msgstr "थम्बनेलर उपलब्ध छैन: %s"
 
 #: src/librygel-server/rygel-thumbnailer.vala:74
 #, fuzzy
 msgid "Thumbnailing not supported"
-msgstr "समर्थित छैन"
+msgstr "थम्बनेल गर्नका लागि अधिकतम छवि साइज"
 
 #. Thumbnailing failed previously, so there's no current thumbnail
 #. and it doesn't make any sense to request one.
-#: src/librygel-server/rygel-thumbnailer.vala:88
-#: src/librygel-server/rygel-thumbnailer.vala:102
+#: src/librygel-server/rygel-thumbnailer.vala:88 src/librygel-server/rygel-thumbnailer.vala:102
 #: src/librygel-server/rygel-thumbnailer.vala:113
-#, fuzzy
 msgid "No thumbnail available"
-msgstr "उपलब्ध"
+msgstr "कुनै थम्बनेल प्रतिमा उपलब्ध छैन"
 
 #: src/librygel-server/rygel-thumbnailer.vala:97
-#, fuzzy
 msgid "No thumbnail available. Generation requested."
-msgstr "(कुनै वर्णन उपलब्ध छैन)"
+msgstr "थम्बनेल प्रतिमा उपलब्ध छैन । सिर्जना अनुरोध गरियो ।"
 
 #: src/librygel-server/rygel-thumbnailer.vala:132
 #, fuzzy
 msgid "No D-Bus thumbnailer available"
 msgstr "अपरिचित बाँणको प्रकार %d"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:44
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:46
 #, fuzzy, c-format
 msgid "Could not create GstElement for URI %s"
-msgstr "URI '%s' को लागि मिडिया समाधान गर्न सकेन"
+msgstr "यूआरआई '%s' पद वर्ण नगर्न सकिएन।"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:72
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
-#, fuzzy
 msgid "Playspeed not supported"
-msgstr "समर्थित छैन"
+msgstr "बजाउने गति समर्थित छैन"
 
 #. Unknown/unsupported seek type
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:102
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
 #, fuzzy, c-format
 msgid "HTTPSeekRequest type %s unsupported"
-msgstr "फाइल:%s प्रकार/संस्करण असमर्थित\n"
+msgstr "असमर्थित प्रकार %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:146
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
 #, fuzzy
 msgid "Failed to create pipeline"
-msgstr "%s प्ले गर्न जीस्ट्रिमर पाइपलाइन सिर्जना गर्न असफल भयो"
+msgstr "शाखा सिर्जना गर्न असफल"
 
 #. static pads? easy!
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:157
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:178
-#, fuzzy, c-format
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:163
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:184
+#, c-format
 msgid "Failed to link %s to %s"
-msgstr "*** %s मा %s लिङ्क असफल भयो"
+msgstr "%s लाई %s लिङ्क गर्न असफल भयो"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:192
-#, fuzzy, c-format
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:198
+#, c-format
 msgid "Failed to link pad %s to %s"
-msgstr "*** %s मा %s लिङ्क असफल भयो"
+msgstr "प्याड %s लाई %s लिङ्क गर्न असफल भयो"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:257
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:263
 #, fuzzy, c-format
 msgid "Error from pipeline %s: %s"
-msgstr "%s प्ले गर्न जीस्ट्रिमर पाइपलाइन सिर्जना गर्न असफल भयो"
+msgstr " %s डेटावेसबाट हटाउँदा त्रुटि"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:264
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:270
 #, fuzzy, c-format
 msgid "Warning from pipeline %s: %s"
-msgstr "चेतावनी: %s: %s"
+msgstr "%s बाट %s उल्टाउँदै"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:317
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:323
 msgid "Unsupported seek type"
 msgstr "असमर्थित खोजी प्रकार"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:334
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr ""
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:336
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
 msgid "Failed to seek"
 msgstr "खोजी असफल भयो"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:129
-#, fuzzy, c-format
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
+#, c-format
 #| msgid "Invalid URI '%s'"
 msgid "Invalid URI without prefix: %s"
-msgstr "URI “%s” अवैध"
+msgstr "उपसर्ग बिना अवैध यूआरआई: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
 msgstr ""
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
 #, fuzzy, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "%s प्ले गर्न जीस्ट्रिमर पाइपलाइन सिर्जना गर्न असफल भयो"
 
-#: src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
-msgid ""
-"Could not create a transcoder configuration. Your GStreamer installation might be "
-"missing a plug-in"
+#: src/media-engines/gstreamer/rygel-gst-transcoding-data-source.vala:29
+msgid "Could not create a transcoder configuration. Your GStreamer installation might be missing a plug-in"
 msgstr ""
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:39
-#, fuzzy, c-format
+#, c-format
 msgid "Required element %s missing"
-msgstr "'%s' को लागि आवश्यक मान हराइरहेछ"
+msgstr "आवश्यक तत्व %s हराइरहेको छ"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:58
 msgid "GStreamer element “dvdreadsrc” not found. DVD support does not work"
@@ -1073,12 +989,11 @@ msgid "Only byte-based seek supported"
 msgstr "सङ्ग्रह प्रकार समर्थित छैन ।"
 
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
-#: src/media-engines/simple/rygel-simple-media-engine.vala:98
+#: src/media-engines/simple/rygel-simple-media-engine.vala:99
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
 msgstr ""
 
-#: src/plugins/external/rygel-external-plugin-factory.vala:35
-#: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
+#: src/plugins/external/rygel-external-plugin-factory.vala:35 src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
 msgid "Module “%s” could not connect to D-Bus session bus. Ignoring…"
 msgstr ""
@@ -1088,13 +1003,12 @@ msgstr ""
 msgid "External provider %s did not provide mandatory property “%s”"
 msgstr ""
 
-#: src/plugins/lms/rygel-lms-albums.vala:166
+#: src/plugins/lms/rygel-lms-albums.vala:166 src/plugins/tracker3/rygel-tracker-albums.vala:31
 #: src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
 msgstr "एल्बमहरू"
 
-#: src/plugins/lms/rygel-lms-all-images.vala:89
-#: src/plugins/lms/rygel-lms-all-music.vala:171
+#: src/plugins/lms/rygel-lms-all-images.vala:89 src/plugins/lms/rygel-lms-all-music.vala:171
 #: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: src/plugins/media-export/rygel-media-export-root-container.vala:33
 msgid "All"
@@ -1104,15 +1018,14 @@ msgstr "सबै"
 msgid "Years"
 msgstr "वर्ष"
 
-#: src/plugins/lms/rygel-lms-music-root.vala:35
+#: src/plugins/lms/rygel-lms-music-root.vala:35 src/plugins/tracker3/rygel-tracker-artists.vala:31
 #: src/plugins/tracker/rygel-tracker-artists.vala:31
 msgid "Artists"
 msgstr "कलाकार"
 
 #: src/plugins/lms/rygel-lms-root-container.vala:33
-#, fuzzy
 msgid "Shared media"
-msgstr "मेडिया"
+msgstr "साझेदार गरिएको मिडिया"
 
 #: src/plugins/lms/rygel-lms-root-container.vala:45
 #: src/plugins/media-export/rygel-media-export-root-container.vala:605
@@ -1129,7 +1042,7 @@ msgstr "भिडियो"
 msgid "Pictures"
 msgstr "तस्वीरहरू"
 
-#: src/plugins/media-export/rygel-media-export-dvd-container.vala:133
+#: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
 msgid "Title %d"
 msgstr "शीर्षक %d"
@@ -1139,14 +1052,13 @@ msgid "Failed to find lsdvd binary in path. DVD extraction will not be available
 msgstr ""
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:73
-#, fuzzy
 msgid "Invalid command received, ignoring"
-msgstr "अवैध प्राथमिकताको उपेक्षा \"%s\""
+msgstr "अवैध आदेश प्राप्त भयो, बेवास्ता गर्दै"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:90
 #, fuzzy, c-format
 msgid "Failed to discover URI %s: %s"
-msgstr "अवैध '%s' URI: %s"
+msgstr "अमान्य \"%s\" URI:%s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:105
 #, fuzzy, c-format
@@ -1176,7 +1088,7 @@ msgstr "तार भएको सञ्जालमा जडान असफ�
 #: src/plugins/media-export/rygel-media-export-harvester.vala:146
 #, fuzzy, c-format
 msgid "“%s” harvested"
-msgstr "%s, %s, %s र %s"
+msgstr "%s %s, %s %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:202
 #, c-format
@@ -1201,22 +1113,27 @@ msgstr " %s डेटावेसबाट हटाउँदा त्रुट
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:127
 #, fuzzy, c-format
 msgid "Failed to harvest file %s: %s"
-msgstr "फाइल हटाउन असफल भयो %s: %s"
+msgstr "%s फाइलअपलोड गर्न असफल"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:191
 #, fuzzy, c-format
 msgid "Failed to query database: %s"
-msgstr "डाटावेस '%s' संगको सम्पर्क असफल भयो।\n"
+msgstr "एसिएल क्वेरि गर्न असफल: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
 #, fuzzy, c-format
 msgid "Failed to enumerate folder “%s”: %s"
-msgstr "फोल्डर पुन: नामकरण असफल। कारण: %s"
+msgstr "%s कम्पाइलेसन असफल: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:286
 #, fuzzy, c-format
 msgid "Failed to get children of container %s: %s"
-msgstr "`%s' का लागि मान प्राप्त गर्न असफल भयो: %s\n"
+msgstr "फाइल '%s' का लागि जानकारी प्राप्त गर्न सकेन: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
+#, fuzzy, c-format
+msgid "Failed to extract meta-data for file %s"
+msgstr "मेटाडाटा निकाल्नका लागि फाइल"
 
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
@@ -1239,27 +1156,27 @@ msgstr "डाटावेस '%s' संगको सम्पर्क अस�
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, fuzzy, c-format
 msgid "Failed to create indices: %s"
-msgstr "`%s' फाइल सिर्जना गर्न असफल: %s"
+msgstr "%s;%s लगडाइरेक्टरी सिर्जना गर्न असफल भयो"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:101
 #, c-format
 msgid "Cannot upgrade from version %d"
 msgstr ""
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
 #, fuzzy, c-format
-msgid "Database upgrade failed: %s"
-msgstr "डाटावेस '%s' संगको सम्पर्क असफल भयो।\n"
+msgid "Database upgrade to v18 failed: %s"
+msgstr "डाटावेस '%s' संगको सम्पर्क असफल भयो।"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:134
 #, fuzzy, c-format
 msgid "Failed to add item with ID %s: %s"
-msgstr "यस \"%s\" मा थपिने सामाग्रीलाई फेला पार्नुहोस्:"
+msgstr "वस्तु थप्न असफल भयो: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:217
 #, fuzzy, c-format
 msgid "Failed to get update IDs: %s"
-msgstr "होस्टनाम प्राप्त गर्न असफल: %s\n"
+msgstr "fcntl(2) प्रयोग गरेर बन्द गर्न असफल भयो: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:400
 #, c-format
@@ -1270,17 +1187,17 @@ msgstr ""
 #, fuzzy
 #| msgid "Failed to seek"
 msgid "Failed to get reset token"
-msgstr "सर्भर सेटअप असफल"
+msgstr "फोल्डर सूची प्राप्त गर्न असफल भयो"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:537
 #, fuzzy, c-format
 msgid "Failed to persist ServiceResetToken: %s"
-msgstr "*** %s मा %s लिङ्क असफल भयो"
+msgstr "प्रमाणपत्र लोड गर्न असफल: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:547
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to remove virtual folders: %s"
-msgstr "प्रविष्टि हटाउन असफल भयो: %s"
+msgstr "भर्चुअल फोल्डरहरू हटाउन असफल भयो: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:561
 #, fuzzy, c-format
@@ -1288,18 +1205,17 @@ msgid "Failed to mark item %s as guarded (%d): %s"
 msgstr "'%s' शाखा प्रक्रिया सिर्जना गर्न असफल भयो: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:571
-#, fuzzy
 msgid "Cannot create references to containers"
-msgstr "डाइरेक्टरी '%s' सिर्जना सकिंदैन"
+msgstr "कन्टेनरहरूमा सन्दर्भ सिर्जना गर्न सक्दैन"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:597
 #, fuzzy, c-format
-msgid "Failed to add %s to file blacklist: %s"
-msgstr "बचत गरिएको स्थिति फाइलमा क्लाइन्ट ठेगाना लेख्न असफल भयो: %s"
+msgid "Failed to add %s to ignored files: %s"
+msgstr "वस्तु थप्न असफल भयो: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, fuzzy, c-format
-msgid "Failed to get whether URI %s is blacklisted: %s"
+msgid "Failed to get whether URI %s is ignored: %s"
 msgstr "शाखा प्रक्रिया \"%s\" (%s) कार्यान्वयन गर्न असफल"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:626
@@ -1312,22 +1228,21 @@ msgstr "'%s' शाखा प्रक्रिया सिर्जना ग�
 msgid "The version “%d” of the detected database is newer than our supported version “%d”"
 msgstr ""
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:690
-#, fuzzy
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:688
 msgid "Incompatible schema… cannot proceed"
-msgstr "मानको रूपमा स्किमा सेट गर्न सकिँदैन\n"
+msgstr "असंगत स्कीमा … अगाडि बढ्न सक्दैन"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:696
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:694
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr ""
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:897
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:895
 #, c-format
 msgid "Failed to create database schema: %s"
 msgstr "डाटावेस '%s' संगको सम्पर्क असफल भयो।"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1232
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr ""
@@ -1349,14 +1264,14 @@ msgid "Process died while handling URI %s"
 msgstr ""
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
-#, fuzzy, c-format
+#, c-format
 msgid "Setting up extraction subprocess failed: %s"
-msgstr "'%s' लाई सेट गर्न सकिएन"
+msgstr "निष्कर्षण सहायक प्रक्रिया सेट अप गर्न असफल: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
-#, fuzzy, c-format
+#, c-format
 msgid "Received invalid string from child: %s"
-msgstr "%s बाट अवैध सन्देश प्रवाह प्राप्त भयो: %s"
+msgstr "उपशाखाबाट अवैध स्ट्रिङ प्राप्त भयो: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
@@ -1366,25 +1281,25 @@ msgstr ""
 #. No error signalling, this was done in the part that called
 #. cancel
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:243
-#, fuzzy, c-format
+#, c-format
 msgid "Read from child failed: %s"
-msgstr "शाखा प्रक्रिया (%s)बाट पढ्न असफल"
+msgstr "उपशाखाबाट पढ्न असफल भयो: %s "
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:270
 #, fuzzy, c-format
 msgid "Failed to send command to child: %s"
-msgstr "पठाउन असफल: %s"
+msgstr "शाखा प्रक्रिया (%s) कार्यान्वयन गर्न असफल"
 
 #: src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, fuzzy, c-format
 msgid "Failed to get child count: %s"
-msgstr "`%s' का लागि मान प्राप्त गर्न असफल भयो: %s\n"
+msgstr "शाखा प्रक्रिया (%s) फोर्क गर्न असफल"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
 #, fuzzy, c-format
 msgid "Can’t create items in %s"
-msgstr "फाइल बचत गर्नसकिएन %s: %s"
+msgstr "कन्टेनरमा थप्न सकिएन %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:91
 #, c-format
@@ -1394,7 +1309,7 @@ msgstr "कन्टेनरमा थप्न सकिएन %s"
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:99
 #, fuzzy, c-format
 msgid "Can’t remove containers in %s"
-msgstr "फाइल बचत गर्नसकिएन %s: %s"
+msgstr "कन्टेनरमा थप्न सकिएन %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
 #: src/plugins/media-export/rygel-media-export-root-container.vala:612
@@ -1402,24 +1317,23 @@ msgid "Playlists"
 msgstr "प्लेसूची"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
-#, fuzzy, c-format
+#, c-format
 msgid "Can’t remove items in %s"
-msgstr "फाइल बचत गर्नसकिएन %s: %s"
+msgstr "%s मा बस्तुहरू हटाउन सक्दैन"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
 #, fuzzy, c-format
 msgid "upnp:class not supported in %s"
-msgstr "%s: रेपोजिटरी %s समर्थित छैन\n"
+msgstr "वर्ग नाम %s का लागि कुनै प्रकार छैन"
 
 #: src/plugins/media-export/rygel-media-export-plugin.vala:52
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to load plugin %s: %s"
-msgstr "प्लगइन लोड गर्न असफल: %s"
+msgstr "%s प्लगइन लोड गर्न असफल : %s"
 
 #: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
-#, fuzzy
 msgid "Will not monitor file changes"
-msgstr "मोनिटर"
+msgstr "फाईलमा परिवर्तनहरू निगरानि नगर्नुहोस्"
 
 #. Avoid warning when file is removed in the meantime, e.g. in
 #. upload case.
@@ -1431,7 +1345,7 @@ msgstr "`%s' फाइल खाली गर्न असफल भयो: %s"
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
-#: src/plugins/tracker/rygel-tracker-years.vala:33
+#: src/plugins/tracker3/rygel-tracker-years.vala:33 src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "वर्ष"
 
@@ -1446,7 +1360,7 @@ msgid "Album"
 msgstr "एल्बम"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
-#: src/plugins/tracker/rygel-tracker-genre.vala:31
+#: src/plugins/tracker3/rygel-tracker-genre.vala:31 src/plugins/tracker/rygel-tracker-genre.vala:31
 msgid "Genre"
 msgstr "विधा"
 
@@ -1456,7 +1370,7 @@ msgstr "फाइलहरू र फोल्डरहरू"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
-#: src/plugins/tracker/rygel-tracker-plugin.vala:33
+#: src/plugins/tracker3/rygel-tracker-plugin.vala:34 src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@’s media"
 msgstr "@REALNAME@ को मिडिया"
 
@@ -1505,57 +1419,59 @@ msgstr "जिस्ट्रेमर प्लेयर"
 msgid "Could not create GStreamer player"
 msgstr "जिस्ट्रेमर प्लेयर सिर्जना गर्न सकेन"
 
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
-#, fuzzy, c-format
-msgid "Failed to create a Tracker connection: %s"
-msgstr ""
-"डाटावेस '%s' संगको सम्पर्कमा असफल।\n"
-"%s"
-
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
 #, fuzzy, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "थम्बनेल फोल्डर '%s' सिर्जना गर्न असफल"
 
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
 #, c-format
 msgid "Could not subscribe to Tracker signals: %s"
 msgstr ""
 
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
 msgid "Not supported"
 msgstr "समर्थित छैन"
 
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
-#, fuzzy, c-format
-msgid "Failed to create Tracker connection: %s"
-msgstr ""
-"डाटावेस '%s' संगको सम्पर्कमा असफल।\n"
-"%s"
-
+#: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
 #: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
 #, fuzzy, c-format
 msgid "Error getting all values for “%s”: %s"
-msgstr "`%s' लागि मान प्राप्त गर्दा त्रुटि: %s"
+msgstr "\"%s\"मा सबै प्रयोगकर्ताको सूचना प्राप्त"
 
+#: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
 #: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgstr ""
 
-#: src/plugins/tracker/rygel-tracker-search-container.vala:104
-#, fuzzy, c-format
-msgid "Failed to get Tracker connection: %s"
-msgstr "होस्टनाम प्राप्त गर्न असफल: %s\n"
-
+#: src/plugins/tracker3/rygel-tracker-search-container.vala:228
 #: src/plugins/tracker/rygel-tracker-search-container.vala:228
 #, fuzzy, c-format
 msgid "Error getting item count under category “%s”: %s"
 msgstr "`%s'का लागि पूर्वनिर्धारित मान प्राप्त गर्दा त्रुटि: %s"
 
-#: src/plugins/tracker/rygel-tracker-titles.vala:58
+#: src/plugins/tracker3/rygel-tracker-titles.vala:58 src/plugins/tracker/rygel-tracker-titles.vala:58
 msgid "Titles"
 msgstr "शीर्षक"
+
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
+#, fuzzy, c-format
+msgid "Failed to create a Tracker connection: %s"
+msgstr "TLS जडान सिर्जना गर्न सकेन: %s"
+
+#: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
+#, fuzzy, c-format
+msgid "Failed to create Tracker connection: %s"
+msgstr "TLS जडान सिर्जना गर्न सकेन: %s"
+
+#: src/plugins/tracker/rygel-tracker-search-container.vala:104
+#, fuzzy, c-format
+msgid "Failed to get Tracker connection: %s"
+msgstr "फाइल '%s' का लागि जानकारी प्राप्त गर्न सकेन: %s"
 
 #: src/rygel/rygel-acl.vala:110
 #, c-format
@@ -1567,11 +1483,11 @@ msgstr "एसिएल क्वेरि गर्न असफल: %s"
 msgid "Error creating D-Bus proxy for ACL: %s"
 msgstr ""
 
-#: src/rygel/rygel-acl.vala:143
+#: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “allow”"
 msgstr ""
 
-#: src/rygel/rygel-acl.vala:145
+#: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr ""
 
@@ -1592,25 +1508,25 @@ msgid_plural "No plugins found in %d seconds; giving up…"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/rygel/rygel-main.vala:177
+#: src/rygel/rygel-main.vala:192
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr ""
 
-#: src/rygel/rygel-main.vala:235
+#: src/rygel/rygel-main.vala:250
 #, fuzzy, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
-msgstr "फोल्डर पुन: नामकरण असफल। कारण: %s"
+msgstr "%s;%s लगडाइरेक्टरी सिर्जना गर्न असफल भयो"
 
-#: src/rygel/rygel-main.vala:272
+#: src/rygel/rygel-main.vala:287
 #, fuzzy, c-format
 msgid "Failed to load user configuration: %s"
-msgstr "%s लोड गर्न असफल भयो: %s\n"
+msgstr "प्लगइन लोड गर्न असफल: %s"
 
 #: src/ui/rygel-preferences-dialog.vala:109
 #, fuzzy, c-format
 msgid "Failed to create preferences dialog: %s"
-msgstr "प्लेयर सिर्जना गर्न असफल: %s"
+msgstr "%s;%s लगडाइरेक्टरी सिर्जना गर्न असफल भयो"
 
 #: src/ui/rygel-writable-user-config.vala:119
 #, fuzzy, c-format
@@ -1626,6 +1542,9 @@ msgstr "राईजेल सेवा शुरु असफल भयो:%s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "राईजेल सेवा रोक्न असफल भयो:%s"
+
+#~ msgid "rygel"
+#~ msgstr "rygel"
 
 #~ msgid "column"
 #~ msgstr "स्तम्भ"
