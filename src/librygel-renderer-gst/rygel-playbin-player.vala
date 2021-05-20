@@ -668,6 +668,8 @@ public class Rygel.PlaybinPlayer : GLib.Object, Rygel.MediaPlayer {
         this.playbin.source_setup.connect (this.on_source_setup);
         this.playbin.notify["uri"].connect (this.on_uri_notify);
 
+        this.volume = 0.5;
+
         // Bus handler
         var bus = this.playbin.get_bus ();
         bus.add_signal_watch ();
