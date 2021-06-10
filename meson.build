@@ -1,4 +1,4 @@
-project('rygel', 'vala', 'c', version : '0.40.0', meson_version : '>= 0.55.0')
+project('rygel', 'vala', 'c', version : '0.41.0', meson_version : '>= 0.55.0')
 vala = meson.get_compiler('vala')
 
 # Check for the required vala version
@@ -76,7 +76,7 @@ gtkdoc = dependency('gtk-doc', required : false)
 
 glib_minimal_version = '>= 2.56'
 
-gupnp = dependency('gupnp-1.2', version : '>= 1.1')
+gupnp = dependency('gupnp-1.2', version : '>= 1.3')
 gee = dependency('gee-0.8', version: '>= 0.8.0')
 gssdp = dependency('gssdp-1.2', version : '>= 1.1')
 glib = dependency('glib-2.0', version : glib_minimal_version)
