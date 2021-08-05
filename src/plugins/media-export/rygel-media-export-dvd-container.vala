@@ -54,7 +54,7 @@ internal class Rygel.MediaExport.DVDContainer : SimpleContainer, UpdatableObject
                                         Xml.ParserOption.NOWARNING |
                                         Xml.ParserOption.NOBLANKS |
                                         Xml.ParserOption.NONET);
-        this.doc = new GUPnP.XMLDoc ((owned) doc);
+        this.doc = new GUPnP.XMLDoc (doc);
 
         var context = new Xml.XPath.Context (this.doc.get_doc ());
         var xpo = context.eval ("/lsdvd/track");

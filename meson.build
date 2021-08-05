@@ -76,7 +76,7 @@ gtkdoc = dependency('gtk-doc', required : false)
 
 glib_minimal_version = '>= 2.56'
 
-gupnp = dependency('gupnp-1.2', version : '>= 1.3')
+gupnp = dependency('gupnp-1.2', version : '>= 1.1')
 gee = dependency('gee-0.8', version: '>= 0.8.0')
 gssdp = dependency('gssdp-1.2', version : '>= 1.1')
 glib = dependency('glib-2.0', version : glib_minimal_version)
