@@ -1,0 +1,20 @@
+include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
+
+variables:
+    BUNDLE: "org.gnome.Rygel.Devel.flatpak"
+    GIT_SUBMODULE_STRATEGY: recursive
+
+flatpak:
+    extends: ['.flatpak']
+    image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:40
+    variables:
+        MANIFEST_PATH: "build-aux/org.gnome.Rygel.json"
+        RUNTIME_REPO: "https://sdk.gnome.org/gnome.flatpakrepo"
+        # Replace with your application name, as written in the manifest
+        FLATPAK_MODULE: "rygel"
+        APP_ID: "org.gnome.Rygel"
+
+#nightly:
+#extends: '.publish_nightly'
+#    dependencies: ['flatpak']
+#    needs: ['flatpak']
