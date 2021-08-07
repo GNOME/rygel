@@ -11,7 +11,8 @@
         "--talk-name=org.gtk.vfs.*",
         "--filesystem=xdg-pictures",
         "--filesystem=xdg-videos",
-        "--filesystem=xdg-music"
+        "--filesystem=xdg-music",
+        "--own-name=org.gnome.Rygel1"
     ],
     "build-options" : {
         "cflags" : "-O2 -g",
