@@ -1,0 +1,8 @@
+[wrap-git]
+url = https://gitlab.gnome.org/GNOME/gupnp-av.git
+revision = master
+depth = 1
+ 
+[provides]
+dependency_name = gupnp-av-1.0
+

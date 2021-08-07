@@ -1,0 +1,8 @@
+[wrap-git]
+url = https://gitlab.gnome.org/GNOME/gssdp.git
+revision = master
+depth = 1
+ 
+[provides]
+dependency_name = gssdp-1.2
+
