@@ -5,10 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=rygel&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-11-23 21:19+0000\n"
-"PO-Revision-Date: 2016-12-28 18:09+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
+"POT-Creation-Date: 2020-07-12 13:38+0000\n"
+"PO-Revision-Date: 2021-09-01 20:10+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -16,18 +15,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Poedit 3.0\n"
 
 #: data/rygel.desktop.in.in:3
 msgid "Rygel"
 msgstr "Rygel"
 
-#: data/rygel.desktop.in.in:4 data/rygel.desktop.in.in:5
+#: data/rygel.desktop.in.in:4
 msgid "UPnP/DLNA Services"
 msgstr "UPnP-/DLNA-palvelut"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in.in:7
+#: data/rygel.desktop.in.in:6
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
 "mediaserver;mediarenderer;share;audio;video;pictures;mediapalvelin;jako;"
@@ -40,12 +39,6 @@ msgstr "Rygelin asetukset"
 #: data/rygel-preferences.desktop.in.in:4
 msgid "UPnP/DLNA Preferences"
 msgstr "UPnP-/DLNA-asetukset"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/rygel-preferences.desktop.in.in:7
-#| msgid "Rygel"
-msgid "rygel"
-msgstr "rygel"
 
 #: data/rygel-preferences.ui:94
 msgid "Add a directory to the list of shared directories"
@@ -127,44 +120,47 @@ msgid "Failed to read error output from %s: %s"
 msgstr "Moduulin lataus polusta \"%s\" epäonnistui: %s"
 
 #. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:159
+#: src/librygel-core/rygel-basic-management.vala:158
 #, fuzzy
 #| msgid "No such object"
 msgid "No Such Test"
 msgstr "Ei kyseistä objektia"
 
 #. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:167
+#: src/librygel-core/rygel-basic-management.vala:166
+#: src/librygel-core/rygel-basic-management.vala:283
+#: src/librygel-core/rygel-basic-management.vala:382
+#: src/librygel-core/rygel-basic-management.vala:471
 msgid "Wrong Test Type"
 msgstr "Väärä testityyppi"
 
 #. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:175
+#: src/librygel-core/rygel-basic-management.vala:174
 #, fuzzy, c-format
 #| msgid "Invalid date: %s"
 msgid "Invalid Test State “%s”"
 msgstr "Virheellinen päiväys: %s"
 
 #. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:181
+#: src/librygel-core/rygel-basic-management.vala:180
 #, c-format
 msgid "State “%s” Precludes Cancel"
 msgstr ""
 
-#: src/librygel-core/rygel-basic-management.vala:214
-#: src/librygel-core/rygel-basic-management.vala:229
-#: src/librygel-core/rygel-basic-management.vala:256
-#: src/librygel-core/rygel-basic-management.vala:272
-#: src/librygel-core/rygel-basic-management.vala:324
-#: src/librygel-core/rygel-basic-management.vala:349
-#: src/librygel-core/rygel-basic-management.vala:365
-#: src/librygel-core/rygel-basic-management.vala:404
-#: src/librygel-core/rygel-basic-management.vala:431
-#: src/librygel-core/rygel-basic-management.vala:448
-#: src/librygel-core/rygel-basic-management.vala:487
-#: src/librygel-core/rygel-basic-management.vala:502
-#: src/librygel-core/rygel-basic-management.vala:517
-#: src/librygel-core/rygel-basic-management.vala:541
+#: src/librygel-core/rygel-basic-management.vala:213
+#: src/librygel-core/rygel-basic-management.vala:228
+#: src/librygel-core/rygel-basic-management.vala:255
+#: src/librygel-core/rygel-basic-management.vala:271
+#: src/librygel-core/rygel-basic-management.vala:328
+#: src/librygel-core/rygel-basic-management.vala:353
+#: src/librygel-core/rygel-basic-management.vala:369
+#: src/librygel-core/rygel-basic-management.vala:414
+#: src/librygel-core/rygel-basic-management.vala:441
+#: src/librygel-core/rygel-basic-management.vala:458
+#: src/librygel-core/rygel-basic-management.vala:503
+#: src/librygel-core/rygel-basic-management.vala:518
+#: src/librygel-core/rygel-basic-management.vala:533
+#: src/librygel-core/rygel-basic-management.vala:557
 #: src/librygel-core/rygel-connection-manager.vala:95
 #: src/librygel-core/rygel-connection-manager.vala:109
 #: src/librygel-core/rygel-connection-manager.vala:126
@@ -178,23 +174,130 @@ msgstr ""
 #: src/librygel-server/rygel-content-directory.vala:343
 #: src/librygel-server/rygel-content-directory.vala:372
 #: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:616
-#: src/librygel-server/rygel-content-directory.vala:765
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
 #: src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Virheellinen argumentti"
 
-#: src/librygel-core/rygel-basic-management.vala:255
+#: src/librygel-core/rygel-basic-management.vala:254
 msgid "Cannot run “Ping” action: Host is empty"
 msgstr ""
 
-#: src/librygel-core/rygel-basic-management.vala:348
+#: src/librygel-core/rygel-basic-management.vala:352
 msgid "Cannot run “NSLookup” action: HostName is empty"
 msgstr ""
 
-#: src/librygel-core/rygel-basic-management.vala:430
+#: src/librygel-core/rygel-basic-management.vala:440
 msgid "Cannot run “Traceroute” action: Host is empty"
 msgstr ""
+
+#: src/librygel-core/rygel-cmdline-config.vala:73
+msgid "Display version number"
+msgstr "Näytä versionumero"
+
+#: src/librygel-core/rygel-cmdline-config.vala:75
+msgid "Network Interfaces"
+msgstr "Verkkoliitännät"
+
+#: src/librygel-core/rygel-cmdline-config.vala:77
+msgid "Port"
+msgstr "Portti"
+
+#: src/librygel-core/rygel-cmdline-config.vala:79
+msgid "Disable transcoding"
+msgstr ""
+
+#: src/librygel-core/rygel-cmdline-config.vala:81
+msgid "Disallow upload"
+msgstr "Estä lähetys"
+
+#: src/librygel-core/rygel-cmdline-config.vala:83
+msgid "Disallow deletion"
+msgstr "Estä poistaminen"
+
+#: src/librygel-core/rygel-cmdline-config.vala:85
+msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
+msgstr ""
+
+#: src/librygel-core/rygel-cmdline-config.vala:87
+msgid "Plugin Path"
+msgstr "Liitännäisen polku"
+
+#: src/librygel-core/rygel-cmdline-config.vala:89
+msgid "Engine Path"
+msgstr "Moottorin polku"
+
+#: src/librygel-core/rygel-cmdline-config.vala:92
+msgid "Disable plugin"
+msgstr "Poista liitännäinen käytöstä"
+
+#: src/librygel-core/rygel-cmdline-config.vala:94
+msgid "Set plugin titles"
+msgstr ""
+
+#: src/librygel-core/rygel-cmdline-config.vala:96
+msgid "Set plugin options"
+msgstr "Aseta liitännäisen valinnat"
+
+#: src/librygel-core/rygel-cmdline-config.vala:98
+#, fuzzy
+#| msgid "Failed to load user configuration: %s"
+msgid "Use configuration file instead of user configuration"
+msgstr "Käyttäjäasetusten lataus epäonnistui: %s"
+
+#: src/librygel-core/rygel-cmdline-config.vala:100
+#, fuzzy
+#| msgid "Rygel Preferences"
+msgid "Shut down remote Rygel reference"
+msgstr "Rygelin asetukset"
+
+#: src/librygel-core/rygel-cmdline-config.vala:102
+msgid "Replace currently running instance of Rygel"
+msgstr "Korvaa parhaillaan käynnissä oleva Rygel"
+
+#: src/librygel-core/rygel-cmdline-config.vala:139
+msgid "Shutting down remote Rygel instance\n"
+msgstr "Sammutetaan Rygelin etäkäyttöistuntoa\n"
+
+#: src/librygel-core/rygel-cmdline-config.vala:147
+#, c-format
+msgid "Failed to shut down other Rygel instance: %s"
+msgstr "Toisen Rygel-istunnon sammutus epäonnistui: %s"
+
+#: src/librygel-core/rygel-cmdline-config.vala:161
+#: src/librygel-core/rygel-cmdline-config.vala:170
+#: src/librygel-core/rygel-cmdline-config.vala:178
+#: src/librygel-core/rygel-cmdline-config.vala:186
+#: src/librygel-core/rygel-cmdline-config.vala:194
+#: src/librygel-core/rygel-cmdline-config.vala:202
+#: src/librygel-core/rygel-cmdline-config.vala:210
+#: src/librygel-core/rygel-cmdline-config.vala:249
+#: src/librygel-core/rygel-cmdline-config.vala:268
+#: src/librygel-core/rygel-cmdline-config.vala:274
+#: src/librygel-core/rygel-cmdline-config.vala:281
+#: src/librygel-core/rygel-cmdline-config.vala:285
+#: src/librygel-core/rygel-cmdline-config.vala:289
+#: src/librygel-core/rygel-cmdline-config.vala:312
+#: src/librygel-core/rygel-cmdline-config.vala:338
+#: src/librygel-core/rygel-cmdline-config.vala:367
+#: src/librygel-core/rygel-cmdline-config.vala:393
+#: src/librygel-core/rygel-cmdline-config.vala:418
+#: src/librygel-core/rygel-environment-config.vala:100
+#: src/librygel-core/rygel-environment-config.vala:104
+#: src/librygel-core/rygel-environment-config.vala:108
+#: src/librygel-core/rygel-meta-config.vala:105
+#: src/librygel-core/rygel-meta-config.vala:125
+#: src/librygel-core/rygel-meta-config.vala:144
+#: src/librygel-core/rygel-meta-config.vala:163
+#: src/librygel-core/rygel-meta-config.vala:182
+#: src/librygel-core/rygel-meta-config.vala:201
+#: src/librygel-core/rygel-meta-config.vala:220
+#: src/librygel-core/rygel-meta-config.vala:239
+#: src/librygel-core/rygel-meta-config.vala:258
+#: src/librygel-core/rygel-meta-config.vala:277
+msgid "No value available"
+msgstr "Ei arvoa saatavilla"
 
 #: src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
@@ -205,95 +308,60 @@ msgstr "Virheellinen yhteysviittaus"
 msgid "Failed to write modified description to %s"
 msgstr "Muokatun kuvauksen kirjoitus kohteeseen %s epäonnistui"
 
-#: src/librygel-core/rygel-energy-management-helper.c:54
-#, fuzzy, c-format
+#: src/librygel-core/rygel-energy-management-helper.c:55
+#, c-format
 #| msgid "Failed to create a Tracker connection: %s"
 msgid "Failed to get a socket: %s"
-msgstr "Tracker-yhteyden luonti epäonnistui: %s"
+msgstr "Pistokkeen saaminen epäonnistui: %s"
 
-#: src/librygel-core/rygel-energy-management-helper.c:61
+#: src/librygel-core/rygel-energy-management-helper.c:62
 #, fuzzy, c-format
 #| msgid "Failed to save configuration data to file '%s': %s"
 msgid "Failed to get MAC address for %s: %s"
 msgstr "Asetustietojen tallennus tiedostoon \"%s\" epäonnistui: %s"
 
-#: src/librygel-core/rygel-energy-management-helper.c:103
+#: src/librygel-core/rygel-energy-management-helper.c:104
 msgid "MAC and network type querying not implemented"
 msgstr ""
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
 msgid "Failed to get log level from configuration: %s"
-msgstr ""
-
-#: src/librygel-core/rygel-meta-config.vala:89
-#: src/librygel-core/rygel-meta-config.vala:109
-#: src/librygel-core/rygel-meta-config.vala:128
-#: src/librygel-core/rygel-meta-config.vala:147
-#: src/librygel-core/rygel-meta-config.vala:166
-#: src/librygel-core/rygel-meta-config.vala:185
-#: src/librygel-core/rygel-meta-config.vala:204
-#: src/librygel-core/rygel-meta-config.vala:223
-#: src/librygel-core/rygel-meta-config.vala:242
-#: src/librygel-core/rygel-meta-config.vala:261
-#: src/rygel/rygel-cmdline-config.vala:161
-#: src/rygel/rygel-cmdline-config.vala:170
-#: src/rygel/rygel-cmdline-config.vala:178
-#: src/rygel/rygel-cmdline-config.vala:186
-#: src/rygel/rygel-cmdline-config.vala:194
-#: src/rygel/rygel-cmdline-config.vala:202
-#: src/rygel/rygel-cmdline-config.vala:210
-#: src/rygel/rygel-cmdline-config.vala:249
-#: src/rygel/rygel-cmdline-config.vala:268
-#: src/rygel/rygel-cmdline-config.vala:274
-#: src/rygel/rygel-cmdline-config.vala:281
-#: src/rygel/rygel-cmdline-config.vala:285
-#: src/rygel/rygel-cmdline-config.vala:289
-#: src/rygel/rygel-cmdline-config.vala:312
-#: src/rygel/rygel-cmdline-config.vala:338
-#: src/rygel/rygel-cmdline-config.vala:367
-#: src/rygel/rygel-cmdline-config.vala:393
-#: src/rygel/rygel-cmdline-config.vala:418
-#: src/rygel/rygel-environment-config.vala:100
-#: src/rygel/rygel-environment-config.vala:104
-#: src/rygel/rygel-environment-config.vala:108
-msgid "No value available"
-msgstr "Ei arvoa saatavilla"
+msgstr "Lokitustason saaminen kokoonpanosta epäonnistui: %s"
 
 #. translators: "enabled" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:336
+#: src/librygel-core/rygel-meta-config.vala:352
 #, c-format
 msgid "No value set for “%s/enabled”"
 msgstr ""
 
 #. translators: "title" is part of the config key and must not be translated
-#: src/librygel-core/rygel-meta-config.vala:355
+#: src/librygel-core/rygel-meta-config.vala:371
 #, c-format
 msgid "No value set for “%s/title”"
 msgstr ""
 
-#: src/librygel-core/rygel-meta-config.vala:375
-#: src/librygel-core/rygel-meta-config.vala:397
-#: src/librygel-core/rygel-meta-config.vala:423
-#: src/librygel-core/rygel-meta-config.vala:445
-#: src/librygel-core/rygel-meta-config.vala:469
+#: src/librygel-core/rygel-meta-config.vala:391
+#: src/librygel-core/rygel-meta-config.vala:413
+#: src/librygel-core/rygel-meta-config.vala:439
+#: src/librygel-core/rygel-meta-config.vala:461
+#: src/librygel-core/rygel-meta-config.vala:485
 #, fuzzy, c-format
 #| msgid "No value available"
 msgid "No value available for “%s/%s”"
 msgstr "Ei arvoa saatavilla"
 
-#: src/librygel-core/rygel-plugin-information.vala:59
+#: src/librygel-core/rygel-plugin-information.vala:64
 msgid "[Plugin] group not found"
 msgstr ""
 
-#: src/librygel-core/rygel-plugin-information.vala:77
+#: src/librygel-core/rygel-plugin-information.vala:76
 #, c-format
 msgid "Plugin module %s does not exist"
 msgstr "Liitännäismoodulia %s ei ole olemassa"
 
 #: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
-#| msgid "New plugin '%s' available"
 msgid "New plugin “%s” available"
 msgstr "Uusi liitännäinen “%s” saatavilla"
 
@@ -302,26 +370,29 @@ msgstr "Uusi liitännäinen “%s” saatavilla"
 msgid "A module named %s is already loaded"
 msgstr "Moduuli nimeltä \"%s\" on jo ladattu"
 
-#: src/librygel-core/rygel-plugin-loader.vala:113
+#: src/librygel-core/rygel-plugin-loader.vala:118
 #, fuzzy, c-format
 #| msgid "Failed to load module from path '%s': %s"
 msgid "Failed to load module from path “%s”: %s"
 msgstr "Moduulin lataus polusta \"%s\" epäonnistui: %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:123
+#: src/librygel-core/rygel-plugin-loader.vala:128
 #, c-format
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr ""
 
+#: src/librygel-core/rygel-plugin-loader.vala:155
+#, c-format
+msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
+msgstr ""
+
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
-#| msgid "Could not load plugin: %s"
 msgid "Failed to open plugins folder: “%s”"
 msgstr "Liitännäiskansion avaaminen epäonnistui: “%s”"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:149
 #, c-format
-#| msgid "Error listing contents of folder '%s': %s"
 msgid "Error listing contents of folder “%s”: %s"
 msgstr "Virhe luetteloidessa kansion “%s” sisältöä: %s"
 
@@ -330,11 +401,29 @@ msgstr "Virhe luetteloidessa kansion “%s” sisältöä: %s"
 msgid "Could not load plugin: %s"
 msgstr "Liitännäisen lataaminen ei onnistunut: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:221
+#: src/librygel-core/rygel-recursive-module-loader.vala:220
 #, fuzzy, c-format
 #| msgid "Failed to query database: %s"
 msgid "Failed to query content type for “%s”"
 msgstr "Kysely tietokantaan epäonnistui: %s"
+
+#. TRANSLATORS: First %s is the file's path, second is the error message
+#: src/librygel-core/rygel-user-config.vala:246
+#, fuzzy, c-format
+#| msgid "Failed to load user configuration from file '%s': %s"
+msgid "Failed to load user configuration from file “%s”: %s"
+msgstr "Käyttäjäasetusten lataus tiedostosta %s epäonnistui: %s"
+
+#: src/librygel-core/rygel-user-config.vala:299
+#, fuzzy, c-format
+#| msgid "No value available"
+msgid "No value available for “%s”"
+msgstr "Ei arvoa saatavilla"
+
+#: src/librygel-core/rygel-user-config.vala:370
+#, c-format
+msgid "Value of “%s” out of range"
+msgstr "Arvo “%s” on kelvollisen alueen ulkopuolella"
 
 #: src/librygel-db/database-cursor.vala:99
 #, c-format
@@ -351,9 +440,9 @@ msgstr "Virhe avatessa SQLite-tietokantaa %s: %s"
 msgid "Failed to roll back transaction: %s"
 msgstr ""
 
-#: src/librygel-renderer-gst/rygel-playbin-player.vala:367
+#: src/librygel-renderer-gst/rygel-playbin-player.vala:370
 msgid ""
-"Your GStreamer installation seems to be missing the “playbin” element. The "
+"Your GStreamer installation seems to be missing the “playbin3” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
 msgstr ""
 
@@ -390,27 +479,27 @@ msgid "Play mode not supported"
 msgstr "Toistotila ei ole tuettu"
 
 #. FIXME: Return a more sensible error here.
-#: src/librygel-renderer/rygel-av-transport.vala:735
-#: src/librygel-renderer/rygel-av-transport.vala:779
-#: src/librygel-renderer/rygel-av-transport.vala:788
-#: src/librygel-renderer/rygel-av-transport.vala:867
+#: src/librygel-renderer/rygel-av-transport.vala:774
+#: src/librygel-renderer/rygel-av-transport.vala:789
+#: src/librygel-renderer/rygel-av-transport.vala:798
+#: src/librygel-renderer/rygel-av-transport.vala:877
 msgid "Resource not found"
 msgstr "Resurssia ei löytynyt"
 
-#: src/librygel-renderer/rygel-av-transport.vala:777
+#: src/librygel-renderer/rygel-av-transport.vala:787
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "Ongelma jäsennettessä soittolistaa: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:863
+#: src/librygel-renderer/rygel-av-transport.vala:873
 #, fuzzy, c-format
 #| msgid "Failed to remove file %s: %s"
 msgid "Failed to access resource at %s: %s"
 msgstr "Tiedoston %s poistaminen epäonnistui: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:879
+#: src/librygel-renderer/rygel-av-transport.vala:889
 msgid "Illegal MIME-type"
 msgstr "Virheellinen MIME-tyyppi"
 
@@ -489,7 +578,7 @@ msgstr "Pistetiedoston %s siirtäminen epäonnistui: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
-msgstr ""
+msgstr "Virheelliset argumentit"
 
 #: src/librygel-server/rygel-browse.vala:94
 msgid "Cannot browse children on item"
@@ -497,15 +586,14 @@ msgstr ""
 
 #: src/librygel-server/rygel-browse.vala:134
 #, c-format
-#| msgid "Failed to browse '%s': %s\n"
 msgid "Failed to browse “%s”: %s\n"
 msgstr "Kohteen “%s” selaaminen epäonnistui: %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:145
+#: src/librygel-server/rygel-client-hacks.vala:149
 msgid "Not Applicable"
 msgstr ""
 
-#: src/librygel-server/rygel-content-directory.vala:637
+#: src/librygel-server/rygel-content-directory.vala:639
 msgid "No such file transfer"
 msgstr "Ei kyseistä tiedostonsiirtoa"
 
@@ -524,35 +612,34 @@ msgid " must be 1"
 msgstr " täytyy olla 1"
 
 #: src/librygel-server/rygel-http-item-uri.vala:152
-#, fuzzy, c-format
+#, c-format
 #| msgid "Invalid date: %s"
 msgid "Invalid URI “%s”"
-msgstr "Virheellinen päiväys: %s"
+msgstr "Virheellinen URI “%s”"
 
 #: src/librygel-server/rygel-http-item-uri.vala:192
 msgid "Not found"
 msgstr "Ei löytynyt"
 
-#: src/librygel-server/rygel-http-post.vala:62
-#: src/librygel-server/rygel-import-resource.vala:189
+#: src/librygel-server/rygel-http-post.vala:64
+#: src/librygel-server/rygel-import-resource.vala:193
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr ""
 
-#: src/librygel-server/rygel-http-post.vala:71
+#: src/librygel-server/rygel-http-post.vala:72
 #, c-format
 msgid "No writable URI for %s available"
 msgstr ""
 
 #. translators: Dotfile is the filename with prefix "."
-#: src/librygel-server/rygel-http-post.vala:186
+#: src/librygel-server/rygel-http-post.vala:187
 #, c-format
 msgid "Failed to move dotfile %s: %s"
 msgstr "Pistetiedoston %s siirtäminen epäonnistui: %s"
 
 #: src/librygel-server/rygel-http-request.vala:95
 #, c-format
-#| msgid "Requested item '%s' not found"
 msgid "Requested item “%s” not found"
 msgstr "Pyydettyä kohdetta “%s” ei löytynyt"
 
@@ -568,12 +655,12 @@ msgstr "Tracker-yhteyden luonti epäonnistui: %s"
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "Asetustietojen tallennus tiedostoon \"%s\" epäonnistui: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:186
+#: src/librygel-server/rygel-import-resource.vala:188
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr ""
 
-#: src/librygel-server/rygel-import-resource.vala:272
+#: src/librygel-server/rygel-import-resource.vala:276
 #, fuzzy, c-format
 #| msgid "Failed to remove file %s: %s"
 msgid "Failed to import file from %s: %s"
@@ -586,17 +673,15 @@ msgstr "ContainerID puuttuu"
 
 #: src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
-#| msgid "Successfully destroyed object '%s'"
 msgid "Successfully destroyed object “%s”"
 msgstr "Objekti “%s” tuhottiin onnistuneesti"
 
 #: src/librygel-server/rygel-item-destroyer.vala:68
 #, c-format
-#| msgid "Failed to destroy object '%s': %s"
 msgid "Failed to destroy object “%s”: %s"
 msgstr "Objektin “%s” tuhoaminen epäonnistui: %s"
 
-#: src/librygel-server/rygel-item-destroyer.vala:104
+#: src/librygel-server/rygel-item-destroyer.vala:105
 #: src/librygel-server/rygel-item-updater.vala:283
 #: src/librygel-server/rygel-media-query-action.vala:194
 #: src/librygel-server/rygel-reference-creator.vala:68
@@ -604,43 +689,40 @@ msgstr "Objektin “%s” tuhoaminen epäonnistui: %s"
 msgid "No such object"
 msgstr "Ei kyseistä objektia"
 
-#: src/librygel-server/rygel-item-destroyer.vala:107
+#: src/librygel-server/rygel-item-destroyer.vala:108
 #, c-format
 msgid "Removal of object %s not allowed"
 msgstr "Objektin %s poistaminen ei ole sallittua"
 
-#: src/librygel-server/rygel-item-destroyer.vala:110
+#: src/librygel-server/rygel-item-destroyer.vala:111
 #, c-format
 msgid "Object removal from %s not allowed"
 msgstr ""
 
 #. Sorry we can't do anything without the ID
 #: src/librygel-server/rygel-item-updater.vala:74
-#, fuzzy
 #| msgid "ContainerID missing"
 msgid "Object ID missing"
-msgstr "ContainerID puuttuu"
+msgstr "Object ID puuttuu"
 
 #: src/librygel-server/rygel-item-updater.vala:81
 #, c-format
-#| msgid "Successfully updated object '%s'"
 msgid "Successfully updated object “%s”"
 msgstr "Päivitettiin onnistuneesti objekti “%s”"
 
 #: src/librygel-server/rygel-item-updater.vala:89
 #, c-format
-#| msgid "Failed to update object '%s': %s"
 msgid "Failed to update object “%s”: %s"
 msgstr "Objektin “%s” päivitys epäonnistui: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:162
-#: src/librygel-server/rygel-object-creator.vala:606
+#: src/librygel-server/rygel-object-creator.vala:614
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "Virheellinen päiväyksen muoto: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:171
-#: src/librygel-server/rygel-object-creator.vala:615
+#: src/librygel-server/rygel-object-creator.vala:623
 #, c-format
 msgid "Invalid date: %s"
 msgstr "Virheellinen päiväys: %s"
@@ -713,42 +795,41 @@ msgstr "Soittolistan luominen epäonnistui"
 #: src/librygel-server/rygel-media-container.vala:472
 #, c-format
 msgid "Unknown MediaContainer resource: %s"
-msgstr ""
+msgstr "Tuntematon MediaContainer-resurssi: %s"
 
-#: src/librygel-server/rygel-media-engine.vala:62
+#: src/librygel-server/rygel-media-engine.vala:63
 msgid "No media engine found."
-msgstr ""
+msgstr "Mediamoottoria ei löytynyt."
 
-#: src/librygel-server/rygel-media-engine.vala:73
+#: src/librygel-server/rygel-media-engine.vala:75
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr ""
 
 #: src/librygel-server/rygel-media-file-item.vala:177
-#, fuzzy, c-format
+#: src/librygel-server/rygel-video-item.vala:222
+#, c-format
 #| msgid "Failed to create a Tracker connection: %s"
 msgid "Could not determine protocol for URI %s"
-msgstr "Tracker-yhteyden luonti epäonnistui: %s"
+msgstr "Ei voitu määrittää protokollaa URI:lle %s"
 
 #: src/librygel-server/rygel-media-object.vala:284
 #, c-format
 msgid "Could not determine protocol for %s"
 msgstr ""
 
-#: src/librygel-server/rygel-media-object.vala:509
+#: src/librygel-server/rygel-media-object.vala:491
 #, c-format
 msgid "Bad URI: %s"
 msgstr "Virheellinen URI: %s"
 
 #: src/librygel-server/rygel-media-query-action.vala:100
-#, fuzzy
-#| msgid "Invalid argument"
 msgid "Invalid number of arguments"
-msgstr "Virheellinen argumentti"
+msgstr "Virheellinen määrä argumentteja"
 
 #. Sorry we can't do anything without ObjectID
 #: src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
-msgstr ""
+msgstr "ObjectID-argumentti puuttuu"
 
 #: src/librygel-server/rygel-media-query-action.vala:127
 msgid "Invalid range"
@@ -759,7 +840,7 @@ msgid "Missing filter"
 msgstr "Puuttuva suodatin"
 
 #: src/librygel-server/rygel-media-query-action.vala:197
-#: src/librygel-server/rygel-object-creator.vala:412
+#: src/librygel-server/rygel-object-creator.vala:414
 msgid "No such container"
 msgstr "Kyseistä säilöä ei ole olemassa"
 
@@ -767,80 +848,78 @@ msgstr "Kyseistä säilöä ei ole olemassa"
 msgid "upnp:createClass value not supported"
 msgstr "upnp:createClass-arvo ei ole tuettu"
 
-#: src/librygel-server/rygel-object-creator.vala:191
+#: src/librygel-server/rygel-object-creator.vala:193
 msgid "“Elements” argument missing."
-msgstr ""
+msgstr "“Elements”-argumentti puuttuu."
 
-#: src/librygel-server/rygel-object-creator.vala:194
+#: src/librygel-server/rygel-object-creator.vala:196
 msgid "Comments not allowed in XML"
 msgstr "Kommentit eivät ole sallittuja XML:ssä"
 
 #. Sorry we can't do anything without ContainerID
-#: src/librygel-server/rygel-object-creator.vala:200
+#: src/librygel-server/rygel-object-creator.vala:202
 msgid "Missing ContainerID argument"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:224
+#: src/librygel-server/rygel-object-creator.vala:226
 #, c-format
 msgid "No objects in DIDL-Lite from client: “%s”"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:231
+#: src/librygel-server/rygel-object-creator.vala:233
 msgid "@id must be set to \"\" in CreateObject call"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:236
+#: src/librygel-server/rygel-object-creator.vala:238
 msgid "dc:title must not be empty in CreateObject call"
 msgstr "dc:title ei voi olla tyhjä CreateObject-kutsussa"
 
-#: src/librygel-server/rygel-object-creator.vala:247
+#: src/librygel-server/rygel-object-creator.vala:249
 msgid "Flags that must not be set were found in “dlnaManaged”"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:255
+#: src/librygel-server/rygel-object-creator.vala:257
 msgid "Invalid upnp:class given in CreateObject"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:259
+#: src/librygel-server/rygel-object-creator.vala:261
 msgid "Object is missing the @restricted attribute"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:266
+#: src/librygel-server/rygel-object-creator.vala:268
 msgid "Cannot create restricted item"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:383
+#: src/librygel-server/rygel-object-creator.vala:385
 #, c-format
-#| msgid "UPnP class '%s' not supported"
 msgid "UPnP class “%s” not supported"
 msgstr "UPnP-luokka “%s” ei ole tuettu"
 
-#: src/librygel-server/rygel-object-creator.vala:417
-#: src/librygel-server/rygel-object-creator.vala:429
-#: src/librygel-server/rygel-object-creator.vala:715
+#: src/librygel-server/rygel-object-creator.vala:419
+#: src/librygel-server/rygel-object-creator.vala:431
+#: src/librygel-server/rygel-object-creator.vala:723
 #: src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:474
+#: src/librygel-server/rygel-object-creator.vala:476
 #, fuzzy, c-format
 #| msgid "Failed to update object '%s': %s"
 msgid "Failed to create item under “%s”: %s"
 msgstr "Objektin '%s' päivitys epäonnistui: %s"
 
-#: src/librygel-server/rygel-object-creator.vala:548
+#: src/librygel-server/rygel-object-creator.vala:552
 #, c-format
-#| msgid "DLNA profile '%s' not supported"
 msgid "DLNA profile “%s” not supported"
 msgstr "DLNA-profiili “%s” ei ole tuettu"
 
-#: src/librygel-server/rygel-object-creator.vala:648
+#: src/librygel-server/rygel-object-creator.vala:656
 #, c-format
 msgid "Cannot create object of class “%s”: Not supported"
 msgstr ""
 
-#: src/librygel-server/rygel-object-creator.vala:746
+#: src/librygel-server/rygel-object-creator.vala:754
 #, c-format
 msgid ""
 "Error from container “%s” on trying to find the newly added child object "
@@ -854,10 +933,9 @@ msgid "“ContainerID” agument missing."
 msgstr "ContainerID puuttuu"
 
 #: src/librygel-server/rygel-reference-creator.vala:55
-#, fuzzy
 #| msgid "ContainerID missing"
 msgid "“ObjectID” argument missing."
-msgstr "ContainerID puuttuu"
+msgstr "“ObjectID”-argumentti puuttuu."
 
 #: src/librygel-server/rygel-reference-creator.vala:86
 #, fuzzy, c-format
@@ -906,84 +984,83 @@ msgstr "Pikkukuvaa ei ole saatavilla: %s"
 msgid "No D-Bus thumbnailer available"
 msgstr ""
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:44
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:46
 #, c-format
 msgid "Could not create GstElement for URI %s"
 msgstr ""
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:72
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
 msgstr "Toistonopeus ei ole tuettu"
 
 #. Unknown/unsupported seek type
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:102
-#, fuzzy, c-format
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
+#, c-format
 #| msgid "Seek mode not supported"
 msgid "HTTPSeekRequest type %s unsupported"
-msgstr "Kelaustila ei ole tuettu"
+msgstr "HTTPSeekRequest-tyyppi %s ei tuettu"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:146
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
 #, fuzzy
 #| msgid "Failed to create a Tracker connection: %s"
 msgid "Failed to create pipeline"
 msgstr "Tracker-yhteyden luonti epäonnistui: %s"
 
 #. static pads? easy!
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:157
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:178
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:163
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:184
 #, c-format
 msgid "Failed to link %s to %s"
 msgstr ""
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:192
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:198
 #, c-format
 msgid "Failed to link pad %s to %s"
 msgstr ""
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:257
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:263
 #, c-format
 msgid "Error from pipeline %s: %s"
 msgstr ""
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:264
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:270
 #, c-format
 msgid "Warning from pipeline %s: %s"
 msgstr ""
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:317
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:323
 #, fuzzy
 #| msgid "Unsupported type %s"
 msgid "Unsupported seek type"
 msgstr "Tukematon tyyppi %s"
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:334
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
 msgstr ""
 
-#: src/media-engines/gstreamer/rygel-gst-data-source.vala:336
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
 msgid "Failed to seek"
 msgstr "Siirtyminen epäonnistui"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:129
-#, fuzzy, c-format
-#| msgid "Invalid date: %s"
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
+#, c-format
 msgid "Invalid URI without prefix: %s"
-msgstr "Virheellinen päiväys: %s"
+msgstr "Virheellinen URI ilman etuliitettä: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
 msgstr ""
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:242
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
 #, fuzzy, c-format
 #| msgid "Failed to create a Tracker connection: %s"
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Tracker-yhteyden luonti epäonnistui: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-transcoder.vala:138
+#: src/media-engines/gstreamer/rygel-gst-transcoding-data-source.vala:29
 msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation "
 "might be missing a plug-in"
@@ -1005,16 +1082,15 @@ msgid "Only byte-based seek supported"
 msgstr "Aikapohjainen siirtyminen ei ole tuettu"
 
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
-#: src/media-engines/simple/rygel-simple-media-engine.vala:98
+#: src/media-engines/simple/rygel-simple-media-engine.vala:99
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
 msgstr ""
 
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
-#, fuzzy, c-format
-#| msgid "Module '%s' could not connect to D-Bus session bus. Ignoring…"
+#, c-format
 msgid "Module “%s” could not connect to D-Bus session bus. Ignoring…"
-msgstr "Moduuli '%s' ei voinut yhdistää D-Bus-istuntoväylään. Ohitetaan…"
+msgstr "Moduuli “%s” ei voinut yhdistää D-Bus-istuntoväylään. Ohitetaan…"
 
 #: src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
@@ -1022,6 +1098,7 @@ msgid "External provider %s did not provide mandatory property “%s”"
 msgstr ""
 
 #: src/plugins/lms/rygel-lms-albums.vala:166
+#: src/plugins/tracker3/rygel-tracker-albums.vala:31
 #: src/plugins/tracker/rygel-tracker-albums.vala:31
 msgid "Albums"
 msgstr "Levyt"
@@ -1038,6 +1115,7 @@ msgid "Years"
 msgstr "Vuodet"
 
 #: src/plugins/lms/rygel-lms-music-root.vala:35
+#: src/plugins/tracker3/rygel-tracker-artists.vala:31
 #: src/plugins/tracker/rygel-tracker-artists.vala:31
 msgid "Artists"
 msgstr "Esittäjät"
@@ -1061,7 +1139,7 @@ msgstr "Videot"
 msgid "Pictures"
 msgstr "Kuvat"
 
-#: src/plugins/media-export/rygel-media-export-dvd-container.vala:133
+#: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
 msgid "Title %d"
 msgstr "Nimi %d"
@@ -1094,11 +1172,11 @@ msgstr "Objektin lisääminen epäonnistui: %s"
 msgid "Failed to send error to parent: %s"
 msgstr "Moduulin lataus polusta \"%s\" epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:149
+#: src/plugins/media-export/rygel-media-export-extract.vala:157
 msgid "— helper binary for Rygel to extract metadata"
 msgstr ""
 
-#: src/plugins/media-export/rygel-media-export-extract.vala:156
+#: src/plugins/media-export/rygel-media-export-extract.vala:164
 #, fuzzy, c-format
 #| msgid "Failed to move dotfile %s: %s"
 msgid "Failed to parse commandline args: %s"
@@ -1117,10 +1195,9 @@ msgid "“%s” harvested"
 msgstr "\"%s\" kerätty"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:202
-#, fuzzy, c-format
-#| msgid "Error fetching object '%s' from database: %s"
+#, c-format
 msgid "Error fetching object “%s” from database: %s"
-msgstr "Virhe noudettaessa objektia '%s' tietokannasta: %s"
+msgstr "Virhe noudettaessa objektia “%s” tietokannasta: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:210
 #, fuzzy, c-format
@@ -1139,33 +1216,39 @@ msgstr "Objektia %d ei löydy välimuistista"
 msgid "Error removing object from database: %s"
 msgstr "Virhe poistaessa objektia tietokannasta: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:125
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:127
 #, fuzzy, c-format
 #| msgid "Failed to move dotfile %s: %s"
 msgid "Failed to harvest file %s: %s"
 msgstr "Pistetiedoston %s siirtäminen epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:175
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:191
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "Kysely tietokantaan epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:259
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
 #, fuzzy, c-format
 #| msgid "Failed to update object '%s': %s"
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "Objektin '%s' päivitys epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:277
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:286
 #, fuzzy, c-format
 #| msgid "Failed to save configuration data to file '%s': %s"
 msgid "Failed to get children of container %s: %s"
 msgstr "Asetustietojen tallennus tiedostoon \"%s\" epäonnistui: %s"
 
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
+#, fuzzy, c-format
+#| msgid "Failed to create a Tracker connection: %s"
+msgid "Failed to extract meta-data for file %s"
+msgstr "Tracker-yhteyden luonti epäonnistui: %s"
+
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:358
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr ""
@@ -1188,105 +1271,100 @@ msgstr "Asetustietojen tallennus tiedostoon \"%s\" epäonnistui: %s"
 msgid "Failed to create indices: %s"
 msgstr "Objektin '%s' päivitys epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:96
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:101
 #, c-format
 msgid "Cannot upgrade from version %d"
 msgstr "Päivittäminen versiosta %d ei onnistu"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:115
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
 #, c-format
-msgid "Database upgrade failed: %s"
-msgstr "Tietokantapäivitys epäonnistui: %s"
+msgid "Database upgrade to v18 failed: %s"
+msgstr "Tietokannan päivitys versioon 18 epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:133
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:134
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr ""
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:216
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:217
 #, fuzzy, c-format
 #| msgid "Failed to create a Tracker connection: %s"
 msgid "Failed to get update IDs: %s"
 msgstr "Tracker-yhteyden luonti epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:396
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:400
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
 msgstr ""
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:521
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:525
 #, fuzzy
 #| msgid "Failed to create a Tracker connection: %s"
 msgid "Failed to get reset token"
 msgstr "Tracker-yhteyden luonti epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:533
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:537
 #, fuzzy, c-format
 #| msgid "Failed to stop Rygel service: %s"
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "Rygel-palvelun pysäytys epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:543
-#, fuzzy, c-format
-#| msgid "Failed to remove file %s: %s"
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:547
+#, c-format
 msgid "Failed to remove virtual folders: %s"
-msgstr "Tiedoston %s poistaminen epäonnistui: %s"
+msgstr "Virtuaalikansioiden poistaminen epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:557
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:561
 #, fuzzy, c-format
 #| msgid "Failed to remove file %s: %s"
 msgid "Failed to mark item %s as guarded (%d): %s"
 msgstr "Tiedoston %s poistaminen epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:567
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:571
 msgid "Cannot create references to containers"
 msgstr ""
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:593
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:597
 #, fuzzy, c-format
 #| msgid "Failed to move dotfile %s: %s"
-msgid "Failed to add %s to file blacklist: %s"
+msgid "Failed to add %s to ignored files: %s"
 msgstr "Pistetiedoston %s siirtäminen epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:606
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, fuzzy, c-format
 #| msgid "Failed to create a Tracker connection: %s"
-msgid "Failed to get whether URI %s is blacklisted: %s"
+msgid "Failed to get whether URI %s is ignored: %s"
 msgstr "Tracker-yhteyden luonti epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:622
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:626
 #, fuzzy, c-format
 #| msgid "Failed to move dotfile %s: %s"
 msgid "Failed to get whether item %s is guarded: %s"
 msgstr "Pistetiedoston %s siirtäminen epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:661
-#, fuzzy, c-format
-#| msgid ""
-#| "The version \"%d\" of the detected database is newer than our supported "
-#| "version \"%d\""
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:666
+#, c-format
 msgid ""
 "The version “%d” of the detected database is newer than our supported "
 "version “%d”"
-msgstr ""
-"Havaitun tietokannan versio \"%d\" on uudempi kuin tuettu versio \"%d\""
+msgstr "Havaitun tietokannan versio “%d” on uudempi kuin tuettu versio “%d”"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:685
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:688
 msgid "Incompatible schema… cannot proceed"
-msgstr ""
+msgstr "Skeema ei ole yhteensopiva… ei voi jatkaa"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:691
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:694
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr "Virheellinen tietokanta, kysely sqlite_master-tauluun ei onnistu: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:892
-#, fuzzy, c-format
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:895
+#, c-format
 #| msgid "Failed to save configuration data to file '%s': %s"
 msgid "Failed to create database schema: %s"
-msgstr "Asetustietojen tallennus tiedostoon \"%s\" epäonnistui: %s"
+msgstr "Tietokantaskeeman luominen epäonnistui: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1228
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1232
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr ""
@@ -1305,7 +1383,7 @@ msgstr "Prosessi check_async epäonnistui: %s"
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #, c-format
 msgid "Process died while handling URI %s"
-msgstr ""
+msgstr "Prosessi kuoli käsitellessä URI:a %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
 #, c-format
@@ -1373,10 +1451,9 @@ msgid "upnp:class not supported in %s"
 msgstr "upnp:class ei ole tuettu %s"
 
 #: src/plugins/media-export/rygel-media-export-plugin.vala:52
-#, fuzzy, c-format
-#| msgid "Could not load plugin: %s"
+#, c-format
 msgid "Failed to load plugin %s: %s"
-msgstr "Liitännäisen lataaminen ei onnistunut: %s"
+msgstr "Liitännäisen %s lataaminen ei onnistunut: %s"
 
 #: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
 msgid "Will not monitor file changes"
@@ -1393,6 +1470,7 @@ msgstr "Asetustietojen tallennus tiedostoon \"%s\" epäonnistui: %s"
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
+#: src/plugins/tracker3/rygel-tracker-years.vala:33
 #: src/plugins/tracker/rygel-tracker-years.vala:33
 msgid "Year"
 msgstr "Vuosi"
@@ -1408,6 +1486,7 @@ msgid "Album"
 msgstr "Levy"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
+#: src/plugins/tracker3/rygel-tracker-genre.vala:31
 #: src/plugins/tracker/rygel-tracker-genre.vala:31
 msgid "Genre"
 msgstr "Tyylilaji"
@@ -1418,8 +1497,8 @@ msgstr "Tiedostot ja kansiot"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
+#: src/plugins/tracker3/rygel-tracker-plugin.vala:34
 #: src/plugins/tracker/rygel-tracker-plugin.vala:33
-#| msgid "@REALNAME@'s media"
 msgid "@REALNAME@’s media"
 msgstr "Käyttäjän @REALNAME@ media"
 
@@ -1459,6 +1538,7 @@ msgstr "Objektia %d ei löydy välimuistista"
 #, c-format
 msgid "MPRIS interface at %s is read-only. Ignoring."
 msgstr ""
+"MPRIS-rajapinta kohteessa %s on \"vain luku\"-muotoa. Jätetään huomiotta."
 
 #: src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
@@ -1468,37 +1548,32 @@ msgstr "GStreamer-soitin"
 msgid "Could not create GStreamer player"
 msgstr "GStreamer-soittimen luominen epäonnistui"
 
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
-#, c-format
-msgid "Failed to create a Tracker connection: %s"
-msgstr "Tracker-yhteyden luonti epäonnistui: %s"
-
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
 #, fuzzy, c-format
 #| msgid "Failed to move dotfile %s: %s"
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "Pistetiedoston %s siirtäminen epäonnistui: %s"
 
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
 #, c-format
 msgid "Could not subscribe to Tracker signals: %s"
 msgstr ""
 
+#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
 msgid "Not supported"
 msgstr "Ei tuettu"
 
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
-#, c-format
-msgid "Failed to create Tracker connection: %s"
-msgstr "Tracker-yhteyden luominen epäonnistui: %s"
-
+#: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
 #: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
 #, fuzzy, c-format
 #| msgid "Error listing contents of folder '%s': %s"
 msgid "Error getting all values for “%s”: %s"
 msgstr "Virhe luetteloidessa kansion \"%s\" sisältöä: %s"
 
+#: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
 #: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
@@ -1506,26 +1581,38 @@ msgstr ""
 "Tracker-palvelun käynnistäminen epäonnistui: %s. Liitännäinen on poistettu "
 "käytöstä."
 
-#: src/plugins/tracker/rygel-tracker-search-container.vala:104
-#, c-format
-msgid "Failed to get Tracker connection: %s"
-msgstr "Tracker-yhteys epäonnistui: %s"
-
+#: src/plugins/tracker3/rygel-tracker-search-container.vala:228
 #: src/plugins/tracker/rygel-tracker-search-container.vala:228
 #, fuzzy, c-format
 #| msgid "Error listing contents of folder '%s': %s"
 msgid "Error getting item count under category “%s”: %s"
 msgstr "Virhe luetteloidessa kansion \"%s\" sisältöä: %s"
 
+#: src/plugins/tracker3/rygel-tracker-titles.vala:58
 #: src/plugins/tracker/rygel-tracker-titles.vala:58
 msgid "Titles"
 msgstr "Nimet"
 
+#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
+#, c-format
+msgid "Failed to create a Tracker connection: %s"
+msgstr "Tracker-yhteyden luonti epäonnistui: %s"
+
+#: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
+#, c-format
+msgid "Failed to create Tracker connection: %s"
+msgstr "Tracker-yhteyden luominen epäonnistui: %s"
+
+#: src/plugins/tracker/rygel-tracker-search-container.vala:104
+#, c-format
+msgid "Failed to get Tracker connection: %s"
+msgstr "Tracker-yhteys epäonnistui: %s"
+
 #: src/rygel/rygel-acl.vala:110
-#, fuzzy, c-format
+#, c-format
 #| msgid "Failed to save configuration data to file '%s': %s"
 msgid "Failed to query ACL: %s"
-msgstr "Asetustietojen tallennus tiedostoon \"%s\" epäonnistui: %s"
+msgstr "ACL:n kysely epäonnistui: %s"
 
 #: src/rygel/rygel-acl.vala:127
 #, fuzzy, c-format
@@ -1533,86 +1620,13 @@ msgstr "Asetustietojen tallennus tiedostoon \"%s\" epäonnistui: %s"
 msgid "Error creating D-Bus proxy for ACL: %s"
 msgstr "Virhe luetteloidessa kansion \"%s\" sisältöä: %s"
 
-#: src/rygel/rygel-acl.vala:143
+#: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “allow”"
 msgstr ""
 
-#: src/rygel/rygel-acl.vala:145
+#: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr ""
-
-#: src/rygel/rygel-cmdline-config.vala:73
-msgid "Display version number"
-msgstr "Näytä versionumero"
-
-#: src/rygel/rygel-cmdline-config.vala:75
-msgid "Network Interfaces"
-msgstr "Verkkoliitännät"
-
-#: src/rygel/rygel-cmdline-config.vala:77
-msgid "Port"
-msgstr "Portti"
-
-#: src/rygel/rygel-cmdline-config.vala:79
-msgid "Disable transcoding"
-msgstr ""
-
-#: src/rygel/rygel-cmdline-config.vala:81
-msgid "Disallow upload"
-msgstr "Estä lähetys"
-
-#: src/rygel/rygel-cmdline-config.vala:83
-msgid "Disallow deletion"
-msgstr "Estä poistaminen"
-
-#: src/rygel/rygel-cmdline-config.vala:85
-msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
-msgstr ""
-
-#: src/rygel/rygel-cmdline-config.vala:87
-msgid "Plugin Path"
-msgstr "Liitännäisen polku"
-
-#: src/rygel/rygel-cmdline-config.vala:89
-msgid "Engine Path"
-msgstr ""
-
-#: src/rygel/rygel-cmdline-config.vala:92
-msgid "Disable plugin"
-msgstr "Poista liitännäinen käytöstä"
-
-#: src/rygel/rygel-cmdline-config.vala:94
-msgid "Set plugin titles"
-msgstr ""
-
-#: src/rygel/rygel-cmdline-config.vala:96
-msgid "Set plugin options"
-msgstr "Aseta liitännäisen valinnat"
-
-#: src/rygel/rygel-cmdline-config.vala:98
-#, fuzzy
-#| msgid "Failed to load user configuration: %s"
-msgid "Use configuration file instead of user configuration"
-msgstr "Käyttäjäasetusten lataus epäonnistui: %s"
-
-#: src/rygel/rygel-cmdline-config.vala:100
-#, fuzzy
-#| msgid "Rygel Preferences"
-msgid "Shut down remote Rygel reference"
-msgstr "Rygelin asetukset"
-
-#: src/rygel/rygel-cmdline-config.vala:102
-msgid "Replace currently running instance of Rygel"
-msgstr "Korvaa parhaillaan käynnissä oleva Rygel"
-
-#: src/rygel/rygel-cmdline-config.vala:139
-msgid "Shutting down remote Rygel instance\n"
-msgstr "Sammutetaan Rygelin etäkäyttöistuntoa\n"
-
-#: src/rygel/rygel-cmdline-config.vala:147
-#, c-format
-msgid "Failed to shut down other Rygel instance: %s"
-msgstr "Toisen Rygel-istunnon sammutus epäonnistui: %s"
 
 #: src/rygel/rygel-dbus-service.vala:81
 msgid "Another instance of Rygel is already running. Not starting."
@@ -1645,35 +1659,15 @@ msgstr ""
 msgid "Failed to load user configuration: %s"
 msgstr "Käyttäjäasetusten lataus epäonnistui: %s"
 
-#. TRANSLATORS: First %s is the file's path, second is the error message
-#: src/rygel/rygel-user-config.vala:246 src/ui/rygel-user-config.vala:246
-#, fuzzy, c-format
-#| msgid "Failed to load user configuration from file '%s': %s"
-msgid "Failed to load user configuration from file “%s”: %s"
-msgstr "Käyttäjäasetusten lataus tiedostosta %s epäonnistui: %s"
-
-#: src/rygel/rygel-user-config.vala:299 src/ui/rygel-user-config.vala:299
-#, fuzzy, c-format
-#| msgid "No value available"
-msgid "No value available for “%s”"
-msgstr "Ei arvoa saatavilla"
-
-#: src/rygel/rygel-user-config.vala:370 src/ui/rygel-user-config.vala:370
-#, c-format
-#| msgid "Value of '%s' out of range"
-msgid "Value of “%s” out of range"
-msgstr "Arvo “%s” on kelvollisen alueen ulkopuolella"
-
 #: src/ui/rygel-preferences-dialog.vala:109
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr ""
 
 #: src/ui/rygel-writable-user-config.vala:119
-#, fuzzy, c-format
-#| msgid "Failed to save configuration data to file '%s': %s"
+#, c-format
 msgid "Failed to save configuration data to file “%s”: %s"
-msgstr "Asetustietojen tallennus tiedostoon \"%s\" epäonnistui: %s"
+msgstr "Asetustietojen tallennus tiedostoon “%s” epäonnistui: %s"
 
 #: src/ui/rygel-writable-user-config.vala:214
 #, c-format
@@ -1685,13 +1679,12 @@ msgstr "Rygel-palvelun käynnistys epäonnistui: %s"
 msgid "Failed to stop Rygel service: %s"
 msgstr "Rygel-palvelun pysäytys epäonnistui: %s"
 
+#~| msgid "Rygel"
+#~ msgid "rygel"
+#~ msgstr "rygel"
+
 #~ msgid "column"
 #~ msgstr "sarake"
-
-#, fuzzy
-#~| msgid "Failed to create a Tracker connection: %s"
-#~ msgid "Failed to extract basic metadata from %s: %s"
-#~ msgstr "Tracker-yhteyden luonti epäonnistui: %s"
 
 #, fuzzy
 #~| msgid "Failed to start Rygel service: %s"
