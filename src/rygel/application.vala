@@ -18,8 +18,10 @@ public class Rygel.Application : GLib.Application {
                flags : ApplicationFlags.HANDLES_COMMAND_LINE);
 
         this.add_main_option_entries (CmdlineConfig.OPTIONS);
+
         Unix.signal_add (ProcessSignal.INT, () => { this.release (); return false; });
         Unix.signal_add (ProcessSignal.TERM, () => { this.release (); return false; });
+        Unix.signal_add (ProcessSignal.HUP, () => { this.release (); return false; });
     }
 
 
