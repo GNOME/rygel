@@ -13,9 +13,12 @@ public class Rygel.Application : GLib.Application {
     private LogHandler log_handler;
     private Acl acl;
 
+    private bool activation_pending = false;
+
     public Application() {
         Object(application_id : "org.gnome.Rygel",
-               flags : ApplicationFlags.HANDLES_COMMAND_LINE);
+               flags : ApplicationFlags.HANDLES_COMMAND_LINE |
+                       ApplicationFlags.ALLOW_REPLACEMENT);
 
         this.add_main_option_entries (CmdlineConfig.OPTIONS);
 
@@ -23,7 +26,6 @@ public class Rygel.Application : GLib.Application {
         Unix.signal_add (ProcessSignal.TERM, () => { this.release (); return false; });
         Unix.signal_add (ProcessSignal.HUP, () => { this.release (); return false; });
     }
-
 
     public override int handle_local_options (VariantDict options) {
         int count;
@@ -73,23 +75,35 @@ public class Rygel.Application : GLib.Application {
         }
     }
 
+    private void run_everything () {
+        this.register_default_configurations ();
+
+        this.log_handler = LogHandler.get_default ();
+        this.config = MetaConfig.get_default ();
+        this.plugin_loader = new PluginLoader ();
+        this.root_devices = new ArrayList <RootDevice> ();
+        this.factories = new ArrayList <RootDeviceFactory> ();
+        this.acl = new Acl ();
+
+        this.plugin_loader.plugin_available.connect (this.on_plugin_loaded);
+        this.context_manager = this.create_context_manager ();
+        this.plugin_loader.load_modules ();
+        this.activation_pending = false;
+    }
+
     public override void activate () {
+        print ("Activate");
         base.activate ();
-        if (this.context_manager == null) {
-            this.register_default_configurations ();
-
-            this.log_handler = LogHandler.get_default ();
-            this.config = MetaConfig.get_default ();
-            this.plugin_loader = new PluginLoader ();
-            this.root_devices = new ArrayList <RootDevice> ();
-            this.factories = new ArrayList <RootDeviceFactory> ();
-            this.acl = new Acl ();
-
-            this.plugin_loader.plugin_available.connect (this.on_plugin_loaded);
-            this.context_manager = this.create_context_manager ();
-            this.plugin_loader.load_modules ();
-
+        if (this.context_manager == null || this.activation_pending) {
             hold ();
+            if (ApplicationFlags.REPLACE in this.flags) {
+                this.activation_pending = true;
+                // Delay context manager creation to give the other instance a chance to
+                // give up the socket
+                Timeout.add_seconds (1, () => { this.run_everything (); return false; });
+            } else {
+                this.run_everything ();
+            }
         }
     }
 
@@ -100,8 +114,17 @@ public class Rygel.Application : GLib.Application {
     }
 
     public override void shutdown () {
+        print ("SHUTDOWN\n");
         this.root_devices = null;
         base.shutdown ();
+    }
+
+    public override bool name_lost () {
+        print ("NAME_LOSTT\n");
+        this.root_devices = null;
+        this.release ();
+
+        return true;
     }
 
     private void on_plugin_loaded (PluginLoader plugin_loader,
@@ -202,9 +225,7 @@ public class Rygel.Application : GLib.Application {
 
         try {
             ifaces = this.config.get_interfaces ();
-            print ("%s", ifaces[0]);
         } catch (GLib.Error err) {
-            print ("=======> Intrfaces not dounf");
         }
 
         if (ifaces == null ||
