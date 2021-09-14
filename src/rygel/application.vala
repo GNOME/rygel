@@ -2,6 +2,7 @@ using Gee;
 using GUPnP;
 
 public class Rygel.Application : GLib.Application {
+    // Default time to wait for plugins showing up
     private static int PLUGIN_TIMEOUT = 5;
 
     private PluginLoader plugin_loader;
@@ -89,10 +90,36 @@ public class Rygel.Application : GLib.Application {
         this.context_manager = this.create_context_manager ();
         this.plugin_loader.load_modules ();
         this.activation_pending = false;
+
+        var timeout = PLUGIN_TIMEOUT;
+        try {
+            var config = MetaConfig.get_default ();
+            timeout = config.get_int ("plugin",
+                                      "TIMEOUT",
+                                      0,
+                                      int.MAX);
+        } catch (Error error) {};
+
+        if (timeout == 0) {
+            debug ("Plugin timeout disabled...");
+
+            return;
+        }
+
+        Timeout.add_seconds (timeout, () => {
+            if (this.plugin_loader.list_plugins ().size == 0) {
+                warning (ngettext ("No plugins found in %d second; giving up…",
+                                   "No plugins found in %d seconds; giving up…",
+                                   PLUGIN_TIMEOUT),
+                         PLUGIN_TIMEOUT);
+                this.release ();
+            }
+
+            return false;
+        });
     }
 
     public override void activate () {
-        print ("Activate");
         base.activate ();
         if (this.context_manager == null || this.activation_pending) {
             hold ();
@@ -114,13 +141,11 @@ public class Rygel.Application : GLib.Application {
     }
 
     public override void shutdown () {
-        print ("SHUTDOWN\n");
         this.root_devices = null;
         base.shutdown ();
     }
 
     public override bool name_lost () {
-        print ("NAME_LOSTT\n");
         this.root_devices = null;
         this.release ();
 
@@ -273,8 +298,6 @@ public class Rygel.Application : GLib.Application {
             }
         }
     }
-
-
 
     public static int main(string[] args) {
         Environment.set_application_name (_(BuildConfig.PACKAGE_NAME));
