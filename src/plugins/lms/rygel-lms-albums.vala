@@ -96,7 +96,7 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
     }
 
     protected override uint get_child_count_with_filter (string     where_filter,
-                                                         ValueArray args) {
+                                                         GLib.Array<GLib.Value> args) {
 
         /* search the children (albums) as usual */
         var count = base.get_child_count_with_filter (where_filter, args);
@@ -108,7 +108,7 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
         }
         var query = Albums.SQL_CHILD_COUNT_WITH_FILTER_TEMPLATE.printf (filter);
         try {
-            count += this.lms_db.query_value (query, args.values);
+            count += this.lms_db.query_value (query, args.data);
         } catch (DatabaseError e) {
             warning ("Query failed: %s", e.message);
         }
@@ -118,7 +118,7 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
 
     protected override MediaObjects? get_children_with_filter
                                             (string     where_filter,
-                                             ValueArray args,
+                                             GLib.Array<GLib.Value> args,
                                              string     sort_criteria,
                                              uint       offset,
                                              uint       max_count) {
@@ -133,7 +133,7 @@ public class Rygel.LMS.Albums : Rygel.LMS.CategoryContainer {
         }
         var query = Albums.SQL_CHILD_ALL_WITH_FILTER_TEMPLATE.printf (filter);
         try {
-            var cursor = this.lms_db.exec_cursor (query, args.values);
+            var cursor = this.lms_db.exec_cursor (query, args.data);
             foreach (var stmt in cursor) {
                 var album_id = stmt.column_text (13);
                 var album = new Album (album_id, this, "", this.lms_db);

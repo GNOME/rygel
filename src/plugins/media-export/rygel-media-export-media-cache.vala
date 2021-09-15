@@ -282,7 +282,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                          uint              max_count,
                                          out uint          total_matches)
                                          throws Error {
-        var args = new GLib.ValueArray (0);
+        var args = new GLib.Array<GLib.Value> ();
         var filter = MediaCache.translate_search_expression (expression, args);
 
         if (expression != null) {
@@ -307,7 +307,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                         (SearchExpression? expression,
                                          string?           container_id)
                                          throws Error {
-        var args = new GLib.ValueArray (0);
+        var args = new GLib.Array<GLib.Value> ();
         var filter = MediaCache.translate_search_expression (expression, args);
 
         if (expression != null) {
@@ -315,8 +315,8 @@ public class Rygel.MediaExport.MediaCache : Object {
             debug ("Parsed search expression: %s", filter);
         }
 
-        for (int i = 0; i < args.n_values; i++) {
-            var arg = args.get_nth (i);
+        for (int i = 0; i < args.length; i++) {
+            var arg = args.index (i);
             debug ("Arg %d: %s", i, arg.holds (typeof (string)) ?
                                         arg.get_string () :
                                         arg.strdup_contents ());
@@ -329,15 +329,15 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     public long get_object_count_by_filter
                                         (string          filter,
-                                         GLib.ValueArray args,
+                                         GLib.Array<GLib.Value> args,
                                          string?         container_id)
                                          throws Error {
         if (container_id != null) {
             GLib.Value v = container_id;
-            args.prepend (v);
+            args.prepend_val (v);
         }
 
-        debug ("Parameters to bind: %u", args.n_values);
+        debug ("Parameters to bind: %u", args.length);
         unowned string pattern;
         SQLString string_id;
         if (container_id != null) {
@@ -347,11 +347,11 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
         pattern = this.sql.make (string_id);
 
-        return this.db.query_value (pattern.printf (filter), args.values);
+        return this.db.query_value (pattern.printf (filter), args.data);
     }
 
     public MediaObjects get_objects_by_filter (string          filter,
-                                               GLib.ValueArray args,
+                                               GLib.Array<GLib.Value> args,
                                                string?         container_id,
                                                string          sort_criteria,
                                                long            offset,
@@ -359,14 +359,14 @@ public class Rygel.MediaExport.MediaCache : Object {
                                                throws Error {
         var children = new MediaObjects ();
         GLib.Value v = offset;
-        args.append (v);
+        args.append_val (v);
         v = max_count;
-        args.append (v);
+        args.append_val (v);
         MediaContainer parent = null;
 
-        debug ("Parameters to bind: %u", args.n_values);
-        for (int i = 0; i < args.n_values; i++) {
-            var arg = args.get_nth (i);
+        debug ("Parameters to bind: %u", args.length);
+        for (int i = 0; i < args.length; i++) {
+            var arg = args.index (i);
             debug ("Arg %d: %s", i, arg.holds (typeof (string)) ?
                                         arg.get_string () :
                                         arg.strdup_contents ());
@@ -381,7 +381,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
         var sort_order = MediaCache.translate_sort_criteria (sort_criteria);
         var cursor = this.db.exec_cursor (sql.printf (filter, sort_order),
-                                          args.values);
+                                          args.data);
         foreach (var statement in cursor) {
             unowned string parent_id = statement.column_text (DetailColumn.PARENT);
 
@@ -437,16 +437,16 @@ public class Rygel.MediaExport.MediaCache : Object {
     public Gee.List<string> get_meta_data_column_by_filter
                                         (string          column,
                                          string          filter,
-                                         GLib.ValueArray args,
+                                         GLib.Array<GLib.Value> args,
                                          long            offset,
                                          string          sort_criteria,
                                          long            max_count,
                                          bool            add_all_container)
                                          throws Error {
         GLib.Value v = offset;
-        args.append (v);
+        args.append_val (v);
         v = max_count;
-        args.append (v);
+        args.append_val (v);
         string extra_columns;
         int column_count;
 
@@ -478,7 +478,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                filter,
                                sql_sort_order);
 
-        var cursor = this.db.exec_cursor (builder.str, args.values);
+        var cursor = this.db.exec_cursor (builder.str, args.data);
         foreach (var statement in cursor) {
             data.add (statement.column_text (0));
         }
@@ -497,7 +497,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                                          uint              max_count,
                                          bool              add_all_container)
                                          throws Error {
-        var args = new ValueArray (0);
+        var args = new Array<GLib.Value> ();
         var filter = MediaCache.translate_search_expression (expression,
                                                              args,
                                                              "AND");
@@ -1006,7 +1006,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     private static string translate_search_expression
                                         (SearchExpression? expression,
-                                         ValueArray        args,
+                                         Array<GLib.Value>        args,
                                          string            prefix = "WHERE")
                                          throws Error {
         if (expression == null) {
@@ -1020,7 +1020,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     private static string? search_expression_to_sql
                                         (SearchExpression? expression,
-                                         GLib.ValueArray   args)
+                                         GLib.Array<GLib.Value>   args)
                                          throws Error {
         if (expression == null) {
             return "";
@@ -1038,7 +1038,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     private static string logical_expression_to_sql
                                         (LogicalExpression expression,
-                                         GLib.ValueArray   args)
+                                         GLib.Array<GLib.Value>   args)
                                          throws Error {
         string left_sql_string = MediaCache.search_expression_to_sql
                                         (expression.operand1,
@@ -1139,7 +1139,7 @@ public class Rygel.MediaExport.MediaCache : Object {
 
     private static string? relational_expression_to_sql
                                         (RelationalExpression exp,
-                                         GLib.ValueArray      args)
+                                         GLib.Array<GLib.Value>      args)
                                          throws Error {
         GLib.Value? v = null;
         string collate = null;
@@ -1187,7 +1187,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         }
 
         if (v != null) {
-            args.append (v);
+            args.append_val (v);
         }
 
         return operator.to_string ();
