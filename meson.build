@@ -2,7 +2,7 @@ project('rygel', 'vala', 'c', version : '0.41.0', meson_version : '>= 0.55.0')
 vala = meson.get_compiler('vala')
 
 # Check for the required vala version
-vala_version_required = '>= 0.40.10'
+vala_version_required = '>= 0.53.2'
 vala_version_found = vala.version()
 
 if not vala_version_found.version_compare(vala_version_required)

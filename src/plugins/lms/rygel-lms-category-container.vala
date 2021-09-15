@@ -104,7 +104,7 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
 
     private static string? relational_expression_to_sql
                                         (RelationalExpression exp,
-                                         GLib.ValueArray      args)
+                                         GLib.Array<GLib.Value>      args)
                                          throws Error {
         GLib.Value? v = null;
         string collate = null;
@@ -151,7 +151,7 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
         }
 
         if (v != null) {
-            args.append (v);
+            args.append_val (v);
         }
 
         return operator.to_string ();
@@ -159,7 +159,7 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
 
     private static string logical_expression_to_sql
                                         (LogicalExpression expression,
-                                         GLib.ValueArray   args)
+                                         GLib.Array<GLib.Value>   args)
                                          throws Error {
         string left_sql_string = CategoryContainer.search_expression_to_sql
                                         (expression.operand1,
@@ -180,7 +180,7 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
 
     private static string? search_expression_to_sql
                                         (SearchExpression? expression,
-                                         GLib.ValueArray   args)
+                                         GLib.Array<GLib.Value>   args)
                                          throws Error {
         if (expression == null) {
             return "";
@@ -197,11 +197,11 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
     }
 
     protected virtual uint get_child_count_with_filter (string     where_filter,
-                                                        ValueArray args)
+                                                        GLib.Array<GLib.Value> args)
     {
         var query = this.get_sql_count_with_filter (where_filter);
         try {
-            return this.lms_db.query_value (query, args.values);
+            return this.lms_db.query_value (query, args.data);
         } catch (DatabaseError e) {
             warning ("Query failed: %s", e.message);
 
@@ -211,19 +211,19 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
 
     protected virtual MediaObjects? get_children_with_filter
                                         (string     where_filter,
-                                         ValueArray args,
+                                         GLib.Array<GLib.Value> args,
                                          string     sort_criteria,
                                          uint       offset,
                                          uint       max_count) {
         var children = new MediaObjects ();
         GLib.Value v = max_count;
-        args.append (v);
+        args.append_val (v);
         v = offset;
-        args.append (v);
+        args.append_val (v);
 
         var query = this.get_sql_all_with_filter (where_filter);
         try {
-            var cursor = this.lms_db.exec_cursor (query, args.values);
+            var cursor = this.lms_db.exec_cursor (query, args.data);
             foreach (var stmt in cursor) {
                 children.add (this.object_from_statement (stmt));
             }
@@ -243,7 +243,7 @@ public abstract class Rygel.LMS.CategoryContainer : Rygel.MediaContainer,
                                         throws Error {
         debug ("search()");
         try {
-            var args = new GLib.ValueArray (0);
+            var args = new GLib.Array<GLib.Value> ();
             var filter = CategoryContainer.search_expression_to_sql (expression,
                                                                      args);
             total_matches = this.get_child_count_with_filter (filter, args);
