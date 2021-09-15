@@ -36,7 +36,7 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
 
         Gst.init (ref args);
         GES.init ();
-        Gst.preset_set_app_dir (BuildConfig.PRESET_DIR);
+        Gst.Preset.set_app_dir (BuildConfig.PRESET_DIR);
 
         /* Get the possible DLNA profiles
          * to add to the list of DLNA profiles supported by
@@ -136,7 +136,7 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
 
         debug ("get_resources_for_item(%s), protocol: %s", source_uri, scheme);
 
-        if (!Gst.URI.protocol_is_supported (URIType.SRC, scheme) &&
+        if (!Gst.Uri.protocol_is_supported (URIType.SRC, scheme) &&
             scheme != "gst-launch" &&
             scheme != "dvd") {
             warning (_("Can’t process URI %s with protocol %s"),
