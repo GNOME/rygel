@@ -1,3 +1,24 @@
+0.40.2
+======
+
+- Disable tracker2 in default build options
+- Updated translations
+- Fixed potential race condition in meson build
+
+All contributors to this release:
+ - Rico Tzschichholz <ricotz@ubuntu.com>
+ - Quentin PAGÈS <pages_quentin@hotmail.com>
+ - Yaron Shahrabani <sh.yaron@gmail.com>
+ - Pawan Chitrakar <chautari@gmail.com>
+ - Charles Monzat <charles.monzat@free.fr>
+ - Fran Dieguez <frandieguez@gnome.org>
+
+Added/updated translations:
+ - fr.po, courtesy of Guillaume Bernard
+ - gl.po, courtesy of Fran Dieguez
+ - he.po, courtesy of Yaron Shahrabani
+ - ne.po, courtesy of Pawan Chitrakar
+
 0.40.1
 ======
 Server:
