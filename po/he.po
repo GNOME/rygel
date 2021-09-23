@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-12-27 17:59+0000\n"
-"PO-Revision-Date: 2021-04-17 00:01+0300\n"
+"POT-Creation-Date: 2021-05-20 08:57+0000\n"
+"PO-Revision-Date: 2021-09-23 23:53+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
 "2 : 3);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #: data/rygel.desktop.in.in:3
 msgid "Rygel"
@@ -142,10 +142,9 @@ msgstr "מצב הבדיקה „%s” שגוי"
 
 #. / TestID is valid but the test can't be canceled
 #: src/librygel-core/rygel-basic-management.vala:180
-#, fuzzy, c-format
-#| msgid "State '%s' Precludes Cancel"
+#, c-format
 msgid "State “%s” Precludes Cancel"
-msgstr "מצב '%s' מונע ביטול"
+msgstr "מצב „%s” מונע ביטול"
 
 #: src/librygel-core/rygel-basic-management.vala:213
 #: src/librygel-core/rygel-basic-management.vala:228
@@ -240,16 +239,15 @@ msgstr "הגדרת כותרות תוסף"
 
 #: src/librygel-core/rygel-cmdline-config.vala:96
 msgid "Set plugin options"
-msgstr "הגדרות אפשרויות תותסך"
+msgstr "הגדרות אפשרויות תוסף"
 
 #: src/librygel-core/rygel-cmdline-config.vala:98
 msgid "Use configuration file instead of user configuration"
 msgstr "להשתמש בקובץ תצורה במקום בתצורת משתמש"
 
 #: src/librygel-core/rygel-cmdline-config.vala:100
-#, fuzzy
 msgid "Shut down remote Rygel reference"
-msgstr "העדפות Rygel"
+msgstr "כיבוי ההפניה המרוחקת של Rygel"
 
 #: src/librygel-core/rygel-cmdline-config.vala:102
 msgid "Replace currently running instance of Rygel"
@@ -305,7 +303,7 @@ msgstr "הפניית חיבור שגויה"
 #: src/librygel-core/rygel-description-file.vala:494
 #, c-format
 msgid "Failed to write modified description to %s"
-msgstr "ארע כשל בכתיבת התיאור השונה אל %s"
+msgstr "כתיבת התיאור השונה אל %s נכשלה"
 
 #: src/librygel-core/rygel-energy-management-helper.c:55
 #, c-format
@@ -329,14 +327,12 @@ msgstr "קבלת רמת הרישום מההגדרות נכשלה: %s"
 #. translators: "enabled" is part of the config key and must not be translated
 #: src/librygel-core/rygel-meta-config.vala:352
 #, c-format
-#| msgid "No value set for '%s/enabled'"
 msgid "No value set for “%s/enabled”"
 msgstr "לא הוגדר ערך עבור „‎%s/enabled”"
 
 #. translators: "title" is part of the config key and must not be translated
 #: src/librygel-core/rygel-meta-config.vala:371
 #, c-format
-#| msgid "No value set for '%s/title'"
 msgid "No value set for “%s/title”"
 msgstr "לא הוגדר ערך עבור „‎%s/title”"
 
@@ -346,7 +342,6 @@ msgstr "לא הוגדר ערך עבור „‎%s/title”"
 #: src/librygel-core/rygel-meta-config.vala:461
 #: src/librygel-core/rygel-meta-config.vala:485
 #, c-format
-#| msgid "No value available for '%s/%s'"
 msgid "No value available for “%s/%s”"
 msgstr "אין ערך זמין עבור „‎%s/%s”"
 
@@ -375,15 +370,14 @@ msgid "Failed to load module from path “%s”: %s"
 msgstr "טעינת המודול מהנתיב „%s” נכשלה: %s"
 
 #: src/librygel-core/rygel-plugin-loader.vala:128
-#, fuzzy, c-format
-#| msgid "Failed to find entry point function '%s' in '%s': %s"
+#, c-format
 msgid "Failed to find entry point function “%s” in “%s”: %s"
-msgstr "ארע כשל במציאת פונקציית נקודת הרשומה '%s' תחת '%s':‏ %s"
+msgstr "איתור פונקציית רשומת הכניסה „%s” ב־„%s” נכשלה: %s"
 
 #: src/librygel-core/rygel-plugin-loader.vala:156
 #, c-format
 msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
-msgstr "המודול ‚%s’ מתנגש עם המודול ‚%s’ שכבר נטען. מדלגים"
+msgstr "המודול ‚%s’ סותר את המודול ‚%s’ שכבר נטען. מדלגים"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
@@ -530,34 +524,29 @@ msgid "Unable to parse Protocol data — unexpected node: %s"
 msgstr "לא ניתן לפענח את נתוני הפרוטוקול - מפרק בלתי צפוי: %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
-#, fuzzy, c-format
-#| msgid "Failed to construct URI for folder '%s': %s"
+#, c-format
 msgid "Failed to set UIList for file %s — %s"
-msgstr "ארע כשל בהרכבת הכתובת עבור התיקייה '%s':‏ %s"
+msgstr "הגדרת UIList לקובץ %s נכשלה — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
-#, fuzzy, c-format
-#| msgid "Failed to get original URI for '%s': %s"
+#, c-format
 msgid "Failed to set initial UI list for file %s — %s"
-msgstr "ארע כשל בקבלת הכתובת המקורית עבור '%s':‏ %s"
+msgstr "הגדרת רשימת מנשקי המשתמש הראשונית לקובץ %s נכשלה — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
-#, fuzzy, c-format
-#| msgid "Failed to remove file %s: %s"
+#, c-format
 msgid "Failed to monitor the file %s — %s"
-msgstr "ארע כשל בהסרת הקובץ %s: ‏%s"
+msgstr "המעקב אחר הכתובת %s נכשל — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
-#, fuzzy, c-format
-#| msgid "Failed to harvest file %s: %s"
+#, c-format
 msgid "Unable to parse UI list file %s"
-msgstr "ארע כשל בקבלת הקובץ %s: ‏%s"
+msgstr "לא ניתן לפענח קובץ רשימת מנשק משתמש %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
-#, fuzzy, c-format
-#| msgid "Failed to remove file %s: %s"
+#, c-format
 msgid "Unable to parse device profile data: %s"
-msgstr "ארע כשל בהסרת הקובץ %s: ‏%s"
+msgstr "לא ניתן לפענח את נתוני פרופיל המכשיר: %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
 #, c-format
@@ -613,10 +602,9 @@ msgstr "לא נמצא"
 
 #: src/librygel-server/rygel-http-post.vala:64
 #: src/librygel-server/rygel-import-resource.vala:193
-#, fuzzy, c-format
-#| msgid "Pushing data to non-empty item '%s' not allowed"
+#, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
-msgstr "דחיפת עצם '%s' שאינו ריק אינה מורשית"
+msgstr "דחיפת נתונים לפריט „%s” שאינו ריק אסורה"
 
 #: src/librygel-server/rygel-http-post.vala:72
 #, c-format
@@ -630,27 +618,24 @@ msgid "Failed to move dotfile %s: %s"
 msgstr "העברת ה־dotfile נכשלה %s:‏ %s"
 
 #: src/librygel-server/rygel-http-request.vala:95
-#, fuzzy, c-format
-#| msgid "Requested item '%s' not found"
+#, c-format
 msgid "Requested item “%s” not found"
-msgstr "הפריט המבוקש '%s' לא נמצא"
+msgstr "הפריט המבוקש „%s” לא נמצא"
 
 #: src/librygel-server/rygel-http-resource-handler.vala:91
-#, fuzzy, c-format
+#, c-format
 msgid "Couldn’t create data source for %s"
-msgstr "ארע כשל ביצירת פריט תחת '%s':‏ %s"
+msgstr "לא ניתן ליצור מקור נתונים עבור %s"
 
 #: src/librygel-server/rygel-import-resource.vala:124
-#, fuzzy, c-format
-#| msgid "Failed to get original URI for '%s': %s"
+#, c-format
 msgid "Failed to get original URI for “%s”: %s"
-msgstr "ארע כשל בקבלת הכתובת המקורית עבור '%s':‏ %s"
+msgstr "קבלת הכתובת המקורית עבור „%s” נכשלה:‏ %s"
 
 #: src/librygel-server/rygel-import-resource.vala:188
-#, fuzzy, c-format
-#| msgid "URI '%s' invalid for importing contents to"
+#, c-format
 msgid "URI “%s” invalid for importing contents to"
-msgstr "הכתובת '%s' אינה תקינה לצורך יבוא תכנים אל"
+msgstr "הכתובת „%s” אינה תקינה לצורך יבוא תכנים אליה"
 
 #: src/librygel-server/rygel-import-resource.vala:276
 #, c-format
@@ -663,16 +648,14 @@ msgid "ContainerID missing"
 msgstr "חסר ContainerID"
 
 #: src/librygel-server/rygel-item-destroyer.vala:60
-#, fuzzy, c-format
-#| msgid "Successfully destroyed object '%s'"
+#, c-format
 msgid "Successfully destroyed object “%s”"
-msgstr "העצם '%s' הושמד בהצלחה"
+msgstr "העצם „%s” הושמד בהצלחה"
 
 #: src/librygel-server/rygel-item-destroyer.vala:68
-#, fuzzy, c-format
-#| msgid "Failed to destroy object '%s': %s"
+#, c-format
 msgid "Failed to destroy object “%s”: %s"
-msgstr "אירע כשל בהריסת העצם שב־'%s':‏ %s"
+msgstr "השמדת העצם „%s” נכשלה: %s"
 
 #: src/librygel-server/rygel-item-destroyer.vala:105
 #: src/librygel-server/rygel-item-updater.vala:283
@@ -703,10 +686,9 @@ msgid "Successfully updated object “%s”"
 msgstr "העצם „%s” עודכן בהצלחה"
 
 #: src/librygel-server/rygel-item-updater.vala:89
-#, fuzzy, c-format
-#| msgid "Failed to update object '%s': %s"
+#, c-format
 msgid "Failed to update object “%s”: %s"
-msgstr "עדכון הפריט '%s' נכשל: %s"
+msgstr "עדכון הפריט „%s” נכשל: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:162
 #: src/librygel-server/rygel-object-creator.vala:614
@@ -1024,10 +1006,9 @@ msgid "Failed to seek"
 msgstr "המעבר נכשל"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
-#, fuzzy, c-format
-#| msgid "Invalid URI '%s'"
+#, c-format
 msgid "Invalid URI without prefix: %s"
-msgstr "כתובת שגויה '%s'"
+msgstr "כתובת שגויה ללא קידומת: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
 #, c-format
@@ -1035,9 +1016,9 @@ msgid "Can’t process URI %s with protocol %s"
 msgstr "לא ניתן לעבד את הכתובת %s עם הפרוטוקול %s"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
-msgstr "ארע כשל ביצירת פריט תחת '%s':‏ %s"
+msgstr "יצירת מקור נתונים ל־GStreamer עבור %s נכשלה: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-transcoding-data-source.vala:29
 msgid ""
@@ -1061,7 +1042,7 @@ msgstr "רק מעבר מבוסס בתים נתמך"
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
 #: src/media-engines/simple/rygel-simple-media-engine.vala:99
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
-msgstr ""
+msgstr "אפשר לעבד MediaObjects מבוססי קבצים בלבד (MediaFileItems)"
 
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
@@ -1070,10 +1051,9 @@ msgid "Module “%s” could not connect to D-Bus session bus. Ignoring…"
 msgstr "המודול „%s” לא הצליח להתחבר לאפיק הפעלת ה־D-Bus. יזכה להתעלמות…"
 
 #: src/plugins/external/rygel-external-variant-util.vala:23
-#, fuzzy, c-format
-#| msgid "External provider %s did not provide mandatory property \"%s\""
+#, c-format
 msgid "External provider %s did not provide mandatory property “%s”"
-msgstr "הספק החיצוני %s אינו מספק את המאפיין המחייב „%s”"
+msgstr "הספק החיצוני %s לא סיפק את מאפיין החובה „%s”"
 
 #: src/plugins/lms/rygel-lms-albums.vala:166
 #: src/plugins/tracker3/rygel-tracker-albums.vala:31
@@ -1096,7 +1076,7 @@ msgstr "שנים"
 #: src/plugins/tracker3/rygel-tracker-artists.vala:31
 #: src/plugins/tracker/rygel-tracker-artists.vala:31
 msgid "Artists"
-msgstr "אמנים"
+msgstr "אומנים"
 
 #: src/plugins/lms/rygel-lms-root-container.vala:33
 msgid "Shared media"
@@ -1133,10 +1113,9 @@ msgid "Invalid command received, ignoring"
 msgstr "התקבלה פקודה שגויה, תזכה להתעלמות"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:90
-#, fuzzy, c-format
-#| msgid "Failed to remove URI: %s"
+#, c-format
 msgid "Failed to discover URI %s: %s"
-msgstr "ארע כשל בהסרת הכתובת: %s"
+msgstr "גילוי הכתובת %s נכשל: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:105
 #, c-format
@@ -1154,38 +1133,36 @@ msgid "— helper binary for Rygel to extract metadata"
 msgstr "— קובץ בינרי מסייע ל־Rygel לטובת חילוץ נתוני על"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:164
-#, fuzzy, c-format
-#| msgid "Failed to parse query: %s"
+#, c-format
 msgid "Failed to parse commandline args: %s"
-msgstr "ארע כשל בניתוח השאילתה: %s"
+msgstr "פענוח הארגומנטים בשורת הפקודה נכשל: %s"
 
 #: src/plugins/media-export/rygel-media-export-generic-extractor.vala:50
-#, fuzzy, c-format
-#| msgid "Failed to create root device factory: %s"
+#, c-format
 msgid "Failed to create media art extractor: %s"
-msgstr "ארע כשל ביצירת מפעל התקן על: %s"
+msgstr "יצירת מחלץ אומנות למדיה נכשלה: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:146
+#: src/plugins/media-export/rygel-media-export-harvester.vala:150
 #, c-format
 msgid "“%s” harvested"
 msgstr "‫„%s” נקצר"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:202
+#: src/plugins/media-export/rygel-media-export-harvester.vala:205
 #, c-format
 msgid "Error fetching object “%s” from database: %s"
 msgstr "ארעה שגיאה במשיכת העצם „%s” ממסד הנתונים: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:210
+#: src/plugins/media-export/rygel-media-export-harvester.vala:213
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "קבלת מידע על הקובץ %s נכשלה: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:245
+#: src/plugins/media-export/rygel-media-export-harvester.vala:248
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr "לא ניתן למצוא את העצם %s או את ההורה שלו. מסד הנתונים אינו עקבי"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:249
+#: src/plugins/media-export/rygel-media-export-harvester.vala:252
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "ארעה שגיאה בעת הסרת העצם ממסד הנתונים: %s"
@@ -1200,26 +1177,25 @@ msgstr "קבלת הקובץ %s נכשלה: %s"
 msgid "Failed to query database: %s"
 msgstr "תשאול מסד הנתונים נכשל: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:272
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "ספירת התיקייה „%s” נכשלה: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:286
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:290
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "קבלת הצאצא של המכל %s נכשלה: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
-#, fuzzy, c-format
-#| msgid "Failed to save configuration data to file '%s': %s"
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
+#, c-format
 msgid "Failed to extract meta-data for file %s"
-msgstr "ארע כשל בשמירת נתוני התצורה לקובץ '%s':‏ %s"
+msgstr "חילוץ נתוני העל של הקובץ %s נכשל"
 
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:358
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:362
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "הכתובת %s תדולג, החילוץ נכשל לחלוטין: %s"
@@ -1230,10 +1206,9 @@ msgid "Failed to get child count of query container: %s"
 msgstr "קבלת הצאצא של מכל התשאול נכשלה:‏ %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
-#, fuzzy, c-format
-#| msgid "Failed to query database: %s"
+#, c-format
 msgid "Failed to force reindex to fix database: %s"
-msgstr "ארע כשל בתשאול מסד הנתונים: %s"
+msgstr "אילוץ סידור מפתח מחדש לתיקון מסד הנתונים נכשל: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
@@ -1256,10 +1231,9 @@ msgid "Failed to add item with ID %s: %s"
 msgstr "הוספת פריט עם מספר זיהוי %s נכשלה: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:217
-#, fuzzy, c-format
-#| msgid "Failed to move dotfile %s: %s"
+#, c-format
 msgid "Failed to get update IDs: %s"
-msgstr "העברת ה־dotfile נכשלה %s:‏ %s"
+msgstr "קבלת מזהי העדכון נכשלה: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:400
 #, c-format
@@ -1272,7 +1246,6 @@ msgstr "משיכת אסימון איפוס נכשלה"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:537
 #, c-format
-#| msgid "Failed to stop Rygel service: %s"
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "הקיבוע של ServiceResetToken נכשל: %s"
 
@@ -1282,10 +1255,9 @@ msgid "Failed to remove virtual folders: %s"
 msgstr "הסרת התיקיות הווירטואליות נכשלה: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:561
-#, fuzzy, c-format
-#| msgid "Failed to create item under '%s': %s"
+#, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
-msgstr "ארע כשל ביצירת פריט תחת '%s':‏ %s"
+msgstr "סימון הפריט %s כמוגן (%d) נכשל: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:571
 msgid "Cannot create references to containers"
@@ -1299,13 +1271,12 @@ msgstr "הוספת %s לקבצים המודחים נכשלה: %s"
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:610
 #, c-format
 msgid "Failed to get whether URI %s is ignored: %s"
-msgstr ""
+msgstr "קבלת האם הכתובת %s בהתעלמות נכשלה: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:626
-#, fuzzy, c-format
-#| msgid "Failed to create item under '%s': %s"
+#, c-format
 msgid "Failed to get whether item %s is guarded: %s"
-msgstr "ארע כשל ביצירת פריט תחת '%s':‏ %s"
+msgstr "זיהוי האם הפריט %s מוגן נכשל: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:666
 #, c-format
@@ -1362,7 +1333,7 @@ msgstr "התקבלה מחרוזת שגויה מצאצא: %s"
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received ill-formed response string %s from child…"
-msgstr ""
+msgstr "התקבלה מחרוזת תגובה משובשת %s מצאצא…"
 
 #. No error signalling, this was done in the part that called
 #. cancel
@@ -1424,10 +1395,9 @@ msgstr "לא יבוצע מעקב אחר שינויים בקבצים"
 #. Avoid warning when file is removed in the meantime, e.g. in
 #. upload case.
 #: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:105
-#, fuzzy, c-format
-#| msgid "Failed to get file info for %s: %s"
+#, c-format
 msgid "Failed to setup up file monitor for %s: %s"
-msgstr "ארע כשל בקבלת המידע עבור %s: ‏%s"
+msgstr "הגדרת מעקב קבצים שהועלו עבור %s נכשלה: %s"
 
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
@@ -1441,7 +1411,7 @@ msgstr "שנה"
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
-msgstr "אמן"
+msgstr "אומן"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:40
 msgid "Album"
@@ -1570,18 +1540,17 @@ msgid "Failed to query ACL: %s"
 msgstr "תשאול רשימת המורשים נכשל: %s"
 
 #: src/rygel/rygel-acl.vala:127
-#, fuzzy, c-format
-#| msgid "Error creating URI from %s: %s"
+#, c-format
 msgid "Error creating D-Bus proxy for ACL: %s"
-msgstr "שגיאה ביצירת כתובת מ־%s:‏ %s"
+msgstr "שגיאה ביצירת מתווך D-Bus לרשימת גישה: %s"
 
 #: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “allow”"
-msgstr ""
+msgstr "לא נמצאה מדיניות נסיגה לרשימת בקרה. יחשב כ־„allow” (מורשה)"
 
 #: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
-msgstr ""
+msgstr "לא נמצאה מדיניות נסיגה לרשימת בקרה. יחשב כ־„deny” (סירוב)"
 
 #: src/rygel/rygel-dbus-service.vala:81
 msgid "Another instance of Rygel is already running. Not starting."
