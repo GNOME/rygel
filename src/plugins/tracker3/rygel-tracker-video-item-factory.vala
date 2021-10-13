@@ -42,7 +42,7 @@ public class Rygel.Tracker.VideoItemFactory : ItemFactory {
     private const string CATEGORY = "nmm:Video";
     private const string CATEGORY_IRI = "http://www.tracker-project.org/" +
                                         "temp/nmm#Video";
-    private const string GRAPH = "tracker:Videos";
+    private const string GRAPH = "tracker:Video";
 
     public VideoItemFactory () {
         var upload_folder = Environment.get_user_special_dir
