@@ -34,15 +34,15 @@ public class Rygel.Tracker.RootContainer : Rygel.SimpleContainer {
 
     public static Sparql.Connection connection;
 
-    static construct {
-        try {
-            RootContainer.connection = Sparql.Connection.bus_new (TRACKER_SERVICE, null);
-        } catch (Error err) {
-            error ("Failed to connect to tracker: %s", err.message);
-        }
-    }
-
     public RootContainer (string title) {
+        if (RootContainer.connection == null) {
+            try {
+                RootContainer.connection = Sparql.Connection.bus_new (TRACKER_SERVICE, null);
+            } catch (Error err) {
+                error ("Failed to connect to tracker: %s", err.message);
+            }
+        }
+
         base.root (title);
 
         if (this.get_bool_config_without_error ("share-music")) {
