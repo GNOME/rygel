@@ -40,7 +40,7 @@
                 {
                     "type" : "git",
                     "url" : "https://gitlab.gnome.org/GNOME/gssdp.git/",
-                    "branch" : "master"
+                    "branch" : "gssdp-1.4"
                 }
             ]
         },
@@ -51,7 +51,7 @@
                 {
                     "type" : "git",
                     "url" : "https://gitlab.gnome.org/GNOME/gupnp.git/",
-                    "branch" : "master"
+                    "branch" : "gupnp-1.4"
                 }
             ]
         },
