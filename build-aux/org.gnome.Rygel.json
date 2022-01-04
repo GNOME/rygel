@@ -39,7 +39,7 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/gssdp.git/"
+                    "url" : "https://gitlab.gnome.org/GNOME/gssdp.git/",
                     "branch" : "gssdp-1.4"
                 }
             ]
@@ -50,7 +50,7 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/gupnp.git/"
+                    "url" : "https://gitlab.gnome.org/GNOME/gupnp.git/",
                     "branch" : "gupnp-1.4"
                 }
             ]
