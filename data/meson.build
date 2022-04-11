@@ -9,7 +9,9 @@ install_data(join_paths('icons', '48x48', 'rygel.png'), install_dir : join_paths
 install_data(join_paths('icons', 'scalable', 'rygel.svg'), install_dir : join_paths(rygel_icondir, 'scalable', 'apps'))
 install_data(join_paths('icons', 'scalable', 'rygel-full.svg'), install_dir : join_paths(rygel_icondir, 'scalable', 'apps'))
 
-install_data('rygel-preferences.ui', install_dir : rygel_datadir)
+if (gtk.found())
+  install_data('rygel-preferences.ui', install_dir : rygel_datadir)
+endif
 
 data_conf = configuration_data()
 data_conf.set('bindir', join_paths(get_option('prefix'), get_option('bindir')))
@@ -60,7 +62,7 @@ i18n.merge_file(input: rygel_desktop_preferences_in,
                 output: 'rygel-preferences.desktop',
                 po_dir : join_paths('..','po'),
                 type: 'desktop',
-                install : true,
+                install : gtk.found(),
                 install_dir: join_paths(get_option('datadir'), 'applications'))
 
 subdir('presets')
