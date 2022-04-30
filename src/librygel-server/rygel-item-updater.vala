@@ -76,7 +76,7 @@ internal class Rygel.ItemUpdater: GLib.Object, Rygel.StateMachine {
 
             yield this.update_object ();
 
-            this.action.return ();
+            this.action.return_success ();
 
             debug (_("Successfully updated object “%s”"), this.object_id);
         } catch (Error error) {

@@ -207,7 +207,7 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         this.bytes_total = message.response_headers.get_content_length ();
 
         if (message.status_code >= 200 && message.status_code <= 299) {
-            this.action.return ();
+            this.action.return_success ();
         } else {
             this.handle_transfer_error (message);
         }

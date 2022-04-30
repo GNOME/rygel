@@ -139,7 +139,7 @@ public class Rygel.V1Hacks : Object {
         this.description_path = template_path.replace (".xml", "-v1.xml");
         description_file.save (this.description_path);
 
-        var server_path = "/" + device.get_relative_location ();
+        var server_path = "/" + device.get_description_document_name ();
         if (this.agent_regex.get_pattern () != "") {
             device.context.host_path_for_agent (this.description_path,
                                                 server_path,

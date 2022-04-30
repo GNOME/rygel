@@ -95,7 +95,7 @@ public class Rygel.PlaybinPlayer : GLib.Object, Rygel.MediaPlayer {
     private static bool has_dlna_src;
 
     static construct {
-        PlaybinPlayer.has_dlna_src = Gst.URI.protocol_is_supported (URIType.SRC,
+        PlaybinPlayer.has_dlna_src = Gst.Uri.protocol_is_supported (URIType.SRC,
                                                                    "dlna+http");
     }
 

@@ -152,7 +152,7 @@ internal class Rygel.RenderingControl : Service {
                         typeof (string),
                         this.preset_name_list);
 
-        action.return ();
+        action.return_success ();
     }
 
     private void select_preset_cb (Service       service,
@@ -170,7 +170,7 @@ internal class Rygel.RenderingControl : Service {
             return;
         }
 
-        action.return ();
+        action.return_success ();
     }
 
     // Error out if 'Channel' is not 'Master'
@@ -199,7 +199,7 @@ internal class Rygel.RenderingControl : Service {
 
         action.set ("CurrentMute", typeof (bool), this.mute);
 
-        action.return ();
+        action.return_success ();
     }
 
     private void set_mute_cb (Service       service,
@@ -226,7 +226,7 @@ internal class Rygel.RenderingControl : Service {
 
         this.mute = mute;
 
-        action.return ();
+        action.return_success ();
     }
 
     private void get_volume_cb (Service       service,
@@ -241,7 +241,7 @@ internal class Rygel.RenderingControl : Service {
 
         action.set ("CurrentVolume", typeof (uint), this.volume);
 
-        action.return ();
+        action.return_success ();
     }
 
     private void set_volume_cb (Service       service,
@@ -273,7 +273,7 @@ internal class Rygel.RenderingControl : Service {
 
         this.volume = volume;
 
-        action.return ();
+        action.return_success ();
     }
 
     private void notify_volume_cb (Object player, ParamSpec p) {

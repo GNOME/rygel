@@ -65,7 +65,7 @@ internal class Rygel.MediaReceiverRegistrar: Service {
 
         action.set ("Result", typeof (int), 1);
 
-        action.return ();
+        action.return_success ();
     }
 
     private void query_state (Service        registrar,

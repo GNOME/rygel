@@ -70,7 +70,7 @@ internal class Rygel.RuihService: Service {
                                                         input_ui_filter);
 
             action.set ("UIListing", typeof (string), compat_ui);
-            action.return ();
+            action.return_success ();
         } catch (RuihServiceError e) {
             action.return_error (e.code, e.message);
         }

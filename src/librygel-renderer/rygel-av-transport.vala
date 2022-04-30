@@ -298,7 +298,7 @@ internal class Rygel.AVTransport : Service {
                         typeof (string),
                         "NOT_IMPLEMENTED");
 
-        action.return ();
+        action.return_success ();
     }
 
     private void get_media_info_ex_cb (Service       service,
@@ -347,7 +347,7 @@ internal class Rygel.AVTransport : Service {
                         typeof (string),
                         "NOT_IMPLEMENTED");
 
-        action.return ();
+        action.return_success ();
     }
 
 
@@ -367,7 +367,7 @@ internal class Rygel.AVTransport : Service {
                         typeof (string),
                         this.player.playback_speed);
 
-        action.return ();
+        action.return_success ();
     }
 
     private void get_transport_actions_cb (Service       service,
@@ -380,7 +380,7 @@ internal class Rygel.AVTransport : Service {
                         typeof (string),
                         this.controller.current_transport_actions);
 
-        action.return ();
+        action.return_success ();
     }
 
     private void get_position_info_cb (Service       service,
@@ -414,7 +414,7 @@ internal class Rygel.AVTransport : Service {
                         typeof (int64),
                         this.player.byte_position);
 
-        action.return ();
+        action.return_success ();
     }
 
     private void get_device_capabilities_cb (Service       service,
@@ -433,7 +433,7 @@ internal class Rygel.AVTransport : Service {
                         typeof (string),
                         "NOT_IMPLEMENTED");
 
-        action.return ();
+        action.return_success ();
     }
 
     private void get_transport_settings_cb (Service       service,
@@ -449,7 +449,7 @@ internal class Rygel.AVTransport : Service {
                         typeof (string),
                         "NOT_IMPLEMENTED");
 
-        action.return ();
+        action.return_success ();
     }
 
     private void stop_cb (Service service, ServiceAction action) {
@@ -459,7 +459,7 @@ internal class Rygel.AVTransport : Service {
 
         this.controller.playback_state = "STOPPED";
 
-        action.return ();
+        action.return_success ();
     }
 
     private void play_cb (Service service, ServiceAction action) {
@@ -487,7 +487,7 @@ internal class Rygel.AVTransport : Service {
         this.player.playback_speed = speed;
         this.controller.playback_state = "PLAYING";
 
-        action.return ();
+        action.return_success ();
     }
 
     private void pause_cb (Service service, ServiceAction action) {
@@ -503,7 +503,7 @@ internal class Rygel.AVTransport : Service {
 
         this.controller.playback_state = "PAUSED_PLAYBACK";
 
-        action.return ();
+        action.return_success ();
     }
 
     private void seek_cb (Service service, ServiceAction action) {
@@ -537,7 +537,7 @@ internal class Rygel.AVTransport : Service {
                 return;
             }
 
-            action.return ();
+            action.return_success ();
 
             return;
         case "REL_COUNT":
@@ -562,7 +562,7 @@ internal class Rygel.AVTransport : Service {
                 return;
             }
 
-            action.return ();
+            action.return_success ();
 
             return;
         case "TRACK_NR":
@@ -577,7 +577,7 @@ internal class Rygel.AVTransport : Service {
 
             this.controller.track = track;
 
-            action.return();
+            action.return_success ();
 
             break;
         default:
@@ -593,7 +593,7 @@ internal class Rygel.AVTransport : Service {
         }
 
         if (this.controller.next ()) {
-            action.return ();
+            action.return_success ();
         } else {
             action.return_error (711, _("Illegal seek target"));
         }
@@ -605,7 +605,7 @@ internal class Rygel.AVTransport : Service {
         }
 
         if (this.controller.previous ()) {
-            action.return ();
+            action.return_success ();
         } else {
             action.return_error (711, _("Illegal seek target"));
         }
@@ -640,7 +640,7 @@ internal class Rygel.AVTransport : Service {
                             position);
         }
 
-        action.return ();
+        action.return_success ();
     }
 
     private void set_play_mode_cb (Service       service,
@@ -662,7 +662,7 @@ internal class Rygel.AVTransport : Service {
 
         this.controller.play_mode = play_mode;
 
-        action.return ();
+        action.return_success ();
     }
 
     private void notify_state_cb (Object controller, ParamSpec p) {
@@ -812,7 +812,7 @@ internal class Rygel.AVTransport : Service {
             assert_not_reached ();
         }
 
-        action.return ();
+        action.return_success ();
     }
 
     private bool is_playlist (string? mime, string? features) {
@@ -967,6 +967,6 @@ internal class Rygel.AVTransport : Service {
                 assert_not_reached ();
             }
 
-            action.return ();
+            action.return_success ();
     }
 }

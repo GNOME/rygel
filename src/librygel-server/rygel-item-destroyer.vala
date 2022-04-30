@@ -55,7 +55,7 @@ internal class Rygel.ItemDestroyer: GLib.Object, Rygel.StateMachine {
 
             yield this.remove_object ();
 
-            this.action.return ();
+            this.action.return_success ();
 
             debug (_("Successfully destroyed object “%s”"), this.object_id);
         } catch (Error error) {

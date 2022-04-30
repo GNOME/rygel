@@ -445,7 +445,7 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
         this.action.set ("ObjectID", typeof (string), this.object.id,
                          "Result", typeof (string), didl);
 
-        this.action.return ();
+        this.action.return_success ();
         this.completed ();
     }
 

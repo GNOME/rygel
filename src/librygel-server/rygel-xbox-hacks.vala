@@ -88,7 +88,7 @@ internal class Rygel.XBoxHacks : ClientHacks {
         var desc_path = template_path.replace ("v1.xml", "xbox.xml");
         description_file.save (desc_path);
 
-        var server_path = "/" + device.get_relative_location ();
+        var server_path = "/" + device.get_description_document_name ();
         device.context.host_path_for_agent (desc_path,
                                             server_path,
                                             this.agent_regex);

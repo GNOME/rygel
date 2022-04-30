@@ -233,6 +233,6 @@ public class Rygel.EnergyManagement : Service {
                     typeof (string),
                     this.create_proxied_network_interface_info ());
 
-        action.return ();
+        action.return_success ();
     }
 }

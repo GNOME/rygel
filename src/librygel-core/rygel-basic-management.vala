@@ -140,7 +140,7 @@ public class Rygel.BasicManagement : Service {
 
         action.set ("TestID", typeof (string), id);
 
-        action.return ();
+        action.return_success ();
     }
 
     private bool ensure_test_exists (ServiceAction           action,
@@ -219,7 +219,7 @@ public class Rygel.BasicManagement : Service {
                         typeof (string),
                         this.device_status);
 
-        action.return ();
+        action.return_success ();
     }
 
     private void ping_cb (Service       bm,
@@ -319,7 +319,7 @@ public class Rygel.BasicManagement : Service {
                         typeof (uint32),
                         max_response_time);
 
-        action.return ();
+        action.return_success ();
     }
 
     private void nslookup_cb (Service       bm,
@@ -405,7 +405,7 @@ public class Rygel.BasicManagement : Service {
                         typeof (string),
                         result);
 
-        action.return ();
+        action.return_success ();
     }
 
     private void traceroute_cb (Service       bm,
@@ -494,7 +494,7 @@ public class Rygel.BasicManagement : Service {
                         typeof (string),
                         hop_hosts);
 
-        action.return ();
+        action.return_success ();
     }
 
     private void get_test_ids_cb (Service       bm,
@@ -509,7 +509,7 @@ public class Rygel.BasicManagement : Service {
                         typeof (string),
                         create_test_ids_list (false));
 
-        action.return ();
+        action.return_success ();
     }
 
     private void get_active_test_ids_cb (Service       bm,
@@ -524,7 +524,7 @@ public class Rygel.BasicManagement : Service {
                         typeof (string),
                         create_test_ids_list (true));
 
-        action.return ();
+        action.return_success ();
     }
 
     private void get_test_info_cb (Service       bm,
@@ -548,7 +548,7 @@ public class Rygel.BasicManagement : Service {
                         typeof (string),
                         bm_test.execution_state.to_string ());
 
-        action.return ();
+        action.return_success ();
     }
 
     private void cancel_test_cb (Service       bm,
@@ -570,6 +570,6 @@ public class Rygel.BasicManagement : Service {
         /* ActiveTestIDs notification is handled by
          * the tests' run callback */
 
-        action.return ();
+        action.return_success ();
     }
 }

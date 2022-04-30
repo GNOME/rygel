@@ -74,7 +74,7 @@ internal class Rygel.ReferenceCreator : GLib.Object, Rygel.StateMachine {
                                                         this.cancellable);
 
             this.action.set ("NewID", typeof (string), new_id);
-            this.action.return ();
+            this.action.return_success ();
             this.completed ();
         } catch (Error error) {
             if (error is ContentDirectoryError) {

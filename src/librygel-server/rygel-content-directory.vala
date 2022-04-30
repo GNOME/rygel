@@ -276,7 +276,7 @@ public class Rygel.ContentDirectory: Service {
                             typeof (int64),
                             import.bytes_total);
 
-            action.return ();
+            action.return_success ();
         } catch (Error error) {
             action.return_error (error.code, error.message);
         }
@@ -295,7 +295,7 @@ public class Rygel.ContentDirectory: Service {
             var import = find_import_for_action (action);
             import.cancellable.cancel ();
 
-            action.return ();
+            action.return_success ();
         } catch (Error error) {
             action.return_error (error.code, error.message);
         }
@@ -313,7 +313,7 @@ public class Rygel.ContentDirectory: Service {
         /* Set action return arguments */
         action.set ("Id", typeof (uint32), this.system_update_id);
 
-        action.return ();
+        action.return_success ();
     }
 
     /* Query GetSystemUpdateID */
@@ -350,7 +350,7 @@ public class Rygel.ContentDirectory: Service {
         /* Set action return arguments */
         action.set ("SearchCaps", typeof (string), plugin.search_caps);
 
-        action.return ();
+        action.return_success ();
     }
 
     /* Query SearchCapabilities */
@@ -377,7 +377,7 @@ public class Rygel.ContentDirectory: Service {
         /* Set action return arguments */
         action.set ("SortCaps", typeof (string), MediaObjects.SORT_CAPS);
 
-        action.return ();
+        action.return_success ();
     }
 
     /* Query SortCapabilities */
@@ -402,7 +402,7 @@ public class Rygel.ContentDirectory: Service {
         /* Set action return arguments */
         action.set ("FeatureList", typeof (string), this.feature_list);
 
-        action.return ();
+        action.return_success ();
     }
 
     /* Query FeatureList */
@@ -693,7 +693,7 @@ public class Rygel.ContentDirectory: Service {
     private void get_service_reset_token_cb (Service       content_dir,
                                              ServiceAction action) {
         action.set ("ResetToken", typeof (string), this.service_reset_token);
-        action.return ();
+        action.return_success ();
     }
 
     private void query_service_reset_token (Service        content_dir,
@@ -793,6 +793,6 @@ public class Rygel.ContentDirectory: Service {
         }
 
         action.set ("SupportedUploadProfiles", typeof (string), builder.str);
-        action.return ();
+        action.return_success ();
     }
 }

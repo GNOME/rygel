@@ -50,7 +50,7 @@ public class Rygel.ServiceAction : GLib.Object {
         this.elements = elements;
     }
 
-    public void @return() {}
+    public void return_success() {}
     public void return_error (int code, string message) {
         this.error_code = code;
         this.error_message = message;

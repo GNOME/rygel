@@ -228,7 +228,7 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
                              typeof (uint),
                              this.update_id);
 
-        this.action.return ();
+        this.action.return_success ();
         this.completed ();
     }
 

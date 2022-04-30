@@ -100,7 +100,7 @@ public class Rygel.ConnectionManager : Service {
         action.set ("Source", typeof (string), source_protocol_info,
                     "Sink",   typeof (string), sink_protocol_info);
 
-        action.return ();
+        action.return_success ();
     }
 
     private void get_current_connection_ids_cb (Service             cm,
@@ -113,7 +113,7 @@ public class Rygel.ConnectionManager : Service {
 
         action.set ("ConnectionIDs", typeof (string), connection_ids);
 
-        action.return ();
+        action.return_success ();
     }
 
     private void get_current_connection_info_cb (Service             cm,
@@ -156,6 +156,6 @@ public class Rygel.ConnectionManager : Service {
                         typeof (string),
                         "OK");
 
-        action.return ();
+        action.return_success ();
     }
 }
