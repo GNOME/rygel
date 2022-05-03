@@ -597,9 +597,9 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
             return;
         }
 
-        var parsed_date = new Soup.Date.from_string (didl_item.date);
+        var parsed_date = new GLib.DateTime.from_iso8601 (didl_item.date, null);
         if (parsed_date != null) {
-            item.date = parsed_date.to_string (Soup.DateFormat.ISO8601);
+            item.date = GUPnP.format_date_time_for_didl_lite (parsed_date);
 
             return;
         }
@@ -674,15 +674,13 @@ internal class Rygel.ObjectCreator: GLib.Object, Rygel.StateMachine {
             return false;
         }
 
-        var soup_uri = new Soup.URI (uri);
-
-        if (soup_uri == null || soup_uri.scheme == null) {
+        try {
+            var parsed_uri = GLib.Uri.parse (uri, GLib.UriFlags.NONE);
+            sanitized_uri = parsed_uri.to_string();
+            return true;
+        } catch (Error err) {
             return false;
         }
-
-        sanitized_uri = soup_uri.to_string (false);
-
-        return true;
     }
 
     /**

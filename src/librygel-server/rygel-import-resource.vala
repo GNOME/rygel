@@ -72,7 +72,6 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
     private HTTPServer http_server;
     private MediaContainer root_container;
     private ServiceAction action;
-    private SourceFunc run_callback;
     private FileOutputStream output_stream;
 
     public ImportResource (ContentDirectory    content_dir,
@@ -144,23 +143,46 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
                                          Priority.DEFAULT,
                                          this.cancellable);
             var message = new Message ("GET", source_uri);
-            message.got_chunk.connect (this.got_chunk_cb);
-            message.got_body.connect (this.got_body_cb);
-            message.got_headers.connect (this.got_headers_cb);
-            message.finished.connect (this.finished_cb);
-            message.response_body.set_accumulate (false);
-
-            this.run_callback = run.callback;
-            this.session.queue_message (message, null);
 
             debug ("Importing resource from %s to %s",
                    source_uri,
                    this.item.get_primary_uri ());
 
-            yield;
+            var stream = yield this.session.send_async (message, Priority.DEFAULT, this.cancellable);
+            if (!(message.status_code >= 200 && message.status_code <= 299)) {
+                handle_transfer_error (message);
+
+                this.completed();
+                return;
+            }
+
+            this.bytes_total = message.response_headers.get_content_length ();
+            this.action.return_success ();
+            this.action = null;
+            this.bytes_copied = yield this.output_stream.splice_async (stream,
+                                                           OutputStreamSpliceFlags.CLOSE_SOURCE |
+                                                           OutputStreamSpliceFlags.CLOSE_TARGET,
+                                                           Priority.DEFAULT,
+                                                           this.cancellable);
+
+            if (this.bytes_total == 0) {
+                this.bytes_total = this.bytes_copied;
+            } else if (this.bytes_total != this.bytes_copied) {
+                warning ("Importing sizes did not match: %z vs. %z", this.bytes_total, this.bytes_copied);
+                this.status = TransferStatus.ERROR;
+            }
+
+            if (this.status == TransferStatus.IN_PROGRESS) {
+                this.status = TransferStatus.COMPLETED;
+            }
         } catch (Error err) {
             warning ("%s", err.message);
-            this.status = TransferStatus.ERROR;
+            if (err is IOError.CANCELLED) {
+                this.status = TransferStatus.STOPPED;
+            } else {
+                this.status = TransferStatus.ERROR;
+            }
+
             yield queue.remove_now (this.item, this.cancellable);
         }
 
@@ -201,67 +223,6 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
         }
 
         return media_item;
-    }
-
-    private void got_headers_cb (Message message) {
-        this.bytes_total = message.response_headers.get_content_length ();
-
-        if (message.status_code >= 200 && message.status_code <= 299) {
-            this.action.return_success ();
-        } else {
-            this.handle_transfer_error (message);
-        }
-
-        this.action = null;
-    }
-
-    private void got_chunk_cb (Message message, Buffer buffer) {
-        this.bytes_copied += buffer.length;
-        try {
-            size_t bytes_written;
-
-            this.output_stream.write_all (buffer.data,
-                                          out bytes_written,
-                                          this.cancellable);
-        } catch (Error error) {
-            warning ("%s", error.message);
-            if (error is IOError.CANCELLED) {
-                this.status = TransferStatus.STOPPED;
-            } else {
-                this.status = TransferStatus.ERROR;
-            }
-            this.session.cancel_message (message, Status.CANCELLED);
-        }
-    }
-
-    private void got_body_cb (Message message) {
-        if (this.bytes_total == 0) {
-            this.bytes_total = this.bytes_copied;
-        } else if (this.bytes_total != this.bytes_copied) {
-            this.status = TransferStatus.ERROR;
-
-            return;
-        }
-
-        try {
-            this.output_stream.close (this.cancellable);
-            if (this.status == TransferStatus.IN_PROGRESS) {
-                this.status = TransferStatus.COMPLETED;
-            }
-        } catch (Error error) {
-            warning ("%s", error.message);
-            this.status = TransferStatus.ERROR;
-        }
-    }
-
-    private void finished_cb (Message message) {
-        if (this.status == TransferStatus.IN_PROGRESS) {
-            if (!(message.status_code >= 200 && message.status_code <= 299)) {
-                this.handle_transfer_error (message);
-            }
-        }
-
-        this.run_callback ();
     }
 
     private void handle_transfer_error (Message message) {

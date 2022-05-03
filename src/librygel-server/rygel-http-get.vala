@@ -41,20 +41,21 @@ public class Rygel.HTTPGet : HTTPRequest {
 
     public HTTPGet (HTTPServer   http_server,
                     Soup.Server  server,
-                    Soup.Message msg) {
+                    Soup.ServerMessage msg) {
         base (http_server, server, msg);
     }
 
     protected override async void handle () throws Error {
         /* We only entertain 'HEAD' and 'GET' requests */
-        if (!(this.msg.method == "HEAD" || this.msg.method == "GET")) {
+        if (!(this.msg.get_method () == "HEAD" ||
+              this.msg.get_method () == "GET")) {
             throw new HTTPRequestError.BAD_REQUEST
                           (_("Invalid Request (only GET and HEAD supported)"));
         }
 
         { /* Check for proper content feature request */
             var cf_header = "getcontentFeatures.dlna.org";
-            var cf_val = this.msg.request_headers.get_one (cf_header);
+            var cf_val = this.msg.get_request_headers ().get_one (cf_header);
 
             if (cf_val != null && cf_val != "1") {
                 throw new HTTPRequestError.BAD_REQUEST (_(cf_header + " must be 1"));
@@ -79,7 +80,7 @@ public class Rygel.HTTPGet : HTTPRequest {
         }
 
         { // Check the transfer mode
-            var headers = this.msg.request_headers;
+            var headers = this.msg.get_request_headers ();
             var transfer_mode = headers.get_one (TRANSFER_MODE_HEADER);
 
             if (transfer_mode == null) {
@@ -87,7 +88,7 @@ public class Rygel.HTTPGet : HTTPRequest {
             }
 
             if (! this.handler.supports_transfer_mode (transfer_mode)) {
-                var msg = /*_*/("%s transfer mode not supported for '%s'");
+                var msg = _("%s transfer mode not supported for '%s'");
                 throw new HTTPRequestError.UNACCEPTABLE (msg,
                                                          transfer_mode,
                                                          uri.to_string ());
@@ -128,7 +129,7 @@ public class Rygel.HTTPGet : HTTPRequest {
         var requested_cleartext_seek = DTCPCleartextRequest.requested
             (this.msg);
 
-        var response_headers = this.msg.response_headers;
+        var response_headers = this.msg.get_response_headers ();
 
         // Order is significant here when the request has more than one seek
         // header
@@ -227,7 +228,7 @@ public class Rygel.HTTPGet : HTTPRequest {
 
         // Add headers
         this.handler.add_response_headers (this);
-        this.msg.response_headers.append ("Server",
+        this.msg.get_response_headers ().append ("Server",
                                           this.http_server.server_name);
 
         var response = this.handler.render_body (this);
@@ -326,7 +327,7 @@ public class Rygel.HTTPGet : HTTPRequest {
                         }
                         vary_header.append (PlaySpeedRequest.PLAYSPEED_HEADER);
                     }
-                    this.msg.response_headers.replace ("Vary", vary_header.str);
+                    this.msg.get_response_headers ().replace ("Vary", vary_header.str);
                 }
             }
         }
@@ -334,26 +335,26 @@ public class Rygel.HTTPGet : HTTPRequest {
         // Determine the status code
         {
             int response_code;
-            if (this.msg.response_headers.get_one ("Content-Range") != null) {
+            if (this.msg.get_response_headers ().get_one ("Content-Range") != null) {
                 response_code = Soup.Status.PARTIAL_CONTENT;
             } else {
                 response_code = Soup.Status.OK;
             }
-            this.msg.set_status (response_code);
+            this.msg.set_status (response_code, null);
         }
 
         if (msg.get_http_version () == Soup.HTTPVersion.@1_0) {
             // Set the response version to HTTP 1.1 (see DLNA 7.5.4.3.2.7.2)
             msg.set_http_version (Soup.HTTPVersion.@1_1);
-            msg.response_headers.append ("Connection", "close");
+            msg.get_response_headers ().append ("Connection", "close");
         }
 
         debug ("Following HTTP headers appended to response:");
-        this.msg.response_headers.foreach ((name, value) => {
+        this.msg.get_response_headers ().foreach ((name, value) => {
             debug ("    %s : %s", name, value);
         });
 
-        if (this.msg.method == "HEAD") {
+        if (this.msg.get_method () == "HEAD") {
             // Only headers requested, no need to send contents
             this.server.unpause_message (this.msg);
 

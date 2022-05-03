@@ -78,6 +78,8 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
         var uri = this.serialized_info.lookup_value (Serializer.URI,
                                                      VariantType.STRING);
 
+        var file_uri = GLib.Uri.parse (uri.get_string(), GLib.UriFlags.NONE);
+
         // Unset size
         this.serialized_info.insert (Serializer.SIZE, "i", -1);
 
@@ -86,9 +88,10 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
         if ((xpo != null) &&
             (xpo->type == Xml.XPath.ObjectType.NODESET) &&
             (xpo->nodesetval->length () == 1)) {
-            var new_uri = new Soup.URI (uri.get_string ());
-            new_uri.set_scheme ("dvd");
-            new_uri.set_query ("title=1");
+            var new_uri = Soup.uri_copy(file_uri,
+                                        Soup.URIComponent.SCHEME, "dvd",
+                                        Soup.URIComponent.QUERY, "title=1",
+                                        Soup.URIComponent.NONE);
             this.serialized_info.insert (Serializer.UPNP_CLASS,
                                          "s",
                                          UPNP_CLASS_VIDEO);
@@ -96,7 +99,7 @@ internal class Rygel.MediaExport.DVDParser : Extractor {
                                          "dvd-track:" + id.get_string () + ":0");
             this.serialized_info.insert (Serializer.MIME_TYPE, "s", "video/mpeg");
             this.serialized_info.insert (Serializer.URI, "s",
-                                         new_uri.to_string (false));
+                                         new_uri.to_string ());
 
             var node = xpo->nodesetval->item (0);
 

@@ -30,7 +30,7 @@ using Soup;
 internal class Rygel.DataSink : Object {
     private DataSource source;
     private Server server;
-    private Message message;
+    private ServerMessage message;
 
     private const uint MAX_BUFFERED_CHUNKS = 32;
     private const uint MIN_BUFFERED_CHUNKS = 4;
@@ -41,7 +41,7 @@ internal class Rygel.DataSink : Object {
 
     public DataSink (DataSource source,
                      Server     server,
-                     Message    message,
+                     ServerMessage message,
                      HTTPSeekRequest?  offsets) {
         this.source = source;
         this.server = server;
@@ -56,7 +56,7 @@ internal class Rygel.DataSink : Object {
         this.message.wrote_chunk.connect (this.on_wrote_chunk);
     }
 
-    private void on_wrote_chunk (Soup.Message msg) {
+    private void on_wrote_chunk (Soup.ServerMessage msg) {
         this.chunks_buffered--;
         if (this.chunks_buffered < MIN_BUFFERED_CHUNKS) {
             this.source.thaw ();
@@ -72,7 +72,7 @@ internal class Rygel.DataSink : Object {
 
         var to_send = int64.min (buffer.length, left);
 
-        this.message.response_body.append_take (buffer[0:to_send]);
+        this.message.get_response_body ().append_take (buffer[0:to_send]);
         this.chunks_buffered++;
         this.bytes_sent += to_send;
 

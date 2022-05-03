@@ -48,7 +48,7 @@ public class Rygel.DTCPCleartextRequest : Rygel.HTTPSeekRequest {
      */
     public int64 total_size { get; private set; }
 
-    public DTCPCleartextRequest (Soup.Message message,
+    public DTCPCleartextRequest (Soup.ServerMessage message,
                                  Rygel.HTTPGetHandler handler)
                                 throws HTTPSeekRequestError,
                                        HTTPRequestError {
@@ -73,7 +73,7 @@ public class Rygel.DTCPCleartextRequest : Rygel.HTTPSeekRequest {
             total_size = UNSPECIFIED;
         }
 
-        unowned string range = message.request_headers.get_one
+        unowned string range = message.get_request_headers ().get_one
                                         (DTCP_RANGE_HEADER);
 
         if (range == null) {
@@ -146,7 +146,7 @@ public class Rygel.DTCPCleartextRequest : Rygel.HTTPSeekRequest {
         this.total_size = total_size;
     }
 
-    public static bool supported (Soup.Message message,
+    public static bool supported (Soup.ServerMessage message,
                                   Rygel.HTTPGetHandler handler) {
         var resource_handler = handler as HTTPMediaResourceHandler;
 
@@ -155,7 +155,7 @@ public class Rygel.DTCPCleartextRequest : Rygel.HTTPSeekRequest {
                   .is_cleartext_range_support_enabled ();
     }
 
-    public static bool requested (Soup.Message message) {
-        return (message.request_headers.get_one (DTCP_RANGE_HEADER) != null);
+    public static bool requested (Soup.ServerMessage message) {
+        return (message.get_request_headers ().get_one (DTCP_RANGE_HEADER) != null);
     }
 }

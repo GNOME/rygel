@@ -47,10 +47,18 @@ internal class Rygel.MediaExport.DVDTrack : VideoItem {
         // If we are created with a null node, then we are created from the
         // database and all the information is already there.
         if (this.node != null) {
-            var uri = new Soup.URI (this.parent.get_primary_uri ());
-            uri.set_scheme ("dvd");
-            uri.set_query ("title=%d".printf (track + 1));
-            this.add_uri (uri.to_string (false));
+            GLib.Uri uri;
+            try {
+                uri = GLib.Uri.parse (this.parent.get_primary_uri (), UriFlags.NONE);
+            } catch (Error error) {
+                assert_not_reached ();
+            }
+            uri = Soup.uri_copy (uri,
+                                 Soup.URIComponent.SCHEME, "dvd",
+                                 Soup.URIComponent.QUERY, "title=%d".printf (track + 1),
+                                 Soup.URIComponent.NONE);
+
+            this.add_uri (uri.to_string ());
 
             this.dlna_profile = "MPEG_PS";
             this.mime_type = "video/mpeg";

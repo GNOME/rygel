@@ -145,8 +145,8 @@ public class Rygel.MediaExport.Extractor : Object {
         var date  = this.serialized_info.lookup_value (Serializer.DATE,
                                                        VariantType.STRING);
         if ("T" in date.get_string ()) {
-            var fixed_date = new Soup.Date.from_string (date.get_string ());
-            var new_date = fixed_date.to_string (Soup.DateFormat.ISO8601_FULL);
+            var fixed_date = new DateTime.from_iso8601 (date.get_string (), null);
+            var new_date = GUPnP.format_date_time_for_didl_lite (fixed_date);
 
             this.serialized_info.insert (Serializer.DATE, "s", new_date);
         }

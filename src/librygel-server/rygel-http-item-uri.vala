@@ -165,7 +165,7 @@ public class Rygel.HTTPItemURI : Object {
             switch (parts[i]) {
                 case "i":
                     var data = this.base64_urldecode
-                                        (Soup.URI.decode (parts[i + 1]));
+                                        (GLib.Uri.unescape_string (parts[i + 1]));
                     StringBuilder builder = new StringBuilder ();
                     builder.append ((string) data);
                     this.item_id = builder.str;
@@ -180,7 +180,7 @@ public class Rygel.HTTPItemURI : Object {
 
                     break;
                 case "res":
-                    this.resource_name = Soup.URI.decode (parts[i + 1]);
+                    this.resource_name = GLib.Uri.unescape_string (parts[i + 1]);
 
                     break;
                 default:

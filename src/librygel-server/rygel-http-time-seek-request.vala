@@ -68,7 +68,7 @@ public class Rygel.HTTPTimeSeekRequest : Rygel.HTTPSeekRequest {
      * @param request The HTTP GET/HEAD request
      * @param speed An associated speed request
      */
-    internal HTTPTimeSeekRequest (Soup.Message message,
+    internal HTTPTimeSeekRequest (Soup.ServerMessage message,
                                   HTTPGetHandler handler,
                                   PlaySpeed? speed)
                                   throws HTTPSeekRequestError {
@@ -82,7 +82,7 @@ public class Rygel.HTTPTimeSeekRequest : Rygel.HTTPSeekRequest {
             this.total_duration = UNSPECIFIED;
         }
 
-        var range = message.request_headers.get_one (TIMESEEKRANGE_HEADER);
+        var range = message.get_request_headers ().get_one (TIMESEEKRANGE_HEADER);
 
         if (range == null) {
             throw new HTTPSeekRequestError.INVALID_RANGE ("%s not present",
@@ -205,14 +205,16 @@ public class Rygel.HTTPTimeSeekRequest : Rygel.HTTPSeekRequest {
      * This method utilizes elements associated with the request to determine if
      * a TimeSeekRange request is supported for the given request/resource.
      */
-    public static bool supported (Soup.Message message,
+    public static bool supported (Soup.ServerMessage message,
                                   HTTPGetHandler handler) {
         bool force_seek = false;
 
+#if 0
         try {
             var hack = ClientHacks.create (message);
             force_seek = hack.force_seek ();
         } catch (Error error) { /* Exception means no hack needed */ }
+#endif
 
         return force_seek || handler.supports_time_seek ();
     }
@@ -220,8 +222,8 @@ public class Rygel.HTTPTimeSeekRequest : Rygel.HTTPSeekRequest {
     /**
      * Return true of the HTTPGet contains a TimeSeekRange request.
      */
-    public static bool requested (Soup.Message message) {
-        var header = message.request_headers.get_one (TIMESEEKRANGE_HEADER);
+    public static bool requested (Soup.ServerMessage message) {
+        var header = message.get_request_headers ().get_one (TIMESEEKRANGE_HEADER);
 
         return (header != null);
     }

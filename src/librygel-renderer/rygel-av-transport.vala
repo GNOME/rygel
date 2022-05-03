@@ -141,8 +141,8 @@ internal class Rygel.AVTransport : Service {
                                         (BuildConfig.PACKAGE_VERSION);
         }
 
-        this.session = new Session.with_options (Soup.SESSION_USER_AGENT,
-                                                 this.player.user_agent);
+        this.session = new Session ();
+        this.session.set_user_agent (this.player.user_agent);
 
         this.protocol_info = plugin.get_protocol_info ();
     }
@@ -224,7 +224,7 @@ internal class Rygel.AVTransport : Service {
                         typeof (string),
                         out _metadata);
 
-        this.handle_new_transport_uri (action, _uri, _metadata);
+        this.handle_new_transport_uri.begin (action, _uri, _metadata);
     }
 
     private void set_next_av_transport_uri_cb (Service       service,
@@ -242,7 +242,7 @@ internal class Rygel.AVTransport : Service {
                         typeof (string),
                         out _metadata);
 
-        this.handle_new_transport_uri (action, _uri, _metadata);
+        this.handle_new_transport_uri.begin (action, _uri, _metadata);
     }
 
     private bool is_valid_mime_type (string? mime) {
@@ -720,13 +720,13 @@ internal class Rygel.AVTransport : Service {
         this.changelog.log ("CurrentPlayMode", this.controller.play_mode);
     }
 
-    private MediaCollection? parse_m3u_playlist (uint8[]? data) throws Error {
+    private MediaCollection? parse_m3u_playlist (Bytes? data) throws Error {
         if (data == null) {
             return null;
         }
 
         var collection = new MediaCollection ();
-        var m_stream = new MemoryInputStream.from_data (data, null);
+        var m_stream = new MemoryInputStream.from_bytes (data);
         var stream = new DataInputStream (m_stream);
 
         debug ("Trying to parse m3u playlist");
@@ -765,10 +765,15 @@ internal class Rygel.AVTransport : Service {
                                         string mime,
                                         string features) {
         var message = new Message ("GET", uri);
-        this.session.queue_message (message, () => {
-            handle_playlist.callback ();
-        });
-        yield;
+        Bytes? body = null;
+
+        try {
+            body = yield this.session.send_and_read_async (message, Priority.DEFAULT, null);
+        } catch (Error error) {
+            action.return_error (716, _("Resource not found"));
+
+            return;
+        }
 
         if (message.status_code != 200) {
             action.return_error (716, _("Resource not found"));
@@ -782,7 +787,7 @@ internal class Rygel.AVTransport : Service {
         if (content_type.has_suffix ("mpegurl")) {
             debug ("Trying to parse m3u playlist");
             try {
-                collection = parse_m3u_playlist (message.response_body.data);
+                collection = parse_m3u_playlist (body);
             } catch (Error error) {
                 warning (_("Problem parsing playlist: %s"), error.message);
                 // FIXME: Return a more sensible error here.
@@ -791,7 +796,7 @@ internal class Rygel.AVTransport : Service {
                 return;
             }
         } else {
-            unowned string xml_string = (string) message.response_body.data;
+            unowned string xml_string = (string) body.get_data();
             collection = new MediaCollection.from_string (xml_string);
             if (collection.get_items ().length () == 0) {
                 // FIXME: Return a more sensible error here.
@@ -822,132 +827,77 @@ internal class Rygel.AVTransport : Service {
                 mime.has_suffix ("mpegurl");
     }
 
-    bool head_faked;
+    private async void handle_new_transport_uri (ServiceAction action,
+                                           string        uri,
+                                           string        metadata) {
 
-    // HACK ALERT: This work around vala's feature of capturing 'this' pointer
-    // for all lambdas introduced in a class instance, even if 'this' is never
-    // used. Captured 'this' extends lifetime of an AVTransport instance beyond
-    // time expected by GUPnP. Due to GUPnP not using weak pointers at some
-    // places (e.g. xmlNode property of GUPnPServiceInfo), a crash happens when
-    // AVTransport is freed.
-    private static void setup_check_resource_callback (AVTransport instance, Soup.Message message) {
-        var weakme = WeakRef (instance);
-        var weakmsg = WeakRef (message);
-        message.got_headers.connect( () => {
-                Rygel.AVTransport? me = (Rygel.AVTransport?)weakme.get();
-                Soup.Message? msg = (Soup.Message?)weakmsg.get();
-                if (me == null || msg == null)
-                    return;
-                me.head_faked = true;
-                me.session.cancel_message (msg, msg.status_code);
-            });
-    }
-
-    private void check_resource (Soup.Message msg,
-                                 string       _uri,
-                                 string       _metadata,
-                                 ServiceAction action) {
-        // Error codes gotten by experience from several web services or web
-        // radio stations that don't support HEAD but return a variety of
-        // errors.
-        if ((msg.status_code == Status.MALFORMED ||
-             msg.status_code == Status.BAD_REQUEST ||
-             msg.status_code == Status.METHOD_NOT_ALLOWED ||
-             msg.status_code == Status.NOT_IMPLEMENTED) &&
-            msg.method == "HEAD") {
-            debug ("Peer does not support HEAD, trying GET");
-            msg.method = "GET";
-
-            // Fake HEAD request by cancelling the message after the headers
-            // were received, then restart the message
-            setup_check_resource_callback (this, msg);
-
-            this.session.queue_message (msg, null);
+        if (!uri.has_prefix ("http://") && !uri.has_prefix ("https://")) {
+            this.set_single_play_uri (action, uri, metadata, null, null);
 
             return;
         }
 
-        if (msg.status_code != Status.OK && !this.head_faked) {
+        var new_uri = this.context.rewrite_uri (uri);
+        var message = new Message ("HEAD", new_uri);
+        message.request_headers.append ("getContentFeatures.dlna.org",
+                                        "1");
+        message.request_headers.append ("Connection", "close");
+
+        try {
+            yield this.session.send_async (message, Priority.DEFAULT, null);
+            if (message.status_code == Status.BAD_REQUEST ||
+                message.status_code == Status.METHOD_NOT_ALLOWED ||
+                message.status_code == Status.NOT_IMPLEMENTED) {
+                debug ("Peer does not support HEAD, trying GET");
+                message.method = "GET";
+                yield this.session.send_async (message, Priority.DEFAULT, null);
+            }
+
+            if (message.status_code != Status.OK) {
+                // TRANSLATORS: first %s is a URI, the second an explanaition of
+                // the error
+                warning (_("Failed to access resource at %s: %s"),
+                         uri,
+                         message.reason_phrase);
+
+                action.return_error (716, _("Resource not found"));
+
+                return;
+            }
+
+            var mime = message.response_headers.get_one ("Content-Type");
+            var features = message.response_headers.get_one
+                                ("contentFeatures.dlna.org");
+
+            if (!this.is_valid_mime_type (mime) &&
+                !this.is_playlist (mime, features)) {
+                debug ("Unsupported mime type %s", mime);
+                action.return_error (714, _("Illegal MIME-type"));
+
+                return;
+            }
+
+            if (this.is_playlist (mime, features)) {
+                // Delay returning the action
+                yield handle_playlist (action,
+                                       uri,
+                                       metadata,
+                                       mime,
+                                       features);
+            } else {
+                this.set_single_play_uri (action, uri, metadata, mime, features);
+            }
+
+        } catch (Error error) {
             // TRANSLATORS: first %s is a URI, the second an explanaition of
             // the error
             warning (_("Failed to access resource at %s: %s"),
-                     _uri,
-                     msg.reason_phrase);
+                    uri,
+                    message.reason_phrase);
 
             action.return_error (716, _("Resource not found"));
 
             return;
-        }
-
-        var mime = msg.response_headers.get_one ("Content-Type");
-        var features = msg.response_headers.get_one
-                            ("contentFeatures.dlna.org");
-
-        if (!this.is_valid_mime_type (mime) &&
-            !this.is_playlist (mime, features)) {
-            debug ("Unsupported mime type %s", mime);
-            action.return_error (714, _("Illegal MIME-type"));
-
-            return;
-        }
-
-        if (this.is_playlist (mime, features)) {
-            // Delay returning the action
-            this.handle_playlist.begin (action,
-                                        _uri,
-                                        _metadata,
-                                        mime,
-                                        features);
-        } else {
-            this.set_single_play_uri (action, _uri, _metadata, mime, features);
-        }
-    }
-
-    // HACK ALERT: This work around vala's feature of capturing 'this' pointer
-    // for all lambdas introduced in a class instance, even if 'this' is never
-    // used. Captured 'this' extends lifetime of an AVTransport instance beyond
-    // time expected by GUPnP. Due to GUPnP not using weak pointers at some
-    // places (e.g. xmlNode property of GUPnPServiceInfo), a crash happens when
-    // AVTransport is freed.
-    private static void setup_handle_new_transport_uri_callback
-                                    (AVTransport instance,
-                                     Message message,
-                                     string uri,
-                                     string metadata,
-                                     GUPnP.ServiceAction action) {
-        var weakme = WeakRef (instance);
-        var weakmsg = WeakRef (message);
-        //var weakact = WeakRef(action);
-        message.finished.connect( () => {
-            var me = (Rygel.AVTransport?) weakme.get();
-            var msg = (Soup.Message?) weakmsg.get();
-            //GUPnP.ServiceAction? act = (GUPnP.ServiceAction?)weakact.get();
-            if (me == null || msg == null) {
-                return;
-            }
-            me.check_resource (msg, uri, metadata, action);
-        });
-    }
-
-    private void handle_new_transport_uri (ServiceAction action,
-                                           string        uri,
-                                           string        metadata) {
-        if (uri.has_prefix ("http://") || uri.has_prefix ("https://")) {
-            var new_uri = this.context.rewrite_uri (uri);
-            var message = new Message ("HEAD", new_uri);
-            message.request_headers.append ("getContentFeatures.dlna.org",
-                                            "1");
-            message.request_headers.append ("Connection", "close");
-            this.head_faked = false;
-            AVTransport.setup_handle_new_transport_uri_callback (this,
-                                                                 message,
-                                                                 new_uri,
-                                                                 metadata,
-                                                                 action);
-
-            this.session.queue_message (message, null);
-        } else {
-            this.set_single_play_uri (action, uri, metadata, null, null);
         }
     }
 
@@ -956,7 +906,7 @@ internal class Rygel.AVTransport : Service {
                                       string           metadata,
                                       string?          mime,
                                       string?          features) {
-            switch (action.get_name ()) {
+        switch (action.get_name ()) {
             case "SetAVTransportURI":
                 this.controller.set_single_play_uri (uri, metadata, mime, features);
                 break;
@@ -965,8 +915,8 @@ internal class Rygel.AVTransport : Service {
                 break;
             default:
                 assert_not_reached ();
-            }
+        }
 
-            action.return_success ();
+        action.return_success ();
     }
 }

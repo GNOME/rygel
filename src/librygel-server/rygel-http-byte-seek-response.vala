@@ -68,11 +68,11 @@ public class Rygel.HTTPByteSeekResponse : Rygel.HTTPResponseElement {
     public override void add_response_headers (Rygel.HTTPRequest request) {
         if (this.end_byte != -1) {
             // Content-Range: bytes START_BYTE-END_BYTE/TOTAL_LENGTH (or "*")
-            request.msg.response_headers.set_content_range (this.start_byte,
+            request.msg.get_response_headers ().set_content_range (this.start_byte,
                                                             this.end_byte,
                                                             this.total_size);
-            request.msg.response_headers.append ("Accept-Ranges", "bytes");
-            request.msg.response_headers.set_content_length (this.range_length);
+            request.msg.get_response_headers ().append ("Accept-Ranges", "bytes");
+            request.msg.get_response_headers ().set_content_length (this.range_length);
         }
     }
 

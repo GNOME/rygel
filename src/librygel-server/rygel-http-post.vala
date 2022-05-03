@@ -37,11 +37,11 @@ internal class Rygel.HTTPPost : HTTPRequest {
 
     public HTTPPost (HTTPServer   http_server,
                      Soup.Server  server,
-                     Soup.Message msg) {
+                     Soup.ServerMessage msg) {
         base (http_server, server, msg);
 
         this.cancellable.connect (this.on_request_cancelled);
-        msg.request_body.set_accumulate (false);
+        msg.get_request_body ().set_accumulate (false);
     }
 
     protected override async void handle () throws Error {
@@ -91,7 +91,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
         yield;
     }
 
-    private void on_got_body (Message msg) {
+    private void on_got_body (ServerMessage msg) {
         if (this.msg != msg) {
             return;
         }
@@ -202,9 +202,10 @@ internal class Rygel.HTTPPost : HTTPRequest {
         this.handle_continue ();
     }
 
-    private void on_got_chunk (Message msg, Buffer chunk) {
+    private void on_got_chunk (ServerMessage msg, Bytes chunk) {
         try {
-            this.stream.write_all (chunk.data, null, this.cancellable);
+            var data = chunk.get_data ();
+            this.stream.write_all (data, null, this.cancellable);
         } catch (Error error) {
             this.disconnect_message_signals ();
             this.handle_error (

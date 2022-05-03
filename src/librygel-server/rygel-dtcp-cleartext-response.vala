@@ -79,12 +79,12 @@ public class Rygel.DTCPCleartextResponse : Rygel.HTTPResponseElement {
                               + ( (this.total_size == UNSPECIFIED) ? "*"
                                   : this.total_size.to_string () );
 
-            request.msg.response_headers.append (DTCP_CONTENT_RANGE_HEADER,
+            request.msg.get_response_headers ().append (DTCP_CONTENT_RANGE_HEADER,
                                                  response);
         }
 
         if (this.encrypted_length != UNSPECIFIED) {
-            request.msg.response_headers.set_content_length
+            request.msg.get_response_headers ().set_content_length
                                         (this.encrypted_length);
         }
     }

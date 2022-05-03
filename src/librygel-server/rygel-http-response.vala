@@ -29,7 +29,7 @@ using Soup;
 
 public class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     public unowned Soup.Server server { get; private set; }
-    public Soup.Message msg;
+    public Soup.ServerMessage msg;
 
     public Cancellable cancellable { get; set; }
 
@@ -44,7 +44,7 @@ public class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
                 return this._priority;
             }
 
-            var mode = this.msg.request_headers.get_one
+            var mode = this.msg.get_request_headers ().get_one
                                         ("transferMode.dlna.org");
 
             if (mode == null || mode == "Interactive") {
@@ -91,7 +91,7 @@ public class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
             this.cancellable.cancelled.connect (this.on_cancelled);
         }
 
-        this.msg.response_body.set_accumulate (false);
+        this.msg.get_response_body ().set_accumulate (false);
 
         this.server.weak_ref (this.on_server_weak_ref);
         this.unref_soup_server = true;
@@ -125,10 +125,10 @@ public class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
     public virtual void end (bool aborted, uint status) {
         this.src.stop ();
 
-        var encoding = this.msg.response_headers.get_encoding ();
+        var encoding = this.msg.get_response_headers ().get_encoding ();
 
         if (!aborted && encoding != Encoding.CONTENT_LENGTH) {
-            this.msg.response_body.complete ();
+            this.msg.get_response_body ().complete ();
             this.server.unpause_message (this.msg);
         }
 
@@ -137,14 +137,15 @@ public class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
         }
 
         if (status != Soup.Status.NONE) {
-            this.msg.set_status (status);
+            this.msg.set_status (status, null);
         }
 
         this.completed ();
     }
 
     private void on_cancelled (Cancellable cancellable) {
-        this.end (true, Soup.Status.CANCELLED);
+        // FIXME - How to properly cancel this?
+        this.end (true, Soup.Status.SERVICE_UNAVAILABLE);
     }
 
     private void on_server_weak_ref (GLib.Object object) {

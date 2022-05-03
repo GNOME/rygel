@@ -44,7 +44,7 @@ public class Rygel.PlaySpeedRequest : GLib.Object {
     }
 
     internal static bool requested (HTTPGet request) {
-        return request.msg.request_headers.get_one (PLAYSPEED_HEADER) != null;
+        return request.msg.get_request_headers ().get_one (PLAYSPEED_HEADER) != null;
     }
 
     public PlaySpeedRequest (int numerator, uint denominator) {
@@ -61,7 +61,7 @@ public class Rygel.PlaySpeedRequest : GLib.Object {
                                             throws PlaySpeedError {
         base ();
         // Format: PlaySpeed.dlna.org: speed=<rate>
-        string speed_string = request.msg.request_headers.get_one
+        string speed_string = request.msg.get_request_headers ().get_one
                                         (PLAYSPEED_HEADER);
 
         if (speed_string == null) {

@@ -23,7 +23,9 @@ public class ClientHacks : Object {
 
 void test_time_seek_malformed_header () {
     // Mock data
-    var message = new Soup.Message ("GET", "http://localhost");
+    var message = (Soup.ServerMessage) new Object(typeof(Soup.ServerMessage));
+    message.set_method ("GET");
+    message.set_uri (GLib.Uri.parse ("http://localhost"));
     var handler = new HTTPGetHandler ();
 
     // Test without the header

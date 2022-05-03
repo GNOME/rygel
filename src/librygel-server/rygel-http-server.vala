@@ -152,24 +152,23 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
         this.requests.remove (request);
 
         debug ("HTTP %s request for URI '%s' handled.",
-               request.msg.method,
-               request.msg.get_uri ().to_string (false));
+               request.msg.get_method (),
+               request.msg.get_uri ().to_string ());
     }
 
     private void server_handler (Soup.Server               server,
-                                 Soup.Message              msg,
+                                 Soup.ServerMessage        msg,
                                  string                    server_path,
-                                 HashTable<string,string>? query,
-                                 Soup.ClientContext        soup_client) {
-        if (msg.method == "POST") {
+                                 HashTable<string,string>? query) {
+        if (msg.get_method () == "POST") {
             // Already handled
             return;
         }
 
         debug ("HTTP %s request for URI '%s'. Headers:",
-               msg.method,
-               msg.get_uri ().to_string (false));
-        msg.request_headers.foreach ((name, value) => {
+               msg.get_method (),
+               msg.get_uri ().to_string ());
+        msg.get_request_headers ().foreach ((name, value) => {
                 debug ("    %s : %s", name, value);
         });
 
@@ -177,14 +176,13 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
     }
 
     private void on_request_aborted (Soup.Server        server,
-                                     Soup.Message       message,
-                                     Soup.ClientContext client) {
+                                     Soup.ServerMessage message) {
         foreach (var request in this.requests) {
             if (request.msg == message) {
                 request.cancellable.cancel ();
                 debug ("HTTP client aborted %s request for URI '%s'.",
-                       request.msg.method,
-                       request.msg.get_uri ().to_string (false));
+                       request.msg.get_method (),
+                       request.msg.get_uri ().to_string ());
 
                 break;
             }
@@ -192,22 +190,20 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
     }
 
     private void on_request_started (Soup.Server        server,
-                                     Soup.Message       message,
-                                     Soup.ClientContext client) {
+                                     Soup.ServerMessage  message) {
         message.got_headers.connect (this.on_got_headers);
     }
 
     private void on_request_read (Soup.Server        server,
-                                  Soup.Message       message,
-                                  Soup.ClientContext client) {
-        var agent = message.request_headers.get_one ("User-Agent");
+                                  Soup.ServerMessage message) {
+        var agent = message.get_request_headers ().get_one ("User-Agent");
 
         if (agent == null) {
-            var host = client.get_host ();
+            var host = message.get_remote_host ();
             agent = this.context.guess_user_agent (host);
             if (agent != null) {
-                debug ("Guessed user agent %s for %s", agent, client.get_host ());
-                message.request_headers.append ("User-Agent", agent);
+                debug ("Guessed user agent %s for %s", agent, host);
+                message.get_request_headers ().append ("User-Agent", agent);
             } else {
                 debug ("Could not guess user agent for ip %s.", host);
             }
@@ -215,11 +211,11 @@ public class Rygel.HTTPServer : GLib.Object, Rygel.StateMachine {
 
     }
 
-    private void on_got_headers (Soup.Message msg) {
-        if (msg.method == "POST" &&
-            msg.uri.path.has_prefix (this.path_root)) {
+    private void on_got_headers (Soup.ServerMessage msg) {
+        if (msg.get_method () == "POST" &&
+            msg.get_uri ().get_path ().has_prefix (this.path_root)) {
             debug ("HTTP POST request for URI '%s'",
-                   msg.get_uri ().to_string (false));
+                   msg.get_uri ().to_string ());
 
             this.queue_request (new HTTPPost (this, this.context.server, msg));
         }

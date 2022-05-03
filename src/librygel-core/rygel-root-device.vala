@@ -47,7 +47,7 @@ public class Rygel.RootDevice: GUPnP.RootDevice, GLib.Initable {
                        string        description_dir) throws Error {
         Object (context : context,
                 resource_factory : plugin,
-                description_doc : description_doc,
+                document : description_doc,
                 description_path: description_path,
                 description_dir: description_dir);
         init (null);

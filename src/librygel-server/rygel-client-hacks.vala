@@ -129,20 +129,19 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
 
     private void check_headers (Message message)
                                           throws ClientHacksError {
-        var headers = message.request_headers;
+        var headers = message.get_request_headers();
+        var remote_ip = "127.0.0.1"; //message.get_remote_host ();
 
         var agent = headers.get_one ("User-Agent");
         if (agent == null && client_agent_cache != null) {
-            var address = message.get_address ();
-            agent = client_agent_cache.get (address.get_physical ());
+            agent = client_agent_cache.get (remote_ip);
         }
 
         if (agent != null) {
-            var address = message.get_address ();
             if (client_agent_cache == null) {
                 client_agent_cache = new HashMap<string, string>();
             }
-            client_agent_cache.set (address.get_physical (), agent);
+            client_agent_cache.set (remote_ip, agent);
         }
 
         if (agent == null || !(this.agent_regex.match (agent))) {

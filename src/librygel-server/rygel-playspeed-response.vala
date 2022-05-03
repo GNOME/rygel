@@ -62,7 +62,7 @@ public class Rygel.PlaySpeedResponse : Rygel.HTTPResponseElement {
 
     public override void add_response_headers (Rygel.HTTPRequest request) {
         if (!this.speed.is_normal_rate ()) {
-            var headers = request.msg.response_headers;
+            var headers = request.msg.get_response_headers ();
 
             // Format: PlaySpeed.dlna.org: speed=<rate>
             headers.append (PlaySpeedRequest.PLAYSPEED_HEADER,

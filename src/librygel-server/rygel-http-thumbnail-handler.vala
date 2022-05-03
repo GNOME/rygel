@@ -67,7 +67,7 @@ internal class Rygel.HTTPThumbnailHandler : Rygel.HTTPGetHandler {
     public override void add_response_headers (HTTPGet request)
                                                throws HTTPRequestError {
         // Add Content-Type
-        request.msg.response_headers.append ("Content-Type",
+        request.msg.get_response_headers ().append ("Content-Type",
                                              thumbnail.mime_type);
 
         // Add contentFeatures.dlna.org
@@ -76,7 +76,7 @@ internal class Rygel.HTTPThumbnailHandler : Rygel.HTTPGetHandler {
                                          this.thumbnail_index);
         var protocol_info = res.get_protocol_info ().to_string ();
         var pi_fields = protocol_info.split (":", 4);
-        request.msg.response_headers.append ("contentFeatures.dlna.org",
+        request.msg.get_response_headers ().append ("contentFeatures.dlna.org",
                                              pi_fields[3]);
 
         // Chain-up

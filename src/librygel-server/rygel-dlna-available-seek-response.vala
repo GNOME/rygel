@@ -80,8 +80,8 @@ public class Rygel.DLNAAvailableSeekRangeResponse : Rygel.HTTPResponseElement {
     public override void add_response_headers (Rygel.HTTPRequest request) {
         var response = this.get_response_string ();
         if (response != null) {
-            request.msg.response_headers.append (AVAILABLE_SEEK_RANGE_HEADER,
-                                                 response);
+            request.msg.get_response_headers ().append (AVAILABLE_SEEK_RANGE_HEADER,
+                                                        response);
         }
     }
 

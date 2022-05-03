@@ -74,19 +74,19 @@ endif
 valadoc = find_program('valadoc', required : false)
 gtkdoc = dependency('gtk-doc', required : false)
 
-glib_minimal_version = '>= 2.56'
+glib_minimal_version = '>= 2.62'
 
-gupnp = dependency('gupnp-1.2', version : '>= 1.4.2')
+gupnp = dependency('gupnp-1.6', version : '>= 1.5.0')
 gee = dependency('gee-0.8', version: '>= 0.8.0')
-gssdp = dependency('gssdp-1.2', version : '>= 1.4.0')
+gssdp = dependency('gssdp-1.6', version : '>= 1.5.0')
 glib = dependency('glib-2.0', version : glib_minimal_version)
 gio = dependency('gio-2.0', version : glib_minimal_version)
 gio_unix = dependency('gio-unix-2.0', version : glib_minimal_version)
 gmodule = dependency('gmodule-2.0', version: glib_minimal_version)
 libxml = dependency('libxml-2.0', version: '>= 2.7')
-gupnp_av = dependency('gupnp-av-1.0', version: '>= 0.12.8')
+gupnp_av = dependency('gupnp-av-1.0', version: '>= 0.14.1')
 gupnp_dlna = dependency('gupnp-dlna-2.0', version: '>= 0.9.4')
-soup = dependency('libsoup-2.4', version : '>= 2.44.0')
+soup = dependency('libsoup-3.0', version : '>= 2.44.0')
 mediaart = dependency('libmediaart-2.0', version : '>= 0.7.0')
 sqlite = dependency('sqlite3', version : '>= 3.5')
 

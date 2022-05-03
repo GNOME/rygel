@@ -86,7 +86,7 @@ internal class Rygel.SamsungTVHacks : ClientHacks {
     public override void modify_headers (HTTPRequest request) {
         var item = request.object as VideoItem;
 
-        if (request.msg.request_headers.get_one ("getCaptionInfo.sec") != null
+        if (request.msg.get_request_headers ().get_one ("getCaptionInfo.sec") != null
             && item != null
             && item.subtitles.size > 0) {
                 var caption_uri = request.http_server.create_uri_for_object
@@ -95,8 +95,8 @@ internal class Rygel.SamsungTVHacks : ClientHacks {
                                          0, // FIXME: offer first subtitle only?
                                          null);
 
-                request.msg.response_headers.append ("CaptionInfo.sec",
-                                                     caption_uri);
+                request.msg.get_response_headers().append ("CaptionInfo.sec",
+                                                           caption_uri);
         }
     }
 }

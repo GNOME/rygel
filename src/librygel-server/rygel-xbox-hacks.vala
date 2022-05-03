@@ -43,24 +43,43 @@ internal class Rygel.XBoxHacks : ClientHacks {
             return;
         }
 
-        unowned Soup.URI uri = message.get_uri ();
-        unowned string query = uri.query;
+        var query = message.uri.get_query ();
         if (query == null) {
             return;
         }
-        var params = Soup.Form.decode (query);
-        var album_art = params.lookup ("albumArt");
 
-        if ((album_art == null) || !bool.parse (album_art)) {
+        var iter = GLib.UriParamsIter (query);
+        string param;
+        string val;
+        bool rewrite = false;
+        try {
+            while (iter.next (out param, out val)) {
+                if (param == "albumArt") {
+                    if (!bool.parse (val)) {
+                        return;
+                    } else {
+                        rewrite = true;
+
+                        break;
+                    }
+                }
+            }
+        } catch (Error error) {
             return;
         }
 
-        var path = uri.get_path ();
+        if (!rewrite) {
+            return;
+        }
+
+        var path = message.uri.get_path ();
         var particles = path.split ("/")[0:4];
         particles += "th";
         particles += "0";
 
-        uri.set_path (string.joinv ("/", particles));
+        message.uri = Soup.uri_copy (message.uri,
+                                     Soup.URIComponent.PATH, string.joinv ("/", particles),
+                                     Soup.URIComponent.NONE);
     }
 
     public void apply_on_device (RootDevice device,

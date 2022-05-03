@@ -39,7 +39,7 @@ public abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     public unowned HTTPServer http_server;
     private MediaContainer root_container;
     public unowned Soup.Server server;
-    public Soup.Message msg;
+    public Soup.ServerMessage msg;
 
     public Cancellable cancellable { get; set; }
 
@@ -50,23 +50,25 @@ public abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
     protected HTTPRequest (HTTPServer   http_server,
                            Soup.Server  server,
-                           Soup.Message msg) {
+                           Soup.ServerMessage msg) {
         this.http_server = http_server;
         this.cancellable = new Cancellable ();
         this.root_container = http_server.root_container;
         this.server = server;
         this.msg = msg;
 
+#if 0
         try {
             this.hack = ClientHacks.create (msg);
         } catch (Error error) { }
+#endif
     }
 
     public async void run () {
         this.server.pause_message (this.msg);
 
         try {
-            this.uri = new HTTPItemURI.from_string (this.msg.uri.path,
+            this.uri = new HTTPItemURI.from_string (this.msg.get_uri().get_path (),
                                                     this.http_server);
 
             yield this.find_item ();
@@ -115,11 +117,7 @@ public abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
     protected void end (uint status, string ? reason = null) {
         if (status != Soup.Status.NONE) {
-            if (reason == null) {
-                this.msg.set_status (status);
-            } else {
-                this.msg.set_status_full (status, reason);
-            }
+            this.msg.set_status (status, reason);
         }
 
         this.completed ();

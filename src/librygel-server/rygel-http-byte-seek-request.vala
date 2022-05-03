@@ -49,12 +49,12 @@ public class Rygel.HTTPByteSeekRequest : Rygel.HTTPSeekRequest {
     public int64 total_size { get; set; }
 
 
-    public HTTPByteSeekRequest (Soup.Message msg,
+    public HTTPByteSeekRequest (Soup.ServerMessage msg,
                                 Rygel.HTTPGetHandler handler)
                                throws HTTPSeekRequestError,
                                       HTTPRequestError {
         base ();
-        unowned string range = msg.request_headers.get_one ("Range");
+        unowned string range = msg.get_request_headers ().get_one ("Range");
         if (range == null) {
             throw new HTTPSeekRequestError.INVALID_RANGE ("Range header not present");
         }
@@ -86,8 +86,7 @@ public class Rygel.HTTPByteSeekRequest : Rygel.HTTPSeekRequest {
 
         var range_tokens = parsed_range.split ("-", 2);
 
-        if (!int64.try_parse (strip_leading_zeros (range_tokens[0]),
-                              out start_byte)) {
+        if (!int64.try_parse (range_tokens[0], out start_byte, null, 10)) {
             throw new HTTPSeekRequestError.INVALID_RANGE
                           ("Invalid Range start value: '%s'", range);
         }
@@ -109,13 +108,12 @@ public class Rygel.HTTPByteSeekRequest : Rygel.HTTPSeekRequest {
                 range_length = UNSPECIFIED;
             }
         } else {
-            if (!int64.try_parse (strip_leading_zeros(range_tokens[1]),
-                                  out end_byte)) {
+            if (!int64.try_parse (range_tokens[1], out end_byte, null, 10)) {
                 throw new HTTPSeekRequestError.INVALID_RANGE
                                        ("Invalid Range end value: '%s'", range);
             }
             if (end_byte < start_byte) {
-                var message = /*_*/("Range end value %lld is smaller than range start value %lld: '%s'");
+                var message = _ ("Range end value %lld is smaller than range start value %lld: '%s'");
                 throw new HTTPSeekRequestError.INVALID_RANGE (message,
                                                               end_byte,
                                                               start_byte,
@@ -131,34 +129,21 @@ public class Rygel.HTTPByteSeekRequest : Rygel.HTTPSeekRequest {
         this.total_size = total_size;
     }
 
-    public static bool supported (Soup.Message         message,
+    public static bool supported (Soup.ServerMessage         message,
                                   Rygel.HTTPGetHandler handler) {
         bool force_seek = false;
 
+#if 0
         try {
             var hack = ClientHacks.create (message);
             force_seek = hack.force_seek ();
         } catch (Error error) { }
+#endif
 
         return force_seek || handler.supports_byte_seek ();
     }
 
-    public static bool requested (Soup.Message msg) {
-        return (msg.request_headers.get_one ("Range") != null);
+    public static bool requested (Soup.ServerMessage msg) {
+        return (msg.get_request_headers ().get_one ("Range") != null);
     }
-
-    // Leading "0"s cause try_parse() to assume the value is octal (see Vala
-    // bug 656691) So we strip them off before passing to int64.try_parse()
-    private static string strip_leading_zeros (string number_string) {
-        int i=0;
-        while ((number_string[i] == '0') && (i < number_string.length)) {
-            i++;
-        }
-        if (i == 0) {
-            return number_string;
-        } else {
-            return number_string[i:number_string.length];
-        }
-    }
-
 }

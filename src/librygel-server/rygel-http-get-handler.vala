@@ -43,7 +43,7 @@ public abstract class Rygel.HTTPGetHandler: GLib.Object {
      */
     public virtual void add_response_headers (HTTPGet request)
                                               throws HTTPRequestError {
-        var mode = request.msg.request_headers.get_one (TRANSFER_MODE_HEADER);
+        var mode = request.msg.get_request_headers ().get_one (TRANSFER_MODE_HEADER);
 
         // Per DLNA 7.5.4.3.2.33.2, if the transferMode header is empty it
         // must be treated as Streaming mode or Interactive, depending upon
@@ -51,7 +51,7 @@ public abstract class Rygel.HTTPGetHandler: GLib.Object {
         if (mode == null) {
             mode = this.get_default_transfer_mode ();
         }
-        request.msg.response_headers.append (TRANSFER_MODE_HEADER, mode);
+        request.msg.get_response_headers ().append (TRANSFER_MODE_HEADER, mode);
 
         // Handle device-specific hacks that need to change the response
         // headers such as Samsung's subtitle stuff.

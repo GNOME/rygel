@@ -49,7 +49,7 @@ internal abstract class Rygel.GstUtils {
 
             if (uri.has_prefix ("gst-launch://")) {
                 var description = uri.replace ("gst-launch://", "");
-                description = Soup.URI.decode (description);
+                description = GLib.Uri.unescape_string (description);
 
                 src = Gst.parse_bin_from_description (description, true);
             } else if (uri.has_prefix ("dvd://")) {
@@ -60,12 +60,12 @@ internal abstract class Rygel.GstUtils {
                     return null;
                 }
 
-                var tmp = new Soup.URI (uri);
-                var query = Soup.Form.decode (tmp.query);
+                var tmp = GLib.Uri.parse (uri, UriFlags.NONE);
+                var query = GLib.Uri.parse_params (tmp.get_query ());
                 if (query.contains ("title")) {
                     src.title = int.parse (query.lookup ("title"));
                 }
-                src.device = Soup.URI.decode (tmp.path);
+                src.device = GLib.Uri.unescape_string (tmp.get_path ());
             } else {
                 var file = File.new_for_uri (uri);
                 var path = file.get_path ();
