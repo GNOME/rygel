@@ -34,6 +34,21 @@
     ],
     "modules" : [
         {
+            "name" : "libsoup",
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/libsoup.git/",
+                    "branch" : "master"
+                }
+            ],
+            "config-opts" : [
+                "-Dtls_check=false",
+                "-Ddocs=disabled"
+            ]
+        },
+        {
             "name" : "gssdp",
             "buildsystem" : "meson",
             "sources" : [
