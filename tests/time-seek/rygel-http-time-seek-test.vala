@@ -14,18 +14,39 @@ public class HTTPGetHandler : Object {
 }
 
 public class ClientHacks : Object {
-    public static ClientHacks? create (Soup.Message message) throws Error {
+    public static ClientHacks? create (Soup.ServerMessage message) throws Error {
         throw new NumberParserError.INVALID ("");
     }
 
     public bool force_seek () { return false; }
 }
 
+public class Soup.MessageHeaders {
+    private HashTable<string, string> headers;
+    public MessageHeaders(HashTable<string, string> headers) {
+        this.headers = headers;
+    }
+
+    public string? get_one (string header) {
+        return this.headers.lookup (header);
+    }
+}
+
+public class Soup.ServerMessage {
+    public HashTable<string, string> request_headers = new HashTable<string, string> (str_hash, str_equal);
+    public MessageHeaders? get_request_headers () {
+        return new MessageHeaders(request_headers);
+    }
+}
+
+public enum Soup.Status {
+    BAD_REQUEST = 400,
+    REQUESTED_RANGE_NOT_SATISFIABLE = 416
+}
+
 void test_time_seek_malformed_header () {
     // Mock data
-    var message = (Soup.ServerMessage) new Object(typeof(Soup.ServerMessage));
-    message.set_method ("GET");
-    message.set_uri (GLib.Uri.parse ("http://localhost"));
+    var message = new Soup.ServerMessage ();
     var handler = new HTTPGetHandler ();
 
     // Test without the header
