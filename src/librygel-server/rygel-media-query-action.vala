@@ -60,11 +60,9 @@ internal abstract class Rygel.MediaQueryAction : GLib.Object, StateMachine {
 
         this.serializer = new Serializer (SerializerType.GENERIC_DIDL);
 
-#if 0
         try {
             this.hacks = ClientHacks.create (this.action.get_message ());
         } catch { /* This just means we need no hacks, yay! */ }
-#endif
     }
 
     public async void run () {

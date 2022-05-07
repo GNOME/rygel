@@ -29,7 +29,7 @@ internal class Rygel.XBMC4XBoxHacks : XBMCHacks {
 
     private const string AGENT = "(.*XBMC.*Xbox.*)|(Platinum/0.5.3.0)";
 
-    public XBMC4XBoxHacks (Message? message = null) throws ClientHacksError {
+    public XBMC4XBoxHacks (ServerMessage? message = null) throws ClientHacksError {
         base (message, AGENT);
     }
 

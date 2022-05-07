@@ -38,7 +38,7 @@ internal class Rygel.PanasonicHacks : ClientHacks {
         }
     }
 
-    public PanasonicHacks (Message? message = null) throws ClientHacksError {
+    public PanasonicHacks (ServerMessage? message = null) throws ClientHacksError {
         base (AGENT, message);
     }
 

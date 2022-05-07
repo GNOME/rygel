@@ -57,19 +57,26 @@ public abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
         this.server = server;
         this.msg = msg;
 
-#if 0
         try {
             this.hack = ClientHacks.create (msg);
         } catch (Error error) { }
-#endif
     }
 
     public async void run () {
         this.server.pause_message (this.msg);
 
         try {
-            this.uri = new HTTPItemURI.from_string (this.msg.get_uri().get_path (),
-                                                    this.http_server);
+            // If a hack as rewritten the request uri, it will have added a
+            // "Location" header, so we use that.
+            var location = this.msg.get_response_headers ().get_one ("Location");
+            string path;
+            if (location != null) {
+                path = GLib.Uri.parse (location, GLib.UriFlags.NONE).get_path ();
+            } else {
+                path = this.msg.get_uri ().get_path ();
+            }
+
+            this.uri = new HTTPItemURI.from_string (path, this.http_server);
 
             yield this.find_item ();
 

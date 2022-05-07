@@ -25,7 +25,7 @@ using Soup;
 internal class Rygel.WMPHacks : ClientHacks {
     private const string AGENT = ".*Windows-Media-Player/12\\.0.*";
 
-    public WMPHacks (Message? message = null) throws ClientHacksError {
+    public WMPHacks (ServerMessage? message = null) throws ClientHacksError {
         base (AGENT, message);
     }
 

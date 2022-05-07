@@ -26,7 +26,7 @@ using GUPnP;
 internal class Rygel.LGTVHacks : ClientHacks {
     private const string AGENT = ".*LGE_DLNA_SDK.*";
 
-    public LGTVHacks (Message? message = null) throws ClientHacksError {
+    public LGTVHacks (ServerMessage? message = null) throws ClientHacksError {
         base (AGENT, message);
     }
 

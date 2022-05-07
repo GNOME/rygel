@@ -33,7 +33,7 @@ internal class Rygel.XBoxHacks : ClientHacks {
     private const string MODEL_VERSION = "11";
     private const string CONTAINER_ID = "ContainerID";
 
-    public XBoxHacks (Message? message = null) throws ClientHacksError {
+    public XBoxHacks (ServerMessage? message = null) throws ClientHacksError {
         base (AGENT, message);
 
         this.object_id = CONTAINER_ID;
@@ -43,7 +43,7 @@ internal class Rygel.XBoxHacks : ClientHacks {
             return;
         }
 
-        var query = message.uri.get_query ();
+        var query = message.get_uri ().get_query ();
         if (query == null) {
             return;
         }
@@ -72,14 +72,12 @@ internal class Rygel.XBoxHacks : ClientHacks {
             return;
         }
 
-        var path = message.uri.get_path ();
+        var path = message.get_uri ().get_path ();
         var particles = path.split ("/")[0:4];
         particles += "th";
         particles += "0";
 
-        message.uri = Soup.uri_copy (message.uri,
-                                     Soup.URIComponent.PATH, string.joinv ("/", particles),
-                                     Soup.URIComponent.NONE);
+        message.set_redirect (Soup.Status.MOVED_PERMANENTLY, string.joinv ("/", particles));
     }
 
     public void apply_on_device (RootDevice device,

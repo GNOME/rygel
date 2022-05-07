@@ -28,7 +28,7 @@ internal class Rygel.XBMCHacks : ClientHacks {
     // promised by developers.
     private const string AGENT = ".*Platinum/.*|.*XBMC/.*|.*Kodi.*";
 
-    public XBMCHacks (Message? message = null, string? agent = null) throws ClientHacksError {
+    public XBMCHacks (ServerMessage? message = null, string? agent = null) throws ClientHacksError {
         base (agent == null ? AGENT : agent, message);
     }
 

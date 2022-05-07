@@ -26,7 +26,7 @@ using GUPnP;
 internal class Rygel.PhillipsHacks : ClientHacks {
     private const string AGENT = ".*IPI/.*";
 
-    public PhillipsHacks (Message? message = null) throws ClientHacksError {
+    public PhillipsHacks (ServerMessage? message = null) throws ClientHacksError {
         base (AGENT, message);
     }
 

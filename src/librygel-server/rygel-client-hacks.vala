@@ -39,8 +39,8 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
                                       default = CORRECT_OBJECT_ID; }
     protected Regex agent_regex;
 
-    protected ClientHacks (string   agent,
-                           Message? message)
+    protected ClientHacks (string agent,
+                           ServerMessage? message)
                            throws ClientHacksError {
         try {
             this.agent_regex = new Regex (agent,
@@ -57,12 +57,11 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
         }
     }
 
-    public static ClientHacks create (Message? message)
+    public static ClientHacks create (ServerMessage? message)
                                       throws ClientHacksError {
         try {
             return new PanasonicHacks (message);
         } catch (Error error) { }
-
         try {
             return new XBMC4XBoxHacks (message);
         } catch (Error error) { }
@@ -127,7 +126,7 @@ internal abstract class Rygel.ClientHacks : GLib.Object {
                                        out total_matches);
     }
 
-    private void check_headers (Message message)
+    private void check_headers (ServerMessage message)
                                           throws ClientHacksError {
         var headers = message.get_request_headers();
         var remote_ip = "127.0.0.1"; //message.get_remote_host ();

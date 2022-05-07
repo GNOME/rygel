@@ -209,12 +209,10 @@ public class Rygel.HTTPTimeSeekRequest : Rygel.HTTPSeekRequest {
                                   HTTPGetHandler handler) {
         bool force_seek = false;
 
-#if 0
         try {
             var hack = ClientHacks.create (message);
             force_seek = hack.force_seek ();
         } catch (Error error) { /* Exception means no hack needed */ }
-#endif
 
         return force_seek || handler.supports_time_seek ();
     }

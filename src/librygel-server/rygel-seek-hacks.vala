@@ -45,7 +45,7 @@ internal class Rygel.SeekHacks : ClientHacks {
                                  ".*alphanetworks.*|" +
                                  ".*KnOS/3.2.*";
 
-    public SeekHacks (Message? message = null) throws ClientHacksError {
+    public SeekHacks (ServerMessage? message = null) throws ClientHacksError {
         base (AGENT, message);
     }
 

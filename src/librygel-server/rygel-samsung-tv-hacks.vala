@@ -36,7 +36,7 @@ internal class Rygel.SamsungTVHacks : ClientHacks {
         }
     }
 
-    public SamsungTVHacks (Message? message = null) throws ClientHacksError {
+    public SamsungTVHacks (ServerMessage? message = null) throws ClientHacksError {
         base (AGENT, message);
     }
 

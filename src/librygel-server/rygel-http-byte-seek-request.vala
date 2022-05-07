@@ -133,12 +133,10 @@ public class Rygel.HTTPByteSeekRequest : Rygel.HTTPSeekRequest {
                                   Rygel.HTTPGetHandler handler) {
         bool force_seek = false;
 
-#if 0
         try {
             var hack = ClientHacks.create (message);
             force_seek = hack.force_seek ();
         } catch (Error error) { }
-#endif
 
         return force_seek || handler.supports_byte_seek ();
     }
