@@ -1,6 +1,7 @@
 rygel_sources = [
         'rygel-acl.vala',
-        'application.vala'
+        'application.vala',
+        'rygel-dbus-service.vala'
         ]
 executable('rygel',
            rygel_sources,

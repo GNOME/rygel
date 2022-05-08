@@ -23,23 +23,22 @@
 
 [DBus (name = "org.gnome.Rygel1")]
 internal class Rygel.DBusService : Object, DBusInterface {
-    private Main main;
+    private Application main;
     private uint name_id;
     private uint connection_id;
 
-    public DBusService (Main main) {
+    public DBusService (Application main) {
         this.main = main;
     }
 
     public void shutdown () throws IOError, DBusError {
-        this.main.exit (0);
+        main.release ();
     }
 
-    internal void publish () {
-        this.name_id = Bus.own_name (BusType.SESSION,
+    internal void publish (DBusConnection connection) {
+        this.name_id = Bus.own_name_on_connection (connection,
                                      DBusInterface.SERVICE_NAME,
                                      BusNameOwnerFlags.NONE,
-                                     this.on_bus_aquired,
                                      this.on_name_available,
                                      this.on_name_lost);
     }
@@ -58,28 +57,15 @@ internal class Rygel.DBusService : Object, DBusInterface {
     }
 
 
-    private void on_bus_aquired (DBusConnection connection) {
-        try {
-            this.connection_id = connection.register_object
-                                        (DBusInterface.OBJECT_PATH,
-                                         this);
-        } catch (Error error) { }
-    }
-
     private void on_name_available (DBusConnection connection) {
-        this.main.dbus_available ();
+        try {
+            connection.register_object (DBusInterface.OBJECT_PATH, this);
+        } catch (IOError e) {
+            debug ("Failed to register legacy interface on connection: %s", e.message);
+        }
     }
 
     private void on_name_lost (DBusConnection? connection) {
-        if (connection == null) {
-            // This means there is no DBus available at all
-            this.main.dbus_available ();
-
-            return;
-        }
-
-        message (_("Another instance of Rygel is already running. Not starting."));
-        this.main.exit (-15);
     }
 }
 

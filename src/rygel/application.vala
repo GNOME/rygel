@@ -15,6 +15,7 @@ public class Rygel.Application : GLib.Application {
     private Configuration config;
     private LogHandler log_handler;
     private Acl acl;
+    private DBusService service;
 
     private bool activation_pending = false;
 
@@ -28,6 +29,17 @@ public class Rygel.Application : GLib.Application {
         Unix.signal_add (ProcessSignal.INT, () => { this.release (); return false; });
         Unix.signal_add (ProcessSignal.TERM, () => { this.release (); return false; });
         Unix.signal_add (ProcessSignal.HUP, () => { this.release (); return false; });
+    }
+
+    public override bool dbus_register (DBusConnection connection, string object_path) throws Error {
+        if (!base.dbus_register (connection, object_path)) {
+            return false;
+        }
+
+        service = new DBusService(this);
+        service.publish (connection);
+
+        return true;
     }
 
     public override int handle_local_options (VariantDict options) {
