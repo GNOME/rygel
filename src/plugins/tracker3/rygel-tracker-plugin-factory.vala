@@ -40,7 +40,7 @@ public void module_init (PluginLoader loader) {
 public class Rygel.Tracker.PluginFactory {
     PluginLoader loader;
 
-    public PluginFactory (PluginLoader loader) throws IOError, DBusError {
+    public PluginFactory (PluginLoader loader) throws Error {
         this.loader = loader;
 
         this.loader.add_plugin (new Tracker.Plugin ());

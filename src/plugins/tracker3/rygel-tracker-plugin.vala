@@ -28,7 +28,7 @@ public class Rygel.Tracker.Plugin : Rygel.MediaServerPlugin {
 
     private static RootContainer root;
 
-    public Plugin () {
+    public Plugin () throws Error {
         if (root == null) {
             // translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
             root = new RootContainer (_("@REALNAME@’s media"));

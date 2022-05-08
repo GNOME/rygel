@@ -34,13 +34,9 @@ public class Rygel.Tracker.RootContainer : Rygel.SimpleContainer {
 
     public static Sparql.Connection connection;
 
-    public RootContainer (string title) {
+    public RootContainer (string title) throws Error {
         if (RootContainer.connection == null) {
-            try {
-                RootContainer.connection = Sparql.Connection.bus_new (TRACKER_SERVICE, null);
-            } catch (Error err) {
-                error ("Failed to connect to tracker: %s", err.message);
-            }
+            RootContainer.connection = Sparql.Connection.bus_new (TRACKER_SERVICE, null);
         }
 
         base.root (title);
