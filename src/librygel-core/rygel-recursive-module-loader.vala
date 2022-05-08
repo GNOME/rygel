@@ -145,6 +145,17 @@ public abstract class Rygel.RecursiveModuleLoader : Object {
             infos = yield enumerator.next_files_async (int.MAX,
                                                        Priority.DEFAULT,
                                                        null);
+            infos.sort((info_a, info_b) => {
+                var type_a = info_a.get_file_type ();
+                var type_b = info_b.get_file_type ();
+
+                if (type_a != type_b) {
+                    if (type_a == FileType.DIRECTORY) return -1;
+                    if (type_b == FileType.DIRECTORY) return 1;
+                }
+
+                return strcmp (info_a.get_name (), info_b.get_name ());
+            });
         } catch (Error error) {
             critical (_("Error listing contents of folder “%s”: %s"),
                       folder.get_path (),
