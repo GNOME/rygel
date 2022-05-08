@@ -126,7 +126,8 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
             }
 
             /* Pause is valid for images only in playlist */
-            return (!this.player.mime_type.has_prefix ("image/") ||
+            return (!(this.player.mime_type != null &&
+                      this.player.mime_type.has_prefix ("image/")) ||
                     this.playlist != null);
         }
     }
@@ -139,8 +140,9 @@ internal class Rygel.DefaultPlayerController : Rygel.PlayerController, Object {
                 case "TRANSITIONING":
                     actions = "Stop";
                     /* Pause is valid for images only in playlist */
-                    if (!this.player.mime_type.has_prefix ("image/") ||
-                        this.playlist != null) {
+                    if (!(this.player.mime_type != null &&
+                      this.player.mime_type.has_prefix ("image/")) ||
+                      this.playlist != null) {
                         actions += ",Pause";
                     }
                     break;
