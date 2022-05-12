@@ -302,6 +302,8 @@ public class Rygel.Application : GLib.Application {
     public static int main(string[] args) {
         Environment.set_application_name (_(BuildConfig.PACKAGE_NAME));
 
+        X.init_threads ();
+
         Intl.setlocale (LocaleCategory.ALL, "");
         Intl.bindtextdomain (BuildConfig.GETTEXT_PACKAGE,
                              BuildConfig.LOCALEDIR);
