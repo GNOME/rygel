@@ -138,5 +138,35 @@ internal class Rygel.TranscodingGstDataSource : Rygel.GstDataSource {
             var bus = bin.get_bus ();
             bus.post (message);
         }
+
+        // Check if we have any unlinked sink pads in the encoder...
+        var pad_iterator = this.encoder.iterate_pads ();
+        bool done = false;
+        while (!done) {
+            GLib.Value val;
+            var res = pad_iterator.next (out val);
+            if (res == Gst.IteratorResult.DONE || res == Gst.IteratorResult.ERROR) {
+                done = true;
+            }
+            else if (res == Gst.IteratorResult.OK) {
+                var p = (Gst.Pad) val;
+                if (!p.is_linked ()) {
+                    dynamic Gst.Element src = null;
+                    if (p.name.has_prefix ("audio")) {
+                        src = Gst.ElementFactory.make ("audiotestsrc", null);
+                        src.wave = 4;
+                    } else if (p.name.has_prefix ("video")) {
+                        src = Gst.ElementFactory.make ("videotestsrc", null);
+                        src.pattern = 2;
+                    }
+
+                    ((Gst.Bin)this.encoder.get_parent ()).add (src);
+                    src.link_pads ("src", this.encoder, p.name);
+                    src.sync_state_with_parent ();
+                }
+            } else if (res == Gst.IteratorResult.RESYNC) {
+                pad_iterator.resync ();
+            }
+        }
     }
 }
