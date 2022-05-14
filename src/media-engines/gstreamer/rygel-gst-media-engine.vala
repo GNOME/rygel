@@ -98,6 +98,9 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
                     case "avc":
                         this.transcoders.prepend (new AVCTranscoder ());
                         break;
+                    case "avchd":
+                        this.transcoders.prepend (new AVCHDTranscoder ());
+                        break;
                     default:
                         debug ("Unsupported transcoder \"%s\"", transcoder);
                         break;

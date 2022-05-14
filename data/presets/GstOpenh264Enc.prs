@@ -1,6 +1,9 @@
 [_presets_]
 version=1.0
-element-name=GstX264Enc
+element-name=GstOpenh264Enc
 
 [Rygel AVC_MP4_BL_CIF15_AAC_520 preset]
 bitrate=384000
+
+[Rygel AVC_TS_MP_HD_AAC_LTP preset]
+bitrate=20000000
