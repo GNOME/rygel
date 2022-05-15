@@ -256,7 +256,6 @@ src/plugins/tracker/rygel-tracker-years.vala
 src/rygel/application.vala
 src/rygel/rygel-acl.vala
 src/rygel/rygel-dbus-service.vala
-src/rygel/rygel-main.vala
 src/ui/rygel-media-pref-section.vala
 src/ui/rygel-network-pref-section.vala
 src/ui/rygel-preferences-dialog.vala
