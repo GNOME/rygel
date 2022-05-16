@@ -177,7 +177,7 @@ int main (string[] args) {
         registry.remove_feature (feature);
     }
 
-    message ("Started with descriptors %d (in) %d (out)", in_fd, out_fd);
+    message ("Started with descriptors %d (in) %d (out), extracting meta-data: %s", in_fd, out_fd, metadata.to_string ());
 
     input_stream = new DataInputStream (new UnixInputStream (in_fd, true));
     output_stream = new UnixOutputStream (out_fd, true);
