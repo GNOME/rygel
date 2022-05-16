@@ -138,9 +138,9 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                 this.error_uri = null;
 
                 if (this.extract_metadata) {
-                    MX_EXTRACT_ARGV[4] = "--extract-metadata";
+                    MX_EXTRACT_ARGV[3] = "--extract-metadata";
                 } else {
-                    MX_EXTRACT_ARGV[4] = null;
+                    MX_EXTRACT_ARGV[3] = null;
                 }
 
                 var subprocess = launcher.spawnv (MX_EXTRACT_ARGV);

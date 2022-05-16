@@ -117,6 +117,20 @@ public class Rygel.MediaExport.Extractor : Object {
 
         var content_type = ContentType.get_mime_type
                                         (file_info.get_content_type ());
+
+
+        if (!extract_metadata) {
+            if (content_type.has_prefix ("video/")) {
+                this.serialized_info.insert (Serializer.UPNP_CLASS, "s", UPNP_CLASS_VIDEO);
+            } else if (content_type.has_prefix ("image/")) {
+                this.serialized_info.insert (Serializer.UPNP_CLASS, "s", UPNP_CLASS_PHOTO);
+            } else if (content_type.has_prefix ("audio/") || content_type == "application/ogg") {
+                this.serialized_info.insert (Serializer.UPNP_CLASS, "s", UPNP_CLASS_MUSIC);
+            } else { // application/xml or text/xml
+                // Do nothing. Should at least try to parse a DIDL_S playlist here?
+            }
+        }
+
         this.serialized_info.insert (Serializer.MIME_TYPE, "s", content_type);
         this.serialized_info.insert (Serializer.SIZE, "t", file_info.get_size ());
         var id = Checksum.compute_for_string (ChecksumType.MD5,
