@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel rygel-0-18\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-07-12 13:38+0000\n"
-"PO-Revision-Date: 2020-08-26 10:26+0000\n"
+"POT-Creation-Date: 2022-05-24 18:27+0000\n"
+"PO-Revision-Date: 2022-05-29 12:27+0430\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <fa@li.org>\n"
 "Language: fa\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/rygel.desktop.in.in:3
 msgid "Rygel"
@@ -189,93 +189,79 @@ msgstr "نمی‌توان کنش NSLookup را اجرا کرد: نام میزب�
 msgid "Cannot run “Traceroute” action: Host is empty"
 msgstr "نمی‌توان کنش Traceroute را اجرا کرد: میزبان خالی است"
 
-#: src/librygel-core/rygel-cmdline-config.vala:73
+#: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
 msgstr "نمایش شمارهٔ نگارش"
 
-#: src/librygel-core/rygel-cmdline-config.vala:75
+#: src/librygel-core/rygel-cmdline-config.vala:49
 msgid "Network Interfaces"
 msgstr "رابط‌های شبکه"
 
-#: src/librygel-core/rygel-cmdline-config.vala:77
+#: src/librygel-core/rygel-cmdline-config.vala:51
 msgid "Port"
 msgstr "درگاه"
 
-#: src/librygel-core/rygel-cmdline-config.vala:79
+#: src/librygel-core/rygel-cmdline-config.vala:53
 msgid "Disable transcoding"
 msgstr "از کار انداختن تغییر رمز"
 
-#: src/librygel-core/rygel-cmdline-config.vala:81
+#: src/librygel-core/rygel-cmdline-config.vala:55
 msgid "Disallow upload"
 msgstr "اجازه ندادن به بارگذاری"
 
-#: src/librygel-core/rygel-cmdline-config.vala:83
+#: src/librygel-core/rygel-cmdline-config.vala:57
 msgid "Disallow deletion"
 msgstr "اجازه ندادن به حذف"
 
-#: src/librygel-core/rygel-cmdline-config.vala:85
+#: src/librygel-core/rygel-cmdline-config.vala:59
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr "فهرست جداشده با کامای جفت‌های دامنه:سطح. برای جزییات rygel(1) را ببینید"
 
-#: src/librygel-core/rygel-cmdline-config.vala:87
+#: src/librygel-core/rygel-cmdline-config.vala:61
 msgid "Plugin Path"
 msgstr "مسیر افزایه"
 
-#: src/librygel-core/rygel-cmdline-config.vala:89
+#: src/librygel-core/rygel-cmdline-config.vala:63
 msgid "Engine Path"
 msgstr "مسیر موتور"
 
-#: src/librygel-core/rygel-cmdline-config.vala:92
+#: src/librygel-core/rygel-cmdline-config.vala:66
 msgid "Disable plugin"
 msgstr "از کار انداختن افزایه"
 
-#: src/librygel-core/rygel-cmdline-config.vala:94
+#: src/librygel-core/rygel-cmdline-config.vala:68
 msgid "Set plugin titles"
 msgstr "تنظیم عناوین افزایه"
 
-#: src/librygel-core/rygel-cmdline-config.vala:96
+#: src/librygel-core/rygel-cmdline-config.vala:70
 msgid "Set plugin options"
 msgstr "تنظیم گزینه‌های افزایه"
 
-#: src/librygel-core/rygel-cmdline-config.vala:98
+#: src/librygel-core/rygel-cmdline-config.vala:72
 msgid "Use configuration file instead of user configuration"
 msgstr "استفاده از پروندهٔ پیکربندی به جای پیکربندی کاربر"
 
-#: src/librygel-core/rygel-cmdline-config.vala:100
+#: src/librygel-core/rygel-cmdline-config.vala:74
 msgid "Shut down remote Rygel reference"
 msgstr "خاموش کردن ارجاع دوردست رایگل"
 
-#: src/librygel-core/rygel-cmdline-config.vala:102
-msgid "Replace currently running instance of Rygel"
-msgstr "جایگزینی اجرای فعلی رایگل"
-
-#: src/librygel-core/rygel-cmdline-config.vala:139
-msgid "Shutting down remote Rygel instance\n"
-msgstr "خاموش کردن اجرای دوردست رایگل\n"
-
-#: src/librygel-core/rygel-cmdline-config.vala:147
-#, c-format
-msgid "Failed to shut down other Rygel instance: %s"
-msgstr "شکست در خاموش کردن اجرای دیگر رایگل: %s"
-
-#: src/librygel-core/rygel-cmdline-config.vala:161
-#: src/librygel-core/rygel-cmdline-config.vala:170
-#: src/librygel-core/rygel-cmdline-config.vala:178
-#: src/librygel-core/rygel-cmdline-config.vala:186
-#: src/librygel-core/rygel-cmdline-config.vala:194
-#: src/librygel-core/rygel-cmdline-config.vala:202
-#: src/librygel-core/rygel-cmdline-config.vala:210
-#: src/librygel-core/rygel-cmdline-config.vala:249
-#: src/librygel-core/rygel-cmdline-config.vala:268
+#: src/librygel-core/rygel-cmdline-config.vala:98
+#: src/librygel-core/rygel-cmdline-config.vala:107
+#: src/librygel-core/rygel-cmdline-config.vala:116
+#: src/librygel-core/rygel-cmdline-config.vala:125
+#: src/librygel-core/rygel-cmdline-config.vala:134
+#: src/librygel-core/rygel-cmdline-config.vala:143
+#: src/librygel-core/rygel-cmdline-config.vala:179
+#: src/librygel-core/rygel-cmdline-config.vala:192
+#: src/librygel-core/rygel-cmdline-config.vala:207
+#: src/librygel-core/rygel-cmdline-config.vala:213
+#: src/librygel-core/rygel-cmdline-config.vala:220
+#: src/librygel-core/rygel-cmdline-config.vala:224
+#: src/librygel-core/rygel-cmdline-config.vala:228
+#: src/librygel-core/rygel-cmdline-config.vala:248
+#: src/librygel-core/rygel-cmdline-config.vala:270
 #: src/librygel-core/rygel-cmdline-config.vala:274
-#: src/librygel-core/rygel-cmdline-config.vala:281
-#: src/librygel-core/rygel-cmdline-config.vala:285
-#: src/librygel-core/rygel-cmdline-config.vala:289
-#: src/librygel-core/rygel-cmdline-config.vala:312
-#: src/librygel-core/rygel-cmdline-config.vala:338
-#: src/librygel-core/rygel-cmdline-config.vala:367
-#: src/librygel-core/rygel-cmdline-config.vala:393
-#: src/librygel-core/rygel-cmdline-config.vala:418
+#: src/librygel-core/rygel-cmdline-config.vala:287
 #: src/librygel-core/rygel-environment-config.vala:100
 #: src/librygel-core/rygel-environment-config.vala:104
 #: src/librygel-core/rygel-environment-config.vala:108
@@ -341,11 +327,11 @@ msgstr "هیچ مقداری برای «%s/title» تنظیم نشده"
 msgid "No value available for “%s/%s”"
 msgstr "هیچ مقداری برای «%s/%s» موجود نیست"
 
-#: src/librygel-core/rygel-plugin-information.vala:64
+#: src/librygel-core/rygel-plugin-information.vala:67
 msgid "[Plugin] group not found"
 msgstr "[plugin] گروه پیدا نشد"
 
-#: src/librygel-core/rygel-plugin-information.vala:76
+#: src/librygel-core/rygel-plugin-information.vala:79
 #, c-format
 msgid "Plugin module %s does not exist"
 msgstr "پیمانهٔ افزایهٔ %s وجود ندارد"
@@ -370,7 +356,7 @@ msgstr "شکست در بار کردن پیمانه از مسیر %s: %s"
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "شکست در یافتن تابع نقطهٔ ورود %s در %s: %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:155
+#: src/librygel-core/rygel-plugin-loader.vala:156
 #, c-format
 msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
 msgstr "پیمانهٔ %s با پیمانهٔ از پیش بارشدهٔ %s تداخل دارد. پرش"
@@ -380,17 +366,17 @@ msgstr "پیمانهٔ %s با پیمانهٔ از پیش بارشدهٔ %s تد
 msgid "Failed to open plugins folder: “%s”"
 msgstr "شکست در گشودن شاخهٔ افزایه‌ها: «%s»"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:149
+#: src/librygel-core/rygel-recursive-module-loader.vala:160
 #, c-format
 msgid "Error listing contents of folder “%s”: %s"
 msgstr "خطا در فهرست کردن محتوای شاخهٔ %s: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:193
+#: src/librygel-core/rygel-recursive-module-loader.vala:204
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "ناتوان در بار کردن افزایه: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:220
+#: src/librygel-core/rygel-recursive-module-loader.vala:231
 #, c-format
 msgid "Failed to query content type for “%s”"
 msgstr "شکست در پرس‌وجوی گونهٔ محتوا برای «%s»"
@@ -467,26 +453,29 @@ msgid "Play mode not supported"
 msgstr "حالت پخش پشتیبانی نشده"
 
 #. FIXME: Return a more sensible error here.
-#: src/librygel-renderer/rygel-av-transport.vala:774
-#: src/librygel-renderer/rygel-av-transport.vala:789
-#: src/librygel-renderer/rygel-av-transport.vala:798
-#: src/librygel-renderer/rygel-av-transport.vala:877
+#: src/librygel-renderer/rygel-av-transport.vala:773
+#: src/librygel-renderer/rygel-av-transport.vala:779
+#: src/librygel-renderer/rygel-av-transport.vala:794
+#: src/librygel-renderer/rygel-av-transport.vala:803
+#: src/librygel-renderer/rygel-av-transport.vala:863
+#: src/librygel-renderer/rygel-av-transport.vala:898
 msgid "Resource not found"
 msgstr "منبع پیدا نشد"
 
-#: src/librygel-renderer/rygel-av-transport.vala:787
+#: src/librygel-renderer/rygel-av-transport.vala:792
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "مشکل در تجزیهٔ فهرست پخش: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:873
+#: src/librygel-renderer/rygel-av-transport.vala:859
+#: src/librygel-renderer/rygel-av-transport.vala:894
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "شکست در دسترسی به منبع در %s: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:889
+#: src/librygel-renderer/rygel-av-transport.vala:875
 msgid "Illegal MIME-type"
 msgstr "نوع MIME غیرقانونی"
 
@@ -567,7 +556,7 @@ msgstr "نمی‌توان فرزندان مورد را مرور کرد"
 msgid "Failed to browse “%s”: %s\n"
 msgstr "شکست در مرور «%s»: %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:149
+#: src/librygel-server/rygel-client-hacks.vala:147
 msgid "Not Applicable"
 msgstr "قابل اطلاق نیست"
 
@@ -579,13 +568,23 @@ msgstr "چنین انتقال پرونده‌ای وجود ندارد"
 msgid "No D-Bus thumbnailer service available"
 msgstr "هیچ خدمت بندانگشتی‌ساز دی‌باسی وجود ندارد"
 
-#: src/librygel-server/rygel-http-get.vala:52
+#: src/librygel-server/rygel-http-byte-seek-request.vala:116
+#, c-format
+msgid "Range end value %lld is smaller than range start value %lld: '%s'"
+msgstr "مقدار پایان دامنه %lld از مقدار آغاز دامنه %lld کوچک‌تر است: «%s»"
+
+#: src/librygel-server/rygel-http-get.vala:53
 msgid "Invalid Request (only GET and HEAD supported)"
 msgstr "درخواست نامعتبر (فقط GET و HEAD پشتیبانی می‌شوند)"
 
-#: src/librygel-server/rygel-http-get.vala:60
+#: src/librygel-server/rygel-http-get.vala:61
 msgid " must be 1"
 msgstr " باید ۱ باشد"
+
+#: src/librygel-server/rygel-http-get.vala:91
+#, c-format
+msgid "%s transfer mode not supported for '%s'"
+msgstr "حالت انتقال %s برای %s پشتیبانی نمی‌شود"
 
 #: src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
@@ -597,7 +596,7 @@ msgid "Not found"
 msgstr "پیدا نشد"
 
 #: src/librygel-server/rygel-http-post.vala:64
-#: src/librygel-server/rygel-import-resource.vala:193
+#: src/librygel-server/rygel-import-resource.vala:215
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "اریال داده به مورد ناخالی «%s» مجاز نیست"
@@ -613,7 +612,7 @@ msgstr "نشانی قابل نوشتنی برای %s موجود نیست"
 msgid "Failed to move dotfile %s: %s"
 msgstr "شکست در جابه‌جایی پروندهٔ نقطه‌دار %s: %s"
 
-#: src/librygel-server/rygel-http-request.vala:95
+#: src/librygel-server/rygel-http-request.vala:104
 #, c-format
 msgid "Requested item “%s” not found"
 msgstr "مورد درخواستی «%s» پیدا نشد"
@@ -623,17 +622,17 @@ msgstr "مورد درخواستی «%s» پیدا نشد"
 msgid "Couldn’t create data source for %s"
 msgstr "نمی‌توان منبع داده را برای %s ساخت"
 
-#: src/librygel-server/rygel-import-resource.vala:124
+#: src/librygel-server/rygel-import-resource.vala:123
 #, c-format
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "شکست در گرفتن نشانی اصلی برای «%s»: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:188
+#: src/librygel-server/rygel-import-resource.vala:210
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "نشانی نامعتبر «%s» برای درون‌ریزی محتوا"
 
-#: src/librygel-server/rygel-import-resource.vala:276
+#: src/librygel-server/rygel-import-resource.vala:237
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "شکست در درون‌ریزی پرونده از %s: %s"
@@ -775,7 +774,7 @@ msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "فراخوانی MediaEngine.init اینجام نشد. نمی‌توان ادامه داد."
 
 #: src/librygel-server/rygel-media-file-item.vala:177
-#: src/librygel-server/rygel-video-item.vala:222
+#: src/librygel-server/rygel-video-item.vala:242
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "نمی‌توان قرارداد را برای نشانی %s دریافت"
@@ -865,7 +864,7 @@ msgstr "کلاس UPnP «%s» پشتیبانی نشده"
 
 #: src/librygel-server/rygel-object-creator.vala:419
 #: src/librygel-server/rygel-object-creator.vala:431
-#: src/librygel-server/rygel-object-creator.vala:723
+#: src/librygel-server/rygel-object-creator.vala:721
 #: src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
@@ -886,7 +885,7 @@ msgstr "نمایهٔ DLNA پشیبانی نمی‌شود: %s"
 msgid "Cannot create object of class “%s”: Not supported"
 msgstr "نمی‌تواند شییی از کلاس %s ساخت: پشتیبانی‌نشده"
 
-#: src/librygel-server/rygel-object-creator.vala:754
+#: src/librygel-server/rygel-object-creator.vala:752
 #, c-format
 msgid ""
 "Error from container “%s” on trying to find the newly added child object “%s” "
@@ -916,7 +915,8 @@ msgstr "معیار نامعتبر جست‌وجوی داده شده"
 msgid "Failed to search in “%s”: %s"
 msgstr "شکست در جست‌وجو در «%s»: %s"
 
-#: src/librygel-server/rygel-subtitle-manager.vala:92
+#: src/librygel-server/rygel-subtitle-manager.vala:49
+#: src/librygel-server/rygel-subtitle-manager.vala:96
 msgid "No subtitle available"
 msgstr "زیرنویسی موجود نیست"
 
@@ -1137,27 +1137,27 @@ msgstr "شکست در تجزیهٔ آرگومان‌های حط فرمان: %s"
 msgid "Failed to create media art extractor: %s"
 msgstr "شکست در ایجاد کشندهٔ قطعهٔ هنری رسانده : %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:146
+#: src/plugins/media-export/rygel-media-export-harvester.vala:150
 #, c-format
 msgid "“%s” harvested"
 msgstr "«%s» برداشت شد"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:202
+#: src/plugins/media-export/rygel-media-export-harvester.vala:205
 #, c-format
 msgid "Error fetching object “%s” from database: %s"
 msgstr "خطای واکشی شی «%s» از پایگاه داده: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:210
+#: src/plugins/media-export/rygel-media-export-harvester.vala:213
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "شکست در پرس‌وجوی اطَّلاعات از یک پرونده %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:245
+#: src/plugins/media-export/rygel-media-export-harvester.vala:248
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr "نمی‌توان شی %s یا والدش را یافت. پایگاه داده متناقض است"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:249
+#: src/plugins/media-export/rygel-media-export-harvester.vala:252
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "خطای برداشتن شی از پایگاه داده: %s"
@@ -1172,17 +1172,17 @@ msgstr "شکست در برداشت پروندهٔ %s: %s"
 msgid "Failed to query database: %s"
 msgstr "شکست در پرس‌وجوی پایگاه داده: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:272
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "شکست در برشماری شاخهٔ «%s»: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:286
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:290
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "شکست در گرفتن فرزندان بارگنج %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
 #, c-format
 msgid "Failed to extract meta-data for file %s"
 msgstr "شکست در استخراج فراداده برای پروندهٔ %s"
@@ -1190,7 +1190,7 @@ msgstr "شکست در استخراج فراداده برای پروندهٔ %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:358
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:362
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "پرش از نشانی %s؛ استخراج به کلی شکست خورد: %s"
@@ -1210,91 +1210,91 @@ msgstr "شکست در اجبار به بازفهرست برای درست کرد�
 msgid "Failed to create indices: %s"
 msgstr "شکست در ایجاد شاخص‌ها: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:101
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:97
 #, c-format
 msgid "Cannot upgrade from version %d"
 msgstr "نمی‌توان از نگارش %Id ارتقا داد"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:117
 #, c-format
 msgid "Database upgrade to v18 failed: %s"
 msgstr "ارتقای پایگاه داده به نگارش ۱۸ شکست خورد: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:134
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:135
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "شکست در افزودن مورد با شناسهٔ %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:217
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:218
 #, c-format
 msgid "Failed to get update IDs: %s"
 msgstr "شکست در گرفتن شناسه‌های به‌روز رسانی: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:400
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:401
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
 msgstr "پایگاه دادهٔ متناقض: مورد %s والد %s ندارد"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:525
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:526
 msgid "Failed to get reset token"
 msgstr "شکست در گرفتن ژتون بازنشانی"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:537
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:538
 #, c-format
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "شکست در امتداد ژتون بازنشانی خدمت: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:547
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:548
 #, c-format
 msgid "Failed to remove virtual folders: %s"
 msgstr "شکست در برداشتنن شاخه‌های مجازی: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:561
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:562
 #, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
 msgstr "شکست در نشانه‌گذاری مورد %s به عنوان محافظت‌شده (%Id): %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:571
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:572
 msgid "Cannot create references to containers"
 msgstr "نمی‌توان ارجاعاتی به بارکنج‌ها ایجاد کرد"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:597
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:598
 #, c-format
 msgid "Failed to add %s to ignored files: %s"
 msgstr "شکست در افزودن %s به پرونده‌های چشم‌پوشی شده: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:610
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:611
 #, c-format
 msgid "Failed to get whether URI %s is ignored: %s"
 msgstr "شکست در گرفتن وضعیت چشم‌پوشی نشانی %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:626
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:627
 #, c-format
 msgid "Failed to get whether item %s is guarded: %s"
 msgstr "شکست در گرفتن وضعیت محافظت‌شدگی مورد %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:666
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:667
 #, c-format
 msgid ""
 "The version “%d” of the detected database is newer than our supported version "
 "“%d”"
 msgstr "نگارش %Id پایگاه دادهٔ کشف‌شده جدیدتر از نگارش %Id پشتیبانی‌شده است"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:688
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:689
 msgid "Incompatible schema… cannot proceed"
 msgstr "شمای ناسازگار… نمی‌توان دادمه داد"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:694
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:695
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr "پایگاه دادهٔ نامعتبر. نمی‌توان از جدول sqlite_master پرس‌وجو کرد: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:895
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:896
 #, c-format
 msgid "Failed to create database schema: %s"
 msgstr "شکست در ایجاد شمای پایگاه داده: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1232
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "پرش از زمینهٔ چینش پشتیبانی‌نشده: %s"
@@ -1378,7 +1378,7 @@ msgstr "نمی‌توان موارد داخل %s را برداشت"
 msgid "upnp:class not supported in %s"
 msgstr "upnp: کلاس پشتیبانی نشده در %s"
 
-#: src/plugins/media-export/rygel-media-export-plugin.vala:52
+#: src/plugins/media-export/rygel-media-export-plugin.vala:53
 #, c-format
 msgid "Failed to load plugin %s: %s"
 msgstr "شکست در بار کردن افزایهٔ %s: %s"
@@ -1529,6 +1529,32 @@ msgstr "شکست در ایجاد اتّصال ردیاب: %s"
 msgid "Failed to get Tracker connection: %s"
 msgstr "شکست در گرفتن اتّصال ردیاب: %s"
 
+#: src/rygel/application.vala:88
+#, c-format
+msgid "Failed to load user configuration: %s"
+msgstr "شکست در بار کردن پیکربندی کاربر: %s"
+
+#: src/rygel/application.vala:125
+#, c-format
+msgid "No plugins found in %d second; giving up…"
+msgid_plural "No plugins found in %d seconds; giving up…"
+msgstr[0] "در %Id ثانیه هیچ افزایه‌ای پیدا نشد؛ در حال وا دادن…"
+
+#: src/rygel/application.vala:154
+#, c-format
+msgid "Rygel v%s starting…"
+msgstr "در حال شروع نگارش %s رایگل…"
+
+#: src/rygel/application.vala:202
+#, c-format
+msgid "Failed to create RootDevice for %s. Reason: %s"
+msgstr "شکست در ایجاد افزارهٔ ریشه برای %s. دلیل: %s"
+
+#: src/rygel/application.vala:283
+#, c-format
+msgid "Failed to create root device factory: %s"
+msgstr "شکست در ایجاد مرکز تولید افزارهٔ ریشه: %s"
+
 #: src/rygel/rygel-acl.vala:110
 #, c-format
 msgid "Failed to query ACL: %s"
@@ -1546,36 +1572,6 @@ msgstr "هیچ سیاست پشتیبان ACLای پیدا نشد. استفاده
 #: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "هیچ سیاست پشتیبان ACLای پیدا نشد. استفاده از deny"
-
-#: src/rygel/rygel-dbus-service.vala:81
-msgid "Another instance of Rygel is already running. Not starting."
-msgstr "اجرای دیگری از رایگل وجود دارد. شروع نمی‌شود."
-
-#: src/rygel/rygel-main.vala:85
-#, c-format
-msgid "Rygel v%s starting…"
-msgstr "در حال شروع نگارش %s رایگل…"
-
-#: src/rygel/rygel-main.vala:113
-#, c-format
-msgid "No plugins found in %d second; giving up…"
-msgid_plural "No plugins found in %d seconds; giving up…"
-msgstr[0] "در %Id ثانیه هیچ افزایه‌ای پیدا نشد؛ در حال وا دادن…"
-
-#: src/rygel/rygel-main.vala:177
-#, c-format
-msgid "Failed to create root device factory: %s"
-msgstr "شکست در ایجاد مرکز تولید افزارهٔ ریشه: %s"
-
-#: src/rygel/rygel-main.vala:235
-#, c-format
-msgid "Failed to create RootDevice for %s. Reason: %s"
-msgstr "شکست در ایجاد افزارهٔ ریشه برای %s. دلیل: %s"
-
-#: src/rygel/rygel-main.vala:272
-#, c-format
-msgid "Failed to load user configuration: %s"
-msgstr "شکست در بار کردن پیکربندی کاربر: %s"
 
 #: src/ui/rygel-preferences-dialog.vala:109
 #, c-format
@@ -1596,6 +1592,19 @@ msgstr "شکست در شروع خدمت رایگل: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "شکست در توقّف خدمت رایگل: %s"
+
+#~ msgid "Replace currently running instance of Rygel"
+#~ msgstr "جایگزینی اجرای فعلی رایگل"
+
+#~ msgid "Shutting down remote Rygel instance\n"
+#~ msgstr "خاموش کردن اجرای دوردست رایگل\n"
+
+#, c-format
+#~ msgid "Failed to shut down other Rygel instance: %s"
+#~ msgstr "شکست در خاموش کردن اجرای دیگر رایگل: %s"
+
+#~ msgid "Another instance of Rygel is already running. Not starting."
+#~ msgstr "اجرای دیگری از رایگل وجود دارد. شروع نمی‌شود."
 
 #~ msgid "Enable sharing of media, such as photos, videos and music, with DLNA"
 #~ msgstr ""
