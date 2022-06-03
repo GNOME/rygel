@@ -15,7 +15,7 @@ i18n = import('i18n')
 gnome = import('gnome')
 
 rygel_libdir = join_paths(get_option('prefix'), get_option('libdir'))
-rygel_includedir = join_paths(get_option('includedir'), 'rygel-2.6')
+rygel_includedir = join_paths(get_option('includedir'), 'rygel-2.8')
 rygel_vapidir = join_paths(get_option('prefix'), get_option('datadir'), 'vala/vapi')
 
 if not get_option('uninstalled')
@@ -23,8 +23,8 @@ if not get_option('uninstalled')
     rygel_libexecdir = join_paths(get_option('prefix'), get_option('libexecdir'),
     'rygel')
     rygel_sysconfdir = join_paths(get_option('prefix'), get_option('sysconfdir'))
-    rygel_plugindir = join_paths(rygel_libdir, 'rygel-2.6', 'plugins')
-    rygel_enginedir = join_paths(rygel_libdir, 'rygel-2.6', 'engines')
+    rygel_plugindir = join_paths(rygel_libdir, 'rygel-2.8', 'plugins')
+    rygel_enginedir = join_paths(rygel_libdir, 'rygel-2.8', 'engines')
     rygel_presetdir = join_paths(rygel_datadir, 'presets')
     rygel_icondir = join_paths(get_option('prefix'), get_option('datadir'), 'icons', 'hicolor')
     rygel_bigicondir = join_paths(rygel_datadir, 'icons', '120x120')
@@ -153,35 +153,49 @@ pc_conf.set('RYGEL_MEDIA_ENGINE_DIR', rygel_enginedir)
 pc_conf.set('RYGEL_PLUGIN_LINKER_FLAGS', '-module -avoid-version -shared -export-dynamic -export-symbols-regex \'module_init\'')
 pc_conf.set('RYGEL_ENGINE_LINKER_FLAGS', '-module -avoid-version -shared -export-dynamic -export-symbols-regex \'module_get_instance\'')
 
-configure_file(output: 'rygel-core-2.6.pc',
-               input: 'rygel-core-2.6.pc.in',
+configure_file(output: 'rygel-core-2.8.pc',
+               input: 'rygel-core-2.8.pc.in',
                configuration: pc_conf,
                install: true,
                install_dir : pkgconfig_dir)
 
-configure_file(output: 'rygel-server-2.6.pc',
-               input: 'rygel-server-2.6.pc.in',
+configure_file(output: 'rygel-server-2.8.pc',
+               input: 'rygel-server-2.8.pc.in',
                configuration: pc_conf,
                install: true,
                install_dir : pkgconfig_dir)
 
-configure_file(output: 'rygel-renderer-2.6.pc',
-               input: 'rygel-renderer-2.6.pc.in',
+configure_file(output: 'rygel-renderer-2.8.pc',
+               input: 'rygel-renderer-2.8.pc.in',
                configuration: pc_conf,
                install: true,
                install_dir : pkgconfig_dir)
 
-configure_file(output: 'rygel-renderer-gst-2.6.pc',
-               input: 'rygel-renderer-gst-2.6.pc.in',
+configure_file(output: 'rygel-renderer-gst-2.8.pc',
+               input: 'rygel-renderer-gst-2.8.pc.in',
                configuration: pc_conf,
                install: true,
                install_dir : pkgconfig_dir)
 
-configure_file(output: 'rygel-ruih-2.0.pc',
-               input: 'rygel-ruih-2.0.pc.in',
+configure_file(output: 'rygel-ruih-2.8.pc',
+               input: 'rygel-ruih-2.8.pc.in',
                configuration: pc_conf,
                install: true,
                install_dir : pkgconfig_dir)
+
+v = meson.project_version().split('.')
+soversion = 0
+library_minor = v[0].to_int() * 100 + v[1].to_int()
+library_micro = v[2].to_int()
+
+lib_version = '@0@.@1@.@2@'.format(soversion, library_minor, library_micro)
+version_arr = lib_version.split('.')
+major_version = version_arr[0].to_int()
+minor_version = version_arr[1].to_int()
+micro_version = version_arr[2].to_int()
+current = major_version + minor_version + 1
+interface_age = micro_version
+darwin_versions = [current, '@0@.@1@'.format(current, interface_age)]
 
 subdir('src')
 subdir('po')
@@ -196,3 +210,25 @@ endif
 if get_option('tests')
     subdir('tests')
 endif
+
+summary(
+  {
+    'Version' : meson.project_version(),
+    'API Version' : '2.8',
+    'Library version' : lib_version,
+    'Darwin version': darwin_versions,
+  },
+  section: 'Versioning'
+)
+
+summary(
+  {
+    'Plugins' : get_option('plugins'),
+    'GStreamer' : get_option('gstreamer'),
+    'Media Engines' : get_option('engines'),
+    'Configuration GUI' : get_option('gtk'),
+    'Documentation' : get_option('api-docs'),
+    'Man Pages' : get_option('man_pages'),
+  },
+  section: 'Features'
+)

@@ -1,7 +1,7 @@
 if valadoc.found()
 server_doc_common_args = [
         '--package-name', 'librygel-server',
-        '--package-version', '2.6',
+        '--package-version', '2.8',
         '-b', join_paths(meson.source_root(), 'src', 'librygel-server'),
         '--vapidir', join_paths(meson.source_root(), 'vapi'),
         '--vapidir', join_paths(meson.source_root(), 'src/librygel-core'),
@@ -11,11 +11,11 @@ server_doc_common_args = [
         '--directory', '@OUTPUT@',
         '--pkg', 'gio-2.0',
         '--pkg', 'gee-0.8',
-        '--pkg', 'gupnp-1.2',
+        '--pkg', 'gupnp-1.6',
         '--pkg', 'gmodule-2.0',
         '--pkg', 'posix',
         '--pkg', 'gupnp-av-1.0',
-        '--pkg', 'rygel-core-2.6',
+        '--pkg', 'rygel-core-2.8',
         '--pkg', 'libmediaart-2.0'
 ]
 
@@ -46,9 +46,9 @@ gtkdoc_server_target = custom_target('gtkdoc-server',
         '--doclet', 'gtkdoc',
         '-X', join_paths(meson.build_root(), 'src/librygel-server/rygel-server.h'),
         '-X', '-l',
-        '-X', join_paths(meson.build_root(), 'src/librygel-server/librygel-server-2.6.so'),
+        '-X', join_paths(meson.build_root(), 'src/librygel-server/librygel-server-2.8.so'),
         '-X', '-l',
-        '-X', join_paths(meson.build_root(), 'src/librygel-core/librygel-core-2.6.so'),
+        '-X', join_paths(meson.build_root(), 'src/librygel-core/librygel-core-2.8.so'),
         server_sources
     ]
 )

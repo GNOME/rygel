@@ -1,14 +1,14 @@
 if valadoc.found()
 core_doc_common_args = [
         '--package-name', 'librygel-core',
-        '--package-version', '2.6',
+        '--package-version', '2.8',
         '-b', join_paths(meson.source_root(), 'src', 'librygel-core'),
         '--pkg', 'rygel-build-config',
         '--force',
         '--directory', '@OUTPUT@',
         '--pkg', 'gio-2.0',
         '--pkg', 'gee-0.8',
-        '--pkg', 'gupnp-1.2',
+        '--pkg', 'gupnp-1.6',
         '--pkg', 'gmodule-2.0',
         '--pkg', 'posix'
  ]
@@ -41,7 +41,7 @@ gtkdoc_core_target = custom_target('gtkdoc-core',
         core_doc_common_args,
         '-X', join_paths(meson.build_root(), 'src/librygel-core/rygel-core.h'),
         '-X', '-l',
-        '-X', join_paths(meson.build_root(), 'src/librygel-core/librygel-core-2.6.so'),
+        '-X', join_paths(meson.build_root(), 'src/librygel-core/librygel-core-2.8.so'),
         '-b', join_paths(meson.source_root(), 'src', 'librygel-core'),
         core_sources
     ]

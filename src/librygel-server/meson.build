@@ -89,20 +89,21 @@ server_sources = files(
     'rygel-dlna-available-seek-request.vala',
     'rygel-dlna-available-seek-response.vala')
 
-server_lib = library('rygel-server-2.6', server_sources,
+server_lib = library('rygel-server-2.8', server_sources,
         dependencies : server_deps + [build_config, rygel_core],
-        version: '2.0.4',
+        version: lib_version,
+        darwin_versions: darwin_versions,
         c_args : ['-DG_LOG_DOMAIN="RygelServer"'],
-        vala_gir : 'Rygel-2.6.gir',
+        vala_gir : 'Rygel-2.8.gir',
         vala_header : 'rygel-server.h',
         install: true,
         install_dir : [true, rygel_includedir, true, false])
-install_data('rygel-server-2.6.deps', install_dir : rygel_vapidir)
+install_data('rygel-server-2.8.deps', install_dir : rygel_vapidir)
 
 if g_ir_compiler.found()
 # For details on the GIR/typelib generation process, see
 # librygel-core/meson.build
-server_gir = custom_target('RygelServer-2.6.gir',
+server_gir = custom_target('RygelServer-2.8.gir',
               command: [sed, '-e', 's,Rygel[.],RygelServer.,g',
                                           '-e', 's,namespace name="Rygel",namespace name="RygelServer",g',
                                           '-e', 's,RygelServer[.]StateMachine,RygelCore.StateMachine,g',
@@ -110,20 +111,20 @@ server_gir = custom_target('RygelServer-2.6.gir',
                                           '-e', 's,RygelServer[.]MediaDevice,RygelCore.MediaDevice,g',
                                           '-e', 's,RygelServer[.]IconInfo,RygelCore.IconInfo,g',
                                           '-e', 's,RygelServer[.]DLNAProfile,RygelCore.DLNAProfile,g',
-                                          '-e', 's|<package name="rygel-server-2.6"/>|<include name="RygelCore" version="2.6"/><package name="rygel-server-2.6"/>|',
-                        join_paths(meson.current_build_dir(), 'Rygel-2.6.gir')],
-              output: 'RygelServer-2.6.gir',
+                                          '-e', 's|<package name="rygel-server-2.8"/>|<include name="RygelCore" version="2.8"/><package name="rygel-server-2.8"/>|',
+                        join_paths(meson.current_build_dir(), 'Rygel-2.8.gir')],
+              output: 'RygelServer-2.8.gir',
               capture: true,
               depends: server_lib,
               install: true,
               install_dir: join_paths(get_option('datadir'),'gir-1.0'))
 
-custom_target('RygelServer-2.6.typelib',
+custom_target('RygelServer-2.8.typelib',
                command: [g_ir_compiler,
                         '--output', '@OUTPUT@',
                         '--includedir', core_girdir,
-                        join_paths(meson.current_build_dir(), 'RygelServer-2.6.gir')],
-               output: 'RygelServer-2.6.typelib',
+                        join_paths(meson.current_build_dir(), 'RygelServer-2.8.gir')],
+               output: 'RygelServer-2.8.typelib',
                depends: [ server_lib, server_gir, core_gir ],
                install: true,
                install_dir: typelib_dir)

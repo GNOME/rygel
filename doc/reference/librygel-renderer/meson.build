@@ -1,7 +1,7 @@
 if valadoc.found()
 renderer_doc_common_args = [
         '--package-name', 'librygel-renderer',
-        '--package-version', '2.6',
+        '--package-version', '2.8',
         '-b', join_paths(meson.source_root(), 'src', 'librygel-renderer'),
         '--vapidir', join_paths(meson.source_root(), 'vapi'),
         '--vapidir', join_paths(meson.source_root(), 'src/librygel-core'),
@@ -11,11 +11,11 @@ renderer_doc_common_args = [
         '--directory', '@OUTPUT@',
         '--pkg', 'gio-2.0',
         '--pkg', 'gee-0.8',
-        '--pkg', 'gupnp-1.2',
+        '--pkg', 'gupnp-1.6',
         '--pkg', 'gmodule-2.0',
         '--pkg', 'posix',
         '--pkg', 'gupnp-av-1.0',
-        '--pkg', 'rygel-core-2.6'
+        '--pkg', 'rygel-core-2.8'
 ]
 
 custom_target('valadoc-renderer',
@@ -45,9 +45,9 @@ gtkdoc_renderer_target = custom_target('gtkdoc-renderer',
         '--doclet', 'gtkdoc',
         '-X', join_paths(meson.build_root(), 'src/librygel-renderer/rygel-renderer.h'),
         '-X', '-l',
-        '-X', join_paths(meson.build_root(), 'src/librygel-renderer/librygel-renderer-2.6.so'),
+        '-X', join_paths(meson.build_root(), 'src/librygel-renderer/librygel-renderer-2.8.so'),
         '-X', '-l',
-        '-X', join_paths(meson.build_root(), 'src/librygel-core/librygel-core-2.6.so'),
+        '-X', join_paths(meson.build_root(), 'src/librygel-core/librygel-core-2.8.so'),
         renderer_sources
     ]
 )

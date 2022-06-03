@@ -1,7 +1,7 @@
 if valadoc.found()
 db_doc_common_args = [
         '--package-name', 'librygel-db',
-        '--package-version', '2.6',
+        '--package-version', '2.8',
         '-b', join_paths(meson.source_root(), 'src', 'librygel-db'),
         '--vapidir', join_paths(meson.source_root(), 'vapi'),
         '--vapidir', join_paths(meson.source_root(), 'src/librygel-core'),
@@ -11,12 +11,12 @@ db_doc_common_args = [
         '--directory', '@OUTPUT@',
         '--pkg', 'gio-2.0',
         '--pkg', 'gee-0.8',
-        '--pkg', 'gupnp-1.2',
+        '--pkg', 'gupnp-1.6',
         '--pkg', 'gmodule-2.0',
         '--pkg', 'posix',
         '--pkg', 'sqlite3',
         '--pkg', 'gupnp-av-1.0',
-        '--pkg', 'rygel-core-2.6',
+        '--pkg', 'rygel-core-2.8',
 ]
 
 custom_target('valadoc-db',
@@ -46,9 +46,9 @@ gtkdoc_db_target = custom_target('gtkdoc-db',
         '--doclet', 'gtkdoc',
         '-X', join_paths(meson.build_root(), 'src/librygel-db/rygel-db.h'),
         '-X', '-l',
-        '-X', join_paths(meson.build_root(), 'src/librygel-db/librygel-db-2.6.so'),
+        '-X', join_paths(meson.build_root(), 'src/librygel-db/librygel-db-2.8.so'),
         '-X', '-l',
-        '-X', join_paths(meson.build_root(), 'src/librygel-core/librygel-core-2.6.so'),
+        '-X', join_paths(meson.build_root(), 'src/librygel-core/librygel-core-2.8.so'),
         db_sources
     ]
 )
