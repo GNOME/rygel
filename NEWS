@@ -1,3 +1,31 @@
+0.40.4 (stable)
+===============
+
+ - Do not install UI file if preferences are not built
+
+Renderer:
+ - Fix critical if mime_type is missing
+
+Tracker3:
+ - Do not exit if service is missing
+
+MediaExport:
+ - Fix running without media indexing
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/160
+ - https://gitlab.gnome.org/GNOME/rygel/issues/196
+ - https://gitlab.gnome.org/GNOME/rygel/issues/208
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Pawan Chitrakar <chautari@gmail.com>
+ - Aleksandr Melman <Alexmelman88@gmail.com>
+
+Added/updated translations:
+ - ne.po, courtesy of Pawan Chitrakar
+ - ru.po, courtesy of Aleksandr Melman
+
 0.40.3
 ======
 
