@@ -23,7 +23,7 @@ executable('standalone-renderer-gst',
 fullscreen_resource = gnome.compile_resources(
     'fullscreen-renderer-resources',
     'org.gnome.Rygel.FullscreenRenderer.gresource.xml',
-    source_dir: [join_paths(meson.source_root(), 'data/icons/scalable')]
+    source_dir: [join_paths(meson.project_source_root(), 'data/icons/scalable')]
 )
 
 executable('fullscreen-renderer',

@@ -29,7 +29,7 @@ configure_file(input: 'org.gnome.Rygel1.service.in',
 systemd = dependency('systemd', required : false)
 systemd_user_unit_dir = join_paths(get_option('prefix'), 'lib/systemd/user/')
 if systemd.found()
-    systemd_user_unit_dir = systemd.get_pkgconfig_variable('systemduserunitdir')
+    systemd_user_unit_dir = systemd.get_variable('systemduserunitdir')
 endif
 
 if not (get_option('systemd-user-units-dir') == 'off')

@@ -36,7 +36,8 @@ if xsltproc.found()
             '--noout',
             stylesheet,
             'rygel.xml'
-        ]
+        ],
+        check: true
     )
 
     if (r.returncode() == 0)

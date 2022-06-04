@@ -1,4 +1,4 @@
-project('rygel', 'vala', 'c', version : '0.41.0', meson_version : '>= 0.55.0')
+project('rygel', 'vala', 'c', version : '0.41.0', meson_version : '>= 0.58.0')
 vala = meson.get_compiler('vala')
 
 # Check for the required vala version
@@ -76,7 +76,7 @@ gtkdoc = dependency('gtk-doc', required : false)
 
 glib_minimal_version = '>= 2.62'
 
-gupnp = dependency('gupnp-1.6', version : '>= 1.5.0')
+gupnp = dependency('gupnp-1.6', version : '>= 1.5.2')
 gee = dependency('gee-0.8', version: '>= 0.8.0')
 gssdp = dependency('gssdp-1.6', version : '>= 1.5.0')
 glib = dependency('glib-2.0', version : glib_minimal_version)
@@ -231,4 +231,11 @@ summary(
     'Man Pages' : get_option('man_pages'),
   },
   section: 'Features'
+)
+
+summary(
+  {
+    'Systemd user unit path' : systemd_user_unit_dir
+  },
+  section: 'Paths'
 )

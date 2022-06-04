@@ -27,7 +27,7 @@ user_config_test = executable(
     files('rygel-configuration.vala',
           'rygel-user-config.vala',
           'rygel-user-config-test.vala'),
-    vala_args : ['--pkg', 'rygel-build-config', '--vapidir', join_paths(meson.source_root(), 'src/librygel-core')],
+    vala_args : ['--pkg', 'rygel-build-config', '--vapidir', join_paths(meson.project_source_root(), 'src/librygel-core')],
     include_directories : config_include,
     dependencies : [test_deps, gio]
 )
