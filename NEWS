@@ -1,3 +1,162 @@
+0.41.0 (development)
+====================
+
+Overall:
+
+ - Use GUPnP 1.6 API
+ - Use Libsoup 3 API
+ - API bump to 2.8
+ - ABI reset
+
+Confirmation UI:
+ - Do not install ui file if preferences are not built
+
+Documentation:
+ - Fix gtk-doc generation and installation
+ - Add option "man_pages" to disable man pages
+
+Config:
+ - Fix Tracker3 configuration
+
+Presets:
+ - Add presets for more encoders
+ - Fix mp4 muxing
+ - Support VA-API MPEG2 encoding
+ - Support VA-API H.264 encoding
+
+Rygel:
+ - Port to GApplication instead of using our own single instance
+   mechanism
+
+Core:
+ - Make plugin loader more predictable
+
+Server:
+ - Add albumArtURI to VideoItem for devices that use that
+   for the thumbnail
+
+Renderer:
+ - Fix a critical if there is no mime_type
+
+MediaExport:
+ - Strip XML extensions (for DIDL_S playlists)
+ - Support ".nomedia" to skip indexing folders
+ - If database upgrade failed, do not activate plugin
+ - Treat parallel Tracker3 module similar to original Tracker
+   plugin
+ - Drop deperecated ValueArray
+ - Fix disabling meta-data extraction
+
+LMS:
+ - Drop deprecated ValueArray
+
+Tracker (old):
+ - Disable by default
+
+Tracker3:
+ - Fix Video graph
+ - Fix deadlock on start
+ - Do not kill whole rygel if service is not activatable
+
+GStreamer Media Engine:
+ - Adapt to deprecations
+ - Fix pipeline blocking issue when transcoding from video-only
+   files
+
+0.40.4 (stable)
+===============
+
+ - Do not install UI file if preferences are not built
+
+Renderer:
+ - Fix critical if mime_type is missing
+
+Tracker3:
+ - Do not exit if service is missing
+
+MediaExport:
+ - Fix running without media indexing
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/160
+ - https://gitlab.gnome.org/GNOME/rygel/issues/196
+ - https://gitlab.gnome.org/GNOME/rygel/issues/208
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Pawan Chitrakar <chautari@gmail.com>
+ - Aleksandr Melman <Alexmelman88@gmail.com>
+
+Added/updated translations:
+ - ne.po, courtesy of Pawan Chitrakar
+ - ru.po, courtesy of Aleksandr Melman
+
+0.40.3
+======
+
+Tracker3:
+  - Fix deadlock on start-up
+  - Use the correct graph name for Videos
+
+All contributors to this release:
+ - Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
+ - Jens Georg <mail@jensge.org>
+ - Quentin PAGÈS <pages_quentin@hotmail.com>
+
+0.40.2
+======
+
+- Disable tracker2 in default build options
+- Updated translations
+- Fixed potential race condition in meson build
+
+All contributors to this release:
+ - Rico Tzschichholz <ricotz@ubuntu.com>
+ - Quentin PAGÈS <pages_quentin@hotmail.com>
+ - Yaron Shahrabani <sh.yaron@gmail.com>
+ - Pawan Chitrakar <chautari@gmail.com>
+ - Charles Monzat <charles.monzat@free.fr>
+ - Fran Dieguez <frandieguez@gnome.org>
+
+Added/updated translations:
+ - fr.po, courtesy of Guillaume Bernard
+ - gl.po, courtesy of Fran Dieguez
+ - he.po, courtesy of Yaron Shahrabani
+ - ne.po, courtesy of Pawan Chitrakar
+
+0.40.1
+======
+Server:
+ - Set albumArtUri on Videos to provide thumbnails for the PS4
+
+MediaExport:
+ - Strip xml suffix when generating titles from filenames
+
+Documentation:
+ - Fix generation and install location
+
+Tracker3:
+ - Add section to the default configuration file
+
+Translations:
+ - Various updates
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/151
+ - https://gitlab.gnome.org/GNOME/rygel/issues/183
+ - https://gitlab.gnome.org/GNOME/rygel/issues/190
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Kjartan Maraas <kmaraas@gnome.org>
+ - Cheng-Chia Tseng <pswo10680@gmail.com>
+ - Juliano Camargo <julianosc@protonmail.com>
+
+Added/updated translations:
+ - nb.po, courtesy of Kjartan Maraas
+ - pt.po, courtesy of José Vieira
+ - zh_TW.po, courtesy of Cheng-Chia Tseng
+
 0.40.0
 ======
  - Translation updates
