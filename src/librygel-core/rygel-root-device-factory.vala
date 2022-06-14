@@ -136,7 +136,7 @@ public class Rygel.RootDeviceFactory : Object,
             try {
                 udn = this.config.get_string (plugin.name, "uuid");
             } catch (Error error) {
-                udn = GUPnP.get_uuid ();
+                udn = Uuid.string_random ();
             }
             file.set_udn ("uuid:" + udn);
         }

@@ -94,7 +94,7 @@ internal class Rygel.MediaExport.PlaylistRootContainer : Rygel.WritableContainer
                                          this.id);
         }
 
-        container.id = "playlist:" + GUPnP.get_uuid ();
+        container.id = "playlist:" + Uuid.string_random ();
         container.upnp_class = Rygel.MediaContainer.PLAYLIST;
 
         this.media_db.save_container (container);

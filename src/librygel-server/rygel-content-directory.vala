@@ -105,7 +105,7 @@ public class Rygel.ContentDirectory: Service {
             this.service_reset_token = trackable.get_service_reset_token ();
             this.system_update_id = trackable.get_system_update_id ();
         } else {
-            this.service_reset_token = GUPnP.get_uuid ();
+            this.service_reset_token = Uuid.string_random ();
             this.system_update_id = 0;
         }
 
@@ -708,7 +708,7 @@ public class Rygel.ContentDirectory: Service {
 
         var plugin = this.root_device.resource_factory as MediaServerPlugin;
         plugin.active = false;
-        this.service_reset_token = GUPnP.get_uuid ();
+        this.service_reset_token = Uuid.string_random ();
         if (this.root_container is TrackableContainer) {
             var trackable = this.root_container as TrackableContainer;
             trackable.set_service_reset_token (this.service_reset_token);

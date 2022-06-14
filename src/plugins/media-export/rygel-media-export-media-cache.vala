@@ -525,7 +525,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         } catch (DatabaseError error) {
             warning (_("Failed to get reset token"));
 
-            return GUPnP.get_uuid ();
+            return Uuid.string_random ();
         }
     }
 
@@ -581,7 +581,7 @@ public class Rygel.MediaExport.MediaCache : Object {
         if (object.ref_id == null) {
             object.ref_id = object.id;
         }
-        object.id = GUPnP.get_uuid ();
+        object.id = Uuid.string_random ();
 
         this.save_item (object as MediaFileItem);
 
@@ -889,7 +889,7 @@ public class Rygel.MediaExport.MediaCache : Object {
             db.exec (this.sql.make (SQLString.TRIGGER_REFERENCE));
             db.commit ();
             db.analyze ();
-            this.save_reset_token (GUPnP.get_uuid ());
+            this.save_reset_token (Uuid.string_random ());
 
             return true;
         } catch (Error err) {
