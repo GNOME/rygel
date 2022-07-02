@@ -1,3 +1,20 @@
+0.41.1 (development)
+====================
+ - Fix deprecations in meson files
+ - Adapt to VAPI changes in GUPnP
+ - Translation updates
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Aurimas Černius <aurisc4@gmail.com>
+ - Aleksandr Melman <Alexmelman88@gmail.com>
+
+Added/updated translations:
+ - es.po, courtesy of Daniel Mustieles García
+ - lt.po, courtesy of Aurimas Černius
+ - ru.po, courtesy of Aleksandr Melman
+
 0.41.0 (development)
 ====================
 
