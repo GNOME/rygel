@@ -5,14 +5,14 @@
 # Necdet Yücel <necdetyucel@gmail.com>, 2014, 2015.
 # Muhammet Kara <muhammetk@gmail.com>, 2011, 2014, 2015.
 # Furkan Ahmet Kara <furkanahmetkara.fk@gmail.com>, 2017.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2017, 2020.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2017, 2020, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-07-12 13:38+0000\n"
-"PO-Revision-Date: 2020-08-11 01:46+0300\n"
+"POT-Creation-Date: 2022-07-09 09:23+0000\n"
+"PO-Revision-Date: 2022-07-23 01:18+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -34,7 +34,9 @@ msgstr "UPnP/DLNA Servisleri"
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/rygel.desktop.in.in:6
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
-msgstr "medya sunucusu;medya yorumlayıcı;ortam sunucusu;ortam yorumlayıcı;paylaş;ses;video;görüntü;resimler;"
+msgstr ""
+"medya sunucusu;medya yorumlayıcı;ortam sunucusu;ortam yorumlayıcı;paylaş;ses;"
+"video;görüntü;resimler;fotoğraflar;"
 
 #: data/rygel-preferences.desktop.in.in:3 data/rygel-preferences.ui:24
 msgid "Rygel Preferences"
@@ -191,95 +193,81 @@ msgstr "“NSLookup” eylemi çalıştırılamıyor: Ana makine adı boş"
 msgid "Cannot run “Traceroute” action: Host is empty"
 msgstr "“Traceroute” eylemi çalıştırılamıyor: Ana makine boş"
 
-#: src/librygel-core/rygel-cmdline-config.vala:73
+#: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
 msgstr "Sürüm numarasını göster"
 
-#: src/librygel-core/rygel-cmdline-config.vala:75
+#: src/librygel-core/rygel-cmdline-config.vala:49
 msgid "Network Interfaces"
 msgstr "Ağ Arayüzleri"
 
-#: src/librygel-core/rygel-cmdline-config.vala:77
+#: src/librygel-core/rygel-cmdline-config.vala:51
 msgid "Port"
 msgstr "Bağlantı Noktası"
 
-#: src/librygel-core/rygel-cmdline-config.vala:79
+#: src/librygel-core/rygel-cmdline-config.vala:53
 msgid "Disable transcoding"
 msgstr "Kodlamayı kapat"
 
-#: src/librygel-core/rygel-cmdline-config.vala:81
+#: src/librygel-core/rygel-cmdline-config.vala:55
 msgid "Disallow upload"
 msgstr "Karşıya yüklemeye izin verme"
 
-#: src/librygel-core/rygel-cmdline-config.vala:83
+#: src/librygel-core/rygel-cmdline-config.vala:57
 msgid "Disallow deletion"
 msgstr "Silmeye izin verme"
 
-#: src/librygel-core/rygel-cmdline-config.vala:85
+#: src/librygel-core/rygel-cmdline-config.vala:59
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr ""
-"Etki alanı:düzey eşlerinin virgülle ayrılmış listesi. Ayrıntılar için rygel(1) "
-"yönergelerine bakın"
+"Etki alanı:düzey eşlerinin virgülle ayrılmış listesi. Ayrıntılar için "
+"rygel(1) yönergelerine bakın"
 
-#: src/librygel-core/rygel-cmdline-config.vala:87
+#: src/librygel-core/rygel-cmdline-config.vala:61
 msgid "Plugin Path"
 msgstr "Eklenti Yolu"
 
-#: src/librygel-core/rygel-cmdline-config.vala:89
+#: src/librygel-core/rygel-cmdline-config.vala:63
 msgid "Engine Path"
 msgstr "Motor Yolu"
 
-#: src/librygel-core/rygel-cmdline-config.vala:92
+#: src/librygel-core/rygel-cmdline-config.vala:66
 msgid "Disable plugin"
 msgstr "Eklentiyi devre dışı bırak"
 
-#: src/librygel-core/rygel-cmdline-config.vala:94
+#: src/librygel-core/rygel-cmdline-config.vala:68
 msgid "Set plugin titles"
 msgstr "Eklenti başlıklarını ayarla"
 
-#: src/librygel-core/rygel-cmdline-config.vala:96
+#: src/librygel-core/rygel-cmdline-config.vala:70
 msgid "Set plugin options"
 msgstr "Eklenti seçeneklerini ayarla"
 
-#: src/librygel-core/rygel-cmdline-config.vala:98
+#: src/librygel-core/rygel-cmdline-config.vala:72
 msgid "Use configuration file instead of user configuration"
 msgstr "Kullanıcı yapılandırması yerine yapılandırma dosyasını kullan"
 
-#: src/librygel-core/rygel-cmdline-config.vala:100
+#: src/librygel-core/rygel-cmdline-config.vala:74
 msgid "Shut down remote Rygel reference"
 msgstr "Uzak Rygel başvurusunu kapat"
 
-#: src/librygel-core/rygel-cmdline-config.vala:102
-msgid "Replace currently running instance of Rygel"
-msgstr "Şu anda çalışan Rygel sürecinin yerine geç"
-
-#: src/librygel-core/rygel-cmdline-config.vala:139
-msgid "Shutting down remote Rygel instance\n"
-msgstr "Uzak Rygel süreci kapatılıyor\n"
-
-#: src/librygel-core/rygel-cmdline-config.vala:147
-#, c-format
-msgid "Failed to shut down other Rygel instance: %s"
-msgstr "Diğer Rygel süreci kapatılamadı: %s"
-
-#: src/librygel-core/rygel-cmdline-config.vala:161
-#: src/librygel-core/rygel-cmdline-config.vala:170
-#: src/librygel-core/rygel-cmdline-config.vala:178
-#: src/librygel-core/rygel-cmdline-config.vala:186
-#: src/librygel-core/rygel-cmdline-config.vala:194
-#: src/librygel-core/rygel-cmdline-config.vala:202
-#: src/librygel-core/rygel-cmdline-config.vala:210
-#: src/librygel-core/rygel-cmdline-config.vala:249
-#: src/librygel-core/rygel-cmdline-config.vala:268
+#: src/librygel-core/rygel-cmdline-config.vala:98
+#: src/librygel-core/rygel-cmdline-config.vala:107
+#: src/librygel-core/rygel-cmdline-config.vala:116
+#: src/librygel-core/rygel-cmdline-config.vala:125
+#: src/librygel-core/rygel-cmdline-config.vala:134
+#: src/librygel-core/rygel-cmdline-config.vala:143
+#: src/librygel-core/rygel-cmdline-config.vala:179
+#: src/librygel-core/rygel-cmdline-config.vala:192
+#: src/librygel-core/rygel-cmdline-config.vala:207
+#: src/librygel-core/rygel-cmdline-config.vala:213
+#: src/librygel-core/rygel-cmdline-config.vala:220
+#: src/librygel-core/rygel-cmdline-config.vala:224
+#: src/librygel-core/rygel-cmdline-config.vala:228
+#: src/librygel-core/rygel-cmdline-config.vala:248
+#: src/librygel-core/rygel-cmdline-config.vala:270
 #: src/librygel-core/rygel-cmdline-config.vala:274
-#: src/librygel-core/rygel-cmdline-config.vala:281
-#: src/librygel-core/rygel-cmdline-config.vala:285
-#: src/librygel-core/rygel-cmdline-config.vala:289
-#: src/librygel-core/rygel-cmdline-config.vala:312
-#: src/librygel-core/rygel-cmdline-config.vala:338
-#: src/librygel-core/rygel-cmdline-config.vala:367
-#: src/librygel-core/rygel-cmdline-config.vala:393
-#: src/librygel-core/rygel-cmdline-config.vala:418
+#: src/librygel-core/rygel-cmdline-config.vala:287
 #: src/librygel-core/rygel-environment-config.vala:100
 #: src/librygel-core/rygel-environment-config.vala:104
 #: src/librygel-core/rygel-environment-config.vala:108
@@ -308,7 +296,7 @@ msgstr "%s’e değiştirilmiş açıklama yazılamadı"
 #: src/librygel-core/rygel-energy-management-helper.c:55
 #, c-format
 msgid "Failed to get a socket: %s"
-msgstr "Soket alma başarısız oldu: %s"
+msgstr "Yuva alma başarısız oldu: %s"
 
 #: src/librygel-core/rygel-energy-management-helper.c:62
 #, c-format
@@ -345,11 +333,11 @@ msgstr "“%s/title” için değer atanmamış"
 msgid "No value available for “%s/%s”"
 msgstr "“%s/%s” için kulanılabilir değer yok"
 
-#: src/librygel-core/rygel-plugin-information.vala:64
+#: src/librygel-core/rygel-plugin-information.vala:67
 msgid "[Plugin] group not found"
 msgstr "[Eklenti] kümesi bulunamadı"
 
-#: src/librygel-core/rygel-plugin-information.vala:76
+#: src/librygel-core/rygel-plugin-information.vala:79
 #, c-format
 msgid "Plugin module %s does not exist"
 msgstr "%s eklenti modülü yok"
@@ -374,7 +362,7 @@ msgstr "“%s” yolundan modül yüklenemedi: %s"
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "“%s” içinde “%s” giriş noktası işlevi bulunamadı: %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:155
+#: src/librygel-core/rygel-plugin-loader.vala:156
 #, c-format
 msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
 msgstr "'%s' modülü, zaten yüklü '%s' modülüyle çakışıyor. Atlanıyor"
@@ -384,17 +372,17 @@ msgstr "'%s' modülü, zaten yüklü '%s' modülüyle çakışıyor. Atlanıyor"
 msgid "Failed to open plugins folder: “%s”"
 msgstr "Eklentiler klasörü açılamadı: “%s”"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:149
+#: src/librygel-core/rygel-recursive-module-loader.vala:160
 #, c-format
 msgid "Error listing contents of folder “%s”: %s"
 msgstr "“%s” klasörünün içeriği listelenemiyor: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:193
+#: src/librygel-core/rygel-recursive-module-loader.vala:204
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "Eklenti yüklenemedi: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:220
+#: src/librygel-core/rygel-recursive-module-loader.vala:231
 #, c-format
 msgid "Failed to query content type for “%s”"
 msgstr "“%s” için içerik türü sorgulanamadı"
@@ -471,26 +459,29 @@ msgid "Play mode not supported"
 msgstr "Oynatma kipi desteklenmiyor"
 
 #. FIXME: Return a more sensible error here.
-#: src/librygel-renderer/rygel-av-transport.vala:774
-#: src/librygel-renderer/rygel-av-transport.vala:789
-#: src/librygel-renderer/rygel-av-transport.vala:798
-#: src/librygel-renderer/rygel-av-transport.vala:877
+#: src/librygel-renderer/rygel-av-transport.vala:773
+#: src/librygel-renderer/rygel-av-transport.vala:779
+#: src/librygel-renderer/rygel-av-transport.vala:794
+#: src/librygel-renderer/rygel-av-transport.vala:803
+#: src/librygel-renderer/rygel-av-transport.vala:863
+#: src/librygel-renderer/rygel-av-transport.vala:898
 msgid "Resource not found"
 msgstr "Kaynak bulunamadı"
 
-#: src/librygel-renderer/rygel-av-transport.vala:787
+#: src/librygel-renderer/rygel-av-transport.vala:792
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "Çalma listesi ayrıştırılırken sorun: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:873
+#: src/librygel-renderer/rygel-av-transport.vala:859
+#: src/librygel-renderer/rygel-av-transport.vala:894
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "%s konumundaki kaynağa erişilemedi: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:889
+#: src/librygel-renderer/rygel-av-transport.vala:875
 msgid "Illegal MIME-type"
 msgstr "Geçersiz MIME türü"
 
@@ -571,25 +562,35 @@ msgstr "Öge üzerinde alt ögeler taranamadı"
 msgid "Failed to browse “%s”: %s\n"
 msgstr "“%s” göz atma başarısız oldu: %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:149
+#: src/librygel-server/rygel-client-hacks.vala:147
 msgid "Not Applicable"
 msgstr "Uygulanamaz"
 
 #: src/librygel-server/rygel-content-directory.vala:639
 msgid "No such file transfer"
-msgstr "Böyle bir dosya aktarımı yok"
+msgstr "Böyle dosya aktarımı yok"
 
 #: src/librygel-server/rygel-dbus-thumbnailer.vala:116
 msgid "No D-Bus thumbnailer service available"
 msgstr "Hiç D-Bus küçük resimleyici servisi yok"
 
-#: src/librygel-server/rygel-http-get.vala:52
+#: src/librygel-server/rygel-http-byte-seek-request.vala:116
+#, c-format
+msgid "Range end value %lld is smaller than range start value %lld: '%s'"
+msgstr "%lld aralık bitiş değeri %lld aralık başlangıç değerinden küçüktür: '%s'"
+
+#: src/librygel-server/rygel-http-get.vala:53
 msgid "Invalid Request (only GET and HEAD supported)"
 msgstr "Geçersiz İstek (yalnızca GET ve HEAD desteklenir)"
 
-#: src/librygel-server/rygel-http-get.vala:60
+#: src/librygel-server/rygel-http-get.vala:61
 msgid " must be 1"
 msgstr " 1 olmalıdır"
+
+#: src/librygel-server/rygel-http-get.vala:91
+#, c-format
+msgid "%s transfer mode not supported for '%s'"
+msgstr "'%2$s' için %1$s aktarım kipi desteklenmiyor"
 
 #: src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
@@ -601,7 +602,7 @@ msgid "Not found"
 msgstr "Bulunamadı"
 
 #: src/librygel-server/rygel-http-post.vala:64
-#: src/librygel-server/rygel-import-resource.vala:193
+#: src/librygel-server/rygel-import-resource.vala:215
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "Boş olmayan “%s” ögesine veri eklenmesine izin verilmiyor"
@@ -617,7 +618,7 @@ msgstr "%s için yazılabilir URI yok"
 msgid "Failed to move dotfile %s: %s"
 msgstr "%s nokta dosyası taşınamadı: %s"
 
-#: src/librygel-server/rygel-http-request.vala:95
+#: src/librygel-server/rygel-http-request.vala:104
 #, c-format
 msgid "Requested item “%s” not found"
 msgstr "İstenen öge “%s” bulunamadı"
@@ -627,17 +628,17 @@ msgstr "İstenen öge “%s” bulunamadı"
 msgid "Couldn’t create data source for %s"
 msgstr "%s için veri kaynağı oluşturulamadı"
 
-#: src/librygel-server/rygel-import-resource.vala:124
+#: src/librygel-server/rygel-import-resource.vala:123
 #, c-format
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "“%s” için orjinal URI alınamadı: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:188
+#: src/librygel-server/rygel-import-resource.vala:210
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "İçeriği içe aktarmada “%s” URI geçersiz"
 
-#: src/librygel-server/rygel-import-resource.vala:276
+#: src/librygel-server/rygel-import-resource.vala:237
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "%s’den dosya içe aktarılamadı: %s"
@@ -663,7 +664,7 @@ msgstr "“%s” nesnesinin yok edilmesi başarısız oldu: %s"
 #: src/librygel-server/rygel-reference-creator.vala:68
 #: src/librygel-server/rygel-reference-creator.vala:115
 msgid "No such object"
-msgstr "Böyle bir nesne yok"
+msgstr "Böyle nesne yok"
 
 #: src/librygel-server/rygel-item-destroyer.vala:108
 #, c-format
@@ -704,7 +705,7 @@ msgstr "Geçersiz tarih: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:256
 msgid "Bad current tag value."
-msgstr "Kötü var olan etiket değeri."
+msgstr "Kötü geçerli etiket değeri."
 
 #: src/librygel-server/rygel-item-updater.vala:260
 msgid "Bad new tag value."
@@ -737,8 +738,8 @@ msgid ""
 "Metadata modification of object %s being a child of restricted object %s not "
 "allowed"
 msgstr ""
-"%s nesnesinin üst veri düzenlemesine, %s kısıtlı nesnesinin alt nesnesi olduğundan "
-"izin verilmiyor"
+"%s nesnesinin üst veri düzenlemesine, %s kısıtlı nesnesinin alt nesnesi "
+"olduğundan izin verilmiyor"
 
 #: src/librygel-server/rygel-m3u-playlist.vala:67
 #: src/librygel-server/rygel-m3u-playlist.vala:70
@@ -781,7 +782,7 @@ msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init çağrılmadı. Sürdürülemiyor."
 
 #: src/librygel-server/rygel-media-file-item.vala:177
-#: src/librygel-server/rygel-video-item.vala:222
+#: src/librygel-server/rygel-video-item.vala:242
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "%s URI’si için iletişim kuralı belirlenemedi"
@@ -871,7 +872,7 @@ msgstr "“%s” UPnP sınıfı desteklenmiyor"
 
 #: src/librygel-server/rygel-object-creator.vala:419
 #: src/librygel-server/rygel-object-creator.vala:431
-#: src/librygel-server/rygel-object-creator.vala:723
+#: src/librygel-server/rygel-object-creator.vala:721
 #: src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
@@ -892,7 +893,7 @@ msgstr "“%s” DLNA profili desteklenmiyor"
 msgid "Cannot create object of class “%s”: Not supported"
 msgstr "“%s” sınıfının nesnesi oluşturulamadı: Desteklenmiyor"
 
-#: src/librygel-server/rygel-object-creator.vala:754
+#: src/librygel-server/rygel-object-creator.vala:752
 #, c-format
 msgid ""
 "Error from container “%s” on trying to find the newly added child object "
@@ -921,7 +922,8 @@ msgstr "Geçersiz arama kıstası verildi"
 msgid "Failed to search in “%s”: %s"
 msgstr "“%s” içerisinde aranamadı: %s"
 
-#: src/librygel-server/rygel-subtitle-manager.vala:92
+#: src/librygel-server/rygel-subtitle-manager.vala:49
+#: src/librygel-server/rygel-subtitle-manager.vala:96
 msgid "No subtitle available"
 msgstr "Altyazı kullanılamaz"
 
@@ -1025,8 +1027,8 @@ msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation "
 "might be missing a plug-in"
 msgstr ""
-"Kod çevirici yapılandırması oluşturulamadı. GStreamer kurulumunuzda "
-"eklenti eksik olabilir"
+"Kod çevirici yapılandırması oluşturulamadı. GStreamer kurulumunuzda eklenti "
+"eksik olabilir"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
@@ -1143,28 +1145,27 @@ msgstr "Komut satırı değiştirgeleri ayrıştırılamadı: %s"
 msgid "Failed to create media art extractor: %s"
 msgstr "Ortam resmi ayıklayıcı oluşturulamadı: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:146
+#: src/plugins/media-export/rygel-media-export-harvester.vala:150
 #, c-format
 msgid "“%s” harvested"
 msgstr "“%s” harmanlandı"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:202
+#: src/plugins/media-export/rygel-media-export-harvester.vala:205
 #, c-format
 msgid "Error fetching object “%s” from database: %s"
 msgstr "“%s” veri tabanından nesne getirilemiyor :%s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:210
+#: src/plugins/media-export/rygel-media-export-harvester.vala:213
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "%s dosyasının bilgisi sorgulanamadı: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:245
+#: src/plugins/media-export/rygel-media-export-harvester.vala:248
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
-msgstr ""
-"%s nesnesi veya onun üst nesneleri bulunamadı. Veri tabanı tutarsız"
+msgstr "%s nesnesi veya onun üst nesneleri bulunamadı. Veri tabanı tutarsız"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:249
+#: src/plugins/media-export/rygel-media-export-harvester.vala:252
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Veri tabanından nesne getirilemiyor: %s"
@@ -1179,17 +1180,17 @@ msgstr "%s dosyası işlenemedi: %s"
 msgid "Failed to query database: %s"
 msgstr "Veri tabanı sorgusu başarısız oldu: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:272
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "“%s” klasörü numaralandırılamadı: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:286
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:290
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "%s kabının alt süreçleri getirilemedi: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
 #, c-format
 msgid "Failed to extract meta-data for file %s"
 msgstr "%s dosyası için üst veri çıkartılamadı"
@@ -1197,7 +1198,7 @@ msgstr "%s dosyası için üst veri çıkartılamadı"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:358
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:362
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "URI %s atlanıyor; ayıklama tümüyle başarısız oldu: %s"
@@ -1210,78 +1211,78 @@ msgstr "Sorgu kabının alt süreçlerinin sayısı getirilemedi: %s"
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
 #, c-format
 msgid "Failed to force reindex to fix database: %s"
-msgstr "Veri tabanı onarımı için yeniden dizinlemeye zorlama başarısız oldu: %s"
+msgstr ""
+"Veri tabanı onarımı için yeniden dizinlemeye zorlama başarısız oldu: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
 msgid "Failed to create indices: %s"
 msgstr "İndisler oluşturulamadı: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:101
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:97
 #, c-format
 msgid "Cannot upgrade from version %d"
 msgstr "%d sürümünden yükseltme yapılamaz"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:117
 #, c-format
-#| msgid "Database upgrade failed: %s"
 msgid "Database upgrade to v18 failed: %s"
 msgstr "Veri tabanı v18’e yükseltilemedi: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:134
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:135
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "%s kimliği ile öge eklenemedi: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:217
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:218
 #, c-format
 msgid "Failed to get update IDs: %s"
 msgstr "Güncelleme Kimliklerini (ID) alma başarısız oldu: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:400
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:401
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
 msgstr "Tutarsız veri tabanı: %s ögesi, %s ebeveynine sahip değil"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:525
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:526
 msgid "Failed to get reset token"
 msgstr "Sıfırlama fişi alma başarısız oldu"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:537
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:538
 #, c-format
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "ServiceResetToken’i sürdürme başarısız oldu: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:547
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:548
 #, c-format
 msgid "Failed to remove virtual folders: %s"
 msgstr "Sanal klasörler kaldırılamadı: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:561
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:562
 #, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
 msgstr "%s ögesi korunan olarak imlenemedi (%d): %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:571
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:572
 msgid "Cannot create references to containers"
 msgstr "Kaplara referanslar oluşturulamıyor"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:597
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:598
 #, c-format
 msgid "Failed to add %s to ignored files: %s"
 msgstr "%s dosyası görmezden gelinen dosyalara eklenemedi: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:610
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:611
 #, c-format
 msgid "Failed to get whether URI %s is ignored: %s"
 msgstr "%s URI’ının görmezden gelinme durumu alınamadı: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:626
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:627
 #, c-format
 msgid "Failed to get whether item %s is guarded: %s"
 msgstr "%s ögesinin korunup korunmadığı anlaşılamadı: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:666
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:667
 #, c-format
 msgid ""
 "The version “%d” of the detected database is newer than our supported "
@@ -1289,21 +1290,21 @@ msgid ""
 msgstr ""
 "Saptanan veri tabanının sürümü “%d”, desteklenen “%d” sürümümüzden daha yeni"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:688
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:689
 msgid "Incompatible schema… cannot proceed"
 msgstr "Uyumsuz şema… devam edilemiyor"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:694
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:695
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr "Geçersiz veri tabanı, sqlite_master tablosuna sorgu yapılamıyor: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:895
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:896
 #, c-format
 msgid "Failed to create database schema: %s"
 msgstr "Veri tabanı şeması oluşturulamadı: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1232
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Desteklenmeyen sıralama alanı atlanıyor: %s"
@@ -1387,7 +1388,7 @@ msgstr "%s içinden ögeler kaldırılamıyor"
 msgid "upnp:class not supported in %s"
 msgstr "%s içinde upnp:class desteklenmiyor"
 
-#: src/plugins/media-export/rygel-media-export-plugin.vala:52
+#: src/plugins/media-export/rygel-media-export-plugin.vala:53
 #, c-format
 msgid "Failed to load plugin %s: %s"
 msgstr "%s eklentisi yüklenemedi: %s"
@@ -1538,6 +1539,32 @@ msgstr "Tracker bağlantısı oluşturulamadı: %s"
 msgid "Failed to get Tracker connection: %s"
 msgstr "Tracker bağlantısı alınamadı: %s"
 
+#: src/rygel/application.vala:88
+#, c-format
+msgid "Failed to load user configuration: %s"
+msgstr "Kullanıcı ayarları yüklenemedi: %s"
+
+#: src/rygel/application.vala:125
+#, c-format
+msgid "No plugins found in %d second; giving up…"
+msgid_plural "No plugins found in %d seconds; giving up…"
+msgstr[0] "%d saniye içinde eklenti bulunamadı; vazgeçiliyor…"
+
+#: src/rygel/application.vala:154
+#, c-format
+msgid "Rygel v%s starting…"
+msgstr "Rygel v%s başlatılıyor…"
+
+#: src/rygel/application.vala:202
+#, c-format
+msgid "Failed to create RootDevice for %s. Reason: %s"
+msgstr "%s için RootDevice oluşturulamadı. Neden: %s"
+
+#: src/rygel/application.vala:283
+#, c-format
+msgid "Failed to create root device factory: %s"
+msgstr "Kök aygıt fabrikası oluşturulamadı: %s"
+
 #: src/rygel/rygel-acl.vala:110
 #, c-format
 msgid "Failed to query ACL: %s"
@@ -1555,36 +1582,6 @@ msgstr "ACL yedek ilkesi bulunamadı. “allow” kullanılıyor"
 #: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "ACL yedek ilkesi bulunamadı. “deny” kullanılıyor"
-
-#: src/rygel/rygel-dbus-service.vala:81
-msgid "Another instance of Rygel is already running. Not starting."
-msgstr "Başka Rygel süreci zaten çalışıyor. Başlatılmayacak."
-
-#: src/rygel/rygel-main.vala:85
-#, c-format
-msgid "Rygel v%s starting…"
-msgstr "Rygel v%s başlatılıyor…"
-
-#: src/rygel/rygel-main.vala:113
-#, c-format
-msgid "No plugins found in %d second; giving up…"
-msgid_plural "No plugins found in %d seconds; giving up…"
-msgstr[0] "%d saniye içinde eklenti bulunamadı; vazgeçiliyor…"
-
-#: src/rygel/rygel-main.vala:177
-#, c-format
-msgid "Failed to create root device factory: %s"
-msgstr "Kök aygıt fabrikası oluşturulamadı: %s"
-
-#: src/rygel/rygel-main.vala:235
-#, c-format
-msgid "Failed to create RootDevice for %s. Reason: %s"
-msgstr "%s için RootDevice oluşturulamadı. Neden: %s"
-
-#: src/rygel/rygel-main.vala:272
-#, c-format
-msgid "Failed to load user configuration: %s"
-msgstr "Kullanıcı ayarları yüklenemedi: %s"
 
 #: src/ui/rygel-preferences-dialog.vala:109
 #, c-format
@@ -1605,6 +1602,19 @@ msgstr "Rygel servisi başlatılamadı: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Rygel servisi durdulamadı: %s"
+
+#~ msgid "Replace currently running instance of Rygel"
+#~ msgstr "Şu anda çalışan Rygel sürecinin yerine geç"
+
+#~ msgid "Shutting down remote Rygel instance\n"
+#~ msgstr "Uzak Rygel süreci kapatılıyor\n"
+
+#, c-format
+#~ msgid "Failed to shut down other Rygel instance: %s"
+#~ msgstr "Diğer Rygel süreci kapatılamadı: %s"
+
+#~ msgid "Another instance of Rygel is already running. Not starting."
+#~ msgstr "Başka Rygel süreci zaten çalışıyor. Başlatılmayacak."
 
 #~ msgid "rygel"
 #~ msgstr "rygel"
