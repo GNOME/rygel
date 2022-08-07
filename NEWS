@@ -1,3 +1,27 @@
+0.41.2 (development)
+====================
+ - Port to GLib's UUID function
+ - Temporarily disable the Since check during build
+ - Translation updates
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Asier Sarasua Garmendia <asiersarasua@ni.eus>
+ - Марко Костић <marko.m.kostic@gmail.com>
+ - Nart Tlisha <daniel.abzakh@gmail.com>
+ - Bartłomiej Piotrowski <b@bpiotrowski.pl>
+ - Emin Tufan Çetin <etcetin@gmail.com>
+ - Zurab Kargareteli <zuraxt@gmail.com>
+ - Kukuh Syafaat <kukuhsyafaat@gnome.org>
+
+Added/updated translations:
+ - ab.po, courtesy of Нанба Наала
+ - eu.po, courtesy of Asier Sarasua Garmendia
+ - id.po, courtesy of Kukuh Syafaat
+ - ka.po, courtesy of Temuri Doghonadze
+ - sr.po, courtesy of Марко М. Костић
+ - tr.po, courtesy of Emin Tufan Çetin
+
 0.41.1 (development)
 ====================
  - Fix deprecations in meson files
