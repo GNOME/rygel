@@ -66,6 +66,7 @@ conf.set('EXAMPLEDIR', join_paths(meson.current_source_dir(), 'examples'))
 config_include = include_directories('.')
 
 add_global_arguments(['-include','config.h'], language : 'c')
+add_global_arguments(['--disable-since-check'], language : 'vala')
 
 if get_option('fatal_warnings')
     add_global_arguments(['--fatal-warnings'], language : 'vala')
