@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the rygel package.
 #
 # Homin Lee <ff4500@gmail.com>, 2010
-# Changwoo Ryu <cwryu@debian.org>, 2010-2017, 2020.
+# Changwoo Ryu <cwryu@debian.org>, 2010-2017, 2020, 2022.
 #
 # - 이 프로그램의 이름인 Rygel은 "라이겔"로 음역
 #
@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-07-12 13:38+0000\n"
-"PO-Revision-Date: 2020-08-29 13:27+0900\n"
+"POT-Creation-Date: 2022-07-09 09:23+0000\n"
+"PO-Revision-Date: 2022-09-03 23:08+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -190,95 +190,81 @@ msgstr "“NSLookup” 동작을 실행할 수 없습니다: 호스트 이름이
 msgid "Cannot run “Traceroute” action: Host is empty"
 msgstr "“Traceroute” 동작을 실행할 수 없습니다: 호스트 항목이 비어 있습니다"
 
-#: src/librygel-core/rygel-cmdline-config.vala:73
+#: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
 msgstr "버전 번호를 표시합니다"
 
-#: src/librygel-core/rygel-cmdline-config.vala:75
+#: src/librygel-core/rygel-cmdline-config.vala:49
 msgid "Network Interfaces"
 msgstr "네트워크 인터페이스"
 
-#: src/librygel-core/rygel-cmdline-config.vala:77
+#: src/librygel-core/rygel-cmdline-config.vala:51
 msgid "Port"
 msgstr "포트"
 
-#: src/librygel-core/rygel-cmdline-config.vala:79
+#: src/librygel-core/rygel-cmdline-config.vala:53
 msgid "Disable transcoding"
 msgstr "인코딩 변환 허용 않기"
 
-#: src/librygel-core/rygel-cmdline-config.vala:81
+#: src/librygel-core/rygel-cmdline-config.vala:55
 msgid "Disallow upload"
 msgstr "업로드 허용 않기"
 
-#: src/librygel-core/rygel-cmdline-config.vala:83
+#: src/librygel-core/rygel-cmdline-config.vala:57
 msgid "Disallow deletion"
 msgstr "삭제 허용 않기"
 
-#: src/librygel-core/rygel-cmdline-config.vala:85
+#: src/librygel-core/rygel-cmdline-config.vala:59
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr ""
 "쉼표로 구분한 <도메인>:<단계> 쌍의 목록. 자세한 정보는 rygel(1) 페이지를 보십"
 "시오"
 
-#: src/librygel-core/rygel-cmdline-config.vala:87
+#: src/librygel-core/rygel-cmdline-config.vala:61
 msgid "Plugin Path"
 msgstr "플러그인 경로"
 
-#: src/librygel-core/rygel-cmdline-config.vala:89
+#: src/librygel-core/rygel-cmdline-config.vala:63
 msgid "Engine Path"
 msgstr "엔진 경로"
 
-#: src/librygel-core/rygel-cmdline-config.vala:92
+#: src/librygel-core/rygel-cmdline-config.vala:66
 msgid "Disable plugin"
 msgstr "플러그인 사용하지 않기"
 
-#: src/librygel-core/rygel-cmdline-config.vala:94
+#: src/librygel-core/rygel-cmdline-config.vala:68
 msgid "Set plugin titles"
 msgstr "플러그인 제목 설정"
 
-#: src/librygel-core/rygel-cmdline-config.vala:96
+#: src/librygel-core/rygel-cmdline-config.vala:70
 msgid "Set plugin options"
 msgstr "플러그인 옵션 설정"
 
-#: src/librygel-core/rygel-cmdline-config.vala:98
+#: src/librygel-core/rygel-cmdline-config.vala:72
 msgid "Use configuration file instead of user configuration"
 msgstr "사용자 설정 대신 설정 파일을 사용합니다"
 
-#: src/librygel-core/rygel-cmdline-config.vala:100
+#: src/librygel-core/rygel-cmdline-config.vala:74
 msgid "Shut down remote Rygel reference"
 msgstr "원격 라이겔 레퍼런스 종료"
 
-#: src/librygel-core/rygel-cmdline-config.vala:102
-msgid "Replace currently running instance of Rygel"
-msgstr "현재 실행 중인 라이겔 인스턴스를 멈추고 대신 실행합니다"
-
-#: src/librygel-core/rygel-cmdline-config.vala:139
-msgid "Shutting down remote Rygel instance\n"
-msgstr "원격 라이겔 인스턴스를 종료합니다\n"
-
-#: src/librygel-core/rygel-cmdline-config.vala:147
-#, c-format
-msgid "Failed to shut down other Rygel instance: %s"
-msgstr "다른 라이겔 인스턴스를 종료하는데 실패했습니다: %s"
-
-#: src/librygel-core/rygel-cmdline-config.vala:161
-#: src/librygel-core/rygel-cmdline-config.vala:170
-#: src/librygel-core/rygel-cmdline-config.vala:178
-#: src/librygel-core/rygel-cmdline-config.vala:186
-#: src/librygel-core/rygel-cmdline-config.vala:194
-#: src/librygel-core/rygel-cmdline-config.vala:202
-#: src/librygel-core/rygel-cmdline-config.vala:210
-#: src/librygel-core/rygel-cmdline-config.vala:249
-#: src/librygel-core/rygel-cmdline-config.vala:268
+#: src/librygel-core/rygel-cmdline-config.vala:98
+#: src/librygel-core/rygel-cmdline-config.vala:107
+#: src/librygel-core/rygel-cmdline-config.vala:116
+#: src/librygel-core/rygel-cmdline-config.vala:125
+#: src/librygel-core/rygel-cmdline-config.vala:134
+#: src/librygel-core/rygel-cmdline-config.vala:143
+#: src/librygel-core/rygel-cmdline-config.vala:179
+#: src/librygel-core/rygel-cmdline-config.vala:192
+#: src/librygel-core/rygel-cmdline-config.vala:207
+#: src/librygel-core/rygel-cmdline-config.vala:213
+#: src/librygel-core/rygel-cmdline-config.vala:220
+#: src/librygel-core/rygel-cmdline-config.vala:224
+#: src/librygel-core/rygel-cmdline-config.vala:228
+#: src/librygel-core/rygel-cmdline-config.vala:248
+#: src/librygel-core/rygel-cmdline-config.vala:270
 #: src/librygel-core/rygel-cmdline-config.vala:274
-#: src/librygel-core/rygel-cmdline-config.vala:281
-#: src/librygel-core/rygel-cmdline-config.vala:285
-#: src/librygel-core/rygel-cmdline-config.vala:289
-#: src/librygel-core/rygel-cmdline-config.vala:312
-#: src/librygel-core/rygel-cmdline-config.vala:338
-#: src/librygel-core/rygel-cmdline-config.vala:367
-#: src/librygel-core/rygel-cmdline-config.vala:393
-#: src/librygel-core/rygel-cmdline-config.vala:418
+#: src/librygel-core/rygel-cmdline-config.vala:287
 #: src/librygel-core/rygel-environment-config.vala:100
 #: src/librygel-core/rygel-environment-config.vala:104
 #: src/librygel-core/rygel-environment-config.vala:108
@@ -344,11 +330,11 @@ msgstr "“%s/title”에 설정된 값 없음"
 msgid "No value available for “%s/%s”"
 msgstr "“%s/%s”에 사용 가능한 값이 없음"
 
-#: src/librygel-core/rygel-plugin-information.vala:64
+#: src/librygel-core/rygel-plugin-information.vala:67
 msgid "[Plugin] group not found"
 msgstr "[플러그인] 그룹을 찾을 수 없습니다"
 
-#: src/librygel-core/rygel-plugin-information.vala:76
+#: src/librygel-core/rygel-plugin-information.vala:79
 #, c-format
 msgid "Plugin module %s does not exist"
 msgstr "%s 플러그인 모듈이 없습니다"
@@ -373,7 +359,7 @@ msgstr "경로 “%s”에서 모듈 읽어오기 실패: %s"
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "“%2$s”의 엔트리 포인트 펑션 “%1$s” 찾기 실패: %3$s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:155
+#: src/librygel-core/rygel-plugin-loader.vala:156
 #, c-format
 msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
 msgstr "'%s' 모듈이 이미 읽어들인 '%s' 모듈과 충돌합니다. 건너 뜁니다"
@@ -383,17 +369,17 @@ msgstr "'%s' 모듈이 이미 읽어들인 '%s' 모듈과 충돌합니다. 건�
 msgid "Failed to open plugins folder: “%s”"
 msgstr "플러그인 폴더를 열 수 없습니다: “%s”"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:149
+#: src/librygel-core/rygel-recursive-module-loader.vala:160
 #, c-format
 msgid "Error listing contents of folder “%s”: %s"
 msgstr "폴더 “%s”의 내용 나열 중 오류: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:193
+#: src/librygel-core/rygel-recursive-module-loader.vala:204
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "플러그인을 읽어들일 수 없습니다: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:220
+#: src/librygel-core/rygel-recursive-module-loader.vala:231
 #, c-format
 msgid "Failed to query content type for “%s”"
 msgstr "“%s”의 컨텐츠 타입 쿼리 실패"
@@ -433,7 +419,9 @@ msgstr "트렌젝션 롤백 실패: %s"
 msgid ""
 "Your GStreamer installation seems to be missing the “playbin3” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
-msgstr "GStreamer에 “playbin3” 엘리먼트를 설치하지 않은 것 같습니다. 라이겔의 GStreamer 렌더러는 이 엘리먼트 없이 동작하지 않습니다."
+msgstr ""
+"GStreamer에 “playbin3” 엘리먼트를 설치하지 않은 것 같습니다. 라이겔의 "
+"GStreamer 렌더러는 이 엘리먼트 없이 동작하지 않습니다."
 
 #: src/librygel-renderer/rygel-av-transport.vala:204
 #: src/librygel-renderer/rygel-rendering-control.vala:137
@@ -468,26 +456,29 @@ msgid "Play mode not supported"
 msgstr "재생 모드를 지원하지 않습니다"
 
 #. FIXME: Return a more sensible error here.
-#: src/librygel-renderer/rygel-av-transport.vala:774
-#: src/librygel-renderer/rygel-av-transport.vala:789
-#: src/librygel-renderer/rygel-av-transport.vala:798
-#: src/librygel-renderer/rygel-av-transport.vala:877
+#: src/librygel-renderer/rygel-av-transport.vala:773
+#: src/librygel-renderer/rygel-av-transport.vala:779
+#: src/librygel-renderer/rygel-av-transport.vala:794
+#: src/librygel-renderer/rygel-av-transport.vala:803
+#: src/librygel-renderer/rygel-av-transport.vala:863
+#: src/librygel-renderer/rygel-av-transport.vala:898
 msgid "Resource not found"
 msgstr "리소스가 없습니다"
 
-#: src/librygel-renderer/rygel-av-transport.vala:787
+#: src/librygel-renderer/rygel-av-transport.vala:792
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "재생 목록을 파싱하는데 문제: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:873
+#: src/librygel-renderer/rygel-av-transport.vala:859
+#: src/librygel-renderer/rygel-av-transport.vala:894
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "%s에 있는 리소스에 접근하는데 실패: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:889
+#: src/librygel-renderer/rygel-av-transport.vala:875
 msgid "Illegal MIME-type"
 msgstr "잘못된 MIME 형식"
 
@@ -571,7 +562,7 @@ msgstr "항목의 하위 항목을 살펴볼 수 없습니다."
 msgid "Failed to browse “%s”: %s\n"
 msgstr "“%s” 검색 실패: %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:149
+#: src/librygel-server/rygel-client-hacks.vala:147
 msgid "Not Applicable"
 msgstr "적용할 수 없음"
 
@@ -583,14 +574,24 @@ msgstr "파일 트랜스퍼를 찾을 수 없습니다"
 msgid "No D-Bus thumbnailer service available"
 msgstr "D-버스 섬네일 프로그램 없음"
 
-#: src/librygel-server/rygel-http-get.vala:52
+#: src/librygel-server/rygel-http-byte-seek-request.vala:116
+#, c-format
+msgid "Range end value %lld is smaller than range start value %lld: '%s'"
+msgstr "범위의 끝 값이 (%lld) 범위 시작 값보다 (%lld) 작습니다: '%s'"
+
+#: src/librygel-server/rygel-http-get.vala:53
 msgid "Invalid Request (only GET and HEAD supported)"
 msgstr "잘못된 요청(GET 및 HEAD만 지원합니다)"
 
 # FIXME: 코드에서 msgid 표시 잘못됨
-#: src/librygel-server/rygel-http-get.vala:60
+#: src/librygel-server/rygel-http-get.vala:61
 msgid " must be 1"
 msgstr "은(는) 1이어야 합니다"
+
+#: src/librygel-server/rygel-http-get.vala:91
+#, c-format
+msgid "%s transfer mode not supported for '%s'"
+msgstr "'%2$s'에 대해 %1$s 전송 모드를 지원하지 않음"
 
 #: src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
@@ -602,7 +603,7 @@ msgid "Not found"
 msgstr "찾지 못했습니다"
 
 #: src/librygel-server/rygel-http-post.vala:64
-#: src/librygel-server/rygel-import-resource.vala:193
+#: src/librygel-server/rygel-import-resource.vala:215
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "데이터를 비어있지 않은 “%s” 항목에 넣는 일은 허용하지 않습니다"
@@ -618,7 +619,7 @@ msgstr "%s에 쓸 수 있는 URI가 없습니다"
 msgid "Failed to move dotfile %s: %s"
 msgstr "점으로 시작하는 %s 파일을 옮기는데 실패: %s"
 
-#: src/librygel-server/rygel-http-request.vala:95
+#: src/librygel-server/rygel-http-request.vala:104
 #, c-format
 msgid "Requested item “%s” not found"
 msgstr "요청한 항목 “%s”(을)를 찾지 못했습니다"
@@ -628,17 +629,17 @@ msgstr "요청한 항목 “%s”(을)를 찾지 못했습니다"
 msgid "Couldn’t create data source for %s"
 msgstr "%s에 대한 데이터 소스를 만들 수 없습니다"
 
-#: src/librygel-server/rygel-import-resource.vala:124
+#: src/librygel-server/rygel-import-resource.vala:123
 #, c-format
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "“%s”의 원래 URI 가져오기 실패: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:188
+#: src/librygel-server/rygel-import-resource.vala:210
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "“%s” URI는 컨텐츠를 가져올 대상으로 올바르지 않습니다"
 
-#: src/librygel-server/rygel-import-resource.vala:276
+#: src/librygel-server/rygel-import-resource.vala:237
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "%s에서 파일을 가져오는데 실패: %s"
@@ -782,7 +783,7 @@ msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init을 부르지 않았습니다. 계속할 수 없습니다."
 
 #: src/librygel-server/rygel-media-file-item.vala:177
-#: src/librygel-server/rygel-video-item.vala:222
+#: src/librygel-server/rygel-video-item.vala:242
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "%s URI의 프로토콜을 결정할 수 없습니다"
@@ -872,7 +873,7 @@ msgstr "“%s” UPnP 클래스를 지원하지 않음"
 
 #: src/librygel-server/rygel-object-creator.vala:419
 #: src/librygel-server/rygel-object-creator.vala:431
-#: src/librygel-server/rygel-object-creator.vala:723
+#: src/librygel-server/rygel-object-creator.vala:721
 #: src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
@@ -893,7 +894,7 @@ msgstr "“%s” DLNA 프로파일 지원하지 않음"
 msgid "Cannot create object of class “%s”: Not supported"
 msgstr "“%s” 클래스의 오브젝트를 만들 수 없습니다: 지원하지 않습니다"
 
-#: src/librygel-server/rygel-object-creator.vala:754
+#: src/librygel-server/rygel-object-creator.vala:752
 #, c-format
 msgid ""
 "Error from container “%s” on trying to find the newly added child object "
@@ -922,7 +923,8 @@ msgstr "주어진 검색 기준이 잘못되었습니다"
 msgid "Failed to search in “%s”: %s"
 msgstr "“%s” 검색 실패: %s"
 
-#: src/librygel-server/rygel-subtitle-manager.vala:92
+#: src/librygel-server/rygel-subtitle-manager.vala:49
+#: src/librygel-server/rygel-subtitle-manager.vala:96
 msgid "No subtitle available"
 msgstr "제목 사용 불가"
 
@@ -1146,28 +1148,28 @@ msgstr "명령행 인자를 파싱하는데 실패: %s"
 msgid "Failed to create media art extractor: %s"
 msgstr "미디어아트 추출을 준비하는데 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:146
+#: src/plugins/media-export/rygel-media-export-harvester.vala:150
 #, c-format
 msgid "“%s” harvested"
 msgstr "“%s”(을)를 수집했습니다"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:202
+#: src/plugins/media-export/rygel-media-export-harvester.vala:205
 #, c-format
 msgid "Error fetching object “%s” from database: %s"
 msgstr "데이터베이스에서 오브젝트 “%s” 패치 중 오류: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:210
+#: src/plugins/media-export/rygel-media-export-harvester.vala:213
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "%s 파일의 정보를 알아보는데 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:245
+#: src/plugins/media-export/rygel-media-export-harvester.vala:248
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr ""
 "상위 오브젝트에서 %s 오브젝트가 없습니다. 데이터베이스가 일관성이 없습니다."
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:249
+#: src/plugins/media-export/rygel-media-export-harvester.vala:252
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "데이터베이스에서 오브젝트 제거 중 오류: %s"
@@ -1182,17 +1184,17 @@ msgstr "%s 파일을 수집하는데 실패: %s"
 msgid "Failed to query database: %s"
 msgstr "데이터 베이스 질의 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:272
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "“%s” 폴더 열거하기 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:286
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:290
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "%s 컨테이너의 하위 항목을 알아보는데 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
 #, c-format
 msgid "Failed to extract meta-data for file %s"
 msgstr "%s 파일의 메타데이터를 찾는데 실패"
@@ -1200,7 +1202,7 @@ msgstr "%s 파일의 메타데이터를 찾는데 실패"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:358
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:362
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "%s URI 건너뜀. 메타데이터 추출이 완전히 실패했습니다: %s"
@@ -1220,70 +1222,70 @@ msgstr "데이터베이스를 바로잡는 인덱스 갱신 강제에 실패했�
 msgid "Failed to create indices: %s"
 msgstr "인덱스를 만드는데 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:101
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:97
 #, c-format
 msgid "Cannot upgrade from version %d"
 msgstr "%d 버전에서 업그레이드할 수 없습니다"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:117
 #, c-format
 msgid "Database upgrade to v18 failed: %s"
 msgstr "버전 18로 데이터베이스 업그레이드 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:134
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:135
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "ID %s(으)로 항목 추가 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:217
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:218
 #, c-format
 msgid "Failed to get update IDs: %s"
 msgstr "업데이트 아이디를 가져오는데 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:400
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:401
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
 msgstr "데이터베이스 불일치: %s 항목에 %s 상위 항목이 없습니다"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:525
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:526
 msgid "Failed to get reset token"
 msgstr "초기화 토큰 가져오기 실패"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:537
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:538
 #, c-format
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "ServiceResetToken 유지 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:547
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:548
 #, c-format
 msgid "Failed to remove virtual folders: %s"
 msgstr "가상 폴더 제거에 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:561
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:562
 #, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
 msgstr "%s 항목을 보호(%d) 표시하는데 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:571
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:572
 msgid "Cannot create references to containers"
 msgstr "컨테이너에 대한 레퍼런스를 만들 수 없습니다"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:597
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:598
 #, c-format
 msgid "Failed to add %s to ignored files: %s"
 msgstr "무시할 파일에 %s 추가 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:610
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:611
 #, c-format
 msgid "Failed to get whether URI %s is ignored: %s"
 msgstr "%s URI를 무시할지 알아내기 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:626
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:627
 #, c-format
 msgid "Failed to get whether item %s is guarded: %s"
 msgstr "%s 항목이 보호인지 알아내기 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:666
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:667
 #, c-format
 msgid ""
 "The version “%d” of the detected database is newer than our supported "
@@ -1291,21 +1293,21 @@ msgid ""
 msgstr ""
 "발견한 데이터베이스의 “%d” 버전은 지원하는 “%d” 버전보다 더 최신입니다."
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:688
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:689
 msgid "Incompatible schema… cannot proceed"
 msgstr "호환되지 않는 스키마… 진행 불가"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:694
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:695
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr "잘못된 데이터베이스, sqlite_master 테이블에 질의할 수 없습니다: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:895
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:896
 #, c-format
 msgid "Failed to create database schema: %s"
 msgstr "데이터베이스 스키마 만들기 실패: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1232
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "지원하지 않는 정렬 필드: %s"
@@ -1389,7 +1391,7 @@ msgstr "%s에서 항목을 제거할 수 없습니다"
 msgid "upnp:class not supported in %s"
 msgstr "%s에서 upnp:class를 지원하지 않음"
 
-#: src/plugins/media-export/rygel-media-export-plugin.vala:52
+#: src/plugins/media-export/rygel-media-export-plugin.vala:53
 #, c-format
 msgid "Failed to load plugin %s: %s"
 msgstr "%s 플러그인을 읽어들일 수 없습니다: %s"
@@ -1540,6 +1542,32 @@ msgstr "트래커 연결 만들기 실패: %s"
 msgid "Failed to get Tracker connection: %s"
 msgstr "트래커 연결을 가져오는데 실패: %s"
 
+#: src/rygel/application.vala:88
+#, c-format
+msgid "Failed to load user configuration: %s"
+msgstr "사용자 설정 읽어오기 실패: %s"
+
+#: src/rygel/application.vala:125
+#, c-format
+msgid "No plugins found in %d second; giving up…"
+msgid_plural "No plugins found in %d seconds; giving up…"
+msgstr[0] "%d초 동안 플러그인을 찾지 못했습니다. 중지합니다…"
+
+#: src/rygel/application.vala:154
+#, c-format
+msgid "Rygel v%s starting…"
+msgstr "라이겔 버전 %s 시작하는 중…"
+
+#: src/rygel/application.vala:202
+#, c-format
+msgid "Failed to create RootDevice for %s. Reason: %s"
+msgstr "%s의 RootDevice 만들기 실패. 원인: %s"
+
+#: src/rygel/application.vala:283
+#, c-format
+msgid "Failed to create root device factory: %s"
+msgstr "최상위 디바이스 팩토리 만들기 실패: %s"
+
 #: src/rygel/rygel-acl.vala:110
 #, c-format
 msgid "Failed to query ACL: %s"
@@ -1557,36 +1585,6 @@ msgstr "ACL 대체 정책이 없습니다. “allow”를 사용합니다"
 #: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "ACL 대체 정책이 없습니다. “deny”를 사용합니다"
-
-#: src/rygel/rygel-dbus-service.vala:81
-msgid "Another instance of Rygel is already running. Not starting."
-msgstr "다른 라이겔 인스턴스가 이미 실행 중입니다. 시작하지 않습니다."
-
-#: src/rygel/rygel-main.vala:85
-#, c-format
-msgid "Rygel v%s starting…"
-msgstr "라이겔 버전 %s 시작하는 중…"
-
-#: src/rygel/rygel-main.vala:113
-#, c-format
-msgid "No plugins found in %d second; giving up…"
-msgid_plural "No plugins found in %d seconds; giving up…"
-msgstr[0] "%d초 동안 플러그인을 찾지 못했습니다. 중지합니다…"
-
-#: src/rygel/rygel-main.vala:177
-#, c-format
-msgid "Failed to create root device factory: %s"
-msgstr "최상위 디바이스 팩토리 만들기 실패: %s"
-
-#: src/rygel/rygel-main.vala:235
-#, c-format
-msgid "Failed to create RootDevice for %s. Reason: %s"
-msgstr "%s의 RootDevice 만들기 실패. 원인: %s"
-
-#: src/rygel/rygel-main.vala:272
-#, c-format
-msgid "Failed to load user configuration: %s"
-msgstr "사용자 설정 읽어오기 실패: %s"
 
 #: src/ui/rygel-preferences-dialog.vala:109
 #, c-format
@@ -1607,3 +1605,16 @@ msgstr "라이겔 서비스 중지 실패: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "라이겔 서비스 시작 실패: %s"
+
+#~ msgid "Replace currently running instance of Rygel"
+#~ msgstr "현재 실행 중인 라이겔 인스턴스를 멈추고 대신 실행합니다"
+
+#~ msgid "Shutting down remote Rygel instance\n"
+#~ msgstr "원격 라이겔 인스턴스를 종료합니다\n"
+
+#, c-format
+#~ msgid "Failed to shut down other Rygel instance: %s"
+#~ msgstr "다른 라이겔 인스턴스를 종료하는데 실패했습니다: %s"
+
+#~ msgid "Another instance of Rygel is already running. Not starting."
+#~ msgstr "다른 라이겔 인스턴스가 이미 실행 중입니다. 시작하지 않습니다."
