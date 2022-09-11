@@ -9,7 +9,3 @@ Terminal=false
 Type=Application
 StartupNotify=true
 NotShowIn=GNOME;
-X-GNOME-Bugzilla-Bugzilla=GNOME
-X-GNOME-Bugzilla-Product=Rygel
-X-GNOME-Bugzilla-Component=rygel-preferences
-X-GNOME-Bugzilla-Version=@VERSION@

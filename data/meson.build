@@ -43,22 +43,14 @@ if not (get_option('systemd-user-units-dir') == 'off')
                    install_dir : systemd_user_unit_dir)
 endif
 
-rygel_desktop_preferences_in = configure_file(input: 'rygel-preferences.desktop.in.in',
-               output : 'rygel-preferences.desktop.in',
-               configuration : data_conf)
-
-rygel_desktop_in = configure_file(input: 'rygel.desktop.in.in',
-               output : 'rygel.desktop.in',
-               configuration : data_conf)
-
-i18n.merge_file(input: rygel_desktop_in,
+i18n.merge_file(input: 'rygel.desktop.in',
                 output: 'rygel.desktop',
                 po_dir : join_paths('..','po'),
                 type: 'desktop',
                 install : true,
                 install_dir: join_paths(get_option('datadir'), 'applications'))
 
-i18n.merge_file(input: rygel_desktop_preferences_in,
+i18n.merge_file(input: 'rygel-preferences.desktop.in',
                 output: 'rygel-preferences.desktop',
                 po_dir : join_paths('..','po'),
                 type: 'desktop',
