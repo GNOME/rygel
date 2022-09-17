@@ -1,3 +1,45 @@
+0.42.0 (stable)
+===============
+ - Remove obsolete .desktop enries
+ - Translation updates
+
+All contributors to this release:
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Guillaume Bernard <associations@guillaume-bernard.fr>
+ - Alexander Shopov <ash@kambanaria.org>
+ - Jake Dane <3689-jakedane@users.noreply.gitlab.gnome.org>
+ - Jürgen Benvenuti <gastornis@posteo.org>
+ - Matej Urbančič <mateju@src.gnome.org>
+ - Anders Jonsson <anders.jonsson@norsjovallen.se>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>
+ - Alan Mortensen <alanmortensen.am@gmail.com>
+ - Balázs Úr <balazs@urbalazs.hu>
+ - Jordi Mas <jmas@softcatala.org>
+ - Leônidas Araújo <leorusvellt@hotmail.com>
+ - Marek Černocký <marek@manet.cz>
+ - Nart Tlisha <daniel.abzakh@gmail.com>
+ - Fran Dieguez <frandieguez@gnome.org>
+ - Goran Vidović <trebelnik2@gmail.com>
+
+Added/updated translations:
+ - ab.po, courtesy of Нанба Наала
+ - bg.po, courtesy of Alexander Shopov
+ - ca.po, courtesy of Jordi Mas i Hernàndez
+ - cs.po, courtesy of Marek Černocký
+ - da.po, courtesy of Alan Mortensen
+ - de.po, courtesy of Jürgen Benvenuti
+ - fr.po, courtesy of Guillaume Bernard
+ - gl.po, courtesy of Fran Dieguez
+ - hr.po, courtesy of gogo
+ - hu.po, courtesy of Balázs Úr
+ - ko.po, courtesy of Changwoo Ryu
+ - lv.po, courtesy of Rūdolfs Mazurs
+ - pl.po, courtesy of Piotr Drąg
+ - pt_BR.po, courtesy of Leônidas Araújo
+ - sl.po, courtesy of Matej Urbančič
+ - sv.po, courtesy of Anders Jonsson
+
 0.41.2 (development)
 ====================
  - Port to GLib's UUID function
