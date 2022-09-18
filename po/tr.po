@@ -1,6 +1,7 @@
 # Turkish translation for rygel.
-# Copyright (C) 2010 rygel's COPYRIGHT HOLDER
+# Copyright (C) 2010-2022 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
+#
 # erkan kadak <erkan@hardhours.com>, 2010.
 # Necdet Yücel <necdetyucel@gmail.com>, 2014, 2015.
 # Muhammet Kara <muhammetk@gmail.com>, 2011, 2014, 2015.
@@ -11,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2022-07-09 09:23+0000\n"
+"POT-Creation-Date: 2022-09-12 11:46+0000\n"
 "PO-Revision-Date: 2022-07-23 01:18+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
@@ -23,26 +24,26 @@ msgstr ""
 "X-Generator: Gtranslator 2.91.7\n"
 "X-POOTLE-MTIME: 1433415626.000000\n"
 
-#: data/rygel.desktop.in.in:3
+#: data/rygel.desktop.in:3
 msgid "Rygel"
 msgstr "Rygel"
 
-#: data/rygel.desktop.in.in:4
+#: data/rygel.desktop.in:4
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA Servisleri"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in.in:6
+#: data/rygel.desktop.in:6
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
 "medya sunucusu;medya yorumlayıcı;ortam sunucusu;ortam yorumlayıcı;paylaş;ses;"
 "video;görüntü;resimler;fotoğraflar;"
 
-#: data/rygel-preferences.desktop.in.in:3 data/rygel-preferences.ui:24
+#: data/rygel-preferences.desktop.in:3 data/rygel-preferences.ui:24
 msgid "Rygel Preferences"
 msgstr "Rygel Tercihleri"
 
-#: data/rygel-preferences.desktop.in.in:4
+#: data/rygel-preferences.desktop.in:4
 msgid "UPnP/DLNA Preferences"
 msgstr "UPnP/DLNA Tercihleri"
 
@@ -577,7 +578,8 @@ msgstr "Hiç D-Bus küçük resimleyici servisi yok"
 #: src/librygel-server/rygel-http-byte-seek-request.vala:116
 #, c-format
 msgid "Range end value %lld is smaller than range start value %lld: '%s'"
-msgstr "%lld aralık bitiş değeri %lld aralık başlangıç değerinden küçüktür: '%s'"
+msgstr ""
+"%lld aralık bitiş değeri %lld aralık başlangıç değerinden küçüktür: '%s'"
 
 #: src/librygel-server/rygel-http-get.vala:53
 msgid "Invalid Request (only GET and HEAD supported)"
@@ -1602,179 +1604,3 @@ msgstr "Rygel servisi başlatılamadı: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Rygel servisi durdulamadı: %s"
-
-#~ msgid "Replace currently running instance of Rygel"
-#~ msgstr "Şu anda çalışan Rygel sürecinin yerine geç"
-
-#~ msgid "Shutting down remote Rygel instance\n"
-#~ msgstr "Uzak Rygel süreci kapatılıyor\n"
-
-#, c-format
-#~ msgid "Failed to shut down other Rygel instance: %s"
-#~ msgstr "Diğer Rygel süreci kapatılamadı: %s"
-
-#~ msgid "Another instance of Rygel is already running. Not starting."
-#~ msgstr "Başka Rygel süreci zaten çalışıyor. Başlatılmayacak."
-
-#~ msgid "rygel"
-#~ msgstr "rygel"
-
-#~ msgid "column"
-#~ msgstr "sütun"
-
-#~ msgid "Failed to probe protocol for URI %s. Assuming '%s'"
-#~ msgstr "URI %s için iletişim kuralı incelenemedi. '%s' varsayılıyor"
-
-#~ msgid "'ObjectID' argument missing."
-#~ msgstr "'ObjectID' değişkeni eksik."
-
-#~ msgid "Can't process non-file URI %s"
-#~ msgstr "Dosya olmayan URI %s işlenemez"
-
-#~ msgid "Failed to start metadata discoverer: %s"
-#~ msgstr "Üstveri bulucu başlatılamadı: %s"
-
-#~ msgid "Child failed fatally. Last uri was %s"
-#~ msgstr "Çocuk süreç, ölümcül şekilde başarısız oldu. Son uri %s"
-
-#~ msgid "Reading from child's error stream failed: %s"
-#~ msgstr "Çocuk sürecin hata akışından okuma başarısız oldu: %s"
-
-#~ msgid "Invalid metadata serialisation, cannot process %s"
-#~ msgstr "Geçersiz üstveri serileştirmesi, %s işlenemiyor"
-
-#~ msgid "Invalid metadata serialisation: expected 7 children, got %d"
-#~ msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
-#~ msgstr[0] ""
-#~ "Geçersiz üstveri serileştirmesi: 7 alt süreç bekleniyordu fakat %d alındı"
-
-#~ msgid "Invalid metadata serialisation of metadata; %s"
-#~ msgstr "Üstveride geçersiz üstveri serileştirmesi; %s"
-
-#~ msgid "Invalid metadata serialisation of video info; %s"
-#~ msgstr "Video bilgisinde geçersiz üstveri serileştirmesi; %s"
-
-#~ msgid "Invalid metadata serialisation of audio info; %s"
-#~ msgstr "Ses bilgisinde geçersiz üstveri serileştirmesi; %s"
-
-#~ msgid "Invalid metadata serialisation of general info"
-#~ msgstr "Genel bilgilerde geçersiz üstveri serileştirmesi"
-
-#~ msgid "Invalid metadata serialisation of DLNA profile %s"
-#~ msgstr "DLNA profili %s'de geçersiz üstveri serileştirmesi"
-
-#~ msgid "Invalid metadata serialisation of file info %s"
-#~ msgstr "Dosya bilgisi %s'de geçersiz üstveri serileştirmesi"
-
-#~ msgid "Invalid metadata serialisation of file info"
-#~ msgstr "Dosya bilgisinde geçersiz üstveri serileştirmesi"
-
-#~ msgid "Disable UPnP (streaming-only)"
-#~ msgstr "UPnP'yi devre dışı bırak (sadece akış)"
-
-#~ msgid "Rygel is running in streaming-only mode."
-#~ msgstr "Rygel sadece akış kipinde çalışıyor."
-
-#~| msgid "Could not determine protocol for %s"
-#~ msgid "Could not determine protocol for uri %s"
-#~ msgstr "%s adresi (uri) için iletişim kuralı belirlenemedi"
-
-#~ msgid "Invalid Range '%s'"
-#~ msgstr "'%s' geçersiz aralıkta"
-
-#~ msgid "Invalid Request"
-#~ msgstr "Geçersiz İstek"
-
-#~ msgid "No transcoder available for target format '%s'"
-#~ msgstr "'%s' hedef formatı için dönüştürücü kullanılamaz"
-
-#~ msgid "Object %s is not an item"
-#~ msgstr "%s nesnesi bir öğe değil"
-
-#~ msgid "Failed to attach to D-Bus session bus: %s"
-#~ msgstr "D-Bus oturum yolu birleştirilemedi: %s"
-
-#~ msgid "No metadata extractor available. Will not crawl."
-#~ msgstr "Kullanılabilir metaveri çıkarıcısı yok. Emeklenmeyecek."
-
-#~ msgid "Failed to create MediaExport D-Bus service: %s"
-#~ msgstr "MediaExport D-Bus hizmeti oluşturulamadı: %s"
-
-#~| msgid "Failed to start D-Bus service: %s"
-#~ msgid "Failed to create D-Bus proxies: %s"
-#~ msgstr "D-bus vekilleri oluşturulamadı: %s"
-
-#~ msgid "Failed to connect to session bus: %s"
-#~ msgstr "Oturum yoluna bağlanılamadı: %s"
-
-#~ msgid "Seek failed"
-#~ msgstr "Gezinme başarısız"
-
-#~ msgid "Not Found"
-#~ msgstr "Bulunamadı"
-
-#~ msgid "Failed to start D-Bus service: %s"
-#~ msgstr "D-bus servisi başlatılamadı: %s"
-
-#~ msgid "XML node '%s' not found."
-#~ msgstr "XML node '%s' bulunamadı"
-
-#~ msgid "Failed to find thumbnails folder."
-#~ msgstr "Küçük resimler klasörü bulunamadı"
-
-#~ msgid "Failed to write modified description to %s."
-#~ msgstr "Değiştirlen açıklama %s e yazılamadı"
-
-#~ msgid "General"
-#~ msgstr "Genel"
-
-#~ msgid "MPE_G TS"
-#~ msgstr "MPE_G TS"
-
-#~ msgid "Share M_usic"
-#~ msgstr "M_üzik Paylaş"
-
-#~ msgid "Share _Pictures"
-#~ msgstr "_Resim Paylaş"
-
-#~ msgid "Share _Videos"
-#~ msgstr "_Videoları Paylaş"
-
-#~ msgid "Ti_tle"
-#~ msgstr "Ba_şlık"
-
-#~ msgid ""
-#~ "Write %u for username, %n for real name of the user and %h for host name"
-#~ msgstr ""
-#~ "Kullanıcı adı için %u, kullanıcının gerçek adı için %u ve makine adı için "
-#~ "%h giriniz"
-
-#~ msgid "_Enable UPnP/DLNA"
-#~ msgstr "UPnP/DLNA'yı _Etkinleştir"
-
-#~ msgid "_LPCM"
-#~ msgstr "_LPCM"
-
-#~ msgid "_MP3"
-#~ msgstr "_MP3"
-
-#~ msgid "_Media Export"
-#~ msgstr "_Ortam Dışa Aktar"
-
-#~ msgid "_Transcoding support"
-#~ msgstr "_Dönüştürme desteği"
-
-#~ msgid "_URIs"
-#~ msgstr "_URI ler"
-
-#~ msgid "Failed to create instance of database"
-#~ msgstr "Veritabanı örneği oluşturma başarısız oldu"
-
-#~ msgid "Item '%s' didn't provide a URI"
-#~ msgstr "'%s' öğesi bir URI sağlamadı"
-
-#~ msgid "Plugin 'fakesink' missing"
-#~ msgstr "'fakesing' eklentisi eksik"
-
-#~ msgid "Failed to seek to %s-%s on URI %s: %s"
-#~ msgstr "URI %s de  %s-%s e araştırılamadı: %s"
