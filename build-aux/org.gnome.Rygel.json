@@ -36,6 +36,10 @@
         {
             "name" : "gssdp",
             "buildsystem" : "meson",
+            "config-opts" : [
+                "-Dmanpages=false",
+                "-Dgtk_doc=false"
+            ],
             "sources" : [
                 {
                     "type" : "git",
@@ -47,6 +51,9 @@
         {
             "name" : "gupnp",
             "buildsystem" : "meson",
+            "config-opts" : [
+                "-Dgtk_doc=false"
+            ],
             "sources" : [
                 {
                     "type" : "git",
