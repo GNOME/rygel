@@ -34,7 +34,7 @@ If your source file is program.c, you can compile it with:
 </para>
 <para>
 <command>
-gcc program.cc -o program `pkg-config --cflags --libs rygel-db-2.6`
+gcc program.cc -o program `pkg-config --cflags --libs rygel-db-2.8`
 </command>
 </para>
 
@@ -43,7 +43,7 @@ Alternatively, if using autoconf, use the following in configure.ac:
 </para>
 <para>
 <programlisting>
-PKG_CHECK_MODULES([DEPS], [rygel-db-2.6])
+PKG_CHECK_MODULES([DEPS], [rygel-db-2.8])
 </programlisting>
 </para>
 
