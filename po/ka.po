@@ -1,41 +1,41 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Georgian translation for rygel
+# Copyright (C) 2022 rygel authors
+# This file is distributed under the same license as the rygel package.
+# Ekaterine Papava <papava.e@gtu.ge>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2022-06-22 09:23+0000\n"
-"PO-Revision-Date: 2022-07-17 19:41+0200\n"
-"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"POT-Creation-Date: 2022-09-12 11:46+0000\n"
+"PO-Revision-Date: 2022-12-26 09:43+0100\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
-#: data/rygel.desktop.in.in:3
+#: data/rygel.desktop.in:3
 msgid "Rygel"
 msgstr "Rygel"
 
-#: data/rygel.desktop.in.in:4
+#: data/rygel.desktop.in:4
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA სერვისები"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in.in:6
+#: data/rygel.desktop.in:6
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "mediaserver;mediarenderer;share;audio;video;pictures;"
 
-#: data/rygel-preferences.desktop.in.in:3 data/rygel-preferences.ui:24
+#: data/rygel-preferences.desktop.in:3 data/rygel-preferences.ui:24
 msgid "Rygel Preferences"
 msgstr "Rygel -ის მორგება"
 
-#: data/rygel-preferences.desktop.in.in:4
+#: data/rygel-preferences.desktop.in:4
 msgid "UPnP/DLNA Preferences"
 msgstr "UPnP/DLNA -ის მორგება"
 
@@ -119,7 +119,7 @@ msgstr ""
 #. / No test with the specified TestID was found
 #: src/librygel-core/rygel-basic-management.vala:158
 msgid "No Such Test"
-msgstr ""
+msgstr "ასეთი ტესტის გარეშე"
 
 #. / TestID is valid but refers to the wrong test type
 #: src/librygel-core/rygel-basic-management.vala:166
@@ -127,7 +127,7 @@ msgstr ""
 #: src/librygel-core/rygel-basic-management.vala:382
 #: src/librygel-core/rygel-basic-management.vala:471
 msgid "Wrong Test Type"
-msgstr ""
+msgstr "ტესტის არასწორი ტიპი"
 
 #. / TestID is valid but the test Results are not available
 #: src/librygel-core/rygel-basic-management.vala:174
@@ -273,11 +273,11 @@ msgstr ""
 #: src/librygel-core/rygel-meta-config.vala:258
 #: src/librygel-core/rygel-meta-config.vala:277
 msgid "No value available"
-msgstr ""
+msgstr "მნიშვნელობა ხელმიუწვდომელია"
 
 #: src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
-msgstr ""
+msgstr "არასწორი შეერთების მიმართვა"
 
 #: src/librygel-core/rygel-description-file.vala:494
 #, c-format
@@ -287,7 +287,7 @@ msgstr ""
 #: src/librygel-core/rygel-energy-management-helper.c:55
 #, c-format
 msgid "Failed to get a socket: %s"
-msgstr ""
+msgstr "სოკეტის მიღების შეცდომა: %s"
 
 #: src/librygel-core/rygel-energy-management-helper.c:62
 #, c-format
@@ -418,22 +418,22 @@ msgstr ""
 #: src/librygel-renderer/rygel-av-transport.vala:204
 #: src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
-msgstr ""
+msgstr "არასწორი InstanceID"
 
 #: src/librygel-renderer/rygel-av-transport.vala:474
 msgid "Play speed not supported"
-msgstr ""
+msgstr "დაკვრის სიჩქარე მხარდაჭერილი არაა"
 
 #: src/librygel-renderer/rygel-av-transport.vala:481
 #: src/librygel-renderer/rygel-av-transport.vala:499
 msgid "Transition not available"
-msgstr ""
+msgstr "გადასვლა ხელმიუწვდომელია"
 
 #: src/librygel-renderer/rygel-av-transport.vala:529
 #: src/librygel-renderer/rygel-av-transport.vala:554
 #: src/librygel-renderer/rygel-av-transport.vala:584
 msgid "Seek mode not supported"
-msgstr ""
+msgstr "გადახვევის რეჟიმი მხარდაუჭერელია"
 
 #: src/librygel-renderer/rygel-av-transport.vala:535
 #: src/librygel-renderer/rygel-av-transport.vala:560
@@ -441,11 +441,11 @@ msgstr ""
 #: src/librygel-renderer/rygel-av-transport.vala:598
 #: src/librygel-renderer/rygel-av-transport.vala:610
 msgid "Illegal seek target"
-msgstr ""
+msgstr "გადახვევის არასწორი სამიზნე"
 
 #: src/librygel-renderer/rygel-av-transport.vala:659
 msgid "Play mode not supported"
-msgstr ""
+msgstr "დაკვრის რეჟიმი მხარდაჭერილი არაა"
 
 #. FIXME: Return a more sensible error here.
 #: src/librygel-renderer/rygel-av-transport.vala:773
@@ -472,7 +472,7 @@ msgstr ""
 
 #: src/librygel-renderer/rygel-av-transport.vala:875
 msgid "Illegal MIME-type"
-msgstr ""
+msgstr "დაუშვებელი MIME-type"
 
 #: src/librygel-renderer/rygel-rendering-control.vala:168
 msgid "Invalid Name"
@@ -584,7 +584,7 @@ msgstr ""
 #: src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
 msgid "Invalid URI “%s”"
-msgstr ""
+msgstr "არასწორი URI “%s”"
 
 #: src/librygel-server/rygel-http-item-uri.vala:192
 msgid "Not found"
@@ -653,7 +653,7 @@ msgstr ""
 #: src/librygel-server/rygel-reference-creator.vala:68
 #: src/librygel-server/rygel-reference-creator.vala:115
 msgid "No such object"
-msgstr ""
+msgstr "ასეთი ობიექტის გარეშე"
 
 #: src/librygel-server/rygel-item-destroyer.vala:108
 #, c-format
@@ -668,7 +668,7 @@ msgstr ""
 #. Sorry we can't do anything without the ID
 #: src/librygel-server/rygel-item-updater.vala:74
 msgid "Object ID missing"
-msgstr ""
+msgstr "ობიექტის ID-ის გარეშე"
 
 #: src/librygel-server/rygel-item-updater.vala:81
 #, c-format
@@ -690,15 +690,15 @@ msgstr ""
 #: src/librygel-server/rygel-object-creator.vala:623
 #, c-format
 msgid "Invalid date: %s"
-msgstr ""
+msgstr "არასწორი თარიღი: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:256
 msgid "Bad current tag value."
-msgstr ""
+msgstr "ჭდის არასწორი მიმდინარე მნიშვნელობა."
 
 #: src/librygel-server/rygel-item-updater.vala:260
 msgid "Bad new tag value."
-msgstr ""
+msgstr "ჭდის არასწორი ახალი მნიშვნელობა."
 
 #: src/librygel-server/rygel-item-updater.vala:263
 msgid "Tried to delete required tag."
@@ -731,7 +731,7 @@ msgstr ""
 #: src/librygel-server/rygel-m3u-playlist.vala:67
 #: src/librygel-server/rygel-m3u-playlist.vala:70
 msgid "Unknown"
-msgstr ""
+msgstr "უცნობი"
 
 #: src/librygel-server/rygel-media-art-store.vala:111
 #, c-format
@@ -782,11 +782,11 @@ msgstr ""
 #: src/librygel-server/rygel-media-object.vala:491
 #, c-format
 msgid "Bad URI: %s"
-msgstr ""
+msgstr "არასწორი URI: %s"
 
 #: src/librygel-server/rygel-media-query-action.vala:100
 msgid "Invalid number of arguments"
-msgstr ""
+msgstr "არგუმენტების არასწორი რაოდენობა"
 
 #. Sorry we can't do anything without ObjectID
 #: src/librygel-server/rygel-media-query-action.vala:122
@@ -795,11 +795,11 @@ msgstr ""
 
 #: src/librygel-server/rygel-media-query-action.vala:127
 msgid "Invalid range"
-msgstr ""
+msgstr "არასწორი დიაპაზონი"
 
 #: src/librygel-server/rygel-media-query-action.vala:131
 msgid "Missing filter"
-msgstr ""
+msgstr "ფილტრის გარეშე"
 
 #: src/librygel-server/rygel-media-query-action.vala:197
 #: src/librygel-server/rygel-object-creator.vala:414
@@ -992,7 +992,7 @@ msgstr ""
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
 msgid "Failed to seek"
-msgstr ""
+msgstr "გადახვევის შეცდომა"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
 #, c-format
@@ -1069,7 +1069,7 @@ msgstr "შემსრულებლები"
 
 #: src/plugins/lms/rygel-lms-root-container.vala:33
 msgid "Shared media"
-msgstr ""
+msgstr "გაზიარებული მედია"
 
 #: src/plugins/lms/rygel-lms-root-container.vala:45
 #: src/plugins/media-export/rygel-media-export-root-container.vala:605
@@ -1505,7 +1505,7 @@ msgstr ""
 #: src/plugins/tracker3/rygel-tracker-titles.vala:58
 #: src/plugins/tracker/rygel-tracker-titles.vala:58
 msgid "Titles"
-msgstr ""
+msgstr "სათაურები"
 
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
