@@ -189,7 +189,7 @@ msgstr ""
 
 #: src/librygel-core/rygel-cmdline-config.vala:51
 msgid "Port"
-msgstr ""
+msgstr "Апорт"
 
 #: src/librygel-core/rygel-cmdline-config.vala:53
 msgid "Disable transcoding"
@@ -581,7 +581,7 @@ msgstr ""
 
 #: src/librygel-server/rygel-http-item-uri.vala:192
 msgid "Not found"
-msgstr ""
+msgstr "Иԥшааӡам"
 
 #: src/librygel-server/rygel-http-post.vala:64
 #: src/librygel-server/rygel-import-resource.vala:215
