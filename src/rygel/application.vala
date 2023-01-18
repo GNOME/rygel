@@ -316,6 +316,8 @@ public class Rygel.Application : GLib.Application {
     public static int main(string[] args) {
         Environment.set_application_name (_(BuildConfig.PACKAGE_NAME));
 
+        // Required to prevent VA-API decoders from crashing when running inside a
+        // X11 session. Does nothing if not on X11.
         X.init_threads ();
 
         Intl.setlocale (LocaleCategory.ALL, "");
