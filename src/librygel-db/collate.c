@@ -26,8 +26,8 @@
 #   include <unistr.h>
 #endif
 
-gint rygel_database_utf8_collate_str (const char *a, gsize alen,
-                                      const char *b, gsize blen)
+gint rygel_database_utf8_collate_str (const char *a, gint alen,
+                                      const char *b, gint blen)
 {
     char *a_str, *b_str;
     gint result;
