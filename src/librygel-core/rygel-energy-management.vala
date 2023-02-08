@@ -140,11 +140,11 @@ public class Rygel.EnergyManagement : Service {
             wake_pattern = wake_pattern.concat (password);
         } catch (GLib.Error error) { }
 
-        var ip_addr = new InetAddress.from_string (this.root_device.context.host_ip);
+        var ip_addr = this.root_device.context.address;
         bool is_ipv6 = (ip_addr != null && ip_addr.family == SocketFamily.IPV6);
         var associated_ips = "<Ipv%d>%s</Ipv%d>".printf
                                         (is_ipv6 ? 6 : 4,
-                                         this.root_device.context.host_ip,
+                                         ip_addr.to_string(),
                                          is_ipv6 ? 6 : 4);
 
         string mode;

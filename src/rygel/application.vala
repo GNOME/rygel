@@ -258,7 +258,7 @@ public class Rygel.Application : GLib.Application {
         debug ("New network %s (%s) context available. IP: %s",
                context.network,
                context.interface,
-               context.host_ip);
+               context.address.to_string ());
 
         context.acl = this.acl;
 
@@ -270,7 +270,7 @@ public class Rygel.Application : GLib.Application {
         if (ifaces == null ||
             context.interface in ifaces ||
             context.network in ifaces ||
-            context.host_ip in ifaces) {
+            context.address.to_string () in ifaces) {
             try {
                 var factory = new RootDeviceFactory (context);
                 this.factories.add (factory);
@@ -296,7 +296,7 @@ public class Rygel.Application : GLib.Application {
         debug ("Network %s (%s) context now unavailable. IP: %s",
                context.network,
                context.interface,
-               context.host_ip);
+               context.address.to_string ());
 
         var factory_iter = this.factories.iterator ();
         while (factory_iter.next ()) {

@@ -207,7 +207,7 @@ public class Rygel.RootDeviceFactory : Object,
                    icon_info.file_extension;
         } else {
             var uri = icon_info.uri;
-            uri.replace ("@ADDRESS@", this.context.host_ip);
+            uri.replace ("@ADDRESS@", this.context.address.to_string ());
             return uri;
         }
     }

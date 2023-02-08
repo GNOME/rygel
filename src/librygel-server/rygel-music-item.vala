@@ -122,7 +122,7 @@ public class Rygel.MusicItem : AudioItem {
                                             (http_uri,
                                              -1,
                                              0,
-                                             http_server.context.host_ip);
+                                             http_server.context.address.to_string ());
             }
         }
 
