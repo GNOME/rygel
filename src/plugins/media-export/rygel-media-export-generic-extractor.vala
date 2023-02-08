@@ -99,7 +99,16 @@ internal class Rygel.MediaExport.GenericExtractor: Extractor {
             throw error;
         }
 
+        var stream_info = info.get_stream_info ();
+        Gst.TagList? stream_tags = null;
+
         // Guess UPnP profile
+        if (stream_info is DiscovererContainerInfo) {
+            stream_tags = ((DiscovererContainerInfo)stream_info).get_tags();
+        } else if (stream_info is DiscovererStreamInfo) {
+            stream_tags = ((DiscovererStreamInfo)stream_info).get_tags();
+        }
+
         var audio_streams = (GLib.List<DiscovererAudioInfo>)
                                             info.get_audio_streams ();
         var video_streams = (GLib.List<DiscovererVideoInfo>)
@@ -140,34 +149,10 @@ internal class Rygel.MediaExport.GenericExtractor: Extractor {
         }
 
         // Info has several tags, general and on audio info for music files
-        var tags = info.get_tags ();
-        if (tags != null) {
-            string? title = null;
-            if (tags.get_string (Tags.TITLE, out title)) {
-                // If not AVI file, replace title we guessed from filename
-                if (this.mime_type != "video/x-msvideo" && title != null) {
-                    this.serialized_info.insert (Serializer.TITLE, "s", title);
-                }
-            }
 
-            string date = null;
-            Gst.DateTime? dt = null;
-            if (tags.get_date_time (Tags.DATE_TIME, out dt)) {
-                // Make a minimal valid iso8601 date - bgo#702231
-                // This mostly happens with MP3 files which only have a year
-                if (!dt.has_day () || !dt.has_month ()) {
-                    date = "%d-%02d-%02d".printf (dt.get_year (),
-                                                  dt.has_month () ?
-                                                      dt.get_month () : 1,
-                                                  dt.has_day () ?
-                                                      dt.get_day () : 1);
-                } else {
-                    date = dt.to_iso8601_string ();
-                }
-
-                this.serialized_info.insert (Serializer.DATE, "s", date);
-            }
-        }
+        // First, try the glibal tags (title, date) from the potential container,
+        // if there were any
+        this.get_title_and_date (stream_tags);
 
         if (video_streams != null && video_streams.data != null) {
             var vinfo = (DiscovererVideoInfo) video_streams.data;
@@ -182,6 +167,12 @@ internal class Rygel.MediaExport.GenericExtractor: Extractor {
 
         if (audio_streams != null && audio_streams.data != null) {
             var ainfo = (DiscovererAudioInfo) audio_streams.data;
+            if (video_streams == null && stream_tags == null) {
+                // FIXME: Should be covered by the "is DiscovererStreamInfo"
+                // above
+                this.get_title_and_date (ainfo.get_tags ());
+            }
+
             this.serialized_info.insert (Serializer.AUDIO_CHANNELS, "i",
                                          (int) ainfo.get_channels ());
             this.serialized_info.insert (Serializer.AUDIO_RATE, "i",
@@ -278,6 +269,38 @@ internal class Rygel.MediaExport.GenericExtractor: Extractor {
                     }
                 }
             }
+        }
+    }
+
+    private void get_title_and_date (Gst.TagList? tags) {
+        if (tags == null) {
+            return;
+        }
+
+        string? title = null;
+        if (tags.get_string (Tags.TITLE, out title)) {
+            // If not AVI file, replace title we guessed from filename
+            if (this.mime_type != "video/x-msvideo" && title != null) {
+                this.serialized_info.insert (Serializer.TITLE, "s", title);
+            }
+        }
+
+        string date = null;
+        Gst.DateTime? dt = null;
+        if (tags.get_date_time (Tags.DATE_TIME, out dt)) {
+            // Make a minimal valid iso8601 date - bgo#702231
+            // This mostly happens with MP3 files which only have a year
+            if (!dt.has_day () || !dt.has_month ()) {
+                date = "%d-%02d-%02d".printf (dt.get_year (),
+                        dt.has_month () ?
+                        dt.get_month () : 1,
+                        dt.has_day () ?
+                        dt.get_day () : 1);
+            } else {
+                date = dt.to_iso8601_string ();
+            }
+
+            this.serialized_info.insert (Serializer.DATE, "s", date);
         }
     }
 }
