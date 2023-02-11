@@ -1,3 +1,34 @@
+0.42.1 (stable)
+===============
+ - Fix incomplete API/ABI switch to 2.8
+ - Document the necessity of X.init_threads()
+ - Fix a type mismatch for the collation helper
+ - Re-enable the since checker
+ - Remove deprecated calls to GSSDP/GUPnP
+ - Many translation updates
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/119
+ - https://gitlab.gnome.org/GNOME/rygel/issues/222
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Nart Tlisha <daniel.abzakh@gmail.com>
+ - Ekaterine Papava <papava.e@gtu.ge>
+ - Rico Tzschichholz <ricotz@ubuntu.com>
+ - Nathan Follens <nfollens@gnome.org>
+ - Efstathios Iosifidis <eiosifidis@gnome.org>
+ - Dušan Kazik <prescott66@gmail.com>
+ - Sabri Ünal <libreajans@gmail.com>
+
+Added/updated translations:
+ - ab.po, courtesy of Нанба Наала
+ - el.po, courtesy of Efstathios Iosifidis
+ - ka.po, courtesy of Ekaterine Papava
+ - nl.po, courtesy of Nathan Follens
+ - sk.po, courtesy of Dušan Kazik
+ - tr.po, courtesy of Emin Tufan Çetin
+
 0.42.0 (stable)
 ===============
  - Remove obsolete .desktop enries
