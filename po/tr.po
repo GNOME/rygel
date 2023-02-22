@@ -12,16 +12,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2022-09-12 11:46+0000\n"
-"PO-Revision-Date: 2022-07-23 01:18+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"POT-Creation-Date: 2023-02-02 20:07+0000\n"
+"PO-Revision-Date: 2023-02-20 22:14+0300\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-POOTLE-MTIME: 1433415626.000000\n"
 
 #: data/rygel.desktop.in:3
@@ -297,12 +297,12 @@ msgstr "%s’e değiştirilmiş açıklama yazılamadı"
 #: src/librygel-core/rygel-energy-management-helper.c:55
 #, c-format
 msgid "Failed to get a socket: %s"
-msgstr "Yuva alma başarısız oldu: %s"
+msgstr "Yuva alınamadı: %s"
 
 #: src/librygel-core/rygel-energy-management-helper.c:62
 #, c-format
 msgid "Failed to get MAC address for %s: %s"
-msgstr "%s için MAC adresi alma başarısız oldu: %s"
+msgstr "%s için MAC adresi alınamadı: %s"
 
 #: src/librygel-core/rygel-energy-management-helper.c:104
 msgid "MAC and network type querying not implemented"
@@ -417,7 +417,7 @@ msgstr "SQLite veri tabanı %s açılırken hata: %s"
 #: src/librygel-db/database.vala:306
 #, c-format
 msgid "Failed to roll back transaction: %s"
-msgstr "İşlemi geri alma başarısız oldu: %s"
+msgstr "İşlem geri alınamadı: %s"
 
 #: src/librygel-renderer-gst/rygel-playbin-player.vala:370
 msgid ""
@@ -528,7 +528,7 @@ msgstr "%s dosyası için başlangıç UI listesi ayarlanamadı — %s"
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
 #, c-format
 msgid "Failed to monitor the file %s — %s"
-msgstr "%s dosyasının izlenmesi başarısız oldu — %s"
+msgstr "%s dosyası izlenemedi — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
 #, c-format
@@ -561,7 +561,7 @@ msgstr "Öge üzerinde alt ögeler taranamadı"
 #: src/librygel-server/rygel-browse.vala:134
 #, c-format
 msgid "Failed to browse “%s”: %s\n"
-msgstr "“%s” göz atma başarısız oldu: %s\n"
+msgstr "“%s” göz atılamadı: %s\n"
 
 #: src/librygel-server/rygel-client-hacks.vala:147
 msgid "Not Applicable"
@@ -658,7 +658,7 @@ msgstr "“%s” nesnesi başarıyla yok edildi"
 #: src/librygel-server/rygel-item-destroyer.vala:68
 #, c-format
 msgid "Failed to destroy object “%s”: %s"
-msgstr "“%s” nesnesinin yok edilmesi başarısız oldu: %s"
+msgstr "“%s” nesnesi yok edilemedi: %s"
 
 #: src/librygel-server/rygel-item-destroyer.vala:105
 #: src/librygel-server/rygel-item-updater.vala:283
@@ -691,7 +691,7 @@ msgstr "“%s” nesnesi başarıyla güncellendi"
 #: src/librygel-server/rygel-item-updater.vala:89
 #, c-format
 msgid "Failed to update object “%s”: %s"
-msgstr "“%s” nesnesinin güncellenmesi başarısız oldu: %s"
+msgstr "“%s” nesnesi güncellenemedi: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:162
 #: src/librygel-server/rygel-object-creator.vala:614
@@ -1120,18 +1120,18 @@ msgstr "Geçersiz komut alındı, göz ardı ediliyor"
 #: src/plugins/media-export/rygel-media-export-extract.vala:90
 #, c-format
 msgid "Failed to discover URI %s: %s"
-msgstr "URI %s bulma başarısız oldu:%s"
+msgstr "%s URI bulunamadı: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:105
 #, c-format
 msgid "Failed to read from pipe: %s"
-msgstr "Kanaldan okuma başarısız oldu: %s"
+msgstr "Kanaldan okunamadı: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:132
 #: src/plugins/media-export/rygel-media-export-extract.vala:144
 #, c-format
 msgid "Failed to send error to parent: %s"
-msgstr "Üst sürece hata gönderimi başarısız oldu: %s"
+msgstr "Üst sürece hata gönderilemedi: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:157
 msgid "— helper binary for Rygel to extract metadata"
@@ -1180,7 +1180,7 @@ msgstr "%s dosyası işlenemedi: %s"
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:191
 #, c-format
 msgid "Failed to query database: %s"
-msgstr "Veri tabanı sorgusu başarısız oldu: %s"
+msgstr "Veri tabanı sorgulanamadı: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:272
 #, c-format
@@ -1213,8 +1213,7 @@ msgstr "Sorgu kabının alt süreçlerinin sayısı getirilemedi: %s"
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
 #, c-format
 msgid "Failed to force reindex to fix database: %s"
-msgstr ""
-"Veri tabanı onarımı için yeniden dizinlemeye zorlama başarısız oldu: %s"
+msgstr "Veri tabanı onarımı için yeniden dizinlemeye zorlanamadı: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
@@ -1239,7 +1238,7 @@ msgstr "%s kimliği ile öge eklenemedi: %s"
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:218
 #, c-format
 msgid "Failed to get update IDs: %s"
-msgstr "Güncelleme Kimliklerini (ID) alma başarısız oldu: %s"
+msgstr "Güncelleme Kimlikleri (ID) alınamadı: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:401
 #, c-format
@@ -1248,12 +1247,12 @@ msgstr "Tutarsız veri tabanı: %s ögesi, %s ebeveynine sahip değil"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:526
 msgid "Failed to get reset token"
-msgstr "Sıfırlama fişi alma başarısız oldu"
+msgstr "Sıfırlama fişi alınamadı"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:538
 #, c-format
 msgid "Failed to persist ServiceResetToken: %s"
-msgstr "ServiceResetToken’i sürdürme başarısız oldu: %s"
+msgstr "ServiceResetToken’i sürdürülemedi: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:548
 #, c-format
@@ -1313,7 +1312,7 @@ msgstr "Desteklenmeyen sıralama alanı atlanıyor: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:104
 msgid "Failed to gracefully stop the process. Using KILL"
-msgstr "Süreci düzgünce durdurma başarısız oldu. KILL kullanılıyor"
+msgstr "Süreci düzgünce durdurulamadı. KILL kullanılıyor"
 
 #. Process exitted properly -> That shouldn't really
 #. happen
@@ -1451,17 +1450,17 @@ msgstr "Giriş kaldırılamadı: %s"
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
 #, c-format
 msgid "Failed to save object: %s"
-msgstr "Nesne kaydetme başarısız oldu: %s"
+msgstr "Nesne kaydedilemedi: %s"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:79
 #, c-format
 msgid "Failed to add object: %s"
-msgstr "Nesne ekleme başarısız oldu: %s"
+msgstr "Nesne eklenemedi: %s"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:87
 #, c-format
 msgid "Failed to remove object: %s"
-msgstr "Nesne kaldırma başarısız oldu: %s"
+msgstr "Nesne kaldırılamadı: %s"
 
 #: src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
 #, c-format
@@ -1529,7 +1528,7 @@ msgstr "Başlıklar"
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
 msgid "Failed to create a Tracker connection: %s"
-msgstr "Tracker bağlantısı oluşturma başarısız oldu: %s"
+msgstr "Tracker bağlantısı oluşturulamadı: %s"
 
 #: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
 #, c-format
@@ -1570,7 +1569,7 @@ msgstr "Kök aygıt fabrikası oluşturulamadı: %s"
 #: src/rygel/rygel-acl.vala:110
 #, c-format
 msgid "Failed to query ACL: %s"
-msgstr "ACL sorgusu başarısız oldu: %s"
+msgstr "ACL sorgulanamadı: %s"
 
 #: src/rygel/rygel-acl.vala:127
 #, c-format
@@ -1593,7 +1592,7 @@ msgstr "Tercihler iletişim ekranı oluşturulamadı: %s"
 #: src/ui/rygel-writable-user-config.vala:119
 #, c-format
 msgid "Failed to save configuration data to file “%s”: %s"
-msgstr "“%s” dosyasına yapılandırma bilgisi kaydedilemedi: %s"
+msgstr "Yapılandırma verisi “%s” dosyasına kaydedilemedi: %s"
 
 #: src/ui/rygel-writable-user-config.vala:214
 #, c-format
