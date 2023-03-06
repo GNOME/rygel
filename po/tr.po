@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2023-02-02 20:07+0000\n"
-"PO-Revision-Date: 2023-02-20 22:14+0300\n"
+"POT-Creation-Date: 2023-02-22 12:00+0000\n"
+"PO-Revision-Date: 2023-03-06 16:12+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -1247,7 +1247,7 @@ msgstr "Tutarsız veri tabanı: %s ögesi, %s ebeveynine sahip değil"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:526
 msgid "Failed to get reset token"
-msgstr "Sıfırlama fişi alınamadı"
+msgstr "Sıfırlama jetonu alınamadı"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:538
 #, c-format
