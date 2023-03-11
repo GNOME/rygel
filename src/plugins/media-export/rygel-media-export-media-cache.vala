@@ -991,6 +991,7 @@ public class Rygel.MediaExport.MediaCache : Object {
                 music_item.genre = statement.column_text (DetailColumn.GENRE);
                 music_item.track_number = statement.column_int
                                         (DetailColumn.TRACK);
+                music_item.disc_number = statement.column_int (DetailColumn.DISC);
                 music_item.lookup_album_art ();
             }
         }

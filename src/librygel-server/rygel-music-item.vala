@@ -36,6 +36,7 @@ public class Rygel.MusicItem : AudioItem {
     public new const string UPNP_CLASS = "object.item.audioItem.musicTrack";
 
     public int track_number { get; set; default = -1; }
+    public int disc_number { get; set; default = -1; }
 
     public Thumbnail album_art { get; set; }
 
@@ -76,8 +77,11 @@ public class Rygel.MusicItem : AudioItem {
 
         switch (property) {
         case "upnp:originalTrackNumber":
-             return this.compare_int_props (this.track_number,
-                                            item.track_number);
+            return this.compare_int_props (this.track_number,
+                                           item.track_number);
+        case "upnp:originalDiscNumber":
+            return this.compare_int_props (this.disc_number,
+                                           item.disc_number);
         default:
             return base.compare_by_property (item, property);
         }
@@ -87,6 +91,7 @@ public class Rygel.MusicItem : AudioItem {
         base.apply_didl_lite (didl_object);
 
         this.track_number = didl_object.track_number;
+        //FIXME: this.disc_number = didl_object.disc_number;
 
         if (didl_object.album_art != null && didl_object.album_art.length > 0) {
             if (this.album_art == null)
@@ -103,6 +108,24 @@ public class Rygel.MusicItem : AudioItem {
 
         if (this.track_number >= 0) {
             didl_item.track_number = this.track_number;
+
+            // Hack for now, probably should move to gupnp-av
+            Xml.Node *node = didl_item.xml_node;
+            Xml.Ns *ns = null;
+
+            bool strict_sharing = false;
+
+            try {
+                strict_sharing = MetaConfig.get_default().get_bool ("general", "strict-dlna");
+            } catch (Error err) {}
+
+            if (strict_sharing) {
+                ns = XMLUtils.get_namespace(node, "http://www.rygel-project.org/ns/", "rygel");
+            } else {
+                ns = didl_item.get_upnp_namespace ();
+            }
+
+            node->new_child (ns, "originalDiscNumber", this.disc_number.to_string ());
         }
 
         if (!this.place_holder && this.album_art != null) {

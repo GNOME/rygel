@@ -41,6 +41,7 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
         CHANNELS,
         BITS_PER_SAMPLE,
         BITRATE,
+        AUDIO_DISC_NUM,
 
         LAST_KEY
     }
@@ -70,6 +71,7 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
         this.properties.add ("upnp:nrAudioChannels");
         this.properties.add ("upnp:bitsPerSample");
         this.properties.add ("upnp:bitrate");
+        this.properties.add ("rygel:originalVolumeNumber");
     }
 
     public override MediaFileItem create (string          id,
@@ -123,6 +125,11 @@ public class Rygel.Tracker.MusicItemFactory : ItemFactory {
         if (metadata.is_bound (MusicMetadata.AUDIO_TRACK_NUM)) {
             music.track_number = (int) metadata.get_integer
                                         (MusicMetadata.AUDIO_TRACK_NUM);
+        }
+
+        if (metadata.is_bound (MusicMetadata.AUDIO_DISC_NUM)) {
+            music.disc_number = (int) metadata.get_integer
+                                        (MusicMetadata.AUDIO_DISC_NUM);
         }
 
         if (metadata.is_bound (MusicMetadata.AUDIO_ARTIST)) {
