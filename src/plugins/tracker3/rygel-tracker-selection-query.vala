@@ -168,21 +168,29 @@ public class Rygel.Tracker.SelectionQuery : Query {
 
         var filters = new ArrayList<string> ();
         filters.add_all (this.filters);
-        // Make sure we don't expose items that are marked not to be shared
-        // filters.add (SHARED_FILTER);
 
-        // Make sure we don't expose items on removable media that isn't
-        // mounted
-        //filters.add (AVAILABLE_FILTER);
+        bool strict = false;
 
         // If strict sharing is enabled, only expose files that have a DLNA
-        // profile set
+        // profile set.
+        //
+        // Check global strict sharing first, the old option will override the
+        // global setting
         try {
             var config = MetaConfig.get_default ();
-            if (config.get_bool ("Tracker3", "strict-sharing")) {
-                filters.add (STRICT_SHARED_FILTER);
+            if (config.get_bool ("general", "strict-dlna")) {
+                strict = true;
             }
         } catch (Error error) {};
+
+        try {
+            var config = MetaConfig.get_default ();
+            strict = config.get_bool ("Tracker3", "strict-sharing");
+        } catch (Error error) {};
+
+        if (strict) {
+            filters.add (STRICT_SHARED_FILTER);
+        }
 
         // Limit the files to a set of folders that may have been configured
         if (uri_filter != null) {

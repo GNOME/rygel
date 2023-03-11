@@ -27,6 +27,24 @@ using Xml;
  * XML utility API.
  */
 public class Rygel.XMLUtils {
+    public static Xml.Ns* get_namespace (Xml.Node *root, string href, string prefix) {
+
+        Xml.Ns* ns = root->new_ns (href, prefix);
+        if (ns != null) {
+            return ns;
+        }
+
+        // ns was null, so the namespace exists. Go find it.
+        ns = root->ns_def;
+        while (ns != null) {
+            if (ns->prefix == prefix) {
+                return ns;
+            }
+        }
+
+        assert_not_reached ();
+    }
+
     /* Copy-paste from gupnp and ported to Vala. */
     public static Xml.Node* get_element (Xml.Node *node, ...) {
         Xml.Node *ret = node;
