@@ -31,17 +31,8 @@ public class Rygel.Tracker.SelectionQuery : Query {
     public const string ITEM_VARIABLE = "?item";
     public const string STORAGE_VARIABLE = "?storage";
 
-    private const string SHARED_FILTER = ""; /*"(!BOUND(nmm:uPnPShared(" +
-                                         ITEM_VARIABLE + ")) ||" +
-                                         " nmm:uPnPShared(" +
-                                         ITEM_VARIABLE +
-                                         ") = true) && " +
-                                         "(BOUND(nie:isStoredAs(" +
-                                         ITEM_VARIABLE + ")))";*/
     private const string STRICT_SHARED_FILTER = "(BOUND(nmm:dlnaProfile(" +
                                                 ITEM_VARIABLE + ")))";
-    private const string AVAILABLE_FILTER = "(tracker:available(nie:isStoredAs(" +
-                                            ITEM_VARIABLE + ")) = true)";
 
     private string uri_filter;
 
