@@ -192,13 +192,23 @@ public abstract class Rygel.MediaFileItem : MediaItem {
         string uri_extension = null;
         // Use the extension from the source content filename, if it has an
         // extension
-        string basename = Path.get_basename (this.get_primary_uri ());
-        int dot_index = -1;
-        if (basename != null) {
-            dot_index = basename.last_index_of (".");
-            if (dot_index > -1) {
-               uri_extension = basename.substring (dot_index + 1);
+
+        try {
+            var uri = GLib.Uri.parse (this.get_primary_uri (), UriFlags.NONE);
+            if (uri.get_scheme () == "file") {
+                string basename = Path.get_basename (this.get_primary_uri ());
+                int dot_index = -1;
+                if (basename != null) {
+                    dot_index = basename.last_index_of (".");
+                    if (dot_index > -1) {
+                        uri_extension = basename.substring (dot_index + 1);
+                    }
+                }
+            } else {
+                debug ("Uri is not a file, but %s, skipping extension detection", uri.get_scheme());
             }
+        } catch (Error err) {
+            debug ("Failed to parse primary uri, skipping extension detection");
         }
 
         if (uri_extension == null) {
