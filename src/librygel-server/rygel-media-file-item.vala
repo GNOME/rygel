@@ -240,6 +240,7 @@ public abstract class Rygel.MediaFileItem : MediaItem {
             mime_to_ext.set ("audio/vnd.dlna.adts", "adts");
             mime_to_ext.set ("audio/mpeg", "mp3");
             mime_to_ext.set ("audio/3gpp", "3gp");
+            mime_to_ext.set ("audio/flac", "flac");
 
             // images
             string[] images = {"jpeg", "png"};
