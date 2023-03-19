@@ -1,3 +1,30 @@
+0.42.2 (stable)
+===============
+
+Server
+ - Fix issue with urls having "." in them
+ - Export disc numbers
+
+Tracker3
+ - Export disc numbers
+
+MediaExport
+ - Export disc numbers
+
+All
+ - Translation updates
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/225
+ - https://gitlab.gnome.org/GNOME/rygel/issues/223
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Sabri Ünal <libreajans@gmail.com>
+
+Added/updated translations:
+ - tr.po, courtesy of Sabri Ünal
+
 0.42.1 (stable)
 ===============
  - Fix incomplete API/ABI switch to 2.8
