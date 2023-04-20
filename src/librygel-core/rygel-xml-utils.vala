@@ -40,6 +40,7 @@ public class Rygel.XMLUtils {
             if (ns->prefix == prefix) {
                 return ns;
             }
+            ns = ns->next;
         }
 
         assert_not_reached ();
