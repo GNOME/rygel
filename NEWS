@@ -1,3 +1,15 @@
+0.42.3 (stable)
+===============
+
+Server
+ - Fix endless loop in XML namespace lookup
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/228
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+
 0.42.2 (stable)
 ===============
 
