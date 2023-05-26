@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2023-02-22 12:00+0000\n"
-"PO-Revision-Date: 2023-03-06 16:12+0300\n"
+"POT-Creation-Date: 2023-05-09 12:14+0000\n"
+"PO-Revision-Date: 2023-05-12 14:08+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-POOTLE-MTIME: 1433415626.000000\n"
 
 #: data/rygel.desktop.in:3
@@ -30,7 +30,7 @@ msgstr "Rygel"
 
 #: data/rygel.desktop.in:4
 msgid "UPnP/DLNA Services"
-msgstr "UPnP/DLNA Servisleri"
+msgstr "UPnP/DLNA Hizmetleri"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/rygel.desktop.in:6
@@ -573,7 +573,7 @@ msgstr "Böyle dosya aktarımı yok"
 
 #: src/librygel-server/rygel-dbus-thumbnailer.vala:116
 msgid "No D-Bus thumbnailer service available"
-msgstr "Hiç D-Bus küçük resimleyici servisi yok"
+msgstr "Hiç D-Bus küçük resimleyici hizmeti yok"
 
 #: src/librygel-server/rygel-http-byte-seek-request.vala:116
 #, c-format
@@ -1305,7 +1305,7 @@ msgstr "Geçersiz veri tabanı, sqlite_master tablosuna sorgu yapılamıyor: %s"
 msgid "Failed to create database schema: %s"
 msgstr "Veri tabanı şeması oluşturulamadı: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1234
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Desteklenmeyen sıralama alanı atlanıyor: %s"
@@ -1377,7 +1377,7 @@ msgstr "%s içinden kap silinemiyor"
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
 #: src/plugins/media-export/rygel-media-export-root-container.vala:612
 msgid "Playlists"
-msgstr "Çalma Listeleri"
+msgstr "Çalma Listeleri"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
@@ -1512,7 +1512,7 @@ msgstr "“%s” için tüm değerler alınamıyor : %s"
 #: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr "İzleme servisi başlatılamadı: %s. Eklenti devre dışı"
+msgstr "İzleme hizmeti başlatılamadı: %s. Eklenti devre dışı"
 
 #: src/plugins/tracker3/rygel-tracker-search-container.vala:228
 #: src/plugins/tracker/rygel-tracker-search-container.vala:228
@@ -1523,7 +1523,7 @@ msgstr "“%s” kategorisi altındaki öge sayısı alınamıyor: %s"
 #: src/plugins/tracker3/rygel-tracker-titles.vala:58
 #: src/plugins/tracker/rygel-tracker-titles.vala:58
 msgid "Titles"
-msgstr "Başlıklar"
+msgstr "Başlıklar"
 
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
@@ -1597,9 +1597,9 @@ msgstr "Yapılandırma verisi “%s” dosyasına kaydedilemedi: %s"
 #: src/ui/rygel-writable-user-config.vala:214
 #, c-format
 msgid "Failed to start Rygel service: %s"
-msgstr "Rygel servisi başlatılamadı: %s"
+msgstr "Rygel hizmeti başlatılamadı: %s"
 
 #: src/ui/rygel-writable-user-config.vala:216
 #, c-format
 msgid "Failed to stop Rygel service: %s"
-msgstr "Rygel servisi durdulamadı: %s"
+msgstr "Rygel hizmeti durdulamadı: %s"
