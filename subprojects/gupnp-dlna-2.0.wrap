@@ -3,6 +3,6 @@ url = https://gitlab.gnome.org/GNOME/gupnp-dlna.git
 revision = master
 depth = 1
 
-[provides]
-dependency_name = gupnp-dlna-2.0, gupnp-dlna-gst-2.0
+[provide]
+dependency_names = gupnp-dlna-2.0, gupnp-dlna-gst-2.0
 
