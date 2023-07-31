@@ -3,6 +3,6 @@ url = https://gitlab.gnome.org/GNOME/gupnp.git
 revision = master
 depth = 1
 
-[provides]
-dependency_name = gupnp-1.2
+[provide]
+dependency_names = gupnp-1.2
 
