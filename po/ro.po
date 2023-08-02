@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-07-12 13:38+0000\n"
-"PO-Revision-Date: 2020-07-05 17:45+0200\n"
+"POT-Creation-Date: 2023-02-02 20:07+0000\n"
+"PO-Revision-Date: 2023-07-29 13:07+0300\n"
 "Last-Translator: Florentina Mușat <florentina [dot] musat [dot] 28 [at] "
 "gmail [dot] com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
@@ -16,31 +16,31 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==0 || (n!=1 && n%100>=1 && n"
-"%100<=19) ? 1 : 2);\n"
-"X-Generator: Poedit 2.3.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==0 || (n!=1 && n%100>=1 && "
+"n%100<=19) ? 1 : 2);\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: data/rygel.desktop.in.in:3
+#: data/rygel.desktop.in:3
 msgid "Rygel"
 msgstr "Rygel"
 
-#: data/rygel.desktop.in.in:4
+#: data/rygel.desktop.in:4
 msgid "UPnP/DLNA Services"
 msgstr "Serviciile UPnP/DLNA"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in.in:6
+#: data/rygel.desktop.in:6
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
 "mediaserver;mediarenderer;share;audio;video;pictures;servermedia;sunet;"
 "imagini;"
 
-#: data/rygel-preferences.desktop.in.in:3 data/rygel-preferences.ui:24
+#: data/rygel-preferences.desktop.in:3 data/rygel-preferences.ui:24
 msgid "Rygel Preferences"
 msgstr "Preferințe Rygel"
 
-#: data/rygel-preferences.desktop.in.in:4
+#: data/rygel-preferences.desktop.in:4
 msgid "UPnP/DLNA Preferences"
 msgstr "Preferințe UPnP/DLNA"
 
@@ -193,96 +193,82 @@ msgstr "Nu se poate rula acțiunea „NSLookup”: Numele de gazdă este gol"
 msgid "Cannot run “Traceroute” action: Host is empty"
 msgstr "Nu se poate rula acțiunea „Traceroute”: Gazda este goală"
 
-#: src/librygel-core/rygel-cmdline-config.vala:73
+#: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
 msgstr "Afișează numărul versiunii"
 
-#: src/librygel-core/rygel-cmdline-config.vala:75
+#: src/librygel-core/rygel-cmdline-config.vala:49
 msgid "Network Interfaces"
 msgstr "Interfețe rețea"
 
-#: src/librygel-core/rygel-cmdline-config.vala:77
+#: src/librygel-core/rygel-cmdline-config.vala:51
 msgid "Port"
 msgstr "Port"
 
-#: src/librygel-core/rygel-cmdline-config.vala:79
+#: src/librygel-core/rygel-cmdline-config.vala:53
 msgid "Disable transcoding"
 msgstr "Dezactivează transcodarea"
 
-#: src/librygel-core/rygel-cmdline-config.vala:81
+#: src/librygel-core/rygel-cmdline-config.vala:55
 msgid "Disallow upload"
 msgstr "Interzice încărcarea"
 
-#: src/librygel-core/rygel-cmdline-config.vala:83
+#: src/librygel-core/rygel-cmdline-config.vala:57
 msgid "Disallow deletion"
 msgstr "Interzice ștergerea"
 
-#: src/librygel-core/rygel-cmdline-config.vala:85
+#: src/librygel-core/rygel-cmdline-config.vala:59
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr ""
 "Listă de perechi domeniu:nivel separate prin virgulă. Consultați rygel(1) "
 "pentru detalii"
 
-#: src/librygel-core/rygel-cmdline-config.vala:87
+#: src/librygel-core/rygel-cmdline-config.vala:61
 msgid "Plugin Path"
 msgstr "Cale modul"
 
-#: src/librygel-core/rygel-cmdline-config.vala:89
+#: src/librygel-core/rygel-cmdline-config.vala:63
 msgid "Engine Path"
 msgstr "Cale motor"
 
-#: src/librygel-core/rygel-cmdline-config.vala:92
+#: src/librygel-core/rygel-cmdline-config.vala:66
 msgid "Disable plugin"
 msgstr "Dezactivează modul"
 
-#: src/librygel-core/rygel-cmdline-config.vala:94
+#: src/librygel-core/rygel-cmdline-config.vala:68
 msgid "Set plugin titles"
 msgstr "Configurează titlurile modulelor"
 
-#: src/librygel-core/rygel-cmdline-config.vala:96
+#: src/librygel-core/rygel-cmdline-config.vala:70
 msgid "Set plugin options"
 msgstr "Configurează opțiunile modulelor"
 
-#: src/librygel-core/rygel-cmdline-config.vala:98
+#: src/librygel-core/rygel-cmdline-config.vala:72
 msgid "Use configuration file instead of user configuration"
 msgstr ""
 "Folosește fișierul de configurație în loc de configurația utilizatorului"
 
-#: src/librygel-core/rygel-cmdline-config.vala:100
+#: src/librygel-core/rygel-cmdline-config.vala:74
 msgid "Shut down remote Rygel reference"
 msgstr "Închide referința Rygel de la distanță"
 
-#: src/librygel-core/rygel-cmdline-config.vala:102
-msgid "Replace currently running instance of Rygel"
-msgstr "Înlocuiește instanța de Rygel ce rulează curent"
-
-#: src/librygel-core/rygel-cmdline-config.vala:139
-msgid "Shutting down remote Rygel instance\n"
-msgstr "Se închide instanța Rygel de la distanță\n"
-
-#: src/librygel-core/rygel-cmdline-config.vala:147
-#, c-format
-msgid "Failed to shut down other Rygel instance: %s"
-msgstr "Eșec la închiderea celeilalte instanțe Rygel: %s"
-
-#: src/librygel-core/rygel-cmdline-config.vala:161
-#: src/librygel-core/rygel-cmdline-config.vala:170
-#: src/librygel-core/rygel-cmdline-config.vala:178
-#: src/librygel-core/rygel-cmdline-config.vala:186
-#: src/librygel-core/rygel-cmdline-config.vala:194
-#: src/librygel-core/rygel-cmdline-config.vala:202
-#: src/librygel-core/rygel-cmdline-config.vala:210
-#: src/librygel-core/rygel-cmdline-config.vala:249
-#: src/librygel-core/rygel-cmdline-config.vala:268
+#: src/librygel-core/rygel-cmdline-config.vala:98
+#: src/librygel-core/rygel-cmdline-config.vala:107
+#: src/librygel-core/rygel-cmdline-config.vala:116
+#: src/librygel-core/rygel-cmdline-config.vala:125
+#: src/librygel-core/rygel-cmdline-config.vala:134
+#: src/librygel-core/rygel-cmdline-config.vala:143
+#: src/librygel-core/rygel-cmdline-config.vala:179
+#: src/librygel-core/rygel-cmdline-config.vala:192
+#: src/librygel-core/rygel-cmdline-config.vala:207
+#: src/librygel-core/rygel-cmdline-config.vala:213
+#: src/librygel-core/rygel-cmdline-config.vala:220
+#: src/librygel-core/rygel-cmdline-config.vala:224
+#: src/librygel-core/rygel-cmdline-config.vala:228
+#: src/librygel-core/rygel-cmdline-config.vala:248
+#: src/librygel-core/rygel-cmdline-config.vala:270
 #: src/librygel-core/rygel-cmdline-config.vala:274
-#: src/librygel-core/rygel-cmdline-config.vala:281
-#: src/librygel-core/rygel-cmdline-config.vala:285
-#: src/librygel-core/rygel-cmdline-config.vala:289
-#: src/librygel-core/rygel-cmdline-config.vala:312
-#: src/librygel-core/rygel-cmdline-config.vala:338
-#: src/librygel-core/rygel-cmdline-config.vala:367
-#: src/librygel-core/rygel-cmdline-config.vala:393
-#: src/librygel-core/rygel-cmdline-config.vala:418
+#: src/librygel-core/rygel-cmdline-config.vala:287
 #: src/librygel-core/rygel-environment-config.vala:100
 #: src/librygel-core/rygel-environment-config.vala:104
 #: src/librygel-core/rygel-environment-config.vala:108
@@ -348,11 +334,11 @@ msgstr "Nicio valoare stabilită pentru „%s/titlu”"
 msgid "No value available for “%s/%s”"
 msgstr "Nicio valoare disponibilă pentru „%s/%s”"
 
-#: src/librygel-core/rygel-plugin-information.vala:64
+#: src/librygel-core/rygel-plugin-information.vala:67
 msgid "[Plugin] group not found"
 msgstr "[Modul] grup negăsit"
 
-#: src/librygel-core/rygel-plugin-information.vala:76
+#: src/librygel-core/rygel-plugin-information.vala:79
 #, c-format
 msgid "Plugin module %s does not exist"
 msgstr "Modulul %s nu există"
@@ -377,7 +363,7 @@ msgstr "Eșec la încărcarea modulului din calea „%s”: %s"
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "Eșec la găsirea funcției de intrare „%s” în „%s”: %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:155
+#: src/librygel-core/rygel-plugin-loader.vala:156
 #, c-format
 msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
 msgstr "Modulul „%s” intră în conflict cu modulul încărcat „%s”. Se omite"
@@ -387,17 +373,17 @@ msgstr "Modulul „%s” intră în conflict cu modulul încărcat „%s”. Se 
 msgid "Failed to open plugins folder: “%s”"
 msgstr "Eșec la deschiderea dosarului cu module: „%s”"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:149
+#: src/librygel-core/rygel-recursive-module-loader.vala:160
 #, c-format
 msgid "Error listing contents of folder “%s”: %s"
 msgstr "Eroare la listarea conținutului dosarului „%s”: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:193
+#: src/librygel-core/rygel-recursive-module-loader.vala:204
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "Nu s-a putut încărca modulul: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:220
+#: src/librygel-core/rygel-recursive-module-loader.vala:231
 #, c-format
 msgid "Failed to query content type for “%s”"
 msgstr "Interogarea tipului conținutului pentru „%s” a eșuat"
@@ -474,26 +460,29 @@ msgid "Play mode not supported"
 msgstr "Modul de redare nu este suportat"
 
 #. FIXME: Return a more sensible error here.
-#: src/librygel-renderer/rygel-av-transport.vala:774
-#: src/librygel-renderer/rygel-av-transport.vala:789
-#: src/librygel-renderer/rygel-av-transport.vala:798
-#: src/librygel-renderer/rygel-av-transport.vala:877
+#: src/librygel-renderer/rygel-av-transport.vala:773
+#: src/librygel-renderer/rygel-av-transport.vala:779
+#: src/librygel-renderer/rygel-av-transport.vala:794
+#: src/librygel-renderer/rygel-av-transport.vala:803
+#: src/librygel-renderer/rygel-av-transport.vala:863
+#: src/librygel-renderer/rygel-av-transport.vala:898
 msgid "Resource not found"
 msgstr "Resursă negăsită"
 
-#: src/librygel-renderer/rygel-av-transport.vala:787
+#: src/librygel-renderer/rygel-av-transport.vala:792
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "Problemă la parsarea listei de redare: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:873
+#: src/librygel-renderer/rygel-av-transport.vala:859
+#: src/librygel-renderer/rygel-av-transport.vala:894
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Eșec la accesarea resursei de la %s: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:889
+#: src/librygel-renderer/rygel-av-transport.vala:875
 msgid "Illegal MIME-type"
 msgstr "Tip MIME ilegal"
 
@@ -574,7 +563,7 @@ msgstr "Nu s-au putut naviga copii elementului"
 msgid "Failed to browse “%s”: %s\n"
 msgstr "Navigarea „%s” a eșuat: %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:149
+#: src/librygel-server/rygel-client-hacks.vala:147
 msgid "Not Applicable"
 msgstr "Nu este aplicabil"
 
@@ -586,13 +575,25 @@ msgstr "Nu există un astfel de transfer de fișiere"
 msgid "No D-Bus thumbnailer service available"
 msgstr "Nu există vreun serviciu de miniaturi D-Bus"
 
-#: src/librygel-server/rygel-http-get.vala:52
+#: src/librygel-server/rygel-http-byte-seek-request.vala:116
+#, c-format
+msgid "Range end value %lld is smaller than range start value %lld: '%s'"
+msgstr ""
+"Valoarea finală a intervalului %lld este mai mică decât valoare de început a "
+"intervalului %lld: „%s”"
+
+#: src/librygel-server/rygel-http-get.vala:53
 msgid "Invalid Request (only GET and HEAD supported)"
 msgstr "Cerere nevalidă (numai GET și HEAD sunt suportate)"
 
-#: src/librygel-server/rygel-http-get.vala:60
+#: src/librygel-server/rygel-http-get.vala:61
 msgid " must be 1"
 msgstr " trebuie să fie 1"
+
+#: src/librygel-server/rygel-http-get.vala:91
+#, c-format
+msgid "%s transfer mode not supported for '%s'"
+msgstr "modul de transfer %s nu este suportat pentru „%s”"
 
 #: src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
@@ -604,7 +605,7 @@ msgid "Not found"
 msgstr "Nu a fost găsit"
 
 #: src/librygel-server/rygel-http-post.vala:64
-#: src/librygel-server/rygel-import-resource.vala:193
+#: src/librygel-server/rygel-import-resource.vala:215
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "Trimiterea datelor către elementul ne-gol „%s” nu este permisă"
@@ -620,7 +621,7 @@ msgstr "Nu există niciun URI pentru %s care poate fi scris"
 msgid "Failed to move dotfile %s: %s"
 msgstr "Eșec la mutarea fișierului-punct %s: %s"
 
-#: src/librygel-server/rygel-http-request.vala:95
+#: src/librygel-server/rygel-http-request.vala:104
 #, c-format
 msgid "Requested item “%s” not found"
 msgstr "Elementul cerut „%s” nu a fost găsit"
@@ -630,17 +631,17 @@ msgstr "Elementul cerut „%s” nu a fost găsit"
 msgid "Couldn’t create data source for %s"
 msgstr "Nu s-a putut crea sursa de date pentru %s"
 
-#: src/librygel-server/rygel-import-resource.vala:124
+#: src/librygel-server/rygel-import-resource.vala:123
 #, c-format
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "Eșec la obținerea URI-ului original pentru „%s”: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:188
+#: src/librygel-server/rygel-import-resource.vala:210
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "URI-ul „%s” nu este valid pentru a importa conținut în el"
 
-#: src/librygel-server/rygel-import-resource.vala:276
+#: src/librygel-server/rygel-import-resource.vala:237
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "Eșec la importarea fișierului din %s: %s"
@@ -784,7 +785,7 @@ msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init nu a fost apelat. Nu se poate continua."
 
 #: src/librygel-server/rygel-media-file-item.vala:177
-#: src/librygel-server/rygel-video-item.vala:222
+#: src/librygel-server/rygel-video-item.vala:242
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "Nu s-a putut determina protocolul pentru URI-ul %s"
@@ -823,7 +824,7 @@ msgstr "Nu există un astfel de container"
 
 #: src/librygel-server/rygel-object-creator.vala:150
 msgid "upnp:createClass value not supported"
-msgstr "Valoarea upnp:createClass nu este suportată"
+msgstr "valoarea upnp:createClass nu este suportată"
 
 #: src/librygel-server/rygel-object-creator.vala:193
 msgid "“Elements” argument missing."
@@ -874,7 +875,7 @@ msgstr "Clasa UPnP „%s” nu este suportată"
 
 #: src/librygel-server/rygel-object-creator.vala:419
 #: src/librygel-server/rygel-object-creator.vala:431
-#: src/librygel-server/rygel-object-creator.vala:723
+#: src/librygel-server/rygel-object-creator.vala:721
 #: src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
@@ -895,7 +896,7 @@ msgstr "Profilul DLNA „%s” nu este suportat"
 msgid "Cannot create object of class “%s”: Not supported"
 msgstr "Nu se poate crea obiect din clasa „%s”: Nesuportat"
 
-#: src/librygel-server/rygel-object-creator.vala:754
+#: src/librygel-server/rygel-object-creator.vala:752
 #, c-format
 msgid ""
 "Error from container “%s” on trying to find the newly added child object "
@@ -926,7 +927,8 @@ msgstr "Criterii de căutare nevalide"
 msgid "Failed to search in “%s”: %s"
 msgstr "Nu s-a putut căuta în „%s”: %s"
 
-#: src/librygel-server/rygel-subtitle-manager.vala:92
+#: src/librygel-server/rygel-subtitle-manager.vala:49
+#: src/librygel-server/rygel-subtitle-manager.vala:96
 msgid "No subtitle available"
 msgstr "Nicio subtitrare disponibilă"
 
@@ -1152,29 +1154,29 @@ msgstr "Eșec la parsarea argumentelor liniei de comandă: %s"
 msgid "Failed to create media art extractor: %s"
 msgstr "Eșec la crearea extractorului de arte media: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:146
+#: src/plugins/media-export/rygel-media-export-harvester.vala:150
 #, c-format
 msgid "“%s” harvested"
 msgstr "„%s” recoltat"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:202
+#: src/plugins/media-export/rygel-media-export-harvester.vala:205
 #, c-format
 msgid "Error fetching object “%s” from database: %s"
 msgstr "Eroare la preluarea obiectului „%s” din baza de date: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:210
+#: src/plugins/media-export/rygel-media-export-harvester.vala:213
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "Eșec la interogarea informațiilor unui fișier %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:245
+#: src/plugins/media-export/rygel-media-export-harvester.vala:248
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr ""
 "Nu s-a putut găsi obiectul %s sau părintele său. Baza de date este "
 "inconsistentă"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:249
+#: src/plugins/media-export/rygel-media-export-harvester.vala:252
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Eroare la ștergerea obiectului din baza de date: %s"
@@ -1189,17 +1191,17 @@ msgstr "Nu s-a reușit recoltarea fișierului %s: %s"
 msgid "Failed to query database: %s"
 msgstr "Interogarea bazei de date a eșuat: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:272
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "Eșec la enumerarea dosarului „%s”: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:286
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:290
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Nu s-au putut obține copiii containerului %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
 #, c-format
 msgid "Failed to extract meta-data for file %s"
 msgstr "Nu s-au putut extrage meta-datele pentru fișierul %s"
@@ -1207,7 +1209,7 @@ msgstr "Nu s-au putut extrage meta-datele pentru fișierul %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:358
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:362
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "Se omite URI-ul %s; extragerea a eșuat complet: %s"
@@ -1227,70 +1229,70 @@ msgstr "Eșec la reindexarea forțată pentru repararea bazei de date: %s"
 msgid "Failed to create indices: %s"
 msgstr "Eșec la crearea indicilor: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:101
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:97
 #, c-format
 msgid "Cannot upgrade from version %d"
 msgstr "Nu se poate înnoi de la versiunea %d"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:117
 #, c-format
 msgid "Database upgrade to v18 failed: %s"
 msgstr "Înnoirea bazei de date la v18 a eșuat: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:134
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:135
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Nu s-a reușit adăugarea unui element cu ID %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:217
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:218
 #, c-format
 msgid "Failed to get update IDs: %s"
 msgstr "Eșec la obținerea ID-urilor de actualizare: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:400
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:401
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
 msgstr "Bază de date inconsistentă: elementul %s nu are părintele %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:525
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:526
 msgid "Failed to get reset token"
 msgstr "Eșec la obținerea jetonului de restabilire"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:537
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:538
 #, c-format
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "Eșec la persistarea ServiceResetToken: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:547
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:548
 #, c-format
 msgid "Failed to remove virtual folders: %s"
 msgstr "Eșec la eliminarea dosarelor virtuale: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:561
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:562
 #, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
 msgstr "Eșec la marcarea elementului %s ca apărat (%d): %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:571
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:572
 msgid "Cannot create references to containers"
 msgstr "Nu s-au putut crea referințe la containere"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:597
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:598
 #, c-format
 msgid "Failed to add %s to ignored files: %s"
 msgstr "Nu s-a putu adăuga %s la fișierele ignorate: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:610
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:611
 #, c-format
 msgid "Failed to get whether URI %s is ignored: %s"
 msgstr "Nu s-a putut obține dacă URI-ul %s este ignorat: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:626
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:627
 #, c-format
 msgid "Failed to get whether item %s is guarded: %s"
 msgstr "Eșec la obținerea dacă elementul %s este apărat: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:666
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:667
 #, c-format
 msgid ""
 "The version “%d” of the detected database is newer than our supported "
@@ -1299,21 +1301,21 @@ msgstr ""
 "Versiunea „%d” a bazei de date detectate este mai nouă decât versiunea "
 "suportată „%d”"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:688
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:689
 msgid "Incompatible schema… cannot proceed"
 msgstr "Schemă incompatibilă… nu se poate continua"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:694
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:695
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr "Bază de date nevalidă, nu se poate interoga tabelul sqlite_master: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:895
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:896
 #, c-format
 msgid "Failed to create database schema: %s"
 msgstr "Crearea schemei bazei de date a eșuat: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1232
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Se omite câmpul de sortare nesuportat: %s"
@@ -1397,7 +1399,7 @@ msgstr "Nu se pot elimina elementele din %s"
 msgid "upnp:class not supported in %s"
 msgstr "upnp:class nu este suportată în %s"
 
-#: src/plugins/media-export/rygel-media-export-plugin.vala:52
+#: src/plugins/media-export/rygel-media-export-plugin.vala:53
 #, c-format
 msgid "Failed to load plugin %s: %s"
 msgstr "Eșec la încărcarea modulului %s: %s"
@@ -1548,6 +1550,34 @@ msgstr "Eșec la crearea conexiunii la Tracker: %s"
 msgid "Failed to get Tracker connection: %s"
 msgstr "Eșec la obținerea conexiunii la Tracker: %s"
 
+#: src/rygel/application.vala:88
+#, c-format
+msgid "Failed to load user configuration: %s"
+msgstr "Nu s-a putut încărca configurația utilizatorului: %s"
+
+#: src/rygel/application.vala:125
+#, c-format
+msgid "No plugins found in %d second; giving up…"
+msgid_plural "No plugins found in %d seconds; giving up…"
+msgstr[0] "Nu s-a găsit niciun modul în %d secundă, se renunță…"
+msgstr[1] "Nu s-a găsit niciun modul în %d secunde, se renunță…"
+msgstr[2] "Nu s-a găsit niciun modul în %d de secunde, se renunță…"
+
+#: src/rygel/application.vala:154
+#, c-format
+msgid "Rygel v%s starting…"
+msgstr "Se pornește Rygel v%s…"
+
+#: src/rygel/application.vala:202
+#, c-format
+msgid "Failed to create RootDevice for %s. Reason: %s"
+msgstr "Nu s-a putut crea RootDevice pentru %s. Motiv: %s"
+
+#: src/rygel/application.vala:283
+#, c-format
+msgid "Failed to create root device factory: %s"
+msgstr "Nu s-a putut crea fabrica de dispozitive rădăcină: %s"
+
 #: src/rygel/rygel-acl.vala:110
 #, c-format
 msgid "Failed to query ACL: %s"
@@ -1565,38 +1595,6 @@ msgstr "Nicio politică ACL de rezervă nu a fost găsită. Se folosește „per
 #: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "Nicio politică ACL de rezervă nu a fost găsită. Se folosește „refuză”"
-
-#: src/rygel/rygel-dbus-service.vala:81
-msgid "Another instance of Rygel is already running. Not starting."
-msgstr "O altă instanță de Rygel rulează deja. Nu se pornește."
-
-#: src/rygel/rygel-main.vala:85
-#, c-format
-msgid "Rygel v%s starting…"
-msgstr "Se pornește Rygel v%s…"
-
-#: src/rygel/rygel-main.vala:113
-#, c-format
-msgid "No plugins found in %d second; giving up…"
-msgid_plural "No plugins found in %d seconds; giving up…"
-msgstr[0] "Nu s-a găsit niciun modul în %d secundă, se renunță…"
-msgstr[1] "Nu s-a găsit niciun modul în %d secunde, se renunță…"
-msgstr[2] "Nu s-a găsit niciun modul în %d de secunde, se renunță…"
-
-#: src/rygel/rygel-main.vala:177
-#, c-format
-msgid "Failed to create root device factory: %s"
-msgstr "Nu s-a putut crea fabrica de dispozitive rădăcină: %s"
-
-#: src/rygel/rygel-main.vala:235
-#, c-format
-msgid "Failed to create RootDevice for %s. Reason: %s"
-msgstr "Nu s-a putut crea RootDevice pentru %s. Motiv: %s"
-
-#: src/rygel/rygel-main.vala:272
-#, c-format
-msgid "Failed to load user configuration: %s"
-msgstr "Nu s-a putut încărca configurația utilizatorului: %s"
 
 #: src/ui/rygel-preferences-dialog.vala:109
 #, c-format
@@ -1617,6 +1615,19 @@ msgstr "Nu s-a putut porni serviciul D-Bus: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Nu s-a putut opri serviciul D-Bus: %s"
+
+#~ msgid "Replace currently running instance of Rygel"
+#~ msgstr "Înlocuiește instanța de Rygel ce rulează curent"
+
+#~ msgid "Shutting down remote Rygel instance\n"
+#~ msgstr "Se închide instanța Rygel de la distanță\n"
+
+#, c-format
+#~ msgid "Failed to shut down other Rygel instance: %s"
+#~ msgstr "Eșec la închiderea celeilalte instanțe Rygel: %s"
+
+#~ msgid "Another instance of Rygel is already running. Not starting."
+#~ msgstr "O altă instanță de Rygel rulează deja. Nu se pornește."
 
 #~ msgid "rygel"
 #~ msgstr "rygel"
