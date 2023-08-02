@@ -1,3 +1,9 @@
+0.42.4 (stable)
+===============
+
+- Translation updates
+- Fix building with meson 1.2.0
+
 0.42.3 (stable)
 ===============
 
