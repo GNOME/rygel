@@ -123,6 +123,9 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
                               ConnectionManager.UPNP_TYPE };
         var v1_hacks = new V1Hacks (DMR, services);
         v1_hacks.apply_on_device (device, description_path);
+
+        var dlna150_hacks = new Dlna150Hacks ();
+        dlna150_hacks.apply_on_device (device, v1_hacks.description_path);
     }
 
 

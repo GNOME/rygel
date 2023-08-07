@@ -57,50 +57,10 @@ public class Rygel.V1Hacks : Object {
     private const string MATCHING_PATTERN = ".*%s.*";
     private const string SERVICE_TYPE_PATTERN = ":[0-9]+$";
 
-    private static string agent_pattern;
-
     public string description_path;
 
-    private Regex agent_regex;
+    private static AgentMatcher agent_matcher;
     private Regex service_type_regex;
-
-    /**
-     * Read the user-agent snippets from the config file and generate the
-     * regular expression string for matching.
-     *
-     * Returns: A regular expression pattern matching any of the configured
-     *          user-agents.
-     */
-    private static string generate_agent_pattern () {
-        if (agent_pattern != null) {
-            return agent_pattern;
-        }
-
-        var config = MetaConfig.get_default ();
-        var raw_agents = AGENTS;
-        try {
-            raw_agents = config.get_string_list ("general",
-                                                 "force-downgrade-for").
-                                                 to_array ();
-        } catch (Error error) {}
-
-        var agents = new string[0];
-        foreach (var agent in raw_agents) {
-            agents += MATCHING_PATTERN.printf
-                                    (Regex.escape_string (agent));
-        }
-
-        if (agents.length > 0) {
-            agent_pattern = string.joinv ("|", agents);
-        } else {
-            agent_pattern = "";
-        }
-
-        debug ("V1 downgrade will be applied for devices matching %s",
-               agent_pattern);
-
-        return agent_pattern;
-    }
 
     public V1Hacks (string device_type,
                     string[] service_types) {
@@ -111,8 +71,14 @@ public class Rygel.V1Hacks : Object {
     public override void constructed () {
         base.constructed ();
 
+        if (V1Hacks.agent_matcher == null) {
+            var defaults = new Gee.ArrayList<string>.wrap (AGENTS, (Gee.EqualDataFunc<string>?)str_equal);
+            var config = MetaConfig.get_default ();
+            var agents = config.get_string_list_with_default ("general", "force-downgrade-for", defaults);
+            agent_matcher = new AgentMatcher("V1 hacks", agents);
+        }
+
         try {
-            this.agent_regex = new Regex (generate_agent_pattern ());
             this.service_type_regex = new Regex (SERVICE_TYPE_PATTERN);
         } catch (Error error) { assert_not_reached (); }
     }
@@ -140,10 +106,10 @@ public class Rygel.V1Hacks : Object {
         description_file.save (this.description_path);
 
         var server_path = "/" + device.get_description_document_name ();
-        if (this.agent_regex.get_pattern () != "") {
+        if (V1Hacks.agent_matcher.agent_regex.get_pattern () != "") {
             device.context.host_path_for_agent (this.description_path,
                                                 server_path,
-                                                this.agent_regex);
+                                                V1Hacks.agent_matcher.agent_regex);
         }
     }
 }

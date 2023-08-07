@@ -111,6 +111,21 @@ public interface Rygel.Configuration : GLib.Object {
                                                            string key)
                                                            throws GLib.Error;
 
+    public Gee.ArrayList<string> get_string_list_with_default (string section,
+                                                           string key,
+                                                           Gee.ArrayList<string> default) {
+        try {
+            var result = get_string_list(section, key);
+            if (result == null || result.size == 0) {
+                return default;
+            }
+
+            return result;
+        } catch (GLib.Error e) {
+            return default;
+        }                  
+    }  
+ 
     public abstract int get_int (string section,
                                  string key,
                                  int    min,

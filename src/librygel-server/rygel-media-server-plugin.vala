@@ -197,6 +197,9 @@ public abstract class Rygel.MediaServerPlugin : Rygel.Plugin {
         // Apply XBox hacks on top of that
         var xbox_hacks = new XBoxHacks ();
         xbox_hacks.apply_on_device (device, v1_hacks.description_path);
+
+        var dlna150_hacks = new Dlna150Hacks ();
+        dlna150_hacks.apply_on_device (device, v1_hacks.description_path);
     }
 
     private void on_container_updated (MediaContainer root_container,

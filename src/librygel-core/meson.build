@@ -29,6 +29,8 @@ core_sources = files(
     'rygel-xml-utils.vala',
     'rygel-plugin-information.vala',
     'rygel-energy-management-helper.c',
+    'dlna150-hacks.vala',
+    'agent-matcher.vala',
     'rygel-build-config.vapi')
 
 build_config = declare_dependency(include_directories : config_include,
