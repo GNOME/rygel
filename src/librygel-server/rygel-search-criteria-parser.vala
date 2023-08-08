@@ -157,6 +157,13 @@ internal class Rygel.SearchCriteriaParser : Object, StateMachine {
             exp.operand1 = this.scanner.value.identifier;
             this.scanner.get_next_token ();
 
+            if (this.token == SearchCriteriaSymbol.DERIVED_FROM) {
+                if (exp.operand1 != "upnp:class") {
+                    throw new SearchCriteriaError.SYNTAX_ERROR (this.context +
+                        ": \"derivedFrom\" requires \"upnp:class\" lhs");
+                }
+            }
+
             if (this.token == SearchCriteriaSymbol.EQ ||
                 this.token == SearchCriteriaSymbol.NEQ ||
                 this.token == SearchCriteriaSymbol.LESS ||
