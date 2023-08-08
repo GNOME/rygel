@@ -87,7 +87,9 @@ server_sources = files(
     'rygel-dtcp-cleartext-request.vala',
     'rygel-dtcp-cleartext-response.vala',
     'rygel-dlna-available-seek-request.vala',
-    'rygel-dlna-available-seek-response.vala')
+    'rygel-dlna-available-seek-response.vala',
+    'raumfeld-hacks.vala'
+)
 
 server_lib = library('rygel-server-2.8', server_sources,
         dependencies : server_deps + [build_config, rygel_core],
