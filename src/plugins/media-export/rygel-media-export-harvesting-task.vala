@@ -168,7 +168,7 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                 info.set_content_type(mime_type);
             }
 
-            if (info.get_content_type () == null) {
+            if (!info.has_attribute (FileAttribute.STANDARD_CONTENT_TYPE) || info.get_content_type () == null) {
                 var extended_info = file.query_info
                                         (HARVESTER_MIME_TYPE_ATTRIBUTES,
                                          FileQueryInfoFlags.NONE);
