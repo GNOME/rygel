@@ -113,7 +113,8 @@
             "name" : "rygel",
             "buildsystem" : "meson",
             "config-opts" : [
-                "--libdir=lib"
+                "--libdir=lib",
+                "-Dsystemd-user-units=none"
             ],
             "builddir" : true,
             "sources" : [
