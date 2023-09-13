@@ -114,7 +114,7 @@
             "buildsystem" : "meson",
             "config-opts" : [
                 "--libdir=lib",
-                "-Dsystemd-user-units=none"
+                "-Dsystemd-user-units-dir=none"
             ],
             "builddir" : true,
             "sources" : [
