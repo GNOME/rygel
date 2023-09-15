@@ -17,10 +17,10 @@ media to format that client devices are capable of handling.</description>
 
   <homepage
   rdf:resource="https://wiki.gnome.org/Projects/Rygel" />
-  <mailing-list
-  rdf:resource="http://mail.gnome.org/mailman/listinfo/rygel-list" />
+  <support-forum
+  rdf:resource="https://discourse.gnome.org/tag/rygel" />
   <download-page
-  rdf:resource="http://download.gnome.org/sources/rygel/" />
+  rdf:resource="https://download.gnome.org/sources/rygel/" />
   <bug-database
   rdf:resource="https://gitlab.gnome.org/GNOME/rygel/issues/" />
 
