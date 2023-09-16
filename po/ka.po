@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2022-09-12 11:46+0000\n"
-"PO-Revision-Date: 2022-12-26 09:43+0100\n"
+"POT-Creation-Date: 2023-02-02 20:07+0000\n"
+"PO-Revision-Date: 2023-09-16 20:32+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/rygel.desktop.in:3
 msgid "Rygel"
@@ -236,7 +236,7 @@ msgstr "დამატების პარამეტრების და�
 
 #: src/librygel-core/rygel-cmdline-config.vala:72
 msgid "Use configuration file instead of user configuration"
-msgstr ""
+msgstr "მომხმარებლის კონფიგურაციის მაგიერ მითითებული ფაილის გამოყენება"
 
 #: src/librygel-core/rygel-cmdline-config.vala:74
 msgid "Shut down remote Rygel reference"
@@ -292,7 +292,7 @@ msgstr "სოკეტის მიღების შეცდომა: %s"
 #: src/librygel-core/rygel-energy-management-helper.c:62
 #, c-format
 msgid "Failed to get MAC address for %s: %s"
-msgstr ""
+msgstr "%s-სთვის MAC მისამართის მიღება ჩავარდა: %s"
 
 #: src/librygel-core/rygel-energy-management-helper.c:104
 msgid "MAC and network type querying not implemented"
@@ -326,22 +326,22 @@ msgstr ""
 
 #: src/librygel-core/rygel-plugin-information.vala:67
 msgid "[Plugin] group not found"
-msgstr ""
+msgstr "[დამატება] ჯგუფი ვერ ვიპოვე"
 
 #: src/librygel-core/rygel-plugin-information.vala:79
 #, c-format
 msgid "Plugin module %s does not exist"
-msgstr ""
+msgstr "დამატების მოდული %s არ არსებობს"
 
 #: src/librygel-core/rygel-plugin-loader.vala:89
 #, c-format
 msgid "New plugin “%s” available"
-msgstr ""
+msgstr "ხელმისაწვდომია ახალი დამატება \"%s\""
 
 #: src/librygel-core/rygel-plugin-loader.vala:104
 #, c-format
 msgid "A module named %s is already loaded"
-msgstr ""
+msgstr "მოდული სახელით %s უკვე ჩატვირთულია"
 
 #: src/librygel-core/rygel-plugin-loader.vala:118
 #, c-format
@@ -371,7 +371,7 @@ msgstr ""
 #: src/librygel-core/rygel-recursive-module-loader.vala:204
 #, c-format
 msgid "Could not load plugin: %s"
-msgstr ""
+msgstr "დამატების ფაილის ჩატვირთვა შეუძლებელია: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:231
 #, c-format
@@ -392,12 +392,12 @@ msgstr ""
 #: src/librygel-core/rygel-user-config.vala:370
 #, c-format
 msgid "Value of “%s” out of range"
-msgstr ""
+msgstr "მნიშვნელობა '%s' დიაპაზონს გარეთაა"
 
 #: src/librygel-db/database-cursor.vala:99
 #, c-format
 msgid "Unsupported type %s"
-msgstr ""
+msgstr "მხარდაუჭერელი ტიპი \"%s\""
 
 #: src/librygel-db/database.vala:175
 #, c-format
@@ -460,7 +460,7 @@ msgstr "რესურსი ნაპოვნი არაა"
 #: src/librygel-renderer/rygel-av-transport.vala:792
 #, c-format
 msgid "Problem parsing playlist: %s"
-msgstr ""
+msgstr "დასაკრავი სიის დამუშავების შეცდომა: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
@@ -531,7 +531,7 @@ msgstr ""
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
 #, c-format
 msgid "Invalid UI filter: %s"
-msgstr ""
+msgstr "არასწორი UI ფილტრი: %s"
 
 #: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
 #, c-format
@@ -549,7 +549,7 @@ msgstr ""
 #: src/librygel-server/rygel-browse.vala:134
 #, c-format
 msgid "Failed to browse “%s”: %s\n"
-msgstr ""
+msgstr "\"%s\"-ის დათვალიერება ჩავარდა: %s\n"
 
 #: src/librygel-server/rygel-client-hacks.vala:147
 msgid "Not Applicable"
@@ -557,7 +557,7 @@ msgstr "არ განეკუთვნება"
 
 #: src/librygel-server/rygel-content-directory.vala:639
 msgid "No such file transfer"
-msgstr ""
+msgstr "ასეთი ფაილის გადაცემა არ არსებობს"
 
 #: src/librygel-server/rygel-dbus-thumbnailer.vala:116
 msgid "No D-Bus thumbnailer service available"
@@ -610,7 +610,7 @@ msgstr ""
 #: src/librygel-server/rygel-http-request.vala:104
 #, c-format
 msgid "Requested item “%s” not found"
-msgstr ""
+msgstr "მოთხოვნილი ელემენტი \"%s\" აღმოჩენილი არაა"
 
 #: src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
@@ -630,17 +630,17 @@ msgstr ""
 #: src/librygel-server/rygel-import-resource.vala:237
 #, c-format
 msgid "Failed to import file from %s: %s"
-msgstr ""
+msgstr "%s-დან შემოტანის შეცდომა: %s"
 
 #. Sorry we can't do anything without the ID
 #: src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
-msgstr ""
+msgstr "ContainerID ვერ ვიპოვე"
 
 #: src/librygel-server/rygel-item-destroyer.vala:60
 #, c-format
 msgid "Successfully destroyed object “%s”"
-msgstr ""
+msgstr "ობიექტი \"%s\" წარმატებით განადგურდა"
 
 #: src/librygel-server/rygel-item-destroyer.vala:68
 #, c-format
@@ -658,12 +658,12 @@ msgstr "ასეთი ობიექტის გარეშე"
 #: src/librygel-server/rygel-item-destroyer.vala:108
 #, c-format
 msgid "Removal of object %s not allowed"
-msgstr ""
+msgstr "ობიექტის %s წაშლა დაშვებული არაა"
 
 #: src/librygel-server/rygel-item-destroyer.vala:111
 #, c-format
 msgid "Object removal from %s not allowed"
-msgstr ""
+msgstr "%s-დან ობიექტის წაშლა დაშვებული არაა"
 
 #. Sorry we can't do anything without the ID
 #: src/librygel-server/rygel-item-updater.vala:74
@@ -673,18 +673,18 @@ msgstr "ობიექტის ID-ის გარეშე"
 #: src/librygel-server/rygel-item-updater.vala:81
 #, c-format
 msgid "Successfully updated object “%s”"
-msgstr ""
+msgstr "ობიექტი \"%s\" წარმატებით განახლდა"
 
 #: src/librygel-server/rygel-item-updater.vala:89
 #, c-format
 msgid "Failed to update object “%s”: %s"
-msgstr ""
+msgstr "ჩავარდა განახლება ობიექტისთვის \"%s\": %s"
 
 #: src/librygel-server/rygel-item-updater.vala:162
 #: src/librygel-server/rygel-object-creator.vala:614
 #, c-format
 msgid "Invalid date format: %s"
-msgstr ""
+msgstr "თარიღის არასწორი ფორმატი: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:171
 #: src/librygel-server/rygel-object-creator.vala:623
@@ -702,15 +702,15 @@ msgstr "ჭდის არასწორი ახალი მნიშვნ
 
 #: src/librygel-server/rygel-item-updater.vala:263
 msgid "Tried to delete required tag."
-msgstr ""
+msgstr "აუცილებელი ჭდის წაშლის მცდელობა."
 
 #: src/librygel-server/rygel-item-updater.vala:266
 msgid "Tried to change read-only property."
-msgstr ""
+msgstr "მხოლოდ-კითხვადი თვისების შეცვლის მცდელობა."
 
 #: src/librygel-server/rygel-item-updater.vala:269
 msgid "Parameter count mismatch."
-msgstr ""
+msgstr "პარამეტრების რაოდენობა არ ემთხვევა."
 
 #: src/librygel-server/rygel-item-updater.vala:272
 msgid "Unknown error."
@@ -745,15 +745,15 @@ msgstr ""
 
 #: src/librygel-server/rygel-media-container.vala:67
 msgid "Seeking not supported"
-msgstr ""
+msgstr "გადახვევა მხარდაჭერილი არაა"
 
 #: src/librygel-server/rygel-media-container.vala:72
 msgid "Speed not supported"
-msgstr ""
+msgstr "სიჩქარე მხარდაჭერილი არაა"
 
 #: src/librygel-server/rygel-media-container.vala:123
 msgid "Failed to generate playlist"
-msgstr ""
+msgstr "დასაკრავი სიის გენერაცია ჩავარდა"
 
 #: src/librygel-server/rygel-media-container.vala:472
 #, c-format
@@ -766,7 +766,7 @@ msgstr ""
 
 #: src/librygel-server/rygel-media-engine.vala:75
 msgid "MediaEngine.init was not called. Cannot continue."
-msgstr ""
+msgstr "MediaEngine.init არ გამოგიძახიათ. გაგრძელება შეუძლებელია."
 
 #: src/librygel-server/rygel-media-file-item.vala:177
 #: src/librygel-server/rygel-video-item.vala:242
@@ -791,7 +791,7 @@ msgstr "არგუმენტების არასწორი რაო�
 #. Sorry we can't do anything without ObjectID
 #: src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
-msgstr ""
+msgstr "ObjectID არგუმენტი ვერ ვიპოვე"
 
 #: src/librygel-server/rygel-media-query-action.vala:127
 msgid "Invalid range"
@@ -804,24 +804,24 @@ msgstr "ფილტრის გარეშე"
 #: src/librygel-server/rygel-media-query-action.vala:197
 #: src/librygel-server/rygel-object-creator.vala:414
 msgid "No such container"
-msgstr ""
+msgstr "ასეთი კონტეინერი არ არსებობს"
 
 #: src/librygel-server/rygel-object-creator.vala:150
 msgid "upnp:createClass value not supported"
-msgstr ""
+msgstr "upnp:createClass მნიშვნელობა მხარდაჭერილი არაა"
 
 #: src/librygel-server/rygel-object-creator.vala:193
 msgid "“Elements” argument missing."
-msgstr ""
+msgstr "არგუმენტი “Elements” აღმოჩენილი არაა."
 
 #: src/librygel-server/rygel-object-creator.vala:196
 msgid "Comments not allowed in XML"
-msgstr ""
+msgstr "XML-ში კომენტარები დაშვებული არაა"
 
 #. Sorry we can't do anything without ContainerID
 #: src/librygel-server/rygel-object-creator.vala:202
 msgid "Missing ContainerID argument"
-msgstr ""
+msgstr "არგუმენტი ContainerID ვერ ვიპოვე"
 
 #: src/librygel-server/rygel-object-creator.vala:226
 #, c-format
@@ -842,7 +842,7 @@ msgstr ""
 
 #: src/librygel-server/rygel-object-creator.vala:257
 msgid "Invalid upnp:class given in CreateObject"
-msgstr ""
+msgstr "CreateObject-ში მითითებული upnp:class არასწორია"
 
 #: src/librygel-server/rygel-object-creator.vala:261
 msgid "Object is missing the @restricted attribute"
@@ -855,7 +855,7 @@ msgstr ""
 #: src/librygel-server/rygel-object-creator.vala:385
 #, c-format
 msgid "UPnP class “%s” not supported"
-msgstr ""
+msgstr "UPnP კლასი “%s” მხარდაჭერილი არაა"
 
 #: src/librygel-server/rygel-object-creator.vala:419
 #: src/librygel-server/rygel-object-creator.vala:431
@@ -863,7 +863,7 @@ msgstr ""
 #: src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
-msgstr ""
+msgstr "ობიექტის შექმნა %s-ში მხარდაჭერილი არაა"
 
 #: src/librygel-server/rygel-object-creator.vala:476
 #, c-format
@@ -873,7 +873,7 @@ msgstr ""
 #: src/librygel-server/rygel-object-creator.vala:552
 #, c-format
 msgid "DLNA profile “%s” not supported"
-msgstr ""
+msgstr "DLNA პროფილი “%s” მხარდაჭერილი არაა"
 
 #: src/librygel-server/rygel-object-creator.vala:656
 #, c-format
@@ -889,11 +889,11 @@ msgstr ""
 
 #: src/librygel-server/rygel-reference-creator.vala:50
 msgid "“ContainerID” agument missing."
-msgstr ""
+msgstr "არგუმენტი “ContainerID” ვერ ვიპოვე."
 
 #: src/librygel-server/rygel-reference-creator.vala:55
 msgid "“ObjectID” argument missing."
-msgstr ""
+msgstr "არგუმენტი “ObjectID” ვერ ვიპოვე."
 
 #: src/librygel-server/rygel-reference-creator.vala:86
 #, c-format
@@ -902,17 +902,17 @@ msgstr ""
 
 #: src/librygel-server/rygel-search.vala:70
 msgid "Invalid search criteria given"
-msgstr ""
+msgstr "მითითებული ძებნის პირობა არსწორია"
 
 #: src/librygel-server/rygel-search.vala:94
 #, c-format
 msgid "Failed to search in “%s”: %s"
-msgstr ""
+msgstr "'%s'-ში ძებნა ჩავარდა: %s"
 
 #: src/librygel-server/rygel-subtitle-manager.vala:49
 #: src/librygel-server/rygel-subtitle-manager.vala:96
 msgid "No subtitle available"
-msgstr ""
+msgstr "სუბტიტრები აღმოჩენილი არაა"
 
 #: src/librygel-server/rygel-thumbnailer.vala:61
 #, c-format
@@ -929,11 +929,11 @@ msgstr ""
 #: src/librygel-server/rygel-thumbnailer.vala:102
 #: src/librygel-server/rygel-thumbnailer.vala:113
 msgid "No thumbnail available"
-msgstr ""
+msgstr "მინიატურები ხელმიუწვდომელია"
 
 #: src/librygel-server/rygel-thumbnailer.vala:97
 msgid "No thumbnail available. Generation requested."
-msgstr ""
+msgstr "მინიატურები ხელმიუწვდომელია. გენერაცია მოთხოვნილია."
 
 #: src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
@@ -947,24 +947,24 @@ msgstr ""
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
 msgid "Playspeed not supported"
-msgstr ""
+msgstr "დაკვრის სიჩქარე მხარდაჭერილი არაა"
 
 #. Unknown/unsupported seek type
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
-msgstr ""
+msgstr "HTTPSeekRequest ტიპით %s მხარდაჭერილი არაა"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
 msgid "Failed to create pipeline"
-msgstr ""
+msgstr "ფაიფლაინის შექმნა ჩავარდა"
 
 #. static pads? easy!
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:163
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:184
 #, c-format
 msgid "Failed to link %s to %s"
-msgstr ""
+msgstr "%s -დან %s-მდე ბმულის შექმნის შეცდომა"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:198
 #, c-format
@@ -997,7 +997,7 @@ msgstr "გადახვევის შეცდომა"
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
 #, c-format
 msgid "Invalid URI without prefix: %s"
-msgstr ""
+msgstr "არასწორი URI პრეფიქსის გარეშე: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
 #, c-format
@@ -1018,7 +1018,7 @@ msgstr ""
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
 msgid "Required element %s missing"
-msgstr ""
+msgstr "აუცილებელი ელემენტი %s აღმოჩენილი არაა"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:58
 msgid "GStreamer element “dvdreadsrc” not found. DVD support does not work"
@@ -1089,7 +1089,7 @@ msgstr "სურათები"
 #: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
 msgid "Title %d"
-msgstr ""
+msgstr "სათაური %d"
 
 #: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
 msgid ""
@@ -1201,7 +1201,7 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
 msgid "Failed to create indices: %s"
-msgstr ""
+msgstr "ინდექსების შექმნა ჩავარდა: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:97
 #, c-format
@@ -1221,7 +1221,7 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:218
 #, c-format
 msgid "Failed to get update IDs: %s"
-msgstr ""
+msgstr "განახლების ID-ების მიღება ჩავარდა: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:401
 #, c-format
@@ -1240,7 +1240,7 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:548
 #, c-format
 msgid "Failed to remove virtual folders: %s"
-msgstr ""
+msgstr "ვირტუალური საქაღალდეების შექმნა ჩავარდა: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:562
 #, c-format
@@ -1275,7 +1275,7 @@ msgstr ""
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:689
 msgid "Incompatible schema… cannot proceed"
-msgstr ""
+msgstr "არათავსებადი სქემა. გაგრძელება შეუძლებელია"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:695
 #, c-format
@@ -1285,7 +1285,7 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:896
 #, c-format
 msgid "Failed to create database schema: %s"
-msgstr ""
+msgstr "მონაცემთა ბაზის სქემის შექმნა ჩავარდა: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
 #, c-format
@@ -1328,33 +1328,33 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:243
 #, c-format
 msgid "Read from child failed: %s"
-msgstr ""
+msgstr "შვილიდან წაკითხვა ჩავარდა:%s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:270
 #, c-format
 msgid "Failed to send command to child: %s"
-msgstr ""
+msgstr "შვილისთვის ბრძანების გაგზავნა ჩავარდა: %s"
 
 #: src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
 msgid "Failed to get child count: %s"
-msgstr ""
+msgstr "შვილების რაოდენობის მიღება ჩავარდა: %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
 #, c-format
 msgid "Can’t create items in %s"
-msgstr ""
+msgstr "%s-ში ელემენტების შექმნა შეუძლებელია"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:91
 #, c-format
 msgid "Can’t add containers in %s"
-msgstr ""
+msgstr "%s-ში კონტეინერების ჩამატება შეუძლებელია"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:99
 #, c-format
 msgid "Can’t remove containers in %s"
-msgstr ""
+msgstr "%s-ში კონტეინერების წაშლა შეუძლებელია"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
 #: src/plugins/media-export/rygel-media-export-root-container.vala:612
@@ -1364,21 +1364,21 @@ msgstr "დასაკრავი სიები"
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
 msgid "Can’t remove items in %s"
-msgstr ""
+msgstr "%s-ში ელემენტების წაშლა შეუძლებელია"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
 #, c-format
 msgid "upnp:class not supported in %s"
-msgstr ""
+msgstr "upnp:class %s-ში მხარდაჭერილი არაა"
 
 #: src/plugins/media-export/rygel-media-export-plugin.vala:53
 #, c-format
 msgid "Failed to load plugin %s: %s"
-msgstr ""
+msgstr "დამატების ('%s') ჩატვირთვა ჩავარდა: %s"
 
 #: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
 msgid "Will not monitor file changes"
-msgstr ""
+msgstr "ფაილის ცვლილებების მონიტორინგი არ მოხდება"
 
 #. Avoid warning when file is removed in the meantime, e.g. in
 #. upload case.
@@ -1413,46 +1413,46 @@ msgstr "ჟანრი"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:56
 msgid "Files & Folders"
-msgstr ""
+msgstr "ფაილები და საქაღალდეები"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
 #: src/plugins/tracker3/rygel-tracker-plugin.vala:34
 #: src/plugins/tracker/rygel-tracker-plugin.vala:33
 msgid "@REALNAME@’s media"
-msgstr ""
+msgstr "@REALNAME@-ის მედია"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:457
 #: src/plugins/media-export/rygel-media-export-root-container.vala:524
 #, c-format
 msgid "Failed to remove entry: %s"
-msgstr ""
+msgstr "ელემენტის წაშლა ჩავარდა: %s"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
 #, c-format
 msgid "Failed to save object: %s"
-msgstr ""
+msgstr "ობიექტის შენახვის შეცდომა: %s"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:79
 #, c-format
 msgid "Failed to add object: %s"
-msgstr ""
+msgstr "ობიექტის დამატების შეცდომა: %s"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:87
 #, c-format
 msgid "Failed to remove object: %s"
-msgstr ""
+msgstr "ობიექტის წაშლის შეცდომა: %s"
 
 #: src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
 #, c-format
 msgid "Failed to remove file %s: %s"
-msgstr ""
+msgstr "ფაილის (%s) წაშლის შეცდომა: %s"
 
 #: src/plugins/media-export/rygel-media-export-writable-db-container.vala:120
 #, c-format
 msgid "Could not find object %d in cache"
-msgstr ""
+msgstr "ობიექტი %d კეშში ვერ ვიპოვე"
 
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
 #, c-format
@@ -1461,11 +1461,11 @@ msgstr ""
 
 #: src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
-msgstr ""
+msgstr "GStreamer-ის დამკვრელი"
 
 #: src/plugins/playbin/rygel-playbin-plugin.vala:43
 msgid "Could not create GStreamer player"
-msgstr ""
+msgstr "GStreamer-ის დამკვრელის შექმნა შეუძლებელია"
 
 #: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
@@ -1537,7 +1537,7 @@ msgstr[1] ""
 #: src/rygel/application.vala:154
 #, c-format
 msgid "Rygel v%s starting…"
-msgstr ""
+msgstr "ეშვება Rygel v%s…"
 
 #: src/rygel/application.vala:202
 #, c-format
