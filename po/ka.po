@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2023-02-02 20:07+0000\n"
-"PO-Revision-Date: 2023-09-16 20:32+0200\n"
+"POT-Creation-Date: 2022-09-12 11:46+0000\n"
+"PO-Revision-Date: 2023-10-01 23:08+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -41,7 +41,7 @@ msgstr "UPnP/DLNA -ის მორგება"
 
 #: data/rygel-preferences.ui:94
 msgid "Add a directory to the list of shared directories"
-msgstr ""
+msgstr "საქაღალდის გაზიარებული საქაღალდეების სიაში ჩამატება"
 
 #: data/rygel-preferences.ui:95
 msgid "Add shared directory"
@@ -49,7 +49,7 @@ msgstr "გაზიარებული საქაღალდის და�
 
 #: data/rygel-preferences.ui:107
 msgid "Remove a directory from the list of shared directories"
-msgstr ""
+msgstr "საქაღალდის გაზიარებული საქაღალდეების სიიდან წაშლა"
 
 #: data/rygel-preferences.ui:108
 msgid "Remove shared directory"
@@ -57,11 +57,11 @@ msgstr "გაზიარებული საქაღალდის წა�
 
 #: data/rygel-preferences.ui:153
 msgid "_Share media through DLNA"
-msgstr ""
+msgstr "მედიის გაზიარება DLNA-ით"
 
 #: data/rygel-preferences.ui:230 data/rygel-preferences.ui:231
 msgid "Add a network interface Rygel should serve files on"
-msgstr ""
+msgstr "ქსელის ინტერფეისის დამატება Rygel-სთვის ფაილების გასაცემად"
 
 #: data/rygel-preferences.ui:232
 msgid "Add network interface"
@@ -69,7 +69,7 @@ msgstr "ქსელის ახალი ინტერფეისის დ
 
 #: data/rygel-preferences.ui:245 data/rygel-preferences.ui:246
 msgid "Remove a network interface Rygel should no longer serve files on"
-msgstr ""
+msgstr "Rygel-ის ფაილების გასაცემი ინტერფეისის წაშლა"
 
 #: data/rygel-preferences.ui:247
 msgid "Remove network interface"
@@ -109,12 +109,12 @@ msgstr "განხორციელებული არაა"
 #: src/librygel-core/rygel-basic-management-test.vala:197
 #, c-format
 msgid "Failed to read standard output from %s: %s"
-msgstr ""
+msgstr "%s-დან სტანდარტული გამოტანის წაკითხვა ჩავარდა: %s"
 
 #: src/librygel-core/rygel-basic-management-test.vala:225
 #, c-format
 msgid "Failed to read error output from %s: %s"
-msgstr ""
+msgstr "%s-დან შეცდომის გამოტანის წაკითხვა ჩავარდა: %s"
 
 #. / No test with the specified TestID was found
 #: src/librygel-core/rygel-basic-management.vala:158
@@ -133,7 +133,7 @@ msgstr "ტესტის არასწორი ტიპი"
 #: src/librygel-core/rygel-basic-management.vala:174
 #, c-format
 msgid "Invalid Test State “%s”"
-msgstr ""
+msgstr "ტესტის არასწორი მდგომარეობა \"%s\""
 
 #. / TestID is valid but the test can't be canceled
 #: src/librygel-core/rygel-basic-management.vala:180
@@ -296,12 +296,12 @@ msgstr "%s-სთვის MAC მისამართის მიღება
 
 #: src/librygel-core/rygel-energy-management-helper.c:104
 msgid "MAC and network type querying not implemented"
-msgstr ""
+msgstr "MAC-ის და ქსელის ტიპის გამოთხოვა ჯერ განხორციელებული არაა"
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
 msgid "Failed to get log level from configuration: %s"
-msgstr ""
+msgstr "კონფიგურაციიდან ჟურნალის დონის მიღება ჩავარდა: %s"
 
 #. translators: "enabled" is part of the config key and must not be translated
 #: src/librygel-core/rygel-meta-config.vala:352
@@ -387,7 +387,7 @@ msgstr ""
 #: src/librygel-core/rygel-user-config.vala:299
 #, c-format
 msgid "No value available for “%s”"
-msgstr ""
+msgstr "\"%s\"-სთვის მნიშვნელობა ხელმისაწვდომი არაა"
 
 #: src/librygel-core/rygel-user-config.vala:370
 #, c-format
@@ -684,7 +684,7 @@ msgstr "ჩავარდა განახლება ობიექტი�
 #: src/librygel-server/rygel-object-creator.vala:614
 #, c-format
 msgid "Invalid date format: %s"
-msgstr "თარიღის არასწორი ფორმატი: %s"
+msgstr ""
 
 #: src/librygel-server/rygel-item-updater.vala:171
 #: src/librygel-server/rygel-object-creator.vala:623
@@ -762,7 +762,7 @@ msgstr ""
 
 #: src/librygel-server/rygel-media-engine.vala:63
 msgid "No media engine found."
-msgstr ""
+msgstr "მედია ძრავა ვერ მოიძებნა."
 
 #: src/librygel-server/rygel-media-engine.vala:75
 msgid "MediaEngine.init was not called. Cannot continue."
@@ -850,7 +850,7 @@ msgstr ""
 
 #: src/librygel-server/rygel-object-creator.vala:268
 msgid "Cannot create restricted item"
-msgstr ""
+msgstr "აკრძალული ელემენტის შექმნა შეუძლებელია"
 
 #: src/librygel-server/rygel-object-creator.vala:385
 #, c-format
@@ -1163,7 +1163,7 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:191
 #, c-format
 msgid "Failed to query database: %s"
-msgstr ""
+msgstr "ბაზიდან მოთხოვნის შეცდომა: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:272
 #, c-format
@@ -1580,9 +1580,9 @@ msgstr ""
 #: src/ui/rygel-writable-user-config.vala:214
 #, c-format
 msgid "Failed to start Rygel service: %s"
-msgstr ""
+msgstr "Rygel-ის სერვისის გაშვების შეცდომა: %s"
 
 #: src/ui/rygel-writable-user-config.vala:216
 #, c-format
 msgid "Failed to stop Rygel service: %s"
-msgstr ""
+msgstr "Rygel-ის სერვისის გაჩერების შეცდომა: %s"
