@@ -1,3 +1,38 @@
+0.42.5 (stable)
+===============
+
+All:
+ - Translation updates
+
+Core
+ - Fix issue with devices that cannot handle DLNA 1.51
+
+Server
+ - Fix issue with Raumfeld devices not supporting OGG
+ - Actually validate derivedFrom operator
+
+MediaExport
+ - Fix critical after a change in glib
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/104
+ - https://gitlab.gnome.org/GNOME/rygel/issues/220
+ - https://gitlab.gnome.org/GNOME/rygel/issues/231
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Ekaterine Papava <papava.e@gtu.ge>
+ - Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>
+ - Andre Klapper <a9016009@gmx.de>
+ - Sabri Ünal <libreajans@gmail.com>
+ - Daniel Șerbănescu <daniel@serbanescu.dk>
+
+Added/updated translations:
+ - eo.po, courtesy of Kristjan SCHMIDT
+ - ka.po, courtesy of Ekaterine Papava
+ - ro.po, courtesy of Florentina Mușat
+ - tr.po, courtesy of Sabri Ünal
+
 0.42.4 (stable)
 ===============
 
