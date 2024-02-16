@@ -1,14 +1,14 @@
 # Georgian translation for rygel
 # Copyright (C) 2022 rygel authors
 # This file is distributed under the same license as the rygel package.
-# Ekaterine Papava <papava.e@gtu.ge>, 2022.
+# Ekaterine Papava <papava.e@gtu.ge>, 2022-2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2023-10-01 21:10+0000\n"
-"PO-Revision-Date: 2023-10-14 09:49+0200\n"
+"POT-Creation-Date: 2023-10-14 07:51+0000\n"
+"PO-Revision-Date: 2024-02-16 14:33+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: data/rygel.desktop.in:3
 msgid "Rygel"
@@ -892,6 +892,8 @@ msgid ""
 "Error from container “%s” on trying to find the newly added child object "
 "“%s” in it: %s"
 msgstr ""
+"შეცდომა კონტეინერიდან \"%s\" მცდელობისას, ეპოვა მასში ახალი დამატებული შვილი "
+"ობიექტი \"%s\": %s"
 
 #: src/librygel-server/rygel-reference-creator.vala:50
 msgid "“ContainerID” agument missing."
@@ -948,7 +950,7 @@ msgstr "D-Bus-ის მინიატურების სერვისი 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:46
 #, c-format
 msgid "Could not create GstElement for URI %s"
-msgstr ""
+msgstr "ვერ შევქმენი GstElement ბმულისთვის %s"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
@@ -975,17 +977,17 @@ msgstr "%s -დან %s-მდე ბმულის შექმნის შ�
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:198
 #, c-format
 msgid "Failed to link pad %s to %s"
-msgstr ""
+msgstr "ჩავარდა კონექტორის %s მიერთება %s-სთან"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:263
 #, c-format
 msgid "Error from pipeline %s: %s"
-msgstr ""
+msgstr "შეცდომა ფაიფლაინიდან %s: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:270
 #, c-format
 msgid "Warning from pipeline %s: %s"
-msgstr ""
+msgstr "გაფრთხილება ფაიფლაინიდან %s: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:323
 msgid "Unsupported seek type"
@@ -994,7 +996,7 @@ msgstr "გადახვევის მხარდაუჭერელი �
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
-msgstr ""
+msgstr "ჩავარდა გადახვევა წანაცვლებამდე %lld: %lld"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
 msgid "Failed to seek"
@@ -1008,18 +1010,20 @@ msgstr "არასწორი URI პრეფიქსის გარეშ
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
-msgstr ""
+msgstr "ვერ დავამუშავე URI %s პროტოკოლით %s"
 
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
-msgstr ""
+msgstr "ჩავარდა GStreamer-ის მონაცემების წყაროს შექმნა %s-სთვის: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-transcoding-data-source.vala:29
 msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation "
 "might be missing a plug-in"
 msgstr ""
+"ვერ შევქმენი ტრანსკოდერის კონფიგურაცია. თქვენს GStreamer-ის ვერსიას, "
+"შეიძლება, საჭირო დამატება აკლია"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
@@ -1029,26 +1033,30 @@ msgstr "აუცილებელი ელემენტი %s აღმო�
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:58
 msgid "GStreamer element “dvdreadsrc” not found. DVD support does not work"
 msgstr ""
+"GStreamer-ის ელემენტი \"dvdreadsrc\" ვერ ვიპოვე. DVD-ის მხარდაჭერა არ "
+"იმუშავებს"
 
 #: src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
-msgstr ""
+msgstr "მხარდაჭერილია, მხოლოდ, ბაიტებზე დაფუძნებული გადახვევა"
 
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
 #: src/media-engines/simple/rygel-simple-media-engine.vala:99
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
 msgstr ""
+"შეუძლია, მხოლოდ, ფაილის სახით წარმოდგენილი MediaObject-ების დაუმუშავება "
+"(MediaFileItems)"
 
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
 msgid "Module “%s” could not connect to D-Bus session bus. Ignoring…"
-msgstr ""
+msgstr "მოდული \"%s\" D-Bus-ის სესიის მატარებელს ვერ დაუკავშირდა. გამოტოვება…"
 
 #: src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
 msgid "External provider %s did not provide mandatory property “%s”"
-msgstr ""
+msgstr "გარე მომწოდებელმა %s არ მოგვაწოდა აუცილებელი თვისება \"%s\""
 
 #: src/plugins/lms/rygel-lms-albums.vala:166
 #: src/plugins/tracker3/rygel-tracker-albums.vala:31
@@ -1101,6 +1109,7 @@ msgstr "სათაური %d"
 msgid ""
 "Failed to find lsdvd binary in path. DVD extraction will not be available"
 msgstr ""
+"ვერ ვიპოვე გამშვები პროგრამა lsdvd. DVD-დან რიპინგი ხელმისაწვდომი არ იქნება"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:73
 msgid "Invalid command received, ignoring"
@@ -1114,17 +1123,17 @@ msgstr "URI %s ვერ აღმოვაჩინე: %s"
 #: src/plugins/media-export/rygel-media-export-extract.vala:105
 #, c-format
 msgid "Failed to read from pipe: %s"
-msgstr ""
+msgstr "არხიდან წაკითხვა ჩავარდა: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:132
 #: src/plugins/media-export/rygel-media-export-extract.vala:144
 #, c-format
 msgid "Failed to send error to parent: %s"
-msgstr ""
+msgstr "ჩავარდა შეცდომის გაგზავნა მშობლისთვის: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:157
 msgid "— helper binary for Rygel to extract metadata"
-msgstr ""
+msgstr "— დამხმარე გამშვები ფაილი Rygel-სთვის, მეტამონაცემების გამოსაღებად"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:164
 #, c-format
@@ -1149,22 +1158,22 @@ msgstr "შეცდომა ობიექტის (\"%s\") ბაზიდ�
 #: src/plugins/media-export/rygel-media-export-harvester.vala:213
 #, c-format
 msgid "Failed to query info of a file %s: %s"
-msgstr ""
+msgstr "ჩავარდა ინფორმაციის გამოთხოვა ფაილისთვის %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:248
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
-msgstr ""
+msgstr "ვერ ვიპოვე ობიექტი %s ან მისი მშობელი. მონაცემთა ბაზა არამდგრადია"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:252
 #, c-format
 msgid "Error removing object from database: %s"
-msgstr ""
+msgstr "შეცდომა ობიექტის ბაზიდან წაშლისას: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:127
 #, c-format
 msgid "Failed to harvest file %s: %s"
-msgstr ""
+msgstr "ჩავარდა დამუშავება ფაილისთვის %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:191
 #, c-format
@@ -1174,17 +1183,17 @@ msgstr "ბაზიდან მოთხოვნის შეცდომა:
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:272
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
-msgstr ""
+msgstr "ჩავარდა ჩამონათვალის მიღება საქაღალდისთვის \"%s\": %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:290
 #, c-format
 msgid "Failed to get children of container %s: %s"
-msgstr ""
+msgstr "ჩავარდა შვილების მიღება კონტეინერისთვის %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
 #, c-format
 msgid "Failed to extract meta-data for file %s"
-msgstr ""
+msgstr "ჩავარდა მეტამონაცემების გამოღება ფაილისთვის %s"
 
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
@@ -1192,17 +1201,17 @@ msgstr ""
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:362
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
-msgstr ""
+msgstr "URI %s გამოტოვებულია. გამოღება სრულად ჩავარდა: %s"
 
 #: src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
 msgid "Failed to get child count of query container: %s"
-msgstr ""
+msgstr "ჩავარდა შვილების რაოდენობის მიღება მოთხოვნის კონტეინერიდან: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
 #, c-format
 msgid "Failed to force reindex to fix database: %s"
-msgstr ""
+msgstr "ჩავარდა ნაძალადევი რეინდექსი გასასწორებლად ბაზისთვის: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
@@ -1222,7 +1231,7 @@ msgstr "ბაზის განახლება v18-მდე ჩავა�
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:135
 #, c-format
 msgid "Failed to add item with ID %s: %s"
-msgstr ""
+msgstr "ჩავარდა ელემენტის დამატება ID-ით %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:218
 #, c-format
@@ -1232,7 +1241,7 @@ msgstr "განახლების ID-ების მიღება ჩა
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:401
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
-msgstr ""
+msgstr "არამდგრადი მონაცემთა ბაზა: ელემენტს %s მშობელი %s არ აქვს"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:526
 msgid "Failed to get reset token"
@@ -1241,7 +1250,7 @@ msgstr "ჩამოყრის კოდის მიღება ჩავა
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:538
 #, c-format
 msgid "Failed to persist ServiceResetToken: %s"
-msgstr ""
+msgstr "ჩავარდა შენარჩუნება ელემენტისთვის ServiceResetToken: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:548
 #, c-format
@@ -1251,26 +1260,26 @@ msgstr "ვირტუალური საქაღალდეების �
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:562
 #, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
-msgstr ""
+msgstr "ჩავარდა დანიშვნა ელემენტისთვის %s, როგორც დაცულის (%d): %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:572
 msgid "Cannot create references to containers"
-msgstr ""
+msgstr "კონტეინერებზე მიმართვის შექმნა შეუძლებელია"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:598
 #, c-format
 msgid "Failed to add %s to ignored files: %s"
-msgstr ""
+msgstr "%s-ის გამოტოვებულ ფაილებში ჩამატება ჩავარდა: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:611
 #, c-format
 msgid "Failed to get whether URI %s is ignored: %s"
-msgstr ""
+msgstr "ჩავარდა მიღება, გამოტოვებულია თუ არა URI %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:627
 #, c-format
 msgid "Failed to get whether item %s is guarded: %s"
-msgstr ""
+msgstr "ჩავარდა მიღება, არის თუ არა ელემენტი %s დაცული: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:667
 #, c-format
@@ -1278,6 +1287,8 @@ msgid ""
 "The version “%d” of the detected database is newer than our supported "
 "version “%d”"
 msgstr ""
+"აღმოჩენილი მონაცემთა ბაზის ვერსია \"%d\" უფრო ახალია, ვიდრე ჩვენი "
+"მხარდაჭერილი ვერსია \"%d\""
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:689
 msgid "Incompatible schema… cannot proceed"
@@ -1287,6 +1298,7 @@ msgstr "არათავსებადი სქემა. გაგრძე
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr ""
+"არასწორი მონაცემთა ბაზა. ცხრილიდან sqlite_master გამოთხოვა შეუძლებელია: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:896
 #, c-format
@@ -1296,11 +1308,11 @@ msgstr "მონაცემთა ბაზის სქემის შექ
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:1234
 #, c-format
 msgid "Skipping unsupported sort field: %s"
-msgstr ""
+msgstr "გამოტოვებულია მხარდაუჭერელი დალაგების ველი: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:104
 msgid "Failed to gracefully stop the process. Using KILL"
-msgstr ""
+msgstr "ჩავარდა პროცესის მოხდენილად დასრულება. ვიყენებ ფუნქციას KILL"
 
 #. Process exitted properly -> That shouldn't really
 #. happen
@@ -1312,22 +1324,22 @@ msgstr "პროცესის ფუნქცია check_async ჩავა�
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #, c-format
 msgid "Process died while handling URI %s"
-msgstr ""
+msgstr "სამწუხაროდ, პროცესი გარდაიცვალა, სანამ ცდილობდა, დაემუშავებინა URI %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
 #, c-format
 msgid "Setting up extraction subprocess failed: %s"
-msgstr ""
+msgstr "გამოღების ქვეპროცესის მორგება ჩავარდა: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
 #, c-format
 msgid "Received invalid string from child: %s"
-msgstr ""
+msgstr "მივიღე არასწორი სტრიქონი შვილიდან: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received ill-formed response string %s from child…"
-msgstr ""
+msgstr "მივიღე არასწორი პასუხი სტრიქონში %s შვილიდან…"
 
 #. No error signalling, this was done in the part that called
 #. cancel
@@ -1391,7 +1403,7 @@ msgstr "ფაილის ცვლილებების მონიტო�
 #: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:105
 #, c-format
 msgid "Failed to setup up file monitor for %s: %s"
-msgstr ""
+msgstr "ჩავარდა ფაილის მონიტორის მორგება %s-სთვის: %s"
 
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
@@ -1463,7 +1475,7 @@ msgstr "ობიექტი %d კეშში ვერ ვიპოვე"
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
 #, c-format
 msgid "MPRIS interface at %s is read-only. Ignoring."
-msgstr ""
+msgstr "MPRIS ინტერფეისი მისამართზე %s მხოლოდ-კითხვადია. გამოტოვება."
 
 #: src/plugins/playbin/rygel-playbin-plugin.vala:35
 msgid "GStreamer Player"
@@ -1477,13 +1489,13 @@ msgstr "GStreamer-ის დამკვრელის შექმნა შ�
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
-msgstr ""
+msgstr "ჩავარდა URI-ის აგება საქაღალდისთვის \"%s\": %s"
 
 #: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
 #, c-format
 msgid "Could not subscribe to Tracker signals: %s"
-msgstr ""
+msgstr "ვერ გამოვიწერე ტრეკერის სიგნალები: %s"
 
 #: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
@@ -1500,13 +1512,13 @@ msgstr "\"%s\"-სთვის ყველა მნიშვნელობი
 #: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
 #, c-format
 msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr ""
+msgstr "ჩავარდა გაშვება ტრეკერის სერვისისთვის: %s. დამატება გათიშულია."
 
 #: src/plugins/tracker3/rygel-tracker-search-container.vala:228
 #: src/plugins/tracker/rygel-tracker-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category “%s”: %s"
-msgstr ""
+msgstr "შეცდომა ელემენტების რაოდენობის მიღებისას კატეგორიაში \"%s\": %s"
 
 #: src/plugins/tracker3/rygel-tracker-titles.vala:58
 #: src/plugins/tracker/rygel-tracker-titles.vala:58
@@ -1516,17 +1528,17 @@ msgstr "სათაურები"
 #: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
 #, c-format
 msgid "Failed to create a Tracker connection: %s"
-msgstr ""
+msgstr "ჩავარდა შექმნა ტრეკერის მიერთებისთვის: %s"
 
 #: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
 #, c-format
 msgid "Failed to create Tracker connection: %s"
-msgstr ""
+msgstr "ჩავარდა შექმნა ტრეკერის მიერთებისთვის: %s"
 
 #: src/plugins/tracker/rygel-tracker-search-container.vala:104
 #, c-format
 msgid "Failed to get Tracker connection: %s"
-msgstr ""
+msgstr "ჩავარდა მიღება ტრეკერის მიერთებისთვის: %s"
 
 #: src/rygel/application.vala:88
 #, c-format
@@ -1537,8 +1549,8 @@ msgstr "მომხმარებლის კონფიგურაცი�
 #, c-format
 msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d წამში ვერც-ერთი დამატება ვერ ვიპოვე. მოვეშვი…"
+msgstr[1] "%d წამში ვერც-ერთი დამატება ვერ ვიპოვე. მოვეშვი…"
 
 #: src/rygel/application.vala:154
 #, c-format
@@ -1548,12 +1560,12 @@ msgstr "ეშვება Rygel v%s…"
 #: src/rygel/application.vala:202
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
-msgstr ""
+msgstr "ჩავარდა RootDevice-ის შექმნა %s-სთვის: მიზეზი: %s"
 
 #: src/rygel/application.vala:283
 #, c-format
 msgid "Failed to create root device factory: %s"
-msgstr ""
+msgstr "ჩავარდა ძირითადი მოწყობილობის ქარხნის შექმნა: %s"
 
 #: src/rygel/rygel-acl.vala:110
 #, c-format
@@ -1563,25 +1575,25 @@ msgstr "ACL-ის მოთხოვნა ჩავარდა: %s"
 #: src/rygel/rygel-acl.vala:127
 #, c-format
 msgid "Error creating D-Bus proxy for ACL: %s"
-msgstr ""
+msgstr "შეცდომა D-Bus-ის პროქსის შექმნისას ACL-ისთვის: %s"
 
 #: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “allow”"
-msgstr ""
+msgstr "ACL გადმორთვის პოლიტიკა ვერ ვიპოვე. ვიყენებ \"დაშვებას\""
 
 #: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
-msgstr ""
+msgstr "ACL გადმორთვის პოლიტიკა ვერ ვიპოვე. ვიყენებ \"აკრძალვას\""
 
 #: src/ui/rygel-preferences-dialog.vala:109
 #, c-format
 msgid "Failed to create preferences dialog: %s"
-msgstr ""
+msgstr "მორგების ფანჯრის შექმნა ჩავარდა: %s"
 
 #: src/ui/rygel-writable-user-config.vala:119
 #, c-format
 msgid "Failed to save configuration data to file “%s”: %s"
-msgstr ""
+msgstr "კონფიგურაციის მონაცემების ფაილში \"%s\" შენახვა ჩავარდა: %s"
 
 #: src/ui/rygel-writable-user-config.vala:214
 #, c-format
