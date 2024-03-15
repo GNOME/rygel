@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
 "POT-Creation-Date: 2022-09-12 11:46+0000\n"
-"PO-Revision-Date: 2024-03-16 01:05+0700\n"
+"PO-Revision-Date: 2024-03-16 01:16+0700\n"
 "Last-Translator: Akom Chotiphantawanon <knight2000@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "Language: th\n"
@@ -797,25 +797,24 @@ msgstr "dc:title จะต้องไม่เว้นว่างไว้ใ
 
 #: src/librygel-server/rygel-object-creator.vala:249
 msgid "Flags that must not be set were found in “dlnaManaged”"
-msgstr ""
+msgstr "พบแฟล็กที่จะต้องไม่มีการตั้งค่าใดไว้ใน “dlnaManaged”"
 
 #: src/librygel-server/rygel-object-creator.vala:257
 msgid "Invalid upnp:class given in CreateObject"
-msgstr ""
+msgstr "ระบุ upnp:class ใน CreateObject ไม่ถูกต้อง"
 
 #: src/librygel-server/rygel-object-creator.vala:261
 msgid "Object is missing the @restricted attribute"
-msgstr ""
+msgstr "ออบเจกต์ขาดคุณลักษณะ @restricted"
 
 #: src/librygel-server/rygel-object-creator.vala:268
 msgid "Cannot create restricted item"
-msgstr ""
+msgstr "ไม่สามารถสร้างออบเจกต์ที่มีการจำกัดไว้ได้"
 
 #: src/librygel-server/rygel-object-creator.vala:385
-#, fuzzy, c-format
-#| msgid "Play speed not supported"
+#, c-format
 msgid "UPnP class “%s” not supported"
-msgstr "ไม่รองรับความเร็วการเล่นที่กำหนด"
+msgstr "ไม่รองรับคลาส UPnP “%s”"
 
 #: src/librygel-server/rygel-object-creator.vala:419 src/librygel-server/rygel-object-creator.vala:431
 #: src/librygel-server/rygel-object-creator.vala:721
@@ -837,40 +836,34 @@ msgstr "ไม่รองรับโพรไฟล์ DLNA “%s”"
 #: src/librygel-server/rygel-object-creator.vala:656
 #, c-format
 msgid "Cannot create object of class “%s”: Not supported"
-msgstr ""
+msgstr "ไม่สามารถสร้างออบเจกต์ซึ่งมีคลาสเป็น “%s” ได้: ไม่รองรับ"
 
 #: src/librygel-server/rygel-object-creator.vala:752
 #, c-format
 msgid "Error from container “%s” on trying to find the newly added child object “%s” in it: %s"
-msgstr ""
+msgstr "เกิดข้อผิดพลาดจากคอนเทนเนอร์ “%s” ขณะพยายามหาออบเจกต์ลูก “%s” ที่เพิ่มเข้าไปใหม่ภายในคอนเทนเนอร์ดังกล่าว: %s"
 
 #: src/librygel-server/rygel-reference-creator.vala:50
-#, fuzzy
-#| msgid "'Elements' argument missing."
 msgid "“ContainerID” agument missing."
-msgstr "ขาดอาร์กิวเมนต์ 'องค์ประกอบ'"
+msgstr "ขาดอาร์กิวเมนต์ “ContainerID”"
 
 #: src/librygel-server/rygel-reference-creator.vala:55
-#, fuzzy
-#| msgid "'Elements' argument missing."
 msgid "“ObjectID” argument missing."
-msgstr "ขาดอาร์กิวเมนต์ 'องค์ประกอบ'"
+msgstr "ขาดอาร์กิวเมนต์ “ObjectID”"
 
 #: src/librygel-server/rygel-reference-creator.vala:86
-#, fuzzy, c-format
-#| msgid "Failed to create item under '%s': %s"
+#, c-format
 msgid "Failed to create object under “%s”: %s"
-msgstr "สร้างรายการภายใต้ '%s' ไม่สำเร็จ: %s"
+msgstr "สร้างออบเจกต์ภายใต้ “%s” ไม่สำเร็จ: %s"
 
 #: src/librygel-server/rygel-search.vala:70
 msgid "Invalid search criteria given"
-msgstr ""
+msgstr "ระบุเกณฑ์การค้นหาไม่ถูกต้อง"
 
 #: src/librygel-server/rygel-search.vala:94
-#, fuzzy, c-format
-#| msgid "Failed to search in '%s': %s"
+#, c-format
 msgid "Failed to search in “%s”: %s"
-msgstr "ค้นหาใน '%s' ไม่สำเร็จ: %s"
+msgstr "ค้นหาใน “%s” ไม่สำเร็จ: %s"
 
 #: src/librygel-server/rygel-subtitle-manager.vala:49
 #: src/librygel-server/rygel-subtitle-manager.vala:96
@@ -894,10 +887,8 @@ msgid "No thumbnail available"
 msgstr "ไม่มีภาพย่อที่ใช้ได้"
 
 #: src/librygel-server/rygel-thumbnailer.vala:97
-#, fuzzy
-#| msgid "No thumbnailer available: %s"
 msgid "No thumbnail available. Generation requested."
-msgstr "ไม่มีเครื่องมือสร้างภาพย่อ: %s"
+msgstr "ไม่มีภาพย่อที่ใช้ได้ และได้ร้องขอให้สร้างขึ้น"
 
 #: src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
@@ -910,16 +901,14 @@ msgstr "ไม่สามารถสร้าง GstElement สำหรับ
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
 #: src/media-engines/simple/rygel-simple-data-source.vala:84
-#, fuzzy
-#| msgid "Play speed not supported"
 msgid "Playspeed not supported"
-msgstr "ไม่รองรับความเร็วการเล่นที่กำหนด"
+msgstr "ไม่รองรับความเร็วการเล่นนี้"
 
 #. Unknown/unsupported seek type
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
-msgstr ""
+msgstr "ไม่รองรับชนิด HTTPSeekRequest %s"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
 msgid "Failed to create pipeline"
