@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
 "POT-Creation-Date: 2022-09-12 11:46+0000\n"
-"PO-Revision-Date: 2024-03-16 00:46+0700\n"
+"PO-Revision-Date: 2024-03-16 01:05+0700\n"
 "Last-Translator: Akom Chotiphantawanon <knight2000@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "Language: th\n"
@@ -228,10 +228,8 @@ msgid "Use configuration file instead of user configuration"
 msgstr "ใช้แฟ้มค่าตั้งแทนค่าตั้งผู้ใช้"
 
 #: src/librygel-core/rygel-cmdline-config.vala:74
-#, fuzzy
-#| msgid "Rygel Preferences"
 msgid "Shut down remote Rygel reference"
-msgstr "ปรับแต่ง Rygel"
+msgstr "ปิดการอ้างอิง Rygel จากทางไกล"
 
 #: src/librygel-core/rygel-cmdline-config.vala:98 src/librygel-core/rygel-cmdline-config.vala:107
 #: src/librygel-core/rygel-cmdline-config.vala:116 src/librygel-core/rygel-cmdline-config.vala:125
@@ -262,20 +260,18 @@ msgid "Failed to write modified description to %s"
 msgstr "เขียนคำบรรยายที่ปรับเปลี่ยนแล้วลงใน %s ไม่สำเร็จ"
 
 #: src/librygel-core/rygel-energy-management-helper.c:55
-#, fuzzy, c-format
-#| msgid "Failed to get Tracker connection: %s"
+#, c-format
 msgid "Failed to get a socket: %s"
-msgstr "นำการเชื่อมต่อ Tracker มาใช้ไม่สำเร็จ: %s"
+msgstr "อ่านค่าซ็อกเก็ตไม่สำเร็จ: %s"
 
 #: src/librygel-core/rygel-energy-management-helper.c:62
-#, fuzzy, c-format
-#| msgid "Failed to get original URI for '%s': %s"
+#, c-format
 msgid "Failed to get MAC address for %s: %s"
-msgstr "อ่าน URI ต้นฉบับสำหรับ '%s' ไม่สำเร็จ: %s"
+msgstr "อ่าน MAC แอดเดรสสำหรับ %s ไม่สำเร็จ: %s"
 
 #: src/librygel-core/rygel-energy-management-helper.c:104
 msgid "MAC and network type querying not implemented"
-msgstr ""
+msgstr "ยังไม่รองรับการสอบถาม MAC และชนิดเครือข่าย"
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
@@ -303,18 +299,17 @@ msgstr "ไม่มีค่าสำหรับ “%s/%s”"
 
 #: src/librygel-core/rygel-plugin-information.vala:67
 msgid "[Plugin] group not found"
-msgstr ""
+msgstr "ไม่พบกลุ่ม [Plugin]"
 
 #: src/librygel-core/rygel-plugin-information.vala:79
 #, c-format
 msgid "Plugin module %s does not exist"
-msgstr ""
+msgstr "มอดูลปลั๊กอิน %s ไม่มีอยู่"
 
 #: src/librygel-core/rygel-plugin-loader.vala:89
-#, fuzzy, c-format
-#| msgid "New plugin '%s' available"
+#, c-format
 msgid "New plugin “%s” available"
-msgstr "ปลั๊กอินใหม่ '%s' พร้อมใช้งาน"
+msgstr "ปลั๊กอินใหม่ “%s” พร้อมใช้งาน"
 
 #: src/librygel-core/rygel-plugin-loader.vala:104
 #, c-format
@@ -322,63 +317,55 @@ msgid "A module named %s is already loaded"
 msgstr "โหลดมอดูลชื่อ %s แล้ว"
 
 #: src/librygel-core/rygel-plugin-loader.vala:118
-#, fuzzy, c-format
-#| msgid "Failed to load module from path '%s': %s"
+#, c-format
 msgid "Failed to load module from path “%s”: %s"
-msgstr "โหลดมอดูลจากพาธ '%s' ไม่สำเร็จ: %s"
+msgstr "โหลดมอดูลจากพาธ “%s” ไม่สำเร็จ: %s"
 
 #: src/librygel-core/rygel-plugin-loader.vala:128
-#, fuzzy, c-format
-#| msgid "Failed to find entry point function '%s' in '%s': %s"
+#, c-format
 msgid "Failed to find entry point function “%s” in “%s”: %s"
-msgstr "หาฟังก์ชันทางเข้า '%s' ใน '%s' ไม่สำเร็จ: %s"
+msgstr "หาฟังก์ชันทางเข้า “%s” ใน “%s” ไม่สำเร็จ: %s"
 
 #: src/librygel-core/rygel-plugin-loader.vala:156
 #, c-format
 msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
-msgstr ""
+msgstr "มอดูล '%s' ขัดแย้งกับมอดูล '%s' ซึ่งโหลดไปแล้ว ขอข้ามไป"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
-#, fuzzy, c-format
-#| msgid "Failed to get file info for %s"
+#, c-format
 msgid "Failed to open plugins folder: “%s”"
-msgstr "อ่านข้อมูลแฟ้มสำหรับ %s ไม่สำเร็จ"
+msgstr "เปิดโฟลเดอร์ปลั๊กอินไม่สำเร็จ: “%s”"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:160
-#, fuzzy, c-format
-#| msgid "Error listing contents of folder '%s': %s"
+#, c-format
 msgid "Error listing contents of folder “%s”: %s"
-msgstr "เกิดข้อผิดพลาดขณะแสดงเนื้อหาของโฟลเดอร์ '%s': %s"
+msgstr "เกิดข้อผิดพลาดขณะแสดงเนื้อหาของโฟลเดอร์ “%s”: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:204
 #, c-format
 msgid "Could not load plugin: %s"
-msgstr ""
+msgstr "ไม่สามารถโหลดปลั๊กอิน: %s"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:231
-#, fuzzy, c-format
-#| msgid "Failed to query content type for '%s'"
+#, c-format
 msgid "Failed to query content type for “%s”"
-msgstr "สอบถามชนิดของเนื้อหาของ '%s' ไม่สำเร็จ"
+msgstr "สอบถามชนิดของเนื้อหาของ “%s” ไม่สำเร็จ"
 
 #. TRANSLATORS: First %s is the file's path, second is the error message
 #: src/librygel-core/rygel-user-config.vala:246
-#, fuzzy, c-format
-#| msgid "Failed to load user configuration: %s"
+#, c-format
 msgid "Failed to load user configuration from file “%s”: %s"
-msgstr "โหลดค่าตั้งของผู้ใช้ไม่สำเร็จ: %s"
+msgstr "โหลดค่าตั้งของผู้ใช้จากแฟ้ม “%s” ไม่สำเร็จ: %s"
 
 #: src/librygel-core/rygel-user-config.vala:299
-#, fuzzy, c-format
-#| msgid "No value available for '%s'"
+#, c-format
 msgid "No value available for “%s”"
-msgstr "ไม่มีค่าสำหรับ '%s'"
+msgstr "ไม่มีค่าสำหรับ “%s”"
 
 #: src/librygel-core/rygel-user-config.vala:370
-#, fuzzy, c-format
-#| msgid "Value of '%s' out of range"
+#, c-format
 msgid "Value of “%s” out of range"
-msgstr "ค่าของ '%s' ออกนอกช่วง"
+msgstr "ค่าของ “%s” ออกนอกช่วง"
 
 #: src/librygel-db/database-cursor.vala:99
 #, c-format
@@ -386,10 +373,9 @@ msgid "Unsupported type %s"
 msgstr "ไม่รองรับชนิด %s"
 
 #: src/librygel-db/database.vala:175
-#, fuzzy, c-format
-#| msgid "Error removing object from database: %s"
+#, c-format
 msgid "Error while opening SQLite database %s: %s"
-msgstr "ข้อผิดพลาดขณะลบออบเจกต์ออกจากฐานข้อมูล :%s"
+msgstr "เกิดข้อผิดพลาดขณะเปิดฐานข้อมูล SQLite %s: %s"
 
 #: src/librygel-db/database.vala:306
 #, c-format
@@ -401,6 +387,8 @@ msgid ""
 "Your GStreamer installation seems to be missing the “playbin3” element. The Rygel GStreamer renderer "
 "implementation cannot work without it"
 msgstr ""
+"GStreamer ที่คุณติดตั้งอยู่ดูเหมือนจะขาดองค์ประกอบ “playbin3” ซึ่งตัวเรนเดอร์ GStreamer ใน Rygel "
+"ไม่สามารถทำงานได้ถ้าขาดองค์ประกอบดังกล่าวไป"
 
 #: src/librygel-renderer/rygel-av-transport.vala:204
 #: src/librygel-renderer/rygel-rendering-control.vala:137
@@ -427,10 +415,8 @@ msgid "Illegal seek target"
 msgstr "เป้าหมายการเลื่อนตำแหน่งไม่ถูกต้อง"
 
 #: src/librygel-renderer/rygel-av-transport.vala:659
-#, fuzzy
-#| msgid "Play speed not supported"
 msgid "Play mode not supported"
-msgstr "ไม่รองรับความเร็วการเล่นที่กำหนด"
+msgstr "ไม่รองรับโหมดการเล่น"
 
 #. FIXME: Return a more sensible error here.
 #: src/librygel-renderer/rygel-av-transport.vala:773 src/librygel-renderer/rygel-av-transport.vala:779
@@ -442,15 +428,14 @@ msgstr "ไม่พบทรัพยากร"
 #: src/librygel-renderer/rygel-av-transport.vala:792
 #, c-format
 msgid "Problem parsing playlist: %s"
-msgstr ""
+msgstr "เกิดปัญหาขณะแจงผังเล่น: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
 #: src/librygel-renderer/rygel-av-transport.vala:859 src/librygel-renderer/rygel-av-transport.vala:894
-#, fuzzy, c-format
-#| msgid "Failed to access media cache: %s"
+#, c-format
 msgid "Failed to access resource at %s: %s"
-msgstr "เข้าถึงแคชของสื่อไม่สำเร็จ: %s"
+msgstr "เข้าถึงทรัพยากรที่ %s ไม่สำเร็จ: %s"
 
 #: src/librygel-renderer/rygel-av-transport.vala:875
 msgid "Illegal MIME-type"
@@ -473,57 +458,52 @@ msgstr "การกระทำล้มเหลว"
 #: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
 #, c-format
 msgid "Unable to parse Icon data — unexpected node: %s"
-msgstr ""
+msgstr "ไม่สามารถแจงข้อมูลไอคอนได้ — พบปมที่ไม่ต้องการ: %s"
 
 #: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
 #, c-format
 msgid "Unable to parse Protocol data — unexpected attribute: %s"
-msgstr ""
+msgstr "ไม่สามารถแจงข้อมูลโพรโทคอลได้ — พบคุณลักษณะที่ไม่ต้องการ: %s"
 
 #: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
 #, c-format
 msgid "Unable to parse Protocol data — unexpected node: %s"
-msgstr ""
+msgstr "ไม่สามารถแจงข้อมูลโพรโทคอลได้ — พบปมที่ไม่ต้องการ: %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
-#, fuzzy, c-format
-#| msgid "Failed to construct URI for folder '%s': %s"
+#, c-format
 msgid "Failed to set UIList for file %s — %s"
-msgstr "สร้าง URI สำหรับโฟลเดอร์ '%s' ไม่สำเร็จ: %s"
+msgstr "กำหนด UIList สำหรับไฟล์ %s ไม่สำเร็จ — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
-#, fuzzy, c-format
-#| msgid "Failed to get original URI for '%s': %s"
+#, c-format
 msgid "Failed to set initial UI list for file %s — %s"
-msgstr "อ่าน URI ต้นฉบับสำหรับ '%s' ไม่สำเร็จ: %s"
+msgstr "กำหนดรายชื่อ UI ตั้งต้นสำหรับไฟล์ %s ไม่สำเร็จ — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
-#, fuzzy, c-format
-#| msgid "Failed to move dotfile %s: %s"
+#, c-format
 msgid "Failed to monitor the file %s — %s"
-msgstr "ย้ายแฟ้มค่าตั้งซ่อน %s ไม่สำเร็จ: %s"
+msgstr "เฝ้าสังเกตไฟล์ %s ไม่สำเร็จ — %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
 #, c-format
 msgid "Unable to parse UI list file %s"
-msgstr ""
+msgstr "ไม่สามารถแจงไฟล์รายชื่อ UI %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
-#, fuzzy, c-format
-#| msgid "Failed to create root device factory: %s"
+#, c-format
 msgid "Unable to parse device profile data: %s"
-msgstr "สร้างโรงงานอุปกรณ์ระดับรากไม่สำเร็จ: %s"
+msgstr "แจงข้อมูลโพรไฟล์อุปกรณ์ไม่สำเร็จ: %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
-#, fuzzy, c-format
-#| msgid "Invalid URI '%s'"
+#, c-format
 msgid "Invalid UI filter: %s"
-msgstr "URI '%s' ไม่ถูกต้อง"
+msgstr "ตัวกรอง UI ไม่ถูกต้อง: %s"
 
 #: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
 #, c-format
 msgid "Unable to parse UI data — unexpected node: %s"
-msgstr ""
+msgstr "ไม่สามารถแจงข้อมูล UI ได้ — พบปมที่ไม่ต้องการ: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -544,7 +524,7 @@ msgstr "ไม่เกี่ยวข้อง"
 
 #: src/librygel-server/rygel-content-directory.vala:639
 msgid "No such file transfer"
-msgstr "ไม่มีการถ่ายโอนแฟ้มที่ว่า"
+msgstr "ไม่มีการถ่ายโอนไฟล์ที่ว่า"
 
 #: src/librygel-server/rygel-dbus-thumbnailer.vala:116
 msgid "No D-Bus thumbnailer service available"
@@ -553,15 +533,15 @@ msgstr "ไม่มีบริการเครื่องมือทำภ
 #: src/librygel-server/rygel-http-byte-seek-request.vala:116
 #, c-format
 msgid "Range end value %lld is smaller than range start value %lld: '%s'"
-msgstr ""
+msgstr "ค่าสิ้นสุดช่วง %lld น้อยกว่าค่าเริ่มต้นช่วง %lld: '%s'"
 
 #: src/librygel-server/rygel-http-get.vala:53
 msgid "Invalid Request (only GET and HEAD supported)"
-msgstr ""
+msgstr "คำร้องขอไม่ถูกต้อง (รองรับเฉพาะ GET และ HEAD เท่านั้น)"
 
 #: src/librygel-server/rygel-http-get.vala:61
 msgid " must be 1"
-msgstr ""
+msgstr " ต้องมีค่าเป็น 1"
 
 #: src/librygel-server/rygel-http-get.vala:91
 #, c-format
@@ -578,10 +558,9 @@ msgid "Not found"
 msgstr "ไม่พบ"
 
 #: src/librygel-server/rygel-http-post.vala:64 src/librygel-server/rygel-import-resource.vala:215
-#, fuzzy, c-format
-#| msgid "Pushing data to non-empty item '%s' not allowed"
+#, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
-msgstr "ไม่ได้รับอนุญาตให้ผลักข้อมูลไปยังรายการที่ไม่ว่างเปล่า '%s'"
+msgstr "ไม่ได้รับอนุญาตให้ผลักข้อมูลไปยังรายการที่ไม่ว่างเปล่า “%s”"
 
 #: src/librygel-server/rygel-http-post.vala:72
 #, c-format
@@ -595,51 +574,44 @@ msgid "Failed to move dotfile %s: %s"
 msgstr "ย้ายแฟ้มค่าตั้งซ่อน %s ไม่สำเร็จ: %s"
 
 #: src/librygel-server/rygel-http-request.vala:104
-#, fuzzy, c-format
-#| msgid "Requested item '%s' not found"
+#, c-format
 msgid "Requested item “%s” not found"
-msgstr "ไม่พบรายการ '%s' ที่ร้องขอ"
+msgstr "ไม่พบรายการ “%s” ที่ร้องขอ"
 
 #: src/librygel-server/rygel-http-resource-handler.vala:91
-#, fuzzy, c-format
-#| msgid "Could not create GstElement for URI %s"
+#, c-format
 msgid "Couldn’t create data source for %s"
-msgstr "ไม่สามารถสร้าง GstElement สำหรับ URI %s"
+msgstr "ไม่สามารถสร้างแหล่งข้อมูลสำหรับ %s"
 
 #: src/librygel-server/rygel-import-resource.vala:123
-#, fuzzy, c-format
-#| msgid "Failed to get original URI for '%s': %s"
+#, c-format
 msgid "Failed to get original URI for “%s”: %s"
-msgstr "อ่าน URI ต้นฉบับสำหรับ '%s' ไม่สำเร็จ: %s"
+msgstr "อ่าน URI ต้นฉบับสำหรับ “%s” ไม่สำเร็จ: %s"
 
 #: src/librygel-server/rygel-import-resource.vala:210
-#, fuzzy, c-format
-#| msgid "URI '%s' invalid for importing contents to"
+#, c-format
 msgid "URI “%s” invalid for importing contents to"
-msgstr "URI '%s' ไม่สามารถนำเข้าเนื้อหาได้"
+msgstr "URI “%s” ไม่สามารถนำเข้าเนื้อหาได้"
 
 #: src/librygel-server/rygel-import-resource.vala:237
-#, fuzzy, c-format
-#| msgid "Failed to move dotfile %s: %s"
+#, c-format
 msgid "Failed to import file from %s: %s"
-msgstr "ย้ายแฟ้มค่าตั้งซ่อน %s ไม่สำเร็จ: %s"
+msgstr "นำเข้าแฟ้มจาก %s ไม่สำเร็จ: %s"
 
 #. Sorry we can't do anything without the ID
 #: src/librygel-server/rygel-item-destroyer.vala:53
 msgid "ContainerID missing"
-msgstr ""
+msgstr "ขาด ContainerID"
 
 #: src/librygel-server/rygel-item-destroyer.vala:60
-#, fuzzy, c-format
-#| msgid "Successfully destroyed object '%s'"
+#, c-format
 msgid "Successfully destroyed object “%s”"
-msgstr "ทำลายออบเจกต์ '%s' สำเร็จแล้ว"
+msgstr "ทำลายออบเจกต์ “%s” สำเร็จแล้ว"
 
 #: src/librygel-server/rygel-item-destroyer.vala:68
-#, fuzzy, c-format
-#| msgid "Failed to destroy object '%s': %s"
+#, c-format
 msgid "Failed to destroy object “%s”: %s"
-msgstr "ทำลายออบเจกต์ '%s' ไม่สำเร็จ: %s"
+msgstr "ทำลายออบเจกต์ “%s” ไม่สำเร็จ: %s"
 
 #: src/librygel-server/rygel-item-destroyer.vala:105 src/librygel-server/rygel-item-updater.vala:283
 #: src/librygel-server/rygel-media-query-action.vala:194
@@ -661,31 +633,27 @@ msgstr "ไม่ได้รับอนุญาตให้ลบออบเ
 #. Sorry we can't do anything without the ID
 #: src/librygel-server/rygel-item-updater.vala:74
 msgid "Object ID missing"
-msgstr ""
+msgstr "ขาดไอดีออบเจกต์"
 
 #: src/librygel-server/rygel-item-updater.vala:81
-#, fuzzy, c-format
-#| msgid "Successfully updated object '%s'"
+#, c-format
 msgid "Successfully updated object “%s”"
-msgstr "ปรับข้อมูลออบเจกต์ '%s' สำเร็จแล้ว"
+msgstr "ปรับข้อมูลออบเจกต์ “%s” สำเร็จแล้ว"
 
 #: src/librygel-server/rygel-item-updater.vala:89
-#, fuzzy, c-format
-#| msgid "Failed to update object '%s': %s"
+#, c-format
 msgid "Failed to update object “%s”: %s"
-msgstr "ปรับข้อมูลออบเจกต์ '%s' ไม่สำเร็จ: %s"
+msgstr "ปรับข้อมูลออบเจกต์ “%s” ไม่สำเร็จ: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:162 src/librygel-server/rygel-object-creator.vala:614
-#, fuzzy, c-format
-#| msgid "Invalid Range '%s'"
+#, c-format
 msgid "Invalid date format: %s"
-msgstr "ช่วง '%s' ไม่ถูกต้อง"
+msgstr "รูปแบบวันที่ไม่ถูกต้อง: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:171 src/librygel-server/rygel-object-creator.vala:623
-#, fuzzy, c-format
-#| msgid "Invalid Range '%s'"
+#, c-format
 msgid "Invalid date: %s"
-msgstr "ช่วง '%s' ไม่ถูกต้อง"
+msgstr "วันที่ไม่ถูกต้อง: %s"
 
 #: src/librygel-server/rygel-item-updater.vala:256
 msgid "Bad current tag value."
@@ -1087,23 +1055,21 @@ msgstr "ชื่อ %d"
 
 #: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
 msgid "Failed to find lsdvd binary in path. DVD extraction will not be available"
-msgstr ""
+msgstr "หาไบนารี lsdvd ในเส้นทางไม่พบ การดึงข้อมูลจากดีวีดีจะไม่สามารถทำได้"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:73
 msgid "Invalid command received, ignoring"
-msgstr ""
+msgstr "ได้รับคำสั่งที่ไม่ถูกต้อง ขอเพิกเฉย"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:90
-#, fuzzy, c-format
-#| msgid "Failed to remove URI: %s"
+#, c-format
 msgid "Failed to discover URI %s: %s"
-msgstr "ลบ URI ไม่สำเร็จ: %s"
+msgstr "ค้นพบ URI %s ไม่สำเร็จ: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:105
-#, fuzzy, c-format
-#| msgid "Failed to read from URI: %s: %s"
+#, c-format
 msgid "Failed to read from pipe: %s"
-msgstr "ไม่สามารถอ่านจาก URI: %s: %s"
+msgstr "อ่านจากท่อไม่สำเร็จ: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:132
 #: src/plugins/media-export/rygel-media-export-extract.vala:144
