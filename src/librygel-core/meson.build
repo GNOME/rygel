@@ -52,7 +52,7 @@ core_lib = library('rygel-core-2.8', core_sources,
         install_dir : [true, rygel_includedir, true, false])
 install_data('rygel-core-2.8.deps', install_dir : rygel_vapidir)
 
-if g_ir_compiler.found()
+if g_ir_compiler.found() and get_option('introspection').allowed()
 # Step two: Do the namespace magic with sed
 # We cannot use input: here since the generated ninja build file does not seem
 # to know that Rygel-2.8.gir is a result of building rygel-core-2.8 target

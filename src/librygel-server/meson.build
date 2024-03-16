@@ -102,7 +102,7 @@ server_lib = library('rygel-server-2.8', server_sources,
         install_dir : [true, rygel_includedir, true, false])
 install_data('rygel-server-2.8.deps', install_dir : rygel_vapidir)
 
-if g_ir_compiler.found()
+if g_ir_compiler.found() and get_option('introspection').allowed()
 # For details on the GIR/typelib generation process, see
 # librygel-core/meson.build
 server_gir = custom_target('RygelServer-2.8.gir',
