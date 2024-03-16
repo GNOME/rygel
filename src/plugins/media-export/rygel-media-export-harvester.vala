@@ -71,6 +71,14 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
             return !file.get_child (".nomedia").query_exists ();
         }
 
+        // Just ignore dangling symlinks
+        if (info.get_file_type () == FileType.SYMBOLIC_LINK) {
+            var target = info.get_attribute_as_string (FileAttribute.STANDARD_SYMLINK_TARGET);
+            if (!File.new_for_commandline_arg (target).query_exists ()) {
+                return false;
+            }
+        }
+
         var is_supported_content_type =
             info.get_content_type ().has_prefix ("image/") ||
             info.get_content_type ().has_prefix ("video/") ||
@@ -192,7 +200,8 @@ internal class Rygel.MediaExport.Harvester : GLib.Object {
         try {
             var cache = MediaCache.get_default ();
             var info = file.query_info (FileAttribute.STANDARD_TYPE + "," +
-                                        FileAttribute.STANDARD_CONTENT_TYPE,
+                                        FileAttribute.STANDARD_CONTENT_TYPE + "," +
+                                        FileAttribute.STANDARD_SYMLINK_TARGET,
                                         FileQueryInfoFlags.NONE,
                                         this.cancellable);
             if (Harvester.is_eligible (file, info)) {

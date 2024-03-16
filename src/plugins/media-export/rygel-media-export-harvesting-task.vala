@@ -53,7 +53,8 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                                         FileAttribute.STANDARD_TYPE + "," +
                                         FileAttribute.STANDARD_SIZE + "," +
                                         FileAttribute.TIME_MODIFIED + "," +
-                                        FileAttribute.STANDARD_IS_HIDDEN;
+                                        FileAttribute.STANDARD_IS_HIDDEN + "," +
+                                        FileAttribute.STANDARD_SYMLINK_TARGET;
 
     private const string HARVESTER_MIME_TYPE_ATTRIBUTES =
                                         FileAttribute.STANDARD_CONTENT_TYPE;
