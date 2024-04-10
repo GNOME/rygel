@@ -1,0 +1,6 @@
+project = "Rygel"
+copyright = "2024, Rygel maintainers"
+author = 'Rygel maintainers'
+relese = '@VERSION@'
+html_theme = 'furo'
+
