@@ -46,7 +46,7 @@ Requirements
       * libgee
       * libsoup
       * libmediaart
-      * vala (not if building from release tarballs)
+      * vala
     * Preferences UI:
       * gtk+
     * MediaExport:
