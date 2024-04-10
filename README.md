@@ -39,19 +39,26 @@ Requirements
 
   * Build-time:
     * Core:
+      * gssdp
       * gupnp
       * gupnp-av
-      * gstreamer
-      * gio (part of glib source package)
+      * gstreamer, gstreamer-pbu, gstreamer-audio, gstreamer-video, gstreamer-tag, gstreamer-es (Editing Services)
+      * gio and gio-unix (part of glib source package)
       * libgee
       * libsoup
       * libmediaart
-      * vala (not if building from release tarballs)
-    * Preferences UI:
+      * libxml2
+      * vala
+    * Preferences UI and examples:
       * gtk+
     * MediaExport:
       * sqlite3
-      * gupnp-dlna
+      * gupnp-dlna and gupnp-dlna-gst
+      * gdk-pixbuf
+    * Documentation:
+      * valadoc
+      * gtk-doc
+
   * Run-time:
     * Definitely needed:
       * gst-plugins-base

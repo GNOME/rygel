@@ -3,3 +3,4 @@ if get_option('man_pages')
 endif
 
 subdir('reference')
+subdir('web')
