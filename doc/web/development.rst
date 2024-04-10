@@ -13,15 +13,29 @@ Getting the source code
 Building the code
 =================
 
-::
+.. code-block:: sh
 
     meson setup build
     ninja -C build
-    ninja -C build install
 
 The build is configurable through various build options. Refer to `meson_options.txt <https://gitlab.gnome.org/GNOME/rygel/-/raw/master/meson_options.txt?ref_type=heads>`_
 for all available options.
 
-One useful option during development is `-Duninstalled` which will allow you run Rygel from the build folder
+One useful option during development is ``-Duninstalled`` which will allow you run Rygel directly from the ``build`` folder without installing it to your system.
 
+Installing the code
+===================
+
+To install what you have built above, just run
+
+.. code-block:: sh
+
+    sudo ninja -C build install
+
+.. toctree::
+    :hidden:
+
+    coding-style
+    architecture
+    debugging
 

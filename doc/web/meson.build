@@ -1,6 +1,9 @@
-conf_py = configure_file(input: 'conf.py.in', output: 'conf.py', configuration: pc_conf)
+fs = import('fs')
+python = import('python')
 
 sphinx = find_program('sphinx-build', required: true, disabler: true)
+
+# fixme: Need to look for furo theme as well
 
 docs_rst = [
   'index.rst',
@@ -9,13 +12,13 @@ docs_rst = [
 
 custom_target('docs',
   input: docs_rst,
-  depend_files: conf_py,
+  depend_files: ['conf.py'],
   output: 'docs',
   build_always_stale: true,
   command: [
     sphinx,
     '-n', '-b', 'html', '-q',
-    '-c', meson.current_build_dir(),
+    '-c', meson.current_source_dir(),
     '-Drelease=' + meson.project_version(),
     meson.current_source_dir(),
     '@OUTPUT@'])
