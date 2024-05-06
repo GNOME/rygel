@@ -1,3 +1,33 @@
+0.42.6 (stable)
+===============
+
+All:
+ - Translation updates
+
+MediaExport:
+ - Do not ignore dangling symlinks forever
+
+External Plug-in:
+ - Fix issue with recent Vala version
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/212
+ - https://gitlab.gnome.org/GNOME/rygel/issues/232
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Aefgh Threenine <aefgh39622@gmail.com>
+ - Rachida SACI <rgebbid@gmail.com>
+ - Vasil Pupkin <3abac@3a.by>
+ - Sabri Ünal <libreajans@gmail.com>
+ - Ekaterine Papava <papava.e@gtu.ge>
+
+Added/updated translations:
+ - be.po, courtesy of Yuras Shumovich
+ - ka.po, courtesy of Ekaterine Papava
+ - th.po, courtesy of Akom Chotiphantawanon
+ - tr.po, courtesy of Sabri Ünal
+
 0.42.5 (stable)
 ===============
 
