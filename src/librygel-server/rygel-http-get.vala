@@ -179,7 +179,7 @@ public class Rygel.HTTPGet : HTTPRequest {
                 this.speed_request = null;
             }
         } catch (PlaySpeedError error) {
-            this.server.unpause_message (this.msg);
+            this.msg.unpause ();
             if (error is PlaySpeedError.INVALID_SPEED_FORMAT) {
                 this.end (Soup.Status.BAD_REQUEST, error.message);
                 // Per DLNA 7.5.4.3.3.16.3
@@ -219,7 +219,7 @@ public class Rygel.HTTPGet : HTTPRequest {
             }
         } catch (HTTPSeekRequestError error) {
             warning ("Caught HTTPSeekRequestError: %s", error.message);
-            this.server.unpause_message (this.msg);
+            this.msg.unpause ();
             this.end (error.code, error.message);
             // All seek error codes are Soup.Status codes
 
@@ -246,7 +246,7 @@ public class Rygel.HTTPGet : HTTPRequest {
         } catch (HTTPSeekRequestError error) {
             warning ("Caught HTTPSeekRequestError on preroll: %s",
                      error.message);
-            this.server.unpause_message (this.msg);
+            this.msg.unpause ();
             this.end (error.code, error.message);
             // All seek error codes are Soup.Status codes
 
@@ -356,7 +356,7 @@ public class Rygel.HTTPGet : HTTPRequest {
 
         if (this.msg.get_method () == "HEAD") {
             // Only headers requested, no need to send contents
-            this.server.unpause_message (this.msg);
+            this.msg.unpause ();
 
             return;
         }

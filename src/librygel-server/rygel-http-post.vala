@@ -85,7 +85,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
         this.msg.got_chunk.connect (this.on_got_chunk);
         this.msg.got_body.connect (this.on_got_body);
 
-        this.server.unpause_message (this.msg);
+        this.msg.unpause ();
         this.handle_continue = this.handle_real.callback;
 
         yield;
@@ -171,7 +171,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
             return;
         }
 
-        this.server.pause_message (this.msg);
+        this.msg.pause ();
 
         debug ("Waiting for update signal from container '%s' after pushing" +
                " content to its child item '%s'…",
@@ -188,7 +188,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
                      this.dotfile.get_uri (),
                      move_error.message);
 
-            this.server.unpause_message (this.msg);
+            this.msg.unpause ();
             this.end (Status.INTERNAL_SERVER_ERROR);
             this.handle_continue ();
 
@@ -197,7 +197,7 @@ internal class Rygel.HTTPPost : HTTPRequest {
 
         yield wait_for_item (this.object.parent, this.object.id, 5);
 
-        this.server.unpause_message (this.msg);
+        this.msg.unpause ();
         this.end (Status.OK);
         this.handle_continue ();
     }

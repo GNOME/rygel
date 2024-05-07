@@ -63,7 +63,7 @@ public abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
     }
 
     public async void run () {
-        this.server.pause_message (this.msg);
+        this.msg.pause ();
 
         try {
             // If a hack as rewritten the request uri, it will have added a
@@ -110,7 +110,7 @@ public abstract class Rygel.HTTPRequest : GLib.Object, Rygel.StateMachine {
 
     protected void handle_error (Error error) {
         warning ("%s", error.message);
-        this.server.unpause_message (this.msg);
+        this.msg.unpause ();
 
         uint status;
         if (error is HTTPRequestError) {

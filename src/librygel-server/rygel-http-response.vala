@@ -129,7 +129,7 @@ public class Rygel.HTTPResponse : GLib.Object, Rygel.StateMachine {
 
         if (!aborted && encoding != Encoding.CONTENT_LENGTH) {
             this.msg.get_response_body ().complete ();
-            this.server.unpause_message (this.msg);
+            this.msg.unpause ();
         }
 
         if (this.run_continue != null) {

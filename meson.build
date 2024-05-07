@@ -87,7 +87,7 @@ gmodule = dependency('gmodule-2.0', version: glib_minimal_version)
 libxml = dependency('libxml-2.0', version: '>= 2.7')
 gupnp_av = dependency('gupnp-av-1.0', version: '>= 0.14.1')
 gupnp_dlna = dependency('gupnp-dlna-2.0', version: '>= 0.9.4')
-soup = dependency('libsoup-3.0', version : '>= 2.44.0')
+soup = dependency('libsoup-3.0', version : '>= 3.2.0')
 mediaart = dependency('libmediaart-2.0', version : '>= 0.7.0')
 sqlite = dependency('sqlite3', version : '>= 3.5')
 

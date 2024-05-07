@@ -482,7 +482,7 @@ internal class Rygel.HTTPResponse : Rygel.StateMachine, GLib.Object {
         yield;
 
         this.msg.set_status (Soup.Status.OK);
-        this.server.unpause_message (msg);
+        this.msg.unpause ();
 
         this.completed ();
     }

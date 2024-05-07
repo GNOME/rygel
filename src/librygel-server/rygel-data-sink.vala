@@ -76,7 +76,7 @@ internal class Rygel.DataSink : Object {
         this.chunks_buffered++;
         this.bytes_sent += to_send;
 
-        this.server.unpause_message (this.message);
+        this.message.unpause ();
 
         if (this.chunks_buffered > MAX_BUFFERED_CHUNKS) {
             this.source.freeze ();
