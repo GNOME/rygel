@@ -24,6 +24,7 @@ There are many DLNA/UPnP devices on the market, such as the major gaming console
 * Easily search and play media using a phone, TV, or PC.
 * Redirect sound output to DLNA speakers.
 
+
 Contact
 =======
 
@@ -55,8 +56,11 @@ Installing
 
 Rygel should be available for all major distributions. If you choose to build it from source yourself, see the :doc:`development documentation<development>`.
 
+Further refinement can be done through the :doc:`system and user configuration <configuration>`.
+
 .. toctree::
     :hidden:
 
+    configuration
     development
     faq

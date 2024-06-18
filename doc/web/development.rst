@@ -66,6 +66,18 @@ To install what you have built above, just run
 
     sudo ninja -C build install
 
+Notes on debugging
+==================
+
+Valgrind
+--------
+
+* Follow the hints and tricks shown in the `GNOME's developer documentation <https://developer.gnome.org/documentation/tools/valgrind.html>`_
+* Use the `suppression file from gstreamer-common <http://cgit.freedesktop.org/gstreamer/common/plain/gst.supp>`_
+* Use the `suppression file from GLib <https://gitlab.gnome.org/GNOME/glib/-/raw/main/tools/glib.supp?ref_type=heads>`_
+* Use `Rygel's suppression file <https://gitlab.gnome.org/GNOME/rygel/-/raw/master/tools/rygel.supp?ref_type=heads>`_
+* Set the environment variable ``RYGEL_PLUGIN_TIMEOUT`` to something very large, for example 9999.
+
 Testing Rygel
 =============
 
