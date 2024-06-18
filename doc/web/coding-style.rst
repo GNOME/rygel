@@ -82,7 +82,8 @@ Coding Style
 * Blocks inside if/else must always be enclosed by '{}'.
 
 * Empty catch blocks *must* have at least a comment why this is not handled. A debug output of the exception message is preferred.
-* The more you provide docs in comments, but at the same time avoid over-documenting. Here is an example of useless comment:
+* The more you provide docs in comments, the better. But at the same time avoid over-documenting. Here is an example of useless
+* comment:
 
   .. code-block:: vala
 
