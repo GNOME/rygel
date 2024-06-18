@@ -1,0 +1,21 @@
+project: rygel
+api_version: 2.8
+
+# TODO: Hardcode architecture for now
+arch: x86_64
+
+# Those are all jobs that are just run once, not on all distributions and versions
+# format has to be distribution:version@arch
+targets:
+  coverage: fedora:39@x86_64
+  coverity: fedora:39@x86_64
+  static-scan: fedora:39@x86_64
+  pages: fedora:39@x86_64
+
+# Distribution configurations
+distributions:
+  fedora: [39]
+
+packages:
+  fedora:
+    needed: ['clang', 'clang-analyzer', 'gcovr', 'git', 'libasan', 'libubsan', 'python3-gobject', 'python3-pip', 'xmlto', 'gobject-introspection-devel', 'gtk-doc', 'libsoup3-devel', 'libuuid-devel', 'libxml2-devel', 'vala', 'ninja-build', 'python3-setuptools', 'gtk3-devel', 'pandoc', 'python3-sphinx', 'sqlite-devel', 'gstreamer1-devel', 'tracker-devel', 'libunistring-devel', 'valadoc', 'gst-editing-services-devel', 'gupnp-devel', 'gupnp-av-devel', 'gupnp-dlna-devel', 'libmediaart-devel', 'libgee-devel']
