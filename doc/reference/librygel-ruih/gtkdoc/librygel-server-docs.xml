@@ -20,10 +20,6 @@
     <xi:include href="overview.xml"/>
   </preface>
 
-  <xi:include href="implementing-servers.xml"/>
-  <xi:include href="implementing-server-plugins.xml"/>
-  <xi:include href="implementing-media-engines.xml"/>
-
   <!-- These are generated: -->
   <chapter id="api-main-list">
     <title>librygel-server API Reference</title>

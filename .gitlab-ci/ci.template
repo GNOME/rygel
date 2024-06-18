@@ -1,18 +1,11 @@
 include:
-  - remote: "https://gitlab.gnome.org/Infrastructure/freedesktop-ci-templates/-/raw/0c312d9c7255f46e741d43bcd1930f09cd12efe7/templates/ci-fairy.yml"
-  - remote: 'https://gitlab.gnome.org/Infrastructure/freedesktop-ci-templates/-/raw/0c312d9c7255f46e741d43bcd1930f09cd12efe7/templates/fedora.yml'
-  - project: 'gnome/citemplates'
-    file: 'flatpak/flatpak_ci_initiative.yml'
-  - component: 'gitlab.gnome.org/GNOME/citemplates/release-service@master'
-    inputs:
-      dist-job-name: 'flatpak'
-      tarball-artifact-path: "${TARBALL_ARTIFACT_PATH}"
-
+    - 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
+    - remote: "https://gitlab.freedesktop.org/freedesktop/ci-templates/-/raw/0c312d9c7255f46e741d43bcd1930f09cd12efe7/templates/ci-fairy.yml"
+    - remote: 'https://gitlab.freedesktop.org/freedesktop/ci-templates/-/raw/0c312d9c7255f46e741d43bcd1930f09cd12efe7/templates/fedora.yml'
+    - '/.gitlab-ci/tags.yml'
 
 variables:
-    FLATPAK_MODULE: "rygel"
     BUNDLE: "org.gnome.Rygel.Devel.flatpak"
-    TARBALL_ARTIFACT_PATH: ".flatpak-builder/build/${FLATPAK_MODULE}/_flatpak_build/meson-dist/${CI_PROJECT_NAME}-${CI_COMMIT_TAG}.tar.xz"
     GIT_SUBMODULE_STRATEGY: recursive
     MESON_TEST_TIMEOUT_MULTIPLIER: 3
 
@@ -22,6 +15,7 @@ flatpak:
         MANIFEST_PATH: "build-aux/org.gnome.Rygel.json"
         RUNTIME_REPO: "https://flathub.org/repo/flathub.flatpakrepo"
         # Replace with your application name, as written in the manifest
+        FLATPAK_MODULE: "rygel"
         APP_ID: "org.gnome.Rygel"
 
 stages:
@@ -30,7 +24,7 @@ stages:
     - build
     - test
     - analysis
-    - deploy
+    - website
 
 .check-template: &check
   extends:
@@ -102,7 +96,7 @@ check-merge-request:
       echo "G_MESSAGES_DEBUG: ${G_MESSAGES_DEBUG}"
       echo "MESON_TEST_EXTRA_ARGS: ${MESON_TEST_EXTRA_ARGS}"
       echo
-      echo "These values can be set at https://gitlab.gnome.org/GNOME/rygel/pipelines/new"
+      echo "These values can be set at https://gitlab.gnome.org/GNOME/{{project}}/pipelines/new"
   artifacts:
     expire_in: 1 day
     when: always
@@ -111,50 +105,63 @@ check-merge-request:
     reports:
       junit: "build/meson-logs/testlog.junit.xml"
 
-.rygel.fedora@common:
+{% for distro in distributions %}
+{% for version in distributions[distro] %}
+.{{project}}.{{distro}}@common:
   variables:
-      BASE_TAG: '${FEDORA_BASE_TAG}'
-      FDO_UPSTREAM_REPO: GNOME/rygel
-      FDO_DISTRIBUTION_PACKAGES: "clang clang-analyzer gcovr git libasan libubsan python3-gobject python3-pip xmlto gobject-introspection-devel gtk-doc libsoup3-devel libuuid-devel libxml2-devel vala ninja-build python3-setuptools gtk3-devel pandoc python3-sphinx sqlite-devel gstreamer1-devel tracker-devel libunistring-devel valadoc gst-editing-services-devel gupnp-devel gupnp-av-devel gupnp-dlna-devel libmediaart-devel libgee-devel"
-      FDO_DISTRIBUTION_EXEC: .gitlab-ci/setup-image-fedora.sh
+      BASE_TAG: '${{"{"}}{{distro|upper}}_BASE_TAG}'
+      FDO_UPSTREAM_REPO: GNOME/{{project}}
+      FDO_DISTRIBUTION_PACKAGES: "{{" ".join(packages[distro].needed)}}"
+      FDO_DISTRIBUTION_EXEC: .gitlab-ci/setup-image-{{distro}}.sh
 
-.rygel.fedora:39@x86_64:
-    extends: .rygel.fedora@common
+.{{project}}.{{distro}}:{{version}}@{{arch}}:
+    extends: .{{project}}.{{distro}}@common
     variables:
-      FDO_DISTRIBUTION_VERSION: "39"
-      FDO_DISTRIBUTION_TAG: "x86_64-${BASE_TAG}"
+      FDO_DISTRIBUTION_VERSION: "{{version}}"
+      FDO_DISTRIBUTION_TAG: "{{arch}}-${BASE_TAG}"
 
-build-container-fedora:39@x86_64:
+build-container-{{distro}}:{{version}}@{{arch}}:
     extends:
-        - .fdo.container-build@fedora
-        - .rygel.fedora:39@x86_64
+        - .fdo.container-build@{{distro}}
+        - .{{project}}.{{distro}}:{{version}}@{{arch}}
     stage: prepare
     variables:
         GIT_STRATEGY: none
 
-build-fedora:39@x86_64:
+build-{{distro}}:{{version}}@{{arch}}:
     extends:
-        - .fdo.distribution-image@fedora
-        - .rygel.fedora:39@x86_64
+        - .fdo.distribution-image@{{distro}}
+        - .{{project}}.{{distro}}:{{version}}@{{arch}}
     needs:
-        - build-container-fedora:39@x86_64
+        - build-container-{{distro}}:{{version}}@{{arch}}
     <<: *build
 
-test-fedora:39@x86_64:
+test-{{distro}}:{{version}}@{{arch}}:
     tags:
         - ipv6
     extends:
-        - .fdo.distribution-image@fedora
-        - .rygel.fedora:39@x86_64
+        - .fdo.distribution-image@{{distro}}
+        - .{{project}}.{{distro}}:{{version}}@{{arch}}
     needs:
-        - build-fedora:39@x86_64
+        - build-{{distro}}:{{version}}@{{arch}}
     <<: *test
+{% endfor %}
+{% endfor %}
 
+{% for downstream in triggers %}
+trigger-{{downstream}}:
+    stage: analysis
+    needs:
+        - test-{{targets["downstream"]}}
+    trigger: {{triggers[downstream]}}
+    only:
+        - master
+{% endfor %}
 
 #coverage-analysis:
 #  extends:
-#    - .fdo.distribution-image@fedora
-#    - .rygel.fedora:39@x86_64
+#    - .fdo.distribution-image@{{targets["coverage"].split(":")[0]}}
+#    - .{{project}}.{{targets["coverage"]}}
 #  stage: analysis
 #  allow_failure: true
 #  script:
@@ -167,15 +174,15 @@ test-fedora:39@x86_64:
 #    paths:
 #    - build/coveragereport
 #  needs:
-#    - test-fedora:39@x86_64
+#    - test-{{targets["coverage"]}}
 
 #static-scan:
 #  extends:
-#    - .fdo.distribution-image@fedora
-#    - .rygel.fedora:39@x86_64
+#    - .fdo.distribution-image@{{targets["static-scan"].split(":")[0]}}
+#    - .{{project}}.{{targets["static-scan"]}}
 #  stage: analysis
 #  needs:
-#    - build-container-fedora:39@x86_64
+#    - build-container-{{targets["static-scan"]}}
 #  script:
 #    - meson --buildtype=debug _scan_build
 #    - export SCANBUILD="$PWD/.gitlab-ci/scanbuild-wrapper.sh"
@@ -191,24 +198,24 @@ test-fedora:39@x86_64:
 
 #coverity:
 #  extends:
-#    - .fdo.distribution-image@fedora
-#    - .rygel.fedora:39@x86_64
+#    - .fdo.distribution-image@{{targets["coverity"].split(":")[0]}}
+#    - .{{project}}.{{targets["coverity"]}}
 #  stage: analysis
 #  allow_failure: true
 #  script:
-#    - curl https://scan.coverity.com/download/linux64 --data "token=$COVERITY_TOKEN&project=rygel" --output /tmp/coverity_tool.tgz
+#    - curl https://scan.coverity.com/download/linux64 --data "token=$COVERITY_TOKEN&project={{project}}" --output /tmp/coverity_tool.tgz
 #    - tar zxf /tmp/coverity_tool.tgz
 #    - mkdir coverity-build
 #    - cd coverity-build
 #    - env CC=clang meson ..
 #    - ../cov-analysis-linux64-*/bin/cov-build --dir cov-int ninja
 #    - tar czf cov-int.tar.gz cov-int
-#    - curl https://scan.coverity.com/builds?project=rygel
+#    - curl https://scan.coverity.com/builds?project={{project}}
 #      --form token=$COVERITY_TOKEN --form email=mail@jensge.org
 #      --form file=@cov-int.tar.gz --form version="`git describe --tags`"
 #      --form description="gitlab CI build"
 #  needs:
-#    - build-container-fedora:39@x86_64
+#    - build-container-{{targets["coverity"]}}
 #  only:
 #    - master
 #  except:
@@ -217,9 +224,9 @@ test-fedora:39@x86_64:
 
 pages:
   extends:
-    - .fdo.distribution-image@fedora
-    - .rygel.fedora:39@x86_64
-  stage: deploy
+    - .fdo.distribution-image@{{targets["pages"].split(":")[0]}}
+    - .{{project}}.{{targets["pages"]}}
+  stage: website
   script:
       - meson setup doc-build -Dapi-docs=true -Dplugins=[] -Dexamples=false -Dtests=false
       - ninja -C doc-build
@@ -232,9 +239,10 @@ pages:
     paths:
       - public
   needs:
-    - build-container-fedora:39@x86_64
+    - build-container-{{targets["pages"]}}
   only:
     - master
     - /^wip\/.*\/ci.*$/
     - /^wip\/.*\/.*doc.*$/
+
 

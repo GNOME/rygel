@@ -10,7 +10,7 @@
     <releaseinfo>
       for librygel-core 2.0.
       The latest version of this documentation can be found on-line at
-      <ulink role="online-location" url="http://developer.gnome.org/librygel-core/index.html">http://developer.gnome.org/librygel-core/</ulink>.
+      <ulink role="online-location" url="https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-core/index.html">https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-core/index.html</ulink>.
     </releaseinfo>
   </bookinfo>
 
@@ -58,7 +58,6 @@
 
   <chapter id="object-tree">
     <title>Object Hierarchy</title>
-     <xi:include href="xml/tree_index.sgml"/>
   </chapter>
 
   <index id="api-index-full">

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd" [
+<!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+
+<section id="overview">
+
+<para>
+librygel-core is part of the <ulink url="http://rygel-project.org/">Rygel</ulink> project.
+</para>
+
+<para>
+librygel-core is a collection of classes useful to Rygel's <ulink url="http://developer.gnome.org/librygel-server/unstable/">server</ulink> and <ulink url="http://developer.gnome.org/librygel-renderer/unstable/">renderer</ulink> implementation libraries and useful to plugin implementors.
+</para>
+
+<para>
+librygel-core is licensed under the GNU Lesser General Public License (LGPL).
+</para>
+
+<sect1>
+<title>Basic Usage</title>
+<para>
+Include the header:
+</para>
+<para>
+<programlisting>
+#include &lt;rygel-core.h&gt;
+</programlisting>
+</para>
+
+<para>
+If your source file is program.c, you can compile it with:
+</para>
+<para>
+<command>
+gcc program.cc -o program `pkg-config --cflags --libs rygel-core-2.0`
+</command>
+</para>
+
+<para>
+Alternatively, if using autoconf, use the following in configure.ac:
+</para>
+<para>
+<programlisting>
+PKG_CHECK_MODULES([DEPS], [rygel-core-2.0])
+</programlisting>
+</para>
+
+<para>
+Then use the generated DEPS_CFLAGS and DEPS_LIBS variables in the project Makefile.am files. For example:
+</para>
+<para>
+<programlisting>
+program_CPPFLAGS = $(DEPS_CFLAGS)
+program_LDADD = $(DEPS_LIBS)
+</programlisting>
+</para>
+
+</sect1>
+
+</section>
