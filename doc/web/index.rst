@@ -24,7 +24,12 @@ There are many DLNA/UPnP devices on the market, such as the major gaming console
 * Easily search and play media using a phone, TV, or PC.
 * Redirect sound output to DLNA speakers.
 
-You can report issues
+Contact
+=======
+
+For general discussion, please use the `Rygel tag at GNOME's Discourse <https://discourse.gnome.org/tag/rygel>`_ or join `our Matrix room <https://matrix.to/#/#gupnp:gnome.org>`_.
+If you encounter any problems you believe are bugs in Rygel, please `open a new issue in Gitlab <https://gitlab.gnome.org/GNOME/rygel/issues/new?issue%5Bassignee_id%5D=&issue%5Bmilestone_id%5D=>`_,
+but please check the `list of existing issues <https://gitlab.gnome.org/GNOME/rygel/-/issues/?sort=created_date&state=opened>`_ beforehand.
 
 Developer Features
 ==================
@@ -33,11 +38,11 @@ Rygel provides several shared libraries in addition to the main Rygel server and
 be used to implement Rygel plugins or media engines, standalone renderers, or even to implement
 replacement UPnP/DLNA servers.
 
-* librygel-server
-* librygel-core
-* librygel-db
-* librygel-renderer
-* librygel-renderer-gst
+* Basic infrastructure and UPnP-AV plumbing - `librygel-core <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-core/>`_
+* Generalized SQLite access helper - `librygel-db <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-db/>`_
+* Implementing an UPnP-AV server - `librygel-server <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-server/>`_
+* Implementing an UPnP-AV renderer - `librygel-renderer <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-renderer/>`_
+* Helpers if the UPnP-AV renderer is going to be based on GStreamer - `librygel-renderer-gst <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-renderer-gst>`_
 
 Development
 ===========
@@ -47,13 +52,10 @@ For details on building Rygel on your own, refer to the :doc:`development docume
 Installing
 ==========
 
-Rygel should be available for all major distributions. If you opt building from source, see the :doc:`development documentation<development>`.
+Rygel should be available for all major distributions. If you choose to build it from source yourself, see the :doc:`development documentation<development>`.
 
 .. toctree::
     :hidden:
 
     development
-    installing
-    contact
-    features
     faq
