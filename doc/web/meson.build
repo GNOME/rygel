@@ -8,6 +8,9 @@ sphinx = find_program('sphinx-build', required: false, disabler: true)
 docs_rst = [
   'index.rst',
   'development.rst',
+  'architecture.rst',
+  'coding-style.rst',
+  'faq.rst'
 ]
 
 custom_target('docs',
