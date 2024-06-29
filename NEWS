@@ -1,3 +1,20 @@
+0.43.0 (unstable)
+=================
+Minimum Soup version required is now 3.2
+
+Tracker:
+  - Plugin removed, please use Tracker3
+LMS:
+  - Plugin removed
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Scrambled 777 <weblate.scrambled777@simplelogin.com>
+
+Added/updated translations:
+ - hi.po, courtesy of Scrambled777
+
 0.42.6 (stable)
 ===============
 
