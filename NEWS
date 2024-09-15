@@ -1,3 +1,17 @@
+0.44.0 (stable)
+===============
+
+All:
+ - Translation updates
+
+All contributors to this release:
+ - Sabri Ünal <yakushabb@gmail.com>
+ - Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+
+Added/updated translations:
+ - tr.po, courtesy of Sabri Ünal
+ - zh_TW.po, courtesy of Cheng-Chia Tseng
+
 0.43.0 (unstable)
 =================
 Minimum Soup version required is now 3.2
