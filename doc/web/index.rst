@@ -43,6 +43,7 @@ replacement UPnP/DLNA servers.
 * Implementing an UPnP-AV server - `librygel-server <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-server/>`_
 * Implementing an UPnP-AV renderer - `librygel-renderer <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-renderer/>`_
 * Helpers if the UPnP-AV renderer is going to be based on GStreamer - `librygel-renderer-gst <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-renderer-gst>`_
+* Implementing an UPnP Remote UI server - `librygel-ruih <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-ruih>`_
 
 Development
 ===========
