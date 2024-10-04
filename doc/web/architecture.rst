@@ -4,6 +4,17 @@
 Architecture
 ============
 
+Relevant UPnP Standards
+=======================
+
+Rygel implements the following UPnP specificaions and optional devices and services:
+
+* `MediaServer:3 <http://www.wikipedia.org/wiki/Media_server>`_ in `version 3 of the specification <http://upnp.org/specs/av/UPnP-av-MediaServer-v3-Device.pdf>`_
+* `MediaRenderer:2 <http://www.wikipedia.org/wiki/Media_renderer>`_ in `version 2 <http://upnp.org/specs/av/UPnP-av-MediaRenderer-v2-Device.pdf>`_.
+* BasicManagement:2, see `the UPnP.org specification for BasicManagement <https://upnp.org/specs/dm/UPnP-dm-BasicManagement-v2-Service.pdf>`_
+* EnergyManagement:1, see `the UPnP.org specification for EnergyManagement <https://upnp.org/specs/lp/UPnP-lp-EnergyManagement-v1-Service.pdf>`_
+* RemoteUIServer:1, see `the UPnP.org specification for Remote UI <https://upnp.org/specs/rui/UPnP-rui-RemoteUIServer-v1-Service.pdf>`_
+
 Block diagram
 =============
 .. image:: img/rygel-architecture.svg
@@ -32,11 +43,13 @@ At startup, Rygel performs the following steps:
   * For each network device, the context manager provides a context (`GUPnPContext <https://gnome.pages.gitlab.gnome.org/gupnp/docs/class.Context.html>`_).
   * For each context, Rygel creates a `RygelRootDeviceFactory <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-core/librygel-core-RygelRootDeviceFactory.html>`_.
 
-* Creates the plugin loader (`RygelPluginLoader <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-core/librygel-core-RygelPluginLoader.html>_`).
+* Creates the plugin loader (`RygelPluginLoader <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-core/librygel-core-RygelPluginLoader.html>`_).
 * Starts loading plugins.
 
-  * For every plugin, iterate over the RygelRootDeviceFactories and create a RygelRootDevice for the plugin.
-  * Each plugin should check whether it has been disabled in the configuration (RygelMetaConfig) and if so then it should disable itself. However, this system should be improved.
+  * For every plugin, iterate over the `RygelRootDeviceFactories <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-core/librygel-core-RygelRootDeviceFactory.html>`_)
+    and create a `RygelRootDevice <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-core/librygel-core-RygelRootDevice.html>`_ for the plugin.
+  * Each plugin should check whether it has been disabled in the configuration (`RygelMetaConfig <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-core-RygelMetaConfig.html>`_)
+    and if so then it should disable itself. However, this system should be improved.
 
 Network Devices Appearing
 -------------------------
@@ -61,7 +74,7 @@ Browsing
 
 When a client application calls the UPnP Browse action on a Rygel server device, by sending a UPnP message, Rygel:
 
-* Handles the "action-invoked::Browse" signal emitted by GUPnPService, in RygelContentDirectory::on_browse().
+* Handles the "action-invoked::Browse" signal emitted by `GUPnPService <https://gnome.pages.gitlab.gnome.org/gupnp/docs/class.Service.html>`_, in RygelContentDirectory::on_browse().
 * Creates a new instance of RygelBrowse, parsing the arguments and verifying the parameters of the call.
 * The RygelBrowse instance will try to fetch the the object to be browsed from the RygelRootContainer passed in from the RygelContentDirectory using RygelMediaContainer.find_object().
 * If the object is found, depending on the type of the browse, Rygel will either return the metadata of the object by serializing it directly or, if the object is a container, Rygel will get its children using RygelMediaContainer.get_children() and serialize the list of results.

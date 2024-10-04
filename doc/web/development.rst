@@ -42,6 +42,8 @@ for Debian-based distributions or
 
 for Fedora  etc.
 
+A full list of dependencies can be found in `README.md <https://gitlab.gnome.org/GNOME/rygel/-/blob/master/README.md?ref_type=heads>`_
+
 Building the code
 =================
 
@@ -64,6 +66,12 @@ To install what you have built above, just run
 
     sudo ninja -C build install
 
+Testing Rygel
+=============
+
+UPnP control points known to work with Rygel are the tools from the `GUPnP Tools suite <https://gitlab.gnome.org/GNOME/gupnp-tools>`_ and
+`BubbleUPnP for Android <https://play.google.com/store/apps/details?id=com.bubblesoft.android.bubbleupnp&hl=en>`_.
+
 Notes on debugging
 ==================
 
@@ -79,7 +87,7 @@ Valgrind
 .. toctree::
     :hidden:
 
-    coding-style
     architecture
     debugging
+    coding-style
 
