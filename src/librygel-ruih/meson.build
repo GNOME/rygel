@@ -1,4 +1,4 @@
-ruih_sources = [
+ruih_sources = files(
     'rygel-ruih-filter-entry.vala',
     'rygel-ruih-icon-elem.vala',
     'rygel-ruih-protocol-elem.vala',
@@ -10,7 +10,7 @@ ruih_sources = [
     'rygel-ruih-ui-elem.vala',
     'rygel-ruih-ui-listing.vala',
     'rygel-ruih-wildcard-filter-entry.vala'
-]
+    )
 
 ruih_lib = library('rygel-ruih-2.8', ruih_sources,
         dependencies : ruih_deps + [build_config, rygel_core],
