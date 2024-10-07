@@ -1,7 +1,7 @@
 fs = import('fs')
 python = import('python')
 
-sphinx = find_program('sphinx-build', required: true, disabler: true)
+sphinx = find_program('sphinx-build', required: false, disabler: true)
 
 # fixme: Need to look for furo theme as well
 
