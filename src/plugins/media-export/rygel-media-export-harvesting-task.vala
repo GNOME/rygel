@@ -166,7 +166,9 @@ public class Rygel.MediaExport.HarvestingTask : Rygel.StateMachine,
                     return false;
                 }
 
-                info.set_content_type(mime_type);
+                if (mime_type != null) {
+                    info.set_content_type (mime_type);
+                }
             }
 
             if (!info.has_attribute (FileAttribute.STANDARD_CONTENT_TYPE) || info.get_content_type () == null) {
