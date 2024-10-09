@@ -159,24 +159,37 @@ internal class Rygel.ImportResource : GLib.Object, Rygel.StateMachine {
             this.bytes_total = message.response_headers.get_content_length ();
             this.action.return_success ();
             this.action = null;
-            this.bytes_copied = yield this.output_stream.splice_async (stream,
-                                                           OutputStreamSpliceFlags.CLOSE_SOURCE |
-                                                           OutputStreamSpliceFlags.CLOSE_TARGET,
-                                                           Priority.DEFAULT,
-                                                           this.cancellable);
+
+            while (true) {
+                var bytes = yield stream.read_bytes_async (8192 * 1024, Priority.DEFAULT, this.cancellable);
+                if (bytes == null || bytes.length == 0) {
+                    break;
+                }
+
+                var bytes_to_write = (ssize_t) bytes.length;
+                this.bytes_copied += bytes.length;
+
+                while (bytes_to_write != 0) {
+                    var bytes_written = yield this.output_stream.write_bytes_async (bytes, Priority.DEFAULT, this.cancellable);
+                    if (bytes_written != bytes.length) {
+                        bytes = new Bytes.from_bytes(bytes, bytes_written, bytes.length - bytes_written);
+                    }
+                    bytes_to_write -= bytes_written;
+                }
+            }
 
             if (this.bytes_total == 0) {
                 this.bytes_total = this.bytes_copied;
             } else if (this.bytes_total != this.bytes_copied) {
-                warning ("Importing sizes did not match: %z vs. %z", this.bytes_total, this.bytes_copied);
+                warning ("Importing sizes did not match: %lld vs. %lld", this.bytes_total, this.bytes_copied);
                 this.status = TransferStatus.ERROR;
             }
+
 
             if (this.status == TransferStatus.IN_PROGRESS) {
                 this.status = TransferStatus.COMPLETED;
             }
         } catch (Error err) {
-            warning ("%s", err.message);
             if (err is IOError.CANCELLED) {
                 this.status = TransferStatus.STOPPED;
             } else {
