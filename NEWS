@@ -1,3 +1,15 @@
+0.44.1 (stable)
+===============
+
+Server:
+ - Fix progress reporting for ImportResource
+
+MediaExport:
+ - Fix a critical when unable to detect mime type
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+
 0.44.0 (stable)
 ===============
 
