@@ -209,7 +209,7 @@ public class Rygel.CmdlineConfig : GLib.Object, Configuration {
 
     public string get_config_file () throws GLib.Error {
         unowned string config_file = null;
-        if (!options.lookup ("config", "&s", out config_file)) {
+        if (!options.lookup ("config", "^ay", out config_file)) {
             throw new ConfigurationError.NO_VALUE_SET (_("No value available"));
         }
 
