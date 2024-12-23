@@ -1,7 +1,16 @@
-include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
+include:
+  - project: 'gnome/citemplates'
+    file: 'flatpak/flatpak_ci_initiative.yml'
+  - component: 'gitlab.gnome.org/GNOME/citemplates/release-service@master'
+    inputs:
+      dist-job-name: 'flatpak'
+      tarball-artifact-path: "${TARBALL_ARTIFACT_PATH}"
+
 
 variables:
+    FLATPAK_MODULE: "rygel"
     BUNDLE: "org.gnome.Rygel.Devel.flatpak"
+    TARBALL_ARTIFACT_PATH: ".flatpak-builder/build/${FLATPAK_MODULE}/_flatpak_build/meson-dist/${CI_COMMIT_TAG}.tar.xz"
     GIT_SUBMODULE_STRATEGY: recursive
 
 flatpak:
@@ -10,7 +19,6 @@ flatpak:
         MANIFEST_PATH: "build-aux/org.gnome.Rygel.json"
         RUNTIME_REPO: "https://flathub.org/repo/flathub.flatpakrepo"
         # Replace with your application name, as written in the manifest
-        FLATPAK_MODULE: "rygel"
         APP_ID: "org.gnome.Rygel"
 
 #nightly:
