@@ -1,4 +1,6 @@
 include:
+  - remote: "https://gitlab.gnome.org/Infrastructure/freedesktop-ci-templates/-/raw/0c312d9c7255f46e741d43bcd1930f09cd12efe7/templates/ci-fairy.yml"
+  - remote: 'https://gitlab.gnome.org/Infrastructure/freedesktop-ci-templates/-/raw/0c312d9c7255f46e741d43bcd1930f09cd12efe7/templates/fedora.yml'
   - project: 'gnome/citemplates'
     file: 'flatpak/flatpak_ci_initiative.yml'
   - component: 'gitlab.gnome.org/GNOME/citemplates/release-service@master'
@@ -28,7 +30,7 @@ stages:
     - build
     - test
     - analysis
-    - website
+    - deploy
 
 .check-template: &check
   extends:
@@ -217,7 +219,7 @@ pages:
   extends:
     - .fdo.distribution-image@fedora
     - .rygel.fedora:39@x86_64
-  stage: website
+  stage: deploy
   script:
       - meson setup doc-build -Dapi-docs=true -Dplugins=[] -Dexamples=false -Dtests=false
       - ninja -C doc-build
