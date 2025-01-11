@@ -10,7 +10,12 @@ docs_rst = [
   'development.rst',
   'architecture.rst',
   'coding-style.rst',
-  'faq.rst'
+  'faq.rst',
+  'troubleshooting.rst',
+  'plugins.rst',
+  'integration.rst',
+  'system-integration.rst',
+  'media-server2.rst'
 ]
 
 custom_target('docs',

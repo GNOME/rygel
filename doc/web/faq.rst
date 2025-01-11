@@ -4,16 +4,6 @@
 FAQ
 ===
 
-How do I enable debug output
-============================
-
-::
-
-  G_MESSAGES_DEBUG=all rygel -g 5
-
-Instead of passing :code:`-g 5` you can also edit the log level in the :code:`rygel.conf` file,
-as described in the man page
-
 Rygel seems unwilling to bind to any interface other than 127.0.0.1, despite -n or interfaces=
 ==============================================================================================
 

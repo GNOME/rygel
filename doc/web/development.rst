@@ -99,7 +99,6 @@ Valgrind
 .. toctree::
     :hidden:
 
-    architecture
-    debugging
     coding-style
-
+    architecture
+    integration
