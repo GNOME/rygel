@@ -24,6 +24,38 @@
 using Soup;
 using GUPnP;
 
+/*
+ * The XBox360 is a very early UPnP device and does not follow the final UPnP MediaServer:1 specification.
+ * On top of this, it also requires an additional security device to be present. Fortunately, a dummy
+ * implementation is sufficient. See rygel-media-reciver-registrar.vala for its implementation.
+ *
+ * Hacks implemented here:
+ *  - MediaServer and ContentDirectory have to be version :1
+ *  - modelName in the device description _must_ be "Windows Media Player Sharing"
+ *  - modelNumber _must_ be set to 11 or 12
+ *  - friendlyName in the device description _must_ contain ":"
+ *  - Browse requests need to understand the parameter ContainerID instead of ObjectID
+ *  - Music playback requires implementation of the optional ContentDirectory.Search method
+ *  - Containers need to be of the class object.container.storageFolder (we just use this throughout the server)
+ *  - Images need to have the class object.item.imageItem.photo (as above)
+ *  - AVI files are accepted with content-type video/avi
+ *  - MPEG files are not shown at all if their content-type is video/mpeg. We use an invalid content type to force transcoding.
+ *  - Thumbnails will be downloaded using the file URI + "?albumArt=true"
+ *
+ *  Furthermore, for music playback the XBox360 uses hard-coded container ids
+ *      Id | Meaning   | used in |
+ *      -- | --------- | ------- |
+ *      14 | Music     | Browse  |
+ *      15 | Videos    | Browse  |
+ *      16 | Pictures  | Browse  |
+ *       4 | All Music | Search  |
+ *       5 | Genre     | Search  |
+ *       6 | Artist    | Search  |
+ *       7 | Album     | Search  |
+ *       F | Playlists | Search  |
+ *
+ */
+
 internal class Rygel.XBoxHacks : ClientHacks {
     private const string AGENT = ".*Xbox.*";
     private const string DMS = "urn:schemas-upnp-org:device:MediaServer";
