@@ -1,0 +1,18 @@
+#!/bin/bash
+
+zenity --info --text="gen-capture, a tool to simplify getting network captures for Rygel debugging"
+columns=$(ip -f inet addr show scope global | grep inet | awk '{print 0 " " $2 " " $7}')
+local_address=$(zenity --list --radiolist --text="Select your network interface" --column="" --column="Interface" --column="IP" "$columns")
+[ $? != 0 ] && exit
+[ -z "$local_address" ] && exit
+
+iface=$(echo "$columns" | grep "$local_address" | cut -f 3 -d" ")
+remote_address=$(LANG=C ipcalc -nb "$local_address" | grep Network | awk '{print $2}' | cut -f 1 -d/)
+local_address=$(echo "$local_address" | cut -f 1 -d/)
+remote_address=$(zenity --entry --entry-text="$remote_address" --text="Address of the remote device")
+[ $? != 0 ] && exit
+[ -z "$remote_address" ] && exit
+
+filter="(ip src $remote_address and ip dst $local_address) or (ip dst $remote_address and ip src $local_address) or (ip dst 239.255.255.250) or (ip src 239.255.255.250)"
+echo "sudo tcpdump -i $iface -s 0 -w rygel.pcap \"$filter\""
+
