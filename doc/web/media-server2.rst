@@ -58,8 +58,8 @@ org.gnome.UPnP.MediaContainer2
 Methods
 -------
 
-org.gnome.UPnP.MediaContainer2.ListChildren (u Offset, u Max, as Filter) -> (aa{sv} Children)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ListChildren (u Offset, u Max, as Filter) -> (aa{sv} Children)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ListChildren will get you a list of property name and value dictionaries, one for each object listed.
 
@@ -73,11 +73,15 @@ properties in the result, clients must pass an array with the single element ``"
 
 For the properties, refer to :ref:TBD.
 
-org.gnome.UPnP.MediaContainer2.ListChildrenEx (u Offset, u Max, as Filter, s SortBy) -> (aa{sv} Children)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ListChildrenEx (u Offset, u Max, as Filter, s SortBy) -> (aa{sv} Children)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ListChildrenEx will get you a list of property name and value dictionaries for all media objects directly
 under this container.
+
+.. note::
+
+    This method is optional.
 
 ``Offset`` is the zero-based index of the first item in the search result that the caller is
 interested in and ``Max`` is the maximum number of objectes to return out of the search result
@@ -95,8 +99,8 @@ properties in the result, clients must pass an array with the single element ``"
 
 For the properties, refer to :ref:TBD.
 
-org.gnome.UPnP.MediaContainer2.ListContainers (u Offset, u Max, as Filter) -> (aa{sv} Children)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ListContainers (u Offset, u Max, as Filter) -> (aa{sv} Children)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ListConainers will get you a list of property name and value dictionaries, for all containers under
 this container.
@@ -111,11 +115,16 @@ properties in the result, clients must pass an array with the single element ``"
 
 For the properties, refer to :ref:TBD.
 
-org.gnome.UPnP.MediaContainer2.ListContainersEx (u Offset, u Max, as Filter, s SortBy) -> (aa{sv} Children)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ListContainersEx (u Offset, u Max, as Filter, s SortBy) -> (aa{sv} Children)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ListConainersEx will get you a list of property name and value dictionaries, for all containers under
 this container.
+
+.. note::
+
+    This method is optional.
+
 
 ``Offset`` is the zero-based index of the first item in the search result that the caller is
 interested in and ``Max`` is the maximum number of objectes to return out of the search result
@@ -134,8 +143,8 @@ It needs to be prefixed with "+" to denote ascending order and "-" for descendin
 
 For the properties, refer to :ref:TBD.
 
-org.gnome.UPnP.MediaContainer2.ListItems (u Offset, u Max, as Filter) -> (aa{sv} Children)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ListItems (u Offset, u Max, as Filter) -> (aa{sv} Children)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ListItems will get you a list of property name and value dictionaries, for all items under
 this container.
@@ -150,11 +159,15 @@ properties in the result, clients must pass an array with the single element ``"
 
 For the properties, refer to :ref:TBD.
 
-org.gnome.UPnP.MediaContainer2.ListItemsEx (u Offset, u Max, as Filter, s SortBy) -> (aa{sv} Children)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ListItemsEx (u Offset, u Max, as Filter, s SortBy) -> (aa{sv} Children)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ListItems will get you a list of property name and value dictionaries, for all items under this
 container.
+
+.. note::
+
+    This method is optional.
 
 ``Offset`` is the zero-based index of the first item in the search result that the caller is
 interested in and ``Max`` is the maximum number of objectes to return out of the search result
@@ -174,11 +187,17 @@ It needs to be prefixed with "+" to denote ascending order and "-" for descendin
 For the properties, refer to :ref:TBD.
 
 
-org.gnome.UPnP.MediaContainer2.SearchObjects (s Query, u Offset, u Max, as Filter) -> (aa{sv} Result)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SearchObjects (s Query, u Offset, u Max, as Filter) -> (aa{sv} Result)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 SearchObjects gets you properties of all media objects anywhere under this container that satisfy
 the search criteria.
+
+.. note::
+
+    This method is optional but recommended for containers that expose a large hierarchy. By optional it
+    is meant that you can provide a dummy implementation that always throws DBUS_ERROR_NOT_SUPPORTED but
+    'Searchable' flags property must be unset in that case.
 
 ``Query`` is a search criteria string which is described by the following BNF syntax:
 
@@ -238,8 +257,8 @@ interested in, to allow for incremental browsing.
 ``Filter`` is an array of property names that the caller is interested in. To fetch all available
 properties in the result, clients must pass an array with the single element ``"*"``.
 
-org.gnome.UPnP.MediaContainer2.SearchObjectsEx (s Query, u Offset, u Max, as Filter, s SortBy) -> (aa{sv} Result, u TotalMatch)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SearchObjectsEx (s Query, u Offset, u Max, as Filter, s SortBy) -> (aa{sv} Result, u TotalMatch)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This function is similar to SearchObjectsEx, except for the additional return value ``TotalMatch``
 and the additional ``SortBy`` parameter.
@@ -278,6 +297,7 @@ Properties
 |                   |           |            | in user interfaces as a device icon.        |
 +-------------------+-----------+------------+---------------------------------------------+
 
+
 Signals
 -------
 
@@ -289,6 +309,102 @@ of the existing child items is modified, or any of the properties of the contain
 modified. While the signal should be emitted when child containers are created or removed, it
 shall not be emitted when child containers are modified: instead the signal should be emitted
 on the child in this case.
+
+org.gnome.UPnP.MediaItem2
+=========================
+
+Methods
+-------
+
+MediaItem2 does not have any methods.
+
+Properties
+----------
+
+Generic properties
+^^^^^^^^^^^^^^^^^^
+
++-------------------+-----------+------------+---------------------------------------------+
+|     Name          |   Type    |m/o [#f1]_  |              Description                    |
++===================+===========+============+=============================================+
+| URLs              |    as     | m          | List the URLs available. There could be     |
+|                   |           |            | multiple URLs for this item for different   |
+|                   |           |            | transport protocols. It is possible to use  |
+|                   |           |            | simple address substitution in URLs, for    |
+|                   |           |            | details see below                           |
++-------------------+-----------+------------+---------------------------------------------+
+| MIMEType          |     s     | m          | The mime-type of the stream.                |
++-------------------+-----------+------------+---------------------------------------------+
+| Size              |     x     | o          | Size of the item in bytes.                  |
++-------------------+-----------+------------+---------------------------------------------+
+| Artitst           |     s     | o          | The artist of the item.                     |
++-------------------+-----------+------------+---------------------------------------------+
+| Album             |     s     | o          | The album of this item.                     |
++-------------------+-----------+------------+---------------------------------------------+
+| Date              |     s     | o          | A date for the item. Must comply to         |
+|                   |           |            | ISO#8601 and RFC#3339                       |
++-------------------+-----------+------------+---------------------------------------------+
+| DLNAProfile       |     s     | o          | The DLNA profile of the item. If you can    |
+|                   |           |            | provide this, Rygel can avoid guessing      |
+|                   |           |            | it.                                         |
++-------------------+-----------+------------+---------------------------------------------+
+
+
+URL address substitution
+""""""""""""""""""""""""
+
+When specifiying an URL, it is possible to use the special pattern ``@ADDRESS``. If this pattern
+is following directly after the ``://``, it will be replaced with the IP address of the
+network interface used to access Rygel. That way a resource can be provided on multiple IP
+addresses (think IPv4 and IPv6) without repeating items.
+
+For example, by specifying an URL as ``http://@ADDRESS@/item/song.mp3``, and Rygel is connected
+by the client on the IPv4 address 192.168.2.34, Rygel will present the URI
+``http://192.168.2.34/item/song.mp3`` to the client. If ``@ADDRESS@`` is anywhere else in the
+URL, it will be passed as-is.
+
+Applicable for video and audio/music
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++-------------------+-----------+------------+---------------------------------------------+
+|     Name          |   Type    |m/o [#f1]_  |              Description                    |
++===================+===========+============+=============================================+
+| Duration          | i         | o          | Duration of the item, in seconds.           |
++-------------------+-----------+------------+---------------------------------------------+
+| Bitrate           | i         | o          | Bitrate of the audio part of the item, in   |
+|                   |           |            | bits (e.g. 1280000 for an 128kb/s MP3).     |
++-------------------+-----------+------------+---------------------------------------------+
+| SampleRate        | i         | o          | Sample rate of the audio part of the item,  |
+|                   |           |            | in Hz (e.g. 48000 for a 48kHz WAV).         |
++-------------------+-----------+------------+---------------------------------------------+
+| BitsPerSample     | i         | o          | Bits per sample for the audio part of the   |
+|                   |           |            | item (e.g. 16 for a 16bit WAV).             |
++-------------------+-----------+------------+---------------------------------------------+
+
+
+Applicable for video and images
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
++-------------------+-----------+------------+---------------------------------------------+
+|     Name          |   Type    |m/o [#f1]_  |              Description                    |
++===================+===========+============+=============================================+
+| Width             | i         | o          | Width, in pixels.                           |
++-------------------+-----------+------------+---------------------------------------------+
+| Height            | i         | o          | Height, in pixels.                          |
++-------------------+-----------+------------+---------------------------------------------+
+| ColorDepth        | i         | o          | The colordepth, in bits.                    |
++-------------------+-----------+------------+---------------------------------------------+
+| Thumbnail         | o         | o          | A smaller representation of the item.       |
+|                   |           |            | Special constraints apply, see below.       |
++-------------------+-----------+------------+---------------------------------------------+
+
+Thumbnails
+""""""""""
+
+The object returned by the ``Thumbnail`` property has special requirements, if provided:
+
+* It must implement the ``MediaItem2`` Interface
+* ``Width``, ``Height`` and ``Depth`` become mandatory properties.
+* ``org.gnome.MediaObject2.Type`` must be ``image``
 
 .. rubric:: Footnotes
 
