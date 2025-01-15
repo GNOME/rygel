@@ -397,10 +397,30 @@ Applicable for video and images
 |                   |           |            | Special constraints apply, see below.       |
 +-------------------+-----------+------------+---------------------------------------------+
 
-Thumbnails
-""""""""""
+Applicable for audio and music
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The object returned by the ``Thumbnail`` property has special requirements, if provided:
++-------------------+-----------+------------+---------------------------------------------+
+|     Name          |   Type    |m/o [#f1]_  |              Description                    |
++===================+===========+============+=============================================+
+| AlbumArt          | o         | o          | Album art for the track.                    |
++-------------------+-----------+------------+---------------------------------------------+
+
+Applicable for music
+^^^^^^^^^^^^^^^^^^^^
+
++-------------------+-----------+------------+---------------------------------------------+
+|     Name          |   Type    |m/o [#f1]_  |              Description                    |
++===================+===========+============+=============================================+
+| TrackNumber       | i         | o          | Track number of the music track.            |
++-------------------+-----------+------------+---------------------------------------------+
+
+
+Thumbnails and AlbumArt
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The object returned by the ``Thumbnail`` or ``AlbumArt`` property has special requirements,
+if provided:
 
 * It must implement the ``MediaItem2`` Interface
 * ``Width``, ``Height`` and ``Depth`` become mandatory properties.
