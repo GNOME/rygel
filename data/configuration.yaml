@@ -1,0 +1,283 @@
+---
+- name: "general"
+  display_name: "General directives"
+  description: |
+    Rygel reads its configuration values from the file $XDG_CONFIG_HOME/rygel.conf or a file
+    given on command line with the --config option. If that file does not exist, it uses
+    the file /etc/rygel.conf. Most of the options may be overriden by commandline arguments
+    or environment variables. See rygel(1) for details on those.
+
+    Lists in the configuration file are separated by a semicolon(;). Boolean values must be either
+    the text true or the text false.
+  values:
+    - name: "ipv6"
+      description: |
+        Set to *false* if you do not want Rygel to run on IPv6 addersses.
+        Whether or not IPv6 is actually supported depends on how GUPnP was configured.
+      default: "true"
+    - name: "enable-transcoding"
+      description: "Set to *false* if you want to disable transcoding of audio and video"
+      default: "true"
+    - name: "video-upload-folder"
+      description: |
+        Where video files should be saved if allow-upload is true.
+        It defaults to @VIDEOS@, which expands to the standard videos folder (typically
+        ${HOME}/Videos)
+      default: "@VIDEOS@"
+    - name: "music-upload-folder"
+      description: |
+        Where music files should be saved if allow-upload is true.
+        It defaults to @MUSIC@, which expands to the standard videos folder (typically
+        ${HOME}/Music)
+      default: "@MUSIC@"
+    - name: "picture-upload-folder"
+      description: |
+        Where picture files should be saved if allow-upload is true.
+        It defaults to @PICTURES@, which expands to the standard videos folder (typically
+        ${HOME}/Pictures)
+      default: "@PICTURES@"
+    - name: "media-engine"
+      description: |
+        Default media engine to load. If not specified, the engine folder is searched
+        recursively and the first engine found is loaded.
+      default: "librygel-media-engine-gst.so"
+    - name: "interface"
+      description: |
+        List of network interfaces to attach rygel to. You can also use network IP or
+        even ESSID for wireless networks on Linux. Leave it blank for dynamic
+        configuration.
+      default: ""
+    - name: "port"
+      description: "Set the listen port for the HTTP server. 0 means to dynamically chose a port."
+      default: "0"
+    - name: "log-level"
+      description: |
+        Comma-separated list of domain:level pairs. This allows to specify log level thresholds
+        infividually for different domains. Valid domains are "rygel" for anything not a plugin,
+         "*" for everything or the name of a plugin.
+
+        The available levels are 1 to 5, with 1 only logging critical errors and 5 being debug
+        logging. All levels include messages of the levels below.
+
+        To see log messages of level 5, it is also necessary to set the environment variable
+        ``G_MESSAGES_DEBUG`` to ``all`` to get any output.
+      default: "*:4"
+    - name: "allow-upload"
+      description: "Whether clients should be allowed to upload media files to the server."
+      default: "false"
+    - name: "allow-deletion"
+      description: "Whether clients should be allowed to delete media files from the server."
+      default: "false"
+    - name: "force-downgrade-for"
+      description: |
+        Semicolon-separated list of device user agents (or parts thereof) that need a downgrade
+        in the UPnP device versions.
+
+        Warning: ONLY change this setting when told to do so or when you know what you are doing
+        If you find that adding your device makes it working with Rygel, please file an issue at
+        https://gitlab.gnome.org/GNOME/rygel/issues/new/?issuable_template=IOP so we can include
+        it in future releases.
+      default: "Allegro-Software-WebClient;SEC_HHP;SEC HHP;Mediabolic-IMHTTP/1;TwoPlayer;Reciva;FDSSDP;Portable SDK for UPnP devices;Darwin"
+      comment: yes
+    - name: "acl-fallback-policy"
+      description: |
+        Access control fall-back policy if no access control provider could be found. The default
+        value is ``true``, which will allow any peer to access everything.
+      default: "true"
+    - name: "strict-dlna"
+      description: |
+        If set to ``true``, Rygel will disable various features that improve compatibility with
+        many clients, but break standard conformance.
+      default: "false"
+- name: "Database"
+  display_name: "Database settings"
+  description: |
+    Generic options for the database support library
+  values:
+    - name: "debug"
+      default: "false"
+      description: "Set to ``true`` for extended SQL output"
+- name: "GstMediaEngine"
+  display_name: "GStreamer Media Engine"
+  description: |
+    These settings are specific for the GStreamer Media Engine. This is the default engine, refer
+    to the ``media-engine`` setting. The following options are available
+  values:
+    - name: "transcoders"
+      description: |
+        A semicolon-separated list of active transcoders. This setting has no effect if
+        ``enable-transcoding`` is set to ``false``.
+
+        Possible values are lpcm,mp3,mp2ts,aac,avc or wmv.
+      default: "lpcm;mp3;mp2ts;aac;avc"
+- name: ""
+  display_name: "EnergyManagement service settings"
+  description: |
+    These settings are available when ``energy-management`` is enabled for a plugin
+  values:
+    - name: "mode-on-suspend"
+      description: |
+        The NetworkInterfaceMode that should be used when suspended. Valid values are "Unimplemented",
+        "IP-up-Periodic", "IP-down-no-Wake", "IP-down-with-WakerOn", "IP-down-with-WakeAuto" or
+        "IP-down-with-WakeOnAuto".
+      default: "Unimplemented"
+      comment: yes
+    - name: "supported-transport"
+      description: |
+        Optional WakeSupportTransport that the service should advertise. Valid values are "UDP-Broadcast",
+        "UDP-Unicast", "TCP-Unicast" or "Other".
+      comment: yes
+    - name : "password"
+      description: |
+        Optional hexadecimal password that will be used to build the WakeOn pattern.
+      comment: yes
+- name: ""
+  display_name: "Plugin-specific settings"
+  description: |
+    Sections for plugins are denoted with ``[PluginName]`` and can contain options specific to a
+    plugin, or any of these common options
+  values:
+    - name: "title"
+      description: |
+        Title of the device implemented by this plugin.
+
+        There are some variables which will be replaced by rygel. @REALNAME@ will be substituted
+        by the user's real name, @USERNAME@ by the user's login name, @HOSTNAME@ by the name
+        of the machine rygel runs on, and @PRETTY_HOSTNAME@ the system description from /etc/machine-info
+        if available, otherwise it's equivalent to @HOSTNAME@.
+      default: "TITLE"
+      comment: yes
+    - name: "enabled"
+      description: |
+        You can individually enable or disable plugions by setting this to ``true`` or ``false``
+      comment: yes
+      default: ""
+    - name: "uuid"
+      description: |
+        Instead of having a plugin generate an UUID on its own, it is possible to pass a fixed
+        UUID through the configuration. Format is a plain UUID, NOT an UDN.
+      comment: yes
+      default: ""
+    - name: "energy-management"
+      description: |
+        Set to true if you would like the UPnP device to contain an EnergyManagement service.
+        Note that additional settings are required then, see the section on EnergyManagement
+        below.
+      default: "false"
+      comment: yes
+- name: "Renderer"
+  description: "Generic options for the renderer framework, independent of the back-end"
+  values:
+    - name: "image-timeout"
+      default: 15
+      description: |
+        Default showtime in seconds to use for images in playlists if ``dlna:lifetime``
+        is not set. DLNA wants something between 5 and 15 seconds.
+- name: "LocalSearch"
+  description: |
+    The LocalSearch plugin uses the centralized database of meta information from the LocalSearch project,
+    using the TinySparql library.  See https://tracker.gnome.org for more information.
+  values:
+    - name: "enabled"
+      default: "true"
+      only-in: ["conf"]
+    - name: "title"
+      default: "@REALNAME@'s media on @PRETTY_HOSTNAME@"
+      only-in: ["conf"]
+    - name: "only-export-from"
+      default: "@MUSIC@;@VIDEOS@:@PICTURES@"
+      description: |
+        Restrict the exported media items to files that are located in any of the folders listed.
+        This setting supports the usual @ patterns for path substitution.
+    - name: "share-pictures"
+      default: "true"
+      description: |
+        Enable or disable sharing of all pictures found in the LocalSearch database, filtered for the
+        list of folders in ``only-export-from``.
+    - name: "share-videos"
+      default: "true"
+      description: |
+        Enable or disable sharing of all videos found in the LocalSearch database, filtered for the
+        list of folders in ``only-export-from``.
+    - name: "share-music"
+      default: "true"
+      description: |
+        Enable or disable sharing of all music found in the LocalSearch database, filtered for the
+        list of folders in ``only-export-from``.
+    - name: "strict-sharing"
+      default: "false"
+      description: |
+        When enabled, only files that have a DLNA profile (nmm:dlnaProfile) will be exported.
+        Improves compatibility with the DLNA standard, but potentially filters out a lot of
+        media files.
+- name: "MediaExport"
+  description: |
+    The MediaExport plugin is an alternative to the localsearch-backed media export. It extracts meta-data
+    by itself and stores it in a SQLite database under ``$XDG_CACHE_HOME/rygel/media-export.db``.
+
+    %%Note: If both plugins, LocalSearch as well as MediaExport, are enabled, MediaExport will disable itself
+    in favour of the LocalSearch plugin.
+  values:
+    - name: "enabled"
+      default: "true"
+      only-in: ["conf"]
+    - name: "title"
+      default: "@REALNAME@'s media on @PRETTY_HOSTNAME@"
+      only-in: ["conf"]
+    - name: "uris"
+      default: "@MUSIC@;@VIDEOS@;@PICTURES@"
+      description: |
+        A list of if URIs to expose via UPnP. It may be files, folder or anything supported by GVFS.
+        If left empty it defaults to export the user's music, video and picture folders as defined
+        by the XDG special user directories spec. These default folders can be referenced by @MUSIC@,
+        @PICTURES@ and @VIDEOS@. Locations can be entered as either fully escaped URIs or normal paths.
+
+        An example for uris could be ``uris=@MUSIC@;/home/user/My Pictures;file:///home/user/My%20Videos``
+
+        %%Note: If you enter a normal path that contains whitespace, there is no need to escape them with
+        either a backslash or putting the string in quotes.
+
+        %%Note: It is strongly advised against using an exported folder as a target for downloads when
+        ``extract-metadata`` is enabled. Rygel will most likely ignore the files then because they will
+        fail to extract while the download is ongoing.
+
+    - name: "extract-metadata"
+      default: "true"
+      description: |
+        Whether MediaExport should query and store meta-data from the media files
+    - name: "monitor-changes"
+      default: "true"
+      description: |
+        Whether MediaExport should monitor the locations given in `uris` for modifications
+    - name: "monitor-grace-timeout"
+      default: "5"
+      description: |
+        How long MediaExport should wait to start meta-data extraction after it has been notified about
+        a file change
+    - name: "virtual-folders"
+      default: "true"
+      description: |
+        Whether MediaExport should show generated folders based off of file meta-data
+- name: "Playbin"
+  description: |
+    Playbin is a default implementation of a DLNA Media Renderer, using GStreamer. It allows minimal
+    customisation of the sinks used in the renderer. For example, to configure an audio-only renderer,
+    set "audio-sink" to "autoaudiosink" and "video-sink" to "fakesink".
+  values:
+    - name: "enabled"
+      default: "true"
+      only-in: ["conf"]
+    - name: "title"
+      default: "Audio/Video playback on @PRETTY_HOSTNAME@"
+      only-in: ["conf"]
+    - name: "audio-sink"
+      description: |
+        Override the default audiosink for the playbin used in the renderer
+      default: "autoaudiosink"
+      comment: yes
+    - name: "video-sink"
+      description: |
+        Override the default videosink for the playbin in the renderer
+      default: "autovideosink"
+      comment: yes
+

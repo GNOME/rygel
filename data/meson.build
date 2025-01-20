@@ -39,6 +39,15 @@ if not (get_option('systemd-user-units-dir') == 'off')
                    install_dir : systemd_user_unit_dir)
 endif
 
+rygel_conf = custom_target('rygel.conf',
+  input: [meson.project_source_root() / 'build-aux/generate-conf-artifacts.py', meson.project_source_root() / 'data/configuration.yaml'],
+  depend_files: [meson.project_source_root() / 'build-aux/generate-conf-artifacts.py', meson.project_source_root() / 'data/configuration.yaml'],
+  output: 'rygel.conf',
+  command: [python, '@INPUT@', '-mconf', '@OUTPUT@'],
+  install: true,
+  install_dir: rygel_sysconfdir
+)
+
 i18n.merge_file(input: 'rygel.desktop.in',
                 output: 'rygel.desktop',
                 po_dir : join_paths('..','po'),

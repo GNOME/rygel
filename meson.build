@@ -25,6 +25,7 @@ if not vala_version_found.version_compare(vala_version_required)
 endif
 
 install_doc = find_program('build-aux/meson/install-gtkdoc.py')
+config_generator = find_program('generate-conf-artifacts.py', dirs: [meson.project_source_root() / 'build-aux'])
 
 i18n = import('i18n')
 gnome = import('gnome')
@@ -222,6 +223,12 @@ micro_version = version_arr[2].to_int()
 current = major_version + minor_version + 1
 interface_age = micro_version
 darwin_versions = [current, '@0@.@1@'.format(current, interface_age)]
+
+python = import('python').find_installation('python3',
+  modules: [
+    'yaml'
+  ]
+)
 
 subdir('src')
 subdir('po')
