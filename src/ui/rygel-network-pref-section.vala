@@ -35,7 +35,7 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
     private TreeView treeview;
     private TreeSelection tree_selection;
     private Grid grid;
-    private ToolButton remove_button;
+    private Button remove_button;
 
     private ContextManager context_manager;
 
@@ -63,11 +63,11 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
         this.treeview = builder.get_object (TREEVIEW) as TreeView;
 
         this.remove_button = builder.get_object ("network-remove-button")
-                                        as ToolButton;
+                                        as Button;
         remove_button.clicked.connect (this.on_remove_button_clicked);
 
         var add_button = builder.get_object ("network-add-button")
-                                       as ToolButton;
+                                       as Button;
         add_button.clicked.connect ( () => {
             TreeIter iter;
             networks_store.append (out iter);
@@ -141,7 +141,7 @@ public class Rygel.NetworkPrefSection : PreferencesSection {
         }
     }
 
-    private void on_remove_button_clicked (ToolButton button) {
+    private void on_remove_button_clicked (Button button) {
         var selection = this.treeview.get_selection ();
         var rows = selection.get_selected_rows (null);
 

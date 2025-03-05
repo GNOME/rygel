@@ -38,8 +38,8 @@ public class Rygel.MediaPrefSection : PreferencesSection {
     private TreeView treeview;
     private Gtk.ListStore liststore;
     private TreeSelection tree_selection;
-    private FileChooserDialog dialog;
-    private ToolButton remove_button;
+    private FileDialog dialog;
+    private Button remove_button;
 
     public MediaPrefSection (Builder            builder,
                              WritableUserConfig config) {
@@ -54,7 +54,7 @@ public class Rygel.MediaPrefSection : PreferencesSection {
         this.tree_selection = builder.get_object (TREE_SELECTION)
                                                   as TreeSelection;
         assert (this.tree_selection != null);
-        this.dialog = (FileChooserDialog) builder.get_object (URIS_DIALOG);
+        this.dialog = (FileDialog) builder.get_object (URIS_DIALOG);
         assert (this.dialog != null);
 
         this.widgets.add (this.treeview);
@@ -70,14 +70,14 @@ public class Rygel.MediaPrefSection : PreferencesSection {
             }
         } catch (GLib.Error err) {} // Nevermind
 
-        this.dialog.set_current_folder (Environment.get_home_dir ());
-        this.dialog.show_hidden = false;
+        this.dialog.set_initial_folder (File.new_for_commandline_arg (Environment.get_home_dir ()));
+        this.dialog.modal = true;
 
-        var add_button = builder.get_object (ADD_BUTTON) as ToolButton;
+        var add_button = builder.get_object (ADD_BUTTON) as Button;
         add_button.clicked.connect (this.on_add_button_clicked);
         this.widgets.add (add_button);
 
-        remove_button = builder.get_object (REMOVE_BUTTON) as ToolButton;
+        remove_button = builder.get_object (REMOVE_BUTTON) as Button;
         remove_button.clicked.connect (this.on_remove_button_clicked);
         this.widgets.add (remove_button);
 
@@ -114,13 +114,16 @@ public class Rygel.MediaPrefSection : PreferencesSection {
         }
     }
 
-    private void on_add_button_clicked (ToolButton button) {
-        if (this.dialog.run () == ResponseType.OK) {
+    private void on_add_button_clicked (Button button) {
+        add_folders.begin();
+    }
+
+    private async void add_folders() {
+        try {
+            var folders = yield this.dialog.select_multiple_folders ((Gtk.Window)(this.treeview.get_root()), null);
             TreeIter iter;
-
-            var dirs = this.dialog.get_files ();
-
-            foreach (var dir in dirs) {
+            for (int i = 0; i< folders.get_n_items(); i++) {
+                var dir = ((File)folders.get_item(i));
                 string path = dir.get_path ();
 
                 if (path == null) {
@@ -130,12 +133,12 @@ public class Rygel.MediaPrefSection : PreferencesSection {
                 this.liststore.append (out iter);
                 this.liststore.set (iter, 0, path, -1);
             }
+        } catch (Error err) {
+            warning ("Failed to chose folders: %s", err.message);
         }
-
-        this.dialog.hide ();
     }
 
-    private void on_remove_button_clicked (ToolButton button) {
+    private void on_remove_button_clicked (Button button) {
         var selection = this.treeview.get_selection ();
         var rows = selection.get_selected_rows (null);
 

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/gnome/Rygel/Preferences">
+    <file compressed="true" preprocess="xml-stripblanks">rygel-preferences.ui</file>
+  </gresource>
+</gresources>

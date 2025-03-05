@@ -25,32 +25,33 @@
 using Gtk;
 using Gee;
 
-public class Rygel.PreferencesDialog : GLib.Object {
-    const string UI_FILE = BuildConfig.DATA_DIR + "/rygel-preferences.ui";
+public class Rygel.PreferencesDialog : Gtk.Application {
+    const string UI_FILE = "/org/gnome/Rygel/Preferences/rygel-preferences.ui";
     const string DIALOG = "preferences-dialog";
-    const string ICON = BuildConfig.SMALL_ICON_DIR + "/rygel.png";
     const string UPNP_CHECKBUTTON = "upnp-checkbutton";
     const string CLOSE_BUTTON = "close-button";
 
     private WritableUserConfig config;
     private Builder builder;
-    private Window dialog;
+    private ApplicationWindow dialog;
     private Switch upnp_check;
     private ArrayList<PreferencesSection> sections;
-    private MainLoop loop;
 
     public PreferencesDialog () throws Error {
+        Object(application_id : "org.gnome.Rygel.Preferences",
+               flags: GLib.ApplicationFlags.FLAGS_NONE);
+
+        Environment.set_application_name ("RygelPreferences");
+
         this.config = new WritableUserConfig ();
         this.builder = new Builder ();
 
-        this.builder.add_from_file (UI_FILE);
+        this.builder.add_from_resource (UI_FILE);
 
-        this.dialog = (Window) this.builder.get_object (DIALOG);
+        this.dialog = (Gtk.ApplicationWindow) this.builder.get_object (DIALOG);
         assert (this.dialog != null);
         this.upnp_check = (Switch) builder.get_object (UPNP_CHECKBUTTON);
         assert (this.upnp_check != null);
-
-        this.dialog.set_icon_from_file (ICON);
 
         this.upnp_check.active = this.config.is_upnp_enabled ();
 
@@ -63,32 +64,22 @@ public class Rygel.PreferencesDialog : GLib.Object {
         this.upnp_check.notify["active"].connect ( () => {
             this.on_upnp_switch_toggled ();
         });
-
-        this.dialog.delete_event.connect ( () => {
-            this.dialog.hide ();
-            this.loop.quit ();
-
-            return true;
-        });
-
-        ((Button) builder.get_object (CLOSE_BUTTON)).clicked.connect ( () => {
-            this.dialog.hide ();
-            this.loop.quit ();
-        });
     }
 
-    public void run () {
-        this.dialog.show ();
-        this.loop = new MainLoop (null, false);
-        this.loop.run ();
-        this.dialog.hide ();
+    public override void activate() {
+        this.dialog.set_application (this);
+        this.dialog.present ();
+    }
 
+    public override void shutdown () {
         this.config.set_upnp_enabled (this.upnp_check.active);
         foreach (var section in this.sections) {
             section.save ();
         }
 
         this.config.save ();
+
+        base.shutdown ();
     }
 
     public static int main (string[] args) {
@@ -98,13 +89,13 @@ public class Rygel.PreferencesDialog : GLib.Object {
         Intl.bind_textdomain_codeset (BuildConfig.GETTEXT_PACKAGE, "UTF-8");
         Intl.textdomain (BuildConfig.GETTEXT_PACKAGE);
 
-        Gtk.init (ref args);
+        Gtk.init();
 
         try {
             MetaConfig.register_configuration (UserConfig.get_default ());
-            var dialog = new PreferencesDialog ();
+            var app = new PreferencesDialog ();
 
-            dialog.run ();
+            app.run ();
         } catch (Error err) {
             error (_("Failed to create preferences dialog: %s"), err.message);
         }

@@ -102,7 +102,7 @@ gupnp_dlna_gst = dependency('gupnp-dlna-gst-2.0', version: '>= 0.9.4', disabler:
 
 gdk_pixbuf = dependency('gdk-pixbuf-2.0')
 
-gtk = dependency('gtk+-3.0', version : '>= 3.0', disabler: true, required: get_option('gtk'))
+gtk = dependency('gtk4', version : '>= 4.10', disabler: true, required: get_option('gtk'))
 
 posix = vala.find_library('posix')
 
