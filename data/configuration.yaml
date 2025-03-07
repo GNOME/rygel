@@ -155,6 +155,12 @@
         You can individually enable or disable plugions by setting this to ``true`` or ``false``
       comment: yes
       default: ""
+    - name: "uuid"
+      description: |
+        Instead of having a plugin generate an UUID on its own, it is possible to pass a fixed
+        UUID through the configuration. Format is a plain UUID, NOT an UDN.
+      comment: yes
+      default: ""
     - name: "energy-management"
       description: |
         Set to true if you would like the UPnP device to contain an EnergyManagement service.
@@ -239,3 +245,31 @@
         %%Example: Possible values for Uris:
 
         ``uris=@MUSIC@;/home/user/My Pictures;file:///home/user/My%20Videos``
+- name: "Playbin"
+  description: |
+    Playbin is a default implementation of a DLNA Media Renderer, using GStreamer. It allows minimal
+    customisation of the sinks used in the renderer. For example, to configure an audio-only renderer,
+    set "audio-sink" to "autoaudiosink" and "video-sink" to "fakesink".
+  values:
+    - name: "enabled"
+      default: "true"
+      only-in: ["conf"]
+    - name: "title"
+      default: "Audio/Video playback on @PRETTY_HOSTNAME@"
+      only-in: ["conf"]
+    - name: "audio-sink"
+      description: |
+        Override the default audiosink for the playbin used in the renderer
+      default: "autoaudiosink"
+      comment: yes
+    - name: "video-sink"
+      description: |
+        Override the default videosink for the playbin in the renderer
+      default: "autovideosink"
+      comment: yes
+- name: "GstLaunch"
+  description: |
+    GstLaunch exposes GStreamer pipeline descriptions as understood by gst-launch-1.0 as media items in a
+    DLNA server.
+
+

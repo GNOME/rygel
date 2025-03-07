@@ -19,6 +19,7 @@ def comment_text(raw_text: str, width: int = 80, strip: bool = False) -> str:
     return textwrap.indent(reflow_text(raw_text, 78, strip), '# ', lambda line: True)
 
 def render_example_conf(config):
+    print("# Rygel default configuration\n")
     # generate the example documentation
     for section_number, section in enumerate(config):
         if section_number > 0:
@@ -43,6 +44,8 @@ def render_example_conf(config):
             if 'comment' in value and value['comment']:
                 print('#', end='')
             default = value.get('default', 'not defined')
+            if isinstance(default, bool):
+                default = str(default).lower()
             print(f"{value['name']}={default}")
 
 

@@ -53,5 +53,10 @@ i18n.merge_file(input: 'rygel-preferences.desktop.in',
                 install : gtk.found(),
                 install_dir: join_paths(get_option('datadir'), 'applications'))
 
+py = import('python').find_installation('python3',
+    modules: [
+        'yaml'
+    ])
+
 subdir('presets')
 subdir('xml')
