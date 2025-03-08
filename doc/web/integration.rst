@@ -21,17 +21,17 @@ instead, for instance to provide media that has been discovered by your platform
 Media engines
 -------------
 
- Rygel also provides a choice of :doc:`media engines <plugins#media_engines>`, through it defaults to using a GStreamer-based media-engine. Your Rygel configuration
- should specify which media engine should be used, and how it should be used.
+Rygel also provides a choice of :ref:`Plugins Media Engines`, through it defaults to using a GStreamer-based media-engine. Your Rygel configuration
+should specify which media engine should be used, and how it should be used.
 
- You may also `implement your own media engine <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-server/implementing-media-engines.html>`_ instead,
- to use a multimedia framework provided by your platform. This may be neccessary due to licensing/patent issues, or to make the best use of hardware codecs.
+You may also `implement your own media engine <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-server/implementing-media-engines.html>`_ instead,
+to use a multimedia framework provided by your platform. This may be neccessary due to licensing/patent issues, or to make the best use of hardware codecs.
 
- Standalone servers
- ------------------
+Standalone servers
+------------------
 
- You may also use Rygel's API to `implement your own media server <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-server/implementing-servers.html>`_,
- instead of running the rygel binary.
+You may also use Rygel's API to `implement your own media server <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-server/implementing-servers.html>`_,
+instead of running the rygel binary.
 
 Using Rygel to implement an UPnP/DLNA Renderer or Player
 ========================================================

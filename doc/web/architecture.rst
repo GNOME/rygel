@@ -30,7 +30,7 @@ Startup
 
 At startup, Rygel performs the following steps:
 
-* Prepares `RygelMetaConfig <https://gnome.pages.gitlab.gnome.org/rygel/api-docs/librygel-core/RygelMetaConfig.html>`_, for later use, adding specific Configuration implementations that get the information from:
+* Prepares `RygelMetaConfig <https://gnome.pages.gitlab.gnome.org/rygel/reference/gtkdoc/librygel-core-RygelMetaConfig.html>`_, for later use, adding specific Configuration implementations that get the information from:
 
   * Environment variables
   * Command line options

@@ -61,6 +61,7 @@ convert into a DLNA server.
 
 For details on the required D-Bus specification details, refer to :doc:`the MediaServer2 specification<media-server2>`
 
+.. _Plugins Media Engines:
 
 Media engines
 -------------
