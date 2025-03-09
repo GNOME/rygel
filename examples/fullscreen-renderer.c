@@ -134,6 +134,15 @@ on_message (GstBus *bus, GstMessage *msg, gpointer user_data)
     return TRUE;
 }
 
+static gboolean
+on_close (GtkWindow *self, gpointer user_data)
+{
+    MainData *data = (MainData *) user_data;
+
+    g_main_loop_quit (data->loop);
+    return TRUE;
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -143,17 +152,6 @@ main (int argc, char *argv[])
     gst_init (&argc, &argv);
 
     g_set_application_name ("Rygel-Fullscreen-Renderer");
-
-    // Add a minimal custom CSS to make the background of the video black
-    // where it is not covering the window
-    GtkCssProvider *provider = gtk_css_provider_new ();
-    gtk_css_provider_load_from_string (
-        provider,
-        "window.background { background: rgb(0,0,0); }");
-    gtk_style_context_add_provider_for_display (
-        gdk_display_get_default (),
-        GTK_STYLE_PROVIDER (provider),
-        GTK_STYLE_PROVIDER_PRIORITY_USER);
 
     // Create a new Rygel renderer device (based on GStreamer)
     // We do some steps to setup the contained playbin according to our needs
@@ -175,6 +173,17 @@ main (int argc, char *argv[])
     g_object_set (data.playbin, "video-sink", sink, NULL);
     g_object_get (sink, "paintable", &(data.paintable), NULL);
 
+    // We check if ww have a GL context on the paintable, if so, we can do
+    // Offloading
+    g_autoptr (GdkGLContext) context = NULL;
+    g_object_get (data.paintable, "gl-context", &context, NULL);
+    if (context != NULL) {
+        GstElement *bin = gst_element_factory_make ("glsinkbin", "glsinkbin");
+        g_assert (bin != NULL);
+        g_object_set (bin, "sink", sink, NULL);
+        g_object_set (data.playbin, "video-sink", bin, NULL);
+    }
+
     // We also hook up to the pipeline's bus to be able to react to messages
     // On the bus. Note: Internally Rygel configures this to have a signal
     // watch, so you MUST use the message signal here, and not another bus watch
@@ -188,10 +197,20 @@ main (int argc, char *argv[])
     // Containing a GtkPicture. We also disable the cursor on it so it does
     // not get in the way of viewing the video
     data.window = GTK_WINDOW (gtk_window_new ());
+    g_signal_connect (data.window,
+                      "close-request",
+                      G_CALLBACK (on_close),
+                      &data);
     data.video = gtk_picture_new ();
     gtk_widget_set_cursor_from_name (data.video, "none");
 
-    gtk_window_set_child (data.window, data.video);
+    // Unconditionally create a GtkGraphicsOffload (it helps us with the black background)
+    GtkWidget *offload = gtk_graphics_offload_new (data.video);
+    gtk_graphics_offload_set_black_background (GTK_GRAPHICS_OFFLOAD (offload),
+                                               TRUE);
+    gtk_graphics_offload_set_enabled (GTK_GRAPHICS_OFFLOAD (offload), TRUE);
+
+    gtk_window_set_child (data.window, offload);
 
     // Initially we set the picture to show Rygel's logo. It will be swapped
     // out for the sink's paintable in the message handler we connected above
