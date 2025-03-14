@@ -1,3 +1,15 @@
+0.44.2 (stable)
+===============
+
+Rygel:
+ - Fix parsing of commandline for user config file
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/237
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+
 0.44.1 (stable)
 ===============
 
