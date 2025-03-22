@@ -173,10 +173,10 @@
       description: |
         Default showtime in seconds to use for images in playlists if ``dlna:lifetime``
         is not set. DLNA wants something between 5 and 15 seconds.
-- name: "Tracker3"
+- name: "LocalSearch"
   description: |
-    The tracker plugin uses the centralized database of meta information from the tracker project.
-    See https://tracker.gnome.org for more information about https://tracker.gnome.org
+    The LocalSearch plugin uses the centralized database of meta information from the LocalSearch project,
+    using the TinySparql library.  See https://tracker.gnome.org for more information.
   values:
     - name: "enabled"
       default: "true"
@@ -188,21 +188,21 @@
       default: "@MUSIC@;@VIDEOS@:@PICTURES@"
       description: |
         Restrict the exported media items to files that are located in any of the folders listed.
-        This setting supports the usual @ patterns for path substitiution.
+        This setting supports the usual @ patterns for path substitution.
     - name: "share-pictures"
       default: "true"
       description: |
-        Enable or disable sharing of all pictures found in the tracker database, filtered for the
+        Enable or disable sharing of all pictures found in the LocalSearch database, filtered for the
         list of folders in ``only-export-from``.
     - name: "share-videos"
       default: "true"
       description: |
-        Enable or disable sharing of all videos found in the tracker database, filtered for the
+        Enable or disable sharing of all videos found in the LocalSearch database, filtered for the
         list of folders in ``only-export-from``.
     - name: "share-music"
       default: "true"
       description: |
-        Enable or disable sharing of all music found in the tracker database, filtered for the
+        Enable or disable sharing of all music found in the LocalSearch database, filtered for the
         list of folders in ``only-export-from``.
     - name: "strict-sharing"
       default: "false"
@@ -212,11 +212,11 @@
         media files.
 - name: "MediaExport"
   description: |
-    The MediaExport plugin is an alternative to the tracker-backed media export. It extracts meta-data
+    The MediaExport plugin is an alternative to the localsearch-backed media export. It extracts meta-data
     by itself and stores it in a SQLite database under ``$XDG_CACHE_HOME/rygel/media-export.db``.
 
-    %%Note: If both plugins, Tracker as well as MediaExport, are enabled, MediaExport will disable itself
-    in favour of the Tracker plugin.
+    %%Note: If both plugins, LocalSearch as well as MediaExport, are enabled, MediaExport will disable itself
+    in favour of the LocalSearch plugin.
   values:
     - name: "enabled"
       default: "true"
