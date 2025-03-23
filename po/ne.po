@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gnome Nepali Translation Project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2025-03-14 18:03+0000\n"
-"PO-Revision-Date: 2025-03-17 07:48+0545\n"
+"POT-Creation-Date: 2025-03-17 02:04+0000\n"
+"PO-Revision-Date: 2025-03-23 12:53+0545\n"
 "Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali Translation Team <chautari@gmail.com>\n"
 "Language: ne\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: data/rygel.desktop.in:3
 msgid "Rygel"
@@ -213,7 +213,8 @@ msgstr "मेटाउन अनुमति छैन"
 #: src/librygel-core/rygel-cmdline-config.vala:59
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr ""
-"डोमेन: स्तर जोडाहरूको अल्पविरामद्वारा बिभाजन गरिएको सूची । विस्तृत विवरणको लागि rygel (1) हेर्नुहोस"
+"डोमेन: स्तर जोडाहरूको अल्पविरामद्वारा बिभाजन गरिएको सूची । विस्तृत विवरणको लागि rygel (1) "
+"हेर्नुहोस"
 
 #: src/librygel-core/rygel-cmdline-config.vala:61
 msgid "Plugin Path"
@@ -411,13 +412,12 @@ msgid "Failed to roll back transaction: %s"
 msgstr "लेनदेन फिर्ता गर्न असफल भयो: %s"
 
 #: src/librygel-renderer-gst/rygel-playbin-player.vala:370
-#| msgid ""
-#| "Your GStreamer installation seems to be missing the “playbin” element. The Rygel "
-#| "GStreamer renderer implementation cannot work without it"
 msgid ""
 "Your GStreamer installation seems to be missing the “playbin3” element. The Rygel "
 "GStreamer renderer implementation cannot work without it"
 msgstr ""
+"तपाईँको जीस्ट्रिमर स्थापनाले \"प्लेबिन ३\" तत्व हराइरहेको देखिन्छ । रिगेल जीस्ट्रीमर रेन्डरर "
+"कार्यान्वयनले यो बिना काम गर्न सक्दैन"
 
 #: src/librygel-renderer/rygel-av-transport.vala:204
 #: src/librygel-renderer/rygel-rendering-control.vala:137
@@ -515,7 +515,7 @@ msgstr "फाइल %s - %s का लागि UIList सेट गर्न �
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
 #, c-format
 msgid "Failed to set initial UI list for file %s — %s"
-msgstr ""
+msgstr "फाइल %s - %s का लागि प्रारम्भिक यूआई सूची सेट गर्न असफल भयो"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
 #, c-format
@@ -530,7 +530,7 @@ msgstr "UI सूची फाइल %s पद वर्णन गर्न अ�
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
 #, c-format
 msgid "Unable to parse device profile data: %s"
-msgstr ""
+msgstr "यन्त्र प्रोफाइल डेटा पद वर्णन गर्न अक्षम: %s"
 
 #: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
 #, c-format
@@ -570,7 +570,7 @@ msgstr "D-Bus थम्बनेलर सेवा उपलब्ध छैन
 #: src/librygel-server/rygel-http-byte-seek-request.vala:116
 #, c-format
 msgid "Range end value %lld is smaller than range start value %lld: '%s'"
-msgstr ""
+msgstr "दायरा अन्त्य मान %lld दायरा सुरु मान %lld भन्दा सानो छ:'%s'"
 
 #: src/librygel-server/rygel-http-get.vala:53
 msgid "Invalid Request (only GET and HEAD supported)"
@@ -619,7 +619,7 @@ msgstr "अनुरोध गरिएको वस्तु “%s” फेल
 #: src/librygel-server/rygel-http-resource-handler.vala:91
 #, c-format
 msgid "Couldn’t create data source for %s"
-msgstr ""
+msgstr "%s का लागि डेटा स्रोत सिर्जना गर्न सकेन"
 
 #: src/librygel-server/rygel-import-resource.vala:123
 #, c-format
@@ -629,7 +629,7 @@ msgstr "\"%s\" का लागि मौलिक URI प्राप्त ग
 #: src/librygel-server/rygel-import-resource.vala:223
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
-msgstr ""
+msgstr "यूआरआई \"%s\" यसमा सामग्री आयात गर्नका लागि अवैध छ"
 
 #: src/librygel-server/rygel-import-resource.vala:250
 #, c-format
@@ -728,7 +728,8 @@ msgstr "अनुमति नभएको वस्तु %s को मेट�
 #: src/librygel-server/rygel-item-updater.vala:290
 #, c-format
 msgid ""
-"Metadata modification of object %s being a child of restricted object %s not allowed"
+"Metadata modification of object %s being a child of restricted object %s not "
+"allowed"
 msgstr "वस्तु%s को मेटाडाटा परिमार्जन प्रतिबन्धित वस्तुको शाखा भएको%s लाई अनुमति छैन"
 
 #: src/librygel-server/rygel-m3u-playlist.vala:67
@@ -769,7 +770,7 @@ msgstr "कुनै मिडिया इन्जिन फेला पर�
 
 #: src/librygel-server/rygel-media-engine.vala:75
 msgid "MediaEngine.init was not called. Cannot continue."
-msgstr ""
+msgstr "मिडिया इन्जिन डटइनइटलाई बोलाइएको थिएन । जारी राख्न सकिदैन ।."
 
 #: src/librygel-server/rygel-media-file-item.vala:177
 #: src/librygel-server/rygel-video-item.vala:242
@@ -833,19 +834,19 @@ msgstr "क्लाइन्टबाट DIDL-Lite मा कुनै पन�
 
 #: src/librygel-server/rygel-object-creator.vala:233
 msgid "@id must be set to \"\" in CreateObject call"
-msgstr ""
+msgstr "@id सिर्जना वस्तु कलमा \"\" मा सेट गर्नु पर्दछ"
 
 #: src/librygel-server/rygel-object-creator.vala:238
 msgid "dc:title must not be empty in CreateObject call"
-msgstr ""
+msgstr "डिसी:शीर्षक सिर्जना वस्तु कलमा खाली हुनु हुँदैन"
 
 #: src/librygel-server/rygel-object-creator.vala:249
 msgid "Flags that must not be set were found in “dlnaManaged”"
-msgstr ""
+msgstr "सेट गर्न नहुने झण्डाहरू \"ड्ल्नाम्यानेज्ड\" मा फेला परे"
 
 #: src/librygel-server/rygel-object-creator.vala:257
 msgid "Invalid upnp:class given in CreateObject"
-msgstr ""
+msgstr "अवैध अपएनपी:सिर्जना वस्तुमा दिइएको वर्ग"
 
 #: src/librygel-server/rygel-object-creator.vala:261
 msgid "Object is missing the @restricted attribute"
@@ -858,7 +859,7 @@ msgstr "प्रतिबन्धित वस्तु सिर्जना 
 #: src/librygel-server/rygel-object-creator.vala:385
 #, c-format
 msgid "UPnP class “%s” not supported"
-msgstr ""
+msgstr "यूपीएनपी वर्ग \"%s\" समर्थित छैन"
 
 #: src/librygel-server/rygel-object-creator.vala:419
 #: src/librygel-server/rygel-object-creator.vala:431
@@ -881,21 +882,22 @@ msgstr "\"%s\" DLNA प्रोफाइल समर्थित छैन"
 #: src/librygel-server/rygel-object-creator.vala:656
 #, c-format
 msgid "Cannot create object of class “%s”: Not supported"
-msgstr ""
+msgstr "वर्ग \"%s\" को वस्तु सिर्जना गर्न सकिँदैन: समर्थित छैन"
 
 #: src/librygel-server/rygel-object-creator.vala:752
 #, c-format
 msgid ""
-"Error from container “%s” on trying to find the newly added child object “%s” in it: %s"
-msgstr ""
+"Error from container “%s” on trying to find the newly added child object “%s” in "
+"it: %s"
+msgstr "कन्टेनर \"%s\" मा नयाँ थपिएको चाइल्ड वस्तु \"%s\" फेला पार्ने प्रयास गर्दा त्रुटि: %s"
 
 #: src/librygel-server/rygel-reference-creator.vala:50
 msgid "“ContainerID” agument missing."
-msgstr ""
+msgstr "\"कन्टेनरआईडी\" एगुमेन्ट हराइरहेको छ।."
 
 #: src/librygel-server/rygel-reference-creator.vala:55
 msgid "“ObjectID” argument missing."
-msgstr ""
+msgstr "ObjectID तर्क हराइरहेको छ."
 
 #: src/librygel-server/rygel-reference-creator.vala:86
 #, c-format
@@ -909,7 +911,7 @@ msgstr "अवैध खोज मापदण्ड दिइयो"
 #: src/librygel-server/rygel-search.vala:94
 #, c-format
 msgid "Failed to search in “%s”: %s"
-msgstr ""
+msgstr "\"%s\" मा खोजी गर्न असफल भयो: %s"
 
 #: src/librygel-server/rygel-subtitle-manager.vala:49
 #: src/librygel-server/rygel-subtitle-manager.vala:96
@@ -939,7 +941,7 @@ msgstr "थम्बनेल प्रतिमा उपलब्ध छैन
 
 #: src/librygel-server/rygel-thumbnailer.vala:132
 msgid "No D-Bus thumbnailer available"
-msgstr ""
+msgstr "कुनै डी-बस थम्बनेलर उपलब्ध छैन"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:46
 #, c-format
@@ -955,7 +957,7 @@ msgstr "बजाउने गति समर्थित छैन"
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
 #, c-format
 msgid "HTTPSeekRequest type %s unsupported"
-msgstr ""
+msgstr "HTTPSeekRequest प्रकार %s असमर्थित छ"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
 msgid "Failed to create pipeline"
@@ -976,12 +978,12 @@ msgstr "प्याड %s लाई %s लिङ्क गर्न असफ�
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:263
 #, c-format
 msgid "Error from pipeline %s: %s"
-msgstr ""
+msgstr "पाइपलाइन %s बाट त्रुटि: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:270
 #, c-format
 msgid "Warning from pipeline %s: %s"
-msgstr ""
+msgstr "पाइपलाइन %s बाट चेतावनी: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:323
 msgid "Unsupported seek type"
@@ -990,7 +992,7 @@ msgstr "असमर्थित खोजी प्रकार"
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
 #, c-format
 msgid "Failed to seek to offsets %lld:%lld"
-msgstr ""
+msgstr "%lld:%lld अफसेट गर्न प्रयास गर्न असफल भयो"
 
 #: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
 msgid "Failed to seek"
@@ -1009,13 +1011,14 @@ msgstr "URI %s प्रोटोकल %s सँग  प्रक्रिय�
 #: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
-msgstr ""
+msgstr "%s का लागि जीस्ट्रिमर डेटा स्रोत सिर्जना गर्न असफल भयो: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-transcoding-data-source.vala:29
 msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation might be "
 "missing a plug-in"
 msgstr ""
+"ट्रान्सकोडर कन्फिगरेसन सिर्जना गर्न सकेन । तपाईँको जीस्ट्रिमर स्थापनाले प्लग-इन हराइरहेको हुन सक्छ"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
@@ -1024,7 +1027,7 @@ msgstr "आवश्यक तत्व %s हराइरहेको छ"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:58
 msgid "GStreamer element “dvdreadsrc” not found. DVD support does not work"
-msgstr ""
+msgstr "जीस्ट्रीमर तत्व \"डीभीडी रिड्सआरसी\" फेला परेन । डीभीडी समर्थनले काम गर्दैन"
 
 #: src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
@@ -1033,18 +1036,18 @@ msgstr "बाइट-आधारित खोजी ले मात्र स�
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
 #: src/media-engines/simple/rygel-simple-media-engine.vala:99
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
-msgstr ""
+msgstr "फाइलमा आधारित मिडियावस्तुहरू मात्र प्रक्रिया गर्न सकिन्छ (मिडियाफाइलवस्तुहरू)"
 
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
 #: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
 msgid "Module “%s” could not connect to D-Bus session bus. Ignoring…"
-msgstr ""
+msgstr "मोड्युल \"%s\" ले D-बस सत्र बसमा जडान गर्न सकेन । उपेक्षा गर्दैछ…"
 
 #: src/plugins/external/rygel-external-variant-util.vala:23
 #, c-format
 msgid "External provider %s did not provide mandatory property “%s”"
-msgstr ""
+msgstr "बाह्य प्रदायक %s ले अनिवार्य गुण \"%s\" प्रदान गरेन"
 
 #: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
@@ -1053,7 +1056,7 @@ msgstr "शीर्षक %d"
 
 #: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
 msgid "Failed to find lsdvd binary in path. DVD extraction will not be available"
-msgstr ""
+msgstr "मार्गमा एलएसडीभीडी बाइनरी फेला पार्न असफल भयो । डीभीडी निकासी उपलब्ध हुने छैन"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:73
 msgid "Invalid command received, ignoring"
@@ -1073,21 +1076,21 @@ msgstr "पाइपबाट पढ्न असफल: %s"
 #: src/plugins/media-export/rygel-media-export-extract.vala:144
 #, c-format
 msgid "Failed to send error to parent: %s"
-msgstr ""
+msgstr "अभिभावकलाई त्रुटि पठाउन असफल भयो: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:157
 msgid "— helper binary for Rygel to extract metadata"
-msgstr ""
+msgstr "- मेटाडाटा निकाल्नका लागि रिगेलका लागि सहायक बाइनरी"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:164
 #, c-format
 msgid "Failed to parse commandline args: %s"
-msgstr ""
+msgstr "आदेशलाइन आर्ग्स पद वर्णन गर्न असफल भयो: %s"
 
 #: src/plugins/media-export/rygel-media-export-generic-extractor.vala:50
 #, c-format
 msgid "Failed to create media art extractor: %s"
-msgstr ""
+msgstr "मिडिया आर्ट एक्स्ट्रक्टर सिर्जना गर्न असफल: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
@@ -1155,7 +1158,7 @@ msgstr "क्वेरी कन्टेनरको शाखा गणना
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
 #, c-format
 msgid "Failed to force reindex to fix database: %s"
-msgstr ""
+msgstr "डाटाबेस फिक्स गर्न पुन: अनुक्रमणिका बाध्य पार्न असफल: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
@@ -1185,7 +1188,7 @@ msgstr "अद्यावधिक गरिएको IDs प्राप्त
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:401
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
-msgstr ""
+msgstr "असंगत डाटाबेस: वस्तु %s सँग अभिभावक %s छैन"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:526
 msgid "Failed to get reset token"
@@ -1194,7 +1197,7 @@ msgstr "रिसेट टोकन प्राप्त गर्न अस�
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:538
 #, c-format
 msgid "Failed to persist ServiceResetToken: %s"
-msgstr ""
+msgstr "सेवा प्रतिरोधटोकन कायम राख्न असफल: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:548
 #, c-format
@@ -1227,8 +1230,9 @@ msgstr "वस्तु %s सुरक्षित छ कि छैन प्�
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:667
 #, c-format
-msgid "The version “%d” of the detected database is newer than our supported version “%d”"
-msgstr ""
+msgid ""
+"The version “%d” of the detected database is newer than our supported version “%d”"
+msgstr "पत्ता लागेको डाटाबेसको संस्करण \"%d\" हाम्रो समर्थित संस्करण \"%d\" भन्दा नयाँ छ"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:689
 msgid "Incompatible schema… cannot proceed"
@@ -1237,7 +1241,7 @@ msgstr "असंगत स्कीमा … अगाडि बढ्न स�
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:695
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
-msgstr ""
+msgstr "अवैध डाटाबेस, तालिका sqlite_master क्वेरी गर्न सकिँदैन: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:896
 #, c-format
@@ -1247,11 +1251,11 @@ msgstr "डाटावेस '%s' संगको सम्पर्क अस�
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:1234
 #, c-format
 msgid "Skipping unsupported sort field: %s"
-msgstr ""
+msgstr "असमर्थित क्रमबद्ध फाँट छोड्दैछ: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:104
 msgid "Failed to gracefully stop the process. Using KILL"
-msgstr ""
+msgstr "प्रक्रियालाई शालीनतापूर्वक रोक्न असफल भयो। किल प्रयोग गर्दै"
 
 #. Process exitted properly -> That shouldn't really
 #. happen
@@ -1263,7 +1267,7 @@ msgstr "प्रक्रिया check_async असफल भयो: %s"
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #, c-format
 msgid "Process died while handling URI %s"
-msgstr ""
+msgstr "यूआरआई %s ह्यान्डल गर्दा प्रक्रिया समाप्त भयो"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
 #, c-format
@@ -1278,7 +1282,7 @@ msgstr "उपशाखाबाट अवैध स्ट्रिङ प्र
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received ill-formed response string %s from child…"
-msgstr ""
+msgstr "बच्चाबाट गलत तरिकाले गठन गरिएको प्रतिक्रिया स्ट्रिङ %s प्राप्त भयो…"
 
 #. No error signalling, this was done in the part that called
 #. cancel
@@ -1331,7 +1335,7 @@ msgstr "%s मा बस्तुहरू हटाउन सक्दैन"
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
 #, c-format
 msgid "upnp:class not supported in %s"
-msgstr ""
+msgstr "अपएनपी:%s मा वर्ग समर्थित छैन"
 
 #: src/plugins/media-export/rygel-media-export-plugin.vala:53
 #, c-format
@@ -1488,8 +1492,8 @@ msgstr "प्रयोगकर्ता कन्फिगरेसन लो�
 #, c-format
 msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d सेकेन्डमा प्लगइन फेला परेन; छोड्नुहोस् …"
+msgstr[1] "%d सेकेन्डमा प्लगइन फेला परेन; छोड्नुहोस् …"
 
 #: src/rygel/application.vala:154
 #, c-format
