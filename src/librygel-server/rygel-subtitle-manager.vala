@@ -58,7 +58,7 @@ internal class Rygel.SubtitleManager : GLib.Object {
 
         // FIXME: foreach ".eng.srt", ".ger.srt", ".srt"...
         // FIXME: case insensitive?
-        string[] exts = { "srt", "smi" };
+        string[] exts = { "srt", "smi", ".ssa" };
 
         var subtitles = new ArrayList<Subtitle> ();
         foreach (string ext in exts) {
