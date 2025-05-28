@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2023-02-02 20:07+0000\n"
-"PO-Revision-Date: 2024-03-05 22:36+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
+"POT-Creation-Date: 2025-05-15 12:11+0000\n"
+"PO-Revision-Date: 2025-05-28 23:30+0300\n"
 "Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: \n"
 "Language: be_BY\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: data/rygel.desktop.in:3
 msgid "Rygel"
@@ -34,7 +34,7 @@ msgstr ""
 "мультымедыя;носьбіт;сервер;медыяплэер;апрацоўшчык;агульны;супольны;доступ;"
 "аўдыя;відэа;выявы;"
 
-#: data/rygel-preferences.desktop.in:3 data/rygel-preferences.ui:24
+#: data/rygel-preferences.desktop.in:3 data/rygel-preferences.ui:19
 msgid "Rygel Preferences"
 msgstr "Параметры Rygel"
 
@@ -42,48 +42,48 @@ msgstr "Параметры Rygel"
 msgid "UPnP/DLNA Preferences"
 msgstr "Параметры UPnP/DLNA"
 
-#: data/rygel-preferences.ui:94
+#: data/rygel-preferences.ui:85
 msgid "Add a directory to the list of shared directories"
 msgstr "Дадаць каталог у спіс агульнадаступных"
 
-#: data/rygel-preferences.ui:95
+#: data/rygel-preferences.ui:86
 msgid "Add shared directory"
 msgstr "Дадаць агульнадаступны каталог"
 
-#: data/rygel-preferences.ui:107
+#: data/rygel-preferences.ui:92
 msgid "Remove a directory from the list of shared directories"
 msgstr "Выдаліць каталог са спіса агульнадаступных"
 
-#: data/rygel-preferences.ui:108
+#: data/rygel-preferences.ui:93
 msgid "Remove shared directory"
 msgstr "Выдаліць агульнадаступны каталог"
 
-#: data/rygel-preferences.ui:153
+#: data/rygel-preferences.ui:121
 msgid "_Share media through DLNA"
 msgstr "_Адкрыць доступ да медыя праз DLNA"
 
-#: data/rygel-preferences.ui:230 data/rygel-preferences.ui:231
+#: data/rygel-preferences.ui:195 data/rygel-preferences.ui:196
 msgid "Add a network interface Rygel should serve files on"
 msgstr "Дадаць сеткавы інтэрфейс праз які Rygel будзе перадаваць файлы"
 
-#: data/rygel-preferences.ui:232
+#: data/rygel-preferences.ui:197
 msgid "Add network interface"
 msgstr "Дадаць сеткавы інтэрфейс"
 
-#: data/rygel-preferences.ui:245 data/rygel-preferences.ui:246
+#: data/rygel-preferences.ui:204 data/rygel-preferences.ui:205
 msgid "Remove a network interface Rygel should no longer serve files on"
 msgstr ""
 "Выдаліць сеткавы інтэрфейс, праз яго Rygel больш не будзе перадаваць файлы"
 
-#: data/rygel-preferences.ui:247
+#: data/rygel-preferences.ui:206
 msgid "Remove network interface"
 msgstr "Выдаліць сеткавы інтэрфейс"
 
-#: data/rygel-preferences.ui:276
+#: data/rygel-preferences.ui:222
 msgid "Networks:"
 msgstr "Сеткі:"
 
-#: data/rygel-preferences.ui:335
+#: data/rygel-preferences.ui:241
 msgid "Select folders"
 msgstr "Выбраць папкі"
 
@@ -557,7 +557,7 @@ msgstr "Не ўдалося праглядзець даччыныя элемен
 msgid "Failed to browse “%s”: %s\n"
 msgstr "Не ўдалося праглядзець «%s»: %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:147
+#: src/librygel-server/rygel-client-hacks.vala:151
 msgid "Not Applicable"
 msgstr "Непрыдатна"
 
@@ -598,7 +598,7 @@ msgid "Not found"
 msgstr "Не знойдзена"
 
 #: src/librygel-server/rygel-http-post.vala:64
-#: src/librygel-server/rygel-import-resource.vala:215
+#: src/librygel-server/rygel-import-resource.vala:228
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "Размяшчэнне звестак у непустым элеменце «%s» забаронена"
@@ -629,12 +629,12 @@ msgstr "Немагчыма стварыць крыніцу звестак для
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "Не ўдалося атрымаць URI для «%s»: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:210
+#: src/librygel-server/rygel-import-resource.vala:223
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "Няправільны URI «%s» для імпартавання змесціва"
 
-#: src/librygel-server/rygel-import-resource.vala:237
+#: src/librygel-server/rygel-import-resource.vala:250
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "Не ўдалося імпартаваць файл з %s: %s"
@@ -1057,48 +1057,6 @@ msgstr "Модуль «%s» не можа злучыцца з шынай D-Bus. 
 msgid "External provider %s did not provide mandatory property “%s”"
 msgstr "Знешні пастаўшчык %s не падае абавязковую ўласцівасць «%s»"
 
-#: src/plugins/lms/rygel-lms-albums.vala:166
-#: src/plugins/tracker3/rygel-tracker-albums.vala:31
-#: src/plugins/tracker/rygel-tracker-albums.vala:31
-msgid "Albums"
-msgstr "Альбомы"
-
-#: src/plugins/lms/rygel-lms-all-images.vala:89
-#: src/plugins/lms/rygel-lms-all-music.vala:171
-#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
-#: src/plugins/media-export/rygel-media-export-root-container.vala:33
-msgid "All"
-msgstr "Усе"
-
-#: src/plugins/lms/rygel-lms-image-years.vala:53
-msgid "Years"
-msgstr "Гады"
-
-#: src/plugins/lms/rygel-lms-music-root.vala:35
-#: src/plugins/tracker3/rygel-tracker-artists.vala:31
-#: src/plugins/tracker/rygel-tracker-artists.vala:31
-msgid "Artists"
-msgstr "Выканаўцы"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:33
-msgid "Shared media"
-msgstr "Агульныя носьбіты"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:45
-#: src/plugins/media-export/rygel-media-export-root-container.vala:605
-msgid "Music"
-msgstr "Музыка"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:49
-#: src/plugins/media-export/rygel-media-export-root-container.vala:610
-msgid "Videos"
-msgstr "Відэа"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:53
-#: src/plugins/media-export/rygel-media-export-root-container.vala:608
-msgid "Pictures"
-msgstr "Выявы"
-
 #: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
 msgid "Title %d"
@@ -1143,52 +1101,52 @@ msgstr "Не ўдалося разабраць аргументы камандн
 msgid "Failed to create media art extractor: %s"
 msgstr "Не ўдалося стварыць сродак вымання вокладак: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:150
+#: src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
 msgid "“%s” harvested"
 msgstr "«%s» апрацаваны"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:205
+#: src/plugins/media-export/rygel-media-export-harvester.vala:214
 #, c-format
 msgid "Error fetching object “%s” from database: %s"
 msgstr "Памылка атрымання аб'екта «%s» з базы даных: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:213
+#: src/plugins/media-export/rygel-media-export-harvester.vala:222
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "Не ўдалося запытаць інфармацыю пра файл %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:248
+#: src/plugins/media-export/rygel-media-export-harvester.vala:257
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr "Не ўдалося знайсці аб'ект %s ці яго бацьку. База даных няўзгоднена"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:252
+#: src/plugins/media-export/rygel-media-export-harvester.vala:261
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Памылка выдалення аб'екта з базы даных: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:127
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:128
 #, c-format
 msgid "Failed to harvest file %s: %s"
 msgstr "Не ўдалося апрацаваць файл %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:191
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:194
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "Не ўдалося запытаць базу даных: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:272
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:275
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "Не ўдалося пералічыць папку «%s»: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:290
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:293
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Не ўдалося атрымаць нашчадкаў кантэйнера %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:352
 #, c-format
 msgid "Failed to extract meta-data for file %s"
 msgstr "Не ўдалося выняць метаданыя з файла: %s"
@@ -1196,7 +1154,7 @@ msgstr "Не ўдалося выняць метаданыя з файла: %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:362
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:365
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "URI %s прапушчаны; выманне скончылася няўдала: %s"
@@ -1302,7 +1260,7 @@ msgstr "Няправільная база даных, немагчыма зап�
 msgid "Failed to create database schema: %s"
 msgstr "Не ўдалося стварыць схему базы даных: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1234
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Прапушчана поле сартавання, якое не падтрымліваецца: %s"
@@ -1349,6 +1307,11 @@ msgstr "Чытанне з працэсу-нашчадка не ўдалося: %
 #, c-format
 msgid "Failed to send command to child: %s"
 msgstr "Не ўдалося адправіць каманду працэсу-нашчадку: %s"
+
+#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
+#: src/plugins/media-export/rygel-media-export-root-container.vala:33
+msgid "All"
+msgstr "Усе"
 
 #: src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
@@ -1405,8 +1368,7 @@ msgstr "Не ўдалося наладзіць назіранне на змен�
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
-#: src/plugins/tracker3/rygel-tracker-years.vala:33
-#: src/plugins/tracker/rygel-tracker-years.vala:33
+#: src/plugins/localsearch/localsearch-years.vala:33
 msgid "Year"
 msgstr "Год"
 
@@ -1421,8 +1383,7 @@ msgid "Album"
 msgstr "Альбом"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
-#: src/plugins/tracker3/rygel-tracker-genre.vala:31
-#: src/plugins/tracker/rygel-tracker-genre.vala:31
+#: src/plugins/localsearch/localsearch-genre.vala:31
 msgid "Genre"
 msgstr "Жанр"
 
@@ -1432,8 +1393,7 @@ msgstr "Файлы і папкі"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
-#: src/plugins/tracker3/rygel-tracker-plugin.vala:34
-#: src/plugins/tracker/rygel-tracker-plugin.vala:33
+#: src/plugins/localsearch/localsearch-plugin.vala:34
 msgid "@REALNAME@’s media"
 msgstr "Носьбіт @REALNAME@"
 
@@ -1442,6 +1402,18 @@ msgstr "Носьбіт @REALNAME@"
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Не ўдалося выдаліць запіс: %s"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:605
+msgid "Music"
+msgstr "Музыка"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:608
+msgid "Pictures"
+msgstr "Выявы"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:610
+msgid "Videos"
+msgstr "Відэа"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
@@ -1482,60 +1454,51 @@ msgstr "Прайгравальнік GStreamer"
 msgid "Could not create GStreamer player"
 msgstr "Немагчыма стварыць прайгравальнік GStreamer"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
+#: src/plugins/localsearch/localsearch-albums.vala:31
+msgid "Albums"
+msgstr "Альбомы"
+
+#: src/plugins/localsearch/localsearch-artists.vala:31
+msgid "Artists"
+msgstr "Выканаўцы"
+
+#: src/plugins/localsearch/localsearch-category-all-container.vala:55
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "Не ўдалося пабудаваць URI для папкі «%s»: %s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
+#: src/plugins/localsearch/localsearch-category-all-container.vala:71
 #, c-format
-msgid "Could not subscribe to Tracker signals: %s"
-msgstr "Не ўдалося падпісацца на сігналы Tracker: %s"
+msgid "Could not subscribe to LocalSearch signals: %s"
+msgstr "Не ўдалося падпісацца на сігналы LocalSearch: %s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
+#: src/plugins/localsearch/localsearch-category-all-container.vala:94
 msgid "Not supported"
 msgstr "Не падтрымліваецца"
 
-#: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
+#: src/plugins/localsearch/localsearch-metadata-container.vala:102
 #, c-format
 msgid "Error getting all values for “%s”: %s"
 msgstr "Памылка атрымання ўсіх значэнняў для «%s»: %s"
 
-#: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
+#: src/plugins/localsearch/localsearch-plugin-factory.vala:35
 #, c-format
-msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr "Не ўдалося запусціць сэрвіс Tracker: %s. Убудова адключана."
+msgid "Failed to start LocalSearch service: %s. Plugin disabled."
+msgstr "Не ўдалося запусціць сэрвіс LocalSearch: %s. Убудова адключана."
 
-#: src/plugins/tracker3/rygel-tracker-search-container.vala:228
-#: src/plugins/tracker/rygel-tracker-search-container.vala:228
+#: src/plugins/localsearch/localsearch-root-container.vala:44
+#, c-format
+msgid "Could not connect to %s, falling back to old Tracker3 service"
+msgstr "Не ўдалося злучыцца з %s, вяртанне да старога сэрвісу Tracker3"
+
+#: src/plugins/localsearch/localsearch-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category “%s”: %s"
 msgstr "Памылка атрымання колькасці элементаў у катэгорыі «%s»: %s"
 
-#: src/plugins/tracker3/rygel-tracker-titles.vala:58
-#: src/plugins/tracker/rygel-tracker-titles.vala:58
+#: src/plugins/localsearch/localsearch-titles.vala:58
 msgid "Titles"
 msgstr "Назвы"
-
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
-#, c-format
-msgid "Failed to create a Tracker connection: %s"
-msgstr "Не ўдалося стварыць злучэнне Tracker: %s"
-
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
-#, c-format
-msgid "Failed to create Tracker connection: %s"
-msgstr "Не ўдалося стварыць злучэнне Tracker: %s"
-
-#: src/plugins/tracker/rygel-tracker-search-container.vala:104
-#, c-format
-msgid "Failed to get Tracker connection: %s"
-msgstr "Не ўдалося атрымаць злучэнне Tracker: %s"
 
 #: src/rygel/application.vala:88
 #, c-format
@@ -1583,7 +1546,7 @@ msgstr "Няма рэзервовай палітыкі ACL. Выкарыстоў
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "Няма рэзервовай палітыкі ACL. Выкарыстоўваецца «deny»"
 
-#: src/ui/rygel-preferences-dialog.vala:109
+#: src/ui/rygel-preferences-dialog.vala:100
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Не ўдалося стварыць дыялогавае акно параметраў: %s"
@@ -1602,6 +1565,24 @@ msgstr "Не ўдалося запусціць сэрвіс Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Не ўдалося спыніць сэрвіс Rygel: %s"
+
+#~ msgid "Years"
+#~ msgstr "Гады"
+
+#~ msgid "Shared media"
+#~ msgstr "Агульныя носьбіты"
+
+#, c-format
+#~ msgid "Failed to create a Tracker connection: %s"
+#~ msgstr "Не ўдалося стварыць злучэнне Tracker: %s"
+
+#, c-format
+#~ msgid "Failed to create Tracker connection: %s"
+#~ msgstr "Не ўдалося стварыць злучэнне Tracker: %s"
+
+#, c-format
+#~ msgid "Failed to get Tracker connection: %s"
+#~ msgstr "Не ўдалося атрымаць злучэнне Tracker: %s"
 
 #~ msgid "Replace currently running instance of Rygel"
 #~ msgstr "Замяніць цяперашні запушчаны экзэмпляр Rygel"
