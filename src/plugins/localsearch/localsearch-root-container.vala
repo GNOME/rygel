@@ -30,7 +30,7 @@ using Tsparql;
  * Represents the root container for LocalSearch media content hierarchy.
  */
 public class Rygel.LocalSearch.RootContainer : Rygel.SimpleContainer {
-    private const string LOCALSEARCH_SERVICE = "org.freedesktop.LocalSearch3.Miner.Files";
+    private const string LOCALSEARCH_SERVICE = "org.freedesktop.LocalSearch3";
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker3.Miner.Files";
 
     public static SparqlConnection connection;

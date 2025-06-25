@@ -33,9 +33,9 @@ public class Rygel.LocalSearch.CategoryAllContainer : SearchContainer,
                                                   WritableContainer,
                                                   SearchableContainer {
     /* class-wide constants */
-    private const string TRACKER_SERVICE = "org.freedesktop.LocalSearch3.Miner.Files";
-    private const string RESOURCES_PATH = "/org/freedesktop/LocalSearch3/Endpoint";
-    private const string TRACKER_INTERFACE = "org.freedesktop.LocalSearch3.Endpoint";
+    private const string TRACKER_SERVICE = "org.freedesktop.LocalSearch3";
+    private const string RESOURCES_PATH = "/org/freedesktop/Tracker3/Endpoint";
+    private const string TRACKER_INTERFACE = "org.freedesktop.Tracker3.Endpoint";
 
     public ArrayList<string> create_classes { get; set; }
     public ArrayList<string> search_classes { get; set; }
