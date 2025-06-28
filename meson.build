@@ -1,4 +1,4 @@
-project('rygel', 'vala', 'c', version : '0.44.2', meson_version : '>= 0.59.0')
+project('rygel', 'vala', 'c', version : '45.alpha', meson_version : '>= 0.59.0')
 vala = meson.get_compiler('vala')
 cc = meson.get_compiler('c')
 disabled_warning_flags = []
@@ -199,9 +199,18 @@ configure_file(output: 'rygel-ruih-2.8.pc',
                install_dir : pkgconfig_dir)
 
 v = meson.project_version().split('.')
+micro = 0
+if v[1] == 'alpha'
+  micro = 0
+elif v[2] == 'beta'
+  micro = 1
+else
+  micro = (v[1].to_int() + 1).to_str()
+endif
+
 soversion = 0
-library_minor = v[0].to_int() * 100 + v[1].to_int()
-library_micro = v[2].to_int()
+library_minor = v[0].to_int()
+library_micro = micro
 
 lib_version = '@0@.@1@.@2@'.format(soversion, library_minor, library_micro)
 version_arr = lib_version.split('.')

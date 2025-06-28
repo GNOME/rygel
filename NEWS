@@ -1,3 +1,41 @@
+45.alpha (unstable)
+===================
+
+Major changes:
+ - Port UI parts to GTK4
+ - Drop support for Tracker 3
+ - Add support for LocalSearch
+
+Presets:
+ - Fix OpenH264 preset config
+ - Add more presets for other codecs
+
+Transcoding:
+ - Remove WMV decoder from list of default-enabled transcoders
+
+Server:
+ - Support .ssa subtitles
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/240
+ - https://gitlab.gnome.org/GNOME/rygel/issues/241
+ - https://gitlab.gnome.org/GNOME/rygel/issues/242
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Pawan Chitrakar <chautari@gmail.com>
+ - Vasil Pupkin <3abac@3a.by>
+ - Yuki Okushi <yokushi@gnome.org>
+ - Martin <miles@filmsi.net>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Baxrom Raxmatov <magdiyevbahrom@gmail.com>
+
+Added/updated translations:
+ - be.po, courtesy of Yuras Shumovich
+ - ja.po, courtesy of Yuki Okushi
+ - ne.po, courtesy of Pawan Chitrakar
+ - sl.po, courtesy of Martin Srebotnjak
+
 0.44.2 (stable)
 ===============
 
