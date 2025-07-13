@@ -6,16 +6,16 @@
 # Necdet Yücel <necdetyucel@gmail.com>, 2014, 2015.
 # Muhammet Kara <muhammetk@gmail.com>, 2011, 2014, 2015.
 # Furkan Ahmet Kara <furkanahmetkara.fk@gmail.com>, 2017.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2017, 2020, 2022, 2024.
 # Sabri Ünal <yakushabb@gmail.com>, 2023.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2017, 2020, 2022, 2024, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel gnome-2-32\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2024-07-24 03:06+0000\n"
-"PO-Revision-Date: 2024-05-07 11:33+0300\n"
-"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
+"POT-Creation-Date: 2025-05-15 12:11+0000\n"
+"PO-Revision-Date: 2025-07-13 08:00+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr ""
 "yorumlayıcı;ortam sunucusu;ortam yorumlayıcı;paylaş;ses;video;görüntü;"
 "resimler;fotoğraflar;"
 
-#: data/rygel-preferences.desktop.in:3 data/rygel-preferences.ui:24
+#: data/rygel-preferences.desktop.in:3 data/rygel-preferences.ui:19
 msgid "Rygel Preferences"
 msgstr "Rygel Tercihleri"
 
@@ -50,47 +50,47 @@ msgstr "Rygel Tercihleri"
 msgid "UPnP/DLNA Preferences"
 msgstr "UPnP/DLNA Tercihleri"
 
-#: data/rygel-preferences.ui:94
+#: data/rygel-preferences.ui:85
 msgid "Add a directory to the list of shared directories"
 msgstr "Dizini, paylaşılan dizinler listesine ekle"
 
-#: data/rygel-preferences.ui:95
+#: data/rygel-preferences.ui:86
 msgid "Add shared directory"
 msgstr "Paylaşılan dizin ekle"
 
-#: data/rygel-preferences.ui:107
+#: data/rygel-preferences.ui:92
 msgid "Remove a directory from the list of shared directories"
 msgstr "Dizini, paylaşılan dizinler listesinden çıkar"
 
-#: data/rygel-preferences.ui:108
+#: data/rygel-preferences.ui:93
 msgid "Remove shared directory"
 msgstr "Paylaşılan dizini kaldır"
 
-#: data/rygel-preferences.ui:153
+#: data/rygel-preferences.ui:121
 msgid "_Share media through DLNA"
 msgstr "Ortamı DLNA ile _paylaş"
 
-#: data/rygel-preferences.ui:230 data/rygel-preferences.ui:231
+#: data/rygel-preferences.ui:195 data/rygel-preferences.ui:196
 msgid "Add a network interface Rygel should serve files on"
 msgstr "Rygel’ın dosyaları sunabileceği ağ arayüzü ekle"
 
-#: data/rygel-preferences.ui:232
+#: data/rygel-preferences.ui:197
 msgid "Add network interface"
 msgstr "Ağ arayüzü ekle"
 
-#: data/rygel-preferences.ui:245 data/rygel-preferences.ui:246
+#: data/rygel-preferences.ui:204 data/rygel-preferences.ui:205
 msgid "Remove a network interface Rygel should no longer serve files on"
 msgstr "Rygel’ın dosyaları sunmayacağı ağ arayüzünü kaldır"
 
-#: data/rygel-preferences.ui:247
+#: data/rygel-preferences.ui:206
 msgid "Remove network interface"
 msgstr "Ağ arayüzünü kaldır"
 
-#: data/rygel-preferences.ui:276
+#: data/rygel-preferences.ui:222
 msgid "Networks:"
 msgstr "Ağlar:"
 
-#: data/rygel-preferences.ui:335
+#: data/rygel-preferences.ui:241
 msgid "Select folders"
 msgstr "Klasörleri seç"
 
@@ -607,7 +607,7 @@ msgid "Not found"
 msgstr "Bulunamadı"
 
 #: src/librygel-server/rygel-http-post.vala:64
-#: src/librygel-server/rygel-import-resource.vala:215
+#: src/librygel-server/rygel-import-resource.vala:228
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "Boş olmayan “%s” ögesine veri eklenmesine izin verilmiyor"
@@ -638,12 +638,12 @@ msgstr "%s için veri kaynağı oluşturulamadı"
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "“%s” için orjinal URI alınamadı: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:210
+#: src/librygel-server/rygel-import-resource.vala:223
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "İçeriği içe aktarmada “%s” URI geçersiz"
 
-#: src/librygel-server/rygel-import-resource.vala:237
+#: src/librygel-server/rygel-import-resource.vala:250
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "%s’den dosya içe aktarılamadı: %s"
@@ -1138,22 +1138,22 @@ msgstr "Veri tabanından nesne getirilemiyor: %s"
 msgid "Failed to harvest file %s: %s"
 msgstr "%s dosyası işlenemedi: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:192
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:194
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "Veri tabanı sorgulanamadı: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:273
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:275
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "“%s” klasörü numaralandırılamadı: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:291
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:293
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "%s kabının alt süreçleri getirilemedi: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:350
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:352
 #, c-format
 msgid "Failed to extract meta-data for file %s"
 msgstr "%s dosyası için üst veri çıkartılamadı"
@@ -1161,7 +1161,7 @@ msgstr "%s dosyası için üst veri çıkartılamadı"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:363
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:365
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "URI %s atlanıyor; ayıklama tümüyle başarısız oldu: %s"
@@ -1374,7 +1374,7 @@ msgstr "%s için dosya gözlemleyici ayarlanamadı: %s"
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
-#: src/plugins/tracker3/rygel-tracker-years.vala:33
+#: src/plugins/localsearch/localsearch-years.vala:33
 msgid "Year"
 msgstr "Yıl"
 
@@ -1389,7 +1389,7 @@ msgid "Album"
 msgstr "Albüm"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
-#: src/plugins/tracker3/rygel-tracker-genre.vala:31
+#: src/plugins/localsearch/localsearch-genre.vala:31
 msgid "Genre"
 msgstr "Tarz"
 
@@ -1399,7 +1399,7 @@ msgstr "Dosyalar ve Klasörler"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
-#: src/plugins/tracker3/rygel-tracker-plugin.vala:34
+#: src/plugins/localsearch/localsearch-plugin.vala:34
 msgid "@REALNAME@’s media"
 msgstr "@REALNAME@’in ortamı"
 
@@ -1460,44 +1460,49 @@ msgstr "GStreamer Oynatıcı"
 msgid "Could not create GStreamer player"
 msgstr "GStreamer oynatıcı oluşturulamadı"
 
-#: src/plugins/tracker3/rygel-tracker-albums.vala:31
+#: src/plugins/localsearch/localsearch-albums.vala:31
 msgid "Albums"
 msgstr "Albümler"
 
-#: src/plugins/tracker3/rygel-tracker-artists.vala:31
+#: src/plugins/localsearch/localsearch-artists.vala:31
 msgid "Artists"
 msgstr "Sanatçılar"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
+#: src/plugins/localsearch/localsearch-category-all-container.vala:55
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "“%s” klasörü için URI inşa edilemedi :%s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
+#: src/plugins/localsearch/localsearch-category-all-container.vala:71
 #, c-format
-msgid "Could not subscribe to Tracker signals: %s"
-msgstr "Tracker sinyallerine abone olunamadı: %s"
+msgid "Could not subscribe to LocalSearch signals: %s"
+msgstr "LocalSearch sinyallerine abone olunamadı: %s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
+#: src/plugins/localsearch/localsearch-category-all-container.vala:94
 msgid "Not supported"
 msgstr "Desteklenmiyor"
 
-#: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
+#: src/plugins/localsearch/localsearch-metadata-container.vala:102
 #, c-format
 msgid "Error getting all values for “%s”: %s"
 msgstr "“%s” için tüm değerler alınamıyor : %s"
 
-#: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
+#: src/plugins/localsearch/localsearch-plugin-factory.vala:35
 #, c-format
-msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr "İzleme hizmeti başlatılamadı: %s. Eklenti devre dışı"
+msgid "Failed to start LocalSearch service: %s. Plugin disabled."
+msgstr "LocalSearch hizmeti başlatılamadı: %s. Eklenti devre dışı"
 
-#: src/plugins/tracker3/rygel-tracker-search-container.vala:228
+#: src/plugins/localsearch/localsearch-root-container.vala:44
+#, c-format
+msgid "Could not connect to %s, falling back to old Tracker3 service"
+msgstr "%s ile bağlantı kurulamadı, eski Tracker3 hizmetine geri dönülüyor"
+
+#: src/plugins/localsearch/localsearch-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category “%s”: %s"
 msgstr "“%s” kategorisi altındaki öge sayısı alınamıyor: %s"
 
-#: src/plugins/tracker3/rygel-tracker-titles.vala:58
+#: src/plugins/localsearch/localsearch-titles.vala:58
 msgid "Titles"
 msgstr "Başlıklar"
 
@@ -1545,7 +1550,7 @@ msgstr "ACL yedek ilkesi bulunamadı. “allow” kullanılıyor"
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "ACL yedek ilkesi bulunamadı. “deny” kullanılıyor"
 
-#: src/ui/rygel-preferences-dialog.vala:109
+#: src/ui/rygel-preferences-dialog.vala:100
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Tercihler iletişim ekranı oluşturulamadı: %s"
