@@ -35,12 +35,13 @@ public class Rygel.LocalSearch.InsertionQuery : Query {
     private const string MINER_PATH = "/org/freedesktop/LocalSearch3/Miner/Files/Index";
 
     private const string MINER_GRAPH = "tracker:FileSystem";
+    private const string AUDIO_GRAPH = "tracker:Audio";
 
     private const string RESOURCE_ID_QUERY_TEMPLATE =
         "SELECT ?resource WHERE { ?f a nie:DataObject; nie:url '%s'; nie:interpretedAs ?resource }";
 
     private const string RESOURCE_NOT_BOUND_TEMPLATE =
-        "OPTIONAL { GRAPH LocalSearch:FileSystem { ?resource a nie:DataObject; nie:url '%s' }} " +
+        "OPTIONAL { GRAPH tracker:FileSystem { ?resource a nie:DataObject; nie:url '%s' }} " +
         "FILTER (!bound(?resource))";
 
     public string id;
@@ -57,14 +58,14 @@ public class Rygel.LocalSearch.InsertionQuery : Query {
         }
 
         var triplets = new QueryTriplets ();
-        triplets.add (new QueryTriplet.with_graph ("LocalSearch:Audio", QUERY_ID, "a", category));
-        triplets.add (new QueryTriplet.with_graph ("LocalSearch:Audio", QUERY_ID, "a", type));
+        triplets.add (new QueryTriplet.with_graph (AUDIO_GRAPH, QUERY_ID, "a", category));
+        triplets.add (new QueryTriplet.with_graph (AUDIO_GRAPH, QUERY_ID, "a", type));
         //  triplets.add (new QueryTriplet (QUERY_ID, "nmm:uPnPShared", "true"));
-        triplets.add (new QueryTriplet.with_graph ("LocalSearch:Audio", QUERY_ID,
+        triplets.add (new QueryTriplet.with_graph (AUDIO_GRAPH, QUERY_ID,
                                         "nie:generator",
                                         "\"rygel\""));
 
-        triplets.add (new QueryTriplet.with_graph ("LocalSearch:Audio", QUERY_ID,
+        triplets.add (new QueryTriplet.with_graph (AUDIO_GRAPH, QUERY_ID,
                                         "nie:title",
                                         "\"" + item.title + "\""));
 
@@ -73,18 +74,18 @@ public class Rygel.LocalSearch.InsertionQuery : Query {
             dlna_profile = item.dlna_profile;
         }
 
-        triplets.add (new QueryTriplet.with_graph ("LocalSearch:Audio", QUERY_ID,
+        triplets.add (new QueryTriplet.with_graph (AUDIO_GRAPH, QUERY_ID,
                                         "nmm:dlnaProfile",
                                         "\"" + dlna_profile + "\""));
 
         triplets.add (new QueryTriplet.with_graph
-                                            ("LocalSearch:Audio",
+                                            ("tracker:Audio",
                                                 QUERY_ID,
                                                 "nie:mimeType",
                                                 "\"" + item.mime_type + "\""));
 
 
-        triplets.add (new QueryTriplet.with_graph ("LocalSearch:Audio", QUERY_ID,
+        triplets.add (new QueryTriplet.with_graph (AUDIO_GRAPH, QUERY_ID,
                                                    "nie:isStoredAs", urn));
         string date;
         if (item.date == null) {
@@ -94,7 +95,7 @@ public class Rygel.LocalSearch.InsertionQuery : Query {
             // Rygel core makes sure that this is a valid ISO8601 date.
             date = item.date;
         }
-        triplets.add (new QueryTriplet.with_graph ("LocalSearch:Audio", QUERY_ID,
+        triplets.add (new QueryTriplet.with_graph (AUDIO_GRAPH, QUERY_ID,
                                         "nie:contentCreated",
                                         "\"" + date + "\"^^xsd:dateTime"));
 
