@@ -41,6 +41,8 @@ public class Rygel.LocalSearch.PictureItemFactory : ItemFactory {
     private const string CATEGORY_IRI = "http://www.tracker-project.org/" +
                                         "temp/nmm#Photo";
     private const string GRAPH = "tracker:Pictures";
+    private const string GRAPH_IRI = "http://tracker.api.gnome.org/ontology/v3/tracker#Pictures";
+
 
     public PictureItemFactory () {
         var upload_folder = Environment.get_user_special_dir
@@ -50,7 +52,7 @@ public class Rygel.LocalSearch.PictureItemFactory : ItemFactory {
             upload_folder = config.get_picture_upload_folder ();
         } catch (Error error) {};
 
-        base (CATEGORY, CATEGORY_IRI, GRAPH, PhotoItem.UPNP_CLASS, upload_folder);
+        base (CATEGORY, CATEGORY_IRI, GRAPH, GRAPH_IRI, PhotoItem.UPNP_CLASS, upload_folder);
 
         // These must be in the same order as enum PictureMetadata
         this.properties.add ("height");

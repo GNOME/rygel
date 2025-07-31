@@ -30,9 +30,6 @@ using Tsparql;
  * metadata key.
  */
 public abstract class Rygel.LocalSearch.MetadataContainer : Rygel.SimpleContainer {
-    /* class-wide constants */
-    private const string TRACKER_SERVICE = "org.freedesktop.LocalSearch1";
-    private const string RESOURCES_PATH = "/org/freedesktop/LocalSearch1/Resources";
 
     protected ItemFactory item_factory;
     private bool update_in_progress = false;

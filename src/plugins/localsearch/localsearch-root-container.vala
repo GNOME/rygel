@@ -34,11 +34,13 @@ public class Rygel.LocalSearch.RootContainer : Rygel.SimpleContainer {
     private const string TRACKER_SERVICE = "org.freedesktop.Tracker3.Miner.Files";
 
     public static SparqlConnection connection;
+    public static string connected_service;
 
     public RootContainer (string title) throws Error {
         try {
             if (RootContainer.connection == null) {
                 RootContainer.connection = SparqlConnection.bus_new (LOCALSEARCH_SERVICE, null);
+                RootContainer.connected_service = LOCALSEARCH_SERVICE;
             }
         } catch (Error error) {
             warning (_("Could not connect to %s, falling back to old Tracker3 service"), LOCALSEARCH_SERVICE);
@@ -46,6 +48,7 @@ public class Rygel.LocalSearch.RootContainer : Rygel.SimpleContainer {
 
         if (RootContainer.connection == null) {
             RootContainer.connection = SparqlConnection.bus_new (TRACKER_SERVICE, null);
+            RootContainer.connected_service = TRACKER_SERVICE;
         }
 
         base.root (title);

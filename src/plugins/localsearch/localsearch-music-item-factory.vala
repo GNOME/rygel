@@ -48,6 +48,7 @@ public class Rygel.LocalSearch.MusicItemFactory : ItemFactory {
 
     private const string CATEGORY = "nmm:MusicPiece";
     private const string GRAPH = "tracker:Audio";
+    private const string GRAPH_IRI = "http://tracker.api.gnome.org/ontology/v3/tracker#Audio";
     private const string CATEGORY_IRI = "http://www.tracker-project.org/" +
                                         "temp/nmm#MusicPiece";
 
@@ -59,7 +60,7 @@ public class Rygel.LocalSearch.MusicItemFactory : ItemFactory {
             upload_folder = config.get_music_upload_folder ();
         } catch (Error error) {};
 
-        base (CATEGORY, CATEGORY_IRI, GRAPH, MusicItem.UPNP_CLASS, upload_folder);
+        base (CATEGORY, CATEGORY_IRI, GRAPH, GRAPH_IRI, MusicItem.UPNP_CLASS, upload_folder);
 
         // These must be the same order as enum MusicMetadata
         this.properties.add ("res@duration");

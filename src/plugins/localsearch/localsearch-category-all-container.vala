@@ -33,12 +33,13 @@ public class Rygel.LocalSearch.CategoryAllContainer : SearchContainer,
                                                   WritableContainer,
                                                   SearchableContainer {
     /* class-wide constants */
-    private const string TRACKER_SERVICE = "org.freedesktop.LocalSearch3";
     private const string RESOURCES_PATH = "/org/freedesktop/Tracker3/Endpoint";
     private const string TRACKER_INTERFACE = "org.freedesktop.Tracker3.Endpoint";
 
     public ArrayList<string> create_classes { get; set; }
     public ArrayList<string> search_classes { get; set; }
+
+    private Tsparql.Notifier notifier;
 
     public CategoryAllContainer (CategoryContainer parent) {
         base ("All" + parent.id, parent, "All", parent.item_factory);
@@ -59,14 +60,9 @@ public class Rygel.LocalSearch.CategoryAllContainer : SearchContainer,
         }
 
         try {
-            var connection = Bus.get_sync (BusType.SESSION);
-            connection.signal_subscribe (TRACKER_SERVICE,
-                                         TRACKER_INTERFACE,
-                                         "GraphUpdated",
-                                         RESOURCES_PATH,
-                                         this.item_factory.category_iri,
-                                         DBusSignalFlags.NONE,
-                                         this.on_graph_updated);
+            this.notifier = RootContainer.connection.create_notifier ();
+            this.notifier.signal_subscribe (Bus.get_sync (BusType.SESSION), RootContainer.connected_service, null, this.item_factory.graph_iri);
+            this.notifier.events.connect(this.on_notifier_event);
         } catch (Error error) {
             critical (_("Could not subscribe to LocalSearch signals: %s"),
                       error.message);
@@ -123,14 +119,14 @@ public class Rygel.LocalSearch.CategoryAllContainer : SearchContainer,
                                          out total_matches);
     }
 
-    private void on_graph_updated (DBusConnection connection,
-                                   string?        sender,
-                                   string         object_path,
-                                   string         interface_name,
-                                   string         signal_path,
-                                   Variant        parameters) {
-        this.get_children_count.begin ();
+
+    private void on_notifier_event(Tsparql.Notifier notifier, string? service, string? graph, GLib.GenericArray<Tsparql.NotifierEvent> events) {
+        // FIXME: Why do I have to filter for the graph here
+        if (graph != null && graph == this.item_factory.graph_iri) {
+            this.get_children_count.begin ();
+        }
     }
+
 
     private async string create_entry_in_store (MediaFileItem item)
                                                 throws Error {
