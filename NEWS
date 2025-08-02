@@ -1,3 +1,19 @@
+45.beta (unstable)
+
+LocalSearch:
+ - Fix UPnP container contents after store update
+ - Fix graph names
+
+Bugs fixed in this release:
+ - https://gitlab.gnome.org/GNOME/rygel/issues/110
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Emin Tufan Çetin <etcetin@gmail.com>
+
+Added/updated translations:
+ - tr.po, courtesy of Emin Tufan Çetin
+
 45.alpha (unstable)
 ===================
 
