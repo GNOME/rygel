@@ -32,6 +32,7 @@ public class Rygel.LocalSearch.DeletionQuery : Query {
 
     public DeletionQuery (string id) {
         var triplets = new QueryTriplets ();
+
         triplets.add (new QueryTriplet ("<" + id + ">", "a", "rdfs:Resource"));
 
         base (triplets);
@@ -40,10 +41,10 @@ public class Rygel.LocalSearch.DeletionQuery : Query {
     }
 
     public override async void execute (SparqlConnection resources)
-                                        throws Error,
-                                               IOError,
-                                               SparqlError,
-                                               DBusError {
+    throws Error,
+    IOError,
+    SparqlError,
+    DBusError {
         var str = this.to_string ();
 
         debug ("Executing SPARQL query: %s", str);
@@ -57,3 +58,5 @@ public class Rygel.LocalSearch.DeletionQuery : Query {
         return "DELETE { " + base.to_string () + " }";
     }
 }
+
+

@@ -59,7 +59,6 @@ public class Rygel.LocalSearch.UPnPPropertyMap : Object {
         this.add_variable ("upnp:class", SelectionQuery.ITEM_VARIABLE, "?_cls");
 
         // Item
-        this.add_key_chain ("res", "nie:url");
         this.add_variable ("res", SelectionQuery.STORAGE_VARIABLE, "?_url");
         this.add_function ("place_holder",
                       "tracker:coalesce((SELECT false WHERE { { %s a ?o } " +

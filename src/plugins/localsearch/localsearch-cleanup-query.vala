@@ -28,14 +28,16 @@ using Tsparql;
  */
 public class Rygel.LocalSearch.CleanupQuery : Query {
     private string category;
+    private string graph;
 
-    public CleanupQuery (string category) {
+    public CleanupQuery (string category, string graph) {
         var triplets = new QueryTriplets ();
         triplets.add (new QueryTriplet ("?r", "a", "rdfs:Resource"));
 
         base (triplets);
 
         this.category = category;
+        this.graph = graph;
     }
 
     public override async void execute (SparqlConnection resources)
@@ -54,12 +56,15 @@ public class Rygel.LocalSearch.CleanupQuery : Query {
         StringBuilder result = new StringBuilder ();
 
         result.append ("DELETE {");
+        result.append_printf("GRAPH %s {", this.graph);
         result.append (base.to_string ());
-        result.append ("} WHERE {");
-        result.append_printf ("?r a nie:DataObject, %s . ", this.category);
-        result.append (" ?r nie:generator \"rygel\". ");
-        result.append ("FILTER(NOT EXISTS { ?r ");
-        result.append ("a nfo:FileDataObject. })}");
+        result.append ("}} WHERE {");
+        result.append_printf ("GRAPH %s {", this.graph);
+        result.append_printf ("?r a %s . ", this.category);
+        result.append (" ?r nie:generator \"rygel\". } ");
+        result.append ("FILTER(NOT EXISTS { ");
+        result.append ("GRAPH tracker:FileSystem {");
+        result.append ("?r a nfo:FileDataObject. }})}");
 
         return result.str;
     }

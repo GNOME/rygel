@@ -69,10 +69,12 @@ public class Rygel.LocalSearch.CategoryAllContainer : SearchContainer,
         }
 
         message("Running cleanup query for %s", this.item_factory.category);
-        var cleanup_query = new CleanupQuery (this.item_factory.category);
-        cleanup_query.execute.begin (RootContainer.connection, () => {
-            if (query.result != null) {
-                query.result.close ();
+        var cleanup_query = new CleanupQuery (this.item_factory.category, this.item_factory.graph);
+        cleanup_query.execute.begin (RootContainer.connection, (obj, res) => {
+            try {
+                cleanup_query.execute.end (res);
+            } catch (Error err) {
+                warning("Failed to run cleanup query: %s", err.message);
             }
         });
     }
@@ -131,7 +133,8 @@ public class Rygel.LocalSearch.CategoryAllContainer : SearchContainer,
     private async string create_entry_in_store (MediaFileItem item)
                                                 throws Error {
         var category = this.item_factory.category;
-        var query = new InsertionQuery (item, category);
+        var graph = this.item_factory.graph;
+        var query = new InsertionQuery (item, category, graph);
 
         yield query.execute (RootContainer.connection);
 
