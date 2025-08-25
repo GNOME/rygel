@@ -11,87 +11,87 @@
 # Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>, 2010, 2015.
 # Mingye Wang (Arthur2e5) <arthur200126@gmail.com>, 2015.
 # Mingcong Bai <jeffbai@aosc.xyz>, 2016, 2018.
-# lumingzh <lumingzh@qq.com>, 2022.
+# lumingzh <lumingzh@qq.com>, 2022-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2022-05-27 22:56+0000\n"
-"PO-Revision-Date: 2022-05-27 22:38-0400\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
+"POT-Creation-Date: 2025-08-19 14:07+0000\n"
+"PO-Revision-Date: 2025-08-25 08:14+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
-"Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
+"Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Gtranslator 48.0\n"
 
-#: data/rygel.desktop.in.in:3
+#: data/rygel.desktop.in:2
 msgid "Rygel"
 msgstr "Rygel"
 
-#: data/rygel.desktop.in.in:4
+#: data/rygel.desktop.in:3
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA 服务"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in.in:6
+#: data/rygel.desktop.in:5
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
 "mediaserver;mediarenderer;share;audio;video;pictures;媒体服务器;媒体渲染器;共"
 "享;音频;视频;图片;"
 
-#: data/rygel-preferences.desktop.in.in:3 data/rygel-preferences.ui:24
+#: data/rygel-preferences.desktop.in:2 data/rygel-preferences.ui:19
 msgid "Rygel Preferences"
 msgstr "Rygel 首选项"
 
-#: data/rygel-preferences.desktop.in.in:4
+#: data/rygel-preferences.desktop.in:3
 msgid "UPnP/DLNA Preferences"
 msgstr "UPnP/DLNA 首选项"
 
-#: data/rygel-preferences.ui:94
+#: data/rygel-preferences.ui:85
 msgid "Add a directory to the list of shared directories"
 msgstr "向共享目录列表添加一个目录"
 
-#: data/rygel-preferences.ui:95
+#: data/rygel-preferences.ui:86
 msgid "Add shared directory"
 msgstr "添加共享目录"
 
-#: data/rygel-preferences.ui:107
+#: data/rygel-preferences.ui:92
 msgid "Remove a directory from the list of shared directories"
 msgstr "从共享目录列表中删除一个目录"
 
-#: data/rygel-preferences.ui:108
+#: data/rygel-preferences.ui:93
 msgid "Remove shared directory"
 msgstr "删除共享目录"
 
-#: data/rygel-preferences.ui:153
+#: data/rygel-preferences.ui:121
 msgid "_Share media through DLNA"
 msgstr "使用 DLNA 共享媒体(_S)"
 
-#: data/rygel-preferences.ui:230 data/rygel-preferences.ui:231
+#: data/rygel-preferences.ui:195 data/rygel-preferences.ui:196
 msgid "Add a network interface Rygel should serve files on"
 msgstr "为 Rygel 文件服务添加一个对应的网络接口"
 
-#: data/rygel-preferences.ui:232
+#: data/rygel-preferences.ui:197
 msgid "Add network interface"
 msgstr "添加网络接口"
 
-#: data/rygel-preferences.ui:245 data/rygel-preferences.ui:246
+#: data/rygel-preferences.ui:204 data/rygel-preferences.ui:205
 msgid "Remove a network interface Rygel should no longer serve files on"
 msgstr "移除一个 Rygel 文件服务不再使用的网络接口"
 
-#: data/rygel-preferences.ui:247
+#: data/rygel-preferences.ui:206
 msgid "Remove network interface"
 msgstr "移除网络接口"
 
-#: data/rygel-preferences.ui:276
+#: data/rygel-preferences.ui:222
 msgid "Networks:"
 msgstr "网络："
 
-#: data/rygel-preferences.ui:335
+#: data/rygel-preferences.ui:241
 msgid "Select folders"
 msgstr "选择文件夹"
 
@@ -565,7 +565,7 @@ msgstr "无法浏览项目的子项目"
 msgid "Failed to browse “%s”: %s\n"
 msgstr "浏览“'%s”失败：%s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:147
+#: src/librygel-server/rygel-client-hacks.vala:151
 msgid "Not Applicable"
 msgstr "不适用"
 
@@ -605,7 +605,7 @@ msgid "Not found"
 msgstr "没有找到"
 
 #: src/librygel-server/rygel-http-post.vala:64
-#: src/librygel-server/rygel-import-resource.vala:215
+#: src/librygel-server/rygel-import-resource.vala:228
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "不允许将数据压入非空条目“%s”中"
@@ -636,12 +636,12 @@ msgstr "无法为 %s 创建数据源"
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "获取“%s”的原始 URI 失败：%s"
 
-#: src/librygel-server/rygel-import-resource.vala:210
+#: src/librygel-server/rygel-import-resource.vala:223
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "URI “%s”无效，无法导入内容至"
 
-#: src/librygel-server/rygel-import-resource.vala:237
+#: src/librygel-server/rygel-import-resource.vala:250
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "从文件“%s”导入文件失败：%s"
@@ -1058,48 +1058,6 @@ msgstr "模块“%s”无法连接到 D-Bus 会话总线。忽略该模块…"
 msgid "External provider %s did not provide mandatory property “%s”"
 msgstr "外部提供器 %s 未提供强制属性“%s”"
 
-#: src/plugins/lms/rygel-lms-albums.vala:166
-#: src/plugins/tracker3/rygel-tracker-albums.vala:31
-#: src/plugins/tracker/rygel-tracker-albums.vala:31
-msgid "Albums"
-msgstr "专辑"
-
-#: src/plugins/lms/rygel-lms-all-images.vala:89
-#: src/plugins/lms/rygel-lms-all-music.vala:171
-#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
-#: src/plugins/media-export/rygel-media-export-root-container.vala:33
-msgid "All"
-msgstr "全部"
-
-#: src/plugins/lms/rygel-lms-image-years.vala:53
-msgid "Years"
-msgstr "年份"
-
-#: src/plugins/lms/rygel-lms-music-root.vala:35
-#: src/plugins/tracker3/rygel-tracker-artists.vala:31
-#: src/plugins/tracker/rygel-tracker-artists.vala:31
-msgid "Artists"
-msgstr "艺人"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:33
-msgid "Shared media"
-msgstr "共享媒体"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:45
-#: src/plugins/media-export/rygel-media-export-root-container.vala:605
-msgid "Music"
-msgstr "音乐"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:49
-#: src/plugins/media-export/rygel-media-export-root-container.vala:610
-msgid "Videos"
-msgstr "视频"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:53
-#: src/plugins/media-export/rygel-media-export-root-container.vala:608
-msgid "Pictures"
-msgstr "图片"
-
 #: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
 msgid "Title %d"
@@ -1146,52 +1104,52 @@ msgstr "解析命令行参数失败：%s"
 msgid "Failed to create media art extractor: %s"
 msgstr "无法创建媒体封面图提取器：%s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:150
+#: src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
 msgid "“%s” harvested"
 msgstr "已获取“%s”"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:205
+#: src/plugins/media-export/rygel-media-export-harvester.vala:214
 #, c-format
 msgid "Error fetching object “%s” from database: %s"
 msgstr "从数据库取回目标“%s”时出错：%s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:213
+#: src/plugins/media-export/rygel-media-export-harvester.vala:222
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "无法查询文件 %s 的信息：%s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:248
+#: src/plugins/media-export/rygel-media-export-harvester.vala:257
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr "找不到对象 %s 或其父项。数据库不一致"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:252
+#: src/plugins/media-export/rygel-media-export-harvester.vala:261
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "从数据库中删除对象时出错：%s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:127
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:128
 #, c-format
 msgid "Failed to harvest file %s: %s"
 msgstr "获取文件 %s 的元数据失败：%s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:191
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:194
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "查询数据库失败：%s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:272
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:275
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "列举文件夹“%s”失败：%s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:290
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:293
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "无法得到容器 %s 的子容器：%s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:352
 #, c-format
 msgid "Failed to extract meta-data for file %s"
 msgstr "无法从文件 %s 提取元数据"
@@ -1199,7 +1157,7 @@ msgstr "无法从文件 %s 提取元数据"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:362
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:365
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "略过 URI %s；提取已完全失败：%s"
@@ -1303,7 +1261,7 @@ msgstr "无效的数据库，不能查询 sqlite_master 表：%s"
 msgid "Failed to create database schema: %s"
 msgstr "无法创建数据库 schema：%s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1234
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "略过不支持的排序字段：%s"
@@ -1350,6 +1308,11 @@ msgstr "从子进程读取失败：%s"
 #, c-format
 msgid "Failed to send command to child: %s"
 msgstr "无法发送指令到子进程：%s"
+
+#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
+#: src/plugins/media-export/rygel-media-export-root-container.vala:33
+msgid "All"
+msgstr "全部"
 
 #: src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
@@ -1406,8 +1369,7 @@ msgstr "设置 %s 的文件信息失败：%s"
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
-#: src/plugins/tracker3/rygel-tracker-years.vala:33
-#: src/plugins/tracker/rygel-tracker-years.vala:33
+#: src/plugins/localsearch/localsearch-years.vala:33
 msgid "Year"
 msgstr "年代"
 
@@ -1422,8 +1384,7 @@ msgid "Album"
 msgstr "专辑"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
-#: src/plugins/tracker3/rygel-tracker-genre.vala:31
-#: src/plugins/tracker/rygel-tracker-genre.vala:31
+#: src/plugins/localsearch/localsearch-genre.vala:31
 msgid "Genre"
 msgstr "流派"
 
@@ -1433,8 +1394,7 @@ msgstr "文件与文件夹"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
-#: src/plugins/tracker3/rygel-tracker-plugin.vala:34
-#: src/plugins/tracker/rygel-tracker-plugin.vala:33
+#: src/plugins/localsearch/localsearch-plugin.vala:34
 msgid "@REALNAME@’s media"
 msgstr "@REALNAME@ 的媒体"
 
@@ -1443,6 +1403,18 @@ msgstr "@REALNAME@ 的媒体"
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "无法删除条目：%s"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:605
+msgid "Music"
+msgstr "音乐"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:608
+msgid "Pictures"
+msgstr "图片"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:610
+msgid "Videos"
+msgstr "视频"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
@@ -1483,60 +1455,51 @@ msgstr "GStreamer 播放器"
 msgid "Could not create GStreamer player"
 msgstr "不能创建 GStreamer 播放器"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
+#: src/plugins/localsearch/localsearch-albums.vala:31
+msgid "Albums"
+msgstr "专辑"
+
+#: src/plugins/localsearch/localsearch-artists.vala:31
+msgid "Artists"
+msgstr "艺人"
+
+#: src/plugins/localsearch/localsearch-category-all-container.vala:56
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "无法为文件夹“%s”构建 URI：%s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
+#: src/plugins/localsearch/localsearch-category-all-container.vala:67
 #, c-format
-msgid "Could not subscribe to Tracker signals: %s"
-msgstr "无法订阅到 Tracker 信号：%s"
+msgid "Could not subscribe to LocalSearch signals: %s"
+msgstr "无法订阅到 LocalSearch 信号：%s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
+#: src/plugins/localsearch/localsearch-category-all-container.vala:92
 msgid "Not supported"
 msgstr "不支持"
 
-#: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
+#: src/plugins/localsearch/localsearch-metadata-container.vala:99
 #, c-format
 msgid "Error getting all values for “%s”: %s"
 msgstr "为“%s”获取全部值时出错：%s"
 
-#: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
+#: src/plugins/localsearch/localsearch-plugin-factory.vala:35
 #, c-format
-msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr "无法启动 Tracker 服务：%s。插件已禁用。"
+msgid "Failed to start LocalSearch service: %s. Plugin disabled."
+msgstr "无法启动 LocalSearch 服务：%s。插件已禁用。"
 
-#: src/plugins/tracker3/rygel-tracker-search-container.vala:228
-#: src/plugins/tracker/rygel-tracker-search-container.vala:228
+#: src/plugins/localsearch/localsearch-root-container.vala:46
+#, c-format
+msgid "Could not connect to %s, falling back to old Tracker3 service"
+msgstr "无法连接到 %s，回退到旧的 Tracker3 服务"
+
+#: src/plugins/localsearch/localsearch-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category “%s”: %s"
 msgstr "获取分类“%s”下的条目数时出错：%s"
 
-#: src/plugins/tracker3/rygel-tracker-titles.vala:58
-#: src/plugins/tracker/rygel-tracker-titles.vala:58
+#: src/plugins/localsearch/localsearch-titles.vala:58
 msgid "Titles"
 msgstr "标题"
-
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
-#, c-format
-msgid "Failed to create a Tracker connection: %s"
-msgstr "创建 Tracker 连接失败：%s"
-
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
-#, c-format
-msgid "Failed to create Tracker connection: %s"
-msgstr "创建 Tracker 连接失败：%s"
-
-#: src/plugins/tracker/rygel-tracker-search-container.vala:104
-#, c-format
-msgid "Failed to get Tracker connection: %s"
-msgstr "获取 Tracker 连接失败：%s"
 
 #: src/rygel/application.vala:88
 #, c-format
@@ -1582,7 +1545,7 @@ msgstr "找不到 ACL 后备政策。使用“allow”"
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "找不到 ACL 后备政策。使用“deny”"
 
-#: src/ui/rygel-preferences-dialog.vala:109
+#: src/ui/rygel-preferences-dialog.vala:100
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "创建首选项对话框失败：%s"
@@ -1601,6 +1564,24 @@ msgstr "启动 Rygel 服务失败：%s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "停止 Rygel 服务失败：%s"
+
+#~ msgid "Years"
+#~ msgstr "年份"
+
+#~ msgid "Shared media"
+#~ msgstr "共享媒体"
+
+#, c-format
+#~ msgid "Failed to create a Tracker connection: %s"
+#~ msgstr "创建 Tracker 连接失败：%s"
+
+#, c-format
+#~ msgid "Failed to create Tracker connection: %s"
+#~ msgstr "创建 Tracker 连接失败：%s"
+
+#, c-format
+#~ msgid "Failed to get Tracker connection: %s"
+#~ msgstr "获取 Tracker 连接失败：%s"
 
 #~ msgid "Replace currently running instance of Rygel"
 #~ msgstr "替换目前运行的 Rygel 实例"
