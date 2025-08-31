@@ -1,4 +1,28 @@
+45.rc (unstable)
+================
+
+LocalSearch:
+ - Fix file upload
+
+All contributors to this release:
+ - Danial Behzadi <dani.behzi@ubuntu.com>
+ - Jens Georg <mail@jensge.org>
+ - Yaron Shahrabani <sh.yaron@gmail.com>
+ - luming zh <lumingzh@qq.com>
+ - Fran Diéguez <frandieguez@gnome.org>
+ - Piotr Drąg <piotrdrag@gmail.com>
+ - Artur S0 <arturios05@bk.ru>
+
+Added/updated translations:
+ - fa.po, courtesy of Danial Behzadi
+ - gl.po, courtesy of Fran Dieguez
+ - he.po, courtesy of Yaron Shahrabani
+ - pl.po, courtesy of Piotr Drąg
+ - ru.po, courtesy of Artur So
+ - zh_CN.po, courtesy of lumingzh
+
 45.beta (unstable)
+==================
 
 LocalSearch:
  - Fix UPnP container contents after store update
