@@ -1,14 +1,14 @@
 # Georgian translation for rygel
 # Copyright (C) 2022 rygel authors
 # This file is distributed under the same license as the rygel package.
-# Ekaterine Papava <papava.e@gtu.ge>, 2022-2024.
+# Ekaterine Papava <papava.e@gtu.ge>, 2022-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2023-10-14 07:51+0000\n"
-"PO-Revision-Date: 2024-02-16 14:33+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
+"POT-Creation-Date: 2025-09-01 18:38+0000\n"
+"PO-Revision-Date: 2025-09-04 10:37+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -16,70 +16,70 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.7\n"
 
-#: data/rygel.desktop.in:3
+#: data/rygel.desktop.in:2
 msgid "Rygel"
 msgstr "Rygel"
 
-#: data/rygel.desktop.in:4
+#: data/rygel.desktop.in:3
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA სერვისები"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in:6
+#: data/rygel.desktop.in:5
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "mediaserver;mediarenderer;share;audio;video;pictures;"
 
-#: data/rygel-preferences.desktop.in:3 data/rygel-preferences.ui:24
+#: data/rygel-preferences.desktop.in:2 data/rygel-preferences.ui:19
 msgid "Rygel Preferences"
 msgstr "Rygel -ის მორგება"
 
-#: data/rygel-preferences.desktop.in:4
+#: data/rygel-preferences.desktop.in:3
 msgid "UPnP/DLNA Preferences"
 msgstr "UPnP/DLNA -ის მორგება"
 
-#: data/rygel-preferences.ui:94
+#: data/rygel-preferences.ui:85
 msgid "Add a directory to the list of shared directories"
 msgstr "საქაღალდის გაზიარებული საქაღალდეების სიაში ჩამატება"
 
-#: data/rygel-preferences.ui:95
+#: data/rygel-preferences.ui:86
 msgid "Add shared directory"
 msgstr "გაზიარებული საქაღალდის დამატება"
 
-#: data/rygel-preferences.ui:107
+#: data/rygel-preferences.ui:92
 msgid "Remove a directory from the list of shared directories"
 msgstr "საქაღალდის გაზიარებული საქაღალდეების სიიდან წაშლა"
 
-#: data/rygel-preferences.ui:108
+#: data/rygel-preferences.ui:93
 msgid "Remove shared directory"
 msgstr "გაზიარებული საქაღალდის წაშლა"
 
-#: data/rygel-preferences.ui:153
+#: data/rygel-preferences.ui:121
 msgid "_Share media through DLNA"
 msgstr "მედიის გაზიარება DLNA-ით"
 
-#: data/rygel-preferences.ui:230 data/rygel-preferences.ui:231
+#: data/rygel-preferences.ui:195 data/rygel-preferences.ui:196
 msgid "Add a network interface Rygel should serve files on"
 msgstr "ქსელის ინტერფეისის დამატება Rygel-სთვის ფაილების გასაცემად"
 
-#: data/rygel-preferences.ui:232
+#: data/rygel-preferences.ui:197
 msgid "Add network interface"
 msgstr "ქსელის ახალი ინტერფეისის დამატება"
 
-#: data/rygel-preferences.ui:245 data/rygel-preferences.ui:246
+#: data/rygel-preferences.ui:204 data/rygel-preferences.ui:205
 msgid "Remove a network interface Rygel should no longer serve files on"
 msgstr "Rygel-ის ფაილების გასაცემი ინტერფეისის წაშლა"
 
-#: data/rygel-preferences.ui:247
+#: data/rygel-preferences.ui:206
 msgid "Remove network interface"
 msgstr "ქსელის ინტერფეისის წაშლა"
 
-#: data/rygel-preferences.ui:276
+#: data/rygel-preferences.ui:222
 msgid "Networks:"
 msgstr "ქსელები:"
 
-#: data/rygel-preferences.ui:335
+#: data/rygel-preferences.ui:241
 msgid "Select folders"
 msgstr "მონიშნეთ საქაღალდეები"
 
@@ -597,7 +597,7 @@ msgid "Not found"
 msgstr "ნაპოვნი არაა"
 
 #: src/librygel-server/rygel-http-post.vala:64
-#: src/librygel-server/rygel-import-resource.vala:215
+#: src/librygel-server/rygel-import-resource.vala:228
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "მონაცემების ჩაწორება არაცარიელ ელემენტში \"%s\" დაშვებული არაა"
@@ -628,12 +628,12 @@ msgstr "%s-სთვის მონაცემების წყაროს 
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "\"%s\"-სთვის ორიგინალი URI-ის მიღება ჩავარდა: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:210
+#: src/librygel-server/rygel-import-resource.vala:223
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "URI “%s” არასწორია შემცველობის შემოსატანად"
 
-#: src/librygel-server/rygel-import-resource.vala:237
+#: src/librygel-server/rygel-import-resource.vala:250
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "%s-დან შემოტანის შეცდომა: %s"
@@ -1058,48 +1058,6 @@ msgstr "მოდული \"%s\" D-Bus-ის სესიის მატა�
 msgid "External provider %s did not provide mandatory property “%s”"
 msgstr "გარე მომწოდებელმა %s არ მოგვაწოდა აუცილებელი თვისება \"%s\""
 
-#: src/plugins/lms/rygel-lms-albums.vala:166
-#: src/plugins/tracker3/rygel-tracker-albums.vala:31
-#: src/plugins/tracker/rygel-tracker-albums.vala:31
-msgid "Albums"
-msgstr "ალბომები"
-
-#: src/plugins/lms/rygel-lms-all-images.vala:89
-#: src/plugins/lms/rygel-lms-all-music.vala:171
-#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
-#: src/plugins/media-export/rygel-media-export-root-container.vala:33
-msgid "All"
-msgstr "ყველა"
-
-#: src/plugins/lms/rygel-lms-image-years.vala:53
-msgid "Years"
-msgstr "წელი"
-
-#: src/plugins/lms/rygel-lms-music-root.vala:35
-#: src/plugins/tracker3/rygel-tracker-artists.vala:31
-#: src/plugins/tracker/rygel-tracker-artists.vala:31
-msgid "Artists"
-msgstr "შემსრულებლები"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:33
-msgid "Shared media"
-msgstr "გაზიარებული მედია"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:45
-#: src/plugins/media-export/rygel-media-export-root-container.vala:605
-msgid "Music"
-msgstr "მუსიკა"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:49
-#: src/plugins/media-export/rygel-media-export-root-container.vala:610
-msgid "Videos"
-msgstr "ვიდეო"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:53
-#: src/plugins/media-export/rygel-media-export-root-container.vala:608
-msgid "Pictures"
-msgstr "სურათები"
-
 #: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
 msgid "Title %d"
@@ -1145,52 +1103,52 @@ msgstr "ბრძანების სტრიქონის არგუმ�
 msgid "Failed to create media art extractor: %s"
 msgstr "მედიის სურათები გამოღების შექმნა ჩავარდა: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:150
+#: src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
 msgid "“%s” harvested"
 msgstr "“%s” მოგროვებულია"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:205
+#: src/plugins/media-export/rygel-media-export-harvester.vala:214
 #, c-format
 msgid "Error fetching object “%s” from database: %s"
 msgstr "შეცდომა ობიექტის (\"%s\") ბაზიდან გამოთხოვისას: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:213
+#: src/plugins/media-export/rygel-media-export-harvester.vala:222
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "ჩავარდა ინფორმაციის გამოთხოვა ფაილისთვის %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:248
+#: src/plugins/media-export/rygel-media-export-harvester.vala:257
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr "ვერ ვიპოვე ობიექტი %s ან მისი მშობელი. მონაცემთა ბაზა არამდგრადია"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:252
+#: src/plugins/media-export/rygel-media-export-harvester.vala:261
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "შეცდომა ობიექტის ბაზიდან წაშლისას: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:127
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:128
 #, c-format
 msgid "Failed to harvest file %s: %s"
 msgstr "ჩავარდა დამუშავება ფაილისთვის %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:191
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:194
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "ბაზიდან მოთხოვნის შეცდომა: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:272
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:275
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "ჩავარდა ჩამონათვალის მიღება საქაღალდისთვის \"%s\": %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:290
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:293
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "ჩავარდა შვილების მიღება კონტეინერისთვის %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:352
 #, c-format
 msgid "Failed to extract meta-data for file %s"
 msgstr "ჩავარდა მეტამონაცემების გამოღება ფაილისთვის %s"
@@ -1198,7 +1156,7 @@ msgstr "ჩავარდა მეტამონაცემების გ�
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:362
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:365
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "URI %s გამოტოვებულია. გამოღება სრულად ჩავარდა: %s"
@@ -1353,6 +1311,11 @@ msgstr "შვილიდან წაკითხვა ჩავარდა:
 msgid "Failed to send command to child: %s"
 msgstr "შვილისთვის ბრძანების გაგზავნა ჩავარდა: %s"
 
+#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
+#: src/plugins/media-export/rygel-media-export-root-container.vala:33
+msgid "All"
+msgstr "ყველა"
+
 #: src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
 msgid "Failed to get child count: %s"
@@ -1408,8 +1371,7 @@ msgstr "ჩავარდა ფაილის მონიტორის მ
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
-#: src/plugins/tracker3/rygel-tracker-years.vala:33
-#: src/plugins/tracker/rygel-tracker-years.vala:33
+#: src/plugins/localsearch/localsearch-years.vala:33
 msgid "Year"
 msgstr "წელი"
 
@@ -1424,8 +1386,7 @@ msgid "Album"
 msgstr "ალბომი"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
-#: src/plugins/tracker3/rygel-tracker-genre.vala:31
-#: src/plugins/tracker/rygel-tracker-genre.vala:31
+#: src/plugins/localsearch/localsearch-genre.vala:31
 msgid "Genre"
 msgstr "ჟანრი"
 
@@ -1435,8 +1396,7 @@ msgstr "ფაილები და საქაღალდეები"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
-#: src/plugins/tracker3/rygel-tracker-plugin.vala:34
-#: src/plugins/tracker/rygel-tracker-plugin.vala:33
+#: src/plugins/localsearch/localsearch-plugin.vala:34
 msgid "@REALNAME@’s media"
 msgstr "@REALNAME@-ის მედია"
 
@@ -1445,6 +1405,18 @@ msgstr "@REALNAME@-ის მედია"
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "ელემენტის წაშლა ჩავარდა: %s"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:605
+msgid "Music"
+msgstr "მუსიკა"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:608
+msgid "Pictures"
+msgstr "სურათები"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:610
+msgid "Videos"
+msgstr "ვიდეო"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
@@ -1485,60 +1457,51 @@ msgstr "GStreamer-ის დამკვრელი"
 msgid "Could not create GStreamer player"
 msgstr "GStreamer-ის დამკვრელის შექმნა შეუძლებელია"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
+#: src/plugins/localsearch/localsearch-albums.vala:31
+msgid "Albums"
+msgstr "ალბომები"
+
+#: src/plugins/localsearch/localsearch-artists.vala:31
+msgid "Artists"
+msgstr "შემსრულებლები"
+
+#: src/plugins/localsearch/localsearch-category-all-container.vala:56
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "ჩავარდა URI-ის აგება საქაღალდისთვის \"%s\": %s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
+#: src/plugins/localsearch/localsearch-category-all-container.vala:67
 #, c-format
-msgid "Could not subscribe to Tracker signals: %s"
-msgstr "ვერ გამოვიწერე ტრეკერის სიგნალები: %s"
+msgid "Could not subscribe to LocalSearch signals: %s"
+msgstr "ვერ გამოვიწერე LocalSearch-ის სიგნალები: %s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
+#: src/plugins/localsearch/localsearch-category-all-container.vala:92
 msgid "Not supported"
 msgstr "მხარდაუჭერელია"
 
-#: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
+#: src/plugins/localsearch/localsearch-metadata-container.vala:99
 #, c-format
 msgid "Error getting all values for “%s”: %s"
 msgstr "\"%s\"-სთვის ყველა მნიშვნელობის მიღების შეცდომა: %s"
 
-#: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
+#: src/plugins/localsearch/localsearch-plugin-factory.vala:35
 #, c-format
-msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr "ჩავარდა გაშვება ტრეკერის სერვისისთვის: %s. დამატება გათიშულია."
+msgid "Failed to start LocalSearch service: %s. Plugin disabled."
+msgstr "ჩავარდა გაშვება LocalSearch სერვისისთვის: %s. დამატება გათიშულია."
 
-#: src/plugins/tracker3/rygel-tracker-search-container.vala:228
-#: src/plugins/tracker/rygel-tracker-search-container.vala:228
+#: src/plugins/localsearch/localsearch-root-container.vala:46
+#, c-format
+msgid "Could not connect to %s, falling back to old Tracker3 service"
+msgstr "%s-სთან მიერთება შეუძლებელია. ვიყენებ ძველ Traker3 სერვისს"
+
+#: src/plugins/localsearch/localsearch-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category “%s”: %s"
 msgstr "შეცდომა ელემენტების რაოდენობის მიღებისას კატეგორიაში \"%s\": %s"
 
-#: src/plugins/tracker3/rygel-tracker-titles.vala:58
-#: src/plugins/tracker/rygel-tracker-titles.vala:58
+#: src/plugins/localsearch/localsearch-titles.vala:58
 msgid "Titles"
 msgstr "სათაურები"
-
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
-#, c-format
-msgid "Failed to create a Tracker connection: %s"
-msgstr "ჩავარდა შექმნა ტრეკერის მიერთებისთვის: %s"
-
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
-#, c-format
-msgid "Failed to create Tracker connection: %s"
-msgstr "ჩავარდა შექმნა ტრეკერის მიერთებისთვის: %s"
-
-#: src/plugins/tracker/rygel-tracker-search-container.vala:104
-#, c-format
-msgid "Failed to get Tracker connection: %s"
-msgstr "ჩავარდა მიღება ტრეკერის მიერთებისთვის: %s"
 
 #: src/rygel/application.vala:88
 #, c-format
@@ -1585,7 +1548,7 @@ msgstr "ACL გადმორთვის პოლიტიკა ვერ �
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "ACL გადმორთვის პოლიტიკა ვერ ვიპოვე. ვიყენებ \"აკრძალვას\""
 
-#: src/ui/rygel-preferences-dialog.vala:109
+#: src/ui/rygel-preferences-dialog.vala:100
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "მორგების ფანჯრის შექმნა ჩავარდა: %s"
@@ -1604,3 +1567,21 @@ msgstr "Rygel-ის სერვისის გაშვების შეც
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Rygel-ის სერვისის გაჩერების შეცდომა: %s"
+
+#~ msgid "Years"
+#~ msgstr "წელი"
+
+#~ msgid "Shared media"
+#~ msgstr "გაზიარებული მედია"
+
+#, c-format
+#~ msgid "Failed to create a Tracker connection: %s"
+#~ msgstr "ჩავარდა შექმნა ტრეკერის მიერთებისთვის: %s"
+
+#, c-format
+#~ msgid "Failed to create Tracker connection: %s"
+#~ msgstr "ჩავარდა შექმნა ტრეკერის მიერთებისთვის: %s"
+
+#, c-format
+#~ msgid "Failed to get Tracker connection: %s"
+#~ msgstr "ჩავარდა მიღება ტრეკერის მიერთებისთვის: %s"
