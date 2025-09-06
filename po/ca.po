@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
 "POT-Creation-Date: 2022-08-06 14:21+0000\n"
-"PO-Revision-Date: 2022-08-31 14:21+0000\n"
+"PO-Revision-Date: 2025-09-06 14:21+0000\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
@@ -1259,11 +1259,11 @@ msgstr "Ha fallat l'obtenció dels ID d'actualització: %s"
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:401
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
-msgstr "Base de dades inconsistent: l'ítem %s no té %s pare"
+msgstr "Base de dades inconsistent: l'ítem %s no té el pare %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:526
 msgid "Failed to get reset token"
-msgstr "Ha fallat l'obtenció de l'indicador de reinici: %s"
+msgstr "No s'ha pogut obtenir el testimoni de reinici"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:538
 #, c-format
@@ -1287,7 +1287,7 @@ msgstr "No s'han pogut crear referències als contenidors"
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:598
 #, c-format
 msgid "Failed to add %s to ignored files: %s"
-msgstr "Ha fallat afegir en %s als fitxers ignorats: %s"
+msgstr "Ha fallat en afegir %s als fitxers ignorats: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:611
 #, c-format
