@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
 "POT-Creation-Date: 2025-08-11 00:05+0000\n"
-"PO-Revision-Date: 2025-09-10 14:02+0200\n"
+"PO-Revision-Date: 2025-09-12 18:51+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -1076,46 +1076,47 @@ msgstr "Titlu %d"
 msgid ""
 "Failed to find lsdvd binary in path. DVD extraction will not be available"
 msgstr ""
-"Eșec la găsirea binarului lsdvd în cale. Extragerea DVD nu va fi disponibilă"
+"Nu s-a putut găsi în cale fișierul binar lsdvd. Extragerea DVD nu va fi "
+"disponibilă"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:73
 msgid "Invalid command received, ignoring"
-msgstr "Comandă nevalidă primită, se ignoră"
+msgstr "S-a primit o comandă greșită, se ignoră"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:90
 #, c-format
 msgid "Failed to discover URI %s: %s"
-msgstr "Eșec la descoperirea URI-ului %s: %s"
+msgstr "Nu s-a putut identifica URI-ul %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:105
 #, c-format
 msgid "Failed to read from pipe: %s"
-msgstr "Eșec la citirea din pipe: %s"
+msgstr "Nu s-a putut citi din pipe: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:132
 #: src/plugins/media-export/rygel-media-export-extract.vala:144
 #, c-format
 msgid "Failed to send error to parent: %s"
-msgstr "Eșec la trimiterea erorii către părinte: %s"
+msgstr "Nu s-a putut trimite eroarea către părinte: %s"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:157
 msgid "— helper binary for Rygel to extract metadata"
-msgstr "— binar ajutător pentru Rygel pentru a extrage metadate"
+msgstr "— fișier binar ajutător pentru Rygel pentru a extrage metadate"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:164
 #, c-format
 msgid "Failed to parse commandline args: %s"
-msgstr "Eșec la parsarea argumentelor liniei de comandă: %s"
+msgstr "Nu s-au putut analiza argumentele liniei de comandă: %s"
 
 #: src/plugins/media-export/rygel-media-export-generic-extractor.vala:50
 #, c-format
 msgid "Failed to create media art extractor: %s"
-msgstr "Eșec la crearea extractorului de arte media: %s"
+msgstr "Nu s-a putut crea extractorul de imagini: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
 msgid "“%s” harvested"
-msgstr "„%s” recoltat"
+msgstr "„%s” analizat"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:214
 #, c-format
@@ -1125,14 +1126,13 @@ msgstr "Eroare la preluarea obiectului „%s” din baza de date: %s"
 #: src/plugins/media-export/rygel-media-export-harvester.vala:222
 #, c-format
 msgid "Failed to query info of a file %s: %s"
-msgstr "Eșec la interogarea informațiilor unui fișier %s: %s"
+msgstr "Nu s-au putut obține informații despre fișierul %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:257
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr ""
-"Nu s-a putut găsi obiectul %s sau părintele său. Baza de date este "
-"inconsistentă"
+"Nu s-a putut găsi obiectul %s sau părintele său. Baza de date este incompletă"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:261
 #, c-format
@@ -1142,22 +1142,22 @@ msgstr "Eroare la ștergerea obiectului din baza de date: %s"
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:128
 #, c-format
 msgid "Failed to harvest file %s: %s"
-msgstr "Nu s-a reușit recoltarea fișierului %s: %s"
+msgstr "Nu s-a reușit analizarea fișierului %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:194
 #, c-format
 msgid "Failed to query database: %s"
-msgstr "Interogarea bazei de date a eșuat: %s"
+msgstr "Nu s-au putut obține informații din baza de date: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:275
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
-msgstr "Eșec la enumerarea dosarului „%s”: %s"
+msgstr "Nu s-a putut afișa conținutul dosarului „%s”: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:293
 #, c-format
 msgid "Failed to get children of container %s: %s"
-msgstr "Nu s-au putut obține copiii containerului %s: %s"
+msgstr "Nu s-au putut obține elementele containerului %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:352
 #, c-format
@@ -1175,7 +1175,8 @@ msgstr "Se omite URI-ul %s; extragerea a eșuat complet: %s"
 #: src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
 msgid "Failed to get child count of query container: %s"
-msgstr "Eșec la obținerea numărului copiilor containerului de interogat: %s"
+msgstr ""
+"Nu s-a putut determina numărul de elemente din containerul de rezultate: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
 #, c-format
@@ -1185,55 +1186,55 @@ msgstr "Eșec la reindexarea forțată pentru repararea bazei de date: %s"
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
 msgid "Failed to create indices: %s"
-msgstr "Eșec la crearea indicilor: %s"
+msgstr "Nu s-au putut crea indexuri: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:97
 #, c-format
 msgid "Cannot upgrade from version %d"
-msgstr "Nu se poate înnoi de la versiunea %d"
+msgstr "Nu se poate avansa de la versiunea %d"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:117
 #, c-format
 msgid "Database upgrade to v18 failed: %s"
-msgstr "Înnoirea bazei de date la v18 a eșuat: %s"
+msgstr "Nu s-a putut avansa baza de date la v18: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:135
 #, c-format
 msgid "Failed to add item with ID %s: %s"
-msgstr "Nu s-a reușit adăugarea unui element cu ID %s: %s"
+msgstr "Nu s-a putut adăuga elementul cu ID-ul %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:218
 #, c-format
 msgid "Failed to get update IDs: %s"
-msgstr "Eșec la obținerea ID-urilor de actualizare: %s"
+msgstr "Nu s-au putut obține ID-urile actualizărilor: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:401
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
-msgstr "Bază de date inconsistentă: elementul %s nu are părintele %s"
+msgstr "Bază de date incompletă: elementul %s nu are părintele %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:526
 msgid "Failed to get reset token"
-msgstr "Eșec la obținerea jetonului de restabilire"
+msgstr "Nu s-a putut obține codul pentru restabilire"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:538
 #, c-format
 msgid "Failed to persist ServiceResetToken: %s"
-msgstr "Eșec la persistarea ServiceResetToken: %s"
+msgstr "Nu s-a putut stoca ServiceResetToken: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:548
 #, c-format
 msgid "Failed to remove virtual folders: %s"
-msgstr "Eșec la eliminarea dosarelor virtuale: %s"
+msgstr "Nu s-au putut elimina dosarele virtuale: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:562
 #, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
-msgstr "Eșec la marcarea elementului %s ca apărat (%d): %s"
+msgstr "Nu s-a putut marca elementul %s ca protejat (%d): %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:572
 msgid "Cannot create references to containers"
-msgstr "Nu s-au putut crea referințe la containere"
+msgstr "Nu se pot crea identificatori ai containerelor"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:598
 #, c-format
@@ -1243,12 +1244,12 @@ msgstr "Nu s-a putu adăuga %s la fișierele ignorate: %s"
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:611
 #, c-format
 msgid "Failed to get whether URI %s is ignored: %s"
-msgstr "Nu s-a putut obține dacă URI-ul %s este ignorat: %s"
+msgstr "Nu s-a putut stabili dacă URI-ul %s este ignorat: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:627
 #, c-format
 msgid "Failed to get whether item %s is guarded: %s"
-msgstr "Eșec la obținerea dacă elementul %s este apărat: %s"
+msgstr "Nu s-a putut stabili dacă elementul %s este protejat: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:667
 #, c-format
@@ -1257,7 +1258,7 @@ msgid ""
 "version “%d”"
 msgstr ""
 "Versiunea „%d” a bazei de date detectate este mai nouă decât versiunea "
-"suportată „%d”"
+"acceptată „%d”"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:689
 msgid "Incompatible schema… cannot proceed"
