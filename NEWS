@@ -1,3 +1,44 @@
+45 (stable)
+===========
+
+Translation updates
+
+All contributors to this release:
+ - Alan Mortensen <alanmortensen.am@gmail.com>
+ - Anders Jonsson <anders.jonsson@norsjovallen.se>
+ - Antonio Marin <gnmer.6qxyg@slmail.me>
+ - Asier Saratsua Garmendia <asiersarasua@ni.eus>
+ - Aurimas Aurimas Černius <aurisc4@gmail.com>
+ - Balázs Úr <balazs@urbalazs.hu>
+ - Changwoo Ryu <cwryu@debian.org>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Daniel Rusek <mail@asciiwolf.com>
+ - Ekaterine Papava <papava.e@gtu.ge>
+ - Hugo Carvalho <hugokarvalho@hotmail.com>
+ - Jordi Mas i Hernandez <jmas@softcatala.org>
+ - Juliano de Souza Camargo <julianosc@protonmail.com>
+ - Nathan Follens <nfollens@gnome.org>
+ - Quentin PAGÈS <pages_quentin@hotmail.com>
+ - Yuri Chornoivan <yurchor@ukr.net>
+
+Added/updated translations:
+ - po/ca.po, courtesy of Jordi Mas i Hernandez
+ - po/cs.po, courtesy of Daniel Rusek
+ - po/da.po, courtesy of Alan Mortensen
+ - po/es.po, courtesy of Daniel Mustieles
+ - po/eu.po, courtesy of Asier Saratsua Garmendia
+ - po/hu.po, courtesy of Balázs Úr
+ - po/ka.po, courtesy of Ekaterine Papava
+ - po/ko.po, courtesy of Changwoo Ryu
+ - po/lt.po, courtesy of Aurimas Aurimas Černius
+ - po/nl.po, courtesy of Nathan Follens
+ - po/oc.po, courtesy of Quentin PAGÈS
+ - po/pt_BR.po, courtesy of Juliano de Souza Camargo
+ - po/pt.po, courtesy of Hugo Carvalho
+ - po/ro.po, courtesy of Antonio Marin
+ - po/sv.po, courtesy of Anders Jonsson
+ - po/uk.po, courtesy of Yuri Chornoivan
+
 45.rc (unstable)
 ================
 

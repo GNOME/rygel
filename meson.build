@@ -1,4 +1,4 @@
-project('rygel', 'vala', 'c', version : '45.rc', meson_version : '>= 0.59.0')
+project('rygel', 'vala', 'c', version : '45.0', meson_version : '>= 0.59.0')
 vala = meson.get_compiler('vala')
 cc = meson.get_compiler('c')
 disabled_warning_flags = []
@@ -207,7 +207,7 @@ elif v[1] == 'beta'
 elif v[1] == 'rc'
   micro = 2
 else
-  micro = (v[1].to_int() + 2).to_str()
+  micro = (v[1].to_int() + 2).to_string()
 endif
 
 soversion = 0
