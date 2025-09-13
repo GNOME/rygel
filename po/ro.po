@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
 "POT-Creation-Date: 2025-08-11 00:05+0000\n"
-"PO-Revision-Date: 2025-09-12 18:51+0200\n"
+"PO-Revision-Date: 2025-09-13 17:23+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -1267,33 +1267,34 @@ msgstr "Schemă incompatibilă… nu se poate continua"
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:695
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
-msgstr "Bază de date nevalidă, nu se poate interoga tabelul sqlite_master: %s"
+msgstr ""
+"Bază de date deteriorată, nu se poate consulta tabelul sqlite_master: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:896
 #, c-format
 msgid "Failed to create database schema: %s"
-msgstr "Crearea schemei bazei de date a eșuat: %s"
+msgstr "Nu s-a putut crea schema bazei de date: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:1234
 #, c-format
 msgid "Skipping unsupported sort field: %s"
-msgstr "Se omite câmpul de sortare nesuportat: %s"
+msgstr "Ignoră criteriul de aranjare neacceptat: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:104
 msgid "Failed to gracefully stop the process. Using KILL"
-msgstr "Eșuare la oprirea elegantă a procesului. Se folosește KILL"
+msgstr "Nu s-a putut termina procesul. Se folosește KILL"
 
 #. Process exitted properly -> That shouldn't really
 #. happen
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:152
 #, c-format
 msgid "Process check_async failed: %s"
-msgstr "Eșec la procesul check_async: %s"
+msgstr "Procesul check_async a eșuat: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #, c-format
 msgid "Process died while handling URI %s"
-msgstr "Procesul a murit în timpul rezolvării URI-ului %s"
+msgstr "Procesul s-a oprit în timpul gestionării URI-ului %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
 #, c-format
@@ -1303,12 +1304,12 @@ msgstr "Configurarea suprocesului de extragere a eșuat: %s"
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
 #, c-format
 msgid "Received invalid string from child: %s"
-msgstr "S-a primit un șir de caractere nevalid de la copil: %s"
+msgstr "S-a primit un șir de caractere incorect de la subproces: %s"
 
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received ill-formed response string %s from child…"
-msgstr "S-a primit un șir de răspuns malformat %s de la copil…"
+msgstr "S-a primit un șir de răspuns incorect %s de la subproces…"
 
 #. No error signalling, this was done in the part that called
 #. cancel
@@ -1320,7 +1321,7 @@ msgstr "Citirea de la copil a eșuat: %s"
 #: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:270
 #, c-format
 msgid "Failed to send command to child: %s"
-msgstr "Eșec la trimiterea comenzii copilului: %s"
+msgstr "Nu s-a putut trimite comanda la subproces: %s"
 
 #: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
 #: src/plugins/media-export/rygel-media-export-root-container.vala:33
@@ -1330,7 +1331,7 @@ msgstr "Toate"
 #: src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
 msgid "Failed to get child count: %s"
-msgstr "Eșec la obținerea numărului de copii: %s"
+msgstr "Nu s-a putut obține numărul de elemente: %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:70
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
@@ -1341,12 +1342,12 @@ msgstr "Nu se pot crea elemente în: %s"
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:91
 #, c-format
 msgid "Can’t add containers in %s"
-msgstr "Nu se poate adăuga containere în %s"
+msgstr "Nu se pot adăuga containere în %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-container.vala:99
 #, c-format
 msgid "Can’t remove containers in %s"
-msgstr "Nu se pot elimina containere în %s"
+msgstr "Nu se pot elimina containere din %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
 #: src/plugins/media-export/rygel-media-export-root-container.vala:612
@@ -1356,17 +1357,17 @@ msgstr "Liste de redare"
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
 msgid "Can’t remove items in %s"
-msgstr "Nu se pot elimina elementele din %s"
+msgstr "Nu se pot elimina elemente din %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
 #, c-format
 msgid "upnp:class not supported in %s"
-msgstr "upnp:class nu este suportată în %s"
+msgstr "upnp:class nu este acceptată în %s"
 
 #: src/plugins/media-export/rygel-media-export-plugin.vala:53
 #, c-format
 msgid "Failed to load plugin %s: %s"
-msgstr "Eșec la încărcarea modulului %s: %s"
+msgstr "Nu s-a putut încărca modulul %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
 msgid "Will not monitor file changes"
@@ -1377,29 +1378,29 @@ msgstr "Nu se vor monitoriza modificările de fișiere"
 #: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:105
 #, c-format
 msgid "Failed to setup up file monitor for %s: %s"
-msgstr "Eșec la configurarea monitorului de fișiere pentru %s: %s"
+msgstr "Nu s-au putut monitoriza fișierele pentru %s: %s"
 
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
 #: src/plugins/tracker3/rygel-tracker-years.vala:33
 msgid "Year"
-msgstr "An"
+msgstr "Anul"
 
 #. Titles and definitions of virtual folders for Music,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:39
 msgid "Artist"
-msgstr "Artist"
+msgstr "Artistul"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:40
 msgid "Album"
-msgstr "Album"
+msgstr "Albumul"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
 #: src/plugins/tracker3/rygel-tracker-genre.vala:31
 msgid "Genre"
-msgstr "Gen"
+msgstr "Genul"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:56
 msgid "Files & Folders"
@@ -1409,13 +1410,13 @@ msgstr "Fișiere și dosare"
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
 #: src/plugins/tracker3/rygel-tracker-plugin.vala:34
 msgid "@REALNAME@’s media"
-msgstr "Mediile lui @REALNAME@"
+msgstr "Utilizator @REALNAME@"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:457
 #: src/plugins/media-export/rygel-media-export-root-container.vala:524
 #, c-format
 msgid "Failed to remove entry: %s"
-msgstr "Nu s-a putut șterge intrarea: %s"
+msgstr "Nu s-a putut șterge elementul: %s"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:605
 msgid "Music"
@@ -1427,28 +1428,28 @@ msgstr "Fotografii"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:610
 msgid "Videos"
-msgstr "Videoclipuri"
+msgstr "Video"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
 #, c-format
 msgid "Failed to save object: %s"
-msgstr "Eșec la salvarea obiectului: %s"
+msgstr "Nu s-a putut salva obiectul: %s"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:79
 #, c-format
 msgid "Failed to add object: %s"
-msgstr "Eșec la adăugarea obiectului: %s"
+msgstr "Nu s-a putut adăuga obiectul: %s"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:87
 #, c-format
 msgid "Failed to remove object: %s"
-msgstr "Eșec la eliminarea obiectului: %s"
+msgstr "Nu s-a putut elimina obiectul: %s"
 
 #: src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
 #, c-format
 msgid "Failed to remove file %s: %s"
-msgstr "Eșec la eliminarea fișierului %s: %s"
+msgstr "Nu s-a putut elimina fișierul %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-writable-db-container.vala:120
 #, c-format
@@ -1479,7 +1480,7 @@ msgstr "Artiști"
 #: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
-msgstr "Eșec la construirea URI-ului pentru dosarul „%s”: %s"
+msgstr "Nu s-a putut generea URI-ul pentru dosarul „%s”: %s"
 
 #: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
 #, c-format
@@ -1488,12 +1489,12 @@ msgstr "Nu s-a putut abona la semnalele Tracker: %s"
 
 #: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
 msgid "Not supported"
-msgstr "Nesuportat"
+msgstr "Neacceptat"
 
 #: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
 #, c-format
 msgid "Error getting all values for “%s”: %s"
-msgstr "Eșec la obținerea tuturor valorilor pentru „%s”: %s"
+msgstr "Eroare la obținerea tuturor valorilor pentru „%s”: %s"
 
 #: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
 #, c-format
@@ -1512,15 +1513,15 @@ msgstr "Titluri"
 #: src/rygel/application.vala:88
 #, c-format
 msgid "Failed to load user configuration: %s"
-msgstr "Nu s-a putut încărca configurația utilizatorului: %s"
+msgstr "Nu s-au putut încărca preferințele utilizatorului: %s"
 
 #: src/rygel/application.vala:125
 #, c-format
 msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
-msgstr[0] "Nu s-a găsit niciun modul în %d secundă, se renunță…"
-msgstr[1] "Nu s-a găsit niciun modul în %d secunde, se renunță…"
-msgstr[2] "Nu s-a găsit niciun modul în %d de secunde, se renunță…"
+msgstr[0] "Nu s-a găsit niciun modul în %d secundă; se renunță…"
+msgstr[1] "Nu s-a găsit niciun modul în %d secunde; se renunță…"
+msgstr[2] "Nu s-a găsit niciun modul în %d de secunde; se renunță…"
 
 #: src/rygel/application.vala:154
 #, c-format
@@ -1530,12 +1531,12 @@ msgstr "Se pornește Rygel v%s…"
 #: src/rygel/application.vala:202
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
-msgstr "Nu s-a putut crea RootDevice pentru %s. Motiv: %s"
+msgstr "Nu s-a putut crea dispozitivul principal pentru %s. Motivul: %s"
 
 #: src/rygel/application.vala:283
 #, c-format
 msgid "Failed to create root device factory: %s"
-msgstr "Nu s-a putut crea fabrica de dispozitive rădăcină: %s"
+msgstr "Nu s-a putut crea generatorul de dispozitive principale: %s"
 
 #: src/rygel/rygel-acl.vala:110
 #, c-format
@@ -1549,11 +1550,13 @@ msgstr "Eroare la crearea unui proxy D-Bus pentru ACL: %s"
 
 #: src/rygel/rygel-acl.vala:145
 msgid "No ACL fallback policy found. Using “allow”"
-msgstr "Nicio politică ACL de rezervă nu a fost găsită. Se folosește „permite”"
+msgstr ""
+"Nicio regulă ACL de rezervă nu a fost găsită. Se folosește „allow” (permite)"
 
 #: src/rygel/rygel-acl.vala:147
 msgid "No ACL fallback policy found. Using “deny”"
-msgstr "Nicio politică ACL de rezervă nu a fost găsită. Se folosește „refuză”"
+msgstr ""
+"Nicio regulă ACL de rezervă nu a fost găsită. Se folosește „deny” (refuză)"
 
 #: src/ui/rygel-preferences-dialog.vala:109
 #, c-format
@@ -1563,14 +1566,14 @@ msgstr "Nu s-a putut crea dialogul de preferințe: %s"
 #: src/ui/rygel-writable-user-config.vala:119
 #, c-format
 msgid "Failed to save configuration data to file “%s”: %s"
-msgstr "Salvarea datelor de configurație în fișierul „%s” a eșuat: %s"
+msgstr "Salvarea preferințelor în fișierul „%s” a eșuat: %s"
 
 #: src/ui/rygel-writable-user-config.vala:214
 #, c-format
 msgid "Failed to start Rygel service: %s"
-msgstr "Nu s-a putut porni serviciul D-Bus: %s"
+msgstr "Nu s-a putut porni serviciul Rygel: %s"
 
 #: src/ui/rygel-writable-user-config.vala:216
 #, c-format
 msgid "Failed to stop Rygel service: %s"
-msgstr "Nu s-a putut opri serviciul D-Bus: %s"
+msgstr "Nu s-a putut opri serviciul Rygel: %s"
