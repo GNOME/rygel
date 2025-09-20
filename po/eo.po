@@ -2,14 +2,14 @@
 # Copyright (C) 2011 Free Software Foundation, Inc.
 # This file is distributed under the same license as the rygel package.
 # Carmen Bianca BAKKER <carmen@carmenbianca.eu>, 2018.
-# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2011-2023.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2011-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2023-02-02 20:07+0000\n"
-"PO-Revision-Date: 2023-09-25 23:41+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
+"POT-Creation-Date: 2025-09-14 12:15+0000\n"
+"PO-Revision-Date: 2025-09-20 12:44+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
 "Language: eo\n"
@@ -17,73 +17,71 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 42.0\n"
+"X-Generator: Gtranslator 48.0\n"
 "X-Project-Style: gnome\n"
 
-#: data/rygel.desktop.in:3
+#: data/rygel.desktop.in:2
 msgid "Rygel"
 msgstr "Rigelo"
 
-#: data/rygel.desktop.in:4
+#: data/rygel.desktop.in:3
 msgid "UPnP/DLNA Services"
 msgstr "Servoj de UPnP/DLNA"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in:6
+#: data/rygel.desktop.in:5
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
-msgstr ""
-"aŭdovidservilo;aŭdovidbildigilo;kunhavigi;aŭdo;sono;video;filmo;vidaĵo;"
-"bildoj;fotoj;"
+msgstr "aŭdovidservilo;aŭdovidbildigilo;kunhavigi;aŭdo;sono;video;filmo;vidaĵo;bildoj;fotoj;"
 
-#: data/rygel-preferences.desktop.in:3 data/rygel-preferences.ui:24
+#: data/rygel-preferences.desktop.in:2 data/rygel-preferences.ui:19
 msgid "Rygel Preferences"
 msgstr "Agordoj de Rigelo"
 
-#: data/rygel-preferences.desktop.in:4
+#: data/rygel-preferences.desktop.in:3
 msgid "UPnP/DLNA Preferences"
 msgstr "Agordoj de UPnP/DLNA"
 
-#: data/rygel-preferences.ui:94
+#: data/rygel-preferences.ui:85
 msgid "Add a directory to the list of shared directories"
 msgstr "Aldoni dosierujon al la listo de kunhavigitaj dosierujoj"
 
-#: data/rygel-preferences.ui:95
+#: data/rygel-preferences.ui:86
 msgid "Add shared directory"
 msgstr "Aldoni kunhavigitan dosierujon"
 
-#: data/rygel-preferences.ui:107
+#: data/rygel-preferences.ui:92
 msgid "Remove a directory from the list of shared directories"
 msgstr "Forigi dosierujon al la listo de kunhavigitaj dosierujoj"
 
-#: data/rygel-preferences.ui:108
+#: data/rygel-preferences.ui:93
 msgid "Remove shared directory"
 msgstr "Forigi kunhavigitan dosierujon"
 
-#: data/rygel-preferences.ui:153
+#: data/rygel-preferences.ui:121
 msgid "_Share media through DLNA"
 msgstr "_Kunhavigi aŭdvidaĵojn tra DLNA"
 
-#: data/rygel-preferences.ui:230 data/rygel-preferences.ui:231
+#: data/rygel-preferences.ui:195 data/rygel-preferences.ui:196
 msgid "Add a network interface Rygel should serve files on"
 msgstr "Aldoni retan interfacon per kiu Rigelo servu dosierojn"
 
-#: data/rygel-preferences.ui:232
+#: data/rygel-preferences.ui:197
 msgid "Add network interface"
 msgstr "Aldoni retan interfacon"
 
-#: data/rygel-preferences.ui:245 data/rygel-preferences.ui:246
+#: data/rygel-preferences.ui:204 data/rygel-preferences.ui:205
 msgid "Remove a network interface Rygel should no longer serve files on"
 msgstr "Forigi retan interfacon per kiu Rigelo ne plu servu dosierojn"
 
-#: data/rygel-preferences.ui:247
+#: data/rygel-preferences.ui:206
 msgid "Remove network interface"
 msgstr "Forigi retan interfacon"
 
-#: data/rygel-preferences.ui:276
+#: data/rygel-preferences.ui:222
 msgid "Networks:"
 msgstr "Retoj:"
 
-#: data/rygel-preferences.ui:335
+#: data/rygel-preferences.ui:241
 msgid "Select folders"
 msgstr "Elekti dosierujojn"
 
@@ -359,9 +357,9 @@ msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "Malsukcesis trovi enirejan funkcion “%s” en “%s”: %s"
 
 #: src/librygel-core/rygel-plugin-loader.vala:156
-#, fuzzy, c-format
+#, c-format
 msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
-msgstr "Modulo '%s' konfliktas kun jam ŝarĝita modulo '%s'. Salti"
+msgstr "Modulo '%s' konfliktas kun jam ŝargita modulo '%s'. Preterlasante"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
@@ -558,7 +556,7 @@ msgstr "Ne povas foliumi idojn je ero"
 msgid "Failed to browse “%s”: %s\n"
 msgstr "Malsukcesis foliumi “%s”: %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:147
+#: src/librygel-server/rygel-client-hacks.vala:151
 msgid "Not Applicable"
 msgstr "Neaplikebla"
 
@@ -600,7 +598,7 @@ msgid "Not found"
 msgstr "Ne trovita"
 
 #: src/librygel-server/rygel-http-post.vala:64
-#: src/librygel-server/rygel-import-resource.vala:215
+#: src/librygel-server/rygel-import-resource.vala:228
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "Puŝi datumojn al nemalplena elemento “%s” ne estas permesita"
@@ -631,12 +629,12 @@ msgstr "Ne povis krei datuman fonton por %s"
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "Malsukcesis akiri originan adreson de “%s”: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:210
+#: src/librygel-server/rygel-import-resource.vala:223
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "Nevalida URI “%s” por enporti enhavojn"
 
-#: src/librygel-server/rygel-import-resource.vala:237
+#: src/librygel-server/rygel-import-resource.vala:250
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "Malsukcesis enporti dosieron el %s: %s"
@@ -1060,48 +1058,6 @@ msgstr "Modulo “%s” ne povis konekti al D-Bus seanca buso. Malatente…"
 msgid "External provider %s did not provide mandatory property “%s”"
 msgstr "Ekstera provizanto %s ne disponigis devigan econ “%s”"
 
-#: src/plugins/lms/rygel-lms-albums.vala:166
-#: src/plugins/tracker3/rygel-tracker-albums.vala:31
-#: src/plugins/tracker/rygel-tracker-albums.vala:31
-msgid "Albums"
-msgstr "Albumoj"
-
-#: src/plugins/lms/rygel-lms-all-images.vala:89
-#: src/plugins/lms/rygel-lms-all-music.vala:171
-#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
-#: src/plugins/media-export/rygel-media-export-root-container.vala:33
-msgid "All"
-msgstr "Ĉiuj"
-
-#: src/plugins/lms/rygel-lms-image-years.vala:53
-msgid "Years"
-msgstr "Jaroj"
-
-#: src/plugins/lms/rygel-lms-music-root.vala:35
-#: src/plugins/tracker3/rygel-tracker-artists.vala:31
-#: src/plugins/tracker/rygel-tracker-artists.vala:31
-msgid "Artists"
-msgstr "Artistoj"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:33
-msgid "Shared media"
-msgstr "Kunhavigitaj aŭdovidaĵoj"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:45
-#: src/plugins/media-export/rygel-media-export-root-container.vala:605
-msgid "Music"
-msgstr "Muziko"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:49
-#: src/plugins/media-export/rygel-media-export-root-container.vala:610
-msgid "Videos"
-msgstr "Videoj"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:53
-#: src/plugins/media-export/rygel-media-export-root-container.vala:608
-msgid "Pictures"
-msgstr "Bildoj"
-
 #: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
 msgid "Title %d"
@@ -1147,52 +1103,52 @@ msgstr "Malsukcesis analizi komandliniajn argumentojn: %s"
 msgid "Failed to create media art extractor: %s"
 msgstr "Malsukcesis krei aŭdovidan art-eltirilo: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:150
+#: src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
 msgid "“%s” harvested"
 msgstr "“%s” rikoltita"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:205
+#: src/plugins/media-export/rygel-media-export-harvester.vala:214
 #, c-format
 msgid "Error fetching object “%s” from database: %s"
 msgstr "Eraro dum preno de objekto “%s” de datumbazo: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:213
+#: src/plugins/media-export/rygel-media-export-harvester.vala:222
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "Malsukcesis informpeti informon pri dosiero %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:248
+#: src/plugins/media-export/rygel-media-export-harvester.vala:257
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr "Ne eblas trovi objekton %s aŭ ĝiaj gepatroj. Datumbazo estas nekohera"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:252
+#: src/plugins/media-export/rygel-media-export-harvester.vala:261
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Eraro dum forigo de objekto de datumbazo: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:127
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:128
 #, c-format
 msgid "Failed to harvest file %s: %s"
 msgstr "Malsukcesis rikolti dosieron %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:191
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:194
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "Malsukcesis informpeti datumbazon: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:272
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:275
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "Malsukcesis nombri dosierujon “%s”: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:290
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:293
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Malsukcesis akiri infanojn de ujo %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:352
 #, c-format
 msgid "Failed to extract meta-data for file %s"
 msgstr "Malsukcesis ĉerpi metadatumojn por dosiero %s"
@@ -1200,7 +1156,7 @@ msgstr "Malsukcesis ĉerpi metadatumojn por dosiero %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:362
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:365
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "Preterpasante URI %s; eltirado entute malsukcesis: %s"
@@ -1306,7 +1262,7 @@ msgstr "Nevalida datumbazo, ne povas informpeti sqlite_master tabelon: %s"
 msgid "Failed to create database schema: %s"
 msgstr "Malsukcesis krei datumbazan skemon: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1234
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Preterpasante nesubtenata ordiga kampo: %s"
@@ -1353,6 +1309,11 @@ msgstr "Lego el ido malsukcesis: %s"
 #, c-format
 msgid "Failed to send command to child: %s"
 msgstr "Malsukcesis sendi komandon al ido: %s"
+
+#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
+#: src/plugins/media-export/rygel-media-export-root-container.vala:33
+msgid "All"
+msgstr "Ĉiuj"
 
 #: src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
@@ -1409,8 +1370,7 @@ msgstr "Malsukcesis agordi dosiermonitoron por %s: %s"
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
-#: src/plugins/tracker3/rygel-tracker-years.vala:33
-#: src/plugins/tracker/rygel-tracker-years.vala:33
+#: src/plugins/localsearch/localsearch-years.vala:33
 msgid "Year"
 msgstr "Jaro"
 
@@ -1425,8 +1385,7 @@ msgid "Album"
 msgstr "Albumo"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
-#: src/plugins/tracker3/rygel-tracker-genre.vala:31
-#: src/plugins/tracker/rygel-tracker-genre.vala:31
+#: src/plugins/localsearch/localsearch-genre.vala:31
 msgid "Genre"
 msgstr "Ĝenro"
 
@@ -1436,8 +1395,7 @@ msgstr "Dosieroj kaj dosierujoj"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
-#: src/plugins/tracker3/rygel-tracker-plugin.vala:34
-#: src/plugins/tracker/rygel-tracker-plugin.vala:33
+#: src/plugins/localsearch/localsearch-plugin.vala:34
 msgid "@REALNAME@’s media"
 msgstr "Aŭdovidaĵoj de @REALNAME@"
 
@@ -1446,6 +1404,18 @@ msgstr "Aŭdovidaĵoj de @REALNAME@"
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Malsukcesis forigi eron: %s"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:605
+msgid "Music"
+msgstr "Muziko"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:608
+msgid "Pictures"
+msgstr "Bildoj"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:610
+msgid "Videos"
+msgstr "Videoj"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
@@ -1486,60 +1456,50 @@ msgstr "GStreamer-ludilo"
 msgid "Could not create GStreamer player"
 msgstr "Ne povis krei GStreamer-ludilon"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
+#: src/plugins/localsearch/localsearch-albums.vala:31
+msgid "Albums"
+msgstr "Albumoj"
+
+#: src/plugins/localsearch/localsearch-artists.vala:31
+msgid "Artists"
+msgstr "Artistoj"
+
+#: src/plugins/localsearch/localsearch-category-all-container.vala:56
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "Malsukcesis konstrui adreson por dosierujo “%s”: %s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
+#: src/plugins/localsearch/localsearch-category-all-container.vala:67
 #, c-format
-msgid "Could not subscribe to Tracker signals: %s"
-msgstr "Ne povis aboni Tracker-signalojn: %s"
+msgid "Could not subscribe to LocalSearch signals: %s"
+msgstr "Ne povis aboni LocalSearch-signalojn: %s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
+#: src/plugins/localsearch/localsearch-category-all-container.vala:92
 msgid "Not supported"
 msgstr "Ne subtenate"
 
-#: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
+#: src/plugins/localsearch/localsearch-metadata-container.vala:99
 #, c-format
 msgid "Error getting all values for “%s”: %s"
 msgstr "Eraro dum akiri ĉiujn valorojn por “%s”: %s"
 
-#: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
-#, c-format
-msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr "Malsukcesis startigi Tracker-servon: %s. Kromprogramo malŝaltita."
+#: src/plugins/localsearch/localsearch-plugin-factory.vala:35
+msgid "Failed to start LocalSearch service: %s. Plugin disabled."
+msgstr "Malsukcesis startigi LocalSearch-servon: %s. Kromprogramo malŝaltita."
 
-#: src/plugins/tracker3/rygel-tracker-search-container.vala:228
-#: src/plugins/tracker/rygel-tracker-search-container.vala:228
+#: src/plugins/localsearch/localsearch-root-container.vala:46
+#, c-format
+msgid "Could not connect to %s, falling back to old Tracker3 service"
+msgstr "Ne povis konekti al %s; refalas al la malnova servo Tracker3"
+
+#: src/plugins/localsearch/localsearch-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category “%s”: %s"
 msgstr "Eraro ricevi la nombron de eroj sub kategorio “%s”: %s"
 
-#: src/plugins/tracker3/rygel-tracker-titles.vala:58
-#: src/plugins/tracker/rygel-tracker-titles.vala:58
+#: src/plugins/localsearch/localsearch-titles.vala:58
 msgid "Titles"
 msgstr "Titoloj"
-
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
-#, c-format
-msgid "Failed to create a Tracker connection: %s"
-msgstr "Malsukcesis krei Tracker-konekton: %s"
-
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
-#, c-format
-msgid "Failed to create Tracker connection: %s"
-msgstr "Malsukcesis krei Tracker-konekton: %s"
-
-#: src/plugins/tracker/rygel-tracker-search-container.vala:104
-#, c-format
-msgid "Failed to get Tracker connection: %s"
-msgstr "Malsukcesis atingi Tracker-konekton: %s"
 
 #: src/rygel/application.vala:88
 #, c-format
@@ -1586,7 +1546,7 @@ msgstr "Neniu ACL-rezervpolitiko trovita. Uzante \"permesi\""
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "Neniu ACL-rezervpolitiko trovita. Uzante \"nei\""
 
-#: src/ui/rygel-preferences-dialog.vala:109
+#: src/ui/rygel-preferences-dialog.vala:100
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Malsukcesis krei agordan dialogon: %s"
@@ -1605,6 +1565,24 @@ msgstr "Malsukcesis startigi la Rigelo-servon: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Malsukcesis haltigi la Rigelo-servon: %s"
+
+#~ msgid "Years"
+#~ msgstr "Jaroj"
+
+#~ msgid "Shared media"
+#~ msgstr "Kunhavigitaj aŭdovidaĵoj"
+
+#, c-format
+#~ msgid "Failed to create a Tracker connection: %s"
+#~ msgstr "Malsukcesis krei Tracker-konekton: %s"
+
+#, c-format
+#~ msgid "Failed to create Tracker connection: %s"
+#~ msgstr "Malsukcesis krei Tracker-konekton: %s"
+
+#, c-format
+#~ msgid "Failed to get Tracker connection: %s"
+#~ msgstr "Malsukcesis atingi Tracker-konekton: %s"
 
 #~ msgid "rygel"
 #~ msgstr "rygel"
