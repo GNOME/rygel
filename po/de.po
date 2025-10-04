@@ -9,87 +9,88 @@
 # Tobias Endrigkeit <tobiasendrigkeit@outlook.com>, 2013.
 # Bernd Homuth <dev@hmt.im>, 2014, 2015.
 # Jürgen Benvenuti <gastornis@posteo.org>, 2022.
+# Tim Sabsch <tim@sabsch.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2022-07-09 09:23+0000\n"
-"PO-Revision-Date: 2022-09-09 19:06+0200\n"
-"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
+"POT-Creation-Date: 2025-09-06 10:43+0000\n"
+"PO-Revision-Date: 2025-09-07 17:14+0200\n"
+"Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.6\n"
 
-#: data/rygel.desktop.in.in:3
+#: data/rygel.desktop.in:2
 msgid "Rygel"
 msgstr "Rygel"
 
-#: data/rygel.desktop.in.in:4
+#: data/rygel.desktop.in:3
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA-Dienste"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in.in:6
+#: data/rygel.desktop.in:5
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "Medienserver;Freigabe;Audio;Video;Bilder;Fotos;"
 
-#: data/rygel-preferences.desktop.in.in:3 data/rygel-preferences.ui:24
+#: data/rygel-preferences.desktop.in:2 data/rygel-preferences.ui:19
 msgid "Rygel Preferences"
 msgstr "Rygel-Einstellungen"
 
-#: data/rygel-preferences.desktop.in.in:4
+#: data/rygel-preferences.desktop.in:3
 msgid "UPnP/DLNA Preferences"
 msgstr "UPnP/DLNA-Einstellungen"
 
-#: data/rygel-preferences.ui:94
+#: data/rygel-preferences.ui:85
 msgid "Add a directory to the list of shared directories"
 msgstr "Einen Ordner zur Liste der freigegebenen Ordner hinzufügen"
 
-#: data/rygel-preferences.ui:95
+#: data/rygel-preferences.ui:86
 msgid "Add shared directory"
 msgstr "Freigegebenen Ordner hinzufügen"
 
-#: data/rygel-preferences.ui:107
+#: data/rygel-preferences.ui:92
 msgid "Remove a directory from the list of shared directories"
 msgstr "Einen Ordner aus der Liste der freigegebenen Ordner entfernen"
 
-#: data/rygel-preferences.ui:108
+#: data/rygel-preferences.ui:93
 msgid "Remove shared directory"
 msgstr "Freigegebenen Ordner entfernen"
 
-#: data/rygel-preferences.ui:153
+#: data/rygel-preferences.ui:121
 msgid "_Share media through DLNA"
 msgstr "Medien über DLNA _freigeben"
 
-#: data/rygel-preferences.ui:230 data/rygel-preferences.ui:231
+#: data/rygel-preferences.ui:195 data/rygel-preferences.ui:196
 msgid "Add a network interface Rygel should serve files on"
 msgstr ""
 "Eine Netzwerkschnittstelle hinzufügen, auf der Rygel Dateien bereitstellen "
 "soll"
 
-#: data/rygel-preferences.ui:232
+#: data/rygel-preferences.ui:197
 msgid "Add network interface"
 msgstr "Eine Netzwerkschnittstelle hinzufügen"
 
-#: data/rygel-preferences.ui:245 data/rygel-preferences.ui:246
+#: data/rygel-preferences.ui:204 data/rygel-preferences.ui:205
 msgid "Remove a network interface Rygel should no longer serve files on"
 msgstr ""
 "Eine Netzwerkschnittstelle entfernen, auf der Rygel Dateien nicht mehr "
 "bereitstellen soll"
 
-#: data/rygel-preferences.ui:247
+#: data/rygel-preferences.ui:206
 msgid "Remove network interface"
 msgstr "Eine Netzwerkschnittstelle entfernen"
 
-#: data/rygel-preferences.ui:276
+#: data/rygel-preferences.ui:222
 msgid "Networks:"
 msgstr "Netzwerke:"
 
-#: data/rygel-preferences.ui:335
+#: data/rygel-preferences.ui:241
 msgid "Select folders"
 msgstr "Ordner wählen"
 
@@ -573,7 +574,7 @@ msgstr "Unterobjekte können nicht durchsucht werden"
 msgid "Failed to browse “%s”: %s\n"
 msgstr "Durchsuchen von »%s« ist fehlgeschlagen: %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:147
+#: src/librygel-server/rygel-client-hacks.vala:151
 msgid "Not Applicable"
 msgstr "Nicht anwendbar"
 
@@ -613,7 +614,7 @@ msgid "Not found"
 msgstr "Nicht gefunden"
 
 #: src/librygel-server/rygel-http-post.vala:64
-#: src/librygel-server/rygel-import-resource.vala:215
+#: src/librygel-server/rygel-import-resource.vala:228
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "Einbringen von Daten in nicht-leeres Objekt »%s« ist nicht erlaubt"
@@ -644,12 +645,12 @@ msgstr "Datenquelle für »%s« konnte nicht erstellt werden"
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "Originaladresse für »%s« konnte nicht erhalten werden: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:210
+#: src/librygel-server/rygel-import-resource.vala:223
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "Ungültige Adresse »%s« zum Importieren von Inhalten"
 
-#: src/librygel-server/rygel-import-resource.vala:237
+#: src/librygel-server/rygel-import-resource.vala:250
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "Importieren der Datei »%s« schlug fehl: %s"
@@ -1081,48 +1082,6 @@ msgstr ""
 "Externer Anbieter »%s« hat erforderliche Eigenschaft »%s« nicht zur "
 "Verfügung gestellt"
 
-#: src/plugins/lms/rygel-lms-albums.vala:166
-#: src/plugins/tracker3/rygel-tracker-albums.vala:31
-#: src/plugins/tracker/rygel-tracker-albums.vala:31
-msgid "Albums"
-msgstr "Alben"
-
-#: src/plugins/lms/rygel-lms-all-images.vala:89
-#: src/plugins/lms/rygel-lms-all-music.vala:171
-#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
-#: src/plugins/media-export/rygel-media-export-root-container.vala:33
-msgid "All"
-msgstr "Alle"
-
-#: src/plugins/lms/rygel-lms-image-years.vala:53
-msgid "Years"
-msgstr "Jahre"
-
-#: src/plugins/lms/rygel-lms-music-root.vala:35
-#: src/plugins/tracker3/rygel-tracker-artists.vala:31
-#: src/plugins/tracker/rygel-tracker-artists.vala:31
-msgid "Artists"
-msgstr "Künstler"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:33
-msgid "Shared media"
-msgstr "Freigegebene Medien"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:45
-#: src/plugins/media-export/rygel-media-export-root-container.vala:605
-msgid "Music"
-msgstr "Musik"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:49
-#: src/plugins/media-export/rygel-media-export-root-container.vala:610
-msgid "Videos"
-msgstr "Videos"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:53
-#: src/plugins/media-export/rygel-media-export-root-container.vala:608
-msgid "Pictures"
-msgstr "Bilder"
-
 #: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
 msgid "Title %d"
@@ -1169,54 +1128,54 @@ msgstr "Verarbeiten der Parameter der Befehlszeile fehlgeschlagen: %s"
 msgid "Failed to create media art extractor: %s"
 msgstr "Ausleser des Covers konnte nicht erstellt werden: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:150
+#: src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
 msgid "“%s” harvested"
 msgstr "»%s« wurde abgesucht"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:205
+#: src/plugins/media-export/rygel-media-export-harvester.vala:214
 #, c-format
 msgid "Error fetching object “%s” from database: %s"
 msgstr "Fehler beim Holen des Objekts »%s« aus der Datenbank: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:213
+#: src/plugins/media-export/rygel-media-export-harvester.vala:222
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "Information zur Datei %s konnte nicht abgefragt werden: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:248
+#: src/plugins/media-export/rygel-media-export-harvester.vala:257
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr ""
 "Objekt %s oder dessen Vorgänger konnte nicht gefunden werden. Die Datenbank "
 "ist unvollständig."
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:252
+#: src/plugins/media-export/rygel-media-export-harvester.vala:261
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Fehler beim Entfernen des Objekts aus der Datenbank: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:127
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:128
 #, c-format
 msgid "Failed to harvest file %s: %s"
 msgstr "Datei »%s« konnte nicht verarbeitet werden: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:191
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:194
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "Datenbank konnte nicht abgefragt werden: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:272
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:275
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "Ordner »%s« konnte nicht aufgelistet werden: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:290
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:293
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Unterelemente von Container %s konnten nicht ermittelt werden: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:352
 #, c-format
 msgid "Failed to extract meta-data for file %s"
 msgstr "Metainformationen konnten nicht aus der Datei »%s« gelesen werden"
@@ -1224,7 +1183,7 @@ msgstr "Metainformationen konnten nicht aus der Datei »%s« gelesen werden"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:362
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:365
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "Adresse »%s« wird übersprungen. Auslesen ist fehlgeschlagen: %s"
@@ -1335,7 +1294,7 @@ msgstr ""
 msgid "Failed to create database schema: %s"
 msgstr "Erstellen des Datenbankschemas ist fehlgeschlagen: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1234
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Nicht unterstütztes Sortierungsfeld wird übersprungen: %s"
@@ -1383,6 +1342,11 @@ msgstr "﻿Lesen vom Unterelement ist fehlgeschlagen: %s"
 #, c-format
 msgid "Failed to send command to child: %s"
 msgstr "Senden des Befehls an Unterelement ist fehlgeschlagen: %s"
+
+#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
+#: src/plugins/media-export/rygel-media-export-root-container.vala:33
+msgid "All"
+msgstr "Alle"
 
 #: src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
@@ -1439,8 +1403,7 @@ msgstr "Dateiüberwachung für %s konnte nicht eingerichtet werden: %s"
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
-#: src/plugins/tracker3/rygel-tracker-years.vala:33
-#: src/plugins/tracker/rygel-tracker-years.vala:33
+#: src/plugins/localsearch/localsearch-years.vala:33
 msgid "Year"
 msgstr "Jahr"
 
@@ -1455,8 +1418,7 @@ msgid "Album"
 msgstr "Album"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
-#: src/plugins/tracker3/rygel-tracker-genre.vala:31
-#: src/plugins/tracker/rygel-tracker-genre.vala:31
+#: src/plugins/localsearch/localsearch-genre.vala:31
 msgid "Genre"
 msgstr "Genre"
 
@@ -1466,8 +1428,7 @@ msgstr "Dateien und Ordner"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
-#: src/plugins/tracker3/rygel-tracker-plugin.vala:34
-#: src/plugins/tracker/rygel-tracker-plugin.vala:33
+#: src/plugins/localsearch/localsearch-plugin.vala:34
 msgid "@REALNAME@’s media"
 msgstr "Medien von @REALNAME@"
 
@@ -1476,6 +1437,18 @@ msgstr "Medien von @REALNAME@"
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Entfernen des Eintrags ist fehlgeschlagen: %s"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:605
+msgid "Music"
+msgstr "Musik"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:608
+msgid "Pictures"
+msgstr "Bilder"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:610
+msgid "Videos"
+msgstr "Videos"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
@@ -1518,62 +1491,55 @@ msgstr "GStreamer-Wiedergabe"
 msgid "Could not create GStreamer player"
 msgstr "Es konnte kein GStreamer-Abspieler erstellt werden"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
+#: src/plugins/localsearch/localsearch-albums.vala:31
+msgid "Albums"
+msgstr "Alben"
+
+#: src/plugins/localsearch/localsearch-artists.vala:31
+msgid "Artists"
+msgstr "Künstler"
+
+#: src/plugins/localsearch/localsearch-category-all-container.vala:56
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "Adresse für Ordner »%s« konnte nicht erstellt werden: %s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
+#: src/plugins/localsearch/localsearch-category-all-container.vala:67
 #, c-format
-msgid "Could not subscribe to Tracker signals: %s"
-msgstr "Tracker-Signale konnten nicht abonniert werden: %s"
+msgid "Could not subscribe to LocalSearch signals: %s"
+msgstr "LocalSearch-Signale konnten nicht abonniert werden: %s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
+#: src/plugins/localsearch/localsearch-category-all-container.vala:92
 msgid "Not supported"
 msgstr "Nicht unterstützt"
 
-#: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
+#: src/plugins/localsearch/localsearch-metadata-container.vala:99
 #, c-format
 msgid "Error getting all values for “%s”: %s"
 msgstr "Fehler beim Ermitteln aller Werte für »%s«: %s"
 
-#: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
+#: src/plugins/localsearch/localsearch-plugin-factory.vala:35
 #, c-format
-msgid "Failed to start Tracker service: %s. Plugin disabled."
+msgid "Failed to start LocalSearch service: %s. Plugin disabled."
 msgstr ""
-"Start des Tracker-Dienstes ist fehlgeschlagen: %s. Erweiterung wird "
+"Start des LocalSearch-Dienstes ist fehlgeschlagen: %s. Erweiterung wird "
 "deaktiviert."
 
-#: src/plugins/tracker3/rygel-tracker-search-container.vala:228
-#: src/plugins/tracker/rygel-tracker-search-container.vala:228
+#: src/plugins/localsearch/localsearch-root-container.vala:46
+#, c-format
+msgid "Could not connect to %s, falling back to old Tracker3 service"
+msgstr ""
+"Konnte keine Verbindung zu %s herstellen, fällt zurück auf alten Tracker3-"
+"Dienst"
+
+#: src/plugins/localsearch/localsearch-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category “%s”: %s"
 msgstr "Fehler beim Ermitteln der Objektanzahl unter Kategorie »%s«: %s"
 
-#: src/plugins/tracker3/rygel-tracker-titles.vala:58
-#: src/plugins/tracker/rygel-tracker-titles.vala:58
+#: src/plugins/localsearch/localsearch-titles.vala:58
 msgid "Titles"
 msgstr "Titel"
-
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
-#, c-format
-msgid "Failed to create a Tracker connection: %s"
-msgstr "Tracker-Verbindung konnte nicht erzeugt werden: %s"
-
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
-#, c-format
-msgid "Failed to create Tracker connection: %s"
-msgstr "Tracker-Verbindung konnte nicht erzeugt werden: %s"
-
-#: src/plugins/tracker/rygel-tracker-search-container.vala:104
-#, c-format
-msgid "Failed to get Tracker connection: %s"
-msgstr "Tracker-Verbindung konnte nicht erhalten werden: %s"
 
 #: src/rygel/application.vala:88
 #, c-format
@@ -1624,7 +1590,7 @@ msgstr ""
 "Es wurde keine alternative Zugriffslistenrichtlinie gefunden. Zugriff wird "
 "verweigert (»deny«)."
 
-#: src/ui/rygel-preferences-dialog.vala:109
+#: src/ui/rygel-preferences-dialog.vala:100
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Einstellungsdialog konnte nicht erzeugt werden: %s"
@@ -1643,6 +1609,24 @@ msgstr "Starten des Rygel-Dienstes ist fehlgeschlagen: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Beenden des Rygel-Dienstes ist fehlgeschlagen: %s"
+
+#~ msgid "Years"
+#~ msgstr "Jahre"
+
+#~ msgid "Shared media"
+#~ msgstr "Freigegebene Medien"
+
+#, c-format
+#~ msgid "Failed to create a Tracker connection: %s"
+#~ msgstr "Tracker-Verbindung konnte nicht erzeugt werden: %s"
+
+#, c-format
+#~ msgid "Failed to create Tracker connection: %s"
+#~ msgstr "Tracker-Verbindung konnte nicht erzeugt werden: %s"
+
+#, c-format
+#~ msgid "Failed to get Tracker connection: %s"
+#~ msgstr "Tracker-Verbindung konnte nicht erhalten werden: %s"
 
 #~ msgid "Replace currently running instance of Rygel"
 #~ msgstr "Die aktuell ausgeführte Instanz von Rygel wird ersetzt"
