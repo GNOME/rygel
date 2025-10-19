@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2022-09-12 11:46+0000\n"
-"PO-Revision-Date: 2022-10-22 12:49+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
+"POT-Creation-Date: 2025-10-18 19:27+0000\n"
+"PO-Revision-Date: 2025-10-19 10:35+0300\n"
 "Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: Greek, Modern (1453-) <opensuse-translation-el@opensuse.org>\n"
 "Language: el\n"
@@ -19,73 +19,73 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.7\n"
 "X-Project-Style: gnome\n"
 
-#: data/rygel.desktop.in:3
+#: data/rygel.desktop.in:2
 msgid "Rygel"
 msgstr "Rygel"
 
-#: data/rygel.desktop.in:4
+#: data/rygel.desktop.in:3
 msgid "UPnP/DLNA Services"
 msgstr "Υπηρεσίες UPnP/DLNA"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in:6
+#: data/rygel.desktop.in:5
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
-"διακομιστής μέσων;αποτυπωτής μέσων;κοινόχρηστο;ήχος;βίντεο;εικόνες;"
-"mediaserver;mediarenderer;share;audio;video;pictures;"
+"διακομιστής μέσων;αποτυπωτής "
+"μέσων;κοινόχρηστο;ήχος;βίντεο;εικόνες;mediaserver;mediarenderer;share;audio;video;pictures;"
 
-#: data/rygel-preferences.desktop.in:3 data/rygel-preferences.ui:24
+#: data/rygel-preferences.desktop.in:2 data/rygel-preferences.ui:19
 msgid "Rygel Preferences"
 msgstr "Προτιμήσεις του Rygel"
 
-#: data/rygel-preferences.desktop.in:4
+#: data/rygel-preferences.desktop.in:3
 msgid "UPnP/DLNA Preferences"
 msgstr "Προτιμήσεις UPnP/DLNA"
 
-#: data/rygel-preferences.ui:94
+#: data/rygel-preferences.ui:85
 msgid "Add a directory to the list of shared directories"
 msgstr "Προσθέστε έναν κατάλογο στη λίστα με τους κοινόχρηστους καταλόγους"
 
-#: data/rygel-preferences.ui:95
+#: data/rygel-preferences.ui:86
 msgid "Add shared directory"
 msgstr "Προσθήκη κοινόχρηστου καταλόγου"
 
-#: data/rygel-preferences.ui:107
+#: data/rygel-preferences.ui:92
 msgid "Remove a directory from the list of shared directories"
 msgstr "Αφαίρεση ενός καταλόγου από τη λίστα των κοινόχρηστων καταλόγων"
 
-#: data/rygel-preferences.ui:108
+#: data/rygel-preferences.ui:93
 msgid "Remove shared directory"
 msgstr "Αφαίρεση κοινόχρηστου καταλόγου"
 
-#: data/rygel-preferences.ui:153
+#: data/rygel-preferences.ui:121
 msgid "_Share media through DLNA"
 msgstr "_Διαμοιραστείτε πολυμέσα μέσω DLNA"
 
-#: data/rygel-preferences.ui:230 data/rygel-preferences.ui:231
+#: data/rygel-preferences.ui:195 data/rygel-preferences.ui:196
 msgid "Add a network interface Rygel should serve files on"
 msgstr "Η προσθήκη διεπαφής δικτύου Rygel που θα εξυπηρετεί αρχεία"
 
-#: data/rygel-preferences.ui:232
+#: data/rygel-preferences.ui:197
 msgid "Add network interface"
 msgstr "Προσθήκη διεπαφής δικτύου"
 
-#: data/rygel-preferences.ui:245 data/rygel-preferences.ui:246
+#: data/rygel-preferences.ui:204 data/rygel-preferences.ui:205
 msgid "Remove a network interface Rygel should no longer serve files on"
 msgstr "Η αφαίρεση διεπαφής δικτύου Rygel δεν πρέπει να εξυπηρετεί πια αρχεία"
 
-#: data/rygel-preferences.ui:247
+#: data/rygel-preferences.ui:206
 msgid "Remove network interface"
 msgstr "Αφαίρεση διεπαφής δικτύου"
 
-#: data/rygel-preferences.ui:276
+#: data/rygel-preferences.ui:222
 msgid "Networks:"
 msgstr "Δίκτυα:"
 
-#: data/rygel-preferences.ui:335
+#: data/rygel-preferences.ui:241
 msgid "Select folders"
 msgstr "Επιλογή φακέλων"
 
@@ -370,7 +370,7 @@ msgstr "Αποτυχία εύρεσης της συνάρτησης «%s» το�
 #, c-format
 msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
 msgstr ""
-"Το άρθρωμα «%s» έρχεται σε διένεξη με το ήδη φορτωμένο άρθρωμα «% s». "
+"Το άρθρωμα «%s» έρχεται σε διένεξη με το ήδη φορτωμένο άρθρωμα «%s». "
 "Παράβλεψη"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
@@ -570,7 +570,7 @@ msgstr "Αδύνατη η περιήγηση θυγατρικού στο αντ�
 msgid "Failed to browse “%s”: %s\n"
 msgstr "Αποτυχία κατά την περιήγηση στο «%s»: %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:147
+#: src/librygel-server/rygel-client-hacks.vala:151
 msgid "Not Applicable"
 msgstr "Ανεφάρμοστο"
 
@@ -612,7 +612,7 @@ msgid "Not found"
 msgstr "Δε βρέθηκε"
 
 #: src/librygel-server/rygel-http-post.vala:64
-#: src/librygel-server/rygel-import-resource.vala:215
+#: src/librygel-server/rygel-import-resource.vala:228
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "Δεν επιτρέπεται η προώθηση δεδομένων στο μη άδειο αντικείμενο «%s»"
@@ -643,12 +643,12 @@ msgstr "Αποτυχία δημιουργίας πηγής δεδομένων γ
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "Αποτυχία κατά την ανάκτηση του αρχικού URI για το «%s»: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:210
+#: src/librygel-server/rygel-import-resource.vala:223
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "Το URI «%s» δεν είναι έγκυρο για εισαγωγή περιεχομένων"
 
-#: src/librygel-server/rygel-import-resource.vala:237
+#: src/librygel-server/rygel-import-resource.vala:250
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "Αποτυχία εισαγωγής αρχείου από το %s: %s"
@@ -1074,48 +1074,6 @@ msgstr "Το άρθρωμα «%s» δεν μπόρεσε να συνδεθεί �
 msgid "External provider %s did not provide mandatory property “%s”"
 msgstr "Ο εξωτερικός πάροχος %s δεν έδωσε υποχρεωτική ιδιότητα «%s»"
 
-#: src/plugins/lms/rygel-lms-albums.vala:166
-#: src/plugins/tracker3/rygel-tracker-albums.vala:31
-#: src/plugins/tracker/rygel-tracker-albums.vala:31
-msgid "Albums"
-msgstr "Συλλογές"
-
-#: src/plugins/lms/rygel-lms-all-images.vala:89
-#: src/plugins/lms/rygel-lms-all-music.vala:171
-#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
-#: src/plugins/media-export/rygel-media-export-root-container.vala:33
-msgid "All"
-msgstr "Όλα"
-
-#: src/plugins/lms/rygel-lms-image-years.vala:53
-msgid "Years"
-msgstr "Έτη"
-
-#: src/plugins/lms/rygel-lms-music-root.vala:35
-#: src/plugins/tracker3/rygel-tracker-artists.vala:31
-#: src/plugins/tracker/rygel-tracker-artists.vala:31
-msgid "Artists"
-msgstr "Καλλιτέχνες"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:33
-msgid "Shared media"
-msgstr "Κοινόχρηστα πολυμέσα"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:45
-#: src/plugins/media-export/rygel-media-export-root-container.vala:605
-msgid "Music"
-msgstr "Μουσική"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:49
-#: src/plugins/media-export/rygel-media-export-root-container.vala:610
-msgid "Videos"
-msgstr "Βίντεο"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:53
-#: src/plugins/media-export/rygel-media-export-root-container.vala:608
-msgid "Pictures"
-msgstr "Εικόνες"
-
 #: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
 msgid "Title %d"
@@ -1162,55 +1120,55 @@ msgstr "Αποτυχία ανάλυσης ορισμάτων γραμμής εν
 msgid "Failed to create media art extractor: %s"
 msgstr "Αποτυχία δημιουργίας εξαγωγέα μέσων τέχνης: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:150
+#: src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
 msgid "“%s” harvested"
 msgstr "Συγκεντρώθηκαν «%s»"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:205
+#: src/plugins/media-export/rygel-media-export-harvester.vala:214
 #, c-format
 msgid "Error fetching object “%s” from database: %s"
 msgstr ""
 "Σφάλμα κατά την ανάκτηση του αντικειμένου «%s» από τη βάση δεδομένων: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:213
+#: src/plugins/media-export/rygel-media-export-harvester.vala:222
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "Αποτυχία ανάκτησης πληροφοριών αρχείου %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:248
+#: src/plugins/media-export/rygel-media-export-harvester.vala:257
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr ""
 "Αδυναμία εύρεσης του αντικειμένου %s ή του γονικού του. Η βάση δεδομένων "
 "είναι ασυνεπής"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:252
+#: src/plugins/media-export/rygel-media-export-harvester.vala:261
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Σφάλμα κατά τη διαγραφή του αντικειμένου από τη βάση δεδομένων: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:127
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:128
 #, c-format
 msgid "Failed to harvest file %s: %s"
 msgstr "Αποτυχία συγκομιδής του αρχείου %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:191
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:194
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "Αποτυχία ανάκτησης βάσης δεδομένων: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:272
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:275
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "Αποτυχία απαρίθμησης φακέλου «%s»: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:290
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:293
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Αποτυχία λήψης θυγατρικών του περιέκτη %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:349
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:352
 #, c-format
 msgid "Failed to extract meta-data for file %s"
 msgstr "Αποτυχία εξαγωγής μεταδεδομένων για το αρχείο %s"
@@ -1218,7 +1176,7 @@ msgstr "Αποτυχία εξαγωγής μεταδεδομένων για το
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:362
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:365
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "Παράβλεψη του URI %s· η εξαγωγή απέτυχε πλήρως: %s"
@@ -1325,7 +1283,7 @@ msgstr "Άκυρη βάση δεδομένων, αδύνατο το ερώτημ
 msgid "Failed to create database schema: %s"
 msgstr "Αποτυχία δημιουργίας σχήματος βάσης δεδομένων: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1233
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1234
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Παράλειψη μη υποστηριζόμενου πεδίου ταξινόμησης: %s"
@@ -1372,6 +1330,11 @@ msgstr "Αποτυχία ανάγνωσης από το θυγατρικό: %s"
 #, c-format
 msgid "Failed to send command to child: %s"
 msgstr "Αποτυχία αποστολής εντολής στο θυγατρικό: %s"
+
+#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
+#: src/plugins/media-export/rygel-media-export-root-container.vala:33
+msgid "All"
+msgstr "Όλα"
 
 #: src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
@@ -1428,8 +1391,7 @@ msgstr "Αποτυχία ρύθμισης της παρακολούθησης α
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
-#: src/plugins/tracker3/rygel-tracker-years.vala:33
-#: src/plugins/tracker/rygel-tracker-years.vala:33
+#: src/plugins/localsearch/localsearch-years.vala:33
 msgid "Year"
 msgstr "Έτος"
 
@@ -1444,8 +1406,7 @@ msgid "Album"
 msgstr "Άλμπουμ"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
-#: src/plugins/tracker3/rygel-tracker-genre.vala:31
-#: src/plugins/tracker/rygel-tracker-genre.vala:31
+#: src/plugins/localsearch/localsearch-genre.vala:31
 msgid "Genre"
 msgstr "Είδος"
 
@@ -1455,8 +1416,7 @@ msgstr "Αρχεία & φάκελοι"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
-#: src/plugins/tracker3/rygel-tracker-plugin.vala:34
-#: src/plugins/tracker/rygel-tracker-plugin.vala:33
+#: src/plugins/localsearch/localsearch-plugin.vala:34
 msgid "@REALNAME@’s media"
 msgstr "Πολυμέσα του @REALNAME@"
 
@@ -1465,6 +1425,18 @@ msgstr "Πολυμέσα του @REALNAME@"
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Αποτυχία κατά τη διαγραφή της καταχώρησης: %s"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:605
+msgid "Music"
+msgstr "Μουσική"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:608
+msgid "Pictures"
+msgstr "Εικόνες"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:610
+msgid "Videos"
+msgstr "Βίντεο"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
@@ -1505,64 +1477,56 @@ msgstr "Αναπαραγωγέας GStreamer"
 msgid "Could not create GStreamer player"
 msgstr "Αδυναμία δημιουργίας αναπαραγωγέα GStreamer"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
+#: src/plugins/localsearch/localsearch-albums.vala:31
+msgid "Albums"
+msgstr "Συλλογές"
+
+#: src/plugins/localsearch/localsearch-artists.vala:31
+msgid "Artists"
+msgstr "Καλλιτέχνες"
+
+#: src/plugins/localsearch/localsearch-category-all-container.vala:56
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "Αποτυχία κατά την κατασκευή URI για τον φάκελο «%s»: %s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
+#: src/plugins/localsearch/localsearch-category-all-container.vala:67
 #, c-format
-msgid "Could not subscribe to Tracker signals: %s"
-msgstr "Αδύνατη η εγγραφή στα σήματα του Tracker: %s"
+msgid "Could not subscribe to LocalSearch signals: %s"
+msgstr "Αδύνατη η εγγραφή στα σήματα του LocalSearch: %s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
+#: src/plugins/localsearch/localsearch-category-all-container.vala:92
 msgid "Not supported"
 msgstr "Δεν υποστηρίζεται"
 
-#: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
+#: src/plugins/localsearch/localsearch-metadata-container.vala:99
 #, c-format
 msgid "Error getting all values for “%s”: %s"
 msgstr "Σφάλμα κατά την ανάκτηση όλων των τιμών για το «%s»: %s"
 
-#: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
+#: src/plugins/localsearch/localsearch-plugin-factory.vala:35
 #, c-format
-msgid "Failed to start Tracker service: %s. Plugin disabled."
+msgid "Failed to start LocalSearch service: %s. Plugin disabled."
 msgstr ""
-"Αποτυχία κατά την έναρξη της υπηρεσίας Tracker: %s. Απενεργοποιήθηκε το "
+"Αποτυχία κατά την έναρξη της υπηρεσίας LocalSearch: %s. Απενεργοποιήθηκε το "
 "πρόσθετο."
 
-#: src/plugins/tracker3/rygel-tracker-search-container.vala:228
-#: src/plugins/tracker/rygel-tracker-search-container.vala:228
+#: src/plugins/localsearch/localsearch-root-container.vala:46
+#, c-format
+msgid "Could not connect to %s, falling back to old Tracker3 service"
+msgstr ""
+"Δεν ήταν δυνατή η σύνδεση με το %s, επιστροφή στην παλιά υπηρεσία Tracker3"
+
+#: src/plugins/localsearch/localsearch-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category “%s”: %s"
 msgstr ""
 "Σφάλμα κατά την ανάκτηση της καταμέτρησης των αντικειμένων για την κατηγορία "
 "«%s»: %s"
 
-#: src/plugins/tracker3/rygel-tracker-titles.vala:58
-#: src/plugins/tracker/rygel-tracker-titles.vala:58
+#: src/plugins/localsearch/localsearch-titles.vala:58
 msgid "Titles"
 msgstr "Τίτλοι"
-
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
-#, c-format
-msgid "Failed to create a Tracker connection: %s"
-msgstr "Αποτυχία κατά τη δημιουργία σύνδεσης για το Tracker: %s"
-
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
-#, c-format
-msgid "Failed to create Tracker connection: %s"
-msgstr "Αποτυχία δημιουργίας σύνδεσης για το Tracker: %s"
-
-#: src/plugins/tracker/rygel-tracker-search-container.vala:104
-#, c-format
-msgid "Failed to get Tracker connection: %s"
-msgstr "Αποτυχία λήψης σύνδεσης του Tracker: %s"
 
 #: src/rygel/application.vala:88
 #, c-format
@@ -1609,7 +1573,7 @@ msgstr "Δε βρέθηκε εφεδρική πολιτική ACL. Χρήση «
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "Δε βρέθηκε εφεδρική πολιτική ACL. Χρήση «deny»"
 
-#: src/ui/rygel-preferences-dialog.vala:109
+#: src/ui/rygel-preferences-dialog.vala:100
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Αποτυχία δημιουργίας διαλόγου προτιμήσεων: %s"
@@ -1628,6 +1592,24 @@ msgstr "Αποτυχία εκκίνησης της υπηρεσίας Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Αποτυχία τερματισμού της υπηρεσίας Rygel: %s"
+
+#~ msgid "Years"
+#~ msgstr "Έτη"
+
+#~ msgid "Shared media"
+#~ msgstr "Κοινόχρηστα πολυμέσα"
+
+#, c-format
+#~ msgid "Failed to create a Tracker connection: %s"
+#~ msgstr "Αποτυχία κατά τη δημιουργία σύνδεσης για το Tracker: %s"
+
+#, c-format
+#~ msgid "Failed to create Tracker connection: %s"
+#~ msgstr "Αποτυχία δημιουργίας σύνδεσης για το Tracker: %s"
+
+#, c-format
+#~ msgid "Failed to get Tracker connection: %s"
+#~ msgstr "Αποτυχία λήψης σύνδεσης του Tracker: %s"
 
 #~ msgid "Replace currently running instance of Rygel"
 #~ msgstr "Αντικατάσταση του εκτελούμενου στιγμιότυπου του Rygel"
