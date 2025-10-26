@@ -1,16 +1,16 @@
 # Norwegian bokmål translation of rygel.
 # Copyright (C) Kjartan Maraas
 # This file is distributed under the same license as the rygel package.
-# Kjartan Maraas <kmaraas@gnome.org>, 2002-2020.
+# Kjartan Maraas <kmaraas@gnome.org>, 2002-2025.
 # Terance Edward Sola <terance@lyse.net>, 2005.
 # Øivind Hoel <oivind.hoel@gmail.com>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel 0.36.x\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues\n"
-"POT-Creation-Date: 2020-07-12 13:38+0000\n"
-"PO-Revision-Date: 2020-12-01 13:58+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
+"POT-Creation-Date: 2025-10-19 07:36+0000\n"
+"PO-Revision-Date: 2025-10-26 16:28+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
@@ -19,68 +19,68 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/rygel.desktop.in.in:3
+#: data/rygel.desktop.in:2
 msgid "Rygel"
 msgstr "Rygel"
 
-#: data/rygel.desktop.in.in:4
+#: data/rygel.desktop.in:3
 msgid "UPnP/DLNA Services"
 msgstr "UpnP/DLNA-tjenester"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in.in:6
+#: data/rygel.desktop.in:5
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "mediatjener;mediavisning;del;lyd;video;bilder;"
 
-#: data/rygel-preferences.desktop.in.in:3 data/rygel-preferences.ui:24
+#: data/rygel-preferences.desktop.in:2 data/rygel-preferences.ui:19
 msgid "Rygel Preferences"
 msgstr "Brukervalg for Rygel"
 
-#: data/rygel-preferences.desktop.in.in:4
+#: data/rygel-preferences.desktop.in:3
 msgid "UPnP/DLNA Preferences"
 msgstr "Brukervalg for UPnP/DLNA"
 
-#: data/rygel-preferences.ui:94
+#: data/rygel-preferences.ui:85
 msgid "Add a directory to the list of shared directories"
 msgstr "Legg til en mappe i listen med delte mapper"
 
-#: data/rygel-preferences.ui:95
+#: data/rygel-preferences.ui:86
 msgid "Add shared directory"
 msgstr "Legg til en delt mappe"
 
-#: data/rygel-preferences.ui:107
+#: data/rygel-preferences.ui:92
 msgid "Remove a directory from the list of shared directories"
 msgstr "Fjern en mappe fra listen med delte mapper"
 
-#: data/rygel-preferences.ui:108
+#: data/rygel-preferences.ui:93
 msgid "Remove shared directory"
 msgstr "Fjern en delt mappe"
 
-#: data/rygel-preferences.ui:153
+#: data/rygel-preferences.ui:121
 msgid "_Share media through DLNA"
 msgstr "_Del medie via DLNA"
 
-#: data/rygel-preferences.ui:230 data/rygel-preferences.ui:231
+#: data/rygel-preferences.ui:195 data/rygel-preferences.ui:196
 msgid "Add a network interface Rygel should serve files on"
 msgstr "Legg til et nettverksgrensesnitt som Rygel skal tilby filer på"
 
-#: data/rygel-preferences.ui:232
+#: data/rygel-preferences.ui:197
 msgid "Add network interface"
 msgstr "Legg til nettverksgrensesnitt"
 
-#: data/rygel-preferences.ui:245 data/rygel-preferences.ui:246
+#: data/rygel-preferences.ui:204 data/rygel-preferences.ui:205
 msgid "Remove a network interface Rygel should no longer serve files on"
 msgstr "Fjern et nettverksgrensesnitt Rygel ikke skal tilby filer på lenger"
 
-#: data/rygel-preferences.ui:247
+#: data/rygel-preferences.ui:206
 msgid "Remove network interface"
 msgstr "Fjern nettverksgrensesnitt"
 
-#: data/rygel-preferences.ui:276
+#: data/rygel-preferences.ui:222
 msgid "Networks:"
 msgstr "Nettverk:"
 
-#: data/rygel-preferences.ui:335
+#: data/rygel-preferences.ui:241
 msgid "Select folders"
 msgstr "Velg mapper"
 
@@ -187,93 +187,79 @@ msgstr "Kan ikke utføre handlingen «NSLookup»: vertsnavn er tomt"
 msgid "Cannot run “Traceroute” action: Host is empty"
 msgstr "Kan ikke utføre handlingen «Traceroute»: vert er tom"
 
-#: src/librygel-core/rygel-cmdline-config.vala:73
+#: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
 msgstr "Vis versjonsnummer"
 
-#: src/librygel-core/rygel-cmdline-config.vala:75
+#: src/librygel-core/rygel-cmdline-config.vala:49
 msgid "Network Interfaces"
 msgstr "Nettverksgrensesnitt"
 
-#: src/librygel-core/rygel-cmdline-config.vala:77
+#: src/librygel-core/rygel-cmdline-config.vala:51
 msgid "Port"
 msgstr "Port"
 
-#: src/librygel-core/rygel-cmdline-config.vala:79
+#: src/librygel-core/rygel-cmdline-config.vala:53
 msgid "Disable transcoding"
 msgstr "Slå av transkoding"
 
-#: src/librygel-core/rygel-cmdline-config.vala:81
+#: src/librygel-core/rygel-cmdline-config.vala:55
 msgid "Disallow upload"
 msgstr "Ikke tillat opplasting"
 
-#: src/librygel-core/rygel-cmdline-config.vala:83
+#: src/librygel-core/rygel-cmdline-config.vala:57
 msgid "Disallow deletion"
 msgstr "Ikke tillat sletting"
 
-#: src/librygel-core/rygel-cmdline-config.vala:85
+#: src/librygel-core/rygel-cmdline-config.vala:59
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr "Kommaseparert liste med domene:nivå-par. Se rygel(1) for detaljer"
 
-#: src/librygel-core/rygel-cmdline-config.vala:87
+#: src/librygel-core/rygel-cmdline-config.vala:61
 msgid "Plugin Path"
 msgstr "Sti til tillegg"
 
-#: src/librygel-core/rygel-cmdline-config.vala:89
+#: src/librygel-core/rygel-cmdline-config.vala:63
 msgid "Engine Path"
 msgstr "Sti til motor"
 
-#: src/librygel-core/rygel-cmdline-config.vala:92
+#: src/librygel-core/rygel-cmdline-config.vala:66
 msgid "Disable plugin"
 msgstr "Slå av tillegg"
 
-#: src/librygel-core/rygel-cmdline-config.vala:94
+#: src/librygel-core/rygel-cmdline-config.vala:68
 msgid "Set plugin titles"
 msgstr "Sett titler for tillegg"
 
-#: src/librygel-core/rygel-cmdline-config.vala:96
+#: src/librygel-core/rygel-cmdline-config.vala:70
 msgid "Set plugin options"
 msgstr "Sett alternativer for tillegg"
 
-#: src/librygel-core/rygel-cmdline-config.vala:98
+#: src/librygel-core/rygel-cmdline-config.vala:72
 msgid "Use configuration file instead of user configuration"
 msgstr "Bruk konfigurasjonsfil i stedet for brukerkonfigurasjon"
 
-#: src/librygel-core/rygel-cmdline-config.vala:100
+#: src/librygel-core/rygel-cmdline-config.vala:74
 msgid "Shut down remote Rygel reference"
 msgstr "Steng ned ekstern Rygel-referanse"
 
-#: src/librygel-core/rygel-cmdline-config.vala:102
-msgid "Replace currently running instance of Rygel"
-msgstr "Erstatt kjørende instans av Rygel"
-
-#: src/librygel-core/rygel-cmdline-config.vala:139
-msgid "Shutting down remote Rygel instance\n"
-msgstr "Stenger ned ekstern Rygel-instans\n"
-
-#: src/librygel-core/rygel-cmdline-config.vala:147
-#, c-format
-msgid "Failed to shut down other Rygel instance: %s"
-msgstr "Klarte ikke å stenge ned annen Rygel-instans: %s"
-
-#: src/librygel-core/rygel-cmdline-config.vala:161
-#: src/librygel-core/rygel-cmdline-config.vala:170
-#: src/librygel-core/rygel-cmdline-config.vala:178
-#: src/librygel-core/rygel-cmdline-config.vala:186
-#: src/librygel-core/rygel-cmdline-config.vala:194
-#: src/librygel-core/rygel-cmdline-config.vala:202
-#: src/librygel-core/rygel-cmdline-config.vala:210
-#: src/librygel-core/rygel-cmdline-config.vala:249
-#: src/librygel-core/rygel-cmdline-config.vala:268
+#: src/librygel-core/rygel-cmdline-config.vala:98
+#: src/librygel-core/rygel-cmdline-config.vala:107
+#: src/librygel-core/rygel-cmdline-config.vala:116
+#: src/librygel-core/rygel-cmdline-config.vala:125
+#: src/librygel-core/rygel-cmdline-config.vala:134
+#: src/librygel-core/rygel-cmdline-config.vala:143
+#: src/librygel-core/rygel-cmdline-config.vala:179
+#: src/librygel-core/rygel-cmdline-config.vala:192
+#: src/librygel-core/rygel-cmdline-config.vala:207
+#: src/librygel-core/rygel-cmdline-config.vala:213
+#: src/librygel-core/rygel-cmdline-config.vala:220
+#: src/librygel-core/rygel-cmdline-config.vala:224
+#: src/librygel-core/rygel-cmdline-config.vala:228
+#: src/librygel-core/rygel-cmdline-config.vala:248
+#: src/librygel-core/rygel-cmdline-config.vala:270
 #: src/librygel-core/rygel-cmdline-config.vala:274
-#: src/librygel-core/rygel-cmdline-config.vala:281
-#: src/librygel-core/rygel-cmdline-config.vala:285
-#: src/librygel-core/rygel-cmdline-config.vala:289
-#: src/librygel-core/rygel-cmdline-config.vala:312
-#: src/librygel-core/rygel-cmdline-config.vala:338
-#: src/librygel-core/rygel-cmdline-config.vala:367
-#: src/librygel-core/rygel-cmdline-config.vala:393
-#: src/librygel-core/rygel-cmdline-config.vala:418
+#: src/librygel-core/rygel-cmdline-config.vala:287
 #: src/librygel-core/rygel-environment-config.vala:100
 #: src/librygel-core/rygel-environment-config.vala:104
 #: src/librygel-core/rygel-environment-config.vala:108
@@ -339,11 +325,11 @@ msgstr "Ingen verdi satt for «%s/tittel»"
 msgid "No value available for “%s/%s”"
 msgstr "Nye verdi tilgjengelig for «%s/%s»"
 
-#: src/librygel-core/rygel-plugin-information.vala:64
+#: src/librygel-core/rygel-plugin-information.vala:67
 msgid "[Plugin] group not found"
 msgstr "[Tillegg] fant ikke gruppe"
 
-#: src/librygel-core/rygel-plugin-information.vala:76
+#: src/librygel-core/rygel-plugin-information.vala:79
 #, c-format
 msgid "Plugin module %s does not exist"
 msgstr "Tilleggsmodul %s eksisterer ikke"
@@ -368,7 +354,7 @@ msgstr "Klarte ikke å laste modul fra sti «%s»: %s"
 msgid "Failed to find entry point function “%s” in “%s”: %s"
 msgstr "Klarte ikke å finne inngangsfunksjon «%s» i «%s»: %s"
 
-#: src/librygel-core/rygel-plugin-loader.vala:155
+#: src/librygel-core/rygel-plugin-loader.vala:156
 #, c-format
 msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
 msgstr "Modul «%s» er i konflikt med allerede lastet modul «%s». Hopper over"
@@ -378,17 +364,17 @@ msgstr "Modul «%s» er i konflikt med allerede lastet modul «%s». Hopper over
 msgid "Failed to open plugins folder: “%s”"
 msgstr "Kunne ikke åpne mappe for tillegg: «%s»"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:149
+#: src/librygel-core/rygel-recursive-module-loader.vala:160
 #, c-format
 msgid "Error listing contents of folder “%s”: %s"
 msgstr "Feil under listing av innhold i mappe «%s»: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:193
+#: src/librygel-core/rygel-recursive-module-loader.vala:204
 #, c-format
 msgid "Could not load plugin: %s"
 msgstr "Kunne ikke laste tillegg: %s"
 
-#: src/librygel-core/rygel-recursive-module-loader.vala:220
+#: src/librygel-core/rygel-recursive-module-loader.vala:231
 #, c-format
 msgid "Failed to query content type for “%s”"
 msgstr "Klarte ikke å spørre etter innholdstype for «%s»"
@@ -428,7 +414,9 @@ msgstr "Klarte ikke å rulle tilbake transaksjon: %s"
 msgid ""
 "Your GStreamer installation seems to be missing the “playbin3” element. The "
 "Rygel GStreamer renderer implementation cannot work without it"
-msgstr "GStreamer-installasjonen din ser ut til å mangle «playbin3»-elementet. Rygels avspillingsimplementasjon fungerer ikke uten denne"
+msgstr ""
+"GStreamer-installasjonen din ser ut til å mangle «playbin3»-elementet. "
+"Rygels avspillingsimplementasjon fungerer ikke uten denne"
 
 #: src/librygel-renderer/rygel-av-transport.vala:204
 #: src/librygel-renderer/rygel-rendering-control.vala:137
@@ -463,26 +451,29 @@ msgid "Play mode not supported"
 msgstr "Avspillingsmodus er ikke støttet"
 
 #. FIXME: Return a more sensible error here.
-#: src/librygel-renderer/rygel-av-transport.vala:774
-#: src/librygel-renderer/rygel-av-transport.vala:789
-#: src/librygel-renderer/rygel-av-transport.vala:798
-#: src/librygel-renderer/rygel-av-transport.vala:877
+#: src/librygel-renderer/rygel-av-transport.vala:773
+#: src/librygel-renderer/rygel-av-transport.vala:779
+#: src/librygel-renderer/rygel-av-transport.vala:794
+#: src/librygel-renderer/rygel-av-transport.vala:803
+#: src/librygel-renderer/rygel-av-transport.vala:863
+#: src/librygel-renderer/rygel-av-transport.vala:898
 msgid "Resource not found"
 msgstr "Ressurs ikke funnet"
 
-#: src/librygel-renderer/rygel-av-transport.vala:787
+#: src/librygel-renderer/rygel-av-transport.vala:792
 #, c-format
 msgid "Problem parsing playlist: %s"
 msgstr "Det oppsto et problem med lesing av spillelisten: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:873
+#: src/librygel-renderer/rygel-av-transport.vala:859
+#: src/librygel-renderer/rygel-av-transport.vala:894
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Klarte ikke å aksessere ressurs på %s: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:889
+#: src/librygel-renderer/rygel-av-transport.vala:875
 msgid "Illegal MIME-type"
 msgstr "Ulovlog MIME-type"
 
@@ -563,7 +554,7 @@ msgstr "Kan ikke bla gjennom underoppføringer på oppføringen"
 msgid "Failed to browse “%s”: %s\n"
 msgstr "Klarte ikke bla gjennom «%s»: %s\n"
 
-#: src/librygel-server/rygel-client-hacks.vala:149
+#: src/librygel-server/rygel-client-hacks.vala:151
 msgid "Not Applicable"
 msgstr "Ikke relevant"
 
@@ -575,13 +566,23 @@ msgstr "Filoverføring finnes ikke"
 msgid "No D-Bus thumbnailer service available"
 msgstr "Ingen D-Bus miniatyrprogram tilgjengelig"
 
-#: src/librygel-server/rygel-http-get.vala:52
+#: src/librygel-server/rygel-http-byte-seek-request.vala:116
+#, c-format
+msgid "Range end value %lld is smaller than range start value %lld: '%s'"
+msgstr "Område og verdi %lld er mindre enn startverdien for område %lld: «%s»"
+
+#: src/librygel-server/rygel-http-get.vala:53
 msgid "Invalid Request (only GET and HEAD supported)"
 msgstr "Ugyldig forespørsel (kun GET og HEAD er støttet)"
 
-#: src/librygel-server/rygel-http-get.vala:60
+#: src/librygel-server/rygel-http-get.vala:61
 msgid " must be 1"
 msgstr "må være 1"
+
+#: src/librygel-server/rygel-http-get.vala:91
+#, c-format
+msgid "%s transfer mode not supported for '%s'"
+msgstr "Overføringsmodus %s er ikke støttet for «%s»"
 
 #: src/librygel-server/rygel-http-item-uri.vala:152
 #, c-format
@@ -593,7 +594,7 @@ msgid "Not found"
 msgstr "Ikke funnet"
 
 #: src/librygel-server/rygel-http-post.vala:64
-#: src/librygel-server/rygel-import-resource.vala:193
+#: src/librygel-server/rygel-import-resource.vala:228
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "Overføring av data til ikke-tom oppføring «%s» er ikke tillatt"
@@ -609,7 +610,7 @@ msgstr "Ingen skrivbar URI %s tilgjengelig"
 msgid "Failed to move dotfile %s: %s"
 msgstr "Klarte ikke å flytte skjult fil %s: %s"
 
-#: src/librygel-server/rygel-http-request.vala:95
+#: src/librygel-server/rygel-http-request.vala:104
 #, c-format
 msgid "Requested item “%s” not found"
 msgstr "Forespurt oppføring «%s» ble ikke funnet"
@@ -619,17 +620,17 @@ msgstr "Forespurt oppføring «%s» ble ikke funnet"
 msgid "Couldn’t create data source for %s"
 msgstr "Klarte ikke å lage datakilde for %s"
 
-#: src/librygel-server/rygel-import-resource.vala:124
+#: src/librygel-server/rygel-import-resource.vala:123
 #, c-format
 msgid "Failed to get original URI for “%s”: %s"
 msgstr "Klarte ikke å hente original URI for «%s»: %s"
 
-#: src/librygel-server/rygel-import-resource.vala:188
+#: src/librygel-server/rygel-import-resource.vala:223
 #, c-format
 msgid "URI “%s” invalid for importing contents to"
 msgstr "URI «%s» er ugyldig for import av data"
 
-#: src/librygel-server/rygel-import-resource.vala:276
+#: src/librygel-server/rygel-import-resource.vala:250
 #, c-format
 msgid "Failed to import file from %s: %s"
 msgstr "Klarte ikke å importere fil fra %s: %s"
@@ -773,7 +774,7 @@ msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init ble ikke kalt. Kan ikke fortsette."
 
 #: src/librygel-server/rygel-media-file-item.vala:177
-#: src/librygel-server/rygel-video-item.vala:222
+#: src/librygel-server/rygel-video-item.vala:242
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "Klarte ikke å bestemme protokoll for URI %s"
@@ -863,7 +864,7 @@ msgstr "UPnP-klasse «%s» er ikke støttet"
 
 #: src/librygel-server/rygel-object-creator.vala:419
 #: src/librygel-server/rygel-object-creator.vala:431
-#: src/librygel-server/rygel-object-creator.vala:723
+#: src/librygel-server/rygel-object-creator.vala:721
 #: src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
@@ -884,7 +885,7 @@ msgstr "DLNA-profil «%s» er ikke støttet"
 msgid "Cannot create object of class “%s”: Not supported"
 msgstr "Kan ikke lage objekt av klasse «%s»: Ikke støttet"
 
-#: src/librygel-server/rygel-object-creator.vala:754
+#: src/librygel-server/rygel-object-creator.vala:752
 #, c-format
 msgid ""
 "Error from container “%s” on trying to find the newly added child object "
@@ -915,7 +916,8 @@ msgstr "Ugyldige søkekriterier oppgitt"
 msgid "Failed to search in “%s”: %s"
 msgstr "Klarte ikke å søke i «%s»: %s"
 
-#: src/librygel-server/rygel-subtitle-manager.vala:92
+#: src/librygel-server/rygel-subtitle-manager.vala:49
+#: src/librygel-server/rygel-subtitle-manager.vala:96
 msgid "No subtitle available"
 msgstr "Ingen undertekst tilgjengelig"
 
@@ -1051,48 +1053,6 @@ msgstr "Modul «%s» klarte ikke å koble til D-Bus-sesjonsbussen. Ignorerer …
 msgid "External provider %s did not provide mandatory property “%s”"
 msgstr "Ekstern tilbyder %s oppga ikke obligatorisk egenskap «%s»"
 
-#: src/plugins/lms/rygel-lms-albums.vala:166
-#: src/plugins/tracker3/rygel-tracker-albums.vala:31
-#: src/plugins/tracker/rygel-tracker-albums.vala:31
-msgid "Albums"
-msgstr "Album"
-
-#: src/plugins/lms/rygel-lms-all-images.vala:89
-#: src/plugins/lms/rygel-lms-all-music.vala:171
-#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
-#: src/plugins/media-export/rygel-media-export-root-container.vala:33
-msgid "All"
-msgstr "Alle"
-
-#: src/plugins/lms/rygel-lms-image-years.vala:53
-msgid "Years"
-msgstr "År"
-
-#: src/plugins/lms/rygel-lms-music-root.vala:35
-#: src/plugins/tracker3/rygel-tracker-artists.vala:31
-#: src/plugins/tracker/rygel-tracker-artists.vala:31
-msgid "Artists"
-msgstr "Artister"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:33
-msgid "Shared media"
-msgstr "Delt medie"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:45
-#: src/plugins/media-export/rygel-media-export-root-container.vala:605
-msgid "Music"
-msgstr "Musikk"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:49
-#: src/plugins/media-export/rygel-media-export-root-container.vala:610
-msgid "Videos"
-msgstr "Videoer"
-
-#: src/plugins/lms/rygel-lms-root-container.vala:53
-#: src/plugins/media-export/rygel-media-export-root-container.vala:608
-msgid "Pictures"
-msgstr "Bilder"
-
 #: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
 #, c-format
 msgid "Title %d"
@@ -1139,52 +1099,52 @@ msgstr "Klarte ikke å lese kommandolinjeargumenter: %s"
 msgid "Failed to create media art extractor: %s"
 msgstr "Klarte ikke å lage program for å hente ut mediekunst: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:146
+#: src/plugins/media-export/rygel-media-export-harvester.vala:158
 #, c-format
 msgid "“%s” harvested"
 msgstr "«%s» hentet inn"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:202
+#: src/plugins/media-export/rygel-media-export-harvester.vala:214
 #, c-format
 msgid "Error fetching object “%s” from database: %s"
 msgstr "Feil under henting av objekt «%s» fra database: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:210
+#: src/plugins/media-export/rygel-media-export-harvester.vala:222
 #, c-format
 msgid "Failed to query info of a file %s: %s"
 msgstr "Klarte ikke å spørre etter informasjon om en fil %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:245
+#: src/plugins/media-export/rygel-media-export-harvester.vala:257
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
 msgstr "Fant ikke objekt %s eller opphavet. Databasen er inkonsistent"
 
-#: src/plugins/media-export/rygel-media-export-harvester.vala:249
+#: src/plugins/media-export/rygel-media-export-harvester.vala:261
 #, c-format
 msgid "Error removing object from database: %s"
 msgstr "Feil under fjerning av objekt fra database: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:127
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:128
 #, c-format
 msgid "Failed to harvest file %s: %s"
 msgstr "Klarte ikke å høste fil %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:191
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:194
 #, c-format
 msgid "Failed to query database: %s"
 msgstr "Klarte ikke å spørre database: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:268
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:275
 #, c-format
 msgid "Failed to enumerate folder “%s”: %s"
 msgstr "Klarte ikke å liste mappe «%s»: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:286
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:293
 #, c-format
 msgid "Failed to get children of container %s: %s"
 msgstr "Klarte ikke å hente barn av kontainer %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:345
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:352
 #, c-format
 msgid "Failed to extract meta-data for file %s"
 msgstr "Klarte ikke å hente ut metadata for fil %s"
@@ -1192,7 +1152,7 @@ msgstr "Klarte ikke å hente ut metadata for fil %s"
 #. error is only emitted if even the basic information extraction
 #. failed; there's not much to do here, just print the information and
 #. go to the next file
-#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:358
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:365
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
 msgstr "Hopper over URI %s; utdrag feilet fullstendig: %s"
@@ -1212,70 +1172,70 @@ msgstr "Klarte ikke å tvinge gjennom reindeksering for å fikse databasen: %s"
 msgid "Failed to create indices: %s"
 msgstr "Klarte ikke å opprette indekser: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:101
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:97
 #, c-format
 msgid "Cannot upgrade from version %d"
 msgstr "Kan ikke oppgradere fra versjon %d"
 
-#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:123
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:117
 #, c-format
 msgid "Database upgrade to v18 failed: %s"
 msgstr "Oppgradering av database til v18 feilet: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:134
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:135
 #, c-format
 msgid "Failed to add item with ID %s: %s"
 msgstr "Klarte ikke å legge til oppføring med ID %s: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:217
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:218
 #, c-format
 msgid "Failed to get update IDs: %s"
 msgstr "Klarte ikke å hente IDer for oppdatering: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:400
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:401
 #, c-format
 msgid "Inconsistent database: item %s does not have parent %s"
 msgstr "Ukonsistent database: oppføring %s har ikke opphav %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:525
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:526
 msgid "Failed to get reset token"
 msgstr "Klarte ikke å hente tegn for nullstilling: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:537
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:538
 #, c-format
 msgid "Failed to persist ServiceResetToken: %s"
 msgstr "Klarte ikke å persistere ServiceResetToken: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:547
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:548
 #, c-format
 msgid "Failed to remove virtual folders: %s"
 msgstr "Klarte ikke å fjerne virtuelle mapper: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:561
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:562
 #, c-format
 msgid "Failed to mark item %s as guarded (%d): %s"
 msgstr "Klarte ikke å merke oppføring %s som bevoktet (%d): %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:571
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:572
 msgid "Cannot create references to containers"
 msgstr "Kan ikke lage referanser til kontainere"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:597
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:598
 #, c-format
 msgid "Failed to add %s to ignored files: %s"
 msgstr "Klarte ikke å legge til %s som ignorert fil: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:610
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:611
 #, c-format
 msgid "Failed to get whether URI %s is ignored: %s"
 msgstr "Klarte ikke å sjekke om URI %s er ignorert: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:626
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:627
 #, c-format
 msgid "Failed to get whether item %s is guarded: %s"
 msgstr "Klarte ikke å sjekke om oppføring %s er bevoktet: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:666
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:667
 #, c-format
 msgid ""
 "The version “%d” of the detected database is newer than our supported "
@@ -1283,21 +1243,21 @@ msgid ""
 msgstr ""
 "Versjon «%d» av gjenkjent database er nyere enn vår støttede versjon «%d»"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:688
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:689
 msgid "Incompatible schema… cannot proceed"
 msgstr "Inkompatibelt skjema … kan ikke fortsette"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:694
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:695
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
 msgstr "Ugyldig database, kan ikke spørre tabell sqlite_master: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:895
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:896
 #, c-format
 msgid "Failed to create database schema: %s"
 msgstr "Klarte ikke å lage databaseskjema: %s"
 
-#: src/plugins/media-export/rygel-media-export-media-cache.vala:1232
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1234
 #, c-format
 msgid "Skipping unsupported sort field: %s"
 msgstr "Hopper over sorteringsfelt som ikke støttes: %s"
@@ -1345,6 +1305,11 @@ msgstr "Lesing fra barn feilet: %s"
 msgid "Failed to send command to child: %s"
 msgstr "Klarte ikke å sende kommando til barn: %s"
 
+#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
+#: src/plugins/media-export/rygel-media-export-root-container.vala:33
+msgid "All"
+msgstr "Alle"
+
 #: src/plugins/media-export/rygel-media-export-node-query-container.vala:93
 #, c-format
 msgid "Failed to get child count: %s"
@@ -1381,7 +1346,7 @@ msgstr "Kan ikke fjerne oppføringer i %s"
 msgid "upnp:class not supported in %s"
 msgstr "upnp:class er ikke støttet i %s"
 
-#: src/plugins/media-export/rygel-media-export-plugin.vala:52
+#: src/plugins/media-export/rygel-media-export-plugin.vala:53
 #, c-format
 msgid "Failed to load plugin %s: %s"
 msgstr "Kunne ikke laste tillegg %s: %s"
@@ -1400,8 +1365,7 @@ msgstr "Klarte ikke å sette opp filovervåking for %s: %s"
 #. Titles and definitions of some virtual folders,
 #. for use with QueryContainer.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:32
-#: src/plugins/tracker3/rygel-tracker-years.vala:33
-#: src/plugins/tracker/rygel-tracker-years.vala:33
+#: src/plugins/localsearch/localsearch-years.vala:33
 msgid "Year"
 msgstr "År"
 
@@ -1416,8 +1380,7 @@ msgid "Album"
 msgstr "Album"
 
 #: src/plugins/media-export/rygel-media-export-root-container.vala:41
-#: src/plugins/tracker3/rygel-tracker-genre.vala:31
-#: src/plugins/tracker/rygel-tracker-genre.vala:31
+#: src/plugins/localsearch/localsearch-genre.vala:31
 msgid "Genre"
 msgstr "Sjanger"
 
@@ -1427,8 +1390,7 @@ msgstr "Filer og mapper"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
-#: src/plugins/tracker3/rygel-tracker-plugin.vala:34
-#: src/plugins/tracker/rygel-tracker-plugin.vala:33
+#: src/plugins/localsearch/localsearch-plugin.vala:34
 msgid "@REALNAME@’s media"
 msgstr "@REALNAME@ sine medier"
 
@@ -1437,6 +1399,18 @@ msgstr "@REALNAME@ sine medier"
 #, c-format
 msgid "Failed to remove entry: %s"
 msgstr "Klarte ikke å fjerne oppføring: %s"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:605
+msgid "Music"
+msgstr "Musikk"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:608
+msgid "Pictures"
+msgstr "Bilder"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:610
+msgid "Videos"
+msgstr "Videoer"
 
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
 #: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
@@ -1477,60 +1451,78 @@ msgstr "GStreamer avspiller"
 msgid "Could not create GStreamer player"
 msgstr "Kunne ikke lage GStreamer-avspiller"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:55
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:63
+#: src/plugins/localsearch/localsearch-albums.vala:31
+msgid "Albums"
+msgstr "Album"
+
+#: src/plugins/localsearch/localsearch-artists.vala:31
+msgid "Artists"
+msgstr "Artister"
+
+#: src/plugins/localsearch/localsearch-category-all-container.vala:56
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "Klarte ikke å lage URI for mappe «%s»: %s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:71
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:79
+#: src/plugins/localsearch/localsearch-category-all-container.vala:67
 #, c-format
-msgid "Could not subscribe to Tracker signals: %s"
-msgstr "Kunne ikke abonnere på signaler fra Tracker: %s"
+msgid "Could not subscribe to LocalSearch signals: %s"
+msgstr "Kunne ikke abonnere på signaler fra LocalSearch: %s"
 
-#: src/plugins/tracker3/rygel-tracker-category-all-container.vala:94
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:97
+#: src/plugins/localsearch/localsearch-category-all-container.vala:92
 msgid "Not supported"
 msgstr "Ikke støttet"
 
-#: src/plugins/tracker3/rygel-tracker-metadata-container.vala:102
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:110
+#: src/plugins/localsearch/localsearch-metadata-container.vala:99
 #, c-format
 msgid "Error getting all values for “%s”: %s"
 msgstr "Feil under henting av alle verdier for «%s»: %s"
 
-#: src/plugins/tracker3/rygel-tracker-plugin-factory.vala:35
-#: src/plugins/tracker/rygel-tracker-plugin-factory.vala:35
+#: src/plugins/localsearch/localsearch-plugin-factory.vala:35
 #, c-format
-msgid "Failed to start Tracker service: %s. Plugin disabled."
-msgstr "Klarte ikke å starte Tracker-tjenesten: %s. Tillegg slått av."
+msgid "Failed to start LocalSearch service: %s. Plugin disabled."
+msgstr "Klarte ikke å starte LocalSearch-tjenesten: %s. Tillegg slått av."
 
-#: src/plugins/tracker3/rygel-tracker-search-container.vala:228
-#: src/plugins/tracker/rygel-tracker-search-container.vala:228
+#: src/plugins/localsearch/localsearch-root-container.vala:46
+#, c-format
+msgid "Could not connect to %s, falling back to old Tracker3 service"
+msgstr "Kunne ikke koble til %s, går tilbake til den gamle Tracker3-tjenesten"
+
+#: src/plugins/localsearch/localsearch-search-container.vala:228
 #, c-format
 msgid "Error getting item count under category “%s”: %s"
 msgstr "Feil under henting av antall oppføringer under kategori «%s»: %s"
 
-#: src/plugins/tracker3/rygel-tracker-titles.vala:58
-#: src/plugins/tracker/rygel-tracker-titles.vala:58
+#: src/plugins/localsearch/localsearch-titles.vala:58
 msgid "Titles"
 msgstr "Titler"
 
-#: src/plugins/tracker/rygel-tracker-category-all-container.vala:54
+#: src/rygel/application.vala:88
 #, c-format
-msgid "Failed to create a Tracker connection: %s"
-msgstr "Klarte ikke å opprette en tilkobling til Tracker: %s"
+msgid "Failed to load user configuration: %s"
+msgstr "Klarte ikke å laste brukerkonfigurasjon: %s"
 
-#: src/plugins/tracker/rygel-tracker-metadata-container.vala:58
+#: src/rygel/application.vala:125
 #, c-format
-msgid "Failed to create Tracker connection: %s"
-msgstr "Klarte ikke å lage en tilkobling til Tracker: %s"
+msgid "No plugins found in %d second; giving up…"
+msgid_plural "No plugins found in %d seconds; giving up…"
+msgstr[0] "Ingen tillegg funnet etter %d sekund. Gir opp …"
+msgstr[1] "Ingen tillegg funnet etter %d sekunder. Gir opp …"
 
-#: src/plugins/tracker/rygel-tracker-search-container.vala:104
+#: src/rygel/application.vala:154
 #, c-format
-msgid "Failed to get Tracker connection: %s"
-msgstr "Klarte ikke å hente tilkobling til Tracker: %s"
+msgid "Rygel v%s starting…"
+msgstr "Rygel v%s starter …"
+
+#: src/rygel/application.vala:202
+#, c-format
+msgid "Failed to create RootDevice for %s. Reason: %s"
+msgstr "Klarte ikke å opprette RootDevice for %s. Årsak: %s"
+
+#: src/rygel/application.vala:283
+#, c-format
+msgid "Failed to create root device factory: %s"
+msgstr "Klarte ikke å opprette fabrikk for rotenhet: %s"
 
 #: src/rygel/rygel-acl.vala:110
 #, c-format
@@ -1550,38 +1542,7 @@ msgstr "Ingen reserveregler for ACL funnet. Bruker «tillat»"
 msgid "No ACL fallback policy found. Using “deny”"
 msgstr "Ingen reserveregel for ACL funnet. Bruker «nekt»"
 
-#: src/rygel/rygel-dbus-service.vala:81
-msgid "Another instance of Rygel is already running. Not starting."
-msgstr "En annen instans av Rygel kjører allerede. Starter ikke."
-
-#: src/rygel/rygel-main.vala:85
-#, c-format
-msgid "Rygel v%s starting…"
-msgstr "Rygel v%s starter …"
-
-#: src/rygel/rygel-main.vala:113
-#, c-format
-msgid "No plugins found in %d second; giving up…"
-msgid_plural "No plugins found in %d seconds; giving up…"
-msgstr[0] "Ingen tillegg funnet etter %d sekund. Gir opp …"
-msgstr[1] "Ingen tillegg funnet etter %d sekunder. Gir opp …"
-
-#: src/rygel/rygel-main.vala:177
-#, c-format
-msgid "Failed to create root device factory: %s"
-msgstr "Klarte ikke å opprette fabrikk for rotenhet: %s"
-
-#: src/rygel/rygel-main.vala:235
-#, c-format
-msgid "Failed to create RootDevice for %s. Reason: %s"
-msgstr "Klarte ikke å opprette RootDevice for %s. Årsak: %s"
-
-#: src/rygel/rygel-main.vala:272
-#, c-format
-msgid "Failed to load user configuration: %s"
-msgstr "Klarte ikke å laste brukerkonfigurasjon: %s"
-
-#: src/ui/rygel-preferences-dialog.vala:109
+#: src/ui/rygel-preferences-dialog.vala:100
 #, c-format
 msgid "Failed to create preferences dialog: %s"
 msgstr "Klarte ikke å opprette brukervalgdialog: %s"
