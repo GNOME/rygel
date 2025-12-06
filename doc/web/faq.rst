@@ -4,6 +4,12 @@
 FAQ
 ===
 
+I am on Ubuntu and Rygel reports "access denied" for folders other than $HOME/Pictures, $HOME/Videos and $HOME/Music
+====================================================================================================================
+
+AppArmor ships a tunable for rygel which limits access to the three XDG folders. Please refer to
+the `AppArmor documentation <https://gitlab.com/apparmor/apparmor/-/wikis/Documentation>`_ how to override those settings.
+
 Rygel seems unwilling to bind to any interface other than 127.0.0.1, despite -n or interfaces=
 ==============================================================================================
 
