@@ -33,6 +33,7 @@
         "*.a"
     ],
     "modules" : [
+        "python3-pyyaml.json",
         {
             "name" : "gssdp",
             "buildsystem" : "meson",
