@@ -261,7 +261,7 @@ summary(
     'Media Engines' : get_option('engines'),
     'Configuration GUI' : get_option('gtk'),
     'Documentation' : get_option('api-docs'),
-    'Man Pages' : get_option('man_pages'),
+    'Man Pages' : get_option('man-pages'),
   },
   section: 'Features'
 )

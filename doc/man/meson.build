@@ -1,65 +1,29 @@
-xsltproc = find_program('xsltproc', required: false)
+rst2man = find_program ('rst2man', 'rst2man.py',
+  required: get_option('man-pages'),
+  disabler: true
+)
 
-if xsltproc.found()
-    stylesheet = 'http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl'
+rygel_conf_man_rst = custom_target('rygel.conf.rst',
+  input: [meson.project_source_root() / 'build-aux/generate-conf-artifacts.py', meson.project_source_root() / 'data/configuration.yaml'],
+  depend_files: [meson.project_source_root() / 'build-aux/generate-conf-artifacts.py', meson.project_source_root() / 'data/configuration.yaml'],
+  output: 'rygel.conf.rst',
+  command: [python, '@INPUT@', '-mman', '@OUTPUT@'],
+  install: false,
+)
 
-    xlstproc_flags = [
-        '--nonet',
-        '--stringparam', 'man.output.quietly', '1',
-        '--stringparam', 'funcsynopsis.style', 'ansi',
-        '--stringparam', 'man.authors.section.enabled', '1',
-        '--stringparam', 'man.copyright.section.enabled', '1',
-    ]
+custom_target('rygel manpage',
+  input: 'rygel.rst',
+  output: 'rygel.1',
+  command: [rst2man, '@INPUT@', '@OUTPUT@'],
+  install: true,
+  install_dir: get_option('mandir') / 'man1'
+)
 
-    xsltproc_args = [
-        xsltproc,
-        xlstproc_flags,
-        '-o', '@OUTPUT@',
-        stylesheet,
-        '@INPUT@',
-    ]
+custom_target('rygel.conf manpage',
+  input: rygel_conf_man_rst,
+  output: 'rygel.conf.5',
+  command: [rst2man, '@INPUT@', '@OUTPUT@'],
+  install: true,
+  install_dir: get_option('mandir') / 'man5'
+)
 
-    man_input_files = [
-        'rygel.xml',
-        'rygel.conf.xml'
-    ]
-
-    man_output_files = [
-        'rygel.1',
-        'rygel.conf.5'
-    ]
-
-    r = run_command(
-        [
-            xsltproc,
-            xlstproc_flags,
-            '--noout',
-            stylesheet,
-            'rygel.xml'
-        ],
-        check: true
-    )
-
-    if (r.returncode() == 0)
-        message('docbook stylesheets found')
-        custom_target(
-            'man 1 pages',
-            input: 'rygel.xml',
-            output: 'rygel.1',
-            command: xsltproc_args,
-            install: true,
-            install_dir: join_paths(get_option('mandir'), 'man1')
-        )
-
-        custom_target(
-            'man 5 pages',
-            input: 'rygel.conf.xml',
-            output: 'rygel.conf.5',
-            command: xsltproc_args,
-            install: true,
-            install_dir: join_paths(get_option('mandir'), 'man5')
-        )
-    else
-        error('Cannot bulid man pages, failed to run xsltproc')
-    endif
-endif

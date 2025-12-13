@@ -34,6 +34,7 @@
     ],
     "modules" : [
         "python3-pyyaml.json",
+        "python3-docutils.json",
         {
             "name" : "gssdp",
             "buildsystem" : "meson",
