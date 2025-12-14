@@ -1,0 +1,6 @@
+{
+   <gupnp-dlna-known-leak>
+   Memcheck:Leak
+   ...
+   fun:gupnp_dlna_load_profiles_from_file
+}
