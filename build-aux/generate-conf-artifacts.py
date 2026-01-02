@@ -51,6 +51,10 @@ def render_example_conf(config, output):
         for index, value in enumerate(section["values"]):
             if index > 0:
                 print(file=output)
+
+            if "only-in" in value and "conf" not in value["only-in"]:
+                continue
+
             if "description" in value:
                 print(f"{comment_text(value['description'], strip=True)}", file=output)
             if "comment" in value and value["comment"]:
