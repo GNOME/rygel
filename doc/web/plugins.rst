@@ -37,18 +37,18 @@ MediaExport
 
 The Media Export plugin recursively exports folders and files specified in the user configuration. This plugin supports all
 types of URIs that gio/gvfs and gstreamer can handle. This plugin uses gupnp-dlna's APIs directly to extract metadata from
-media and thus does *not* use Tracker.
+media and thus does *not* use Localsearch.
 
 This plugin may not be used at the same time as the Localsearch plugin because both serve a similar purpose.
 
 Refer to the configuration :ref:`mediaexport_configuration` for plugin-specific options.
 
-Tracker
--------
+Localsearch
+-----------
 
-Rygel's Tracker plugin use Tracker to discover media files and export them via UPnP.
+Rygel's Localsearch plugin uses Localsearch to discover media files and export them via UPnP.
 
-This plugin may not be used at the same time as the Media Export plugin because both serve a similar purpose.
+This plugin may not be used at the same time as the MediaExport plugin because both serve a similar purpose.
 
 Refer to the configuration :ref:`localsearch_configuration` for plugin-specific options.
 
