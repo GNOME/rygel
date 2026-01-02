@@ -280,4 +280,88 @@
         Override the default videosink for the playbin in the renderer
       default: "autovideosink"
       comment: yes
+- name: "GstLaunch"
+  description: |
+    The GstLaunch plugin allows to export GStreamer Pipelines using the syntax from the `gst-launch`
+    commandline utility. It is able to export more than one pipeline. You have to omit the sink which
+    is provided by Rygel.
+
+    Available items have to be declared using the "launch-items" setting. Each pipeline then needs
+    to be configured for the three values of "launch", "mime", and "title". For example, given the
+    setting of ``launuch-items=audio;video`` it is necessary to also define triplets of
+    ``audio-title``, ``audio-mime``, ``audio-launch`` and ``video-title``, ``video-mime`` and
+    ``video-launch``.
+  values:
+    - name: "enabled"
+      default: "false"
+      only-in: ["conf"]
+    - name: "launch-items"
+      default: "audiotestsrc;videotestsrc;videotestoverlay"
+      description: |
+        A semicolon seperated list of names for the GstLaunch pipelines to be exposed
+      only-in: ["conf"]
+    - name: "audiotestsrc-title"
+      default: "Audiotestsrc"
+      description: "A title for the audiotestsrc item"
+      only-in: ["conf"]
+    - name: "audiotestsrc-mime"
+      default: "audio/x-wav"
+      description: "The MIME type for the audiotestsrc item"
+      only-in: ["conf"]
+    - name: "audiotestsrc-launch"
+      default: "audiotestsrc ! wavenc"
+      description: "The Pipeline description for the audiotestsrc item"
+      only-in: ["conf"]
+    - name: "videotestsrc-title"
+      default: "Videotestsrc"
+      description: "The title for the videotestsrc item"
+      only-in: ["conf"]
+    - name: "videotestsrc-mime"
+      default: "video/mpeg"
+      description: "The MIME type for the videotestsrc item"
+      only-in: ["conf"]
+    - name: "videotestsrc-launch"
+      default: "videotestsrc ! video/x-raw,width=640,height=480 ! avenc_mpeg2video ! mpegtsmux"
+      description: "The Pipeline description  for the videotestsrc item"
+      only-in: ["conf"]
+    - name: "videotestoverlay-title"
+      default: "Videotestsrc with Time"
+      description: "The title for the videotestoverlay item"
+      only-in: ["conf"]
+    - name: "videotestoverlay-mime"
+      default: "video/mpeg"
+      description: "The MIME type for the videotestoverlay item"
+      only-in: ["conf"]
+    - name: "videotestoverlay-launch"
+      default: "videotestsrc ! video/x-raw,width=640,height=480 ! timeoverlay ! avenc_mpeg2video ! mpegtsmux"
+      description: "The Pipeline description for the videotestoverlay item"
+      only-in: ["conf"]
+- name: "MPRIS"
+  description: |
+    MPRIS allows you to turn any media player that implements MPRIS control into a DLNA/UPnP renderer by converting
+    UPnP calls to MPRIS and vice-versa.
+    If you want to disable MPRIS integration for some players, e.g. if they do not support setting the
+    URL through MPRIS, you can add a section with the name of the MPRIS endpoint as shown in Rygel's log
+    and set enable to false
+  values:
+    - name: "enabled"
+      default: "false"
+      only-in: ["conf"]
+- name: "org.mpris.MediaPlayer2.io.bassi.Amberol"
+  only-in: ["conf"]
+  comment: true
+  description: Example of disabling a specific player for MPRIS integration
+  values:
+    - name: "enabled"
+      default: "false"
+      only-in: ["conf"]
+      comment: true
+- name: "External"
+  description: |
+    Similar to MPRIS the External plugin allows applications that expose the MediaServer2 D-Bus specification
+    converted into a DLNA server.
+  values:
+    - name: "enabled"
+      default: "false"
+      only-in: ["conf"]
 
