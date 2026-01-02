@@ -2,12 +2,15 @@
 # SPDX-License-Identifier: LGPL-2.1-or-later
 # SPDX-FileCopyrightText: 2025 Jens Georg <mail@jensge.org>
 
+import typing
 import yaml
 import argparse
 import textwrap
 import re
 import sys
 
+admonition_map = {"Note" : ".. note::", "Warning" : '.. warning::', "Example" : '.. example::'}
+admonition_regex = re.compile(r'%%(\w+): ')
 
 def reflow_text(raw_description: str, width: int = 80, strip: bool = False) -> str:
     paragraphs = []
@@ -109,8 +112,27 @@ def render_man_page(config, output):
             if "description" in value:
                 print(f"{indent_text(value['description'], level=2, strip=True)}", file=output)
 
+def _render_doc_paragraph(text: str, output: typing.io.TextIO, base_indent: int = 0):
+    paragraphs = text.split("\n\n")
+    for paragraph in paragraphs:
+        match = admonition_regex.search(paragraph)
+        if match:
+            replacement = admonition_map[match.group(1)]
+            d = paragraph.replace(match.group(0), f"{replacement}\n\n")
+
+            sections = d.split(f"{replacement}\n")
+            print(indent_text(sections[0], base_indent), file=output)
+            print(indent_text(f"{replacement}\n", base_indent), file=output)
+            print(indent_text("".join(sections[1:]).strip(), base_indent + 1), file=output)
+            print(file=output)
+
+        else:
+            print(indent_text(paragraph, base_indent), file=output)
+            print(file=output)
+
 
 def render_documentation(config, output):
+
     print("Rygel's default configuration file", file=output)
     print("----------------------------------", file=output)
 
@@ -131,9 +153,8 @@ def render_documentation(config, output):
                     print("\n" + heading, file=output)
                     print('~' * len(heading) + "\n", file=output)
 
-            raw_description = section["description"].replace('%%Note: ', ".. note::\n\n")
+            _render_doc_paragraph(section["description"], output)
 
-            print(reflow_text(raw_description), file=output)
             print(file=output)
 
         for index, value in enumerate(section["values"]):
@@ -141,20 +162,17 @@ def render_documentation(config, output):
             if value['name'] in ('title', 'enabled') and (len(section['name']) > 0):
                 continue
 
+            if "only-in" in value and value["only-in"] != "doc":
+                continue
+
             print(value["name"], file=output)
             if "description" in value:
-                raw_description = value["description"].replace('%%Note: ', ".. note::\n\n")
-                print(
-                    textwrap.indent(
-                        reflow_text(raw_description, 77), "   ", lambda line: True
-                    ),
-                    file=output,
-                )
+                _render_doc_paragraph(value["description"], output, 1)
             else:
                 print(f"{value['name']} does not have a description", file=sys.stderr)
             print(file=output)
             if "default" in value and (len(str(value["default"])) > 0):
-                print(f"   *Default value*: ``{value['default']}``", file=output)
+                print(indent_text(f"*Default value*: ``{value['default']}``", 1), file=output)
                 print(file=output)
 
 

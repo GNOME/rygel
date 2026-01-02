@@ -12,7 +12,7 @@
   values:
     - name: "ipv6"
       description: |
-        Set to *false* if you do not want Rygel to run on IPv6 addersses.
+        Set to *false* if you do not want Rygel to run on IPv6 addresses.
         Whether or not IPv6 is actually supported depends on how GUPnP was configured.
       default: "true"
     - name: "enable-transcoding"
@@ -73,7 +73,7 @@
         Semicolon-separated list of device user agents (or parts thereof) that need a downgrade
         in the UPnP device versions.
 
-        Warning: ONLY change this setting when told to do so or when you know what you are doing
+        %%Warning: ONLY change this setting when told to do so or when you know what you are doing
         If you find that adding your device makes it working with Rygel, please file an issue at
         https://gitlab.gnome.org/GNOME/rygel/issues/new/?issuable_template=IOP so we can include
         it in future releases.
