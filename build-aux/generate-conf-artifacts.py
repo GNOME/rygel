@@ -112,7 +112,7 @@ def render_man_page(config, output):
             if "description" in value:
                 print(f"{indent_text(value['description'], level=2, strip=True)}", file=output)
 
-def _render_doc_paragraph(text: str, output: typing.io.TextIO, base_indent: int = 0):
+def _render_doc_paragraph(text: str, output: typing.TextIO, base_indent: int = 0):
     paragraphs = text.split("\n\n")
     for paragraph in paragraphs:
         match = admonition_regex.search(paragraph)
