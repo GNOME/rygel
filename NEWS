@@ -1,3 +1,31 @@
+45.1 (stable)
+=============
+
+Translation updates
+
+All contributors to this release:
+ - Милош Поповић <gpopac@gmail.com>
+ - Kjartan Maraas <kjartan.maraas@gmail.com>
+ - Efstathios Iosifidis <eiosifidis@gnome.org>
+ - Fabio Tomat <f.t.public@gmail.com>
+ - Tim Sabsch <tim@sabsch.com>
+ - Abduqadir Abliz <sahranbay@gmail.com>
+ - twlvnn kraftwerk <kraft_werk@tutanota.com>
+ - Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>
+ - Julien Humbert <julroy67@gmail.com>
+
+Added/updated translations:
+ - bg.po, courtesy of twlvnn kraftwerk
+ - de.po, courtesy of Tim Sabsch
+ - el.po, courtesy of Efstathios Iosifidis
+ - eo.po, courtesy of Kristjan SCHMIDT
+ - fr.po, courtesy of Julien Humbert
+ - fur.po, courtesy of Fabio Tomat
+ - nb.po, courtesy of Kjartan Maraas
+ - sr.po, courtesy of aceydot
+ - sr@latin.po, courtesy of aceydot
+ - ug.po, courtesy of Abduqadir Abliz
+
 45 (stable)
 ===========
 
