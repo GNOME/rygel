@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
 "POT-Creation-Date: 2025-08-10 15:37+0000\n"
-"PO-Revision-Date: 2026-01-11 22:36+0500\n"
+"PO-Revision-Date: 2026-01-11 22:39+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -84,26 +84,16 @@ msgstr "Желілер:"
 msgid "Select folders"
 msgstr "Бумаларды таңдау"
 
-#: src/librygel-core/rygel-base-configuration.vala:30
-#: src/librygel-core/rygel-base-configuration.vala:35
-#: src/librygel-core/rygel-base-configuration.vala:39
-#: src/librygel-core/rygel-base-configuration.vala:43
-#: src/librygel-core/rygel-base-configuration.vala:47
-#: src/librygel-core/rygel-base-configuration.vala:51
-#: src/librygel-core/rygel-base-configuration.vala:55
-#: src/librygel-core/rygel-base-configuration.vala:59
-#: src/librygel-core/rygel-base-configuration.vala:63
-#: src/librygel-core/rygel-base-configuration.vala:67
-#: src/librygel-core/rygel-base-configuration.vala:71
-#: src/librygel-core/rygel-base-configuration.vala:75
-#: src/librygel-core/rygel-base-configuration.vala:79
-#: src/librygel-core/rygel-base-configuration.vala:83
-#: src/librygel-core/rygel-base-configuration.vala:87
-#: src/librygel-core/rygel-base-configuration.vala:93
-#: src/librygel-core/rygel-base-configuration.vala:99
-#: src/librygel-core/rygel-base-configuration.vala:107
-#: src/librygel-core/rygel-base-configuration.vala:113
-#: src/librygel-core/rygel-base-configuration.vala:119
+#: src/librygel-core/rygel-base-configuration.vala:30 src/librygel-core/rygel-base-configuration.vala:35
+#: src/librygel-core/rygel-base-configuration.vala:39 src/librygel-core/rygel-base-configuration.vala:43
+#: src/librygel-core/rygel-base-configuration.vala:47 src/librygel-core/rygel-base-configuration.vala:51
+#: src/librygel-core/rygel-base-configuration.vala:55 src/librygel-core/rygel-base-configuration.vala:59
+#: src/librygel-core/rygel-base-configuration.vala:63 src/librygel-core/rygel-base-configuration.vala:67
+#: src/librygel-core/rygel-base-configuration.vala:71 src/librygel-core/rygel-base-configuration.vala:75
+#: src/librygel-core/rygel-base-configuration.vala:79 src/librygel-core/rygel-base-configuration.vala:83
+#: src/librygel-core/rygel-base-configuration.vala:87 src/librygel-core/rygel-base-configuration.vala:93
+#: src/librygel-core/rygel-base-configuration.vala:99 src/librygel-core/rygel-base-configuration.vala:107
+#: src/librygel-core/rygel-base-configuration.vala:113 src/librygel-core/rygel-base-configuration.vala:119
 msgid "Not implemented"
 msgstr "Іске асырылмаған"
 
@@ -123,10 +113,8 @@ msgid "No Such Test"
 msgstr "Мұндай сынақ жоқ"
 
 #. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:166
-#: src/librygel-core/rygel-basic-management.vala:283
-#: src/librygel-core/rygel-basic-management.vala:382
-#: src/librygel-core/rygel-basic-management.vala:471
+#: src/librygel-core/rygel-basic-management.vala:166 src/librygel-core/rygel-basic-management.vala:283
+#: src/librygel-core/rygel-basic-management.vala:382 src/librygel-core/rygel-basic-management.vala:471
 msgid "Wrong Test Type"
 msgstr "Сынақ түрі қате"
 
@@ -142,36 +130,21 @@ msgstr "Сынақтың “%s” күйі жарамсыз"
 msgid "State “%s” Precludes Cancel"
 msgstr "“%s” күйі бас тартуға мүмкіндік бермейді"
 
-#: src/librygel-core/rygel-basic-management.vala:213
-#: src/librygel-core/rygel-basic-management.vala:228
-#: src/librygel-core/rygel-basic-management.vala:255
-#: src/librygel-core/rygel-basic-management.vala:271
-#: src/librygel-core/rygel-basic-management.vala:328
-#: src/librygel-core/rygel-basic-management.vala:353
-#: src/librygel-core/rygel-basic-management.vala:369
-#: src/librygel-core/rygel-basic-management.vala:414
-#: src/librygel-core/rygel-basic-management.vala:441
-#: src/librygel-core/rygel-basic-management.vala:458
-#: src/librygel-core/rygel-basic-management.vala:503
-#: src/librygel-core/rygel-basic-management.vala:518
-#: src/librygel-core/rygel-basic-management.vala:533
-#: src/librygel-core/rygel-basic-management.vala:557
-#: src/librygel-core/rygel-connection-manager.vala:95
-#: src/librygel-core/rygel-connection-manager.vala:109
-#: src/librygel-core/rygel-connection-manager.vala:126
-#: src/librygel-core/rygel-energy-management.vala:223
-#: src/librygel-renderer/rygel-av-transport.vala:198
-#: src/librygel-renderer/rygel-rendering-control.vala:131
-#: src/librygel-ruih/rygel-ruih-service.vala:63
-#: src/librygel-server/rygel-content-directory.vala:261
-#: src/librygel-server/rygel-content-directory.vala:289
-#: src/librygel-server/rygel-content-directory.vala:308
-#: src/librygel-server/rygel-content-directory.vala:343
-#: src/librygel-server/rygel-content-directory.vala:372
-#: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:618
-#: src/librygel-server/rygel-content-directory.vala:767
-#: src/librygel-server/rygel-media-receiver-registrar.vala:61
+#: src/librygel-core/rygel-basic-management.vala:213 src/librygel-core/rygel-basic-management.vala:228
+#: src/librygel-core/rygel-basic-management.vala:255 src/librygel-core/rygel-basic-management.vala:271
+#: src/librygel-core/rygel-basic-management.vala:328 src/librygel-core/rygel-basic-management.vala:353
+#: src/librygel-core/rygel-basic-management.vala:369 src/librygel-core/rygel-basic-management.vala:414
+#: src/librygel-core/rygel-basic-management.vala:441 src/librygel-core/rygel-basic-management.vala:458
+#: src/librygel-core/rygel-basic-management.vala:503 src/librygel-core/rygel-basic-management.vala:518
+#: src/librygel-core/rygel-basic-management.vala:533 src/librygel-core/rygel-basic-management.vala:557
+#: src/librygel-core/rygel-connection-manager.vala:95 src/librygel-core/rygel-connection-manager.vala:109
+#: src/librygel-core/rygel-connection-manager.vala:126 src/librygel-core/rygel-energy-management.vala:223
+#: src/librygel-renderer/rygel-av-transport.vala:198 src/librygel-renderer/rygel-rendering-control.vala:131
+#: src/librygel-ruih/rygel-ruih-service.vala:63 src/librygel-server/rygel-content-directory.vala:261
+#: src/librygel-server/rygel-content-directory.vala:289 src/librygel-server/rygel-content-directory.vala:308
+#: src/librygel-server/rygel-content-directory.vala:343 src/librygel-server/rygel-content-directory.vala:372
+#: src/librygel-server/rygel-content-directory.vala:397 src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767 src/librygel-server/rygel-media-receiver-registrar.vala:61
 msgid "Invalid argument"
 msgstr "Аргумент қате"
 
@@ -213,9 +186,7 @@ msgstr "Өшіруге тыйым салу"
 
 #: src/librygel-core/rygel-cmdline-config.vala:59
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
-msgstr ""
-"Үтірмен ажыратылған domain:level жұптарының тізімі. Толығырақ ақпаратты "
-"rygel(1) ішінен қараңыз"
+msgstr "Үтірмен ажыратылған domain:level жұптарының тізімі. Толығырақ ақпаратты rygel(1) ішінен қараңыз"
 
 #: src/librygel-core/rygel-cmdline-config.vala:61
 msgid "Plugin Path"
@@ -245,36 +216,21 @@ msgstr "Пайдаланушы конфигурациясының орнына �
 msgid "Shut down remote Rygel reference"
 msgstr "Қашықтағы Rygel сілтемесін тоқтату"
 
-#: src/librygel-core/rygel-cmdline-config.vala:98
-#: src/librygel-core/rygel-cmdline-config.vala:107
-#: src/librygel-core/rygel-cmdline-config.vala:116
-#: src/librygel-core/rygel-cmdline-config.vala:125
-#: src/librygel-core/rygel-cmdline-config.vala:134
-#: src/librygel-core/rygel-cmdline-config.vala:143
-#: src/librygel-core/rygel-cmdline-config.vala:179
-#: src/librygel-core/rygel-cmdline-config.vala:192
-#: src/librygel-core/rygel-cmdline-config.vala:207
-#: src/librygel-core/rygel-cmdline-config.vala:213
-#: src/librygel-core/rygel-cmdline-config.vala:220
-#: src/librygel-core/rygel-cmdline-config.vala:224
-#: src/librygel-core/rygel-cmdline-config.vala:228
-#: src/librygel-core/rygel-cmdline-config.vala:248
-#: src/librygel-core/rygel-cmdline-config.vala:270
-#: src/librygel-core/rygel-cmdline-config.vala:274
-#: src/librygel-core/rygel-cmdline-config.vala:287
-#: src/librygel-core/rygel-environment-config.vala:100
-#: src/librygel-core/rygel-environment-config.vala:104
-#: src/librygel-core/rygel-environment-config.vala:108
-#: src/librygel-core/rygel-meta-config.vala:105
-#: src/librygel-core/rygel-meta-config.vala:125
-#: src/librygel-core/rygel-meta-config.vala:144
-#: src/librygel-core/rygel-meta-config.vala:163
-#: src/librygel-core/rygel-meta-config.vala:182
-#: src/librygel-core/rygel-meta-config.vala:201
-#: src/librygel-core/rygel-meta-config.vala:220
-#: src/librygel-core/rygel-meta-config.vala:239
-#: src/librygel-core/rygel-meta-config.vala:258
-#: src/librygel-core/rygel-meta-config.vala:277
+#: src/librygel-core/rygel-cmdline-config.vala:98 src/librygel-core/rygel-cmdline-config.vala:107
+#: src/librygel-core/rygel-cmdline-config.vala:116 src/librygel-core/rygel-cmdline-config.vala:125
+#: src/librygel-core/rygel-cmdline-config.vala:134 src/librygel-core/rygel-cmdline-config.vala:143
+#: src/librygel-core/rygel-cmdline-config.vala:179 src/librygel-core/rygel-cmdline-config.vala:192
+#: src/librygel-core/rygel-cmdline-config.vala:207 src/librygel-core/rygel-cmdline-config.vala:213
+#: src/librygel-core/rygel-cmdline-config.vala:220 src/librygel-core/rygel-cmdline-config.vala:224
+#: src/librygel-core/rygel-cmdline-config.vala:228 src/librygel-core/rygel-cmdline-config.vala:248
+#: src/librygel-core/rygel-cmdline-config.vala:270 src/librygel-core/rygel-cmdline-config.vala:274
+#: src/librygel-core/rygel-cmdline-config.vala:287 src/librygel-core/rygel-environment-config.vala:100
+#: src/librygel-core/rygel-environment-config.vala:104 src/librygel-core/rygel-environment-config.vala:108
+#: src/librygel-core/rygel-meta-config.vala:105 src/librygel-core/rygel-meta-config.vala:125
+#: src/librygel-core/rygel-meta-config.vala:144 src/librygel-core/rygel-meta-config.vala:163
+#: src/librygel-core/rygel-meta-config.vala:182 src/librygel-core/rygel-meta-config.vala:201
+#: src/librygel-core/rygel-meta-config.vala:220 src/librygel-core/rygel-meta-config.vala:239
+#: src/librygel-core/rygel-meta-config.vala:258 src/librygel-core/rygel-meta-config.vala:277
 msgid "No value available"
 msgstr "Мән қолжетімсіз"
 
@@ -318,10 +274,8 @@ msgstr "“%s/enabled” үшін мән орнатылмаған"
 msgid "No value set for “%s/title”"
 msgstr "“%s/title” үшін мән орнатылмаған"
 
-#: src/librygel-core/rygel-meta-config.vala:391
-#: src/librygel-core/rygel-meta-config.vala:413
-#: src/librygel-core/rygel-meta-config.vala:439
-#: src/librygel-core/rygel-meta-config.vala:461
+#: src/librygel-core/rygel-meta-config.vala:391 src/librygel-core/rygel-meta-config.vala:413
+#: src/librygel-core/rygel-meta-config.vala:439 src/librygel-core/rygel-meta-config.vala:461
 #: src/librygel-core/rygel-meta-config.vala:485
 #, c-format
 msgid "No value available for “%s/%s”"
@@ -359,8 +313,7 @@ msgstr "“%s” кіру нүктесі функциясын “%s” ішін�
 #: src/librygel-core/rygel-plugin-loader.vala:156
 #, c-format
 msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
-msgstr ""
-"'%s' модулі жүктелген қойған '%s' модулімен қайшы келеді. Өткізіп жіберу"
+msgstr "'%s' модулі жүктелген қойған '%s' модулімен қайшы келеді. Өткізіп жіберу"
 
 #: src/librygel-core/rygel-recursive-module-loader.vala:70
 #, c-format
@@ -415,14 +368,13 @@ msgstr "Транзакцияны кері қайтару сәтсіз аяқта
 
 #: src/librygel-renderer-gst/rygel-playbin-player.vala:370
 msgid ""
-"Your GStreamer installation seems to be missing the “playbin3” element. The "
-"Rygel GStreamer renderer implementation cannot work without it"
+"Your GStreamer installation seems to be missing the “playbin3” element. The Rygel GStreamer renderer "
+"implementation cannot work without it"
 msgstr ""
-"Сіздің GStreamer орнатылымыңызда “playbin3” элементі жоқ сияқты. Rygel "
-"GStreamer рендерер іске асырылуы онсыз жұмыс істей алмайды"
+"Сіздің GStreamer орнатылымыңызда “playbin3” элементі жоқ сияқты. Rygel GStreamer рендерер іске асырылуы онсыз "
+"жұмыс істей алмайды"
 
-#: src/librygel-renderer/rygel-av-transport.vala:204
-#: src/librygel-renderer/rygel-rendering-control.vala:137
+#: src/librygel-renderer/rygel-av-transport.vala:204 src/librygel-renderer/rygel-rendering-control.vala:137
 msgid "Invalid InstanceID"
 msgstr "Жарамсыз InstanceID"
 
@@ -430,21 +382,17 @@ msgstr "Жарамсыз InstanceID"
 msgid "Play speed not supported"
 msgstr "Ойнату жылдамдығына қолдау көрсетілмейді"
 
-#: src/librygel-renderer/rygel-av-transport.vala:481
-#: src/librygel-renderer/rygel-av-transport.vala:499
+#: src/librygel-renderer/rygel-av-transport.vala:481 src/librygel-renderer/rygel-av-transport.vala:499
 msgid "Transition not available"
 msgstr "Ауысу қолжетімді емес"
 
-#: src/librygel-renderer/rygel-av-transport.vala:529
-#: src/librygel-renderer/rygel-av-transport.vala:554
+#: src/librygel-renderer/rygel-av-transport.vala:529 src/librygel-renderer/rygel-av-transport.vala:554
 #: src/librygel-renderer/rygel-av-transport.vala:584
 msgid "Seek mode not supported"
 msgstr "Іздеу режиміне қолдау көрсетілмейді"
 
-#: src/librygel-renderer/rygel-av-transport.vala:535
-#: src/librygel-renderer/rygel-av-transport.vala:560
-#: src/librygel-renderer/rygel-av-transport.vala:573
-#: src/librygel-renderer/rygel-av-transport.vala:598
+#: src/librygel-renderer/rygel-av-transport.vala:535 src/librygel-renderer/rygel-av-transport.vala:560
+#: src/librygel-renderer/rygel-av-transport.vala:573 src/librygel-renderer/rygel-av-transport.vala:598
 #: src/librygel-renderer/rygel-av-transport.vala:610
 msgid "Illegal seek target"
 msgstr "Жарамсыз іздеу нысаны"
@@ -454,24 +402,20 @@ msgid "Play mode not supported"
 msgstr "Ойнату режиміне қолдау көрсетілмейді"
 
 #. FIXME: Return a more sensible error here.
-#: src/librygel-renderer/rygel-av-transport.vala:773
-#: src/librygel-renderer/rygel-av-transport.vala:779
-#: src/librygel-renderer/rygel-av-transport.vala:794
-#: src/librygel-renderer/rygel-av-transport.vala:803
-#: src/librygel-renderer/rygel-av-transport.vala:863
-#: src/librygel-renderer/rygel-av-transport.vala:898
+#: src/librygel-renderer/rygel-av-transport.vala:773 src/librygel-renderer/rygel-av-transport.vala:779
+#: src/librygel-renderer/rygel-av-transport.vala:794 src/librygel-renderer/rygel-av-transport.vala:803
+#: src/librygel-renderer/rygel-av-transport.vala:863 src/librygel-renderer/rygel-av-transport.vala:898
 msgid "Resource not found"
 msgstr "Ресурс табылмады"
 
 #: src/librygel-renderer/rygel-av-transport.vala:792
 #, c-format
 msgid "Problem parsing playlist: %s"
-msgstr "Плейлистті талдау кезіндегі мәселе: %s"
+msgstr "Плейлистті талдау кезіндегі мәселе орын алды: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:859
-#: src/librygel-renderer/rygel-av-transport.vala:894
+#: src/librygel-renderer/rygel-av-transport.vala:859 src/librygel-renderer/rygel-av-transport.vala:894
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "%s мекенжайындағы ресурсқа қол жеткізу сәтсіз аяқталды: %s"
@@ -488,8 +432,7 @@ msgstr "Аты жарамсыз"
 msgid "Invalid Channel"
 msgstr "Арнасы жарамсыз"
 
-#: src/librygel-renderer/rygel-rendering-control.vala:218
-#: src/librygel-renderer/rygel-rendering-control.vala:260
+#: src/librygel-renderer/rygel-rendering-control.vala:218 src/librygel-renderer/rygel-rendering-control.vala:260
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Әрекет сәтсіз аяқталды"
@@ -596,8 +539,7 @@ msgstr "Жарамсыз URI “%s”"
 msgid "Not found"
 msgstr "Табылмады"
 
-#: src/librygel-server/rygel-http-post.vala:64
-#: src/librygel-server/rygel-import-resource.vala:228
+#: src/librygel-server/rygel-http-post.vala:64 src/librygel-server/rygel-import-resource.vala:228
 #, c-format
 msgid "Pushing data to non-empty item “%s” not allowed"
 msgstr "Деректерді бос емес “%s” элементіне итеруге рұқсат жоқ"
@@ -653,10 +595,8 @@ msgstr "“%s” объектісі сәтті жойылды"
 msgid "Failed to destroy object “%s”: %s"
 msgstr "“%s” объектісін жою сәтсіз аяқталды: %s"
 
-#: src/librygel-server/rygel-item-destroyer.vala:105
-#: src/librygel-server/rygel-item-updater.vala:283
-#: src/librygel-server/rygel-media-query-action.vala:194
-#: src/librygel-server/rygel-reference-creator.vala:68
+#: src/librygel-server/rygel-item-destroyer.vala:105 src/librygel-server/rygel-item-updater.vala:283
+#: src/librygel-server/rygel-media-query-action.vala:194 src/librygel-server/rygel-reference-creator.vala:68
 #: src/librygel-server/rygel-reference-creator.vala:115
 msgid "No such object"
 msgstr "Ондай объект жоқ"
@@ -686,14 +626,12 @@ msgstr "“%s” объектісі сәтті жаңартылды"
 msgid "Failed to update object “%s”: %s"
 msgstr "“%s” объектісін жаңарту сәтсіз аяқталды: %s"
 
-#: src/librygel-server/rygel-item-updater.vala:162
-#: src/librygel-server/rygel-object-creator.vala:614
+#: src/librygel-server/rygel-item-updater.vala:162 src/librygel-server/rygel-object-creator.vala:614
 #, c-format
 msgid "Invalid date format: %s"
 msgstr "Жарамсыз күн пішімі: %s"
 
-#: src/librygel-server/rygel-item-updater.vala:171
-#: src/librygel-server/rygel-object-creator.vala:623
+#: src/librygel-server/rygel-item-updater.vala:171 src/librygel-server/rygel-object-creator.vala:623
 #, c-format
 msgid "Invalid date: %s"
 msgstr "Жарамсыз күн: %s"
@@ -729,15 +667,11 @@ msgstr "%s объектісінің метадеректерін өзгерту�
 
 #: src/librygel-server/rygel-item-updater.vala:290
 #, c-format
-msgid ""
-"Metadata modification of object %s being a child of restricted object %s "
-"not allowed"
+msgid "Metadata modification of object %s being a child of restricted object %s not allowed"
 msgstr ""
-"Шектелген %s объектісінің туындысы болып табылатын %s объектісінің "
-"метадеректерін өзгертуге рұқсат етілмейді"
+"Шектелген %s объектісінің туындысы болып табылатын %s объектісінің метадеректерін өзгертуге рұқсат етілмейді"
 
-#: src/librygel-server/rygel-m3u-playlist.vala:67
-#: src/librygel-server/rygel-m3u-playlist.vala:70
+#: src/librygel-server/rygel-m3u-playlist.vala:67 src/librygel-server/rygel-m3u-playlist.vala:70
 msgid "Unknown"
 msgstr "Белгісіз"
 
@@ -776,8 +710,7 @@ msgstr "Медиа қозғалтқышы табылмады."
 msgid "MediaEngine.init was not called. Cannot continue."
 msgstr "MediaEngine.init шақырылмады. Жалғастыру мүмкін емес."
 
-#: src/librygel-server/rygel-media-file-item.vala:177
-#: src/librygel-server/rygel-video-item.vala:242
+#: src/librygel-server/rygel-media-file-item.vala:177 src/librygel-server/rygel-video-item.vala:242
 #, c-format
 msgid "Could not determine protocol for URI %s"
 msgstr "%s URI үшін протоколды анықтау мүмкін болмады"
@@ -809,8 +742,7 @@ msgstr "Аумақ қате"
 msgid "Missing filter"
 msgstr "Сүзгі жоқ"
 
-#: src/librygel-server/rygel-media-query-action.vala:197
-#: src/librygel-server/rygel-object-creator.vala:414
+#: src/librygel-server/rygel-media-query-action.vala:197 src/librygel-server/rygel-object-creator.vala:414
 msgid "No such container"
 msgstr "Ондай контейнер жоқ"
 
@@ -865,10 +797,8 @@ msgstr "Шектелген элементті жасау мүмкін емес"
 msgid "UPnP class “%s” not supported"
 msgstr "UPnP \"%s\" класы үшін қолдау жоқ"
 
-#: src/librygel-server/rygel-object-creator.vala:419
-#: src/librygel-server/rygel-object-creator.vala:431
-#: src/librygel-server/rygel-object-creator.vala:721
-#: src/librygel-server/rygel-reference-creator.vala:118
+#: src/librygel-server/rygel-object-creator.vala:419 src/librygel-server/rygel-object-creator.vala:431
+#: src/librygel-server/rygel-object-creator.vala:721 src/librygel-server/rygel-reference-creator.vala:118
 #, c-format
 msgid "Object creation in %s not allowed"
 msgstr "%s ішінде объект жасауға рұқсат етілмеген"
@@ -890,12 +820,8 @@ msgstr "“%s” класының объектісін жасау мүмкін �
 
 #: src/librygel-server/rygel-object-creator.vala:752
 #, c-format
-msgid ""
-"Error from container “%s” on trying to find the newly added child object "
-"“%s” in it: %s"
-msgstr ""
-"“%s” контейнерінен оған жаңадан қосылған “%s” туынды объектісін табу "
-"әрекеті кезіндегі қате: %s"
+msgid "Error from container “%s” on trying to find the newly added child object “%s” in it: %s"
+msgstr "“%s” контейнерінен оған жаңадан қосылған “%s” туынды объектісін табу әрекеті кезіндегі қате: %s"
 
 #: src/librygel-server/rygel-reference-creator.vala:50
 msgid "“ContainerID” agument missing."
@@ -919,8 +845,7 @@ msgstr "Жарамсыз іздеу шарттары көрсетілген"
 msgid "Failed to search in “%s”: %s"
 msgstr "“%s” ішінде іздеу сәтсіз аяқталды: %s"
 
-#: src/librygel-server/rygel-subtitle-manager.vala:49
-#: src/librygel-server/rygel-subtitle-manager.vala:96
+#: src/librygel-server/rygel-subtitle-manager.vala:49 src/librygel-server/rygel-subtitle-manager.vala:96
 msgid "No subtitle available"
 msgstr "Субтитрлар қолжетімді емес"
 
@@ -935,8 +860,7 @@ msgstr "Кіші көріністі жасауға қолдау көрсетіл
 
 #. Thumbnailing failed previously, so there's no current thumbnail
 #. and it doesn't make any sense to request one.
-#: src/librygel-server/rygel-thumbnailer.vala:88
-#: src/librygel-server/rygel-thumbnailer.vala:102
+#: src/librygel-server/rygel-thumbnailer.vala:88 src/librygel-server/rygel-thumbnailer.vala:102
 #: src/librygel-server/rygel-thumbnailer.vala:113
 msgid "No thumbnail available"
 msgstr "Кіші көріністер қолжетімді емес"
@@ -1020,12 +944,8 @@ msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "%s үшін GStreamer деректер көзін жасау сәтсіз аяқталды: %s"
 
 #: src/media-engines/gstreamer/rygel-gst-transcoding-data-source.vala:29
-msgid ""
-"Could not create a transcoder configuration. Your GStreamer installation "
-"might be missing a plug-in"
-msgstr ""
-"Транскодер конфигурациясын жасау мүмкін емес. GStreamer орнатылымында "
-"плагин жетіспейтін болуы мүмкін"
+msgid "Could not create a transcoder configuration. Your GStreamer installation might be missing a plug-in"
+msgstr "Транскодер конфигурациясын жасау мүмкін емес. GStreamer орнатылымында плагин жетіспейтін болуы мүмкін"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
@@ -1034,8 +954,7 @@ msgstr "Қажетті %s элементі жоқ"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:58
 msgid "GStreamer element “dvdreadsrc” not found. DVD support does not work"
-msgstr ""
-"GStreamer «dvdreadsrc» элементі табылмады. DVD қолдауы жұмыс істемейді"
+msgstr "GStreamer «dvdreadsrc» элементі табылмады. DVD қолдауы жұмыс істемейді"
 
 #: src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
@@ -1044,11 +963,9 @@ msgstr "Тек байттарға негізделген өтуге қолдау
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
 #: src/media-engines/simple/rygel-simple-media-engine.vala:99
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
-msgstr ""
-"Тек файлдарға негізделген MediaObjects (MediaFileItems) өңдеуге болады"
+msgstr "Тек файлдарға негізделген MediaObjects (MediaFileItems) өңдеуге болады"
 
-#: src/plugins/external/rygel-external-plugin-factory.vala:35
-#: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
+#: src/plugins/external/rygel-external-plugin-factory.vala:35 src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
 #, c-format
 msgid "Module “%s” could not connect to D-Bus session bus. Ignoring…"
 msgstr "«%s» модулі D-Bus сеанстық шинасына қосыла алмады. Елемеу…"
@@ -1064,11 +981,8 @@ msgid "Title %d"
 msgstr "Атау %d"
 
 #: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
-msgid ""
-"Failed to find lsdvd binary in path. DVD extraction will not be available"
-msgstr ""
-"Жолдан lsdvd бинарлы файлы табылмады. DVD-ден шығарып алу қолжетімді "
-"болмайды"
+msgid "Failed to find lsdvd binary in path. DVD extraction will not be available"
+msgstr "Жолдан lsdvd бинарлы файлы табылмады. DVD-ден шығарып алу қолжетімді болмайды"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:73
 msgid "Invalid command received, ignoring"
@@ -1092,8 +1006,7 @@ msgstr "Негізгі процесске қатені жіберу сәтсіз
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:157
 msgid "— helper binary for Rygel to extract metadata"
-msgstr ""
-"— Rygel үшін метадеректерді шығарып алуға арналған көмекші бинарлы файл"
+msgstr "— Rygel үшін метадеректерді шығарып алуға арналған көмекші бинарлы файл"
 
 #: src/plugins/media-export/rygel-media-export-extract.vala:164
 #, c-format
@@ -1123,8 +1036,7 @@ msgstr "%s файлының ақпаратын сұрау сәтсіз аяқт�
 #: src/plugins/media-export/rygel-media-export-harvester.vala:257
 #, c-format
 msgid "Could not find object %s or its parent. Database is inconsistent"
-msgstr ""
-"%s объектісі немесе оның аталығы табылмады. Деректер базасы үйлесімсіз"
+msgstr "%s объектісі немесе оның аталығы табылмады. Деректер базасы үйлесімсіз"
 
 #: src/plugins/media-export/rygel-media-export-harvester.vala:261
 #, c-format
@@ -1162,8 +1074,7 @@ msgstr "%s файлы үшін мета-деректерді алу сәтсіз
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:365
 #, c-format
 msgid "Skipping URI %s; extraction completely failed: %s"
-msgstr ""
-"%s URI өткізіліп жіберілуде; шығарып алу толығымен сәтсіз аяқталды: %s"
+msgstr "%s URI өткізіліп жіберілуде; шығарып алу толығымен сәтсіз аяқталды: %s"
 
 #: src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
 #, c-format
@@ -1173,8 +1084,7 @@ msgstr "Сұрау контейнерінің ішкі элементтер са
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
 #, c-format
 msgid "Failed to force reindex to fix database: %s"
-msgstr ""
-"Деректер базасын түзету үшін мәжбүрлі қайта индекстеу сәтсіз аяқталды: %s"
+msgstr "Деректер базасын түзету үшін мәжбүрлі қайта индекстеу сәтсіз аяқталды: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
 #, c-format
@@ -1246,12 +1156,8 @@ msgstr "%s элементінің қорғалғанын анықтау сәтс
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:667
 #, c-format
-msgid ""
-"The version “%d” of the detected database is newer than our supported "
-"version “%d”"
-msgstr ""
-"Анықталған деректер базасының «%d» нұсқасы біз қолдайтын «%d» нұсқасынан "
-"жаңалау"
+msgid "The version “%d” of the detected database is newer than our supported version “%d”"
+msgstr "Анықталған деректер базасының «%d» нұсқасы біз қолдайтын «%d» нұсқасынан жаңалау"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:689
 msgid "Incompatible schema… cannot proceed"
@@ -1260,8 +1166,7 @@ msgstr "Үйлесімсіз схема… жалғастыру мүмкін е�
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:695
 #, c-format
 msgid "Invalid database, cannot query sqlite_master table: %s"
-msgstr ""
-"Деректер базасы жарамсыз, sqlite_master кестесіне сұрау салу мүмкін емес: %s"
+msgstr "Деректер базасы жарамсыз, sqlite_master кестесіне сұрау салу мүмкін емес: %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:896
 #, c-format
@@ -1493,14 +1398,12 @@ msgstr "“%s” үшін барлық мәндерді алу қатесі: %s"
 #: src/plugins/localsearch/localsearch-plugin-factory.vala:35
 #, c-format
 msgid "Failed to start LocalSearch service: %s. Plugin disabled."
-msgstr ""
-"LocalSearch қызметін іске қосу сәтсіз аяқталды: %s. Плагин сөндірілген."
+msgstr "LocalSearch қызметін іске қосу сәтсіз аяқталды: %s. Плагин сөндірілген."
 
 #: src/plugins/localsearch/localsearch-root-container.vala:46
 #, c-format
 msgid "Could not connect to %s, falling back to old Tracker3 service"
-msgstr ""
-"%s адресіне қосылу мүмкін болмады, ескі Tracker3 қызметіне қайта ауысу"
+msgstr "%s адресіне қосылу мүмкін болмады, ескі Tracker3 қызметіне қайта ауысу"
 
 #: src/plugins/localsearch/localsearch-search-container.vala:228
 #, c-format
