@@ -5,3 +5,5 @@ html_theme = 'furo'
 html_logo = 'img/rygel-header.svg'
 html_favicon = 'favicon.ico'
 exclude_patterns = ['config-file.rst']
+pygments_style = "default"
+pygments_dark_style = "native"
