@@ -4,11 +4,26 @@
 FAQ
 ===
 
-I am on Ubuntu and Rygel reports "access denied" for folders other than $HOME/Pictures, $HOME/Videos and $HOME/Music
-====================================================================================================================
+I am on Ubuntu and Rygel reports "access denied" for folders that used to work previously
+=========================================================================================
 
-AppArmor ships a tunable for rygel which limits access to the three XDG folders. Please refer to
-the `AppArmor documentation <https://gitlab.com/apparmor/apparmor/-/wikis/Documentation>`_ how to override those settings.
+This is due to AppArmor shipping a tunable for Rygel which tries to limit access to the
+three XDG folders $HOME/Pictures, $HOME/Videos and $HOME/Music. Unfortunately, this can
+lead to two problems:
+
+1. It is no longer possible to share any media outside of those three folders
+2. If you are on a locale that is not english, it is not possible to share any media
+   at all, since the localized folder names do not match the AppArmor rules.
+
+You can disable this by using the commands below. Please do this on your own
+judgement whether you want to disable this rule or not.
+
+.. code-block:: bash
+
+  sudo ln -s /etc/apparmor.d/rygel /etc/apparmor.d/disable/
+  sudo apparmor_parser -R /etc/apparmor.d/rygel
+  systemctl --user restart rygel
+
 
 Rygel seems unwilling to bind to any interface other than 127.0.0.1, despite -n or interfaces=
 ==============================================================================================
@@ -16,7 +31,7 @@ Rygel seems unwilling to bind to any interface other than 127.0.0.1, despite -n 
 A symptom for this problem is that you can not see the Rygel server on your network. You can confirm
 that this is an issue by running Rygel with debug output, and look for lines like this:
 
-::
+.. code-block:: shell-session
 
   (rygel:4791): Rygel-DEBUG: rygel-main.vala:137: New network 127.0.0.0 (lo) context available. IP: 127.0.0.1
 
@@ -35,7 +50,7 @@ Make sure that your system time is set correctly and not to a point in the past.
 think that its device description templates have been updated and when device descriptions are updated
 it will start with a fresh UUID. You can verify whether this is the issue or not by issuing
 
-::
+.. code-block:: shell
 
   [ $(stat -c %Y /usr/share/rygel/xml/MediaServer3.xml) -gt  $(date +%s) ] \
       && echo "System time older than template mtime"
