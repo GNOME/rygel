@@ -19,9 +19,9 @@ detailed log.
 
 This can be achieved by starting Rygel manually from a terminal with the following command line:
 
-::
+.. code-block:: console
 
-  G_MESSAGES_DEBUG=all rygel -g 5 2>&1 | tee rygel.log
+  $ G_MESSAGES_DEBUG=all rygel -g 5 2>&1 | tee rygel.log
 
 Instead of passing :code:`-g 5` you can also edit the log level in the :code:`rygel.conf` file,
 as described in the man page
@@ -36,9 +36,9 @@ This can either be done with `Wireshark <https://www.wireshark.org/>`_ or `tcpdu
 For tcpdump, the commandline should look something like the snippet below, assuming Rygel is running on IP 192.168.0.1 and
 the device in question has IP 192.168.0.2 and the network device you are capturing on is eth0.
 
-::
+.. code-block:: console
 
-    tcpdump -i eth0 -s 0 -w rygel.pcap "(ip src 192.168.0.1 and ip dst 192.168.0.2) \
+    # tcpdump -i eth0 -s 0 -w rygel.pcap "(ip src 192.168.0.1 and ip dst 192.168.0.2) \
         or (ip dst 192.168.0.1 and ip src 192.168.0.2) \
         or (ip dst 239.255.255.250) or (ip src 239.255.255.250)"
 
