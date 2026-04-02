@@ -6,11 +6,6 @@ executable('standalone-server',
            dependencies : [gio, rygel_core, rygel_server],
            link_with : [core_lib, server_lib])
 
-executable('standalone-ruih',
-           'standalone-ruih.c',
-           dependencies : [gio, rygel_core, rygel_ruih],
-           link_with: [core_lib, ruih_lib])
-
 executable('standalone-renderer-gst',
            'standalone-renderer-gst.c',
            dependencies : [gstreamer,

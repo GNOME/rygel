@@ -1,7 +1,0 @@
-[Plugin]
-Version = @VERSION@
-Module = ruih
-Name = Ruih
-License = LGPL
-Description = A Remote UI Server
-Copyright = Copyright © Rygel maintainers
