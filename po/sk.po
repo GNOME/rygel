@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
 "POT-Creation-Date: 2025-08-10 15:37+0000\n"
-"PO-Revision-Date: 2026-04-16 17:53+0200\n"
+"PO-Revision-Date: 2026-04-21 11:58+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -236,8 +236,7 @@ msgstr "Nedovolí odstránenie"
 #: src/librygel-core/rygel-cmdline-config.vala:59
 msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
 msgstr ""
-"Čiarakami oddelený zoznam párov doména:úroveň. Viac podrobnosti získate pri "
-"rygel(1)"
+"Čiarkami oddelený zoznam párov doména:úroveň. Pre viac podrobností pozrite rygel(1)"
 
 # cmd line desc
 #: src/librygel-core/rygel-cmdline-config.vala:61
@@ -581,7 +580,7 @@ msgstr "Neplatné parametre"
 
 #: src/librygel-server/rygel-browse.vala:94
 msgid "Cannot browse children on item"
-msgstr "Nedá sa prehliadať potomok položky"
+msgstr "Nedajú sa prehliadať potomkovia položky"
 
 #: src/librygel-server/rygel-browse.vala:134
 #, c-format
@@ -883,7 +882,7 @@ msgstr "dc:title nesmie byť pri volaní CreateObject prázdne"
 
 #: src/librygel-server/rygel-object-creator.vala:249
 msgid "Flags that must not be set were found in “dlnaManaged”"
-msgstr "Príznaky, ktoré nesmú byť nastavené, boli nájdené v „dlnaManged“"
+msgstr "Príznaky, ktoré nesmú byť nastavené, boli nájdené v „dlnaManaged“"
 
 #: src/librygel-server/rygel-object-creator.vala:257
 msgid "Invalid upnp:class given in CreateObject"
@@ -1062,8 +1061,8 @@ msgid ""
 "Could not create a transcoder configuration. Your GStreamer installation "
 "might be missing a plug-in"
 msgstr ""
-"Nepodarilo sa vytvoriť konfigurácia transkódera. V inštalácii sady Gstreamer "
-"môžno chýba zásuvný modul"
+"Nepodarilo sa vytvoriť konfiguráciu transkódera. V inštalácii sady Gstreamer "
+"možno chýba zásuvný modul"
 
 #: src/media-engines/gstreamer/rygel-gst-utils.vala:39
 #, c-format
@@ -1083,7 +1082,7 @@ msgstr "Je podporované iba presúvanie založené na bajtoch (byte-based)"
 #: src/media-engines/simple/rygel-simple-media-engine.vala:99
 msgid "Can only process file-based MediaObjects (MediaFileItems)"
 msgstr ""
-"Môže spracovať iba objekty MediaObjects založené na súboroh (položky "
+"Môže spracovať iba objekty MediaObjects založené na súboroch (položky "
 "MediaFileItems)"
 
 #: src/plugins/external/rygel-external-plugin-factory.vala:35
@@ -1192,7 +1191,7 @@ msgstr "Zlyhalo vymenovanie priečinka „%s“: %s"
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:293
 #, c-format
 msgid "Failed to get children of container %s: %s"
-msgstr "Zlyhalo získanie potomka kontainera %s: %s"
+msgstr "Zlyhalo získanie potomka kontajnera %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-harvesting-task.vala:352
 #, c-format
@@ -1268,7 +1267,7 @@ msgstr "Zlyhalo označenie položky %s ako chránená (%d): %s"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:572
 msgid "Cannot create references to containers"
-msgstr "Nedajú sa vytvoriť odkazy na kontajery"
+msgstr "Nedajú sa vytvoriť odkazy na kontajnery"
 
 #: src/plugins/media-export/rygel-media-export-media-cache.vala:598
 #, c-format
@@ -1389,7 +1388,7 @@ msgstr "Zoznamy skladieb"
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
 #, c-format
 msgid "Can’t remove items in %s"
-msgstr "Nedajú sa odstríniť položky v %s"
+msgstr "Nedajú sa odstrániť položky v %s"
 
 #: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
 #, c-format
