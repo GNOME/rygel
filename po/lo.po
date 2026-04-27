@@ -1,0 +1,1548 @@
+# Lao translation for rygel.
+# Copyright (C) 2025 rygel's COPYRIGHT HOLDER
+# This file is distributed under the same license as the rygel package.
+# bone NI <bounkirdni@gmail.com>,  2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: rygel master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
+"POT-Creation-Date: 2025-09-14 12:15+0000\n"
+"PO-Revision-Date: 2025-09-14 12:15+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Lao <lo@li.org>\n"
+"Language: lo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: data/rygel.desktop.in:2
+msgid "Rygel"
+msgstr "Rygel"
+
+#: data/rygel.desktop.in:3
+msgid "UPnP/DLNA Services"
+msgstr "ບໍລິການ UPnP/DLNA"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/rygel.desktop.in:5
+msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
+msgstr "mediaserver;mediarenderer;share;audio;video;pictures;"
+
+#: data/rygel-preferences.desktop.in:2 data/rygel-preferences.ui:19
+msgid "Rygel Preferences"
+msgstr "ຄ່າຕັ້ງຕົ້ນ Rygel"
+
+#: data/rygel-preferences.desktop.in:3
+msgid "UPnP/DLNA Preferences"
+msgstr "ຄ່າຕັ້ງຕົ້ນ UPnP/DLNA"
+
+#: data/rygel-preferences.ui:85
+msgid "Add a directory to the list of shared directories"
+msgstr "ເພີ່ມ​ໄດ​ເຣັກ​ທໍ​ຣີໃສ່​ໃນ​ລາຍ​ການ​ຂອງ​ໄດ​ເຣັກ​ທໍ​ຣີ​ທີ່​ແບ່ງ​ປັນ"
+
+#: data/rygel-preferences.ui:86
+msgid "Add shared directory"
+msgstr "ເພີ່ມ​ໄດ​ເຣັກ​ທໍ​ຣີ​ທີ່​ແບ່ງ​ປັນ"
+
+#: data/rygel-preferences.ui:92
+msgid "Remove a directory from the list of shared directories"
+msgstr "ລຶບ​ໄດ​ເຣັກ​ທໍ​ຣີ​ອອກ​ຈາກ​ລາຍ​ການ​ຂອງ​ໄດ​ເຣັກ​ທໍ​ຣີ​ທີ່​ແບ່ງ​ປັນ"
+
+#: data/rygel-preferences.ui:93
+msgid "Remove shared directory"
+msgstr "ລຶບ​ໄດ​ເຣັກ​ທໍ​ຣີ​ທີ່​ແບ່ງ​ປັນ"
+
+#: data/rygel-preferences.ui:121
+msgid "_Share media through DLNA"
+msgstr "_ແບ່ງປັນ​ມີ​ເດຍ​ຜ່ານ DLNA"
+
+#: data/rygel-preferences.ui:195 data/rygel-preferences.ui:196
+msgid "Add a network interface Rygel should serve files on"
+msgstr "ເພີ່ມ​ອິນ​ເຕີ​ເຟດ​ເຄືອ​ຂ່າຍທີ່ Rygel ຄວນ​ຈະ​ໃຫ້​ບໍລິການ​ໄຟລ໌"
+
+#: data/rygel-preferences.ui:197
+msgid "Add network interface"
+msgstr "ເພີ່ມ​ອິນ​ເຕີ​ເຟດ​ເຄືອ​ຂ່າຍ"
+
+#: data/rygel-preferences.ui:204 data/rygel-preferences.ui:205
+msgid "Remove a network interface Rygel should no longer serve files on"
+msgstr "ລຶບ​ອິນ​ເຕີ​ເຟດ​ເຄືອ​ຂ່າຍທີ່ Rygel ບໍ່​ຄວນ​ຈະ​ໃຫ້​ບໍລິການ​ໄຟລ໌ອີກຕໍ່ໄປ"
+
+#: data/rygel-preferences.ui:206
+msgid "Remove network interface"
+msgstr "ລຶບ​ອິນ​ເຕີ​ເຟດ​ເຄືອ​ຂ່າຍ"
+
+#: data/rygel-preferences.ui:222
+msgid "Networks:"
+msgstr "ເຄືອ​ຂ່າຍ:"
+
+#: data/rygel-preferences.ui:241
+msgid "Select folders"
+msgstr "ເລືອກ​ໂຟນ​ເດີ"
+
+#: src/librygel-core/rygel-base-configuration.vala:30
+#: src/librygel-core/rygel-base-configuration.vala:35
+#: src/librygel-core/rygel-base-configuration.vala:39
+#: src/librygel-core/rygel-base-configuration.vala:43
+#: src/librygel-core/rygel-base-configuration.vala:47
+#: src/librygel-core/rygel-base-configuration.vala:51
+#: src/librygel-core/rygel-base-configuration.vala:55
+#: src/librygel-core/rygel-base-configuration.vala:59
+#: src/librygel-core/rygel-base-configuration.vala:63
+#: src/librygel-core/rygel-base-configuration.vala:67
+#: src/librygel-core/rygel-base-configuration.vala:71
+#: src/librygel-core/rygel-base-configuration.vala:75
+#: src/librygel-core/rygel-base-configuration.vala:79
+#: src/librygel-core/rygel-base-configuration.vala:83
+#: src/librygel-core/rygel-base-configuration.vala:87
+#: src/librygel-core/rygel-base-configuration.vala:93
+#: src/librygel-core/rygel-base-configuration.vala:99
+#: src/librygel-core/rygel-base-configuration.vala:107
+#: src/librygel-core/rygel-base-configuration.vala:113
+#: src/librygel-core/rygel-base-configuration.vala:119
+msgid "Not implemented"
+msgstr "ບໍ່​ໄດ້​ຖືກ​ຈັດ​ຕັ້ງ​ປະ​ຕິ​ບັດ"
+
+#: src/librygel-core/rygel-basic-management-test.vala:197
+#, c-format
+msgid "Failed to read standard output from %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ອ່ານ​ເອົາ​ຜົນ​ໄດ້​ຮັບ​ມາດ​ຕະ​ຖານ​ຈາກ %s: %s"
+
+#: src/librygel-core/rygel-basic-management-test.vala:225
+#, c-format
+msgid "Failed to read error output from %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ອ່ານ​ເອົາ​ຜົນ​ຜິດ​ພາດ​ຈາກ %s: %s"
+
+#. / No test with the specified TestID was found
+#: src/librygel-core/rygel-basic-management.vala:158
+msgid "No Such Test"
+msgstr "ບໍ່​ມີ​ການ​ທົດ​ສອບ​ດັ່ງ​ກ່າວ"
+
+#. / TestID is valid but refers to the wrong test type
+#: src/librygel-core/rygel-basic-management.vala:166
+#: src/librygel-core/rygel-basic-management.vala:283
+#: src/librygel-core/rygel-basic-management.vala:382
+#: src/librygel-core/rygel-basic-management.vala:471
+msgid "Wrong Test Type"
+msgstr "ປະ​ເພດ​ການ​ທົດ​ສອບ​ບໍ່​ຖືກ​ຕ້ອງ"
+
+#. / TestID is valid but the test Results are not available
+#: src/librygel-core/rygel-basic-management.vala:174
+#, c-format
+msgid "Invalid Test State “%s”"
+msgstr "ສະ​ຖາ​ນະ​ການ​ທົດ​ສອບ “%s” ບໍ່​ຖືກ​ຕ້ອງ"
+
+#. / TestID is valid but the test can't be canceled
+#: src/librygel-core/rygel-basic-management.vala:180
+#, c-format
+msgid "State “%s” Precludes Cancel"
+msgstr "ສະ​ຖາ​ນະ “%s” ຂັດ​ຂວາງ​ການ​ຍົກ​ເລີກ"
+
+#: src/librygel-core/rygel-basic-management.vala:213
+#: src/librygel-core/rygel-basic-management.vala:228
+#: src/librygel-core/rygel-basic-management.vala:255
+#: src/librygel-core/rygel-basic-management.vala:271
+#: src/librygel-core/rygel-basic-management.vala:328
+#: src/librygel-core/rygel-basic-management.vala:353
+#: src/librygel-core/rygel-basic-management.vala:369
+#: src/librygel-core/rygel-basic-management.vala:414
+#: src/librygel-core/rygel-basic-management.vala:441
+#: src/librygel-core/rygel-basic-management.vala:458
+#: src/librygel-core/rygel-basic-management.vala:503
+#: src/librygel-core/rygel-basic-management.vala:518
+#: src/librygel-core/rygel-basic-management.vala:533
+#: src/librygel-core/rygel-basic-management.vala:557
+#: src/librygel-core/rygel-connection-manager.vala:95
+#: src/librygel-core/rygel-connection-manager.vala:109
+#: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-core/rygel-energy-management.vala:223
+#: src/librygel-renderer/rygel-av-transport.vala:198
+#: src/librygel-renderer/rygel-rendering-control.vala:131
+#: src/librygel-ruih/rygel-ruih-service.vala:63
+#: src/librygel-server/rygel-content-directory.vala:261
+#: src/librygel-server/rygel-content-directory.vala:289
+#: src/librygel-server/rygel-content-directory.vala:308
+#: src/librygel-server/rygel-content-directory.vala:343
+#: src/librygel-server/rygel-content-directory.vala:372
+#: src/librygel-server/rygel-content-directory.vala:397
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
+#: src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr "ອາ​ກິວ​ເມັນ​ບໍ່​ຖືກ​ຕ້ອງ"
+
+#: src/librygel-core/rygel-basic-management.vala:254
+msgid "Cannot run “Ping” action: Host is empty"
+msgstr "ບໍ່​ສາ​ມາດ​ດຳ​ເນີນ​ການ “Ping” ໄດ້: ໂຮສຕ໌​ຫວ່າງ​ເປົ່າ"
+
+#: src/librygel-core/rygel-basic-management.vala:352
+msgid "Cannot run “NSLookup” action: HostName is empty"
+msgstr "ບໍ່​ສາ​ມາດ​ດຳ​ເນີນ​ການ “NSLookup” ໄດ້: ຊື່ໂຮສຕ໌​ຫວ່າງ​ເປົ່າ"
+
+#: src/librygel-core/rygel-basic-management.vala:440
+msgid "Cannot run “Traceroute” action: Host is empty"
+msgstr "ບໍ່​ສາ​ມາດ​ດຳ​ເນີນ​ການ “Traceroute” ໄດ້: ໂຮສຕ໌​ຫວ່າງ​ເປົ່າ"
+
+#: src/librygel-core/rygel-cmdline-config.vala:47
+msgid "Display version number"
+msgstr "ສະ​ແດງ​ໝາຍ​ເລກ​ເວີ​ຊັນ"
+
+#: src/librygel-core/rygel-cmdline-config.vala:49
+msgid "Network Interfaces"
+msgstr "ອິນ​ເຕີ​ເຟດ​ເຄືອ​ຂ່າຍ"
+
+#: src/librygel-core/rygel-cmdline-config.vala:51
+msgid "Port"
+msgstr "ພອດ"
+
+#: src/librygel-core/rygel-cmdline-config.vala:53
+msgid "Disable transcoding"
+msgstr "ປິດ​ການ​ແປງ​ລະ​ຫັດ"
+
+#: src/librygel-core/rygel-cmdline-config.vala:55
+msgid "Disallow upload"
+msgstr "ບໍ່​ອະ​ນຸ​ຍາດ​ໃຫ້​ອັບ​ໂຫຼດ"
+
+#: src/librygel-core/rygel-cmdline-config.vala:57
+msgid "Disallow deletion"
+msgstr "ບໍ່​ອະ​ນຸ​ຍາດ​ໃຫ້​ລຶບ"
+
+#: src/librygel-core/rygel-cmdline-config.vala:59
+msgid "Comma-separated list of domain:level pairs. See rygel(1) for details"
+msgstr "ລາຍ​ການ​ຄູ່ domain:level ທີ່​ແຍກ​ດ້ວຍ​ເຄື່ອງ​ໝາຍ​ຈຸດ. ເບິ່ງ rygel(1) ສຳ​ລັບ​ລາຍ​ລະ​ອຽດ"
+
+#: src/librygel-core/rygel-cmdline-config.vala:61
+msgid "Plugin Path"
+msgstr "ເສັ້ນ​ທາງ​ປລັກ​ອິນ"
+
+#: src/librygel-core/rygel-cmdline-config.vala:63
+msgid "Engine Path"
+msgstr "ເສັ້ນ​ທາງ​ເອັນ​ຈິ້ນ"
+
+#: src/librygel-core/rygel-cmdline-config.vala:66
+msgid "Disable plugin"
+msgstr "ປິດ​ປລັກ​ອິນ"
+
+#: src/librygel-core/rygel-cmdline-config.vala:68
+msgid "Set plugin titles"
+msgstr "ຕັ້ງ​ຊື່​ຫົວ​ຂໍ້​ປລັກ​ອິນ"
+
+#: src/librygel-core/rygel-cmdline-config.vala:70
+msgid "Set plugin options"
+msgstr "ຕັ້ງ​ຕົວ​ເລືອກ​ປລັກ​ອິນ"
+
+#: src/librygel-core/rygel-cmdline-config.vala:72
+msgid "Use configuration file instead of user configuration"
+msgstr "ໃຊ້​ໄຟລ໌​ການ​ຕັ້ງ​ຄ່າ​ແທນ​ການ​ຕັ້ງ​ຄ່າ​ຂອງ​ຜູ້​ໃຊ້"
+
+#: src/librygel-core/rygel-cmdline-config.vala:74
+msgid "Shut down remote Rygel reference"
+msgstr "ປິດ​ການ​ອ້າງ​ອີງ Rygel ໄລ​ຍະ​ໄກ"
+
+#: src/librygel-core/rygel-cmdline-config.vala:98
+#: src/librygel-core/rygel-cmdline-config.vala:107
+#: src/librygel-core/rygel-cmdline-config.vala:116
+#: src/librygel-core/rygel-cmdline-config.vala:125
+#: src/librygel-core/rygel-cmdline-config.vala:134
+#: src/librygel-core/rygel-cmdline-config.vala:143
+#: src/librygel-core/rygel-cmdline-config.vala:179
+#: src/librygel-core/rygel-cmdline-config.vala:192
+#: src/librygel-core/rygel-cmdline-config.vala:207
+#: src/librygel-core/rygel-cmdline-config.vala:213
+#: src/librygel-core/rygel-cmdline-config.vala:220
+#: src/librygel-core/rygel-cmdline-config.vala:224
+#: src/librygel-core/rygel-cmdline-config.vala:228
+#: src/librygel-core/rygel-cmdline-config.vala:248
+#: src/librygel-core/rygel-cmdline-config.vala:270
+#: src/librygel-core/rygel-cmdline-config.vala:274
+#: src/librygel-core/rygel-cmdline-config.vala:287
+#: src/librygel-core/rygel-environment-config.vala:100
+#: src/librygel-core/rygel-environment-config.vala:104
+#: src/librygel-core/rygel-environment-config.vala:108
+#: src/librygel-core/rygel-meta-config.vala:105
+#: src/librygel-core/rygel-meta-config.vala:125
+#: src/librygel-core/rygel-meta-config.vala:144
+#: src/librygel-core/rygel-meta-config.vala:163
+#: src/librygel-core/rygel-meta-config.vala:182
+#: src/librygel-core/rygel-meta-config.vala:201
+#: src/librygel-core/rygel-meta-config.vala:220
+#: src/librygel-core/rygel-meta-config.vala:239
+#: src/librygel-core/rygel-meta-config.vala:258
+#: src/librygel-core/rygel-meta-config.vala:277
+msgid "No value available"
+msgstr "ບໍ່​ມີ​ຄ່າ​ໃຫ້​ໃຊ້​ງານ"
+
+#: src/librygel-core/rygel-connection-manager.vala:132
+msgid "Invalid connection reference"
+msgstr "ການ​ອ້າງ​ອີງ​ການ​ເຊື່ອມ​ຕໍ່​ບໍ່​ຖືກ​ຕ້ອງ"
+
+#: src/librygel-core/rygel-description-file.vala:494
+#, c-format
+msgid "Failed to write modified description to %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຂຽນ​ຄຳ​ອະ​ທິ​ບາຍ​ທີ່​ແກ້​ໄຂ​ແລ້ວ​ໃສ່ %s"
+
+#: src/librygel-core/rygel-energy-management-helper.c:55
+#, c-format
+msgid "Failed to get a socket: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຮັບ​ຊັອກ​ເກັດ: %s"
+
+#: src/librygel-core/rygel-energy-management-helper.c:62
+#, c-format
+msgid "Failed to get MAC address for %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຮັບ​ທີ່​ຢູ່ MAC ສຳ​ລັບ %s: %s"
+
+#: src/librygel-core/rygel-energy-management-helper.c:104
+msgid "MAC and network type querying not implemented"
+msgstr "ການ​ສອບ​ຖາມ​ປະ​ເພດ MAC ແລະ ເຄືອ​ຂ່າຍ​ບໍ່​ໄດ້​ຖືກ​ຈັດ​ຕັ້ງ​ປະ​ຕິ​ບັດ"
+
+#: src/librygel-core/rygel-log-handler.vala:68
+#, c-format
+msgid "Failed to get log level from configuration: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຮັບ​ລະ​ດັບ​ບັນ​ທຶກ​ຈາກ​ການ​ຕັ້ງ​ຄ່າ: %s"
+
+#. translators: "enabled" is part of the config key and must not be translated
+#: src/librygel-core/rygel-meta-config.vala:352
+#, c-format
+msgid "No value set for “%s/enabled”"
+msgstr "ບໍ່​ມີ​ການ​ຕັ້ງ​ຄ່າ​ສຳ​ລັບ “%s/enabled”"
+
+#. translators: "title" is part of the config key and must not be translated
+#: src/librygel-core/rygel-meta-config.vala:371
+#, c-format
+msgid "No value set for “%s/title”"
+msgstr "ບໍ່​ມີ​ການ​ຕັ້ງ​ຄ່າ​ສຳ​ລັບ “%s/title”"
+
+#: src/librygel-core/rygel-meta-config.vala:391
+#: src/librygel-core/rygel-meta-config.vala:413
+#: src/librygel-core/rygel-meta-config.vala:439
+#: src/librygel-core/rygel-meta-config.vala:461
+#: src/librygel-core/rygel-meta-config.vala:485
+#, c-format
+msgid "No value available for “%s/%s”"
+msgstr "ບໍ່​ມີ​ຄ່າ​ໃຫ້​ໃຊ້​ງານ​ສຳ​ລັບ “%s/%s”"
+
+#: src/librygel-core/rygel-plugin-information.vala:67
+msgid "[Plugin] group not found"
+msgstr "ບໍ່​ພົບ​ກຸ່ມ [Plugin]"
+
+#: src/librygel-core/rygel-plugin-information.vala:79
+#, c-format
+msgid "Plugin module %s does not exist"
+msgstr "ໂມ​ດູນ​ປລັກ​ອິນ %s ບໍ່​ມີ​ຢູ່"
+
+#: src/librygel-core/rygel-plugin-loader.vala:89
+#, c-format
+msgid "New plugin “%s” available"
+msgstr "ມີ​ປລັກ​ອິນ​ໃໝ່ “%s” ໃຫ້​ໃຊ້​ງານ"
+
+#: src/librygel-core/rygel-plugin-loader.vala:104
+#, c-format
+msgid "A module named %s is already loaded"
+msgstr "ໂມ​ດູນ​ຊື່ %s ໄດ້​ຖືກ​ໂຫຼດ​ແລ້ວ"
+
+#: src/librygel-core/rygel-plugin-loader.vala:118
+#, c-format
+msgid "Failed to load module from path “%s”: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ໂຫຼດ​ໂມ​ດູນ​ຈາກ​ເສັ້ນ​ທາງ “%s”: %s"
+
+#: src/librygel-core/rygel-plugin-loader.vala:128
+#, c-format
+msgid "Failed to find entry point function “%s” in “%s”: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຊອກ​ຫາ​ຟັງ​ຊັນ​ຈຸດ​ເຂົ້າ “%s” ໃນ “%s”: %s"
+
+#: src/librygel-core/rygel-plugin-loader.vala:156
+#, c-format
+msgid "Module '%s' conflicts with already loaded module '%s'. Skipping"
+msgstr "ໂມ​ດູນ '%s' ຂັດ​ແຍ່ງ​ກັບ​ໂມ​ດູນ '%s' ທີ່​ໂຫຼດ​ແລ້ວ. ກຳ​ລັງ​ຂ້າມ"
+
+#: src/librygel-core/rygel-recursive-module-loader.vala:70
+#, c-format
+msgid "Failed to open plugins folder: “%s”"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ເປີດ​ໂຟນ​ເດີ​ປລັກ​ອິນ: “%s”"
+
+#: src/librygel-core/rygel-recursive-module-loader.vala:160
+#, c-format
+msgid "Error listing contents of folder “%s”: %s"
+msgstr "ຜິດ​ພາດ​ໃນ​ການ​ສະ​ແດງ​ລາຍ​ການ​ເນື້ອ​ໃນ​ຂອງ​ໂຟນ​ເດີ “%s”: %s"
+
+#: src/librygel-core/rygel-recursive-module-loader.vala:204
+#, c-format
+msgid "Could not load plugin: %s"
+msgstr "ບໍ່​ສາ​ມາດ​ໂຫຼດ​ປລັກ​ອິນ: %s"
+
+#: src/librygel-core/rygel-recursive-module-loader.vala:231
+#, c-format
+msgid "Failed to query content type for “%s”"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສອບ​ຖາມ​ປະ​ເພດ​ເນື້ອ​ໃນ​ສຳ​ລັບ “%s”"
+
+#. TRANSLATORS: First %s is the file's path, second is the error message
+#: src/librygel-core/rygel-user-config.vala:246
+#, c-format
+msgid "Failed to load user configuration from file “%s”: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ໂຫຼດ​ການ​ຕັ້ງ​ຄ່າ​ຜູ້​ໃຊ້​ຈາກ​ໄຟລ໌ “%s”: %s"
+
+#: src/librygel-core/rygel-user-config.vala:299
+#, c-format
+msgid "No value available for “%s”"
+msgstr "ບໍ່​ມີ​ຄ່າ​ໃຫ້​ໃຊ້​ງານ​ສຳ​ລັບ “%s”"
+
+#: src/librygel-core/rygel-user-config.vala:370
+#, c-format
+msgid "Value of “%s” out of range"
+msgstr "ຄ່າ​ຂອງ “%s” ຢູ່ນອກ​ຂອບ​ເຂດ"
+
+#: src/librygel-db/database-cursor.vala:99
+#, c-format
+msgid "Unsupported type %s"
+msgstr "ບໍ່​ຮອງ​ຮັບ​ປະ​ເພດ %s"
+
+#: src/librygel-db/database.vala:175
+#, c-format
+msgid "Error while opening SQLite database %s: %s"
+msgstr "ຜິດ​ພາດ​ຂະ​ນະ​ເປີດ​ຖານ​ຂໍ້​ມູນ SQLite %s: %s"
+
+#: src/librygel-db/database.vala:306
+#, c-format
+msgid "Failed to roll back transaction: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຍົກ​ເລີກ​ທຸ​ລະ​ກຳ: %s"
+
+#: src/librygel-renderer-gst/rygel-playbin-player.vala:370
+msgid ""
+"Your GStreamer installation seems to be missing the “playbin3” element. The "
+"Rygel GStreamer renderer implementation cannot work without it"
+msgstr "ການ​ຕິດ​ຕັ້ງ GStreamer ຂອງ​ທ່ານ​ເບິ່ງ​ຄື​ວ່າ​ຂາດ​ອົງ​ປະ​ກອບ “playbin3”. ການ​ຈັດ​ຕັ້ງ​ປະ​ຕິ​ບັດ​ຕົວ​ສະ​ແດງ​ຜົນ Rygel GStreamer ບໍ່​ສາ​ມາດ​ເຮັດ​ວຽກ​ໄດ້​ຖ້າ​ບໍ່​ມີ​ມັນ"
+
+#: src/librygel-renderer/rygel-av-transport.vala:204
+#: src/librygel-renderer/rygel-rendering-control.vala:137
+msgid "Invalid InstanceID"
+msgstr "InstanceID ບໍ່​ຖືກ​ຕ້ອງ"
+
+#: src/librygel-renderer/rygel-av-transport.vala:474
+msgid "Play speed not supported"
+msgstr "ບໍ່​ຮອງ​ຮັບ​ຄວາມ​ໄວ​ໃນ​ການ​ຫຼິ້ນ"
+
+#: src/librygel-renderer/rygel-av-transport.vala:481
+#: src/librygel-renderer/rygel-av-transport.vala:499
+msgid "Transition not available"
+msgstr "ບໍ່​ມີ​ການ​ປ່ຽນ​ແປງ"
+
+#: src/librygel-renderer/rygel-av-transport.vala:529
+#: src/librygel-renderer/rygel-av-transport.vala:554
+#: src/librygel-renderer/rygel-av-transport.vala:584
+msgid "Seek mode not supported"
+msgstr "ບໍ່​ຮອງ​ຮັບ​ໂໝດ​ຊອກ​ຫາ"
+
+#: src/librygel-renderer/rygel-av-transport.vala:535
+#: src/librygel-renderer/rygel-av-transport.vala:560
+#: src/librygel-renderer/rygel-av-transport.vala:573
+#: src/librygel-renderer/rygel-av-transport.vala:598
+#: src/librygel-renderer/rygel-av-transport.vala:610
+msgid "Illegal seek target"
+msgstr "ເປົ້າ​ໝາຍ​ການ​ຊອກ​ຫາ​ບໍ່​ຖືກ​ຕ້ອງ"
+
+#: src/librygel-renderer/rygel-av-transport.vala:659
+msgid "Play mode not supported"
+msgstr "ບໍ່​ຮອງ​ຮັບ​ໂໝດ​ການ​ຫຼິ້ນ"
+
+#. FIXME: Return a more sensible error here.
+#: src/librygel-renderer/rygel-av-transport.vala:773
+#: src/librygel-renderer/rygel-av-transport.vala:779
+#: src/librygel-renderer/rygel-av-transport.vala:794
+#: src/librygel-renderer/rygel-av-transport.vala:803
+#: src/librygel-renderer/rygel-av-transport.vala:863
+#: src/librygel-renderer/rygel-av-transport.vala:898
+msgid "Resource not found"
+msgstr "ບໍ່​ພົບ​ຊັບ​ພະ​ຍາ​ກອນ"
+
+#: src/librygel-renderer/rygel-av-transport.vala:792
+#, c-format
+msgid "Problem parsing playlist: %s"
+msgstr "ບັນ​ຫາ​ໃນ​ການ​ວິ​ເຄາະ​ລາຍ​ການ​ຫຼິ້ນ: %s"
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: src/librygel-renderer/rygel-av-transport.vala:859
+#: src/librygel-renderer/rygel-av-transport.vala:894
+#, c-format
+msgid "Failed to access resource at %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ເຂົ້າ​ເຖິງ​ຊັບ​ພະ​ຍາ​ກອນ​ທີ່ %s: %s"
+
+#: src/librygel-renderer/rygel-av-transport.vala:875
+msgid "Illegal MIME-type"
+msgstr "ປະ​ເພດ MIME ບໍ່​ຖືກ​ຕ້ອງ"
+
+#: src/librygel-renderer/rygel-rendering-control.vala:168
+msgid "Invalid Name"
+msgstr "ຊື່​ບໍ່​ຖືກ​ຕ້ອງ"
+
+#: src/librygel-renderer/rygel-rendering-control.vala:182
+msgid "Invalid Channel"
+msgstr "ຊ່ອງ​ບໍ່​ຖືກ​ຕ້ອງ"
+
+#: src/librygel-renderer/rygel-rendering-control.vala:218
+#: src/librygel-renderer/rygel-rendering-control.vala:260
+#: src/librygel-renderer/rygel-rendering-control.vala:269
+msgid "Action Failed"
+msgstr "ການ​ດຳ​ເນີນ​ການ​ລົ້ມເຫຼວ"
+
+#: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
+#, c-format
+msgid "Unable to parse Icon data — unexpected node: %s"
+msgstr "ບໍ່​ສາ​ມາດ​ວິ​ເຄາະ​ຂໍ້​ມູນ​ໄອ​ຄອນ — ພົບ​ໂນດ​ທີ່​ບໍ່​ຄາດ​ຄິດ: %s"
+
+#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
+#, c-format
+msgid "Unable to parse Protocol data — unexpected attribute: %s"
+msgstr "ບໍ່​ສາ​ມາດ​ວິ​ເຄາະ​ຂໍ້​ມູນ​ໂປຣ​ໂຕ​ຄອນ — ພົບ​ແອັດ​ທິ​ບິວ​ທີ່​ບໍ່​ຄາດ​ຄິດ: %s"
+
+#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
+#, c-format
+msgid "Unable to parse Protocol data — unexpected node: %s"
+msgstr "ບໍ່​ສາ​ມາດ​ວິ​ເຄາະ​ຂໍ້​ມູນ​ໂປຣ​ໂຕ​ຄອນ — ພົບ​ໂນດ​ທີ່​ບໍ່​ຄາດ​ຄິດ: %s"
+
+#: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
+#, c-format
+msgid "Failed to set UIList for file %s — %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຕັ້ງ UIList ສຳ​ລັບ​ໄຟລ໌ %s — %s"
+
+#: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
+#, c-format
+msgid "Failed to set initial UI list for file %s — %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຕັ້ງ​ລາຍ​ການ UI ເບື້ອງ​ຕົ້ນ​ສຳ​ລັບ​ໄຟລ໌ %s — %s"
+
+#: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
+#, c-format
+msgid "Failed to monitor the file %s — %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຕິດ​ຕາມ​ໄຟລ໌ %s — %s"
+
+#: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
+#, c-format
+msgid "Unable to parse UI list file %s"
+msgstr "ບໍ່​ສາ​ມາດ​ວິ​ເຄາະ​ໄຟລ໌​ລາຍ​ການ UI %s"
+
+#: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
+#, c-format
+msgid "Unable to parse device profile data: %s"
+msgstr "ບໍ່​ສາ​ມາດ​ວິ​ເຄາະ​ຂໍ້​ມູນ​ໂປຣ​ໄຟລ໌​ອຸ​ປະ​ກອນ: %s"
+
+#: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
+#, c-format
+msgid "Invalid UI filter: %s"
+msgstr "ຕົວກອງ UI ບໍ່​ຖືກ​ຕ້ອງ: %s"
+
+#: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
+#, c-format
+msgid "Unable to parse UI data — unexpected node: %s"
+msgstr "ບໍ່​ສາ​ມາດ​ວິ​ເຄາະ​ຂໍ້​ມູນ UI — ພົບ​ໂນດ​ທີ່​ບໍ່​ຄາດ​ຄິດ: %s"
+
+#: src/librygel-server/rygel-browse.vala:63
+msgid "Invalid Arguments"
+msgstr "ອາ​ກິວ​ເມັນ​ບໍ່​ຖືກ​ຕ້ອງ"
+
+#: src/librygel-server/rygel-browse.vala:94
+msgid "Cannot browse children on item"
+msgstr "ບໍ່​ສາ​ມາດ​ເບິ່ງ​ລາຍ​ການ​ຍ່ອຍ​ໃນ​ລາຍ​ການ"
+
+#: src/librygel-server/rygel-browse.vala:134
+#, c-format
+msgid "Failed to browse “%s”: %s\n"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ເບິ່ງ “%s”: %s\n"
+
+#: src/librygel-server/rygel-client-hacks.vala:151
+msgid "Not Applicable"
+msgstr "ບໍ່​ສາ​ມາດ​ໃຊ້​ງານ​ໄດ້"
+
+#: src/librygel-server/rygel-content-directory.vala:639
+msgid "No such file transfer"
+msgstr "ບໍ່​ມີ​ການ​ໂອນ​ໄຟລ໌​ດັ່ງ​ກ່າວ"
+
+#: src/librygel-server/rygel-dbus-thumbnailer.vala:116
+msgid "No D-Bus thumbnailer service available"
+msgstr "ບໍ່​ມີ​ບໍລິການ​ສ້າງ​ຮູບ​ຫຍໍ້ D-Bus"
+
+#: src/librygel-server/rygel-http-byte-seek-request.vala:116
+#, c-format
+msgid "Range end value %lld is smaller than range start value %lld: '%s'"
+msgstr "ຄ່າ​ສິ້ນ​ສຸດ​ຂອບ​ເຂດ %lld ນ້ອຍ​ກວ່າ​ຄ່າ​ເລີ່ມ​ຕົ້ນ​ຂອບ​ເຂດ %lld: '%s'"
+
+#: src/librygel-server/rygel-http-get.vala:53
+msgid "Invalid Request (only GET and HEAD supported)"
+msgstr "ຄຳ​ຂໍ​ບໍ່​ຖືກ​ຕ້ອງ (ຮອງ​ຮັບ​ສະ​ເພາະ GET ແລະ HEAD)"
+
+#: src/librygel-server/rygel-http-get.vala:61
+msgid " must be 1"
+msgstr " ຕ້ອງ​ເປັນ 1"
+
+#: src/librygel-server/rygel-http-get.vala:91
+#, c-format
+msgid "%s transfer mode not supported for '%s'"
+msgstr "ບໍ່​ຮອງ​ຮັບ​ໂໝດ​ການ​ໂອນ %s ສຳ​ລັບ '%s'"
+
+#: src/librygel-server/rygel-http-item-uri.vala:152
+#, c-format
+msgid "Invalid URI “%s”"
+msgstr "URI “%s” ບໍ່​ຖືກ​ຕ້ອງ"
+
+#: src/librygel-server/rygel-http-item-uri.vala:192
+msgid "Not found"
+msgstr "ບໍ່​ພົບ"
+
+#: src/librygel-server/rygel-http-post.vala:64
+#: src/librygel-server/rygel-import-resource.vala:228
+#, c-format
+msgid "Pushing data to non-empty item “%s” not allowed"
+msgstr "ບໍ່​ອະ​ນຸ​ຍາດ​ໃຫ້​ສົ່ງ​ຂໍ້​ມູນ​ໄປ​ຫາ​ລາຍ​ການ “%s” ທີ່​ບໍ່​ຫວ່າງ​ເປົ່າ"
+
+#: src/librygel-server/rygel-http-post.vala:72
+#, c-format
+msgid "No writable URI for %s available"
+msgstr "ບໍ່​ມີ URI ທີ່​ຂຽນ​ໄດ້​ສຳ​ລັບ %s"
+
+#. translators: Dotfile is the filename with prefix "."
+#: src/librygel-server/rygel-http-post.vala:187
+#, c-format
+msgid "Failed to move dotfile %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຍ້າຍ​ດອດ​ໄຟລ໌ %s: %s"
+
+#: src/librygel-server/rygel-http-request.vala:104
+#, c-format
+msgid "Requested item “%s” not found"
+msgstr "ບໍ່​ພົບ​ລາຍ​ການ​ທີ່​ຮ້ອງ​ຂໍ “%s”"
+
+#: src/librygel-server/rygel-http-resource-handler.vala:91
+#, c-format
+msgid "Couldn’t create data source for %s"
+msgstr "ບໍ່​ສາ​ມາດ​ສ້າງ​ແຫຼ່ງ​ຂໍ້​ມູນ​ສຳ​ລັບ %s"
+
+#: src/librygel-server/rygel-import-resource.vala:123
+#, c-format
+msgid "Failed to get original URI for “%s”: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຮັບ URI ຕົ້ນ​ສະ​ບັບ​ສຳ​ລັບ “%s”: %s"
+
+#: src/librygel-server/rygel-import-resource.vala:223
+#, c-format
+msgid "URI “%s” invalid for importing contents to"
+msgstr "URI “%s” ບໍ່​ຖືກ​ຕ້ອງ​ສຳ​ລັບ​ການ​ນຳ​ເຂົ້າ​ເນື້ອ​ໃນ​ໄປ​ຍັງ"
+
+#: src/librygel-server/rygel-import-resource.vala:250
+#, c-format
+msgid "Failed to import file from %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ນຳ​ເຂົ້າ​ໄຟລ໌​ຈາກ %s: %s"
+
+#. Sorry we can't do anything without the ID
+#: src/librygel-server/rygel-item-destroyer.vala:53
+msgid "ContainerID missing"
+msgstr "ຂາດ ContainerID"
+
+#: src/librygel-server/rygel-item-destroyer.vala:60
+#, c-format
+msgid "Successfully destroyed object “%s”"
+msgstr "ທຳ​ລາຍ​ອັອບ​ເຈັກ “%s” ສຳ​ເລັດ"
+
+#: src/librygel-server/rygel-item-destroyer.vala:68
+#, c-format
+msgid "Failed to destroy object “%s”: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ທຳ​ລາຍ​ອັອບ​ເຈັກ “%s”: %s"
+
+#: src/librygel-server/rygel-item-destroyer.vala:105
+#: src/librygel-server/rygel-item-updater.vala:283
+#: src/librygel-server/rygel-media-query-action.vala:194
+#: src/librygel-server/rygel-reference-creator.vala:68
+#: src/librygel-server/rygel-reference-creator.vala:115
+msgid "No such object"
+msgstr "ບໍ່​ມີ​ອັອບ​ເຈັກ​ດັ່ງ​ກ່າວ"
+
+#: src/librygel-server/rygel-item-destroyer.vala:108
+#, c-format
+msgid "Removal of object %s not allowed"
+msgstr "ບໍ່​ອະ​ນຸ​ຍາດ​ໃຫ້​ລຶບ​ອັອບ​ເຈັກ %s"
+
+#: src/librygel-server/rygel-item-destroyer.vala:111
+#, c-format
+msgid "Object removal from %s not allowed"
+msgstr "ບໍ່​ອະ​ນຸ​ຍາດ​ໃຫ້​ລຶບ​ອັອບ​ເຈັກ​ຈາກ %s"
+
+#. Sorry we can't do anything without the ID
+#: src/librygel-server/rygel-item-updater.vala:74
+msgid "Object ID missing"
+msgstr "ຂາດ ID ອັອບ​ເຈັກ"
+
+#: src/librygel-server/rygel-item-updater.vala:81
+#, c-format
+msgid "Successfully updated object “%s”"
+msgstr "ອັບ​ເດດ​ອັອບ​ເຈັກ “%s” ສຳ​ເລັດ"
+
+#: src/librygel-server/rygel-item-updater.vala:89
+#, c-format
+msgid "Failed to update object “%s”: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ອັບ​ເດດ​ອັອບ​ເຈັກ “%s”: %s"
+
+#: src/librygel-server/rygel-item-updater.vala:162
+#: src/librygel-server/rygel-object-creator.vala:614
+#, c-format
+msgid "Invalid date format: %s"
+msgstr "ຮູບ​ແບບ​ວັນ​ທີ​ບໍ່​ຖືກ​ຕ້ອງ: %s"
+
+#: src/librygel-server/rygel-item-updater.vala:171
+#: src/librygel-server/rygel-object-creator.vala:623
+#, c-format
+msgid "Invalid date: %s"
+msgstr "ວັນ​ທີ​ບໍ່​ຖືກ​ຕ້ອງ: %s"
+
+#: src/librygel-server/rygel-item-updater.vala:256
+msgid "Bad current tag value."
+msgstr "ຄ່າ​ແທັກ​ປັດ​ຈຸ​ບັນ​ບໍ່​ດີ."
+
+#: src/librygel-server/rygel-item-updater.vala:260
+msgid "Bad new tag value."
+msgstr "ຄ່າ​ແທັກ​ໃໝ່​ບໍ່​ດີ."
+
+#: src/librygel-server/rygel-item-updater.vala:263
+msgid "Tried to delete required tag."
+msgstr "ພະ​ຍາ​ຍາມ​ລຶບ​ແທັກ​ທີ່​ຈຳ​ເປັນ."
+
+#: src/librygel-server/rygel-item-updater.vala:266
+msgid "Tried to change read-only property."
+msgstr "ພະ​ຍາ​ຍາມ​ປ່ຽນ​ຄຸນ​ສົມ​ບັດ​ທີ່​ອ່ານ​ໄດ້​ຢ່າງ​ດຽວ."
+
+#: src/librygel-server/rygel-item-updater.vala:269
+msgid "Parameter count mismatch."
+msgstr "ຈຳ​ນວນ​ພາ​ຣາ​ມິ​ເຕີ​ບໍ່​ຕົງ​ກັນ."
+
+#: src/librygel-server/rygel-item-updater.vala:272
+msgid "Unknown error."
+msgstr "ຜິດ​ພາດ​ທີ່​ບໍ່​ຮູ້​ຈັກ."
+
+#: src/librygel-server/rygel-item-updater.vala:285
+#, c-format
+msgid "Metadata modification of object %s not allowed"
+msgstr "ບໍ່​ອະ​ນຸ​ຍາດ​ໃຫ້​ແກ້​ໄຂ​ເມ​ຕາ​ເດ​ຕາ​ຂອງ​ອັອບ​ເຈັກ %s"
+
+#: src/librygel-server/rygel-item-updater.vala:290
+#, c-format
+msgid ""
+"Metadata modification of object %s being a child of restricted object %s not "
+"allowed"
+msgstr "ບໍ່​ອະ​ນຸ​ຍາດ​ໃຫ້​ແກ້​ໄຂ​ເມ​ຕາ​ເດ​ຕາ​ຂອງ​ອັອບ​ເຈັກ %s ທີ່​ເປັນ​ລູກ​ຂອງ​ອັອບ​ເຈັກ %s ທີ່​ຖືກ​ຈຳ​ກັດ"
+
+#: src/librygel-server/rygel-m3u-playlist.vala:67
+#: src/librygel-server/rygel-m3u-playlist.vala:70
+msgid "Unknown"
+msgstr "ບໍ່​ຮູ້​ຈັກ"
+
+#: src/librygel-server/rygel-media-art-store.vala:111
+#, c-format
+msgid "Failed to add album art for %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ເພີ່ມ​ໜ້າ​ປົກ​ອະ​ລະ​ບ້ຳ​ສຳ​ລັບ %s: %s"
+
+#: src/librygel-server/rygel-media-art-store.vala:125
+#, c-format
+msgid "Failed to find media art for %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຊອກ​ຫາ​ໜ້າ​ປົກ​ມີ​ເດຍ​ສຳ​ລັບ %s: %s"
+
+#: src/librygel-server/rygel-media-container.vala:67
+msgid "Seeking not supported"
+msgstr "ບໍ່​ຮອງ​ຮັບ​ການ​ຊອກ​ຫາ"
+
+#: src/librygel-server/rygel-media-container.vala:72
+msgid "Speed not supported"
+msgstr "ບໍ່​ຮອງ​ຮັບ​ຄວາມ​ໄວ"
+
+#: src/librygel-server/rygel-media-container.vala:123
+msgid "Failed to generate playlist"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສ້າງ​ລາຍ​ການ​ຫຼິ້ນ"
+
+#: src/librygel-server/rygel-media-container.vala:472
+#, c-format
+msgid "Unknown MediaContainer resource: %s"
+msgstr "ບໍ່​ຮູ້​ຈັກ​ຊັບ​ພະ​ຍາ​ກອນ MediaContainer: %s"
+
+#: src/librygel-server/rygel-media-engine.vala:63
+msgid "No media engine found."
+msgstr "ບໍ່​ພົບ​ເອັນ​ຈິ້ນ​ມີ​ເດຍ."
+
+#: src/librygel-server/rygel-media-engine.vala:75
+msgid "MediaEngine.init was not called. Cannot continue."
+msgstr "MediaEngine.init ບໍ່​ໄດ້​ຖືກ​ເອີ້ນ. ບໍ່​ສາ​ມາດ​ດຳ​ເນີນ​ການ​ຕໍ່​ໄດ້."
+
+#: src/librygel-server/rygel-media-file-item.vala:177
+#: src/librygel-server/rygel-video-item.vala:242
+#, c-format
+msgid "Could not determine protocol for URI %s"
+msgstr "ບໍ່​ສາ​ມາດ​ກຳ​ນົດ​ໂປຣ​ໂຕ​ຄອນ​ສຳ​ລັບ URI %s"
+
+#: src/librygel-server/rygel-media-object.vala:284
+#, c-format
+msgid "Could not determine protocol for %s"
+msgstr "ບໍ່​ສາ​ມາດ​ກຳ​ນົດ​ໂປຣ​ໂຕ​ຄອນ​ສຳ​ລັບ %s"
+
+#: src/librygel-server/rygel-media-object.vala:491
+#, c-format
+msgid "Bad URI: %s"
+msgstr "URI ບໍ່​ດີ: %s"
+
+#: src/librygel-server/rygel-media-query-action.vala:100
+msgid "Invalid number of arguments"
+msgstr "ຈຳ​ນວນ​ອາ​ກິວ​ເມັນ​ບໍ່​ຖືກ​ຕ້ອງ"
+
+#. Sorry we can't do anything without ObjectID
+#: src/librygel-server/rygel-media-query-action.vala:122
+msgid "ObjectID argument missing"
+msgstr "ຂາດ​ອາ​ກິວ​ເມັນ ObjectID"
+
+#: src/librygel-server/rygel-media-query-action.vala:127
+msgid "Invalid range"
+msgstr "ຂອບ​ເຂດ​ບໍ່​ຖືກ​ຕ້ອງ"
+
+#: src/librygel-server/rygel-media-query-action.vala:131
+msgid "Missing filter"
+msgstr "ຂາດ​ຕົວກອງ"
+
+#: src/librygel-server/rygel-media-query-action.vala:197
+#: src/librygel-server/rygel-object-creator.vala:414
+msgid "No such container"
+msgstr "ບໍ່​ມີ​ຄອນ​ເທນ​ເນີ​ດັ່ງ​ກ່າວ"
+
+#: src/librygel-server/rygel-object-creator.vala:150
+msgid "upnp:createClass value not supported"
+msgstr "ບໍ່​ຮອງ​ຮັບ​ຄ່າ upnp:createClass"
+
+#: src/librygel-server/rygel-object-creator.vala:193
+msgid "“Elements” argument missing."
+msgstr "ຂາດ​ອາ​ກິວ​ເມັນ “Elements”."
+
+#: src/librygel-server/rygel-object-creator.vala:196
+msgid "Comments not allowed in XML"
+msgstr "ບໍ່​ອະ​ນຸ​ຍາດ​ໃຫ້​ມີ​ຄຳ​ເຫັນ​ໃນ XML"
+
+#. Sorry we can't do anything without ContainerID
+#: src/librygel-server/rygel-object-creator.vala:202
+msgid "Missing ContainerID argument"
+msgstr "ຂາດ​ອາ​ກິວ​ເມັນ ContainerID"
+
+#: src/librygel-server/rygel-object-creator.vala:226
+#, c-format
+msgid "No objects in DIDL-Lite from client: “%s”"
+msgstr "ບໍ່​ມີ​ອັອບ​ເຈັກ​ໃນ DIDL-Lite ຈາກ​ໄຄລ​ເອັນ: “%s”"
+
+#: src/librygel-server/rygel-object-creator.vala:233
+msgid "@id must be set to \"\" in CreateObject call"
+msgstr "@id ຕ້ອງ​ຕັ້ງ​ເປັນ \"\" ໃນ​ການ​ເອີ້ນ CreateObject"
+
+#: src/librygel-server/rygel-object-creator.vala:238
+msgid "dc:title must not be empty in CreateObject call"
+msgstr "dc:title ຕ້ອງ​ບໍ່​ຫວ່າງ​ເປົ່າ​ໃນ​ການ​ເອີ້ນ CreateObject"
+
+#: src/librygel-server/rygel-object-creator.vala:249
+msgid "Flags that must not be set were found in “dlnaManaged”"
+msgstr "ພົບ​ແຟລກ​ທີ່​ບໍ່​ຄວນ​ຕັ້ງ​ຢູ່​ໃນ “dlnaManaged”"
+
+#: src/librygel-server/rygel-object-creator.vala:257
+msgid "Invalid upnp:class given in CreateObject"
+msgstr "Upnp:class ທີ່​ໃຫ້​ມາ​ໃນ CreateObject ບໍ່​ຖືກ​ຕ້ອງ"
+
+#: src/librygel-server/rygel-object-creator.vala:261
+msgid "Object is missing the @restricted attribute"
+msgstr "ອັອບ​ເຈັກ​ຂາດ​ແອັດ​ທິ​ບິວ @restricted"
+
+#: src/librygel-server/rygel-object-creator.vala:268
+msgid "Cannot create restricted item"
+msgstr "ບໍ່​ສາ​ມາດ​ສ້າງ​ລາຍ​ການ​ທີ່​ຖືກ​ຈຳ​ກັດ"
+
+#: src/librygel-server/rygel-object-creator.vala:385
+#, c-format
+msgid "UPnP class “%s” not supported"
+msgstr "ບໍ່​ຮອງ​ຮັບ​ຄລາສ UPnP “%s”"
+
+#: src/librygel-server/rygel-object-creator.vala:419
+#: src/librygel-server/rygel-object-creator.vala:431
+#: src/librygel-server/rygel-object-creator.vala:721
+#: src/librygel-server/rygel-reference-creator.vala:118
+#, c-format
+msgid "Object creation in %s not allowed"
+msgstr "ບໍ່​ອະ​ນຸ​ຍາດ​ໃຫ້​ສ້າງ​ອັອບ​ເຈັກ​ໃນ %s"
+
+#: src/librygel-server/rygel-object-creator.vala:476
+#, c-format
+msgid "Failed to create item under “%s”: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສ້າງ​ລາຍ​ການ​ພາຍ​ໃຕ້ “%s”: %s"
+
+#: src/librygel-server/rygel-object-creator.vala:552
+#, c-format
+msgid "DLNA profile “%s” not supported"
+msgstr "ບໍ່​ຮອງ​ຮັບ​ໂປຣ​ໄຟລ໌ DLNA “%s”"
+
+#: src/librygel-server/rygel-object-creator.vala:656
+#, c-format
+msgid "Cannot create object of class “%s”: Not supported"
+msgstr "ບໍ່​ສາ​ມາດ​ສ້າງ​ອັອບ​ເຈັກ​ຂອງ​ຄລາສ “%s”: ບໍ່​ຮອງ​ຮັບ"
+
+#: src/librygel-server/rygel-object-creator.vala:752
+#, c-format
+msgid ""
+"Error from container “%s” on trying to find the newly added child object "
+"“%s” in it: %s"
+msgstr "ຜິດ​ພາດ​ຈາກ​ຄອນ​ເທນ​ເນີ “%s” ຂະ​ນະ​ພະ​ຍາ​ຍາມ​ຊອກ​ຫາ​ອັອບ​ເຈັກ​ລູກ​ທີ່​ເພີ່ມ​ໃໝ່ “%s” ໃນ​ນັ້ນ: %s"
+
+#: src/librygel-server/rygel-reference-creator.vala:50
+msgid "“ContainerID” agument missing."
+msgstr "ຂາດ​ອາ​ກິວ​ເມັນ “ContainerID”."
+
+#: src/librygel-server/rygel-reference-creator.vala:55
+msgid "“ObjectID” argument missing."
+msgstr "ຂາດ​ອາ​ກິວ​ເມັນ “ObjectID”."
+
+#: src/librygel-server/rygel-reference-creator.vala:86
+#, c-format
+msgid "Failed to create object under “%s”: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສ້າງ​ອັອບ​ເຈັກ​ພາຍ​ໃຕ້ “%s”: %s"
+
+#: src/librygel-server/rygel-search.vala:70
+msgid "Invalid search criteria given"
+msgstr "ເງື່ອນ​ໄຂ​ການ​ຄົ້ນ​ຫາ​ທີ່​ໃຫ້​ມາ​ບໍ່​ຖືກ​ຕ້ອງ"
+
+#: src/librygel-server/rygel-search.vala:94
+#, c-format
+msgid "Failed to search in “%s”: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຄົ້ນ​ຫາ​ໃນ “%s”: %s"
+
+#: src/librygel-server/rygel-subtitle-manager.vala:49
+#: src/librygel-server/rygel-subtitle-manager.vala:96
+msgid "No subtitle available"
+msgstr "ບໍ່​ມີ​ຄຳ​ບັນ​ຍາຍ​ໃຕ້​ພາບ"
+
+#: src/librygel-server/rygel-thumbnailer.vala:61
+#, c-format
+msgid "No thumbnailer available: %s"
+msgstr "ບໍ່​ມີ​ຕົວ​ສ້າງ​ຮູບ​ຫຍໍ້: %s"
+
+#: src/librygel-server/rygel-thumbnailer.vala:74
+msgid "Thumbnailing not supported"
+msgstr "ບໍ່​ຮອງ​ຮັບ​ການ​ສ້າງ​ຮູບ​ຫຍໍ້"
+
+#. Thumbnailing failed previously, so there's no current thumbnail
+#. and it doesn't make any sense to request one.
+#: src/librygel-server/rygel-thumbnailer.vala:88
+#: src/librygel-server/rygel-thumbnailer.vala:102
+#: src/librygel-server/rygel-thumbnailer.vala:113
+msgid "No thumbnail available"
+msgstr "ບໍ່​ມີ​ຮູບ​ຫຍໍ້"
+
+#: src/librygel-server/rygel-thumbnailer.vala:97
+msgid "No thumbnail available. Generation requested."
+msgstr "ບໍ່​ມີ​ຮູບ​ຫຍໍ້. ມີ​ການ​ຮ້ອງ​ຂໍ​ໃຫ້​ສ້າງ."
+
+#: src/librygel-server/rygel-thumbnailer.vala:132
+msgid "No D-Bus thumbnailer available"
+msgstr "ບໍ່​ມີ​ຕົວ​ສ້າງ​ຮູບ​ຫຍໍ້ D-Bus"
+
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:46
+#, c-format
+msgid "Could not create GstElement for URI %s"
+msgstr "ບໍ່​ສາ​ມາດ​ສ້າງ GstElement ສຳ​ລັບ URI %s"
+
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:78
+#: src/media-engines/simple/rygel-simple-data-source.vala:84
+msgid "Playspeed not supported"
+msgstr "ບໍ່​ຮອງ​ຮັບ​ຄວາມ​ໄວ​ໃນ​ການ​ຫຼິ້ນ"
+
+#. Unknown/unsupported seek type
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:108
+#, c-format
+msgid "HTTPSeekRequest type %s unsupported"
+msgstr "ບໍ່​ຮອງ​ຮັບ​ປະ​ເພດ HTTPSeekRequest %s"
+
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:152
+msgid "Failed to create pipeline"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສ້າງ​ໄປປ໌​ລາຍນ໌"
+
+#. static pads? easy!
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:163
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:184
+#, c-format
+msgid "Failed to link %s to %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ເຊື່ອມ​ຕໍ່ %s ກັບ %s"
+
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:198
+#, c-format
+msgid "Failed to link pad %s to %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ເຊື່ອມ​ຕໍ່​ແພດ %s ກັບ %s"
+
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:263
+#, c-format
+msgid "Error from pipeline %s: %s"
+msgstr "ຜິດ​ພາດ​ຈາກ​ໄປປ໌​ລາຍນ໌ %s: %s"
+
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:270
+#, c-format
+msgid "Warning from pipeline %s: %s"
+msgstr "ຄຳ​ເຕືອນ​ຈາກ​ໄປປ໌​ລາຍນ໌ %s: %s"
+
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:323
+msgid "Unsupported seek type"
+msgstr "ບໍ່​ຮອງ​ຮັບ​ປະ​ເພດ​ການ​ຊອກ​ຫາ"
+
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:340
+#, c-format
+msgid "Failed to seek to offsets %lld:%lld"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຊອກ​ຫາ​ໄປ​ຍັງ​ອັອບ​ເຊັດ %lld:%lld"
+
+#: src/media-engines/gstreamer/rygel-gst-data-source.vala:342
+msgid "Failed to seek"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຊອກ​ຫາ"
+
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
+#, c-format
+msgid "Invalid URI without prefix: %s"
+msgstr "URI ບໍ່​ຖືກ​ຕ້ອງ​ໂດຍ​ບໍ່​ມີ​ຄຳ​ນຳ​ໜ້າ: %s"
+
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
+#, c-format
+msgid "Can’t process URI %s with protocol %s"
+msgstr "ບໍ່​ສາ​ມາດ​ປະ​ມວນ​ຜົນ URI %s ດ້ວຍ​ໂປຣ​ໂຕ​ຄອນ %s"
+
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
+#, c-format
+msgid "Failed to create GStreamer data source for %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສ້າງ​ແຫຼ່ງ​ຂໍ້​ມູນ GStreamer ສຳ​ລັບ %s: %s"
+
+#: src/media-engines/gstreamer/rygel-gst-transcoding-data-source.vala:29
+msgid ""
+"Could not create a transcoder configuration. Your GStreamer installation "
+"might be missing a plug-in"
+msgstr "ບໍ່​ສາ​ມາດ​ສ້າງ​ການ​ຕັ້ງ​ຄ່າ​ຕົວ​ແປງ​ລະ​ຫັດ. ການ​ຕິດ​ຕັ້ງ GStreamer ຂອງ​ທ່ານ​ອາດ​ຈະ​ຂາດ​ປລັກ​ອິນ"
+
+#: src/media-engines/gstreamer/rygel-gst-utils.vala:39
+#, c-format
+msgid "Required element %s missing"
+msgstr "ຂາດ​ອົງ​ປະ​ກອບ​ທີ່​ຈຳ​ເປັນ %s"
+
+#: src/media-engines/gstreamer/rygel-gst-utils.vala:58
+msgid "GStreamer element “dvdreadsrc” not found. DVD support does not work"
+msgstr "ບໍ່​ພົບ​ອົງ​ປະ​ກອບ GStreamer “dvdreadsrc”. ການ​ຮອງ​ຮັບ DVD ບໍ່​ເຮັດ​ວຽກ"
+
+#: src/media-engines/simple/rygel-simple-data-source.vala:64
+msgid "Only byte-based seek supported"
+msgstr "ຮອງ​ຮັບ​ສະ​ເພາະ​ການ​ຊອກ​ຫາ​ແບບ​ໄບຕ໌"
+
+#: src/media-engines/simple/rygel-simple-media-engine.vala:57
+#: src/media-engines/simple/rygel-simple-media-engine.vala:99
+msgid "Can only process file-based MediaObjects (MediaFileItems)"
+msgstr "ສາ​ມາດ​ປະ​ມວນ​ຜົນ​ໄດ້​ສະ​ເພາະ MediaObjects ທີ່​ອີງ​ໃສ່​ໄຟລ໌ (MediaFileItems)"
+
+#: src/plugins/external/rygel-external-plugin-factory.vala:35
+#: src/plugins/mpris/rygel-mpris-plugin-factory.vala:35
+#, c-format
+msgid "Module “%s” could not connect to D-Bus session bus. Ignoring…"
+msgstr "ໂມ​ດູນ “%s” ບໍ່​ສາ​ມາດ​ເຊື່ອມ​ຕໍ່​ກັບ​ເຊດ​ຊັນ​ບັສ D-Bus. ກຳ​ລັງ​ບໍ່​ສົນ​ໃຈ…"
+
+#: src/plugins/external/rygel-external-variant-util.vala:23
+#, c-format
+msgid "External provider %s did not provide mandatory property “%s”"
+msgstr "ຜູ້​ໃຫ້​ບໍ​ລິ​ການ​ພາຍ​ນອກ %s ບໍ່​ໄດ້​ໃຫ້​ຄຸນ​ສົມ​ບັດ​ທີ່​ຈຳ​ເປັນ “%s”"
+
+#: src/plugins/media-export/rygel-media-export-dvd-container.vala:127
+#, c-format
+msgid "Title %d"
+msgstr "ຫົວ​ຂໍ້ %d"
+
+#: src/plugins/media-export/rygel-media-export-dvd-parser.vala:39
+msgid ""
+"Failed to find lsdvd binary in path. DVD extraction will not be available"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຊອກ​ຫາ lsdvd binary ໃນ​ເສັ້ນ​ທາງ. ການ​ສະ​ກັດ DVD ຈະ​ບໍ່​ສາ​ມາດ​ໃຊ້​ງານ​ໄດ້"
+
+#: src/plugins/media-export/rygel-media-export-extract.vala:73
+msgid "Invalid command received, ignoring"
+msgstr "ໄດ້​ຮັບ​ຄຳ​ສັ່ງ​ບໍ່​ຖືກ​ຕ້ອງ, ກຳ​ລັງ​ບໍ່​ສົນ​ໃຈ"
+
+#: src/plugins/media-export/rygel-media-export-extract.vala:90
+#, c-format
+msgid "Failed to discover URI %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຄົ້ນ​ພົບ URI %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-extract.vala:105
+#, c-format
+msgid "Failed to read from pipe: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ອ່ານ​ຈາກ​ໄປປ໌: %s"
+
+#: src/plugins/media-export/rygel-media-export-extract.vala:132
+#: src/plugins/media-export/rygel-media-export-extract.vala:144
+#, c-format
+msgid "Failed to send error to parent: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສົ່ງ​ຂໍ້​ຜິດ​ພາດ​ໄປ​ຫາ​ແມ່: %s"
+
+#: src/plugins/media-export/rygel-media-export-extract.vala:157
+msgid "— helper binary for Rygel to extract metadata"
+msgstr "— ໄບ​ນາ​ຣີ​ຊ່ວຍ​ເຫຼືອ​ສຳ​ລັບ Rygel ເພື່ອ​ສະ​ກັດ​ເມ​ຕາ​ເດ​ຕາ"
+
+#: src/plugins/media-export/rygel-media-export-extract.vala:164
+#, c-format
+msgid "Failed to parse commandline args: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ວິ​ເຄາະ​ອາ​ກິວ​ເມັນ​ບັນ​ທັດ​ຄຳ​ສັ່ງ: %s"
+
+#: src/plugins/media-export/rygel-media-export-generic-extractor.vala:50
+#, c-format
+msgid "Failed to create media art extractor: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສ້າງ​ຕົວ​ສະ​ກັດ​ໜ້າ​ປົກ​ມີ​ເດຍ: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvester.vala:158
+#, c-format
+msgid "“%s” harvested"
+msgstr "“%s” ຖືກ​ເກັບ​ກ່ຽວ​ແລ້ວ"
+
+#: src/plugins/media-export/rygel-media-export-harvester.vala:214
+#, c-format
+msgid "Error fetching object “%s” from database: %s"
+msgstr "ຜິດ​ພາດ​ໃນ​ການ​ດຶງ​ອັອບ​ເຈັກ “%s” ຈາກ​ຖານ​ຂໍ້​ມູນ: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvester.vala:222
+#, c-format
+msgid "Failed to query info of a file %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສອບ​ຖາມ​ຂໍ້​ມູນ​ຂອງ​ໄຟລ໌ %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvester.vala:257
+#, c-format
+msgid "Could not find object %s or its parent. Database is inconsistent"
+msgstr "ບໍ່​ສາ​ມາດ​ຊອກ​ຫາ​ອັອບ​ເຈັກ %s ຫຼື ແມ່​ຂອງ​ມັນ. ຖານ​ຂໍ້​ມູນ​ບໍ່​ສອດ​ຄ່ອງ​ກັນ"
+
+#: src/plugins/media-export/rygel-media-export-harvester.vala:261
+#, c-format
+msgid "Error removing object from database: %s"
+msgstr "ຜິດ​ພາດ​ໃນ​ການ​ລຶບ​ອັອບ​ເຈັກ​ຈາກ​ຖານ​ຂໍ້​ມູນ: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:128
+#, c-format
+msgid "Failed to harvest file %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ເກັບ​ກ່ຽວ​ໄຟລ໌ %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:194
+#, c-format
+msgid "Failed to query database: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສອບ​ຖາມ​ຖານ​ຂໍ້​ມູນ: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:275
+#, c-format
+msgid "Failed to enumerate folder “%s”: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ນັບ​ລາຍ​ການ​ໃນ​ໂຟນ​ເດີ “%s”: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:293
+#, c-format
+msgid "Failed to get children of container %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຮັບ​ລູກ​ຂອງ​ຄອນ​ເທນ​ເນີ %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:352
+#, c-format
+msgid "Failed to extract meta-data for file %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສະ​ກັດ​ເມ​ຕາ​ເດ​ຕາ​ສຳ​ລັບ​ໄຟລ໌ %s"
+
+#. error is only emitted if even the basic information extraction
+#. failed; there's not much to do here, just print the information and
+#. go to the next file
+#: src/plugins/media-export/rygel-media-export-harvesting-task.vala:365
+#, c-format
+msgid "Skipping URI %s; extraction completely failed: %s"
+msgstr "ກຳ​ລັງ​ຂ້າມ URI %s; ການ​ສະ​ກັດ​ລົ້ມເຫຼວ​ໂດຍ​ສິ້ນ​ເຊີງ: %s"
+
+#: src/plugins/media-export/rygel-media-export-leaf-query-container.vala:62
+#, c-format
+msgid "Failed to get child count of query container: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຮັບ​ຈຳ​ນວນ​ລູກ​ຂອງ​ຄອນ​ເທນ​ເນີ​ສອບ​ຖາມ: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:67
+#, c-format
+msgid "Failed to force reindex to fix database: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ບັງ​ຄັບ​ໃຫ້​ສ້າງ​ດັດ​ຊະ​ນີ​ໃໝ່​ເພື່ອ​ແກ້​ໄຂ​ຖານ​ຂໍ້​ມູນ: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:78
+#, c-format
+msgid "Failed to create indices: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສ້າງ​ດັດ​ຊະ​ນີ: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:97
+#, c-format
+msgid "Cannot upgrade from version %d"
+msgstr "ບໍ່​ສາ​ມາດ​ອັບ​ເກຣດ​ຈາກ​ເວີ​ຊັນ %d"
+
+#: src/plugins/media-export/rygel-media-export-media-cache-upgrader.vala:117
+#, c-format
+msgid "Database upgrade to v18 failed: %s"
+msgstr "ການ​ອັບ​ເກຣດ​ຖານ​ຂໍ້​ມູນ​ເປັນ v18 ລົ້ມເຫຼວ: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:135
+#, c-format
+msgid "Failed to add item with ID %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ເພີ່ມ​ລາຍ​ການ​ດ້ວຍ ID %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:218
+#, c-format
+msgid "Failed to get update IDs: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຮັບ ID ອັບ​ເດດ: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:401
+#, c-format
+msgid "Inconsistent database: item %s does not have parent %s"
+msgstr "ຖານ​ຂໍ້​ມູນ​ບໍ່​ສອດ​ຄ່ອງ​ກັນ: ລາຍ​ການ %s ບໍ່​ມີ​ແມ່ %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:526
+msgid "Failed to get reset token"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຮັບ​ໂທ​ເຄັນ​ຣີ​ເຊັດ"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:538
+#, c-format
+msgid "Failed to persist ServiceResetToken: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ບັນ​ທຶກ ServiceResetToken: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:548
+#, c-format
+msgid "Failed to remove virtual folders: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ລຶບ​ໂຟນ​ເດີ​ສະ​ເໝືອນ: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:562
+#, c-format
+msgid "Failed to mark item %s as guarded (%d): %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ໝາຍ​ລາຍ​ການ %s ວ່າ​ຖືກ​ປ້ອງ​ກັນ (%d): %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:572
+msgid "Cannot create references to containers"
+msgstr "ບໍ່​ສາ​ມາດ​ສ້າງ​ການ​ອ້າງ​ອີງ​ເຖິງ​ຄອນ​ເທນ​ເນີ"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:598
+#, c-format
+msgid "Failed to add %s to ignored files: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ເພີ່ມ %s ໃສ່​ໄຟລ໌​ທີ່​ບໍ່​ສົນ​ໃຈ: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:611
+#, c-format
+msgid "Failed to get whether URI %s is ignored: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ກວດ​ສອບ​ວ່າ URI %s ຖືກ​ບໍ່​ສົນ​ໃຈ​ຫຼື​ບໍ່: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:627
+#, c-format
+msgid "Failed to get whether item %s is guarded: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ກວດ​ສອບ​ວ່າ​ລາຍ​ການ %s ຖືກ​ປ້ອງ​ກັນ​ຫຼື​ບໍ່: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:667
+#, c-format
+msgid ""
+"The version “%d” of the detected database is newer than our supported "
+"version “%d”"
+msgstr "ເວີ​ຊັນ “%d” ຂອງ​ຖານ​ຂໍ້​ມູນ​ທີ່​ກວດ​ພົບ​ໃໝ່​ກວ່າ​ເວີ​ຊັນ “%d” ທີ່​ຮອງ​ຮັບ"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:689
+msgid "Incompatible schema… cannot proceed"
+msgstr "ສະ​ກີ​ມາ​ບໍ່​ເຂົ້າ​ກັນ… ບໍ່​ສາ​ມາດ​ດຳ​ເນີນ​ການ​ຕໍ່​ໄດ້"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:695
+#, c-format
+msgid "Invalid database, cannot query sqlite_master table: %s"
+msgstr "ຖານ​ຂໍ້​ມູນ​ບໍ່​ຖືກ​ຕ້ອງ, ບໍ່​ສາ​ມາດ​ສອບ​ຖາມ​ຕາ​ຕະ​ລາງ sqlite_master: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:896
+#, c-format
+msgid "Failed to create database schema: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສ້າງ​ສະ​ກີ​ມາ​ຖານ​ຂໍ້​ມູນ: %s"
+
+#: src/plugins/media-export/rygel-media-export-media-cache.vala:1234
+#, c-format
+msgid "Skipping unsupported sort field: %s"
+msgstr "ກຳ​ລັງ​ຂ້າມ​ຟິ​ລ​ການ​ຈັດ​ລຽງ​ທີ່​ບໍ່​ຮອງ​ຮັບ: %s"
+
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:104
+msgid "Failed to gracefully stop the process. Using KILL"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຢຸດ​ໂປຣ​ເຊສ​ຢ່າງ​ຖືກ​ຕ້ອງ. ກຳ​ລັງ​ໃຊ້ KILL"
+
+#. Process exitted properly -> That shouldn't really
+#. happen
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:152
+#, c-format
+msgid "Process check_async failed: %s"
+msgstr "ໂປຣ​ເຊສ check_async ລົ້ມເຫຼວ: %s"
+
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
+#, c-format
+msgid "Process died while handling URI %s"
+msgstr "ໂປຣ​ເຊສ​ຢຸດ​ເຮັດ​ວຽກ​ຂະ​ນະ​ຈັດ​ການ URI %s"
+
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
+#, c-format
+msgid "Setting up extraction subprocess failed: %s"
+msgstr "ການ​ຕັ້ງ​ຄ່າ​ໂປຣ​ເຊສ​ຍ່ອຍ​ການ​ສະ​ກັດ​ລົ້ມເຫຼວ: %s"
+
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
+#, c-format
+msgid "Received invalid string from child: %s"
+msgstr "ໄດ້​ຮັບ​ສະ​ຕຣິງ​ບໍ່​ຖືກ​ຕ້ອງ​ຈາກ​ລູກ: %s"
+
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
+#, c-format
+msgid "Received ill-formed response string %s from child…"
+msgstr "ໄດ້​ຮັບ​ສະ​ຕຣິງ​ຕອບ​ກັບ​ທີ່​ມີ​ຮູບ​ແບບ​ບໍ່​ດີ %s ຈາກ​ລູກ…"
+
+#. No error signalling, this was done in the part that called
+#. cancel
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:243
+#, c-format
+msgid "Read from child failed: %s"
+msgstr "ການ​ອ່ານ​ຈາກ​ລູກ​ລົ້ມເຫຼວ: %s"
+
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:270
+#, c-format
+msgid "Failed to send command to child: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສົ່ງ​ຄຳ​ສັ່ງ​ໄປ​ຫາ​ລູກ: %s"
+
+#: src/plugins/media-export/rygel-media-export-node-query-container.vala:63
+#: src/plugins/media-export/rygel-media-export-root-container.vala:33
+msgid "All"
+msgstr "ທັງ​ໝົດ"
+
+#: src/plugins/media-export/rygel-media-export-node-query-container.vala:93
+#, c-format
+msgid "Failed to get child count: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຮັບ​ຈຳ​ນວນ​ລູກ: %s"
+
+#: src/plugins/media-export/rygel-media-export-playlist-container.vala:70
+#: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:75
+#, c-format
+msgid "Can’t create items in %s"
+msgstr "ບໍ່​ສາ​ມາດ​ສ້າງ​ລາຍ​ການ​ໃນ %s"
+
+#: src/plugins/media-export/rygel-media-export-playlist-container.vala:91
+#, c-format
+msgid "Can’t add containers in %s"
+msgstr "ບໍ່​ສາ​ມາດ​ເພີ່ມ​ຄອນ​ເທນ​ເນີ​ໃນ %s"
+
+#: src/plugins/media-export/rygel-media-export-playlist-container.vala:99
+#, c-format
+msgid "Can’t remove containers in %s"
+msgstr "ບໍ່​ສາ​ມາດ​ລຶບ​ຄອນ​ເທນ​ເນີ​ໃນ %s"
+
+#: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:43
+#: src/plugins/media-export/rygel-media-export-root-container.vala:612
+msgid "Playlists"
+msgstr "ລາຍ​ການ​ຫຼິ້ນ"
+
+#: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:83
+#, c-format
+msgid "Can’t remove items in %s"
+msgstr "ບໍ່​ສາ​ມາດ​ລຶບ​ລາຍ​ການ​ໃນ %s"
+
+#: src/plugins/media-export/rygel-media-export-playlist-root-container.vala:93
+#, c-format
+msgid "upnp:class not supported in %s"
+msgstr "ບໍ່​ຮອງ​ຮັບ upnp:class ໃນ %s"
+
+#: src/plugins/media-export/rygel-media-export-plugin.vala:53
+#, c-format
+msgid "Failed to load plugin %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ໂຫຼດ​ປລັກ​ອິນ %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
+msgid "Will not monitor file changes"
+msgstr "ຈະ​ບໍ່​ຕິດ​ຕາມ​ການ​ປ່ຽນ​ແປງ​ຂອງ​ໄຟລ໌"
+
+#. Avoid warning when file is removed in the meantime, e.g. in
+#. upload case.
+#: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:105
+#, c-format
+msgid "Failed to setup up file monitor for %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຕັ້ງ​ຄ່າ​ຕົວ​ຕິດ​ຕາມ​ໄຟລ໌​ສຳ​ລັບ %s: %s"
+
+#. Titles and definitions of some virtual folders,
+#. for use with QueryContainer.
+#: src/plugins/media-export/rygel-media-export-root-container.vala:32
+#: src/plugins/localsearch/localsearch-years.vala:33
+msgid "Year"
+msgstr "ປີ"
+
+#. Titles and definitions of virtual folders for Music,
+#. for use with QueryContainer.
+#: src/plugins/media-export/rygel-media-export-root-container.vala:39
+msgid "Artist"
+msgstr "ສິນ​ລະ​ປິນ"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:40
+msgid "Album"
+msgstr "ອະ​ລະ​ບ້ຳ"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:41
+#: src/plugins/localsearch/localsearch-genre.vala:31
+msgid "Genre"
+msgstr "ປະ​ເພດ"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:56
+msgid "Files & Folders"
+msgstr "ໄຟລ໌ & ໂຟນ​ເດີ"
+
+#. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
+#: src/plugins/media-export/rygel-media-export-root-container.vala:366
+#: src/plugins/localsearch/localsearch-plugin.vala:34
+msgid "@REALNAME@’s media"
+msgstr "ມີ​ເດຍ​ຂອງ @REALNAME@"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:457
+#: src/plugins/media-export/rygel-media-export-root-container.vala:524
+#, c-format
+msgid "Failed to remove entry: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ລຶບ​ລາຍ​ການ: %s"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:605
+msgid "Music"
+msgstr "ເພງ"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:608
+msgid "Pictures"
+msgstr "ຮູບ​ພາບ"
+
+#: src/plugins/media-export/rygel-media-export-root-container.vala:610
+msgid "Videos"
+msgstr "ວິ​ດີ​ໂອ"
+
+#: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:56
+#: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:64
+#, c-format
+msgid "Failed to save object: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ບັນ​ທຶກ​ອັອບ​ເຈັກ: %s"
+
+#: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:79
+#, c-format
+msgid "Failed to add object: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ເພີ່ມ​ອັອບ​ເຈັກ: %s"
+
+#: src/plugins/media-export/rygel-media-export-trackable-db-container.vala:87
+#, c-format
+msgid "Failed to remove object: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ລຶບ​ອັອບ​ເຈັກ: %s"
+
+#: src/plugins/media-export/rygel-media-export-writable-db-container.vala:108
+#, c-format
+msgid "Failed to remove file %s: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ລຶບ​ໄຟລ໌ %s: %s"
+
+#: src/plugins/media-export/rygel-media-export-writable-db-container.vala:120
+#, c-format
+msgid "Could not find object %d in cache"
+msgstr "ບໍ່​ສາ​ມາດ​ຊອກ​ຫາ​ອັອບ​ເຈັກ %d ໃນ​ແຄ​ຊ"
+
+#: src/plugins/mpris/rygel-mpris-plugin-factory.vala:131
+#, c-format
+msgid "MPRIS interface at %s is read-only. Ignoring."
+msgstr "ອິນ​ເຕີ​ເຟດ MPRIS ທີ່ %s ເປັນ​ແບບ​ອ່ານ​ໄດ້​ຢ່າງ​ດຽວ. ກຳ​ລັງ​ບໍ່​ສົນ​ໃຈ."
+
+#: src/plugins/playbin/rygel-playbin-plugin.vala:35
+msgid "GStreamer Player"
+msgstr "ເຄື່ອງ​ຫຼິ້ນ GStreamer"
+
+#: src/plugins/playbin/rygel-playbin-plugin.vala:43
+msgid "Could not create GStreamer player"
+msgstr "ບໍ່​ສາ​ມາດ​ສ້າງ​ເຄື່ອງ​ຫຼິ້ນ GStreamer"
+
+#: src/plugins/localsearch/localsearch-albums.vala:31
+msgid "Albums"
+msgstr "ອະ​ລະ​ບ້ຳ"
+
+#: src/plugins/localsearch/localsearch-artists.vala:31
+msgid "Artists"
+msgstr "ສິນ​ລະ​ປິນ"
+
+#: src/plugins/localsearch/localsearch-category-all-container.vala:56
+#, c-format
+msgid "Failed to construct URI for folder “%s”: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສ້າງ URI ສຳ​ລັບ​ໂຟນ​ເດີ “%s”: %s"
+
+#: src/plugins/localsearch/localsearch-category-all-container.vala:67
+#, c-format
+msgid "Could not subscribe to LocalSearch signals: %s"
+msgstr "ບໍ່​ສາ​ມາດ​ສະ​ໝັກ​ຮັບ​ສັນ​ຍານ LocalSearch: %s"
+
+#: src/plugins/localsearch/localsearch-category-all-container.vala:92
+msgid "Not supported"
+msgstr "ບໍ່​ຮອງ​ຮັບ"
+
+#: src/plugins/localsearch/localsearch-metadata-container.vala:99
+#, c-format
+msgid "Error getting all values for “%s”: %s"
+msgstr "ຜິດ​ພາດ​ໃນ​ການ​ຮັບ​ຄ່າ​ທັງ​ໝົດ​ສຳ​ລັບ “%s”: %s"
+
+#: src/plugins/localsearch/localsearch-plugin-factory.vala:35
+#, c-format
+msgid "Failed to start LocalSearch service: %s. Plugin disabled."
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ເລີ່ມ​ຕົ້ນ​ບໍລິການ LocalSearch: %s. ປລັກ​ອິນ​ຖືກ​ປິດ​ໃຊ້​ງານ."
+
+#: src/plugins/localsearch/localsearch-root-container.vala:46
+#, c-format
+msgid "Could not connect to %s, falling back to old Tracker3 service"
+msgstr "ບໍ່​ສາ​ມາດ​ເຊື່ອມ​ຕໍ່​ກັບ %s, ກຳ​ລັງ​ກັບ​ໄປ​ໃຊ້​ບໍລິການ Tracker3 ແບບ​ເກົ່າ"
+
+#: src/plugins/localsearch/localsearch-search-container.vala:228
+#, c-format
+msgid "Error getting item count under category “%s”: %s"
+msgstr "ຜິດ​ພາດ​ໃນ​ການ​ຮັບ​ຈຳ​ນວນ​ລາຍ​ການ​ພາຍ​ໃຕ້​ໝວດ​ໝູ່ “%s”: %s"
+
+#: src/plugins/localsearch/localsearch-titles.vala:58
+msgid "Titles"
+msgstr "ຫົວ​ຂໍ້"
+
+#: src/rygel/application.vala:88
+#, c-format
+msgid "Failed to load user configuration: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ໂຫຼດ​ການ​ຕັ້ງ​ຄ່າ​ຜູ້​ໃຊ້: %s"
+
+#: src/rygel/application.vala:125
+#, c-format
+msgid "No plugins found in %d second; giving up…"
+msgstr "ບໍ່​ພົບ​ປລັກ​ອິນ​ໃນ %d ວິ​ນາ​ທີ; ກຳ​ລັງ​ຍອມ​ແພ້…"
+
+#: src/rygel/application.vala:154
+#, c-format
+msgid "Rygel v%s starting…"
+msgstr "Rygel v%s ກຳ​ລັງ​ເລີ່ມ​ຕົ້ນ…"
+
+#: src/rygel/application.vala:202
+#, c-format
+msgid "Failed to create RootDevice for %s. Reason: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສ້າງ RootDevice ສຳ​ລັບ %s. ເຫດ​ຜົນ: %s"
+
+#: src/rygel/application.vala:283
+#, c-format
+msgid "Failed to create root device factory: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສ້າງ​ໂຮງ​ງານ​ອຸ​ປະ​ກອນ​ຮາກ: %s"
+
+#: src/rygel/rygel-acl.vala:110
+#, c-format
+msgid "Failed to query ACL: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສອບ​ຖາມ ACL: %s"
+
+#: src/rygel/rygel-acl.vala:127
+#, c-format
+msgid "Error creating D-Bus proxy for ACL: %s"
+msgstr "ຜິດ​ພາດ​ໃນ​ການ​ສ້າງ​ພຣັອກ​ຊີ D-Bus ສຳ​ລັບ ACL: %s"
+
+#: src/rygel/rygel-acl.vala:145
+msgid "No ACL fallback policy found. Using “allow”"
+msgstr "ບໍ່​ພົບ​ນະ​ໂຍ​ບາຍ​ສຳ​ຮອງ ACL. ກຳ​ລັງ​ໃຊ້ “ອະ​ນຸ​ຍາດ”"
+
+#: src/rygel/rygel-acl.vala:147
+msgid "No ACL fallback policy found. Using “deny”"
+msgstr "ບໍ່​ພົບ​ນະ​ໂຍ​ບາຍ​ສຳ​ຮອງ ACL. ກຳ​ລັງ​ໃຊ້ “ປະ​ຕິ​ເສດ”"
+
+#: src/ui/rygel-preferences-dialog.vala:100
+#, c-format
+msgid "Failed to create preferences dialog: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ສ້າງ​ກ່ອງ​ໂຕ້​ຕອບ​ຄ່າ​ຕັ້ງ​ຕົ້ນ: %s"
+
+#: src/ui/rygel-writable-user-config.vala:119
+#, c-format
+msgid "Failed to save configuration data to file “%s”: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ບັນ​ທຶກ​ຂໍ້​ມູນ​ການ​ຕັ້ງ​ຄ່າ​ໃສ່​ໄຟລ໌ “%s”: %s"
+
+#: src/ui/rygel-writable-user-config.vala:214
+#, c-format
+msgid "Failed to start Rygel service: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ເລີ່ມ​ຕົ້ນ​ບໍລິການ Rygel: %s"
+
+#: src/ui/rygel-writable-user-config.vala:216
+#, c-format
+msgid "Failed to stop Rygel service: %s"
+msgstr "ລົ້ມເຫຼວ​ໃນ​ການ​ຢຸດ​ບໍລິການ Rygel: %s"
