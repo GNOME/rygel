@@ -142,7 +142,6 @@ server_deps = common_deps + [gssdp, gupnp_av, soup, mediaart, gmodule, libxml]
 db_deps = common_deps + [gupnp_av, gio, sqlite, unistring]
 media_engine_gst_dep = [gee, gupnp_av, libxml, gio, gstreamer, gstreamer_pbu,
                         gstreamer_base, gupnp_dlna, math, gstreamer_es]
-ruih_deps = common_deps
 rygel_deps = common_deps
 
 external_plugin_deps = [gio]
@@ -188,12 +187,6 @@ configure_file(output: 'rygel-renderer-2.8.pc',
 
 configure_file(output: 'rygel-renderer-gst-2.8.pc',
                input: 'rygel-renderer-gst-2.8.pc.in',
-               configuration: pc_conf,
-               install: true,
-               install_dir : pkgconfig_dir)
-
-configure_file(output: 'rygel-ruih-2.8.pc',
-               input: 'rygel-ruih-2.8.pc.in',
                configuration: pc_conf,
                install: true,
                install_dir : pkgconfig_dir)

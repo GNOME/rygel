@@ -9,10 +9,6 @@ renderer_xml = configure_file(input: 'MediaRenderer2.xml.in.in',
                output: 'MediaRenderer2.xml.in',
                configuration: plugin_config)
 
-ruih_xml = configure_file(input: 'RuihServer2.xml.in.in',
-               output: 'RuihServer2.xml.in',
-               configuration: plugin_config)
-
 
 # Fixme: How to install this...
 #xml_files = xml_processor.process(['EnergyManagement.xml.in',
@@ -60,14 +56,6 @@ custom_target('ContentDirectory.xml',
               install: true,
               install_dir : xml_dir)
 
-custom_target('RuihServer2.xml',
-              input: ruih_xml,
-              output: 'RuihServer2.xml',
-              capture: true,
-              command : [xml_processor, '@INPUT@'],
-              install: true,
-              install_dir : xml_dir)
-
 custom_target('ContentDirectory-NoTrack.xml',
               input: 'ContentDirectory-NoTrack.xml.in',
               output: 'ContentDirectory-NoTrack.xml',
@@ -84,13 +72,6 @@ custom_target('ConnectionManager.xml',
               install: true,
               install_dir : xml_dir)
 
-custom_target('RemoteUIServerService.xml',
-              input: 'RemoteUIServerService.xml.in',
-              output: 'RemoteUIServerService.xml',
-              capture: true,
-              command : [xml_processor, '@INPUT@'],
-              install: true,
-              install_dir : xml_dir)
 custom_target('AVTransport2.xml',
               input: 'AVTransport2.xml.in',
               output: 'AVTransport2.xml',
@@ -102,14 +83,6 @@ custom_target('AVTransport2.xml',
 custom_target('RenderingControl2.xml',
               input: 'RenderingControl2.xml.in',
               output: 'RenderingControl2.xml',
-              capture: true,
-              command : [xml_processor, '@INPUT@'],
-              install: true,
-              install_dir : xml_dir)
-
-custom_target('UIList.xml',
-              input: 'UIList.xml.in',
-              output: 'UIList.xml',
               capture: true,
               command : [xml_processor, '@INPUT@'],
               install: true,
