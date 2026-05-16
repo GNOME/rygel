@@ -24,14 +24,6 @@ renderer_xml = configure_file(input: 'MediaRenderer2.xml.in.in',
 #                       install: true,
 #                       install_dir : xml_dir)
 
-custom_target('EnergyManagement.xml',
-              input: 'EnergyManagement.xml.in',
-              output: 'EnergyManagement.xml',
-              capture: true,
-              command : [xml_processor, '@INPUT@'],
-              install: true,
-              install_dir : xml_dir)
-
 custom_target('MediaServer3.xml',
               input: server_xml,
               output: 'MediaServer3.xml',
@@ -83,14 +75,6 @@ custom_target('AVTransport2.xml',
 custom_target('RenderingControl2.xml',
               input: 'RenderingControl2.xml.in',
               output: 'RenderingControl2.xml',
-              capture: true,
-              command : [xml_processor, '@INPUT@'],
-              install: true,
-              install_dir : xml_dir)
-
-custom_target('BasicManagement2.xml',
-              input: 'BasicManagement2.xml.in',
-              output: 'BasicManagement2.xml',
               capture: true,
               command : [xml_processor, '@INPUT@'],
               install: true,

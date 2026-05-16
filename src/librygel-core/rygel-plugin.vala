@@ -68,7 +68,7 @@ public enum Rygel.PluginCapabilities {
  * Plugin libraries should provide an object of this
  * class or a subclass in their module_init() function.
  *
- * It is generally convenient to derive from 
+ * It is generally convenient to derive from
  * #RygelMediaRendererPlugin from librygel-renderer,
  * or from #RygelMediaServerPlugin from librygel-server.
  *
@@ -80,14 +80,14 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
     private const string JPG_EXT = "jpg";
 
     private const string ICON_BIG = "file://" +
-                                           BuildConfig.BIG_ICON_DIR +
-                                           "/rygel";
+                                    BuildConfig.BIG_ICON_DIR +
+                                    "/rygel";
     private const string ICON_PNG_BIG = ICON_BIG + "." + PNG_EXT;
     private const string ICON_JPG_BIG = ICON_BIG + "." + JPG_EXT;
 
     private const string ICON_SMALL = "file://" +
-                                             BuildConfig.SMALL_ICON_DIR +
-                                             "/rygel";
+                                      BuildConfig.SMALL_ICON_DIR +
+                                      "/rygel";
     private const string ICON_PNG_SMALL = ICON_SMALL + "." + PNG_EXT;
     private const string ICON_JPG_SMALL = ICON_SMALL + "." + JPG_EXT;
 
@@ -124,7 +124,7 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
      * tags should not be present.
      */
 
-    /** 
+    /**
      * Create an instance of the plugin.
      *
      * @param desc_path The path of a template file for an XML description of the UPnP service.
@@ -132,16 +132,16 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
      * @param title An optional human-readable name (friendlyName) of the UPnP service provided by the plugin. If the title is empty then the name will be used.
      * @param description An optional human-readable description (modelDescription) of the UPnP service provided by the plugin.
      */
-    public Plugin (string  desc_path,
-                   string  name,
-                   string? title,
-                   string? description = null,
-                   PluginCapabilities capabilities = PluginCapabilities.NONE) {
-        Object (desc_path : desc_path,
-                name : name,
-                title : title,
-                description : description,
-                capabilities : capabilities);
+    public Plugin (string                                               desc_path,
+                   string                                               name,
+                   string?                                              title,
+                   string?                                              description = null,
+                   PluginCapabilities                                   capabilities = PluginCapabilities.NONE) {
+        Object (desc_path: desc_path,
+                name: name,
+                title: title,
+                description: description,
+                capabilities: capabilities);
     }
 
     public override void constructed () {
@@ -154,41 +154,6 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
         }
 
         this.resource_infos = new ArrayList<ResourceInfo> ();
-
-        /* Enable BasicManagement service on this device if needed */
-        var config = MetaConfig.get_default ();
-        try {
-            if (config.get_bool (this.name, "diagnostics")) {
-                var resource = new ResourceInfo (BasicManagement.UPNP_ID,
-                                                 BasicManagement.UPNP_TYPE,
-                                                 BasicManagement.DESCRIPTION_PATH,
-                                                 typeof (BasicManagement));
-                this.add_resource (resource);
-
-                this.capabilities |= PluginCapabilities.DIAGNOSTICS;
-            }
-        } catch (GLib.Error error) {
-            if (!(error is ConfigurationError.NO_VALUE_SET))
-                warning ("Failed to read configuration: %s", error.message);
-        }
-
-        /* Enable EnergyManagement service on this device if needed */
-        config = MetaConfig.get_default ();
-        try {
-            if (config.get_bool (this.name, "energy-management")) {
-                var resource = new ResourceInfo (EnergyManagement.UPNP_ID,
-                                                 EnergyManagement.UPNP_TYPE,
-                                                 EnergyManagement.DESCRIPTION_PATH,
-                                                 typeof (EnergyManagement));
-                this.add_resource (resource);
-
-                this.capabilities |= PluginCapabilities.ENERGY_MANAGEMENT;
-
-            }
-        } catch (GLib.Error error) {
-            if (!(error is ConfigurationError.NO_VALUE_SET))
-                warning ("Failed to read configuration: %s", error.message);
-        }
 
         this.icon_infos = new ArrayList<IconInfo> ();
         this.default_icons = new ArrayList<IconInfo> ();
@@ -234,7 +199,7 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
 
     public virtual void apply_hacks (RootDevice device,
                                      string     description_path)
-                                     throws Error {
+    throws Error {
     }
 
     private void add_default_icon (string mime_type,

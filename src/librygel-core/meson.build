@@ -1,13 +1,7 @@
 core_sources = files(
     'rygel-connection-manager.vala',
-    'rygel-basic-management.vala',
-    'rygel-basic-management-test.vala',
-    'rygel-basic-management-test-ping.vala',
-    'rygel-basic-management-test-nslookup.vala',
-    'rygel-basic-management-test-traceroute.vala',
     'rygel-description-file.vala',
     'rygel-dlna-profile.vala',
-    'rygel-energy-management.vala',
     'rygel-root-device.vala',
     'rygel-root-device-factory.vala',
     'rygel-dbus-interface.vala',
@@ -28,7 +22,6 @@ core_sources = files(
     'rygel-icon-info.vala',
     'rygel-xml-utils.vala',
     'rygel-plugin-information.vala',
-    'rygel-energy-management-helper.c',
     'dlna150-hacks.vala',
     'agent-matcher.vala',
     'rygel-build-config.vapi')
