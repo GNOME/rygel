@@ -36,7 +36,7 @@
  * to tell it which media file to show.
  */
 
-#include <gdk/gdkkeysyms.h>
+#include <gdk/gdk.h>
 #include <gtk/gtk.h>
 
 #include "rygel-core.h"
