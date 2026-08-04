@@ -4,15 +4,11 @@ data/rygel.desktop.in
 data/rygel-preferences.desktop.in
 data/rygel-preferences.ui
 src/librygel-core/rygel-base-configuration.vala
-src/librygel-core/rygel-basic-management-test.vala
-src/librygel-core/rygel-basic-management.vala
 src/librygel-core/rygel-cmdline-config.vala
 src/librygel-core/rygel-configuration.vala
 src/librygel-core/rygel-connection-manager.vala
 src/librygel-core/rygel-dbus-interface.vala
 src/librygel-core/rygel-description-file.vala
-src/librygel-core/rygel-energy-management-helper.c
-src/librygel-core/rygel-energy-management.vala
 src/librygel-core/rygel-environment-config.vala
 src/librygel-core/rygel-icon-info.vala
 src/librygel-core/rygel-log-handler.vala

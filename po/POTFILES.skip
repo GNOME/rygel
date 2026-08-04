@@ -1,3 +1,4 @@
+build-aux/generate-conf-artifacts.py
 data/xml/AVTransport2.xml.in
 data/xml/AVTransport2.xml
 data/xml/ConnectionManager.xml.in
