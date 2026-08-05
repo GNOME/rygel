@@ -1,3 +1,33 @@
+46.beta
+=======
+
+Docs:
+ - Add missing "dlnaprofile" description for GstLaunch
+ - Fix rendering issues for web docs
+
+Server:
+ - Add Reciva devices to seek hack
+
+Renderer:
+ - Fix crash if address families mismatch
+
+All contributors to this release:
+ - Jens Georg <mail@jensge.org>
+ - Yuri Chornoivan <yurchor@ukr.net>
+ - Antonio Marin <gnmer.6qxyg@slmail.me>
+ - Quentin PAGÈS <pages_quentin@hotmail.com>
+ - Ekaterine Papava <papava.e@gtu.ge>
+ - luming zh <lumingzh@qq.com>
+ - Martin <miles@filmsi.net>
+ - Anders Jonsson <anders.jonsson@norsjovallen.se>
+
+Added/updated translations:
+ - ka.po, courtesy of Ekaterine Papava
+ - ro.po, courtesy of Antonio Marin
+ - sl.po, courtesy of Martin Srebotnjak
+ - uk.po, courtesy of Yuri Chornoivan
+ - zh_CN.po, courtesy of lumingzh
+
 46.alpha
 ========
 
