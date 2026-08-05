@@ -2,22 +2,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Mykola Tkach <Stuartlittle1970@gmail.com>, 2013.
 # Daniel Korostil <ted.korostiled@gmail.com>, 2014, 2015, 2016.
-# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2022, 2025.
+# SPDX-FileCopyrightText: 2020, 2022, 2025, 2026 Yuri Chornoivan <yurchor@ukr.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2025-09-04 15:43+0000\n"
-"PO-Revision-Date: 2025-09-05 18:50+0300\n"
+"POT-Creation-Date: 2026-08-04 15:09+0000\n"
+"PO-Revision-Date: 2026-08-05 13:43+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 23.04.3\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
+"=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 25.12.1\n"
 "X-Project-Style: gnome\n"
 
 #: data/rygel.desktop.in:2
@@ -110,86 +110,6 @@ msgstr "Вибрати теки"
 msgid "Not implemented"
 msgstr "Не реалізовано"
 
-#: src/librygel-core/rygel-basic-management-test.vala:197
-#, c-format
-msgid "Failed to read standard output from %s: %s"
-msgstr "Не вдалося прочитати стандартний вивід з %s: %s"
-
-#: src/librygel-core/rygel-basic-management-test.vala:225
-#, c-format
-msgid "Failed to read error output from %s: %s"
-msgstr "Не вдалося прочитати вивід помилок з %s: %s"
-
-#. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:158
-msgid "No Such Test"
-msgstr "Немає такого тесту"
-
-#. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:166
-#: src/librygel-core/rygel-basic-management.vala:283
-#: src/librygel-core/rygel-basic-management.vala:382
-#: src/librygel-core/rygel-basic-management.vala:471
-msgid "Wrong Test Type"
-msgstr "Неправильний тип тестування"
-
-#. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:174
-#, c-format
-msgid "Invalid Test State “%s”"
-msgstr "Неправильний стан тесту «%s»"
-
-#. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:180
-#, c-format
-msgid "State “%s” Precludes Cancel"
-msgstr "Стан «%s» запобігає скасуванню"
-
-#: src/librygel-core/rygel-basic-management.vala:213
-#: src/librygel-core/rygel-basic-management.vala:228
-#: src/librygel-core/rygel-basic-management.vala:255
-#: src/librygel-core/rygel-basic-management.vala:271
-#: src/librygel-core/rygel-basic-management.vala:328
-#: src/librygel-core/rygel-basic-management.vala:353
-#: src/librygel-core/rygel-basic-management.vala:369
-#: src/librygel-core/rygel-basic-management.vala:414
-#: src/librygel-core/rygel-basic-management.vala:441
-#: src/librygel-core/rygel-basic-management.vala:458
-#: src/librygel-core/rygel-basic-management.vala:503
-#: src/librygel-core/rygel-basic-management.vala:518
-#: src/librygel-core/rygel-basic-management.vala:533
-#: src/librygel-core/rygel-basic-management.vala:557
-#: src/librygel-core/rygel-connection-manager.vala:95
-#: src/librygel-core/rygel-connection-manager.vala:109
-#: src/librygel-core/rygel-connection-manager.vala:126
-#: src/librygel-core/rygel-energy-management.vala:223
-#: src/librygel-renderer/rygel-av-transport.vala:198
-#: src/librygel-renderer/rygel-rendering-control.vala:131
-#: src/librygel-ruih/rygel-ruih-service.vala:63
-#: src/librygel-server/rygel-content-directory.vala:261
-#: src/librygel-server/rygel-content-directory.vala:289
-#: src/librygel-server/rygel-content-directory.vala:308
-#: src/librygel-server/rygel-content-directory.vala:343
-#: src/librygel-server/rygel-content-directory.vala:372
-#: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:618
-#: src/librygel-server/rygel-content-directory.vala:767
-#: src/librygel-server/rygel-media-receiver-registrar.vala:61
-msgid "Invalid argument"
-msgstr "Неправильний аргумент"
-
-#: src/librygel-core/rygel-basic-management.vala:254
-msgid "Cannot run “Ping” action: Host is empty"
-msgstr "Неможливо запустити «Ping»: вузол порожній"
-
-#: src/librygel-core/rygel-basic-management.vala:352
-msgid "Cannot run “NSLookup” action: HostName is empty"
-msgstr "Неможливо запустити «NSLookup»: назва вузла порожня"
-
-#: src/librygel-core/rygel-basic-management.vala:440
-msgid "Cannot run “Traceroute” action: Host is empty"
-msgstr "Неможливо запустити «Traceroute»: вузол порожній"
-
 #: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
 msgstr "Показати номер версії"
@@ -279,6 +199,23 @@ msgstr "Вимкнути віддалений зразок Rygel"
 msgid "No value available"
 msgstr "Немає доступного значення"
 
+#: src/librygel-core/rygel-connection-manager.vala:95
+#: src/librygel-core/rygel-connection-manager.vala:109
+#: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-renderer/rygel-av-transport.vala:198
+#: src/librygel-renderer/rygel-rendering-control.vala:131
+#: src/librygel-server/rygel-content-directory.vala:261
+#: src/librygel-server/rygel-content-directory.vala:289
+#: src/librygel-server/rygel-content-directory.vala:308
+#: src/librygel-server/rygel-content-directory.vala:343
+#: src/librygel-server/rygel-content-directory.vala:372
+#: src/librygel-server/rygel-content-directory.vala:397
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
+#: src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr "Неправильний аргумент"
+
 #: src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "Неправильне посилання для з'єднання"
@@ -287,20 +224,6 @@ msgstr "Неправильне посилання для з'єднання"
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Не вдалось записати зміни опису в %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:55
-#, c-format
-msgid "Failed to get a socket: %s"
-msgstr "Не вдалось одержати сокет: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:62
-#, c-format
-msgid "Failed to get MAC address for %s: %s"
-msgstr "Не вдалось одержати адреса MAC для %s: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:104
-msgid "MAC and network type querying not implemented"
-msgstr "Тип запиту до мережі або MAC не реалізовано"
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
@@ -458,8 +381,9 @@ msgstr "Режим програвання не підтримується"
 #: src/librygel-renderer/rygel-av-transport.vala:779
 #: src/librygel-renderer/rygel-av-transport.vala:794
 #: src/librygel-renderer/rygel-av-transport.vala:803
-#: src/librygel-renderer/rygel-av-transport.vala:863
-#: src/librygel-renderer/rygel-av-transport.vala:898
+#: src/librygel-renderer/rygel-av-transport.vala:848
+#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:910
 msgid "Resource not found"
 msgstr "Ресурс не знайдено"
 
@@ -470,13 +394,22 @@ msgstr "Проблема розбирання списку композицій:
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:859
-#: src/librygel-renderer/rygel-av-transport.vala:894
+#: src/librygel-renderer/rygel-av-transport.vala:845
+#, c-format
+#| msgid "Failed to access resource at %s: %s"
+msgid "Failed to access resource at %s: Address family mismatch."
+msgstr ""
+"Не вдалося отримати доступу до ресурсу у %s: невідповідність сімейства адрес."
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: src/librygel-renderer/rygel-av-transport.vala:871
+#: src/librygel-renderer/rygel-av-transport.vala:906
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Не вдалося доступитися до ресурсів на %s: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:887
 msgid "Illegal MIME-type"
 msgstr "Неприпустимий тип MIME"
 
@@ -493,56 +426,6 @@ msgstr "Неправильний канал"
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Не вдалось виконати дію"
-
-#: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
-#, c-format
-msgid "Unable to parse Icon data — unexpected node: %s"
-msgstr "Неможливо розібрати дані піктограми — неочікуваний вузол: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
-#, c-format
-msgid "Unable to parse Protocol data — unexpected attribute: %s"
-msgstr "Неможливо розібрати дані протоколу — неочікуваний атрибут: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
-#, c-format
-msgid "Unable to parse Protocol data — unexpected node: %s"
-msgstr "Неможливо розібрати дані протоколу — неочікуваний вузол: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
-#, c-format
-msgid "Failed to set UIList for file %s — %s"
-msgstr "Не вдалося вказати UIList для файла %s — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
-#, c-format
-msgid "Failed to set initial UI list for file %s — %s"
-msgstr "Не вдалося вказати початковий список UI для файла %s — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
-#, c-format
-msgid "Failed to monitor the file %s — %s"
-msgstr "Не вдалося проконтролювати за файлом %s — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
-#, c-format
-msgid "Unable to parse UI list file %s"
-msgstr "Неможливо розібрати файл списку UI %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
-#, c-format
-msgid "Unable to parse device profile data: %s"
-msgstr "Неможливо розібрати дані профілю пристрою: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
-#, c-format
-msgid "Invalid UI filter: %s"
-msgstr "Неправильний фільтр UI: %s"
-
-#: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
-#, c-format
-msgid "Unable to parse UI data — unexpected node: %s"
-msgstr "Неможливо розібрати дані UI — неочікуваний вузол: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -1476,7 +1359,6 @@ msgstr "Не вдалось побудувати URI для теки «%s»: %s"
 
 #: src/plugins/localsearch/localsearch-category-all-container.vala:67
 #, c-format
-#| msgid "Could not subscribe to Tracker signals: %s"
 msgid "Could not subscribe to LocalSearch signals: %s"
 msgstr "Не вдалося підписатися на сигнали LocalSearch: %s"
 
@@ -1491,7 +1373,6 @@ msgstr "Помилка отримання всіх значень «%s»: %s"
 
 #: src/plugins/localsearch/localsearch-plugin-factory.vala:35
 #, c-format
-#| msgid "Failed to start Tracker service: %s. Plugin disabled."
 msgid "Failed to start LocalSearch service: %s. Plugin disabled."
 msgstr "Не вдалось запустити службу LocalSearch: %s. Додаток вимкнено."
 
@@ -1499,8 +1380,8 @@ msgstr "Не вдалось запустити службу LocalSearch: %s. Д�
 #, c-format
 msgid "Could not connect to %s, falling back to old Tracker3 service"
 msgstr ""
-"Не вдалося встановити з'єднання з %s, повертаємося до резервної застарілої"
-" служби Tracker3"
+"Не вдалося встановити з'єднання з %s, повертаємося до резервної застарілої "
+"служби Tracker3"
 
 #: src/plugins/localsearch/localsearch-search-container.vala:228
 #, c-format
@@ -1576,6 +1457,88 @@ msgstr "Не вдалось запустити службу Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Не вдалось зупинити службу Rygel: %s"
+
+#, c-format
+#~ msgid "Failed to read standard output from %s: %s"
+#~ msgstr "Не вдалося прочитати стандартний вивід з %s: %s"
+
+#, c-format
+#~ msgid "Failed to read error output from %s: %s"
+#~ msgstr "Не вдалося прочитати вивід помилок з %s: %s"
+
+#~ msgid "No Such Test"
+#~ msgstr "Немає такого тесту"
+
+#~ msgid "Wrong Test Type"
+#~ msgstr "Неправильний тип тестування"
+
+#, c-format
+#~ msgid "Invalid Test State “%s”"
+#~ msgstr "Неправильний стан тесту «%s»"
+
+#, c-format
+#~ msgid "State “%s” Precludes Cancel"
+#~ msgstr "Стан «%s» запобігає скасуванню"
+
+#~ msgid "Cannot run “Ping” action: Host is empty"
+#~ msgstr "Неможливо запустити «Ping»: вузол порожній"
+
+#~ msgid "Cannot run “NSLookup” action: HostName is empty"
+#~ msgstr "Неможливо запустити «NSLookup»: назва вузла порожня"
+
+#~ msgid "Cannot run “Traceroute” action: Host is empty"
+#~ msgstr "Неможливо запустити «Traceroute»: вузол порожній"
+
+#, c-format
+#~ msgid "Failed to get a socket: %s"
+#~ msgstr "Не вдалось одержати сокет: %s"
+
+#, c-format
+#~ msgid "Failed to get MAC address for %s: %s"
+#~ msgstr "Не вдалось одержати адреса MAC для %s: %s"
+
+#~ msgid "MAC and network type querying not implemented"
+#~ msgstr "Тип запиту до мережі або MAC не реалізовано"
+
+#, c-format
+#~ msgid "Unable to parse Icon data — unexpected node: %s"
+#~ msgstr "Неможливо розібрати дані піктограми — неочікуваний вузол: %s"
+
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected attribute: %s"
+#~ msgstr "Неможливо розібрати дані протоколу — неочікуваний атрибут: %s"
+
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected node: %s"
+#~ msgstr "Неможливо розібрати дані протоколу — неочікуваний вузол: %s"
+
+#, c-format
+#~ msgid "Failed to set UIList for file %s — %s"
+#~ msgstr "Не вдалося вказати UIList для файла %s — %s"
+
+#, c-format
+#~ msgid "Failed to set initial UI list for file %s — %s"
+#~ msgstr "Не вдалося вказати початковий список UI для файла %s — %s"
+
+#, c-format
+#~ msgid "Failed to monitor the file %s — %s"
+#~ msgstr "Не вдалося проконтролювати за файлом %s — %s"
+
+#, c-format
+#~ msgid "Unable to parse UI list file %s"
+#~ msgstr "Неможливо розібрати файл списку UI %s"
+
+#, c-format
+#~ msgid "Unable to parse device profile data: %s"
+#~ msgstr "Неможливо розібрати дані профілю пристрою: %s"
+
+#, c-format
+#~ msgid "Invalid UI filter: %s"
+#~ msgstr "Неправильний фільтр UI: %s"
+
+#, c-format
+#~ msgid "Unable to parse UI data — unexpected node: %s"
+#~ msgstr "Неможливо розібрати дані UI — неочікуваний вузол: %s"
 
 #~ msgid "Years"
 #~ msgstr "Роки"
