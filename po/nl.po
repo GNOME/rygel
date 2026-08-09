@@ -5,14 +5,14 @@
 # Mario Blättermann <mariobl@gnome.org>, 2010.
 # Wouter Bolsterlee <wbolster@gnome.org>, 2011.
 # Justin van Steijn <jvs@fsfe.org>, 2017.
-# Nathan Follens <nfollens@gnome.org>, 2020, 2022, 2025.
+# Nathan Follens <nfollens@gnome.org>, 2020, 2022, 2025-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2025-09-08 12:33+0000\n"
-"PO-Revision-Date: 2025-09-09 18:26+0200\n"
+"POT-Creation-Date: 2026-08-04 15:09+0000\n"
+"PO-Revision-Date: 2026-08-09 16:39+0200\n"
 "Last-Translator: Nathan Follens <nfollens@gnome.org>\n"
 "Language-Team: GNOME-NL https://matrix.to/#/#nl:gnome.org\n"
 "Language: nl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/rygel.desktop.in:2
 msgid "Rygel"
@@ -110,86 +110,6 @@ msgstr "Mappen selecteren"
 msgid "Not implemented"
 msgstr "Niet geïmplementeerd"
 
-#: src/librygel-core/rygel-basic-management-test.vala:197
-#, c-format
-msgid "Failed to read standard output from %s: %s"
-msgstr "Kon standaarduitvoer van %s niet lezen: %s"
-
-#: src/librygel-core/rygel-basic-management-test.vala:225
-#, c-format
-msgid "Failed to read error output from %s: %s"
-msgstr "Kon foutenuitvoer van %s niet lezen: %s"
-
-#. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:158
-msgid "No Such Test"
-msgstr "Geen dergelijke test"
-
-#. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:166
-#: src/librygel-core/rygel-basic-management.vala:283
-#: src/librygel-core/rygel-basic-management.vala:382
-#: src/librygel-core/rygel-basic-management.vala:471
-msgid "Wrong Test Type"
-msgstr "Verkeerd testtype"
-
-#. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:174
-#, c-format
-msgid "Invalid Test State “%s”"
-msgstr "Ongeldige teststatus ‘%s’"
-
-#. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:180
-#, c-format
-msgid "State “%s” Precludes Cancel"
-msgstr "Staat '%s' sluit annuleren uit"
-
-#: src/librygel-core/rygel-basic-management.vala:213
-#: src/librygel-core/rygel-basic-management.vala:228
-#: src/librygel-core/rygel-basic-management.vala:255
-#: src/librygel-core/rygel-basic-management.vala:271
-#: src/librygel-core/rygel-basic-management.vala:328
-#: src/librygel-core/rygel-basic-management.vala:353
-#: src/librygel-core/rygel-basic-management.vala:369
-#: src/librygel-core/rygel-basic-management.vala:414
-#: src/librygel-core/rygel-basic-management.vala:441
-#: src/librygel-core/rygel-basic-management.vala:458
-#: src/librygel-core/rygel-basic-management.vala:503
-#: src/librygel-core/rygel-basic-management.vala:518
-#: src/librygel-core/rygel-basic-management.vala:533
-#: src/librygel-core/rygel-basic-management.vala:557
-#: src/librygel-core/rygel-connection-manager.vala:95
-#: src/librygel-core/rygel-connection-manager.vala:109
-#: src/librygel-core/rygel-connection-manager.vala:126
-#: src/librygel-core/rygel-energy-management.vala:223
-#: src/librygel-renderer/rygel-av-transport.vala:198
-#: src/librygel-renderer/rygel-rendering-control.vala:131
-#: src/librygel-ruih/rygel-ruih-service.vala:63
-#: src/librygel-server/rygel-content-directory.vala:261
-#: src/librygel-server/rygel-content-directory.vala:289
-#: src/librygel-server/rygel-content-directory.vala:308
-#: src/librygel-server/rygel-content-directory.vala:343
-#: src/librygel-server/rygel-content-directory.vala:372
-#: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:618
-#: src/librygel-server/rygel-content-directory.vala:767
-#: src/librygel-server/rygel-media-receiver-registrar.vala:61
-msgid "Invalid argument"
-msgstr "Ongeldig argument"
-
-#: src/librygel-core/rygel-basic-management.vala:254
-msgid "Cannot run “Ping” action: Host is empty"
-msgstr "Kan 'ping'-actie niet uitvoeren: host is leeg"
-
-#: src/librygel-core/rygel-basic-management.vala:352
-msgid "Cannot run “NSLookup” action: HostName is empty"
-msgstr "Kan 'NSLookup'-actie niet uitvoeren: hostnaam is leeg"
-
-#: src/librygel-core/rygel-basic-management.vala:440
-msgid "Cannot run “Traceroute” action: Host is empty"
-msgstr "Kan 'traceroute'-actie niet uitvoeren: host is leeg"
-
 #: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
 msgstr "Toon versienummer"
@@ -274,6 +194,23 @@ msgstr "Externe Rygel-referentie afsluiten"
 msgid "No value available"
 msgstr "Geen waarde beschikbaar"
 
+#: src/librygel-core/rygel-connection-manager.vala:95
+#: src/librygel-core/rygel-connection-manager.vala:109
+#: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-renderer/rygel-av-transport.vala:198
+#: src/librygel-renderer/rygel-rendering-control.vala:131
+#: src/librygel-server/rygel-content-directory.vala:261
+#: src/librygel-server/rygel-content-directory.vala:289
+#: src/librygel-server/rygel-content-directory.vala:308
+#: src/librygel-server/rygel-content-directory.vala:343
+#: src/librygel-server/rygel-content-directory.vala:372
+#: src/librygel-server/rygel-content-directory.vala:397
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
+#: src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr "Ongeldig argument"
+
 #: src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "Ongeldige referentie naar verbinding"
@@ -282,20 +219,6 @@ msgstr "Ongeldige referentie naar verbinding"
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Schrijven van gewijzigde omschrijving naar %s mislukt"
-
-#: src/librygel-core/rygel-energy-management-helper.c:55
-#, c-format
-msgid "Failed to get a socket: %s"
-msgstr "Kon socket niet verkrijgen: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:62
-#, c-format
-msgid "Failed to get MAC address for %s: %s"
-msgstr "Kon MAC-adres voor %s niet ophalen: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:104
-msgid "MAC and network type querying not implemented"
-msgstr "MAC- en netwerktype opvragen niet geïmplementeerd"
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
@@ -451,8 +374,9 @@ msgstr "Afspeelmodus niet ondersteund"
 #: src/librygel-renderer/rygel-av-transport.vala:779
 #: src/librygel-renderer/rygel-av-transport.vala:794
 #: src/librygel-renderer/rygel-av-transport.vala:803
-#: src/librygel-renderer/rygel-av-transport.vala:863
-#: src/librygel-renderer/rygel-av-transport.vala:898
+#: src/librygel-renderer/rygel-av-transport.vala:848
+#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:910
 msgid "Resource not found"
 msgstr "Bron niet gevonden"
 
@@ -463,13 +387,20 @@ msgstr "Probleem bij parsen van speellijst: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:859
-#: src/librygel-renderer/rygel-av-transport.vala:894
+#: src/librygel-renderer/rygel-av-transport.vala:845
+#, c-format
+msgid "Failed to access resource at %s: Address family mismatch."
+msgstr "Kon hulpbron op %s niet bereiken: adresfamilie komt niet overeen."
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: src/librygel-renderer/rygel-av-transport.vala:871
+#: src/librygel-renderer/rygel-av-transport.vala:906
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Kon hulpbron op %s niet bereiken: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:887
 msgid "Illegal MIME-type"
 msgstr "Ongeldig MIME-type"
 
@@ -486,56 +417,6 @@ msgstr "Ongeldig kanaal"
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Actie mislukt"
-
-#: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
-#, c-format
-msgid "Unable to parse Icon data — unexpected node: %s"
-msgstr "Kan pictogramgegevens niet parsen — onverwacht knooppunt: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
-#, c-format
-msgid "Unable to parse Protocol data — unexpected attribute: %s"
-msgstr "Kan protocolgegevens niet parsen — onverwacht attribuut: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
-#, c-format
-msgid "Unable to parse Protocol data — unexpected node: %s"
-msgstr "Kan protocolgegevens niet parsen — onverwacht knooppunt: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
-#, c-format
-msgid "Failed to set UIList for file %s — %s"
-msgstr "Kon geen UIList instellen voor bestand %s — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
-#, c-format
-msgid "Failed to set initial UI list for file %s — %s"
-msgstr "Kon originele URI voor ‘%s’ niet ophalen — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
-#, c-format
-msgid "Failed to monitor the file %s — %s"
-msgstr "Kon configuratiegegevens niet in bestand ‘%s’ opslaan — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
-#, c-format
-msgid "Unable to parse UI list file %s"
-msgstr "Kon UI-lijstbestand %s niet parsen"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
-#, c-format
-msgid "Unable to parse device profile data: %s"
-msgstr "Kon apparaatprofielgegevens niet parsen: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
-#, c-format
-msgid "Invalid UI filter: %s"
-msgstr "Ongeldige URI-filter: %s"
-
-#: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
-#, c-format
-msgid "Unable to parse UI data — unexpected node: %s"
-msgstr "Kon UI-gegevens niet parsen — onverwacht knooppunt: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -1545,6 +1426,88 @@ msgstr "Starten van de Rygel-service is mislukt: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Kon Rygel-service niet stoppen: %s"
+
+#, c-format
+#~ msgid "Failed to read standard output from %s: %s"
+#~ msgstr "Kon standaarduitvoer van %s niet lezen: %s"
+
+#, c-format
+#~ msgid "Failed to read error output from %s: %s"
+#~ msgstr "Kon foutenuitvoer van %s niet lezen: %s"
+
+#~ msgid "No Such Test"
+#~ msgstr "Geen dergelijke test"
+
+#~ msgid "Wrong Test Type"
+#~ msgstr "Verkeerd testtype"
+
+#, c-format
+#~ msgid "Invalid Test State “%s”"
+#~ msgstr "Ongeldige teststatus ‘%s’"
+
+#, c-format
+#~ msgid "State “%s” Precludes Cancel"
+#~ msgstr "Staat '%s' sluit annuleren uit"
+
+#~ msgid "Cannot run “Ping” action: Host is empty"
+#~ msgstr "Kan 'ping'-actie niet uitvoeren: host is leeg"
+
+#~ msgid "Cannot run “NSLookup” action: HostName is empty"
+#~ msgstr "Kan 'NSLookup'-actie niet uitvoeren: hostnaam is leeg"
+
+#~ msgid "Cannot run “Traceroute” action: Host is empty"
+#~ msgstr "Kan 'traceroute'-actie niet uitvoeren: host is leeg"
+
+#, c-format
+#~ msgid "Failed to get a socket: %s"
+#~ msgstr "Kon socket niet verkrijgen: %s"
+
+#, c-format
+#~ msgid "Failed to get MAC address for %s: %s"
+#~ msgstr "Kon MAC-adres voor %s niet ophalen: %s"
+
+#~ msgid "MAC and network type querying not implemented"
+#~ msgstr "MAC- en netwerktype opvragen niet geïmplementeerd"
+
+#, c-format
+#~ msgid "Unable to parse Icon data — unexpected node: %s"
+#~ msgstr "Kan pictogramgegevens niet parsen — onverwacht knooppunt: %s"
+
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected attribute: %s"
+#~ msgstr "Kan protocolgegevens niet parsen — onverwacht attribuut: %s"
+
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected node: %s"
+#~ msgstr "Kan protocolgegevens niet parsen — onverwacht knooppunt: %s"
+
+#, c-format
+#~ msgid "Failed to set UIList for file %s — %s"
+#~ msgstr "Kon geen UIList instellen voor bestand %s — %s"
+
+#, c-format
+#~ msgid "Failed to set initial UI list for file %s — %s"
+#~ msgstr "Kon originele URI voor ‘%s’ niet ophalen — %s"
+
+#, c-format
+#~ msgid "Failed to monitor the file %s — %s"
+#~ msgstr "Kon configuratiegegevens niet in bestand ‘%s’ opslaan — %s"
+
+#, c-format
+#~ msgid "Unable to parse UI list file %s"
+#~ msgstr "Kon UI-lijstbestand %s niet parsen"
+
+#, c-format
+#~ msgid "Unable to parse device profile data: %s"
+#~ msgstr "Kon apparaatprofielgegevens niet parsen: %s"
+
+#, c-format
+#~ msgid "Invalid UI filter: %s"
+#~ msgstr "Ongeldige URI-filter: %s"
+
+#, c-format
+#~ msgid "Unable to parse UI data — unexpected node: %s"
+#~ msgstr "Kon UI-gegevens niet parsen — onverwacht knooppunt: %s"
 
 #~ msgid "Years"
 #~ msgstr "Jaar"
