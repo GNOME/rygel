@@ -1,17 +1,17 @@
 # Bulgarian translation of rygel po-file.
 # Copyright (C) 2010 Rosi Dimova <pocu@bk.ru>
 # Copyright (C) 2011, 2012, 2013, 2017 Free Software Foundation, Inc.
-# Copyright (C) 2021, 2022 Alexander Shopov.
+# Copyright (C) 2021, 2022, 2026 Alexander Shopov.
 # This file is distributed under the same license as the rygel package.
 # Rosi Dimova <pocu@bk.ru>, 2010.
-# Alexander Shopov <ash@kambanaria.org>, 2011, 2012, 2013, 2017, 2021, 2022.
+# Alexander Shopov <ash@kambanaria.org>, 2011, 2012, 2013, 2017, 2021, 2022, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2025-08-10 15:37+0000\n"
-"PO-Revision-Date: 2026-02-23 16:18+0100\n"
-"Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
+"POT-Creation-Date: 2026-08-04 15:09+0000\n"
+"PO-Revision-Date: 2026-08-16 13:12+0200\n"
+"Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict-notifications@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -110,86 +110,6 @@ msgstr "Избор на папки"
 msgid "Not implemented"
 msgstr "Липсва програмна реализация"
 
-#: src/librygel-core/rygel-basic-management-test.vala:197
-#, c-format
-msgid "Failed to read standard output from %s: %s"
-msgstr "Неуспешно четене на стандартния изход от „%s“: %s"
-
-#: src/librygel-core/rygel-basic-management-test.vala:225
-#, c-format
-msgid "Failed to read error output from %s: %s"
-msgstr "Неуспешно четене на стандартната грешка от „%s“: %s"
-
-#. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:158
-msgid "No Such Test"
-msgstr "Няма такъв тест"
-
-#. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:166
-#: src/librygel-core/rygel-basic-management.vala:283
-#: src/librygel-core/rygel-basic-management.vala:382
-#: src/librygel-core/rygel-basic-management.vala:471
-msgid "Wrong Test Type"
-msgstr "Неправилен тест"
-
-#. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:174
-#, c-format
-msgid "Invalid Test State “%s”"
-msgstr "Неправилно състояние на теста „%s“"
-
-#. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:180
-#, c-format
-msgid "State “%s” Precludes Cancel"
-msgstr "Състоянието „%s“ прави отмяната невъзможна"
-
-#: src/librygel-core/rygel-basic-management.vala:213
-#: src/librygel-core/rygel-basic-management.vala:228
-#: src/librygel-core/rygel-basic-management.vala:255
-#: src/librygel-core/rygel-basic-management.vala:271
-#: src/librygel-core/rygel-basic-management.vala:328
-#: src/librygel-core/rygel-basic-management.vala:353
-#: src/librygel-core/rygel-basic-management.vala:369
-#: src/librygel-core/rygel-basic-management.vala:414
-#: src/librygel-core/rygel-basic-management.vala:441
-#: src/librygel-core/rygel-basic-management.vala:458
-#: src/librygel-core/rygel-basic-management.vala:503
-#: src/librygel-core/rygel-basic-management.vala:518
-#: src/librygel-core/rygel-basic-management.vala:533
-#: src/librygel-core/rygel-basic-management.vala:557
-#: src/librygel-core/rygel-connection-manager.vala:95
-#: src/librygel-core/rygel-connection-manager.vala:109
-#: src/librygel-core/rygel-connection-manager.vala:126
-#: src/librygel-core/rygel-energy-management.vala:223
-#: src/librygel-renderer/rygel-av-transport.vala:198
-#: src/librygel-renderer/rygel-rendering-control.vala:131
-#: src/librygel-ruih/rygel-ruih-service.vala:63
-#: src/librygel-server/rygel-content-directory.vala:261
-#: src/librygel-server/rygel-content-directory.vala:289
-#: src/librygel-server/rygel-content-directory.vala:308
-#: src/librygel-server/rygel-content-directory.vala:343
-#: src/librygel-server/rygel-content-directory.vala:372
-#: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:618
-#: src/librygel-server/rygel-content-directory.vala:767
-#: src/librygel-server/rygel-media-receiver-registrar.vala:61
-msgid "Invalid argument"
-msgstr "Неправилен аргумент"
-
-#: src/librygel-core/rygel-basic-management.vala:254
-msgid "Cannot run “Ping” action: Host is empty"
-msgstr "Командата „ping“ не може да се изпълни: не е зададен хост"
-
-#: src/librygel-core/rygel-basic-management.vala:352
-msgid "Cannot run “NSLookup” action: HostName is empty"
-msgstr "Командата „nslookup“ не може да се изпълни: не е зададено име на хост"
-
-#: src/librygel-core/rygel-basic-management.vala:440
-msgid "Cannot run “Traceroute” action: Host is empty"
-msgstr "Командата „traceroute“ не може да се изпълни: не е зададен хост"
-
 #: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
 msgstr "Извеждане на версията"
@@ -281,6 +201,23 @@ msgstr "Отдалечено спиране на Rygel"
 msgid "No value available"
 msgstr "Няма стойност"
 
+#: src/librygel-core/rygel-connection-manager.vala:95
+#: src/librygel-core/rygel-connection-manager.vala:109
+#: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-renderer/rygel-av-transport.vala:198
+#: src/librygel-renderer/rygel-rendering-control.vala:131
+#: src/librygel-server/rygel-content-directory.vala:261
+#: src/librygel-server/rygel-content-directory.vala:289
+#: src/librygel-server/rygel-content-directory.vala:308
+#: src/librygel-server/rygel-content-directory.vala:343
+#: src/librygel-server/rygel-content-directory.vala:372
+#: src/librygel-server/rygel-content-directory.vala:397
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
+#: src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr "Неправилен аргумент"
+
 #: src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "Неправилен указател към връзка"
@@ -289,20 +226,6 @@ msgstr "Неправилен указател към връзка"
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Неуспешно запазване на промененото описание в „%s“"
-
-#: src/librygel-core/rygel-energy-management-helper.c:55
-#, c-format
-msgid "Failed to get a socket: %s"
-msgstr "Неуспешно получаване на гнездо: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:62
-#, c-format
-msgid "Failed to get MAC address for %s: %s"
-msgstr "Неуспешно получаване на апаратния адрес на „%s“: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:104
-msgid "MAC and network type querying not implemented"
-msgstr "Не се поддържат заявки за типа на апаратен адрес и мрежа"
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
@@ -460,8 +383,9 @@ msgstr "Не се поддържа изпълнение"
 #: src/librygel-renderer/rygel-av-transport.vala:779
 #: src/librygel-renderer/rygel-av-transport.vala:794
 #: src/librygel-renderer/rygel-av-transport.vala:803
-#: src/librygel-renderer/rygel-av-transport.vala:863
-#: src/librygel-renderer/rygel-av-transport.vala:898
+#: src/librygel-renderer/rygel-av-transport.vala:848
+#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:910
 msgid "Resource not found"
 msgstr "Ресурсът не е открит"
 
@@ -472,13 +396,20 @@ msgstr "Списъкът за изпълнение не може да бъде �
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:859
-#: src/librygel-renderer/rygel-av-transport.vala:894
+#: src/librygel-renderer/rygel-av-transport.vala:845
+#, c-format
+msgid "Failed to access resource at %s: Address family mismatch."
+msgstr "Неуспешен достъп до ресурса при „%s“: различно семейство адреси."
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: src/librygel-renderer/rygel-av-transport.vala:871
+#: src/librygel-renderer/rygel-av-transport.vala:906
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Неуспешен достъп до ресурса на „%s“: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:887
 msgid "Illegal MIME-type"
 msgstr "Неправилен вид MIME"
 
@@ -495,56 +426,6 @@ msgstr "Неправилен канал"
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Неуспешно действие"
-
-#: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
-#, c-format
-msgid "Unable to parse Icon data — unexpected node: %s"
-msgstr "Данните за иконата не може да се анализират — неочакван елемент: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
-#, c-format
-msgid "Unable to parse Protocol data — unexpected attribute: %s"
-msgstr "Данните за протокола не може да се анализират — неочакван атрибут: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
-#, c-format
-msgid "Unable to parse Protocol data — unexpected node: %s"
-msgstr "Данните за протокола не може да се анализират — неочакван елемент: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
-#, c-format
-msgid "Failed to set UIList for file %s — %s"
-msgstr "Неуспешно задаване на списък за файла „%s“: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
-#, c-format
-msgid "Failed to set initial UI list for file %s — %s"
-msgstr "Неуспешно задаване на първоначален списък за файла „%s“: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
-#, c-format
-msgid "Failed to monitor the file %s — %s"
-msgstr "Неуспешно наблюдение на файла „%s“: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
-#, c-format
-msgid "Unable to parse UI list file %s"
-msgstr "Неуспешен анализ на списъчния файл „%s“"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
-#, c-format
-msgid "Unable to parse device profile data: %s"
-msgstr "Неуспешен анализ на данните с профилите на устройствата: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
-#, c-format
-msgid "Invalid UI filter: %s"
-msgstr "Неправилен филтър: %s"
-
-#: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
-#, c-format
-msgid "Unable to parse UI data — unexpected node: %s"
-msgstr "Данните не може да се анализират — неочакван етикет: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
