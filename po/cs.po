@@ -4,21 +4,28 @@
 #
 # Lucas Lommer <llommer@svn.gnome.org>, 2012.
 # Marek Černocký <marek@manet.cz>, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2020, 2022.
+# Patrik Sivek <patriksivek@gnome.org>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2025-09-04 08:39+0000\n"
-"PO-Revision-Date: 2025-09-04 13:42+0200\n"
-"Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
-"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
+"POT-Creation-Date: 2026-08-04 15:09+0000\n"
+"PO-Revision-Date: 2026-08-20 21:40+0200\n"
+"Last-Translator: Patrik Sivek <patriksivek@gnome.org>\n"
+"Language-Team: Czech\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Gtranslator 50.0\n"
+"X-DL-VCS-Web: https://gitlab.gnome.org/GNOME/rygel/\n"
+"X-DL-Lang: cs\n"
+"X-DL-Module: rygel\n"
+"X-DL-Branch: master\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
 
 #: data/rygel.desktop.in:2
 msgid "Rygel"
@@ -111,86 +118,6 @@ msgstr "Výběr složek"
 msgid "Not implemented"
 msgstr "Není implementováno"
 
-#: src/librygel-core/rygel-basic-management-test.vala:197
-#, c-format
-msgid "Failed to read standard output from %s: %s"
-msgstr "Selhalo čtení standardního výstupu z %s: %s"
-
-#: src/librygel-core/rygel-basic-management-test.vala:225
-#, c-format
-msgid "Failed to read error output from %s: %s"
-msgstr "Selhalo čtení chybového výstupu z %s: %s"
-
-#. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:158
-msgid "No Such Test"
-msgstr "Žádný takový test neexistuje"
-
-#. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:166
-#: src/librygel-core/rygel-basic-management.vala:283
-#: src/librygel-core/rygel-basic-management.vala:382
-#: src/librygel-core/rygel-basic-management.vala:471
-msgid "Wrong Test Type"
-msgstr "Nesprávný typ testu"
-
-#. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:174
-#, c-format
-msgid "Invalid Test State “%s”"
-msgstr "Neplatný stav testu „%s“"
-
-#. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:180
-#, c-format
-msgid "State “%s” Precludes Cancel"
-msgstr "Stav „%s“ brání zrušení"
-
-#: src/librygel-core/rygel-basic-management.vala:213
-#: src/librygel-core/rygel-basic-management.vala:228
-#: src/librygel-core/rygel-basic-management.vala:255
-#: src/librygel-core/rygel-basic-management.vala:271
-#: src/librygel-core/rygel-basic-management.vala:328
-#: src/librygel-core/rygel-basic-management.vala:353
-#: src/librygel-core/rygel-basic-management.vala:369
-#: src/librygel-core/rygel-basic-management.vala:414
-#: src/librygel-core/rygel-basic-management.vala:441
-#: src/librygel-core/rygel-basic-management.vala:458
-#: src/librygel-core/rygel-basic-management.vala:503
-#: src/librygel-core/rygel-basic-management.vala:518
-#: src/librygel-core/rygel-basic-management.vala:533
-#: src/librygel-core/rygel-basic-management.vala:557
-#: src/librygel-core/rygel-connection-manager.vala:95
-#: src/librygel-core/rygel-connection-manager.vala:109
-#: src/librygel-core/rygel-connection-manager.vala:126
-#: src/librygel-core/rygel-energy-management.vala:223
-#: src/librygel-renderer/rygel-av-transport.vala:198
-#: src/librygel-renderer/rygel-rendering-control.vala:131
-#: src/librygel-ruih/rygel-ruih-service.vala:63
-#: src/librygel-server/rygel-content-directory.vala:261
-#: src/librygel-server/rygel-content-directory.vala:289
-#: src/librygel-server/rygel-content-directory.vala:308
-#: src/librygel-server/rygel-content-directory.vala:343
-#: src/librygel-server/rygel-content-directory.vala:372
-#: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:618
-#: src/librygel-server/rygel-content-directory.vala:767
-#: src/librygel-server/rygel-media-receiver-registrar.vala:61
-msgid "Invalid argument"
-msgstr "Neplatný argument"
-
-#: src/librygel-core/rygel-basic-management.vala:254
-msgid "Cannot run “Ping” action: Host is empty"
-msgstr "Nelze provést příkaz „Ping“: název hostitele je prázdný"
-
-#: src/librygel-core/rygel-basic-management.vala:352
-msgid "Cannot run “NSLookup” action: HostName is empty"
-msgstr "Nelze provést příkaz „NSLookup“: název hostitele je prázdný"
-
-#: src/librygel-core/rygel-basic-management.vala:440
-msgid "Cannot run “Traceroute” action: Host is empty"
-msgstr "Nelze provést příkaz „Traceroute“: název hostitele je prázdný"
-
 #: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
 msgstr "Zobrazit číslo verze"
@@ -280,6 +207,23 @@ msgstr "Ukončit vzdálenou instanci Rygel"
 msgid "No value available"
 msgstr "Není dostupná žádná hodnota"
 
+#: src/librygel-core/rygel-connection-manager.vala:95
+#: src/librygel-core/rygel-connection-manager.vala:109
+#: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-renderer/rygel-av-transport.vala:198
+#: src/librygel-renderer/rygel-rendering-control.vala:131
+#: src/librygel-server/rygel-content-directory.vala:261
+#: src/librygel-server/rygel-content-directory.vala:289
+#: src/librygel-server/rygel-content-directory.vala:308
+#: src/librygel-server/rygel-content-directory.vala:343
+#: src/librygel-server/rygel-content-directory.vala:372
+#: src/librygel-server/rygel-content-directory.vala:397
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
+#: src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr "Neplatný argument"
+
 #: src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "Neplatný odkaz na připojení"
@@ -288,20 +232,6 @@ msgstr "Neplatný odkaz na připojení"
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Selhal zápis upraveného popisu do %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:55
-#, c-format
-msgid "Failed to get a socket: %s"
-msgstr "Selhalo získání soketu: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:62
-#, c-format
-msgid "Failed to get MAC address for %s: %s"
-msgstr "Selhalo získání adresy MAC pro %s: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:104
-msgid "MAC and network type querying not implemented"
-msgstr "Dotazování na adresu MAC a typ sítě není implementováno"
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
@@ -459,8 +389,9 @@ msgstr "Režim přehrávání není podporován"
 #: src/librygel-renderer/rygel-av-transport.vala:779
 #: src/librygel-renderer/rygel-av-transport.vala:794
 #: src/librygel-renderer/rygel-av-transport.vala:803
-#: src/librygel-renderer/rygel-av-transport.vala:863
-#: src/librygel-renderer/rygel-av-transport.vala:898
+#: src/librygel-renderer/rygel-av-transport.vala:848
+#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:910
 msgid "Resource not found"
 msgstr "Prostředek nebyl nalezen"
 
@@ -471,13 +402,20 @@ msgstr "Problém při zpracování seznamu k přehrání: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:859
-#: src/librygel-renderer/rygel-av-transport.vala:894
+#: src/librygel-renderer/rygel-av-transport.vala:845
+#, c-format
+msgid "Failed to access resource at %s: Address family mismatch."
+msgstr "Selhal přístup k prostředku na %s: Špatná adresa"
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: src/librygel-renderer/rygel-av-transport.vala:871
+#: src/librygel-renderer/rygel-av-transport.vala:906
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Selhal přístup k prostředku na %s: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:887
 msgid "Illegal MIME-type"
 msgstr "Neplatný typ MIME"
 
@@ -494,56 +432,6 @@ msgstr "Neplatný kanál"
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Akce selhala"
-
-#: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
-#, c-format
-msgid "Unable to parse Icon data — unexpected node: %s"
-msgstr "Nelze zpracovat data ikony – neočekávaný uzel: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
-#, c-format
-msgid "Unable to parse Protocol data — unexpected attribute: %s"
-msgstr "Nelze zpracovat data protokolu – neočekávaný atribut: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
-#, c-format
-msgid "Unable to parse Protocol data — unexpected node: %s"
-msgstr "Nelze zpracovat data protokolu – neočekávaný uzel: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
-#, c-format
-msgid "Failed to set UIList for file %s — %s"
-msgstr "Selhalo nastavení seznamu UR pro soubor %s – %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
-#, c-format
-msgid "Failed to set initial UI list for file %s — %s"
-msgstr "Selhalo nastavení počátečního seznamu UR pro soubor %s – %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
-#, c-format
-msgid "Failed to monitor the file %s — %s"
-msgstr "Selhalo sledování souboru %s – %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
-#, c-format
-msgid "Unable to parse UI list file %s"
-msgstr "Selhalo zpracování seznamu UR pro souboru %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
-#, c-format
-msgid "Unable to parse device profile data: %s"
-msgstr "Selhalo zpracování dat profilu zařízení: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
-#, c-format
-msgid "Invalid UI filter: %s"
-msgstr "Neplatný filtr UR: %s"
-
-#: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
-#, c-format
-msgid "Unable to parse UI data — unexpected node: %s"
-msgstr "Nelze zpracovat data UR – neočekávaný uzel: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -1569,6 +1457,88 @@ msgstr "Selhalo spuštění služby Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Selhalo zastavení služby Rygel: %s"
+
+#, c-format
+#~ msgid "Failed to read standard output from %s: %s"
+#~ msgstr "Selhalo čtení standardního výstupu z %s: %s"
+
+#, c-format
+#~ msgid "Failed to read error output from %s: %s"
+#~ msgstr "Selhalo čtení chybového výstupu z %s: %s"
+
+#~ msgid "No Such Test"
+#~ msgstr "Žádný takový test neexistuje"
+
+#~ msgid "Wrong Test Type"
+#~ msgstr "Nesprávný typ testu"
+
+#, c-format
+#~ msgid "Invalid Test State “%s”"
+#~ msgstr "Neplatný stav testu „%s“"
+
+#, c-format
+#~ msgid "State “%s” Precludes Cancel"
+#~ msgstr "Stav „%s“ brání zrušení"
+
+#~ msgid "Cannot run “Ping” action: Host is empty"
+#~ msgstr "Nelze provést příkaz „Ping“: název hostitele je prázdný"
+
+#~ msgid "Cannot run “NSLookup” action: HostName is empty"
+#~ msgstr "Nelze provést příkaz „NSLookup“: název hostitele je prázdný"
+
+#~ msgid "Cannot run “Traceroute” action: Host is empty"
+#~ msgstr "Nelze provést příkaz „Traceroute“: název hostitele je prázdný"
+
+#, c-format
+#~ msgid "Failed to get a socket: %s"
+#~ msgstr "Selhalo získání soketu: %s"
+
+#, c-format
+#~ msgid "Failed to get MAC address for %s: %s"
+#~ msgstr "Selhalo získání adresy MAC pro %s: %s"
+
+#~ msgid "MAC and network type querying not implemented"
+#~ msgstr "Dotazování na adresu MAC a typ sítě není implementováno"
+
+#, c-format
+#~ msgid "Unable to parse Icon data — unexpected node: %s"
+#~ msgstr "Nelze zpracovat data ikony – neočekávaný uzel: %s"
+
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected attribute: %s"
+#~ msgstr "Nelze zpracovat data protokolu – neočekávaný atribut: %s"
+
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected node: %s"
+#~ msgstr "Nelze zpracovat data protokolu – neočekávaný uzel: %s"
+
+#, c-format
+#~ msgid "Failed to set UIList for file %s — %s"
+#~ msgstr "Selhalo nastavení seznamu UR pro soubor %s – %s"
+
+#, c-format
+#~ msgid "Failed to set initial UI list for file %s — %s"
+#~ msgstr "Selhalo nastavení počátečního seznamu UR pro soubor %s – %s"
+
+#, c-format
+#~ msgid "Failed to monitor the file %s — %s"
+#~ msgstr "Selhalo sledování souboru %s – %s"
+
+#, c-format
+#~ msgid "Unable to parse UI list file %s"
+#~ msgstr "Selhalo zpracování seznamu UR pro souboru %s"
+
+#, c-format
+#~ msgid "Unable to parse device profile data: %s"
+#~ msgstr "Selhalo zpracování dat profilu zařízení: %s"
+
+#, c-format
+#~ msgid "Invalid UI filter: %s"
+#~ msgstr "Neplatný filtr UR: %s"
+
+#, c-format
+#~ msgid "Unable to parse UI data — unexpected node: %s"
+#~ msgstr "Nelze zpracovat data UR – neočekávaný uzel: %s"
 
 #~ msgid "Years"
 #~ msgstr "Roky"
