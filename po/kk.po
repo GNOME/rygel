@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2025-08-10 15:37+0000\n"
-"PO-Revision-Date: 2026-01-11 22:39+0500\n"
+"POT-Creation-Date: 2026-08-04 15:09+0000\n"
+"PO-Revision-Date: 2026-08-21 07:29+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/rygel.desktop.in:2
 msgid "Rygel"
@@ -26,8 +26,7 @@ msgstr "Rygel"
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA қызметтері"
 
-#. Translators: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/rygel.desktop.in:5
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "mediaserver;mediarenderer;share;audio;video;pictures;медиасервер;медиаөңдеуші;бөлісу;аудио;видео;суреттер;"
@@ -96,69 +95,6 @@ msgstr "Бумаларды таңдау"
 #: src/librygel-core/rygel-base-configuration.vala:113 src/librygel-core/rygel-base-configuration.vala:119
 msgid "Not implemented"
 msgstr "Іске асырылмаған"
-
-#: src/librygel-core/rygel-basic-management-test.vala:197
-#, c-format
-msgid "Failed to read standard output from %s: %s"
-msgstr "%s ішінен стандартты шығысты оқу сәтсіз аяқталды: %s"
-
-#: src/librygel-core/rygel-basic-management-test.vala:225
-#, c-format
-msgid "Failed to read error output from %s: %s"
-msgstr "%s ішінен қате шығысын оқу сәтсіз аяқталды: %s"
-
-#. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:158
-msgid "No Such Test"
-msgstr "Мұндай сынақ жоқ"
-
-#. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:166 src/librygel-core/rygel-basic-management.vala:283
-#: src/librygel-core/rygel-basic-management.vala:382 src/librygel-core/rygel-basic-management.vala:471
-msgid "Wrong Test Type"
-msgstr "Сынақ түрі қате"
-
-#. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:174
-#, c-format
-msgid "Invalid Test State “%s”"
-msgstr "Сынақтың “%s” күйі жарамсыз"
-
-#. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:180
-#, c-format
-msgid "State “%s” Precludes Cancel"
-msgstr "“%s” күйі бас тартуға мүмкіндік бермейді"
-
-#: src/librygel-core/rygel-basic-management.vala:213 src/librygel-core/rygel-basic-management.vala:228
-#: src/librygel-core/rygel-basic-management.vala:255 src/librygel-core/rygel-basic-management.vala:271
-#: src/librygel-core/rygel-basic-management.vala:328 src/librygel-core/rygel-basic-management.vala:353
-#: src/librygel-core/rygel-basic-management.vala:369 src/librygel-core/rygel-basic-management.vala:414
-#: src/librygel-core/rygel-basic-management.vala:441 src/librygel-core/rygel-basic-management.vala:458
-#: src/librygel-core/rygel-basic-management.vala:503 src/librygel-core/rygel-basic-management.vala:518
-#: src/librygel-core/rygel-basic-management.vala:533 src/librygel-core/rygel-basic-management.vala:557
-#: src/librygel-core/rygel-connection-manager.vala:95 src/librygel-core/rygel-connection-manager.vala:109
-#: src/librygel-core/rygel-connection-manager.vala:126 src/librygel-core/rygel-energy-management.vala:223
-#: src/librygel-renderer/rygel-av-transport.vala:198 src/librygel-renderer/rygel-rendering-control.vala:131
-#: src/librygel-ruih/rygel-ruih-service.vala:63 src/librygel-server/rygel-content-directory.vala:261
-#: src/librygel-server/rygel-content-directory.vala:289 src/librygel-server/rygel-content-directory.vala:308
-#: src/librygel-server/rygel-content-directory.vala:343 src/librygel-server/rygel-content-directory.vala:372
-#: src/librygel-server/rygel-content-directory.vala:397 src/librygel-server/rygel-content-directory.vala:618
-#: src/librygel-server/rygel-content-directory.vala:767 src/librygel-server/rygel-media-receiver-registrar.vala:61
-msgid "Invalid argument"
-msgstr "Аргумент қате"
-
-#: src/librygel-core/rygel-basic-management.vala:254
-msgid "Cannot run “Ping” action: Host is empty"
-msgstr "“Ping” әрекетін орындау мүмкін емес: Хост бос"
-
-#: src/librygel-core/rygel-basic-management.vala:352
-msgid "Cannot run “NSLookup” action: HostName is empty"
-msgstr "“NSLookup” әрекетін орындау мүмкін емес: HostName бос"
-
-#: src/librygel-core/rygel-basic-management.vala:440
-msgid "Cannot run “Traceroute” action: Host is empty"
-msgstr "“Traceroute” әрекетін орындау мүмкін емес: Хост бос"
 
 #: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
@@ -234,6 +170,16 @@ msgstr "Қашықтағы Rygel сілтемесін тоқтату"
 msgid "No value available"
 msgstr "Мән қолжетімсіз"
 
+#: src/librygel-core/rygel-connection-manager.vala:95 src/librygel-core/rygel-connection-manager.vala:109
+#: src/librygel-core/rygel-connection-manager.vala:126 src/librygel-renderer/rygel-av-transport.vala:198
+#: src/librygel-renderer/rygel-rendering-control.vala:131 src/librygel-server/rygel-content-directory.vala:261
+#: src/librygel-server/rygel-content-directory.vala:289 src/librygel-server/rygel-content-directory.vala:308
+#: src/librygel-server/rygel-content-directory.vala:343 src/librygel-server/rygel-content-directory.vala:372
+#: src/librygel-server/rygel-content-directory.vala:397 src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767 src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr "Аргумент қате"
+
 #: src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "Байланыс сілтемесі жарамсыз"
@@ -242,20 +188,6 @@ msgstr "Байланыс сілтемесі жарамсыз"
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Өзгертілген сипаттаманы %s файлына жазу сәтсіз аяқталды"
-
-#: src/librygel-core/rygel-energy-management-helper.c:55
-#, c-format
-msgid "Failed to get a socket: %s"
-msgstr "Сокетті алу сәтсіз аяқталды: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:62
-#, c-format
-msgid "Failed to get MAC address for %s: %s"
-msgstr "%s үшін MAC адресін алу сәтсіз аяқталды: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:104
-msgid "MAC and network type querying not implemented"
-msgstr "MAC және желі түрін сұрау іске асырылмаған"
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
@@ -404,7 +336,8 @@ msgstr "Ойнату режиміне қолдау көрсетілмейді"
 #. FIXME: Return a more sensible error here.
 #: src/librygel-renderer/rygel-av-transport.vala:773 src/librygel-renderer/rygel-av-transport.vala:779
 #: src/librygel-renderer/rygel-av-transport.vala:794 src/librygel-renderer/rygel-av-transport.vala:803
-#: src/librygel-renderer/rygel-av-transport.vala:863 src/librygel-renderer/rygel-av-transport.vala:898
+#: src/librygel-renderer/rygel-av-transport.vala:848 src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:910
 msgid "Resource not found"
 msgstr "Ресурс табылмады"
 
@@ -415,12 +348,19 @@ msgstr "Плейлистті талдау кезіндегі мәселе оры
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:859 src/librygel-renderer/rygel-av-transport.vala:894
+#: src/librygel-renderer/rygel-av-transport.vala:845
+#, c-format
+msgid "Failed to access resource at %s: Address family mismatch."
+msgstr "%s адресіндегі ресурсқа қол жеткізу сәтсіз аяқталды: Адрестер отбасы сәйкес келмейді."
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: src/librygel-renderer/rygel-av-transport.vala:871 src/librygel-renderer/rygel-av-transport.vala:906
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "%s мекенжайындағы ресурсқа қол жеткізу сәтсіз аяқталды: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:887
 msgid "Illegal MIME-type"
 msgstr "MIME түрі жарамсыз"
 
@@ -436,56 +376,6 @@ msgstr "Арнасы жарамсыз"
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Әрекет сәтсіз аяқталды"
-
-#: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
-#, c-format
-msgid "Unable to parse Icon data — unexpected node: %s"
-msgstr "Таңбаша деректерін талдау мүмкін емес — күтілмеген торап: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
-#, c-format
-msgid "Unable to parse Protocol data — unexpected attribute: %s"
-msgstr "Хаттама деректерін талдау мүмкін емес — күтілмеген атрибут: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
-#, c-format
-msgid "Unable to parse Protocol data — unexpected node: %s"
-msgstr "Хаттама деректерін талдау мүмкін емес — күтілмеген торап: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
-#, c-format
-msgid "Failed to set UIList for file %s — %s"
-msgstr "%s файлы үшін UIList орнату сәтсіз аяқталды — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
-#, c-format
-msgid "Failed to set initial UI list for file %s — %s"
-msgstr "%s файлы үшін бастапқы UI тізімін орнату сәтсіз аяқталды — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
-#, c-format
-msgid "Failed to monitor the file %s — %s"
-msgstr "%s файлын бақылау сәтсіз аяқталды — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
-#, c-format
-msgid "Unable to parse UI list file %s"
-msgstr "%s UI тізім файлын талдау мүмкін емес"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
-#, c-format
-msgid "Unable to parse device profile data: %s"
-msgstr "Құрылғы профилінің деректерін талдау мүмкін емес: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
-#, c-format
-msgid "Invalid UI filter: %s"
-msgstr "Жарамсыз UI сүзгісі: %s"
-
-#: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
-#, c-format
-msgid "Unable to parse UI data — unexpected node: %s"
-msgstr "UI деректерін талдау мүмкін емес — күтілмеген түйін: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -1304,8 +1194,7 @@ msgstr "Жанры"
 msgid "Files & Folders"
 msgstr "Файлдар және бумалар"
 
-#. translators: @REALNAME@ is substituted for user's real name and it doesn't
-#. need translation.
+#. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
 #: src/plugins/localsearch/localsearch-plugin.vala:34
 msgid "@REALNAME@’s media"
@@ -1477,6 +1366,88 @@ msgstr "Rygel қызметін іске қосу сәтсіз аяқталды: 
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Rygel қызметін тоқтату сәтсіз аяқталды: %s"
+
+#, c-format
+#~ msgid "Failed to read standard output from %s: %s"
+#~ msgstr "%s ішінен стандартты шығысты оқу сәтсіз аяқталды: %s"
+
+#, c-format
+#~ msgid "Failed to read error output from %s: %s"
+#~ msgstr "%s ішінен қате шығысын оқу сәтсіз аяқталды: %s"
+
+#~ msgid "No Such Test"
+#~ msgstr "Мұндай сынақ жоқ"
+
+#~ msgid "Wrong Test Type"
+#~ msgstr "Сынақ түрі қате"
+
+#, c-format
+#~ msgid "Invalid Test State “%s”"
+#~ msgstr "Сынақтың “%s” күйі жарамсыз"
+
+#, c-format
+#~ msgid "State “%s” Precludes Cancel"
+#~ msgstr "“%s” күйі бас тартуға мүмкіндік бермейді"
+
+#~ msgid "Cannot run “Ping” action: Host is empty"
+#~ msgstr "“Ping” әрекетін орындау мүмкін емес: Хост бос"
+
+#~ msgid "Cannot run “NSLookup” action: HostName is empty"
+#~ msgstr "“NSLookup” әрекетін орындау мүмкін емес: HostName бос"
+
+#~ msgid "Cannot run “Traceroute” action: Host is empty"
+#~ msgstr "“Traceroute” әрекетін орындау мүмкін емес: Хост бос"
+
+#, c-format
+#~ msgid "Failed to get a socket: %s"
+#~ msgstr "Сокетті алу сәтсіз аяқталды: %s"
+
+#, c-format
+#~ msgid "Failed to get MAC address for %s: %s"
+#~ msgstr "%s үшін MAC адресін алу сәтсіз аяқталды: %s"
+
+#~ msgid "MAC and network type querying not implemented"
+#~ msgstr "MAC және желі түрін сұрау іске асырылмаған"
+
+#, c-format
+#~ msgid "Unable to parse Icon data — unexpected node: %s"
+#~ msgstr "Таңбаша деректерін талдау мүмкін емес — күтілмеген торап: %s"
+
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected attribute: %s"
+#~ msgstr "Хаттама деректерін талдау мүмкін емес — күтілмеген атрибут: %s"
+
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected node: %s"
+#~ msgstr "Хаттама деректерін талдау мүмкін емес — күтілмеген торап: %s"
+
+#, c-format
+#~ msgid "Failed to set UIList for file %s — %s"
+#~ msgstr "%s файлы үшін UIList орнату сәтсіз аяқталды — %s"
+
+#, c-format
+#~ msgid "Failed to set initial UI list for file %s — %s"
+#~ msgstr "%s файлы үшін бастапқы UI тізімін орнату сәтсіз аяқталды — %s"
+
+#, c-format
+#~ msgid "Failed to monitor the file %s — %s"
+#~ msgstr "%s файлын бақылау сәтсіз аяқталды — %s"
+
+#, c-format
+#~ msgid "Unable to parse UI list file %s"
+#~ msgstr "%s UI тізім файлын талдау мүмкін емес"
+
+#, c-format
+#~ msgid "Unable to parse device profile data: %s"
+#~ msgstr "Құрылғы профилінің деректерін талдау мүмкін емес: %s"
+
+#, c-format
+#~ msgid "Invalid UI filter: %s"
+#~ msgstr "Жарамсыз UI сүзгісі: %s"
+
+#, c-format
+#~ msgid "Unable to parse UI data — unexpected node: %s"
+#~ msgstr "UI деректерін талдау мүмкін емес — күтілмеген түйін: %s"
 
 #~ msgid "Years"
 #~ msgstr "Жылдар"
