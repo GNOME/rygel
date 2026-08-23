@@ -1,9 +1,9 @@
 # Swedish translation for rygel.
-# Copyright © 2010-2025 Free Software Foundation, Inc.
+# Copyright © 2010-2026 Free Software Foundation, Inc.
 # This file is distributed under the same license as the rygel package.
 # Daniel Nylander <po@danielnylander.se>, 2010, 2011, 2012.
 # Sebastian Rasmussen <sebras@gmail.com>, 2014, 2015.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015, 2016, 2020, 2022, 2025.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015, 2016, 2020, 2022, 2025, 2026.
 # Marcus Gisslén <marcus.gisslen@gmail.com>, 2015.
 # Luna Jernberg <droidbittin@gmail.com>, 2022.
 #
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2025-04-25 20:44+0000\n"
-"PO-Revision-Date: 2025-04-26 13:41+0200\n"
+"POT-Creation-Date: 2026-08-04 15:09+0000\n"
+"PO-Revision-Date: 2026-08-23 12:37+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -20,26 +20,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.9\n"
 
-#: data/rygel.desktop.in:3
+#: data/rygel.desktop.in:2
 msgid "Rygel"
 msgstr "Rygel"
 
-#: data/rygel.desktop.in:4
+#: data/rygel.desktop.in:3
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA-tjänster"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in:6
+#: data/rygel.desktop.in:5
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "mediaserver;mediavisare;dela;ljud;video;bilder;"
 
-#: data/rygel-preferences.desktop.in:3 data/rygel-preferences.ui:19
+#: data/rygel-preferences.desktop.in:2 data/rygel-preferences.ui:19
 msgid "Rygel Preferences"
 msgstr "Inställningar för Rygel"
 
-#: data/rygel-preferences.desktop.in:4
+#: data/rygel-preferences.desktop.in:3
 msgid "UPnP/DLNA Preferences"
 msgstr "Inställningar för UPnP/DLNA"
 
@@ -110,86 +110,6 @@ msgstr "Välj mappar"
 #: src/librygel-core/rygel-base-configuration.vala:119
 msgid "Not implemented"
 msgstr "Inte implementerad"
-
-#: src/librygel-core/rygel-basic-management-test.vala:197
-#, c-format
-msgid "Failed to read standard output from %s: %s"
-msgstr "Misslyckades med att läsa standard ut från %s: %s"
-
-#: src/librygel-core/rygel-basic-management-test.vala:225
-#, c-format
-msgid "Failed to read error output from %s: %s"
-msgstr "Misslyckades med att läsa felutmatning från %s: %s"
-
-#. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:158
-msgid "No Such Test"
-msgstr "Inget sådant test"
-
-#. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:166
-#: src/librygel-core/rygel-basic-management.vala:283
-#: src/librygel-core/rygel-basic-management.vala:382
-#: src/librygel-core/rygel-basic-management.vala:471
-msgid "Wrong Test Type"
-msgstr "Fel testtyp"
-
-#. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:174
-#, c-format
-msgid "Invalid Test State “%s”"
-msgstr "Ogiltigt testtillstånd ”%s”"
-
-#. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:180
-#, c-format
-msgid "State “%s” Precludes Cancel"
-msgstr "Tillstånd ”%s” hindrar avbrott"
-
-#: src/librygel-core/rygel-basic-management.vala:213
-#: src/librygel-core/rygel-basic-management.vala:228
-#: src/librygel-core/rygel-basic-management.vala:255
-#: src/librygel-core/rygel-basic-management.vala:271
-#: src/librygel-core/rygel-basic-management.vala:328
-#: src/librygel-core/rygel-basic-management.vala:353
-#: src/librygel-core/rygel-basic-management.vala:369
-#: src/librygel-core/rygel-basic-management.vala:414
-#: src/librygel-core/rygel-basic-management.vala:441
-#: src/librygel-core/rygel-basic-management.vala:458
-#: src/librygel-core/rygel-basic-management.vala:503
-#: src/librygel-core/rygel-basic-management.vala:518
-#: src/librygel-core/rygel-basic-management.vala:533
-#: src/librygel-core/rygel-basic-management.vala:557
-#: src/librygel-core/rygel-connection-manager.vala:95
-#: src/librygel-core/rygel-connection-manager.vala:109
-#: src/librygel-core/rygel-connection-manager.vala:126
-#: src/librygel-core/rygel-energy-management.vala:223
-#: src/librygel-renderer/rygel-av-transport.vala:198
-#: src/librygel-renderer/rygel-rendering-control.vala:131
-#: src/librygel-ruih/rygel-ruih-service.vala:63
-#: src/librygel-server/rygel-content-directory.vala:261
-#: src/librygel-server/rygel-content-directory.vala:289
-#: src/librygel-server/rygel-content-directory.vala:308
-#: src/librygel-server/rygel-content-directory.vala:343
-#: src/librygel-server/rygel-content-directory.vala:372
-#: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:618
-#: src/librygel-server/rygel-content-directory.vala:767
-#: src/librygel-server/rygel-media-receiver-registrar.vala:61
-msgid "Invalid argument"
-msgstr "Ogiltigt argument"
-
-#: src/librygel-core/rygel-basic-management.vala:254
-msgid "Cannot run “Ping” action: Host is empty"
-msgstr "Kan inte köra ”Ping”-åtgärd: Värd är tom"
-
-#: src/librygel-core/rygel-basic-management.vala:352
-msgid "Cannot run “NSLookup” action: HostName is empty"
-msgstr "Kan inte köra ”NSLookup”-åtgärd: Värdnamn är tomt"
-
-#: src/librygel-core/rygel-basic-management.vala:440
-msgid "Cannot run “Traceroute” action: Host is empty"
-msgstr "Kan inte köra ”Traceroute”-åtgärd: Värd är tom"
 
 #: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
@@ -280,6 +200,23 @@ msgstr "Referens för att fjärrstänga Rygel"
 msgid "No value available"
 msgstr "Inget värde tillgängligt"
 
+#: src/librygel-core/rygel-connection-manager.vala:95
+#: src/librygel-core/rygel-connection-manager.vala:109
+#: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-renderer/rygel-av-transport.vala:198
+#: src/librygel-renderer/rygel-rendering-control.vala:131
+#: src/librygel-server/rygel-content-directory.vala:261
+#: src/librygel-server/rygel-content-directory.vala:289
+#: src/librygel-server/rygel-content-directory.vala:308
+#: src/librygel-server/rygel-content-directory.vala:343
+#: src/librygel-server/rygel-content-directory.vala:372
+#: src/librygel-server/rygel-content-directory.vala:397
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
+#: src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr "Ogiltigt argument"
+
 #: src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "Ogiltig anslutningsreferens"
@@ -288,20 +225,6 @@ msgstr "Ogiltig anslutningsreferens"
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Misslyckades med att skriva ändrad beskrivning till %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:55
-#, c-format
-msgid "Failed to get a socket: %s"
-msgstr "Misslyckades med att erhålla ett uttag: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:62
-#, c-format
-msgid "Failed to get MAC address for %s: %s"
-msgstr "Misslyckades med att erhålla en MAC-adress för %s: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:104
-msgid "MAC and network type querying not implemented"
-msgstr "Förfrågan om MAC och nätverkstyp är inte implementerad"
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
@@ -459,8 +382,9 @@ msgstr "Uppspelningsläge stöds inte"
 #: src/librygel-renderer/rygel-av-transport.vala:779
 #: src/librygel-renderer/rygel-av-transport.vala:794
 #: src/librygel-renderer/rygel-av-transport.vala:803
-#: src/librygel-renderer/rygel-av-transport.vala:863
-#: src/librygel-renderer/rygel-av-transport.vala:898
+#: src/librygel-renderer/rygel-av-transport.vala:848
+#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:910
 msgid "Resource not found"
 msgstr "Resursen hittades inte"
 
@@ -471,13 +395,21 @@ msgstr "Problem att tolka spellista: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:859
-#: src/librygel-renderer/rygel-av-transport.vala:894
+#: src/librygel-renderer/rygel-av-transport.vala:845
+#, c-format
+msgid "Failed to access resource at %s: Address family mismatch."
+msgstr ""
+"Misslyckades med att komma åt resurs på %s: Adressfamiljen stämmer inte."
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: src/librygel-renderer/rygel-av-transport.vala:871
+#: src/librygel-renderer/rygel-av-transport.vala:906
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Misslyckades med att komma åt resurs på %s: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:887
 msgid "Illegal MIME-type"
 msgstr "Felaktig MIME-typ"
 
@@ -494,56 +426,6 @@ msgstr "Ogiltig kanal"
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Åtgärden misslyckades"
-
-#: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
-#, c-format
-msgid "Unable to parse Icon data — unexpected node: %s"
-msgstr "Kunde inte tolka ikondata — oväntad nod: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
-#, c-format
-msgid "Unable to parse Protocol data — unexpected attribute: %s"
-msgstr "Kunde inte tolka protokolldata — oväntat attribut: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
-#, c-format
-msgid "Unable to parse Protocol data — unexpected node: %s"
-msgstr "Kunde inte tolka protokolldata — oväntad nod: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
-#, c-format
-msgid "Failed to set UIList for file %s — %s"
-msgstr "Misslyckades med att ställa in UIList för fil %s — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
-#, c-format
-msgid "Failed to set initial UI list for file %s — %s"
-msgstr "Misslyckades med att ställa in ursprunglig UI-lista för fil %s — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
-#, c-format
-msgid "Failed to monitor the file %s — %s"
-msgstr "Misslyckades med att övervaka filen %s — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
-#, c-format
-msgid "Unable to parse UI list file %s"
-msgstr "Misslyckades med att tolka UI-listfil %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
-#, c-format
-msgid "Unable to parse device profile data: %s"
-msgstr "Kan inte tolka enhetens profildata: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
-#, c-format
-msgid "Invalid UI filter: %s"
-msgstr "Ogiltigt UI-filter: %s"
-
-#: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
-#, c-format
-msgid "Unable to parse UI data — unexpected node: %s"
-msgstr "Kunde inte tolka användargränssnittsdata — oväntad nod: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -717,7 +599,7 @@ msgstr "Försökte att ändra skrivskyddad egenskap."
 
 #: src/librygel-server/rygel-item-updater.vala:269
 msgid "Parameter count mismatch."
-msgstr "Antal parametrar stämmer ej."
+msgstr "Antal parametrar stämmer inte."
 
 #: src/librygel-server/rygel-item-updater.vala:272
 msgid "Unknown error."
@@ -1468,21 +1350,21 @@ msgstr "Album"
 msgid "Artists"
 msgstr "Artister"
 
-#: src/plugins/localsearch/localsearch-category-all-container.vala:55
+#: src/plugins/localsearch/localsearch-category-all-container.vala:56
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "Misslyckades med att skapa URI för mappen ”%s”: %s"
 
-#: src/plugins/localsearch/localsearch-category-all-container.vala:71
+#: src/plugins/localsearch/localsearch-category-all-container.vala:67
 #, c-format
 msgid "Could not subscribe to LocalSearch signals: %s"
 msgstr "Kunde inte prenumerera på LocalSearch-signaler: %s"
 
-#: src/plugins/localsearch/localsearch-category-all-container.vala:94
+#: src/plugins/localsearch/localsearch-category-all-container.vala:92
 msgid "Not supported"
 msgstr "Stöds inte"
 
-#: src/plugins/localsearch/localsearch-metadata-container.vala:102
+#: src/plugins/localsearch/localsearch-metadata-container.vala:99
 #, c-format
 msgid "Error getting all values for “%s”: %s"
 msgstr "Fel vid hämtning av alla värden för ”%s”: %s"
@@ -1494,7 +1376,7 @@ msgstr ""
 "Misslyckades med att starta LocalSearch-tjänst: %s. Insticksmodulen "
 "inaktiverad."
 
-#: src/plugins/localsearch/localsearch-root-container.vala:44
+#: src/plugins/localsearch/localsearch-root-container.vala:46
 #, c-format
 msgid "Could not connect to %s, falling back to old Tracker3 service"
 msgstr ""
@@ -1573,6 +1455,88 @@ msgstr "Misslyckades med att starta Rygel-tjänsten: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Misslyckades med att stoppa Rygel-tjänsten: %s"
+
+#, c-format
+#~ msgid "Failed to read standard output from %s: %s"
+#~ msgstr "Misslyckades med att läsa standard ut från %s: %s"
+
+#, c-format
+#~ msgid "Failed to read error output from %s: %s"
+#~ msgstr "Misslyckades med att läsa felutmatning från %s: %s"
+
+#~ msgid "No Such Test"
+#~ msgstr "Inget sådant test"
+
+#~ msgid "Wrong Test Type"
+#~ msgstr "Fel testtyp"
+
+#, c-format
+#~ msgid "Invalid Test State “%s”"
+#~ msgstr "Ogiltigt testtillstånd ”%s”"
+
+#, c-format
+#~ msgid "State “%s” Precludes Cancel"
+#~ msgstr "Tillstånd ”%s” hindrar avbrott"
+
+#~ msgid "Cannot run “Ping” action: Host is empty"
+#~ msgstr "Kan inte köra ”Ping”-åtgärd: Värd är tom"
+
+#~ msgid "Cannot run “NSLookup” action: HostName is empty"
+#~ msgstr "Kan inte köra ”NSLookup”-åtgärd: Värdnamn är tomt"
+
+#~ msgid "Cannot run “Traceroute” action: Host is empty"
+#~ msgstr "Kan inte köra ”Traceroute”-åtgärd: Värd är tom"
+
+#, c-format
+#~ msgid "Failed to get a socket: %s"
+#~ msgstr "Misslyckades med att erhålla ett uttag: %s"
+
+#, c-format
+#~ msgid "Failed to get MAC address for %s: %s"
+#~ msgstr "Misslyckades med att erhålla en MAC-adress för %s: %s"
+
+#~ msgid "MAC and network type querying not implemented"
+#~ msgstr "Förfrågan om MAC och nätverkstyp är inte implementerad"
+
+#, c-format
+#~ msgid "Unable to parse Icon data — unexpected node: %s"
+#~ msgstr "Kunde inte tolka ikondata — oväntad nod: %s"
+
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected attribute: %s"
+#~ msgstr "Kunde inte tolka protokolldata — oväntat attribut: %s"
+
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected node: %s"
+#~ msgstr "Kunde inte tolka protokolldata — oväntad nod: %s"
+
+#, c-format
+#~ msgid "Failed to set UIList for file %s — %s"
+#~ msgstr "Misslyckades med att ställa in UIList för fil %s — %s"
+
+#, c-format
+#~ msgid "Failed to set initial UI list for file %s — %s"
+#~ msgstr "Misslyckades med att ställa in ursprunglig UI-lista för fil %s — %s"
+
+#, c-format
+#~ msgid "Failed to monitor the file %s — %s"
+#~ msgstr "Misslyckades med att övervaka filen %s — %s"
+
+#, c-format
+#~ msgid "Unable to parse UI list file %s"
+#~ msgstr "Misslyckades med att tolka UI-listfil %s"
+
+#, c-format
+#~ msgid "Unable to parse device profile data: %s"
+#~ msgstr "Kan inte tolka enhetens profildata: %s"
+
+#, c-format
+#~ msgid "Invalid UI filter: %s"
+#~ msgstr "Ogiltigt UI-filter: %s"
+
+#, c-format
+#~ msgid "Unable to parse UI data — unexpected node: %s"
+#~ msgstr "Kunde inte tolka användargränssnittsdata — oväntad nod: %s"
 
 #~ msgid "Years"
 #~ msgstr "År"
