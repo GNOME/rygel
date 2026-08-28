@@ -7,14 +7,14 @@
 # Muhammet Kara <muhammetk@gmail.com>, 2011, 2014, 2015.
 # Furkan Ahmet Kara <furkanahmetkara.fk@gmail.com>, 2017.
 # Sabri Ünal <yakushabb@gmail.com>, 2023.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2017, 2020, 2022, 2024, 2025.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2017, 2020, 2022, 2024, 2025, 2026.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: rygel gnome-2-32\n"
+"Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2025-05-15 12:11+0000\n"
-"PO-Revision-Date: 2025-07-13 08:00+0300\n"
+"POT-Creation-Date: 2026-08-04 15:09+0000\n"
+"PO-Revision-Date: 2026-08-28 08:00+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -25,34 +25,34 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 "X-POOTLE-MTIME: 1433415626.000000\n"
 
-#: data/rygel.desktop.in:3
+#: data/rygel.desktop.in:2
 msgid "Rygel"
 msgstr "Rygel"
 
-#: data/rygel.desktop.in:4
+#: data/rygel.desktop.in:3
 msgid "UPnP/DLNA Services"
 msgstr "UPnP/DLNA Hizmetleri"
 
 # https://gitlab.gnome.org/GNOME/glib/-/issues/443 hatası sebebiyle ingilizce kelimeleri de koruyalım
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/rygel.desktop.in:6
+#: data/rygel.desktop.in:5
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr ""
 "mediaserver;mediarenderer;share;audio;video;pictures;medya sunucusu;medya "
-"yorumlayıcı;ortam sunucusu;ortam yorumlayıcı;paylaş;ses;video;görüntü;"
-"resimler;fotoğraflar;"
+"yorumlayıcı;ortam sunucusu;ortam "
+"yorumlayıcı;paylaş;ses;video;görüntü;resimler;fotoğraflar;"
 
-#: data/rygel-preferences.desktop.in:3 data/rygel-preferences.ui:19
+#: data/rygel-preferences.desktop.in:2 data/rygel-preferences.ui:19
 msgid "Rygel Preferences"
 msgstr "Rygel Tercihleri"
 
-#: data/rygel-preferences.desktop.in:4
+#: data/rygel-preferences.desktop.in:3
 msgid "UPnP/DLNA Preferences"
 msgstr "UPnP/DLNA Tercihleri"
 
 #: data/rygel-preferences.ui:85
 msgid "Add a directory to the list of shared directories"
-msgstr "Dizini, paylaşılan dizinler listesine ekle"
+msgstr "Dizini paylaşılan dizinler listesine ekle"
 
 #: data/rygel-preferences.ui:86
 msgid "Add shared directory"
@@ -117,86 +117,6 @@ msgstr "Klasörleri seç"
 msgid "Not implemented"
 msgstr "Gerçeklenmemiş"
 
-#: src/librygel-core/rygel-basic-management-test.vala:197
-#, c-format
-msgid "Failed to read standard output from %s: %s"
-msgstr "%s kaynağından standart çıktı okunamadı: %s"
-
-#: src/librygel-core/rygel-basic-management-test.vala:225
-#, c-format
-msgid "Failed to read error output from %s: %s"
-msgstr "%s kaynağından hata çıktısı okunamadı: %s"
-
-#. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:158
-msgid "No Such Test"
-msgstr "Böyle Sınama Yok"
-
-#. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:166
-#: src/librygel-core/rygel-basic-management.vala:283
-#: src/librygel-core/rygel-basic-management.vala:382
-#: src/librygel-core/rygel-basic-management.vala:471
-msgid "Wrong Test Type"
-msgstr "Hatalı Sınama Türü"
-
-#. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:174
-#, c-format
-msgid "Invalid Test State “%s”"
-msgstr "Geçersiz Sınama Durumu “%s”"
-
-#. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:180
-#, c-format
-msgid "State “%s” Precludes Cancel"
-msgstr "“%s” Durumu İptali Önlüyor"
-
-#: src/librygel-core/rygel-basic-management.vala:213
-#: src/librygel-core/rygel-basic-management.vala:228
-#: src/librygel-core/rygel-basic-management.vala:255
-#: src/librygel-core/rygel-basic-management.vala:271
-#: src/librygel-core/rygel-basic-management.vala:328
-#: src/librygel-core/rygel-basic-management.vala:353
-#: src/librygel-core/rygel-basic-management.vala:369
-#: src/librygel-core/rygel-basic-management.vala:414
-#: src/librygel-core/rygel-basic-management.vala:441
-#: src/librygel-core/rygel-basic-management.vala:458
-#: src/librygel-core/rygel-basic-management.vala:503
-#: src/librygel-core/rygel-basic-management.vala:518
-#: src/librygel-core/rygel-basic-management.vala:533
-#: src/librygel-core/rygel-basic-management.vala:557
-#: src/librygel-core/rygel-connection-manager.vala:95
-#: src/librygel-core/rygel-connection-manager.vala:109
-#: src/librygel-core/rygel-connection-manager.vala:126
-#: src/librygel-core/rygel-energy-management.vala:223
-#: src/librygel-renderer/rygel-av-transport.vala:198
-#: src/librygel-renderer/rygel-rendering-control.vala:131
-#: src/librygel-ruih/rygel-ruih-service.vala:63
-#: src/librygel-server/rygel-content-directory.vala:261
-#: src/librygel-server/rygel-content-directory.vala:289
-#: src/librygel-server/rygel-content-directory.vala:308
-#: src/librygel-server/rygel-content-directory.vala:343
-#: src/librygel-server/rygel-content-directory.vala:372
-#: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:618
-#: src/librygel-server/rygel-content-directory.vala:767
-#: src/librygel-server/rygel-media-receiver-registrar.vala:61
-msgid "Invalid argument"
-msgstr "Geçersiz argüman"
-
-#: src/librygel-core/rygel-basic-management.vala:254
-msgid "Cannot run “Ping” action: Host is empty"
-msgstr "“Ping” eylemi çalıştırılamıyor: Ana makine boş"
-
-#: src/librygel-core/rygel-basic-management.vala:352
-msgid "Cannot run “NSLookup” action: HostName is empty"
-msgstr "“NSLookup” eylemi çalıştırılamıyor: Ana makine adı boş"
-
-#: src/librygel-core/rygel-basic-management.vala:440
-msgid "Cannot run “Traceroute” action: Host is empty"
-msgstr "“Traceroute” eylemi çalıştırılamıyor: Ana makine boş"
-
 #: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
 msgstr "Sürüm numarasını göster"
@@ -249,7 +169,7 @@ msgstr "Eklenti seçeneklerini ayarla"
 
 #: src/librygel-core/rygel-cmdline-config.vala:72
 msgid "Use configuration file instead of user configuration"
-msgstr "Kullanıcı yapılandırması yerine yapılandırma dosyasını kullan"
+msgstr "Kullanıcı yapılandırması yerine yapılandırma dosyası kullan"
 
 #: src/librygel-core/rygel-cmdline-config.vala:74
 msgid "Shut down remote Rygel reference"
@@ -288,6 +208,23 @@ msgstr "Uzak Rygel başvurusunu kapat"
 msgid "No value available"
 msgstr "Kullanılabilir değer yok"
 
+#: src/librygel-core/rygel-connection-manager.vala:95
+#: src/librygel-core/rygel-connection-manager.vala:109
+#: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-renderer/rygel-av-transport.vala:198
+#: src/librygel-renderer/rygel-rendering-control.vala:131
+#: src/librygel-server/rygel-content-directory.vala:261
+#: src/librygel-server/rygel-content-directory.vala:289
+#: src/librygel-server/rygel-content-directory.vala:308
+#: src/librygel-server/rygel-content-directory.vala:343
+#: src/librygel-server/rygel-content-directory.vala:372
+#: src/librygel-server/rygel-content-directory.vala:397
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
+#: src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr "Geçersiz argüman"
+
 #: src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "Bağlantı kaynağı geçersiz"
@@ -296,20 +233,6 @@ msgstr "Bağlantı kaynağı geçersiz"
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "%s’e değiştirilmiş açıklama yazılamadı"
-
-#: src/librygel-core/rygel-energy-management-helper.c:55
-#, c-format
-msgid "Failed to get a socket: %s"
-msgstr "Yuva alınamadı: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:62
-#, c-format
-msgid "Failed to get MAC address for %s: %s"
-msgstr "%s için MAC adresi alınamadı: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:104
-msgid "MAC and network type querying not implemented"
-msgstr "MAC ve ağ türü sorgulama kullanılamaz"
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
@@ -467,8 +390,9 @@ msgstr "Oynatma kipi desteklenmiyor"
 #: src/librygel-renderer/rygel-av-transport.vala:779
 #: src/librygel-renderer/rygel-av-transport.vala:794
 #: src/librygel-renderer/rygel-av-transport.vala:803
-#: src/librygel-renderer/rygel-av-transport.vala:863
-#: src/librygel-renderer/rygel-av-transport.vala:898
+#: src/librygel-renderer/rygel-av-transport.vala:848
+#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:910
 msgid "Resource not found"
 msgstr "Kaynak bulunamadı"
 
@@ -479,13 +403,20 @@ msgstr "Çalma listesi ayrıştırılırken sorun: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:859
-#: src/librygel-renderer/rygel-av-transport.vala:894
+#: src/librygel-renderer/rygel-av-transport.vala:845
+#, c-format
+msgid "Failed to access resource at %s: Address family mismatch."
+msgstr "%s konumundaki kaynağa erişilemedi: Adres ailesi uyuşmuyor."
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: src/librygel-renderer/rygel-av-transport.vala:871
+#: src/librygel-renderer/rygel-av-transport.vala:906
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "%s konumundaki kaynağa erişilemedi: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:887
 msgid "Illegal MIME-type"
 msgstr "Geçersiz MIME türü"
 
@@ -502,56 +433,6 @@ msgstr "Geçersiz Kanal"
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "İşlem Başarısız"
-
-#: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
-#, c-format
-msgid "Unable to parse Icon data — unexpected node: %s"
-msgstr "Simge verisi ayrıştırılamadı — beklenmeyen düğüm: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
-#, c-format
-msgid "Unable to parse Protocol data — unexpected attribute: %s"
-msgstr "İletişim Kuralı verisi ayrıştırılamadı — beklenmeyen öznitelik: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
-#, c-format
-msgid "Unable to parse Protocol data — unexpected node: %s"
-msgstr "İletişim Kuralı verisi ayrıştırılamadı —  beklenmeyen düğüm: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
-#, c-format
-msgid "Failed to set UIList for file %s — %s"
-msgstr "%s dosyası için UIList ayarlanamadı — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
-#, c-format
-msgid "Failed to set initial UI list for file %s — %s"
-msgstr "%s dosyası için başlangıç UI listesi ayarlanamadı — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
-#, c-format
-msgid "Failed to monitor the file %s — %s"
-msgstr "%s dosyası izlenemedi — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
-#, c-format
-msgid "Unable to parse UI list file %s"
-msgstr "%s UI liste dosyası ayrıştırılamadı"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
-#, c-format
-msgid "Unable to parse device profile data: %s"
-msgstr "Aygıt profil verisi ayrıştırılamadı: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
-#, c-format
-msgid "Invalid UI filter: %s"
-msgstr "Geçersiz UI süzgeci: %s"
-
-#: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
-#, c-format
-msgid "Unable to parse UI data — unexpected node: %s"
-msgstr "UI verisi ayrıştırılamadı — beklenmeyen düğüm: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -809,7 +690,7 @@ msgstr "Geçersiz argüman sayısı"
 #. Sorry we can't do anything without ObjectID
 #: src/librygel-server/rygel-media-query-action.vala:122
 msgid "ObjectID argument missing"
-msgstr "ObjectID argüman eksik"
+msgstr "ObjectID argümanı eksik"
 
 #: src/librygel-server/rygel-media-query-action.vala:127
 msgid "Invalid range"
@@ -1046,7 +927,7 @@ msgstr "“dvdreadsrc” GStreamer ögesi bulunamadı. DVD desteği çalışmıy
 
 #: src/media-engines/simple/rygel-simple-data-source.vala:64
 msgid "Only byte-based seek supported"
-msgstr "Yalnızca bayt temelli arama desteklenir"
+msgstr "Yalnızca bayt tabanlı arama desteklenir"
 
 #: src/media-engines/simple/rygel-simple-media-engine.vala:57
 #: src/media-engines/simple/rygel-simple-media-engine.vala:99
@@ -1468,21 +1349,21 @@ msgstr "Albümler"
 msgid "Artists"
 msgstr "Sanatçılar"
 
-#: src/plugins/localsearch/localsearch-category-all-container.vala:55
+#: src/plugins/localsearch/localsearch-category-all-container.vala:56
 #, c-format
 msgid "Failed to construct URI for folder “%s”: %s"
 msgstr "“%s” klasörü için URI inşa edilemedi :%s"
 
-#: src/plugins/localsearch/localsearch-category-all-container.vala:71
+#: src/plugins/localsearch/localsearch-category-all-container.vala:67
 #, c-format
 msgid "Could not subscribe to LocalSearch signals: %s"
 msgstr "LocalSearch sinyallerine abone olunamadı: %s"
 
-#: src/plugins/localsearch/localsearch-category-all-container.vala:94
+#: src/plugins/localsearch/localsearch-category-all-container.vala:92
 msgid "Not supported"
 msgstr "Desteklenmiyor"
 
-#: src/plugins/localsearch/localsearch-metadata-container.vala:102
+#: src/plugins/localsearch/localsearch-metadata-container.vala:99
 #, c-format
 msgid "Error getting all values for “%s”: %s"
 msgstr "“%s” için tüm değerler alınamıyor : %s"
@@ -1492,7 +1373,7 @@ msgstr "“%s” için tüm değerler alınamıyor : %s"
 msgid "Failed to start LocalSearch service: %s. Plugin disabled."
 msgstr "LocalSearch hizmeti başlatılamadı: %s. Eklenti devre dışı"
 
-#: src/plugins/localsearch/localsearch-root-container.vala:44
+#: src/plugins/localsearch/localsearch-root-container.vala:46
 #, c-format
 msgid "Could not connect to %s, falling back to old Tracker3 service"
 msgstr "%s ile bağlantı kurulamadı, eski Tracker3 hizmetine geri dönülüyor"
