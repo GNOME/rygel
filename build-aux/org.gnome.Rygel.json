@@ -33,8 +33,6 @@
         "*.a"
     ],
     "modules" : [
-        "python3-pyyaml.json",
-        "python3-docutils.json",
         {
             "name" : "gssdp",
             "buildsystem" : "meson",
@@ -109,6 +107,8 @@
                 }
             ]
         },
+        "python3-pyyaml.json",
+        "python3-docutils.json",
         {
             "name" : "rygel",
             "buildsystem" : "meson",
