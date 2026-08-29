@@ -2,7 +2,7 @@
 =======
 
  - No functional change, bump g-e-s to 1.28.6 for flatpak CI
-   pipeline
+   pipeline and force python3 module rebuild
 
 46.rc
 =====
