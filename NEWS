@@ -1,3 +1,44 @@
+46.rc
+=====
+
+- Translation updates
+
+All contributors to this release:
+ - Emin Tufan Çetin <etcetin@gmail.com>
+ - Kjartan Maraas <kjartan.maraas@gmail.com>
+ - Anders Jonsson <anders.jonsson@norsjovallen.se>
+ - Aurimas Aurimas Černius <aurimas.cernius@mailo.com>
+ - Lucien <luiz01luciano04@gmail.com>
+ - Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+ - Patrik Sivek <sivekpatrik@gmail.com>
+ - Alexander Alexandrov Shopov <ash@kambanaria.org>
+ - Abduqadir Abliz <sahranbay@gmail.com>
+ - Francisco Diéguez Souto <frandieguez@gnome.org>
+ - Vasil Pupkin <3abac@3a.by>
+ - Nathan Follens <nfollens@gnome.org>
+ - Xavi Ivars <xavi.ivars@gmail.com>
+ - Yaron Shahrabani <sh.yaron@gmail.com>
+ - Artur S0 <arturios05@bk.ru>
+ - Danial Behzadi <dani.behzi@ubuntu.com>
+
+Added/updated translations:
+ - be.po, courtesy of Yuras Shumovich
+ - bg.po, courtesy of Alexander Shopov
+ - ca.po, courtesy of Jordi Mas i Hernàndez
+ - cs.po, courtesy of Patrik Sivek
+ - fa.po, courtesy of Danial Behzadi
+ - fr.po, courtesy of Julien Humbert
+ - gl.po, courtesy of Fran Dieguez
+ - he.po, courtesy of Yaron Shahrabani
+ - kk.po, courtesy of Baurzhan Muftakhidinov
+ - lt.po, courtesy of Aurimas Černius
+ - nb.po, courtesy of Kjartan Maraas
+ - nl.po, courtesy of Nathan Follens
+ - ru.po, courtesy of Artur So
+ - sv.po, courtesy of Anders Jonsson
+ - tr.po, courtesy of Emin Tufan Çetin
+ - ug.po, courtesy of Abduqadir Abliz
+
 46.beta
 =======
 
