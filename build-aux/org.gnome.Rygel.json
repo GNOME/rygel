@@ -98,16 +98,14 @@
             "name": "gst-editing-services",
             "buildsystem": "meson",
             "builddir": true,
-            "subdir": "subprojects/gst-editing-services",
             "config-opts": [
                 "-Ddoc=disabled"
             ],
             "sources": [
                 {
-                    "type": "git",
-                    "branch": "1.20.3",
-                    "url": "https://gitlab.freedesktop.org/gstreamer/gstreamer.git",
-                    "commit" : "ccf22e315cedf81e0075ab179ffb1b733da5206e"
+                    "type": "archive",
+                    "url": "https://gstreamer.freedesktop.org/src/gstreamer-editing-services/gst-editing-services-1.28.6.tar.xz",
+                    "sha256" : "3d151e5097d686c5890ae76f14c57ee19538fd61c6cf637171f90b309cafd53c"
                 }
             ]
         },

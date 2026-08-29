@@ -1,4 +1,4 @@
-project('rygel', 'vala', 'c', version : '46.rc', meson_version : '>= 1.8.0')
+project('rygel', 'vala', 'c', version : '46.rc.0', meson_version : '>= 1.8.0')
 vala = meson.get_compiler('vala')
 cc = meson.get_compiler('c')
 disabled_warning_flags = []

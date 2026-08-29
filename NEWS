@@ -1,3 +1,9 @@
+46.rc.0
+=======
+
+ - No functional change, bump g-e-s to 1.28.6 for flatpak CI
+   pipeline
+
 46.rc
 =====
 
