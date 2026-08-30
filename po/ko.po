@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the rygel package.
 #
 # Homin Lee <ff4500@gmail.com>, 2010
-# Changwoo Ryu <cwryu@debian.org>, 2010-2017, 2020, 2022, 2025.
+# Changwoo Ryu <cwryu@debian.org>, 2010-2017, 2020, 2022, 2025-2026.
 #
 # - 이 프로그램의 이름인 Rygel은 "라이겔"로 음역
 #
@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2025-09-05 15:51+0000\n"
-"PO-Revision-Date: 2025-09-06 13:10+0900\n"
+"POT-Creation-Date: 2026-08-04 15:09+0000\n"
+"PO-Revision-Date: 2026-08-30 17:45+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -110,86 +110,6 @@ msgstr "폴더 선택"
 msgid "Not implemented"
 msgstr "구현되지 않음"
 
-#: src/librygel-core/rygel-basic-management-test.vala:197
-#, c-format
-msgid "Failed to read standard output from %s: %s"
-msgstr "%s에서 표준 출력 읽기 실패: %s"
-
-#: src/librygel-core/rygel-basic-management-test.vala:225
-#, c-format
-msgid "Failed to read error output from %s: %s"
-msgstr "%s에서 오류 출력 읽기 실패: %s"
-
-#. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:158
-msgid "No Such Test"
-msgstr "해당 테스트 없음"
-
-#. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:166
-#: src/librygel-core/rygel-basic-management.vala:283
-#: src/librygel-core/rygel-basic-management.vala:382
-#: src/librygel-core/rygel-basic-management.vala:471
-msgid "Wrong Test Type"
-msgstr "잘못된 테스트 종류"
-
-#. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:174
-#, c-format
-msgid "Invalid Test State “%s”"
-msgstr "잘못된 테스트 상태 “%s”"
-
-#. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:180
-#, c-format
-msgid "State “%s” Precludes Cancel"
-msgstr "“%s” 상태는 취소가 불가능합니다"
-
-#: src/librygel-core/rygel-basic-management.vala:213
-#: src/librygel-core/rygel-basic-management.vala:228
-#: src/librygel-core/rygel-basic-management.vala:255
-#: src/librygel-core/rygel-basic-management.vala:271
-#: src/librygel-core/rygel-basic-management.vala:328
-#: src/librygel-core/rygel-basic-management.vala:353
-#: src/librygel-core/rygel-basic-management.vala:369
-#: src/librygel-core/rygel-basic-management.vala:414
-#: src/librygel-core/rygel-basic-management.vala:441
-#: src/librygel-core/rygel-basic-management.vala:458
-#: src/librygel-core/rygel-basic-management.vala:503
-#: src/librygel-core/rygel-basic-management.vala:518
-#: src/librygel-core/rygel-basic-management.vala:533
-#: src/librygel-core/rygel-basic-management.vala:557
-#: src/librygel-core/rygel-connection-manager.vala:95
-#: src/librygel-core/rygel-connection-manager.vala:109
-#: src/librygel-core/rygel-connection-manager.vala:126
-#: src/librygel-core/rygel-energy-management.vala:223
-#: src/librygel-renderer/rygel-av-transport.vala:198
-#: src/librygel-renderer/rygel-rendering-control.vala:131
-#: src/librygel-ruih/rygel-ruih-service.vala:63
-#: src/librygel-server/rygel-content-directory.vala:261
-#: src/librygel-server/rygel-content-directory.vala:289
-#: src/librygel-server/rygel-content-directory.vala:308
-#: src/librygel-server/rygel-content-directory.vala:343
-#: src/librygel-server/rygel-content-directory.vala:372
-#: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:618
-#: src/librygel-server/rygel-content-directory.vala:767
-#: src/librygel-server/rygel-media-receiver-registrar.vala:61
-msgid "Invalid argument"
-msgstr "잘못된 인자"
-
-#: src/librygel-core/rygel-basic-management.vala:254
-msgid "Cannot run “Ping” action: Host is empty"
-msgstr "“Ping” 동작을 실행할 수 없습니다: 호스트 항목이 비어 있습니다"
-
-#: src/librygel-core/rygel-basic-management.vala:352
-msgid "Cannot run “NSLookup” action: HostName is empty"
-msgstr "“NSLookup” 동작을 실행할 수 없습니다: 호스트 이름이 비어 있습니다"
-
-#: src/librygel-core/rygel-basic-management.vala:440
-msgid "Cannot run “Traceroute” action: Host is empty"
-msgstr "“Traceroute” 동작을 실행할 수 없습니다: 호스트 항목이 비어 있습니다"
-
 #: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
 msgstr "버전 번호를 표시합니다"
@@ -281,6 +201,23 @@ msgstr "원격 라이겔 레퍼런스 종료"
 msgid "No value available"
 msgstr "사용 가능한 값 없음"
 
+#: src/librygel-core/rygel-connection-manager.vala:95
+#: src/librygel-core/rygel-connection-manager.vala:109
+#: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-renderer/rygel-av-transport.vala:198
+#: src/librygel-renderer/rygel-rendering-control.vala:131
+#: src/librygel-server/rygel-content-directory.vala:261
+#: src/librygel-server/rygel-content-directory.vala:289
+#: src/librygel-server/rygel-content-directory.vala:308
+#: src/librygel-server/rygel-content-directory.vala:343
+#: src/librygel-server/rygel-content-directory.vala:372
+#: src/librygel-server/rygel-content-directory.vala:397
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
+#: src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr "잘못된 인자"
+
 #: src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "잘못된 연결 참조"
@@ -289,20 +226,6 @@ msgstr "잘못된 연결 참조"
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "변경된 설명을 %s에 쓰기 실패"
-
-#: src/librygel-core/rygel-energy-management-helper.c:55
-#, c-format
-msgid "Failed to get a socket: %s"
-msgstr "소켓을 가져오기 실패: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:62
-#, c-format
-msgid "Failed to get MAC address for %s: %s"
-msgstr "%s의 MAC 주소를 가져오기 실패: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:104
-msgid "MAC and network type querying not implemented"
-msgstr "MAC 및 네트워크 종류 탐색이 구현되지 않았습니다"
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
@@ -460,8 +383,9 @@ msgstr "재생 모드를 지원하지 않습니다"
 #: src/librygel-renderer/rygel-av-transport.vala:779
 #: src/librygel-renderer/rygel-av-transport.vala:794
 #: src/librygel-renderer/rygel-av-transport.vala:803
-#: src/librygel-renderer/rygel-av-transport.vala:863
-#: src/librygel-renderer/rygel-av-transport.vala:898
+#: src/librygel-renderer/rygel-av-transport.vala:848
+#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:910
 msgid "Resource not found"
 msgstr "리소스가 없습니다"
 
@@ -472,13 +396,20 @@ msgstr "재생 목록을 파싱하는데 문제: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:859
-#: src/librygel-renderer/rygel-av-transport.vala:894
+#: src/librygel-renderer/rygel-av-transport.vala:845
+#, c-format
+msgid "Failed to access resource at %s: Address family mismatch."
+msgstr "%s에 있는 리소스에 접근하는데 실패: 주소 패밀리 맞지 않음."
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: src/librygel-renderer/rygel-av-transport.vala:871
+#: src/librygel-renderer/rygel-av-transport.vala:906
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "%s에 있는 리소스에 접근하는데 실패: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:887
 msgid "Illegal MIME-type"
 msgstr "잘못된 MIME 형식"
 
@@ -495,59 +426,6 @@ msgstr "잘못된 채널"
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "수행 실패"
-
-# 프로토콜 에러이므로 용어 그대로 사용
-#: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
-#, c-format
-msgid "Unable to parse Icon data — unexpected node: %s"
-msgstr "Icon 데이터를 파싱할 수 없습니다 — 예상치 못한 노드: %s"
-
-# 프로토콜 에러이므로 용어 그대로 사용
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
-#, c-format
-msgid "Unable to parse Protocol data — unexpected attribute: %s"
-msgstr "Protocol 데이터를 파싱할 수 없습니다 — 예상치 못한 속성: %s"
-
-# 프로토콜 에러이므로 용어 그대로 사용
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
-#, c-format
-msgid "Unable to parse Protocol data — unexpected node: %s"
-msgstr "Protocol 데이터를 파싱할 수 없습니다 — 예상치 못한 노드: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
-#, c-format
-msgid "Failed to set UIList for file %s — %s"
-msgstr "%s 파일의 UIList 설정에 실패 — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
-#, c-format
-msgid "Failed to set initial UI list for file %s — %s"
-msgstr "%s 파일의 최초 UI 목록 설정에 실패 — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
-#, c-format
-msgid "Failed to monitor the file %s — %s"
-msgstr "%s 파일 감시에 실패 — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
-#, c-format
-msgid "Unable to parse UI list file %s"
-msgstr "UI 리스트 파일을 파싱하는데 실패: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
-#, c-format
-msgid "Unable to parse device profile data: %s"
-msgstr "장치 프로파일 데이터를 파싱하는데 실패: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
-#, c-format
-msgid "Invalid UI filter: %s"
-msgstr "잘못된 UI 필터: %s"
-
-#: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
-#, c-format
-msgid "Unable to parse UI data — unexpected node: %s"
-msgstr "UI 데이터를 파싱할 수 없습니다 — 예상치 못한 노드: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -1568,6 +1446,91 @@ msgstr "라이겔 서비스 중지 실패: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "라이겔 서비스 시작 실패: %s"
+
+#, c-format
+#~ msgid "Failed to read standard output from %s: %s"
+#~ msgstr "%s에서 표준 출력 읽기 실패: %s"
+
+#, c-format
+#~ msgid "Failed to read error output from %s: %s"
+#~ msgstr "%s에서 오류 출력 읽기 실패: %s"
+
+#~ msgid "No Such Test"
+#~ msgstr "해당 테스트 없음"
+
+#~ msgid "Wrong Test Type"
+#~ msgstr "잘못된 테스트 종류"
+
+#, c-format
+#~ msgid "Invalid Test State “%s”"
+#~ msgstr "잘못된 테스트 상태 “%s”"
+
+#, c-format
+#~ msgid "State “%s” Precludes Cancel"
+#~ msgstr "“%s” 상태는 취소가 불가능합니다"
+
+#~ msgid "Cannot run “Ping” action: Host is empty"
+#~ msgstr "“Ping” 동작을 실행할 수 없습니다: 호스트 항목이 비어 있습니다"
+
+#~ msgid "Cannot run “NSLookup” action: HostName is empty"
+#~ msgstr "“NSLookup” 동작을 실행할 수 없습니다: 호스트 이름이 비어 있습니다"
+
+#~ msgid "Cannot run “Traceroute” action: Host is empty"
+#~ msgstr "“Traceroute” 동작을 실행할 수 없습니다: 호스트 항목이 비어 있습니다"
+
+#, c-format
+#~ msgid "Failed to get a socket: %s"
+#~ msgstr "소켓을 가져오기 실패: %s"
+
+#, c-format
+#~ msgid "Failed to get MAC address for %s: %s"
+#~ msgstr "%s의 MAC 주소를 가져오기 실패: %s"
+
+#~ msgid "MAC and network type querying not implemented"
+#~ msgstr "MAC 및 네트워크 종류 탐색이 구현되지 않았습니다"
+
+# 프로토콜 에러이므로 용어 그대로 사용
+#, c-format
+#~ msgid "Unable to parse Icon data — unexpected node: %s"
+#~ msgstr "Icon 데이터를 파싱할 수 없습니다 — 예상치 못한 노드: %s"
+
+# 프로토콜 에러이므로 용어 그대로 사용
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected attribute: %s"
+#~ msgstr "Protocol 데이터를 파싱할 수 없습니다 — 예상치 못한 속성: %s"
+
+# 프로토콜 에러이므로 용어 그대로 사용
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected node: %s"
+#~ msgstr "Protocol 데이터를 파싱할 수 없습니다 — 예상치 못한 노드: %s"
+
+#, c-format
+#~ msgid "Failed to set UIList for file %s — %s"
+#~ msgstr "%s 파일의 UIList 설정에 실패 — %s"
+
+#, c-format
+#~ msgid "Failed to set initial UI list for file %s — %s"
+#~ msgstr "%s 파일의 최초 UI 목록 설정에 실패 — %s"
+
+#, c-format
+#~ msgid "Failed to monitor the file %s — %s"
+#~ msgstr "%s 파일 감시에 실패 — %s"
+
+#, c-format
+#~ msgid "Unable to parse UI list file %s"
+#~ msgstr "UI 리스트 파일을 파싱하는데 실패: %s"
+
+#, c-format
+#~ msgid "Unable to parse device profile data: %s"
+#~ msgstr "장치 프로파일 데이터를 파싱하는데 실패: %s"
+
+#, c-format
+#~ msgid "Invalid UI filter: %s"
+#~ msgstr "잘못된 UI 필터: %s"
+
+#, c-format
+#~ msgid "Unable to parse UI data — unexpected node: %s"
+#~ msgstr "UI 데이터를 파싱할 수 없습니다 — 예상치 못한 노드: %s"
 
 #~ msgid "Years"
 #~ msgstr "연도"
