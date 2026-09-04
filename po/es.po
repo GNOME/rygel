@@ -2,24 +2,22 @@
 # Copyright (C) 2010 rygel's COPYRIGHT HOLDER
 # This file is distributed under the same license as the rygel package.
 # Jorge González <jorgegonz@svn.gnome.org>, 2010, 2011.
-# 
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2020.
-# Daniel Mustieles García <daniel.mustieles@gmail.com>, 2022-2025.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2022-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: rygel.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2025-09-09 16:28+0000\n"
-"PO-Revision-Date: 2025-09-11 10:23+0200\n"
-"Last-Translator: Daniel Mustieles García <daniel.mustieles@gmail.com>\n"
-"Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
-"Language: es_ES\n"
+"POT-Creation-Date: 2026-08-04 15:09+0000\n"
+"PO-Revision-Date: 2026-09-04 13:06+0200\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
+"Language-Team: Spanish <l10n-es@gnome.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 48.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: data/rygel.desktop.in:2
 msgid "Rygel"
@@ -29,7 +27,8 @@ msgstr "Rygel"
 msgid "UPnP/DLNA Services"
 msgstr "Servicios UPnP/DLNA"
 
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#. Translators: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
 #: data/rygel.desktop.in:5
 msgid "mediaserver;mediarenderer;share;audio;video;pictures;"
 msgstr "servidor;medios;renderizado;compartir;sonido;vídeo;imágenes;fotos;"
@@ -109,88 +108,6 @@ msgstr "Seleccionar carpetas"
 #: src/librygel-core/rygel-base-configuration.vala:119
 msgid "Not implemented"
 msgstr "No implementado"
-
-#: src/librygel-core/rygel-basic-management-test.vala:197
-#, c-format
-msgid "Failed to read standard output from %s: %s"
-msgstr "Falló al leer de la salida estándar de %s: %s"
-
-#: src/librygel-core/rygel-basic-management-test.vala:225
-#, c-format
-msgid "Failed to read error output from %s: %s"
-msgstr "Falló al leer el error de salida de %s: %s"
-
-#. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:158
-msgid "No Such Test"
-msgstr "No existe la prueba"
-
-#. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:166
-#: src/librygel-core/rygel-basic-management.vala:283
-#: src/librygel-core/rygel-basic-management.vala:382
-#: src/librygel-core/rygel-basic-management.vala:471
-msgid "Wrong Test Type"
-msgstr "Tipo de prueba incorrecto"
-
-#. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:174
-#, c-format
-msgid "Invalid Test State “%s”"
-msgstr "Estado de la prueba «%s» no válido"
-
-#. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:180
-#, c-format
-msgid "State “%s” Precludes Cancel"
-msgstr "El estado «%s» impide la cancelación"
-
-#: src/librygel-core/rygel-basic-management.vala:213
-#: src/librygel-core/rygel-basic-management.vala:228
-#: src/librygel-core/rygel-basic-management.vala:255
-#: src/librygel-core/rygel-basic-management.vala:271
-#: src/librygel-core/rygel-basic-management.vala:328
-#: src/librygel-core/rygel-basic-management.vala:353
-#: src/librygel-core/rygel-basic-management.vala:369
-#: src/librygel-core/rygel-basic-management.vala:414
-#: src/librygel-core/rygel-basic-management.vala:441
-#: src/librygel-core/rygel-basic-management.vala:458
-#: src/librygel-core/rygel-basic-management.vala:503
-#: src/librygel-core/rygel-basic-management.vala:518
-#: src/librygel-core/rygel-basic-management.vala:533
-#: src/librygel-core/rygel-basic-management.vala:557
-#: src/librygel-core/rygel-connection-manager.vala:95
-#: src/librygel-core/rygel-connection-manager.vala:109
-#: src/librygel-core/rygel-connection-manager.vala:126
-#: src/librygel-core/rygel-energy-management.vala:223
-#: src/librygel-renderer/rygel-av-transport.vala:198
-#: src/librygel-renderer/rygel-rendering-control.vala:131
-#: src/librygel-ruih/rygel-ruih-service.vala:63
-#: src/librygel-server/rygel-content-directory.vala:261
-#: src/librygel-server/rygel-content-directory.vala:289
-#: src/librygel-server/rygel-content-directory.vala:308
-#: src/librygel-server/rygel-content-directory.vala:343
-#: src/librygel-server/rygel-content-directory.vala:372
-#: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:618
-#: src/librygel-server/rygel-content-directory.vala:767
-#: src/librygel-server/rygel-media-receiver-registrar.vala:61
-msgid "Invalid argument"
-msgstr "Argumento no válido"
-
-#: src/librygel-core/rygel-basic-management.vala:254
-msgid "Cannot run “Ping” action: Host is empty"
-msgstr "No se puede ejecutar la acción «Ping»: el campo «equipo» está vacío"
-
-#: src/librygel-core/rygel-basic-management.vala:352
-msgid "Cannot run “NSLookup” action: HostName is empty"
-msgstr ""
-"No se puede ejecutar la acción «NSLookup»: el campo «equipo» está vacío"
-
-#: src/librygel-core/rygel-basic-management.vala:440
-msgid "Cannot run “Traceroute” action: Host is empty"
-msgstr ""
-"No se puede ejecutar la acción «Traceroute»: el campo «equipo» está vacío"
 
 #: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
@@ -284,6 +201,23 @@ msgstr "Apagar la referencia remota de Rygel"
 msgid "No value available"
 msgstr "No existe un valor disponible"
 
+#: src/librygel-core/rygel-connection-manager.vala:95
+#: src/librygel-core/rygel-connection-manager.vala:109
+#: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-renderer/rygel-av-transport.vala:198
+#: src/librygel-renderer/rygel-rendering-control.vala:131
+#: src/librygel-server/rygel-content-directory.vala:261
+#: src/librygel-server/rygel-content-directory.vala:289
+#: src/librygel-server/rygel-content-directory.vala:308
+#: src/librygel-server/rygel-content-directory.vala:343
+#: src/librygel-server/rygel-content-directory.vala:372
+#: src/librygel-server/rygel-content-directory.vala:397
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
+#: src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr "Argumento no válido"
+
 #: src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "Referencia de conexión no válida"
@@ -292,20 +226,6 @@ msgstr "Referencia de conexión no válida"
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Falló al escribir la descripción modificada en %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:55
-#, c-format
-msgid "Failed to get a socket: %s"
-msgstr "Falló al obtener un socket: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:62
-#, c-format
-msgid "Failed to get MAC address for %s: %s"
-msgstr "Falló al obtener la dirección MAC para %s: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:104
-msgid "MAC and network type querying not implemented"
-msgstr "La solicitud de la MAC y del tipo de red no está implementado"
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
@@ -464,8 +384,9 @@ msgstr "Modo de reproducción no soportado"
 #: src/librygel-renderer/rygel-av-transport.vala:779
 #: src/librygel-renderer/rygel-av-transport.vala:794
 #: src/librygel-renderer/rygel-av-transport.vala:803
-#: src/librygel-renderer/rygel-av-transport.vala:863
-#: src/librygel-renderer/rygel-av-transport.vala:898
+#: src/librygel-renderer/rygel-av-transport.vala:848
+#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:910
 msgid "Resource not found"
 msgstr "Recurso no encontrado"
 
@@ -476,13 +397,21 @@ msgstr "Problema al analizar la lista de reproducción: %s"
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:859
-#: src/librygel-renderer/rygel-av-transport.vala:894
+#: src/librygel-renderer/rygel-av-transport.vala:845
+#, c-format
+msgid "Failed to access resource at %s: Address family mismatch."
+msgstr ""
+"Falló al acceder al recurso en %s: la dirección no coincide con la familia."
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: src/librygel-renderer/rygel-av-transport.vala:871
+#: src/librygel-renderer/rygel-av-transport.vala:906
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Falló al acceder al recurso en %s: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:887
 msgid "Illegal MIME-type"
 msgstr "Tipo MIME ilegal"
 
@@ -499,57 +428,6 @@ msgstr "Canal no válido"
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Falló la acción"
-
-#: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
-#, c-format
-msgid "Unable to parse Icon data — unexpected node: %s"
-msgstr "No se pueden analizar los datos del icono; nodo no esperado: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
-#, c-format
-msgid "Unable to parse Protocol data — unexpected attribute: %s"
-msgstr ""
-"No se pueden analizar los datos del protocolo; atributo no esperado: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
-#, c-format
-msgid "Unable to parse Protocol data — unexpected node: %s"
-msgstr "No se pueden analizar los datos del protocolo; nodo no esperado: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
-#, c-format
-msgid "Failed to set UIList for file %s — %s"
-msgstr "Falló al establecer el UIList para el archivo %s - %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
-#, c-format
-msgid "Failed to set initial UI list for file %s — %s"
-msgstr "Falló al establecer la lista de IU inicial para el archivo %s - %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
-#, c-format
-msgid "Failed to monitor the file %s — %s"
-msgstr "Falló al monitorizar el archivo %s - %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
-#, c-format
-msgid "Unable to parse UI list file %s"
-msgstr "No se pudo analizar el archivo de lista de IU %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
-#, c-format
-msgid "Unable to parse device profile data: %s"
-msgstr "No se pueden analizar los datos del perfil del dispositivo: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
-#, c-format
-msgid "Invalid UI filter: %s"
-msgstr "Filtro de IU no válido: %s"
-
-#: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
-#, c-format
-msgid "Unable to parse UI data — unexpected node: %s"
-msgstr "No se pueden analizar los datos de la IU; nodo no esperado: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -1408,7 +1286,8 @@ msgstr "Género"
 msgid "Files & Folders"
 msgstr "Archivos y carpetas"
 
-#. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
+#. translators: @REALNAME@ is substituted for user's real name and it doesn't
+#. need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
 #: src/plugins/localsearch/localsearch-plugin.vala:34
 msgid "@REALNAME@’s media"
@@ -1583,6 +1462,91 @@ msgstr "Falló al iniciar el servicio Rygel: %s"
 msgid "Failed to stop Rygel service: %s"
 msgstr "Falló al parar el servicio Rygel: %s"
 
+#, c-format
+#~ msgid "Failed to read standard output from %s: %s"
+#~ msgstr "Falló al leer de la salida estándar de %s: %s"
+
+#, c-format
+#~ msgid "Failed to read error output from %s: %s"
+#~ msgstr "Falló al leer el error de salida de %s: %s"
+
+#~ msgid "No Such Test"
+#~ msgstr "No existe la prueba"
+
+#~ msgid "Wrong Test Type"
+#~ msgstr "Tipo de prueba incorrecto"
+
+#, c-format
+#~ msgid "Invalid Test State “%s”"
+#~ msgstr "Estado de la prueba «%s» no válido"
+
+#, c-format
+#~ msgid "State “%s” Precludes Cancel"
+#~ msgstr "El estado «%s» impide la cancelación"
+
+#~ msgid "Cannot run “Ping” action: Host is empty"
+#~ msgstr "No se puede ejecutar la acción «Ping»: el campo «equipo» está vacío"
+
+#~ msgid "Cannot run “NSLookup” action: HostName is empty"
+#~ msgstr ""
+#~ "No se puede ejecutar la acción «NSLookup»: el campo «equipo» está vacío"
+
+#~ msgid "Cannot run “Traceroute” action: Host is empty"
+#~ msgstr ""
+#~ "No se puede ejecutar la acción «Traceroute»: el campo «equipo» está vacío"
+
+#, c-format
+#~ msgid "Failed to get a socket: %s"
+#~ msgstr "Falló al obtener un socket: %s"
+
+#, c-format
+#~ msgid "Failed to get MAC address for %s: %s"
+#~ msgstr "Falló al obtener la dirección MAC para %s: %s"
+
+#~ msgid "MAC and network type querying not implemented"
+#~ msgstr "La solicitud de la MAC y del tipo de red no está implementado"
+
+#, c-format
+#~ msgid "Unable to parse Icon data — unexpected node: %s"
+#~ msgstr "No se pueden analizar los datos del icono; nodo no esperado: %s"
+
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected attribute: %s"
+#~ msgstr ""
+#~ "No se pueden analizar los datos del protocolo; atributo no esperado: %s"
+
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected node: %s"
+#~ msgstr "No se pueden analizar los datos del protocolo; nodo no esperado: %s"
+
+#, c-format
+#~ msgid "Failed to set UIList for file %s — %s"
+#~ msgstr "Falló al establecer el UIList para el archivo %s - %s"
+
+#, c-format
+#~ msgid "Failed to set initial UI list for file %s — %s"
+#~ msgstr "Falló al establecer la lista de IU inicial para el archivo %s - %s"
+
+#, c-format
+#~ msgid "Failed to monitor the file %s — %s"
+#~ msgstr "Falló al monitorizar el archivo %s - %s"
+
+#, c-format
+#~ msgid "Unable to parse UI list file %s"
+#~ msgstr "No se pudo analizar el archivo de lista de IU %s"
+
+#, c-format
+#~ msgid "Unable to parse device profile data: %s"
+#~ msgstr "No se pueden analizar los datos del perfil del dispositivo: %s"
+
+#, c-format
+#~ msgid "Invalid UI filter: %s"
+#~ msgstr "Filtro de IU no válido: %s"
+
+#, c-format
+#~ msgid "Unable to parse UI data — unexpected node: %s"
+#~ msgstr "No se pueden analizar los datos de la IU; nodo no esperado: %s"
+
 #~ msgid "Years"
 #~ msgstr "Años"
 
@@ -1641,7 +1605,6 @@ msgstr "Falló al parar el servicio Rygel: %s"
 #~ msgid "Invalid metadata serialisation, cannot process %s"
 #~ msgstr "Serialización de metadatos no válida, no se puede procesar %s"
 
-#~| msgid "Invalid metadata serialisation: expected 7 children, got %d"
 #~ msgid "Invalid metadata serialisation: expected 7 children, got %d"
 #~ msgid_plural "Invalid metadata serialisation: expected 7 children, got %d"
 #~ msgstr[0] ""
@@ -1686,7 +1649,6 @@ msgstr "Falló al parar el servicio Rygel: %s"
 #~ msgid "Rygel is running in streaming-only mode."
 #~ msgstr "Rygel se está ejecutando en modo de solo streaming."
 
-#~| msgid "Could not determine protocol for %s"
 #~ msgid "Could not determine protocol for uri %s"
 #~ msgstr "No se pudo determinar el protocolo para el URI %s"
 
@@ -1835,7 +1797,6 @@ msgstr "Falló al parar el servicio Rygel: %s"
 #~ msgid "Failed to create instance of database"
 #~ msgstr "Falló al crear una instancia de la base de datos"
 
-#~| msgid "Changing playback state to %s.."
 #~ msgid "Changing playback state to %s."
 #~ msgstr "Cambiando el estado de reproducción a %s."
 
@@ -1854,11 +1815,9 @@ msgstr "Falló al parar el servicio Rygel: %s"
 #~ msgid "Trying to harvest %s because of %d"
 #~ msgstr "Intentando recolectar %s debido a %d"
 
-#~| msgid "Directory %s gone, removing watch"
 #~ msgid "Folder %s gone; removing watch"
 #~ msgstr "La carpeta %s ha desaparecido; quitando la vigilancia"
 
-#~| msgid "ID %s no longer in config, deleting..."
 #~ msgid "ID %s no longer in config; deleting..."
 #~ msgstr "El ID %s ya no está en la configuración; eliminándolo…"
 
@@ -1898,13 +1857,11 @@ msgstr "Falló al parar el servicio Rygel: %s"
 #~ msgid "Network context %s (%s) now unavailable."
 #~ msgstr "Ahora el contexto de red %s (%s) no está disponible."
 
-#~| msgid "Plugin '%s' disabled in user configuration, ignoring.."
 #~ msgid "Plugin '%s' disabled in user configuration; ignoring.."
 #~ msgstr ""
 #~ "El complemento «%s» está desactivado en la configuración de usuario; "
 #~ "ignorando…"
 
-#~| msgid "Searching for modules in folder '%s' .."
 #~ msgid "Searching for modules in folder '%s'."
 #~ msgstr "Buscando módulos en la carpeta «%s»."
 
@@ -1914,7 +1871,6 @@ msgstr "Falló al parar el servicio Rygel: %s"
 #~ msgid "Loaded module source: '%s'"
 #~ msgstr "Módulo de origen cargado: «%s»"
 
-#~| msgid "No icon provided by plugin '%s'. Using Rygel logo.."
 #~ msgid "No icon provided by plugin '%s'. Using Rygel logo."
 #~ msgstr ""
 #~ "El complemento «%s» no proporcionó ningún icono. Usando el logotipo de "
