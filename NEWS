@@ -1,3 +1,28 @@
+46.0
+====
+
+ - Translation updates
+
+All contributors to this release:
+ - Roy-Magne Mo <rmo@sunnmore.net>
+ - Alan Mortensen <oversaet@proton.me>
+ - burns <ahoradocafezinho@gmail.com>
+ - Daniel Mustieles <daniel.mustieles@gmail.com>
+ - Balázs Úr <balazs@urbalazs.hu>
+ - acey dot <aceydot@proton.me>
+ - Asier Saratsua Garmendia <asiersarasua@ni.eus>
+ - Changwoo Ryu <cwryu@debian.org>
+
+Added/updated translations:
+ - da.po, courtesy of Alan Mortensen
+ - es.po, courtesy of Daniel Mustieles
+ - eu.po, courtesy of Asier Saratsua Garmendia
+ - hu.po, courtesy of Balázs Úr
+ - ko.po, courtesy of Changwoo Ryu
+ - nn.po, courtesy of Roy-Magne Mo
+ - pt_BR.po, courtesy of Álvaro Burns
+ - sr.po, courtesy of aceydot
+
 46.rc.0
 =======
 
