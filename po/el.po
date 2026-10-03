@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2025-10-18 19:27+0000\n"
-"PO-Revision-Date: 2025-10-19 10:35+0300\n"
-"Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
+"POT-Creation-Date: 2026-09-18 00:17+0000\n"
+"PO-Revision-Date: 2026-10-03 13:34+0300\n"
+"Last-Translator: Efstathios Iosifidis <eiosifidis@gmail.com>\n"
 "Language-Team: Greek, Modern (1453-) <opensuse-translation-el@opensuse.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.9\n"
 "X-Project-Style: gnome\n"
 
 #: data/rygel.desktop.in:2
@@ -112,91 +112,6 @@ msgstr "Επιλογή φακέλων"
 msgid "Not implemented"
 msgstr "Δεν έχει υλοποιηθεί"
 
-#: src/librygel-core/rygel-basic-management-test.vala:197
-#, c-format
-msgid "Failed to read standard output from %s: %s"
-msgstr "Αποτυχία ανάγνωσης τυπικής εξόδου από %s: %s"
-
-#: src/librygel-core/rygel-basic-management-test.vala:225
-#, c-format
-msgid "Failed to read error output from %s: %s"
-msgstr "Αποτυχία ανάγνωσης εξόδου σφάλματος από %s: %s"
-
-#. / No test with the specified TestID was found
-#: src/librygel-core/rygel-basic-management.vala:158
-msgid "No Such Test"
-msgstr "Δεν υπάρχει τέτοια δοκιμή"
-
-#. / TestID is valid but refers to the wrong test type
-#: src/librygel-core/rygel-basic-management.vala:166
-#: src/librygel-core/rygel-basic-management.vala:283
-#: src/librygel-core/rygel-basic-management.vala:382
-#: src/librygel-core/rygel-basic-management.vala:471
-msgid "Wrong Test Type"
-msgstr "Εσφαλμένος τύπος δοκιμής"
-
-#. / TestID is valid but the test Results are not available
-#: src/librygel-core/rygel-basic-management.vala:174
-#, c-format
-msgid "Invalid Test State “%s”"
-msgstr "Άκυρη κατάσταση δοκιμής «%s»"
-
-#. / TestID is valid but the test can't be canceled
-#: src/librygel-core/rygel-basic-management.vala:180
-#, c-format
-msgid "State “%s” Precludes Cancel"
-msgstr "Η κατάσταση «%s» αποκλείει ακύρωση"
-
-#: src/librygel-core/rygel-basic-management.vala:213
-#: src/librygel-core/rygel-basic-management.vala:228
-#: src/librygel-core/rygel-basic-management.vala:255
-#: src/librygel-core/rygel-basic-management.vala:271
-#: src/librygel-core/rygel-basic-management.vala:328
-#: src/librygel-core/rygel-basic-management.vala:353
-#: src/librygel-core/rygel-basic-management.vala:369
-#: src/librygel-core/rygel-basic-management.vala:414
-#: src/librygel-core/rygel-basic-management.vala:441
-#: src/librygel-core/rygel-basic-management.vala:458
-#: src/librygel-core/rygel-basic-management.vala:503
-#: src/librygel-core/rygel-basic-management.vala:518
-#: src/librygel-core/rygel-basic-management.vala:533
-#: src/librygel-core/rygel-basic-management.vala:557
-#: src/librygel-core/rygel-connection-manager.vala:95
-#: src/librygel-core/rygel-connection-manager.vala:109
-#: src/librygel-core/rygel-connection-manager.vala:126
-#: src/librygel-core/rygel-energy-management.vala:223
-#: src/librygel-renderer/rygel-av-transport.vala:198
-#: src/librygel-renderer/rygel-rendering-control.vala:131
-#: src/librygel-ruih/rygel-ruih-service.vala:63
-#: src/librygel-server/rygel-content-directory.vala:261
-#: src/librygel-server/rygel-content-directory.vala:289
-#: src/librygel-server/rygel-content-directory.vala:308
-#: src/librygel-server/rygel-content-directory.vala:343
-#: src/librygel-server/rygel-content-directory.vala:372
-#: src/librygel-server/rygel-content-directory.vala:397
-#: src/librygel-server/rygel-content-directory.vala:618
-#: src/librygel-server/rygel-content-directory.vala:767
-#: src/librygel-server/rygel-media-receiver-registrar.vala:61
-msgid "Invalid argument"
-msgstr "Άκυρο όρισμα"
-
-#: src/librygel-core/rygel-basic-management.vala:254
-msgid "Cannot run “Ping” action: Host is empty"
-msgstr ""
-"Αδύνατη η εκτέλεση της ενέργειας «Ping»: Ο κεντρικός υπολογιστής είναι κενός"
-
-#: src/librygel-core/rygel-basic-management.vala:352
-msgid "Cannot run “NSLookup” action: HostName is empty"
-msgstr ""
-"Αδύνατη η εκτέλεση της ενέργειας «NSLookup»: Το όνομα του κεντρικού "
-"υπολογιστή είναι κενό"
-
-#: src/librygel-core/rygel-basic-management.vala:440
-msgid "Cannot run “Traceroute” action: Host is empty"
-msgstr ""
-"Αδύνατη η εκτέλεση της ενέργειας «Traceroute»: Ο κεντρικός υπολογιστής είναι "
-"κενός"
-
 #: src/librygel-core/rygel-cmdline-config.vala:47
 msgid "Display version number"
 msgstr "Εμφάνιση αριθμού έκδοσης"
@@ -288,6 +203,23 @@ msgstr "Τερματισμός απομακρυσμένης αναφοράς Ryg
 msgid "No value available"
 msgstr "Μη διαθέσιμη τιμή"
 
+#: src/librygel-core/rygel-connection-manager.vala:95
+#: src/librygel-core/rygel-connection-manager.vala:109
+#: src/librygel-core/rygel-connection-manager.vala:126
+#: src/librygel-renderer/rygel-av-transport.vala:198
+#: src/librygel-renderer/rygel-rendering-control.vala:131
+#: src/librygel-server/rygel-content-directory.vala:261
+#: src/librygel-server/rygel-content-directory.vala:289
+#: src/librygel-server/rygel-content-directory.vala:308
+#: src/librygel-server/rygel-content-directory.vala:343
+#: src/librygel-server/rygel-content-directory.vala:372
+#: src/librygel-server/rygel-content-directory.vala:397
+#: src/librygel-server/rygel-content-directory.vala:618
+#: src/librygel-server/rygel-content-directory.vala:767
+#: src/librygel-server/rygel-media-receiver-registrar.vala:61
+msgid "Invalid argument"
+msgstr "Άκυρο όρισμα"
+
 #: src/librygel-core/rygel-connection-manager.vala:132
 msgid "Invalid connection reference"
 msgstr "Άκυρη αναφορά σύνδεσης"
@@ -296,20 +228,6 @@ msgstr "Άκυρη αναφορά σύνδεσης"
 #, c-format
 msgid "Failed to write modified description to %s"
 msgstr "Αποτυχία εγγραφής τροποποιημένης περιγραφής στο %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:55
-#, c-format
-msgid "Failed to get a socket: %s"
-msgstr "Αποτυχία λήψης υποδοχής: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:62
-#, c-format
-msgid "Failed to get MAC address for %s: %s"
-msgstr "Αποτυχία λήψης διεύθυνσης MAC για %s: %s"
-
-#: src/librygel-core/rygel-energy-management-helper.c:104
-msgid "MAC and network type querying not implemented"
-msgstr "Το ερώτημα MAC και τύπου δικτύου δεν έχουν υλοποιηθεί"
 
 #: src/librygel-core/rygel-log-handler.vala:68
 #, c-format
@@ -470,8 +388,9 @@ msgstr "Δεν υποστηρίζεται η κατάσταση αναπαραγ
 #: src/librygel-renderer/rygel-av-transport.vala:779
 #: src/librygel-renderer/rygel-av-transport.vala:794
 #: src/librygel-renderer/rygel-av-transport.vala:803
-#: src/librygel-renderer/rygel-av-transport.vala:863
-#: src/librygel-renderer/rygel-av-transport.vala:898
+#: src/librygel-renderer/rygel-av-transport.vala:848
+#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:910
 msgid "Resource not found"
 msgstr "Ο πόρος δεν βρέθηκε"
 
@@ -482,13 +401,22 @@ msgstr "Πρόβλημα ανάλυσης λίστας αναπαραγωγής:
 
 #. TRANSLATORS: first %s is a URI, the second an explanaition of
 #. the error
-#: src/librygel-renderer/rygel-av-transport.vala:859
-#: src/librygel-renderer/rygel-av-transport.vala:894
+#: src/librygel-renderer/rygel-av-transport.vala:845
+#, c-format
+msgid "Failed to access resource at %s: Address family mismatch."
+msgstr ""
+"Δεν ήταν δυνατή η πρόσβαση στον πόρο στο %s: Ασυμφωνία οικογένειας "
+"διευθύνσεων."
+
+#. TRANSLATORS: first %s is a URI, the second an explanaition of
+#. the error
+#: src/librygel-renderer/rygel-av-transport.vala:871
+#: src/librygel-renderer/rygel-av-transport.vala:906
 #, c-format
 msgid "Failed to access resource at %s: %s"
 msgstr "Αποτυχία πρόσβασης πόρου στο %s: %s"
 
-#: src/librygel-renderer/rygel-av-transport.vala:875
+#: src/librygel-renderer/rygel-av-transport.vala:887
 msgid "Illegal MIME-type"
 msgstr "Άκυρος τύπος MIME"
 
@@ -505,57 +433,6 @@ msgstr "Άκυρο κανάλι"
 #: src/librygel-renderer/rygel-rendering-control.vala:269
 msgid "Action Failed"
 msgstr "Αποτυχία ενέργειας"
-
-#: src/librygel-ruih/rygel-ruih-icon-elem.vala:66
-#, c-format
-msgid "Unable to parse Icon data — unexpected node: %s"
-msgstr "Αδύνατη η ανάλυση δεδομένων εικονιδίου — αναπάντεχος κόμβος: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:42
-#, c-format
-msgid "Unable to parse Protocol data — unexpected attribute: %s"
-msgstr "Αδύνατη η ανάλυση δεδομένων πρωτοκόλλου — αναπάντεχο γνώρισμα: %s"
-
-#: src/librygel-ruih/rygel-ruih-protocol-elem.vala:63
-#, c-format
-msgid "Unable to parse Protocol data — unexpected node: %s"
-msgstr "Αδύνατη η ανάλυση δεδομένων πρωτοκόλλου — αναπάντεχος κόμβος: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:90
-#, c-format
-msgid "Failed to set UIList for file %s — %s"
-msgstr "Αποτυχία ορισμού καταλόγου διεπαφών χρήστη για το αρχείο %s — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:101
-#, c-format
-msgid "Failed to set initial UI list for file %s — %s"
-msgstr ""
-"Αποτυχία ορισμού αρχικού καταλόγου διεπαφών χρήστη για το αρχείο %s — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:105
-#, c-format
-msgid "Failed to monitor the file %s — %s"
-msgstr "Αποτυχία παρακολούθησης του αρχείου %s — %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:128
-#, c-format
-msgid "Unable to parse UI list file %s"
-msgstr "Αδύνατη η ανάλυση του αρχείου καταλόγου διεπαφών χρήστη %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:156
-#, c-format
-msgid "Unable to parse device profile data: %s"
-msgstr "Αδύνατη η ανάλυση δεδομένων κατατομής συσκευής: %s"
-
-#: src/librygel-ruih/rygel-ruih-servicemanager.vala:255
-#, c-format
-msgid "Invalid UI filter: %s"
-msgstr "Άκυρο φίλτρο διεπαφής χρήστη: %s"
-
-#: src/librygel-ruih/rygel-ruih-ui-elem.vala:78
-#, c-format
-msgid "Unable to parse UI data — unexpected node: %s"
-msgstr "Αδύνατη η ανάλυση δεδομένων διεπαφής χρήστη — αναπάντεχος κόμβος: %s"
 
 #: src/librygel-server/rygel-browse.vala:63
 msgid "Invalid Arguments"
@@ -1592,6 +1469,96 @@ msgstr "Αποτυχία εκκίνησης της υπηρεσίας Rygel: %s"
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Αποτυχία τερματισμού της υπηρεσίας Rygel: %s"
+
+#, c-format
+#~ msgid "Failed to read standard output from %s: %s"
+#~ msgstr "Αποτυχία ανάγνωσης τυπικής εξόδου από %s: %s"
+
+#, c-format
+#~ msgid "Failed to read error output from %s: %s"
+#~ msgstr "Αποτυχία ανάγνωσης εξόδου σφάλματος από %s: %s"
+
+#~ msgid "No Such Test"
+#~ msgstr "Δεν υπάρχει τέτοια δοκιμή"
+
+#~ msgid "Wrong Test Type"
+#~ msgstr "Εσφαλμένος τύπος δοκιμής"
+
+#, c-format
+#~ msgid "Invalid Test State “%s”"
+#~ msgstr "Άκυρη κατάσταση δοκιμής «%s»"
+
+#, c-format
+#~ msgid "State “%s” Precludes Cancel"
+#~ msgstr "Η κατάσταση «%s» αποκλείει ακύρωση"
+
+#~ msgid "Cannot run “Ping” action: Host is empty"
+#~ msgstr ""
+#~ "Αδύνατη η εκτέλεση της ενέργειας «Ping»: Ο κεντρικός υπολογιστής είναι "
+#~ "κενός"
+
+#~ msgid "Cannot run “NSLookup” action: HostName is empty"
+#~ msgstr ""
+#~ "Αδύνατη η εκτέλεση της ενέργειας «NSLookup»: Το όνομα του κεντρικού "
+#~ "υπολογιστή είναι κενό"
+
+#~ msgid "Cannot run “Traceroute” action: Host is empty"
+#~ msgstr ""
+#~ "Αδύνατη η εκτέλεση της ενέργειας «Traceroute»: Ο κεντρικός υπολογιστής "
+#~ "είναι κενός"
+
+#, c-format
+#~ msgid "Failed to get a socket: %s"
+#~ msgstr "Αποτυχία λήψης υποδοχής: %s"
+
+#, c-format
+#~ msgid "Failed to get MAC address for %s: %s"
+#~ msgstr "Αποτυχία λήψης διεύθυνσης MAC για %s: %s"
+
+#~ msgid "MAC and network type querying not implemented"
+#~ msgstr "Το ερώτημα MAC και τύπου δικτύου δεν έχουν υλοποιηθεί"
+
+#, c-format
+#~ msgid "Unable to parse Icon data — unexpected node: %s"
+#~ msgstr "Αδύνατη η ανάλυση δεδομένων εικονιδίου — αναπάντεχος κόμβος: %s"
+
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected attribute: %s"
+#~ msgstr "Αδύνατη η ανάλυση δεδομένων πρωτοκόλλου — αναπάντεχο γνώρισμα: %s"
+
+#, c-format
+#~ msgid "Unable to parse Protocol data — unexpected node: %s"
+#~ msgstr "Αδύνατη η ανάλυση δεδομένων πρωτοκόλλου — αναπάντεχος κόμβος: %s"
+
+#, c-format
+#~ msgid "Failed to set UIList for file %s — %s"
+#~ msgstr "Αποτυχία ορισμού καταλόγου διεπαφών χρήστη για το αρχείο %s — %s"
+
+#, c-format
+#~ msgid "Failed to set initial UI list for file %s — %s"
+#~ msgstr ""
+#~ "Αποτυχία ορισμού αρχικού καταλόγου διεπαφών χρήστη για το αρχείο %s — %s"
+
+#, c-format
+#~ msgid "Failed to monitor the file %s — %s"
+#~ msgstr "Αποτυχία παρακολούθησης του αρχείου %s — %s"
+
+#, c-format
+#~ msgid "Unable to parse UI list file %s"
+#~ msgstr "Αδύνατη η ανάλυση του αρχείου καταλόγου διεπαφών χρήστη %s"
+
+#, c-format
+#~ msgid "Unable to parse device profile data: %s"
+#~ msgstr "Αδύνατη η ανάλυση δεδομένων κατατομής συσκευής: %s"
+
+#, c-format
+#~ msgid "Invalid UI filter: %s"
+#~ msgstr "Άκυρο φίλτρο διεπαφής χρήστη: %s"
+
+#, c-format
+#~ msgid "Unable to parse UI data — unexpected node: %s"
+#~ msgstr ""
+#~ "Αδύνατη η ανάλυση δεδομένων διεπαφής χρήστη — αναπάντεχος κόμβος: %s"
 
 #~ msgid "Years"
 #~ msgstr "Έτη"
