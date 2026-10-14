@@ -720,7 +720,9 @@ internal class Rygel.AVTransport : Service {
         this.changelog.log ("CurrentPlayMode", this.controller.play_mode);
     }
 
-    private MediaCollection? parse_m3u_playlist (Bytes? data) throws Error {
+    private MediaCollection? parse_m3u_playlist (Bytes? data,
+                                                 out bool is_hls) throws Error {
+        is_hls = false;
         if (data == null) {
             return null;
         }
@@ -732,10 +734,17 @@ internal class Rygel.AVTransport : Service {
         debug ("Trying to parse m3u playlist");
         size_t length;
         var line = stream.read_line (out length);
+        var extended = line != null && line.strip () == "#EXTM3U";
         while (line != null) {
 
             // Swallow comments
             while (line != null && line.has_prefix ("#")) {
+                if (extended && line.has_prefix ("#EXT-X-")) {
+                    is_hls = true;
+
+                    return null;
+                }
+
                 line = stream.read_line (out length);
             }
 
@@ -762,8 +771,9 @@ internal class Rygel.AVTransport : Service {
     private async void handle_playlist (ServiceAction action,
                                         string uri,
                                         string metadata,
-                                        string mime,
-                                        string features) {
+                                        string? mime,
+                                        string? features,
+                                        bool is_m3u) {
         var message = new Message ("GET", uri);
         Bytes? body = null;
 
@@ -781,13 +791,18 @@ internal class Rygel.AVTransport : Service {
             return;
         }
 
-        var content_type = message.response_headers.get_content_type (null);
-
         MediaCollection collection = null;
-        if (content_type.has_suffix ("mpegurl")) {
+        if (is_m3u) {
             debug ("Trying to parse m3u playlist");
             try {
-                collection = parse_m3u_playlist (body);
+                bool is_hls;
+                collection = parse_m3u_playlist (body, out is_hls);
+                if (is_hls) {
+                    this.set_single_play_uri (action, uri, metadata,
+                                              mime, features);
+
+                    return;
+                }
             } catch (Error error) {
                 warning (_("Problem parsing playlist: %s"), error.message);
                 // FIXME: Return a more sensible error here.
@@ -821,10 +836,10 @@ internal class Rygel.AVTransport : Service {
     }
 
     private bool is_playlist (string? mime, string? features) {
-        return (mime != null && mime == "text/xml" &&
-                features != null &&
-                features.has_prefix ("DLNA.ORG_PN=DIDL_S")) ||
-                mime.has_suffix ("mpegurl");
+        return mime != null &&
+               ((mime == "text/xml" && features != null &&
+                 features.has_prefix ("DLNA.ORG_PN=DIDL_S")) ||
+                mime.has_suffix ("mpegurl"));
     }
 
     private async void handle_new_transport_uri (ServiceAction action,
@@ -881,21 +896,26 @@ internal class Rygel.AVTransport : Service {
             var features = message.response_headers.get_one
                                 ("contentFeatures.dlna.org");
 
-            if (!this.is_valid_mime_type (mime) &&
-                !this.is_playlist (mime, features)) {
+            var content_type = message.response_headers.get_content_type (null);
+            var is_m3u = this.is_playlist (content_type, null) ||
+                         message.get_uri ().get_path ().has_suffix (".m3u8");
+            var playlist = is_m3u || this.is_playlist (content_type, features);
+
+            if (!this.is_valid_mime_type (mime) && !playlist) {
                 debug ("Unsupported mime type %s", mime);
                 action.return_error (714, _("Illegal MIME-type"));
 
                 return;
             }
 
-            if (this.is_playlist (mime, features)) {
+            if (playlist) {
                 // Delay returning the action
                 yield handle_playlist (action,
                                        uri,
                                        metadata,
                                        mime,
-                                       features);
+                                       features,
+                                       is_m3u);
             } else {
                 this.set_single_play_uri (action, uri, metadata, mime, features);
             }
