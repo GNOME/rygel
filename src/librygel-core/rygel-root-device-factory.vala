@@ -103,11 +103,19 @@ public class Rygel.RootDeviceFactory : Object,
         /* Create the description xml */
         var doc = this.create_desc (plugin, desc_path, template_path);
 
+        var data_dir = BuildConfig.DATA_DIR;
+        try {
+            var folder = MetaConfig.get_default().get_string("Override", "data-folder");
+            data_dir = folder;
+        } catch (Error e) {
+            //pass
+        }
+
         var device = new RootDevice (this.context,
                                      plugin,
                                      doc,
                                      desc_path,
-                                     BuildConfig.DATA_DIR);
+                                     data_dir);
         plugin.apply_hacks (device, desc_path);
 
         return device;

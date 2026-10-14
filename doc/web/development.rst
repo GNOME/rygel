@@ -55,7 +55,8 @@ Building the code
 The build is configurable through various build options. Refer to `meson_options.txt <https://gitlab.gnome.org/GNOME/rygel/-/raw/master/meson_options.txt?ref_type=heads>`_
 for all available options.
 
-One useful option during development is ``-Duninstalled`` which will allow you run Rygel directly from the ``build`` folder without installing it to your system.
+To run Rygel from the build folder, run ``meson devenv -C build``. This will set up an environment where Rygel
+loads plugins etc. from that folder.
 
 Installing the code
 ===================

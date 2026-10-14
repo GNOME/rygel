@@ -143,6 +143,13 @@ public class Rygel.MediaExport.MetadataExtractor: GLib.Object {
                     MX_EXTRACT_ARGV[3] = null;
                 }
 
+                try {
+                    var path = MetaConfig.get_default().get_string("MediaExport", "extract-helper");
+                    MX_EXTRACT_ARGV[0] = path;
+                } catch (Error e) {
+                    // pass
+                }
+
                 var subprocess = launcher.spawnv (MX_EXTRACT_ARGV);
                 try {
                     yield subprocess.wait_check_async ();

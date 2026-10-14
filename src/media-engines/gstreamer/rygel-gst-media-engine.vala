@@ -36,7 +36,16 @@ public class Rygel.GstMediaEngine : Rygel.MediaEngine {
 
         Gst.init (ref args);
         GES.init ();
-        Gst.Preset.set_app_dir (BuildConfig.PRESET_DIR);
+
+        var preset_dir = BuildConfig.PRESET_DIR;
+        try {
+            var config_preset_dir = MetaConfig.get_default().get_string("GstMediaEngine", "preset-path");
+            preset_dir = config_preset_dir;
+        } catch (Error e) {
+            // pass
+        }
+        debug("Loading transcoding presets from %s", preset_dir);
+        Gst.Preset.set_app_dir (preset_dir);
 
         /* Get the possible DLNA profiles
          * to add to the list of DLNA profiles supported by

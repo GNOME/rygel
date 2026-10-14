@@ -73,7 +73,7 @@ public class Rygel.MediaRendererPlugin : Rygel.Plugin {
                                 string? description = null,
                                 PluginCapabilities capabilities =
                                         PluginCapabilities.NONE) {
-        Object (desc_path : MEDIA_RENDERER_DESC_PATH,
+        Object (desc_path : Plugin.resolve_description_path (MEDIA_RENDERER_DESC_PATH),
                 name : name,
                 title : title,
                 description : description,

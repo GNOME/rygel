@@ -34,28 +34,15 @@ rygel_libdir = join_paths(get_option('prefix'), get_option('libdir'))
 rygel_includedir = join_paths(get_option('includedir'), 'rygel-2.8')
 rygel_vapidir = join_paths(get_option('prefix'), get_option('datadir'), 'vala/vapi')
 
-if not get_option('uninstalled')
-    rygel_datadir = join_paths(get_option('prefix'), get_option('datadir'), 'rygel')
-    rygel_libexecdir = join_paths(get_option('prefix'), get_option('libexecdir'),
-    'rygel')
-    rygel_sysconfdir = join_paths(get_option('prefix'), get_option('sysconfdir'))
-    rygel_plugindir = join_paths(rygel_libdir, 'rygel-2.8', 'plugins')
-    rygel_enginedir = join_paths(rygel_libdir, 'rygel-2.8', 'engines')
-    rygel_presetdir = join_paths(rygel_datadir, 'presets')
-    rygel_icondir = join_paths(get_option('prefix'), get_option('datadir'), 'icons', 'hicolor')
-    rygel_bigicondir = join_paths(rygel_datadir, 'icons', '120x120')
-    rygel_smallicondir = join_paths(rygel_datadir, 'icons', '48x48')
-else
-    rygel_datadir = join_paths(meson.current_build_dir(), 'data')
-    rygel_libexecdir = join_paths(meson.current_build_dir(), 'src/plugins/media-export')
-    rygel_sysconfdir = join_paths(meson.current_source_dir(), 'data')
-    rygel_plugindir = join_paths(meson.current_build_dir(), 'src', 'plugins')
-    rygel_enginedir = join_paths(meson.current_build_dir(), 'src', 'media-engines')
-    rygel_presetdir = join_paths(meson.current_source_dir(), 'data', 'presets')
-    rygel_icondir = join_paths(meson.current_source_dir(), 'data', 'icons', 'hicolor')
-    rygel_bigicondir = join_paths(meson.current_source_dir(), 'data', 'icons', '120x120')
-    rygel_smallicondir = join_paths(meson.current_source_dir(), 'data', 'icons', '48x48')
-endif
+rygel_datadir = join_paths(get_option('prefix'), get_option('datadir'), 'rygel')
+rygel_libexecdir = join_paths(get_option('prefix'), get_option('libexecdir'), 'rygel')
+rygel_sysconfdir = join_paths(get_option('prefix'), get_option('sysconfdir'))
+rygel_plugindir = join_paths(rygel_libdir, 'rygel-2.8', 'plugins')
+rygel_enginedir = join_paths(rygel_libdir, 'rygel-2.8', 'engines')
+rygel_presetdir = join_paths(rygel_datadir, 'presets')
+rygel_icondir = join_paths(get_option('prefix'), get_option('datadir'), 'icons', 'hicolor')
+rygel_bigicondir = join_paths(rygel_datadir, 'icons', '120x120')
+rygel_smallicondir = join_paths(rygel_datadir, 'icons', '48x48')
 
 plugin_config = configuration_data()
 plugin_config.set('VERSION', meson.project_version())
@@ -236,6 +223,14 @@ endif
 if get_option('tests')
     subdir('tests')
 endif
+
+devenv = environment()
+devenv.set('RYGEL_PLUGIN_PATH', meson.current_build_dir() / 'src/plugins')
+devenv.set('RYGEL_ENGINE_PATH', meson.current_build_dir() / 'src/media-engines')
+devenv.set('RYGEL_GSTMEDIAENGINE_PRESET_PATH', meson.current_source_dir() / 'data/presets')
+devenv.set('RYGEL_MEDIAEXPORT_EXTRACT_HELPER', mx_extract.full_path())
+devenv.set('RYGEL_OVERRIDE_DATA_FOLDER', meson.current_build_dir() / 'data')
+meson.add_devenv(devenv)
 
 summary(
   {

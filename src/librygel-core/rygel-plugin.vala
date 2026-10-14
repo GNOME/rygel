@@ -216,4 +216,15 @@ public class Rygel.Plugin : GUPnP.ResourceFactory {
 
         this.default_icons.add (icon);
     }
+
+    public static string resolve_description_path (string path) {
+        try {
+            var folder = MetaConfig.get_default().get_string("Override", "data-folder");
+            var file = File.new_for_commandline_arg (path);
+            var parent = File.new_for_commandline_arg (BuildConfig.DATA_DIR);
+            return folder + "/" + parent.get_relative_path (file);
+        } catch (Error e) {
+            return path;
+        }
+    }
 }
