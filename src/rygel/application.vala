@@ -76,17 +76,18 @@ public class Rygel.Application : GLib.Application {
         MetaConfig.register_configuration (cmdline_config);
         MetaConfig.register_configuration (EnvironmentConfig.get_default ());
 
+        string? config_file = null;
         try {
-            var config_file = cmdline_config.get_config_file ();
-            var user_config = new UserConfig (config_file);
+            config_file = cmdline_config.get_config_file ();
+        } catch (Error error) {
+            // No --config given, fall back to the user configuration path.
+        }
+
+        try {
+            var user_config = UserConfig.get_default (config_file);
             MetaConfig.register_configuration (user_config);
         } catch (Error error) {
-            try {
-                var user_config = UserConfig.get_default ();
-                MetaConfig.register_configuration (user_config);
-            } catch (Error err) {
-                warning (_("Failed to load user configuration: %s"), err.message);
-            }
+            warning (_("Failed to load user configuration: %s"), error.message);
         }
     }
 

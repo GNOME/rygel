@@ -207,11 +207,24 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         return this.get_string (GENERAL_SECTION, PICTURE_UPLOAD_DIR_PATH_KEY);
     }
 
-    public static UserConfig get_default () throws Error {
+    public static UserConfig get_default (string? path = null) throws Error {
         if (UserConfig.config == null) {
-            var path = Path.build_filename (Environment.get_user_config_dir (),
-                                            CONFIG_FILE);
-            UserConfig.config = new UserConfig (path);
+            var local_path = path;
+            if (local_path == null) {
+                local_path = Path.build_filename
+                                        (Environment.get_user_config_dir (),
+                                         CONFIG_FILE);
+            }
+
+            UserConfig.config = new UserConfig (local_path);
+
+            if (!FileUtils.test (local_path, FileTest.EXISTS)) {
+                var system_path = Path.build_filename (BuildConfig.SYS_CONFIG_DIR,
+                                                       CONFIG_FILE);
+                if (!FileUtils.test (system_path, FileTest.EXISTS)) {
+                    warning (_("No configuration file found, using defaults"));
+                }
+            }
         }
 
         return UserConfig.config;
@@ -222,10 +235,19 @@ public class Rygel.UserConfig : GLib.Object, Configuration {
         this.key_file = new KeyFile ();
         this.sys_key_file = new KeyFile ();
 
-        this.sys_key_file.load_from_file (system_path,
-                                          KeyFileFlags.KEEP_COMMENTS |
-                                          KeyFileFlags.KEEP_TRANSLATIONS);
-        debug ("Loaded system configuration from file '%s'", system_path);
+        try {
+            this.sys_key_file.load_from_file (system_path,
+                                              KeyFileFlags.KEEP_COMMENTS |
+                                              KeyFileFlags.KEEP_TRANSLATIONS);
+
+            debug ("Loaded system configuration from file '%s'", system_path);
+        } catch (Error error) {
+            // TRANSLATORS: First %s is the file's path, second is the error message
+            warning (_("Failed to load system configuration from file “%s”: %s"),
+                   system_path,
+                   error.message);
+            this.sys_key_file = new KeyFile ();
+        }
 
         var sys_key_g_file = File.new_for_path (system_path);
         this.sys_key_file_monitor = sys_key_g_file.monitor_file

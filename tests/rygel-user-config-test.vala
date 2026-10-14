@@ -371,7 +371,7 @@ public class Rygel.UserConfigTest : GLib.Object {
         var remover = new ConfigRemover (this);
         assert (remover != null);
 
-	try {
+	    try {
             this.set_config (LOCAL_CONFIG);
         } catch (GLib.Error error) {
             assert_not_reached ();
@@ -386,13 +386,62 @@ public class Rygel.UserConfigTest : GLib.Object {
         this.remove_config (LOCAL_CONFIG);
         this.try_load (false);
         this.remove_config (SYSTEM_CONFIG);
-        this.try_load (true);
+        // Should not fail when neither config exists; the user config
+        // simply falls back to built-in defaults.
+        this.try_load (false);
         // Should not fail when system config does not exist but local
         // do.
         // https://bugzilla.gnome.org/show_bug.cgi?id=683959
 
-        // this.set_config (LOCAL_CONFIG);
-        // this.try_load (false);
+        try {
+            this.set_config (LOCAL_CONFIG);
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
+        this.try_load (false);
+    }
+
+    private void test_fallback () {
+        var remover = new ConfigRemover (this);
+        assert (remover != null);
+
+        // System config provides some values...
+        try {
+            this.set_config (SYSTEM_CONFIG,
+                             new Settings ("System", true, "eth0", 42));
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
+
+        // ... local config overrides a subset of them.
+        try {
+            this.set_config (LOCAL_CONFIG,
+                             new Settings ("Local", null, null, 8080));
+        } catch (GLib.Error error) {
+            assert_not_reached ();
+        }
+
+        try {
+            var config = new UserConfig.with_paths (LOCAL_CONFIG,
+                                                    SYSTEM_CONFIG);
+
+            // Values present in local config come from local config.
+            assert (config.get_title (GENERAL) == "Local");
+            assert (config.get_int (GENERAL, "port", 1, 65535) == 8080);
+            // Values missing from local config fall back to system config.
+            assert (config.get_interface () == "eth0");
+
+            // With local config gone, everything falls back to system.
+            this.remove_config (LOCAL_CONFIG);
+            var fallback = new UserConfig.with_paths (LOCAL_CONFIG,
+                                                      SYSTEM_CONFIG);
+            assert (fallback.get_title (GENERAL) == "System");
+            assert (fallback.get_int (GENERAL, "port", 1, 65535) == 42);
+            assert (fallback.get_interface () == "eth0");
+        } catch (GLib.Error error) {
+            warning ("Failed to load configuration: %s", error.message);
+            this.fail = true;
+        }
     }
 
     private void data_check () {
@@ -640,7 +689,7 @@ public class Rygel.UserConfigTest : GLib.Object {
         var full_settings = new Settings.default ();
         assert (full_settings != null);
 
-        try {  
+        try {
             this.set_config (LOCAL_CONFIG,
                              full_settings);
         } catch (GLib.Error error) {
@@ -695,6 +744,7 @@ public class Rygel.UserConfigTest : GLib.Object {
 
     public int run () throws Error {
         test_loading ();
+        test_fallback ();
         test_watching ();
 
         if (this.fail) {
