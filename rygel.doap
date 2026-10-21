@@ -16,7 +16,7 @@ conformance to very strict requirements of DLNA and on the fly conversion of
 media to format that client devices are capable of handling.</description>
 
   <homepage
-  rdf:resource="https://wiki.gnome.org/Projects/Rygel" />
+  rdf:resource="https://rygel-project.org" />
   <support-forum
   rdf:resource="https://discourse.gnome.org/tag/rygel" />
   <download-page
