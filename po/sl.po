@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2026-08-04 15:09+0000\n"
+"POT-Creation-Date: 2026-10-21 08:36+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
@@ -310,18 +310,29 @@ msgstr "Vstavka ni mogoče naložiti: %s"
 msgid "Failed to query content type for “%s”"
 msgstr "Poizvedba o vrsti vsebine za »%s« je spodletela"
 
+#: src/librygel-core/rygel-user-config.vala:225
+msgid "No configuration file found, using defaults"
+msgstr ""
+"Nastavitvene datoteke ni možno najti, uporabljene bodo privzete vrednosti"
+
 #. TRANSLATORS: First %s is the file's path, second is the error message
 #: src/librygel-core/rygel-user-config.vala:246
+#, c-format
+msgid "Failed to load system configuration from file “%s”: %s"
+msgstr "Nalaganje sistemskih prilagoditev iz datoteke »%s« je spodletelo: %s"
+
+#. TRANSLATORS: First %s is the file's path, second is the error message
+#: src/librygel-core/rygel-user-config.vala:268
 #, c-format
 msgid "Failed to load user configuration from file “%s”: %s"
 msgstr "Nalaganje nastavitev iz datoteke »%s« je spodletelo: %s"
 
-#: src/librygel-core/rygel-user-config.vala:299
+#: src/librygel-core/rygel-user-config.vala:321
 #, c-format
 msgid "No value available for “%s”"
 msgstr "Za »%s« ni na voljo nobene vrednosti"
 
-#: src/librygel-core/rygel-user-config.vala:370
+#: src/librygel-core/rygel-user-config.vala:392
 #, c-format
 msgid "Value of “%s” out of range"
 msgstr "Vrednost »%s« je izven obsega"
@@ -891,17 +902,17 @@ msgstr "Iskanje na odmik %lld:%lld je spodletelo"
 msgid "Failed to seek"
 msgstr "Iskanje je spodletelo"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "Neveljaven naslov URI brez predpone: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:151
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
 msgstr "Ni mogoče uporabiti naslova URI %s s protokolom %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:256
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Ustvarjanje podatkovnega vira GStreamer za %s je spodletelo: %s"
@@ -1169,39 +1180,39 @@ msgstr "Običajno ustavljanje opravila je spodletelo. Uporabljen bo ukaz KILL."
 
 #. Process exitted properly -> That shouldn't really
 #. happen
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:152
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:159
 #, c-format
 msgid "Process check_async failed: %s"
 msgstr "Opravilo preverjanja usklajevanja (check_async) je spodletelo: %s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:165
 #, c-format
 msgid "Process died while handling URI %s"
 msgstr "Opravilo je nepričakovano končano med razreševanjem naslova URI %s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:171
 #, c-format
 msgid "Setting up extraction subprocess failed: %s"
 msgstr "Nastavljanje podopravila pridobivanja podatkov je spodletelo: %s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received invalid string from child: %s"
 msgstr "Prejet je neveljaven niz podrejenega predmeta: %s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:200
 #, c-format
 msgid "Received ill-formed response string %s from child…"
 msgstr "Pridobljen je napačno oblikovan odzivi niz %s podrejenega procesa …"
 
 #. No error signalling, this was done in the part that called
 #. cancel
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:243
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:250
 #, c-format
 msgid "Read from child failed: %s"
 msgstr "Brenje podrejenega procesa je spodletelo: %s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:270
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:277
 #, c-format
 msgid "Failed to send command to child: %s"
 msgstr "Ni mogoče poslati ukaza na podrejeno opravilo: %s"
@@ -1398,12 +1409,12 @@ msgstr "Napaka med pridobivanjem števila predmetov pod kategorijo »%s«: %s"
 msgid "Titles"
 msgstr "Naslovi"
 
-#: src/rygel/application.vala:88
+#: src/rygel/application.vala:90
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Nalaganje uporabniških nastavitev je spodletelo: %s"
 
-#: src/rygel/application.vala:125
+#: src/rygel/application.vala:126
 #, c-format
 msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
@@ -1419,17 +1430,17 @@ msgstr[3] ""
 "V %d sekundah ni bilo najdenega nobenega vstavka, zato bo iskanje prekinjeno "
 "…"
 
-#: src/rygel/application.vala:154
+#: src/rygel/application.vala:155
 #, c-format
 msgid "Rygel v%s starting…"
 msgstr "Začenjanje programa Rygel v%s …"
 
-#: src/rygel/application.vala:202
+#: src/rygel/application.vala:203
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Ustvarjanje RootDevice za %s je spodletelo: Vzrok: %s"
 
-#: src/rygel/application.vala:283
+#: src/rygel/application.vala:284
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Ustvarjanje tovarne korenske naprave je spodletelo: %s"
