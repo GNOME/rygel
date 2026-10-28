@@ -154,7 +154,7 @@ def render_documentation(config: typing.List[typing.Dict], output: typing.TextIO
             if "display_name" in section:
                 print(f".. _{section['display_name'].lower().replace(" ", "_")}_configuration:\n", file=output)
                 print(section["display_name"], file=output)
-                print("~" * len(section["display_name"]) + "\n", file=output)
+                print("^" * len(section["display_name"]) + "\n", file=output)
             else:
                 if len(section["name"]) > 0:
                     print(f".. _{section['name'].lower()}_configuration:\n", file=output)
