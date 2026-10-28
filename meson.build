@@ -228,7 +228,9 @@ devenv = environment()
 devenv.set('RYGEL_PLUGIN_PATH', meson.current_build_dir() / 'src/plugins')
 devenv.set('RYGEL_ENGINE_PATH', meson.current_build_dir() / 'src/media-engines')
 devenv.set('RYGEL_GSTMEDIAENGINE_PRESET_PATH', meson.current_source_dir() / 'data/presets')
-devenv.set('RYGEL_MEDIAEXPORT_EXTRACT_HELPER', mx_extract.full_path())
+if 'media-export' in get_option('plugins')
+    devenv.set('RYGEL_MEDIAEXPORT_EXTRACT_HELPER', mx_extract.full_path())
+endif
 devenv.set('RYGEL_OVERRIDE_DATA_FOLDER', meson.current_build_dir() / 'data')
 meson.add_devenv(devenv)
 
