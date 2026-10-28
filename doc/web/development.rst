@@ -1,4 +1,4 @@
-.. SPDX-License-Identifier: LGPL-2.1-or-later
+.. SPDX-License-Identifier: CC-BY-SA-4.0
 
 ===========
 Development

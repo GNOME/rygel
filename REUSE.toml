@@ -1,0 +1,143 @@
+version = 1
+
+# SPDX-FileCopyrightText: 2007-2025 Rygel Contributors
+# SPDX-License-Identifier: LGPL-2.1-or-later
+#
+# REUSE annotations for the Rygel project.
+#
+# The library and application sources and the runtime data are licensed under
+# the GNU Lesser General Public License v2.1 or later (see COPYING). Build
+# scaffolding and the bundled examples are licensed under the MIT license, and
+# the documentation and artwork under Creative Commons licenses.
+#
+# --- Build scaffolding (MIT) ------------------------------------------------
+# Meson build definitions, CI configuration, packaging and developer tooling.
+
+[[annotations]]
+path = [
+    "meson.build",
+    "meson_options.txt",
+    "**/meson.build",
+    "build-aux/**",
+    ".gitlab-ci.yml",
+    ".gitlab-ci/**",
+    ".gitlab/**",
+    ".clang-format",
+    ".editorconfig",
+    ".gitignore",
+    "**/.gitignore",
+    "*.pc.in",
+    "subprojects/*.wrap",
+    "tools/**",
+    "**/*.deps",
+]
+precedence = "closest"
+SPDX-FileCopyrightText = "2007-2025 Rygel Contributors"
+SPDX-License-Identifier = "MIT"
+
+# --- Examples (MIT) ---------------------------------------------------------
+
+[[annotations]]
+path = "examples/**"
+precedence = "closest"
+SPDX-FileCopyrightText = "2007-2025 Rygel Contributors"
+SPDX-License-Identifier = "MIT"
+
+# --- Library and application sources (LGPL-2.1-or-later) --------------------
+
+[[annotations]]
+path = [
+    "src/**/*.vala",
+    "src/**/*.c",
+    "src/**/*.h",
+    "src/**/*.vapi",
+    "src/**/*.plugin.in",
+]
+precedence = "closest"
+SPDX-FileCopyrightText = "2007-2025 Rygel Contributors"
+SPDX-License-Identifier = "LGPL-2.1-or-later"
+
+# --- Test suite (LGPL-2.1-or-later) -----------------------------------------
+
+[[annotations]]
+path = [
+    "tests/**/*.vala",
+    "tests/**/*.plugin",
+    "tests/**/*.so",
+    "tests/**/*.dat",
+]
+precedence = "closest"
+SPDX-FileCopyrightText = "2007-2025 Rygel Contributors"
+SPDX-License-Identifier = "LGPL-2.1-or-later"
+
+# --- Runtime data (LGPL-2.1-or-later) ---------------------------------------
+
+[[annotations]]
+path = [
+    "data/**/*.xml",
+    "data/**/*.xml.in",
+    "data/**/*.xml.in.in",
+    "data/**/*.yaml",
+    "data/**/*.prs",
+    "data/**/*.ui",
+    "data/**/*.conf",
+    "data/**/*.py",
+    "data/**/*.desktop.in",
+    "data/**/*.service.in",
+]
+precedence = "closest"
+SPDX-FileCopyrightText = "2007-2025 Rygel Contributors"
+SPDX-License-Identifier = "LGPL-2.1-or-later"
+
+# --- Documentation (CC-BY-SA-4.0) -------------------------------------------
+# Prose documentation, man pages, website text and API reference are content,
+# so they use a content license rather than a software license.
+
+[[annotations]]
+path = [
+    "doc/**/*.rst",
+    "doc/**/*.xml",
+    "doc/**/*.py",
+    "doc/**/*.md",
+    "doc/README.BasicManagement",
+    "README.md",
+    "NEWS",
+    "AUTHORS",
+    "rygel.doap",
+]
+precedence = "closest"
+SPDX-FileCopyrightText = "2007-2025 Rygel Contributors"
+SPDX-License-Identifier = "CC-BY-SA-4.0"
+
+# --- Translations (LGPL-2.1-or-later) ---------------------------------------
+
+[[annotations]]
+path = [
+    "po/*.po",
+    "po/LINGUAS",
+    "po/Makevars",
+    "po/POTFILES.in",
+    "po/POTFILES.skip",
+    "po/gen-potfiles-skip",
+]
+precedence = "closest"
+SPDX-FileCopyrightText = "2007-2025 Rygel Contributors"
+SPDX-License-Identifier = "LGPL-2.1-or-later"
+
+# --- Artwork (CC-BY-SA-3.0) -------------------------------------------------
+# Logo, application icons and diagrams, see COPYING.logo.
+
+[[annotations]]
+path = [
+    "**/*.svg",
+    "**/*.png",
+    "**/*.jpg",
+    "**/*.ico",
+]
+precedence = "closest"
+SPDX-FileCopyrightText = [
+    "Chris Kühl <blixtra@gmail.com>",
+    "Jens Georg <mail@jensge.org>",
+    "Zeeshan Ali (Khattak) <zeeshanak@gnome.org>",
+]
+SPDX-License-Identifier = "CC-BY-SA-3.0"
