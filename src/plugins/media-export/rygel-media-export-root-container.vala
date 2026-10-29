@@ -53,8 +53,8 @@ public class Rygel.MediaExport.RootContainer : TrackableDbContainer {
 
     private static RootContainer instance = null;
 
-    internal const string FILESYSTEM_FOLDER_NAME = N_("Files & Folders");
     internal const string FILESYSTEM_FOLDER_ID   = "Filesystem";
+    internal const string FILESYSTEM_FOLDER_NAME = N_("Files and Folders");
 
     private const string SEARCH_CONTAINER_PREFIX = QueryContainer.PREFIX +
                                                    "upnp:class," +
