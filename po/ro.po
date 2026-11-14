@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2026-08-04 15:09+0000\n"
-"PO-Revision-Date: 2026-08-05 11:13+0200\n"
+"POT-Creation-Date: 2026-10-29 21:49+0000\n"
+"PO-Revision-Date: 2026-11-14 21:33+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Gtranslator 50.0\n"
+"X-Generator: Gtranslator 51.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-DL-VCS-Web: https://gitlab.gnome.org/GNOME/rygel/\n"
 "X-DL-Lang: ro\n"
@@ -315,18 +315,29 @@ msgstr "Nu s-a putut încărca modulul: %s"
 msgid "Failed to query content type for “%s”"
 msgstr "Nu s-a putut interoga tipul de conținut pentru „%s”"
 
+#: src/librygel-core/rygel-user-config.vala:225
+msgid "No configuration file found, using defaults"
+msgstr ""
+"Nu s-a găsit niciun fișier de configurare, se folosesc valorile prestabilite"
+
 #. TRANSLATORS: First %s is the file's path, second is the error message
 #: src/librygel-core/rygel-user-config.vala:246
+#, c-format
+msgid "Failed to load system configuration from file “%s”: %s"
+msgstr "Nu s-a putut încărca configurarea sistemului din fișierul „%s”: %s"
+
+#. TRANSLATORS: First %s is the file's path, second is the error message
+#: src/librygel-core/rygel-user-config.vala:268
 #, c-format
 msgid "Failed to load user configuration from file “%s”: %s"
 msgstr "Nu s-a putut încărca configurarea personalizată din fișierul „%s”: %s"
 
-#: src/librygel-core/rygel-user-config.vala:299
+#: src/librygel-core/rygel-user-config.vala:321
 #, c-format
 msgid "No value available for “%s”"
 msgstr "Nicio valoare disponibilă pentru „%s”"
 
-#: src/librygel-core/rygel-user-config.vala:370
+#: src/librygel-core/rygel-user-config.vala:392
 #, c-format
 msgid "Value of “%s” out of range"
 msgstr "Valoarea lui „%s” este în afara intervalului"
@@ -899,17 +910,17 @@ msgstr "Nu s-a putut derula la poziția %lld:%lld"
 msgid "Failed to seek"
 msgstr "Eșec la derulare"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "URI greșit fără prefix: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:151
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
 msgstr "Nu pot procesa URI-ul %s cu protocolul %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:256
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "Nu s-au putut crea sursa de date GStreamer pentru %s: %s"
@@ -1173,39 +1184,39 @@ msgstr "Nu s-a putut termina procesul. Se folosește KILL"
 
 #. Process exitted properly -> That shouldn't really
 #. happen
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:152
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:159
 #, c-format
 msgid "Process check_async failed: %s"
 msgstr "Procesul check_async a eșuat: %s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:165
 #, c-format
 msgid "Process died while handling URI %s"
 msgstr "Procesul s-a oprit în timpul gestionării URI-ului %s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:171
 #, c-format
 msgid "Setting up extraction subprocess failed: %s"
 msgstr "Configurarea suprocesului de extragere a eșuat: %s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received invalid string from child: %s"
 msgstr "S-a primit un șir de caractere incorect de la subproces: %s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:200
 #, c-format
 msgid "Received ill-formed response string %s from child…"
 msgstr "S-a primit un șir de răspuns incorect %s de la subproces…"
 
 #. No error signalling, this was done in the part that called
 #. cancel
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:243
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:250
 #, c-format
 msgid "Read from child failed: %s"
 msgstr "Citirea de la copil a eșuat: %s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:270
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:277
 #, c-format
 msgid "Failed to send command to child: %s"
 msgstr "Nu s-a putut trimite comanda la subproces: %s"
@@ -1258,7 +1269,7 @@ msgstr "Nu s-a putut încărca modulul %s: %s"
 
 #: src/plugins/media-export/rygel-media-export-recursive-file-monitor.vala:36
 msgid "Will not monitor file changes"
-msgstr "Nu se vor monitoriza modificările de fișiere"
+msgstr "Nu se vor mai monitoriza schimbările fișierelor"
 
 #. Avoid warning when file is removed in the meantime, e.g. in
 #. upload case.
@@ -1289,9 +1300,9 @@ msgstr "Albumul"
 msgid "Genre"
 msgstr "Genul"
 
-#: src/plugins/media-export/rygel-media-export-root-container.vala:56
-msgid "Files & Folders"
-msgstr "Fișiere și dosare"
+#: src/plugins/media-export/rygel-media-export-root-container.vala:57
+msgid "Files and Folders"
+msgstr "Fișiere și Dosare"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
 #: src/plugins/media-export/rygel-media-export-root-container.vala:366
@@ -1403,12 +1414,12 @@ msgstr "Eroare la obținerea numărului de elemente din categoria „%s”: %s"
 msgid "Titles"
 msgstr "Titluri"
 
-#: src/rygel/application.vala:88
+#: src/rygel/application.vala:90
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "Nu s-au putut încărca preferințele utilizatorului: %s"
 
-#: src/rygel/application.vala:125
+#: src/rygel/application.vala:126
 #, c-format
 msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
@@ -1416,17 +1427,17 @@ msgstr[0] "Nu s-a găsit niciun modul în %d secundă; se renunță…"
 msgstr[1] "Nu s-a găsit niciun modul în %d secunde; se renunță…"
 msgstr[2] "Nu s-a găsit niciun modul în %d de secunde; se renunță…"
 
-#: src/rygel/application.vala:154
+#: src/rygel/application.vala:155
 #, c-format
 msgid "Rygel v%s starting…"
 msgstr "Se pornește Rygel v%s…"
 
-#: src/rygel/application.vala:202
+#: src/rygel/application.vala:203
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "Nu s-a putut crea dispozitivul principal pentru %s. Motivul: %s"
 
-#: src/rygel/application.vala:283
+#: src/rygel/application.vala:284
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "Nu s-a putut crea generatorul de dispozitive principale: %s"
