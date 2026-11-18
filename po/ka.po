@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rygel\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/rygel/issues/\n"
-"POT-Creation-Date: 2026-10-29 21:49+0000\n"
-"PO-Revision-Date: 2026-11-18 10:02+0100\n"
+"POT-Creation-Date: 2026-09-18 00:17+0000\n"
+"PO-Revision-Date: 2026-11-18 10:04+0100\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: Georgian <(nothing)>\n"
 "Language: ka\n"
@@ -303,29 +303,18 @@ msgstr "დამატების ფაილის ჩატვირთვ�
 msgid "Failed to query content type for “%s”"
 msgstr "\"%s\"-სთვის შემცველობის ტიპის გამოთხოვა ჩავარდა"
 
-#: src/librygel-core/rygel-user-config.vala:225
-msgid "No configuration file found, using defaults"
-msgstr ""
-"კონფიგურაციის ფაილი აღმოჩენილი არაა. გამოიყენება ნაგულისხმევი მნიშვნელობები"
-
 #. TRANSLATORS: First %s is the file's path, second is the error message
 #: src/librygel-core/rygel-user-config.vala:246
-#, c-format
-msgid "Failed to load system configuration from file “%s”: %s"
-msgstr "სისტემური კონფიგურაციის ჩატვირთვა ჩავარდა ფაილიდან \"%s\": %s"
-
-#. TRANSLATORS: First %s is the file's path, second is the error message
-#: src/librygel-core/rygel-user-config.vala:268
 #, c-format
 msgid "Failed to load user configuration from file “%s”: %s"
 msgstr "მომხმარებლის კონფიგურაციის ჩატვირთვა ჩავარდა ფაილიდან \"%s\": %s"
 
-#: src/librygel-core/rygel-user-config.vala:321
+#: src/librygel-core/rygel-user-config.vala:299
 #, c-format
 msgid "No value available for “%s”"
 msgstr "\"%s\"-სთვის მნიშვნელობა ხელმისაწვდომი არაა"
 
-#: src/librygel-core/rygel-user-config.vala:392
+#: src/librygel-core/rygel-user-config.vala:370
 #, c-format
 msgid "Value of “%s” out of range"
 msgstr "მნიშვნელობა '%s' დიაპაზონს გარეთაა"
@@ -894,17 +883,17 @@ msgstr "ჩავარდა გადახვევა წანაცვლ�
 msgid "Failed to seek"
 msgstr "გადახვევის შეცდომა"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:140
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:131
 #, c-format
 msgid "Invalid URI without prefix: %s"
 msgstr "არასწორი URI პრეფიქსის გარეშე: %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:151
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:142
 #, c-format
 msgid "Can’t process URI %s with protocol %s"
 msgstr "ვერ დავამუშავე URI %s პროტოკოლით %s"
 
-#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:256
+#: src/media-engines/gstreamer/rygel-gst-media-engine.vala:247
 #, c-format
 msgid "Failed to create GStreamer data source for %s: %s"
 msgstr "ჩავარდა GStreamer-ის მონაცემების წყაროს შექმნა %s-სთვის: %s"
@@ -1166,39 +1155,39 @@ msgstr "ჩავარდა პროცესის მოხდენილ�
 
 #. Process exitted properly -> That shouldn't really
 #. happen
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:159
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:152
 #, c-format
 msgid "Process check_async failed: %s"
 msgstr "პროცესის ფუნქცია check_async ჩავარდა: %s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:165
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:158
 #, c-format
 msgid "Process died while handling URI %s"
 msgstr "სამწუხაროდ, პროცესი გარდაიცვალა, სანამ ცდილობდა, დაემუშავებინა URI %s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:171
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:164
 #, c-format
 msgid "Setting up extraction subprocess failed: %s"
 msgstr "გამოღების ქვეპროცესის მორგება ჩავარდა: %s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:186
 #, c-format
 msgid "Received invalid string from child: %s"
 msgstr "მივიღე არასწორი სტრიქონი შვილიდან: %s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:200
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:193
 #, c-format
 msgid "Received ill-formed response string %s from child…"
 msgstr "მივიღე არასწორი პასუხი სტრიქონში %s შვილიდან…"
 
 #. No error signalling, this was done in the part that called
 #. cancel
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:250
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:243
 #, c-format
 msgid "Read from child failed: %s"
 msgstr "შვილიდან წაკითხვა ჩავარდა:%s"
 
-#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:277
+#: src/plugins/media-export/rygel-media-export-metadata-extractor.vala:270
 #, c-format
 msgid "Failed to send command to child: %s"
 msgstr "შვილისთვის ბრძანების გაგზავნა ჩავარდა: %s"
@@ -1282,8 +1271,8 @@ msgstr "ალბომი"
 msgid "Genre"
 msgstr "ჟანრი"
 
-#: src/plugins/media-export/rygel-media-export-root-container.vala:57
-msgid "Files and Folders"
+#: src/plugins/media-export/rygel-media-export-root-container.vala:56
+msgid "Files & Folders"
 msgstr "ფაილები და საქაღალდეები"
 
 #. translators: @REALNAME@ is substituted for user's real name and it doesn't need translation.
@@ -1395,29 +1384,29 @@ msgstr "შეცდომა ელემენტების რაოდე�
 msgid "Titles"
 msgstr "სათაურები"
 
-#: src/rygel/application.vala:90
+#: src/rygel/application.vala:88
 #, c-format
 msgid "Failed to load user configuration: %s"
 msgstr "მომხმარებლის კონფიგურაციის ჩატვირთვა ჩავარდა: %s"
 
-#: src/rygel/application.vala:126
+#: src/rygel/application.vala:125
 #, c-format
 msgid "No plugins found in %d second; giving up…"
 msgid_plural "No plugins found in %d seconds; giving up…"
 msgstr[0] "%d წამში ვერც-ერთი დამატება ვერ ვიპოვე. მოვეშვი…"
 msgstr[1] "%d წამში ვერც-ერთი დამატება ვერ ვიპოვე. მოვეშვი…"
 
-#: src/rygel/application.vala:155
+#: src/rygel/application.vala:154
 #, c-format
 msgid "Rygel v%s starting…"
 msgstr "ეშვება Rygel v%s…"
 
-#: src/rygel/application.vala:203
+#: src/rygel/application.vala:202
 #, c-format
 msgid "Failed to create RootDevice for %s. Reason: %s"
 msgstr "ჩავარდა RootDevice-ის შექმნა %s-სთვის: მიზეზი: %s"
 
-#: src/rygel/application.vala:284
+#: src/rygel/application.vala:283
 #, c-format
 msgid "Failed to create root device factory: %s"
 msgstr "ჩავარდა ძირითადი მოწყობილობის ქარხნის შექმნა: %s"
@@ -1459,6 +1448,15 @@ msgstr "Rygel-ის სერვისის გაშვების შეც
 #, c-format
 msgid "Failed to stop Rygel service: %s"
 msgstr "Rygel-ის სერვისის გაჩერების შეცდომა: %s"
+
+#~ msgid "No configuration file found, using defaults"
+#~ msgstr ""
+#~ "კონფიგურაციის ფაილი აღმოჩენილი არაა. გამოიყენება ნაგულისხმევი "
+#~ "მნიშვნელობები"
+
+#, c-format
+#~ msgid "Failed to load system configuration from file “%s”: %s"
+#~ msgstr "სისტემური კონფიგურაციის ჩატვირთვა ჩავარდა ფაილიდან \"%s\": %s"
 
 #, c-format
 #~ msgid "Failed to read standard output from %s: %s"
