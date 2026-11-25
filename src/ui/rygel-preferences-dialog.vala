@@ -42,6 +42,7 @@ public class Rygel.PreferencesDialog : Gtk.Application {
                flags: GLib.ApplicationFlags.FLAGS_NONE);
 
         Environment.set_application_name ("RygelPreferences");
+        Gtk.Window.set_default_icon_name ("rygel");
 
         this.config = new WritableUserConfig ();
         this.builder = new Builder ();

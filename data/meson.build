@@ -56,7 +56,7 @@ i18n.merge_file(input: 'rygel.desktop.in',
                 install_dir: join_paths(get_option('datadir'), 'applications'))
 
 i18n.merge_file(input: 'rygel-preferences.desktop.in',
-                output: 'rygel-preferences.desktop',
+                output: 'org.gnome.Rygel.Preferences.desktop',
                 po_dir : join_paths('..','po'),
                 type: 'desktop',
                 install : gtk.found(),
